@@ -2,10 +2,10 @@
 -- version 4.0.5
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mar 27 Août 2013 à 02:10
--- Version du serveur: 5.1.70-cll
--- Version de PHP: 5.3.17
+-- Host: localhost
+-- Generation Time: Aug 27, 2013 at 10:50 PM
+-- Server version: 5.1.70-cll
+-- PHP Version: 5.3.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `spnsoft_customer`
+-- Database: `spnsoft_customer`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_category`
+-- Table structure for table `sieuthimini_category`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_category` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `sieuthimini_category`
+-- Dumping data for table `sieuthimini_category`
 --
 
 INSERT INTO `sieuthimini_category` (`id`, `name`, `picture`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `sieuthimini_category` (`id`, `name`, `picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_collect_customer`
+-- Table structure for table `sieuthimini_collect_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_collect_customer` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_collect_customer` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_collect_general`
+-- Table structure for table `sieuthimini_collect_general`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_collect_general` (
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_collect_general` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_config`
+-- Table structure for table `sieuthimini_config`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_config` (
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_config` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `sieuthimini_config`
+-- Dumping data for table `sieuthimini_config`
 --
 
 INSERT INTO `sieuthimini_config` (`id`, `param`, `value`) VALUES
@@ -106,7 +106,7 @@ INSERT INTO `sieuthimini_config` (`id`, `param`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_course`
+-- Table structure for table `sieuthimini_course`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_course` (
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_course` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_customer`
+-- Table structure for table `sieuthimini_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_customer` (
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_customer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Contenu de la table `sieuthimini_customer`
+-- Dumping data for table `sieuthimini_customer`
 --
 
 INSERT INTO `sieuthimini_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
@@ -161,7 +161,7 @@ INSERT INTO `sieuthimini_customer` (`id`, `name`, `type`, `card`, `phone`, `addr
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_domain`
+-- Table structure for table `sieuthimini_domain`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_domain` (
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_domain` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `sieuthimini_domain`
+-- Dumping data for table `sieuthimini_domain`
 --
 
 INSERT INTO `sieuthimini_domain` (`id`, `name`) VALUES
@@ -182,7 +182,7 @@ INSERT INTO `sieuthimini_domain` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_employee`
+-- Table structure for table `sieuthimini_employee`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_employee` (
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_employee` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `sieuthimini_employee`
+-- Dumping data for table `sieuthimini_employee`
 --
 
 INSERT INTO `sieuthimini_employee` (`id`, `name`, `job`, `gender`, `phone`, `address`) VALUES
@@ -206,7 +206,7 @@ INSERT INTO `sieuthimini_employee` (`id`, `name`, `job`, `gender`, `phone`, `add
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_order_export`
+-- Table structure for table `sieuthimini_order_export`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_order_export` (
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_order_export` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `sieuthimini_order_export`
+-- Dumping data for table `sieuthimini_order_export`
 --
 
 INSERT INTO `sieuthimini_order_export` (`id`, `iduser`, `date`, `description`, `state`) VALUES
@@ -230,12 +230,12 @@ INSERT INTO `sieuthimini_order_export` (`id`, `iduser`, `date`, `description`, `
 (5, 2, '2013-08-25 17:36:35', 'Hàng bán lẻ', 1),
 (6, 1, '2013-08-25 17:50:58', 'Hàng bán lẻ', 1),
 (7, 1, '2013-08-26 14:20:05', 'Hàng bán lẻ', 1),
-(8, 1, '2013-08-26 21:41:10', 'Hàng bán lẻ', 0);
+(8, 1, '2013-08-26 21:41:10', 'Hàng bán lẻ', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_order_export_detail`
+-- Table structure for table `sieuthimini_order_export_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_order_export_detail` (
@@ -245,10 +245,10 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_order_export_detail` (
   `count` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
--- Contenu de la table `sieuthimini_order_export_detail`
+-- Dumping data for table `sieuthimini_order_export_detail`
 --
 
 INSERT INTO `sieuthimini_order_export_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
@@ -270,14 +270,12 @@ INSERT INTO `sieuthimini_order_export_detail` (`id`, `idorder`, `idresource`, `c
 (23, 6, 196, 2, 32000),
 (24, 6, 206, 2, 28000),
 (26, 7, 276, 2, 63000),
-(27, 8, 245, 1, 15000),
-(28, 8, 242, 6, 16000),
-(29, 8, 223, 1, 32000);
+(30, 8, 1044, 1, 7000);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_order_import`
+-- Table structure for table `sieuthimini_order_import`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_order_import` (
@@ -290,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_order_import` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `sieuthimini_order_import`
+-- Dumping data for table `sieuthimini_order_import`
 --
 
 INSERT INTO `sieuthimini_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
@@ -300,7 +298,7 @@ INSERT INTO `sieuthimini_order_import` (`id`, `idsupplier`, `date`, `description
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_order_import_detail`
+-- Table structure for table `sieuthimini_order_import_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_order_import_detail` (
@@ -317,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_order_import_detail` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_paid_customer`
+-- Table structure for table `sieuthimini_paid_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_paid_customer` (
@@ -333,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_customer` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_paid_general`
+-- Table structure for table `sieuthimini_paid_general`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_paid_general` (
@@ -349,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_general` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_paid_pay_roll`
+-- Table structure for table `sieuthimini_paid_pay_roll`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_paid_pay_roll` (
@@ -365,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_pay_roll` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `sieuthimini_paid_pay_roll`
+-- Dumping data for table `sieuthimini_paid_pay_roll`
 --
 
 INSERT INTO `sieuthimini_paid_pay_roll` (`id`, `idemployee`, `date`, `value_base`, `value_sub`, `value_pre`, `note`) VALUES
@@ -375,7 +373,7 @@ INSERT INTO `sieuthimini_paid_pay_roll` (`id`, `idemployee`, `date`, `value_base
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_paid_supplier`
+-- Table structure for table `sieuthimini_paid_supplier`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_paid_supplier` (
@@ -389,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `sieuthimini_paid_supplier`
+-- Dumping data for table `sieuthimini_paid_supplier`
 --
 
 INSERT INTO `sieuthimini_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
@@ -404,7 +402,7 @@ INSERT INTO `sieuthimini_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `n
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_r2t`
+-- Table structure for table `sieuthimini_r2t`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_r2t` (
@@ -417,7 +415,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_r2t` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1232 ;
 
 --
--- Contenu de la table `sieuthimini_r2t`
+-- Dumping data for table `sieuthimini_r2t`
 --
 
 INSERT INTO `sieuthimini_r2t` (`id`, `id_resource`, `id_tag`) VALUES
@@ -1654,7 +1652,7 @@ INSERT INTO `sieuthimini_r2t` (`id`, `id_resource`, `id_tag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_resource`
+-- Table structure for table `sieuthimini_resource`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_resource` (
@@ -1671,7 +1669,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_resource` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1231 ;
 
 --
--- Contenu de la table `sieuthimini_resource`
+-- Dumping data for table `sieuthimini_resource`
 --
 
 INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_import`, `price_export`, `description`, `barcode`) VALUES
@@ -1950,7 +1948,7 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (273, 1, 'Dao cạo râu Gillette vàng', 'Cái', 0, 6500, '', '8992765301008'),
 (274, 1, 'Dao cạo râu Gillette super thin và lưỡi lam Gillette', 'Cái', 0, 11000, '', '7702018925957'),
 (275, 1, 'Sữa rửa mặt E100 nha đam(100g)', 'Chai', 0, 15000, '', '8935128512871'),
-(276, 1, 'Gạo tài nguyên(5kg)', 'bịch', 0, 63000, '', ''),
+(276, 1, 'Gạo tài nguyên(5kg)', 'Bao 20Kg', 0, 63000, '', ''),
 (277, 1, 'Gạo jasmine(5kg)', 'bịch', 0, 70000, '', ''),
 (278, 1, 'Gạo thơm lài trong(5kg)', 'bịch', 0, 70000, '', ''),
 (279, 1, 'Gạo thơm lài đục(5kg)', 'bịch', 0, 78000, '', ''),
@@ -2019,8 +2017,8 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (342, 2, 'Dầu ăn Kiddy', 'chai', 0, 42000, '', ''),
 (343, 2, 'Nước mắm Chinsu Nam ngư (hương cá hồi)', 'Chai', 0, 19500, '', '8936017363376'),
 (344, 2, 'Chinsu chai sành(500ml)', 'Chai', 0, 29000, '', '8936017362331'),
-(345, 2, 'Dầu ăn Cooking Trường An(1 lít)', 'chai', 0, 35000, '', ''),
-(346, 2, 'Dầu ăn Cooking Trường An(400ml)', 'chai', 0, 15000, '', ''),
+(345, 2, 'Dầu ăn Cooking Trường An(1 lít)', 'Chai', 0, 35000, '', '8936035100090'),
+(346, 2, 'Dầu ăn Cooking Trường An(400ml)', 'Chai', 0, 16000, '', '8936035100083'),
 (347, 2, 'Dầu ăn Mezian(220ml)', 'chai', 0, 10000, '', ''),
 (348, 2, 'Nước mắm Hưng Thịnh', 'chai', 0, 42000, '', ''),
 (349, 2, 'Nước mắm Quốc Hải', 'Chai', 0, 45000, '', '8936000940386'),
@@ -2182,114 +2180,114 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (505, 2, 'Tả dán Pamper XL 12kg +(28 miếng)', 'Bịch', 0, 128000, '', '4902430524056'),
 (506, 2, 'Tả giấy Huggiesm Dry Xl 11-16kg(8 miếng)', 'Bịch', 0, 39000, '', '8888336002262'),
 (507, 2, 'Tả giấy Huggiesm Dry Xl 11kg - 16kg(34 miếng)', 'Bịch', 0, 156000, '', '4800060421908'),
-(508, 2, 'Bánh Wasuka Cheeseroll hộp vàng(24 gói x 12g)', 'hộp', 0, 32000, '', ''),
-(509, 2, 'Bánh Wasuka Gigarky Socola(24 gói x 12g)', 'hộp', 0, 35000, '', ''),
+(508, 2, 'Bánh Wasuka Cheeseroll hộp vàng(24 gói x 12g)', 'Hộp', 0, 32000, '', '8994391010781'),
+(509, 2, 'Kẹo dừa sầu riêng Thanh Long(300g)', 'Bịch', 0, 28000, '', '8935116012550'),
 (510, 2, 'Bánh Wasuka Gigarky(12g)', 'bịch', 0, 8000, '', ''),
-(511, 2, 'Bánh Wasuka  Cheeseroll (12g)', 'bịch', 0, 8000, '', ''),
+(511, 2, 'Bánh Wasuka  Cheeseroll (12g)', 'Hộp', 0, 8000, '', '8994391010989'),
 (512, 2, 'Bánh Nitchi dâu(100g)', 'bịch', 0, 8000, '', ''),
 (513, 2, 'Bánh Nitchi Socola(100g)', 'bịch', 0, 8000, '', ''),
-(514, 2, 'Bánh Gi Yogurt dâu(24 gói x 12g)', 'hộp', 0, 32000, '', ''),
-(515, 2, 'Bánh Wasuka Cheeseroll hộp nhựa màu vàng(680g)', 'bịch', 0, 53000, '', ''),
+(514, 2, 'Bánh Go Yogurt dâu(24 gói x 12g)', 'Hộp', 0, 32000, '', '8886013695240'),
+(515, 2, 'Bánh Wasuka Cheeseroll (10 hộp x 12gr)', 'Hộp', 0, 75000, '', '8994391012341'),
 (516, 2, 'Bánh Wasuka Gigarky Socola hộp nhựa(680g)', 'bịch', 0, 35000, '', ''),
-(517, 2, 'Bánh Go patato(12 bánh)', 'hộp', 0, 28000, '', ''),
-(518, 2, 'Kẹo dừa sầu riêng Thanh Long(300g)', 'bịch', 0, 28000, '', ''),
-(519, 2, 'Kẹo dừa đậu phộng sầu riêng Thanh Long(300g)', 'bịch', 0, 28000, '', ''),
-(520, 2, 'Thạch dừa Huy Phong(1000g)', 'bịch', 0, 15000, '', ''),
+(517, 2, 'Bánh Go patato(12 bánh)', 'Hộp', 0, 35000, '', '8886013457121'),
+(518, 2, 'Kẹo dừa dứa sầu riêng Thanh Long(300g)', 'Hộp', 0, 28000, '', '8935116012444'),
+(519, 2, 'Kẹo dừa đậu phộng sầu riêng Thanh Long(300g)', 'Hộp', 0, 28000, '', '8935116012345'),
+(520, 2, 'Thạch dừa Huy Phong(1000g)', 'Bịch', 0, 15000, '', '8936017300029'),
 (521, 2, 'Bánh Pía Công Lập Thành(500g)', 'bịch', 0, 37000, '', ''),
-(522, 2, 'Lạp xưởng Công Lập Thành(500g)', 'bịch', 0, 50000, '', ''),
+(522, 2, 'Lạp xưởng Công Lập Thành(500g)', 'Bịch', 0, 50000, '', '8935102641252'),
 (523, 2, 'Đường viên thốt nốt Minh Hoàng(500g)', 'bịch', 0, 17000, '', ''),
 (524, 2, 'Đường lá thốt nốt Minh Hoàng(1kg)', 'bịch', 0, 34000, '', ''),
 (525, 2, 'Đường thốt nốt Minh Hoàng(1kg)', 'bịch', 0, 32000, '', ''),
-(526, 2, 'Bánh đậu xanh Tiên dung(300g)', 'bịch', 0, 35000, '', ''),
+(526, 2, 'Bánh đậu xanh Tiên dung(300g)', 'Hộp', 0, 35000, '', '8934941010182'),
 (527, 2, 'Bấp rang bợ Thanh Mỹ', 'bịch', 0, 6000, '', ''),
 (528, 2, 'Rau câu trái cây Zoto(700g)', 'bịch', 0, 15000, '', ''),
-(529, 2, 'Rau câu túi Zoto(500g)', 'bịch', 0, 16000, '', ''),
+(529, 2, 'Rau câu túi Zoto(500g)', 'Túi', 0, 16000, '', '8936036162325'),
 (530, 2, 'Cốm sữa tươi sầu riêng Xuân Thanh(180g)', 'bịch', 0, 12000, '', ''),
 (531, 2, 'Kẹo dâu tây Bích Liên(300g)', 'bịch', 0, 20000, '', ''),
-(532, 2, 'Nước xúc miệng Listerine(750ml)', 'chai', 0, 102000, '', ''),
-(533, 2, 'Nước xúc miệng Listerine(250ml)', 'chai', 0, 45000, '', ''),
-(534, 2, 'Nước xúc miệng Listerine(80ml)', 'chai', 0, 24000, '', ''),
-(535, 2, 'Kem xua muỗi Soffell(70ml)', 'chai', 0, 17000, '', ''),
+(532, 2, 'Nước xúc miệng Listerine(750ml)', 'Chai', 0, 102000, '', '8850007811251'),
+(533, 2, 'Nước xúc miệng Listerine(250ml)', 'Chai', 0, 45000, '', '8850007811213'),
+(534, 2, 'Nước xúc miệng Listerine(80ml)', 'Chai', 0, 24000, '', '8850007811190'),
+(535, 2, 'Kem xua muỗi Soffell(70ml)', 'Chai', 0, 17000, '', '8992772065016'),
 (536, 2, 'Nước hoa Johnson baby hương ngày hè (xanh lá cây)(50ml)', 'chai', 0, 27500, '', ''),
-(537, 2, 'Johnson hương ban mai (màu tím)(50ml)', 'chai', 0, 27500, '', ''),
-(538, 2, 'Dung dich chống muỗi johnson Baby(50ml)', 'chai', 0, 45000, '', ''),
+(537, 2, 'Johnson hương ban mai (màu tím)(50ml)', 'Chai', 0, 27500, '', '4801010126218'),
+(538, 2, 'Dung dich chống muỗi johnson Baby(50ml)', 'Chai', 0, 45000, '', '8850007720010'),
 (539, 2, 'Nước hoa John hương phấn hoa (màu hồng cam)(50ml)', 'chai', 0, 27000, '', ''),
-(540, 2, 'Dầu gội đầu Johnson baby Shampo(100ml)', 'chai', 0, 27000, '', ''),
-(541, 2, 'Dầu gội đầu Johnson baby Shampo(200ml)', 'chai', 0, 39000, '', ''),
-(542, 2, 'Sữa tắm gội toàn thân Johnson toptotoc (500ml)', 'chai', 0, 86000, '', ''),
-(543, 2, 'Sữa tắm gội toàn thân Johnson toptotoc (200ml)', 'chai', 0, 46000, '', ''),
-(544, 2, 'Sữa tắm Johnson Baby bath(500ml)', 'chai', 0, 72000, '', ''),
-(545, 2, 'Sữa tắm Johnson Baby bath(200ml)', 'chai', 0, 39000, '', ''),
-(546, 2, 'Sữa tắm Johnson Baby bath(100ml)', 'chai', 0, 26000, '', ''),
-(547, 2, 'Sữa tắm Johnson Baby bath(50ml)', 'chai', 0, 10000, '', ''),
-(548, 2, 'Phấn Johnson baby powder(200g)', 'chai', 0, 35000, '', ''),
-(549, 2, 'Phấn Johnson baby powder(100g)', 'chai', 0, 24000, '', ''),
-(550, 2, 'Phấn Johnson baby powder màu xanh(100g)', 'chai', 0, 24000, '', ''),
-(551, 2, 'Sữa tắm chứa sữa Johnson baby bath milk(1000ml)', 'chai', 0, 150000, '', ''),
+(540, 2, 'Dầu gội đầu Johnson baby Shampo(100ml)', 'Chai', 0, 27000, '', '9556006014547'),
+(541, 2, 'Dầu gội đầu Johnson baby Shampo(200ml)', 'Chai', 0, 39000, '', '9556006000250'),
+(542, 2, 'dầu gội đầu Johnson toptotoe (100ml)', 'Chai', 0, 27000, '', '9556006012086'),
+(543, 2, 'Sữa tắm Johnson (200ml)', 'Chai', 0, 45000, '', '9556006061671'),
+(544, 2, 'Sữa tắm Johnson Baby bath(500ml)', 'Chai', 0, 72000, '', '9556006006665'),
+(545, 2, 'Sữa tắm Johnson Baby bath(100ml)', 'Chai', 0, 26000, '', '9556006060193'),
+(546, 2, 'Sữa tắm Johnson Baby bath(200ml)', 'Chai', 0, 39000, '', '9556006000304'),
+(547, 2, 'Sữa tắm gội toàn thân Johnson Baby toptotoe(100ml)', 'Chai', 0, 27000, '', '9556006012086'),
+(548, 2, 'Phấn Johnson baby powder(200g)', 'Chai', 0, 35000, '', '8850007500629'),
+(549, 2, 'Phấn Johnson baby powder(100g)', 'Chai', 0, 26000, '', '8991111102856'),
+(550, 2, 'Phấn Johnson baby powder mildness(100g)', 'Chai', 0, 26000, '', '8850007011132'),
+(551, 2, 'Sữa tắm chứa sữa Johnson baby bath milk(1000ml)', 'Chai', 0, 150000, '', '9556006060025'),
 (552, 2, 'Sữa tắm chứa sữa Johnson baby bath milk(200ml)', 'chai', 0, 39000, '', ''),
 (553, 2, 'Sữa tắm chứa sữa Johnson baby bath milk(100ml)', 'chai', 0, 26000, '', ''),
 (554, 2, 'Nước hoa Johnson baby hương ban mai (màu tím)(125ml)', 'chai', 0, 55000, '', ''),
-(555, 2, 'Dung dich chống muỗi johnson Baby clear lotion(110ml)', 'chai', 0, 62000, '', ''),
+(555, 2, 'Dung dich chống muỗi johnson Baby clear lotion(100ml)', 'Chai', 0, 62000, '', '8850007720058'),
 (556, 2, 'Johnson baby top to toe(100ml)', 'chai', 0, 27000, '', ''),
 (557, 2, 'Nước súc miệng Colgate Optic white(250ml)', 'chai', 0, 60000, '', ''),
-(558, 2, 'Phấn Enchentuer(50g)', 'chai', 0, 27000, '', ''),
-(559, 2, 'Phấn Johnson baby powder màu trắng(100g)', 'chai', 0, 26000, '', ''),
-(560, 2, 'Phấn Johnson baby powder ngăn ngừa nôn sẩy(200g)', 'chai', 0, 35000, '', ''),
+(558, 2, 'Phấn Enchentuer(50g)', 'Chai', 0, 27000, '', '8888202018663'),
+(559, 2, 'Phấn Johnson baby powder(100g)', 'Bao 20Kg', 0, 26000, '', '8850007011170'),
+(560, 2, 'Phấn Johnson baby powder(200g)', 'Chai', 0, 35000, '', '8850007011187'),
 (561, 2, 'Sữa tắm Johnson Baby care(200ml)', 'chai', 0, 45000, '', ''),
-(562, 2, 'Dụng cụ rửa bình sữa núm vú dạng mút', 'chai', 0, 45000, '', ''),
+(562, 2, 'Dụng cụ rửa bình sữa núm vú dạng mút', 'Cây', 0, 45000, '', '8938500402364'),
 (563, 2, 'Bao tay tiện lợi hợp vệ sinh', 'chai', 0, 20000, '', ''),
 (564, 2, 'Bình sữa toys(120ml)', 'chai', 0, 15000, '', ''),
 (565, 2, 'Lược chảy đầu loại lớn', 'chai', 0, 2000, '', ''),
-(566, 2, 'Bình sữa Wesser Nano Siler(260ml)', 'chai', 0, 130000, '', ''),
+(566, 2, 'Bình sữa Wesser Nano Siler(260ml)', 'Chai', 0, 115000, '', '8938500402029'),
 (567, 2, 'Bình sữa Wesser Nano Siler(150ml)', 'chai', 0, 90000, '', ''),
 (568, 2, 'Bình sữa Wesser Nano Siler(320ml)', 'chai', 0, 120000, '', ''),
-(569, 2, 'Bình nước uống Wesser Nano Siler(260ml)', 'chai', 0, 138000, '', ''),
-(570, 2, 'Bình sữa Wesser Nano Siler(120ml)', 'chai', 0, 80000, '', ''),
-(571, 2, 'Bình sữa Wesser Nano Siler(180ml)', 'chai', 0, 95000, '', ''),
+(569, 2, 'Bình nước uống Wesser Nano Siler(260ml)', 'Chai', 0, 138000, '', '8938500402210'),
+(570, 2, 'Bình sữa Wesser Nano Siler(120ml)', 'Chai', 0, 80000, '', '8938500402005'),
+(571, 2, 'Bình sữa Wesser Nano Silver(180ml)', 'Chai', 0, 95000, '', '8938500402012'),
 (572, 2, 'Bình sữa Wesser Nano Siler(60ml)', 'chai', 0, 65000, '', ''),
-(573, 2, 'Mặt nạ dưỡng da dau sữa Venus(40g)', 'chai', 0, 7000, '', ''),
+(573, 2, 'Mặt nạ dưỡng da dau sữa Venus(40g)', 'Bịch', 0, 7000, '', '8936058250031'),
 (574, 2, 'Bình sữa Premium Agi(250ml)', 'chai', 0, 26000, '', ''),
-(575, 2, 'Bình sữa Premium Agi(120ml)', 'chai', 0, 25000, '', ''),
+(575, 2, 'Bình sữa Premium Agi(120ml)', 'Chai', 0, 24000, '', '8938500402357'),
 (576, 2, 'Bình sữa Premium Agi(60ml)', 'chai', 0, 24000, '', ''),
-(577, 2, 'Núm vú Wesser(size M)', 'cái', 0, 55000, '', ''),
-(578, 2, 'Nuúm vú giả Silicone Agi', 'cái', 0, 19000, '', ''),
+(577, 2, 'Núm vú Wesser(size M)', 'Cái', 0, 55000, '', '8938500402074'),
+(578, 2, 'Núm vú giả Silicone Agi', 'Bao 20Kg', 0, 19000, '', ''),
 (579, 2, 'Bình nước uống nhỏ(30ml)', 'chai', 0, 1000, '', ''),
-(580, 2, 'Bùn khoáng ngọc trai Venus(15ml)', 'chai', 0, 8000, '', ''),
-(581, 2, 'Bùn khoáng nha đam Venus(15ml)', 'chai', 0, 8000, '', ''),
-(582, 2, 'Mặt nạ dưỡng da nha đam Venus(40g)', 'chai', 0, 8000, '', ''),
-(583, 2, 'Mặt nạ dưỡng da Ngọc trai Venus(40g)', 'chai', 0, 8000, '', ''),
-(584, 2, 'Mặt nạ dưỡng da dưa leo Venus(40g)', 'chai', 0, 7000, '', ''),
-(585, 2, 'Mặt nạ dưỡng da ngăn ngừa mụn(40g)', 'chai', 0, 7000, '', ''),
-(586, 2, 'Tăm bông rái tay Hello(hủ)', 'chai', 0, 6000, '', ''),
+(580, 2, 'Bùn khoáng ngọc trai Venus(15ml)', 'Bịch', 0, 8000, '', '8936058250062'),
+(581, 2, 'Bùn khoáng nha đam Venus(15ml)', 'Bịch', 0, 8000, '', '8936058250079'),
+(582, 2, 'Mặt nạ dưỡng da nha đam Venus(40g)', 'Bịch', 0, 7000, '', '8936058250024'),
+(583, 2, 'Mặt nạ dưỡng da Ngọc trai Venus(40g)', 'Bịch', 0, 8000, '', '8936058250055'),
+(584, 2, 'Mặt nạ dưỡng da dưa leo Venus(40g)', 'Bịch', 0, 7000, '', '8936058250048'),
+(585, 2, 'Mặt nạ dưỡng da ngăn ngừa mụn(40g)', 'Bao 20Kg', 0, 7000, '', ''),
+(586, 2, 'Tăm bông rái tay Hello(hủ)', 'Hộp', 0, 6000, '', '8493824751203'),
 (587, 2, 'Tăm bông rái tay Hello(dạng dịch)', 'chai', 0, 2000, '', ''),
 (588, 2, 'Sổ tay lớn', 'chai', 0, 2000, '', ''),
 (589, 2, 'Sổ tay nhỏ', 'chai', 0, 1000, '', ''),
-(590, 2, 'Dầu xanh con ó(24ml)', 'chai', 0, 65000, '', ''),
-(591, 2, 'Dầu xanh con ó(12ml)', 'chai', 0, 38000, '', ''),
+(590, 2, 'Dầu xanh con ó(24ml)', 'Chai', 0, 65000, '', '8888951888791'),
+(591, 2, 'Dầu xanh con ó(12ml)', 'Chai', 0, 38000, '', '8888951888784'),
 (592, 2, 'Dầu xanh con ó(3ml)', 'chai', 0, 13000, '', ''),
 (593, 2, 'Dầu gió xanh thiên thảo(12ml)', 'chai', 0, 14000, '', ''),
 (594, 2, 'Dầu phật linh Trường Sơn(5ml)', 'chai', 0, 8500, '', ''),
 (595, 2, 'Dầu phật linh Trường Sơn(1.5ml)', 'chai', 0, 4000, '', ''),
-(596, 2, 'Dầu khuynh diệp OPC(25ml)', 'chai', 0, 35000, '', ''),
-(597, 2, 'Dầu nóng Trường sơn(10ml)', 'chai', 0, 12000, '', ''),
-(598, 2, 'Cao xoa cơ bấp con ó(20g)', 'chai', 0, 35000, '', ''),
+(596, 2, 'Dầu khuynh diệp OPC(25ml)', 'Chai', 0, 35000, '', '8934567001137'),
+(597, 2, 'Dầu nóng Trường sơn(10ml)', 'Chai', 0, 12000, '', '8934960011702'),
+(598, 2, 'Cao xoa cơ bấp con ó(20g)', 'Chai', 0, 35000, '', '8888951889057'),
 (599, 2, 'Bút chì 2B', 'cây', 0, 3500, '', ''),
 (600, 2, 'Tăm tre cao cấp Sadaco', 'cây', 0, 1500, '', ''),
-(601, 2, 'Bút xóa CP-02(12ml)', 'cây', 0, 17000, '', ''),
+(601, 2, 'Bút xóa CP-02(12ml)', 'Cây', 0, 17000, '', '8935001820062'),
 (602, 2, 'Viết đỏ Thiên long', 'cây', 0, 3000, '', ''),
-(603, 2, 'Viết tím Thiên Long', 'cây', 0, 3000, '', ''),
+(603, 2, 'Viết tím Thiên Long', 'Cây', 0, 3000, '', '8935001800347'),
 (604, 2, 'Viết xanh Bến nghé', 'cây', 0, 3000, '', ''),
 (605, 2, 'Băng keo đen', 'cuộn', 0, 2500, '', ''),
 (606, 2, 'Kim tây Even Flo', 'lốc ', 0, 15000, '', ''),
-(607, 2, 'Gôm thôm stela hương hoa hồng(20g)', 'túi', 0, 18000, '', ''),
+(607, 2, 'Gốm thôm stela hương hoa hồng(20g)', 'Bịch', 0, 18000, '', '8992745325314'),
 (608, 2, 'Bao thư', 'bịch', 0, 5000, '', ''),
 (609, 2, 'Băng keo cá nhân Miloplast', 'vỉ', 0, 2000, '', ''),
 (610, 2, 'Băng keo trong', 'cuộn', 0, 1500, '', ''),
-(611, 2, 'Keo 502', 'hộp', 0, 5000, '', ''),
+(611, 2, 'Keo 502', 'Chai', 0, 5000, '', '8934837000037'),
 (612, 2, 'Kiếng lớn Vạn thành', 'miếng', 0, 5000, '', ''),
 (613, 2, 'Kiếng nhỏ Vạn thành', 'miếng', 0, 3000, '', ''),
 (614, 2, 'Lược lớn', 'cây', 0, 3000, '', ''),
-(615, 2, 'Thước Duli', 'cây', 0, 3000, '', ''),
+(615, 2, 'Thước Duli', 'Cây', 0, 3000, '', '8935024560310'),
 (616, 2, 'Nhip', 'cây', 0, 3500, '', ''),
 (617, 2, 'Bút long Cuda(0,1 mm)', 'cây', 0, 8000, '', ''),
 (618, 2, 'Dũa móng tay', 'cây', 0, 2000, '', ''),
@@ -2307,115 +2305,115 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (630, 2, 'Thước nhỏ(15 cm)', 'cây', 0, 2500, '', ''),
 (631, 2, 'Bột bánh xèo Vĩnh Thuận(400g)', 'bịch', 0, 11000, '', ''),
 (632, 2, 'Hạt nêm maggi lớn(450g)', 'bịch', 0, 31000, '', ''),
-(633, 2, 'Hột vịt(60g x 4 trứng)', 'vĩ', 0, 20000, '', ''),
-(634, 2, 'Hột gà(60g x 4 trứng)', 'vĩ', 0, 17000, '', ''),
-(635, 2, 'Trứng cút', 'vĩ', 0, 20000, '', ''),
+(633, 2, 'Hột vịt(6 trứng)', 'Hộp', 0, 20000, '', '8935051300026'),
+(634, 2, 'Hột gà(6 trứng)', 'Hộp', 0, 17000, '', '8935051300040'),
+(635, 2, 'Trứng cút', 'Hộp', 0, 18000, '', '8935051300071'),
 (636, 2, 'Trứng bắc thảo(60g x 4 trứng)', 'vĩ', 0, 16000, '', ''),
-(637, 2, 'Trứng vịt muối(60g x 4 trứng)', 'vĩ', 0, 16000, '', ''),
+(637, 2, 'Trứng vịt muối(60g x 4 trứng)', 'Hộp', 0, 18000, '', '8935051300057'),
 (638, 2, 'Bột ngọt Vedan(1 kg)', 'bịch', 0, 45000, '', ''),
-(639, 2, 'Bột ngọt Vedan(454g)', 'bịch', 0, 25000, '', ''),
-(640, 2, 'Bột ngọt Vedan(100g)', 'bịch', 0, 7000, '', ''),
-(641, 2, 'Bột ngọt Aji nomoto(1kg)', 'bịch', 0, 58000, '', ''),
-(642, 2, 'Bột ngọt Aji nomoto(454g)', 'bịch', 0, 28000, '', ''),
-(643, 2, 'Đường phèn Biên hòa pro(500g)', 'bịch', 0, 28000, '', ''),
+(639, 2, 'Bột ngọt Vedan(454g)', 'Bịch', 0, 27000, '', '8935102411169'),
+(640, 2, 'Bột ngọt Vedan(100g)', 'Bịch', 0, 6000, '', '8935102411114'),
+(641, 2, 'Bột ngọt Aji nomoto(1kg)', 'bịch', 0, 58000, '', '');
+INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_import`, `price_export`, `description`, `barcode`) VALUES
+(642, 2, 'Bột ngọt Aji nomoto(454g)', 'Bịch', 0, 28000, '', '8935039500509'),
+(643, 2, 'Đường phèn Biên hòa pro(500g)', 'Bịch', 0, 28000, '', '8935015510539'),
 (644, 2, 'Đường tinh luyện Sugar(1kg)', 'bịch', 0, 21000, '', ''),
 (645, 2, 'Muối Iốt Trasalco(1kg)', 'bịch', 0, 5500, '', ''),
-(646, 2, 'Muối sấy Iốt Trasalco(500g)', 'bịch', 0, 5000, '', ''),
+(646, 2, 'Muối sấy Iốt(500g)', 'Bao 20Kg', 0, 5000, '', '8938503138017'),
 (647, 2, 'Muối tôm Nam phong', 'bịch', 0, 1500, '', ''),
-(648, 2, 'Muối tiêu Ngọc bích', 'bịch', 0, 5000, '', ''),
+(648, 2, 'Muối tiêu Thu Hà', 'Chai', 0, 5000, '', '8938505147062'),
 (649, 2, 'Muối hạt', 'bịch', 0, 2500, '', ''),
 (650, 2, 'Muối bọt', 'bịch', 0, 2500, '', ''),
 (651, 2, 'Muối Iốt Trasalco(500g)', 'bịch', 0, 3000, '', ''),
-(652, 2, 'Nấm tuyết trắng Thảo Nguyên Phát(100g)', 'bịch', 0, 48000, '', ''),
-(653, 2, 'Nắm mèo đen Thảo Nguyên Phát(100g)', 'bịch', 0, 27000, '', '');
-INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_import`, `price_export`, `description`, `barcode`) VALUES
+(652, 2, 'Nấm tuyết trắng Thảo Nguyên Phát(100g)', 'Bịch', 0, 48000, '', '8936053350651'),
+(653, 2, 'Nắm mèo đen Thảo Nguyên Phát(100g)', 'bịch', 0, 27000, '', ''),
 (654, 2, 'Nắm đông cô khô Thảo Nguyên Phát(100g)', 'bịch', 0, 38000, '', ''),
-(655, 2, 'Thịt heo chà bông Thảo Nguyên Phát(250g)', 'hộp', 0, 92000, '', ''),
-(656, 2, 'Thịt heo chà bông Thảo Nguyên Phát(100g)', 'hộp', 0, 46000, '', ''),
-(657, 2, 'Nước xả Downy Đam mê(20ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(658, 2, 'Nước xả Downy 1 lần xả(22ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(659, 2, 'Nước xả Downy Hương nắng mai(22ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(660, 2, 'Nước xả Downy Thơ Ngây(20ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(661, 2, 'Nước xả Downy Chống Khuẩn(22ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(662, 2, 'Nước xả Downy Cánh Đồng Hoa(22ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(663, 2, 'Nước xả Downy Sức hút(20ml x 10 gói)', 'dây', 0, 14000, '', ''),
-(664, 2, 'Nước xã Comfort tinh dầu thơm tinh tế(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(665, 2, 'Comfort tinh dầu thơm thư giãn(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(666, 2, 'Confort đậm đặc(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(667, 2, 'Confort đậm đặc 1 lần xã(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(668, 2, 'Comfort tinh dầu thơm(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(669, 2, 'Confort đậm đặc hương ban mai(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(670, 2, 'Confort đậm đặc hương ban mai 1 lần xã(22ml x 10 gói)', 'dây', 0, 14500, '', ''),
-(671, 2, 'Dầu gội Ramus men(4ml x 10 gói)', 'dây', 0, 5000, '', ''),
-(672, 2, 'Dầu gội X-Men Sport(6g x 10 gói)', 'dây', 0, 10000, '', ''),
-(673, 2, 'Dầu gọi Sunsilk mềm mượt diệu kỳ(7g x 10 gói)', 'dây', 0, 9000, '', ''),
-(674, 2, 'Dầu gọi Sunsilk ống mượt rạng ngời(7g x 10 gói)', 'dây', 0, 9000, '', ''),
-(675, 2, 'Dầu gọi Sunsilk tóc thẳng hoàn hảo(6g x 10 gói)', 'dây', 0, 9000, '', ''),
-(676, 2, 'Dầu gọi Sunsilk mềm mượt diệu kỳ(6g x 10 gói)', 'dây', 0, 9000, '', ''),
-(677, 2, 'Dầu gọi Sunsilk ống mượt rạng ngời(6g x 10 gói)', 'dây', 0, 9000, '', ''),
-(678, 2, 'Dầu gội sạch gàu clear(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(679, 2, 'Dầu gội dưỡng chất chăm sóc da đầu clear(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(680, 2, 'Dầu xã Pantene Pro V(6ml x 10 gói)', 'dây', 0, 13000, '', ''),
-(681, 2, 'Dầu xã Pantene chăm sóc tóc hư tổn(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(682, 2, 'Dầu xã Pantene làm sạch gàu(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(683, 2, 'Dầu xã Pantene dưỡng tóc suôn mượt óng ả(8g x 10 gói)', 'dây', 0, 13000, '', ''),
-(684, 2, 'Dầu gội Pantene bồng bềnh đầy sức sống(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(685, 2, 'Pantene giảm tóc rụng do gãy(8g x 10 gói)', 'dây', 0, 13000, '', ''),
-(686, 2, 'Dẩu xã Pantene dưỡng chất ngăn rụng tóc(6ml x 10 gói)', 'dây', 0, 13000, '', ''),
-(687, 2, 'Dầu gội Rejoice siêu mượt(6ml x 10 gói)', 'dây', 0, 10000, '', ''),
-(688, 2, 'Dầu gội Rejoice giảm tóc sơ rối(6ml x 10 gói)', 'dây', 0, 10000, '', ''),
-(689, 2, 'Dầu gội Rejoice làm sạch gàu(6ml x 10 gói)', 'dây', 0, 10000, '', ''),
-(690, 2, 'Rejoice trái cây làm sạch gàu(6ml x 10 gói)', 'bịch', 0, 10000, '', ''),
-(691, 2, 'Head Shoulder làm sạch gàu(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(692, 2, 'Sữa tắm E100(4ml x 10 gói)', 'dây', 0, 5000, '', ''),
-(693, 2, 'Sữa tắm Thebol sữa dê(5,5g x 10 gói)', 'dây', 0, 5000, '', ''),
-(694, 2, 'Sữa tắm Thebol với tinh chất hoa hồng(5,5g x 10 gói)', 'dây', 0, 5000, '', ''),
-(695, 2, 'Sữa tắm Witchi(4ml x 12 gói)', 'dây', 0, 5000, '', ''),
-(696, 2, 'Dầu gội Head Shoulder ngăn rụng tóc(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(697, 2, 'Dầu gội Head Shoulder ngăn rụng tóc dành cho nam(6g x 10 gói)', 'dây', 0, 13000, '', ''),
-(698, 2, 'Dầu gội Ehybol(5g x 10 gói)', 'dây', 0, 5000, '', ''),
-(699, 2, 'Dầu gội Ramus Men bồng bềnh(4ml x 12 gói)', 'dây', 0, 5000, '', ''),
-(700, 2, 'Dầu gội Pamolive suôn mượt ống ả(7ml x 12 gói)', 'dây', 0, 10000, '', ''),
-(701, 2, 'Dầu gội Head Shoulder bạc hà(6g x 12 gói)', 'dây', 0, 13000, '', ''),
-(702, 2, 'Dầu gội Head Shoulder suôn mềm mượt(6g x 12 gói)', 'dây', 0, 13000, '', ''),
-(703, 2, 'Dầu gội Head Shoulder làm sạch gàu cho da đầu ngứa(6g x 12 gói)', 'dây', 0, 13000, '', ''),
-(704, 2, 'Dầu gội Head Shoulder hương táo(6g x 12 gói)', 'dây', 0, 13000, '', ''),
-(705, 2, 'Dầu gội Dove(7g x 12 gói)', 'dây', 0, 13000, '', ''),
-(706, 2, 'Dầu xã Dove(7g x 12 gói)', 'dây', 0, 13000, '', ''),
-(707, 2, 'Sữa tắm Hazeline tinh chất sữa dê(5g x 12 gói)', 'dây', 0, 5000, '', ''),
-(708, 2, 'Sữa tắm Hazeline mầm gạo nhật bản(5g x 12 gói)', 'dây', 0, 5000, '', ''),
-(709, 2, 'Dầu gội 100% men(5g x 12 gói)', 'dây', 0, 5000, '', ''),
-(710, 2, 'Sữa tắm dê Unicom(1200ml)', 'chai', 0, 68000, '', ''),
-(711, 2, 'Sữa tắm Biore', 'chai', 0, 9000, '', ''),
-(712, 2, 'Sữa tắm Enchentuer', 'chai', 0, 13000, '', ''),
-(713, 2, 'Sữa tắm Gervenne', 'chai', 0, 5000, '', ''),
-(714, 2, 'Sữa tắm Izzi', 'chai', 0, 5000, '', ''),
-(715, 2, 'Xịt phòng Glade(280ml)', 'chai', 0, 45000, '', ''),
-(716, 2, 'Viso trắng sáng(3kg)', 'bịch', 0, 104000, '', ''),
-(717, 2, 'Tide hương Downy(4.5kg)', 'bịch', 0, 145000, '', ''),
-(718, 2, 'Tide chuyên dụng(6kg)', 'bịch', 0, 178000, '', ''),
+(655, 2, 'Thịt heo chà bông Thảo Nguyên Phát(250g)', 'Hộp', 0, 92000, '', '8936053350453'),
+(656, 2, 'Thịt heo chà bông Thảo Nguyên Phát(100g)', 'Hộp', 0, 46000, '', '8936053350460'),
+(657, 2, 'Rejoice làm sạch gàu 3 trong 1', 'Dây', 0, 10000, '', '4902430451277'),
+(658, 2, 'Nước xả Downy 1 lần xả(22ml x 10 gói)', 'Dây', 0, 14000, '', '4902430154130'),
+(659, 2, 'Sửa tắm Double Rich tím', 'Dây', 0, 12000, '', '8935030218823'),
+(660, 2, 'Sửa tắm Enchanteur tắm tráng và dưỡng ẩm', 'Dây', 0, 13000, '', '8935212800716'),
+(661, 2, 'Nước xả Downy Chống Khuẩn(22ml x 10 gói)', 'Dây', 0, 14000, '', '4902430130158'),
+(662, 2, 'Nước xả Downy Cánh Đồng Hoa(22ml x 10 gói)', 'Dây', 0, 14000, '', '4902430453134'),
+(663, 2, 'Nước xả Downy Sức hút(20ml x 10 gói)', 'Dây', 0, 14000, '', '4902430276467'),
+(664, 2, 'Nước xã Comfort tinh dầu thơm tinh tế(22ml x 10 gói)', 'Dây', 0, 14500, '', '8934868083719'),
+(665, 2, 'Comfort tinh dầu thơm thư giãn(22ml x 10 gói)', 'Dây', 0, 14500, '', '8934868071860'),
+(666, 2, 'Confort đậm đặc(22ml x 10 gói)', 'Dây', 0, 14500, '', '8934868062134'),
+(667, 2, 'Confort đậm đặc 1 lần xã(22ml x 10 gói)', 'Dây', 0, 14500, '', '8934868062158'),
+(668, 2, 'Comfort tinh dầu thơm(22ml x 10 gói)', 'Dây', 0, 14500, '', '8934868070764'),
+(669, 2, 'Confort đậm đặc cho daq nhạy cảm(22ml x 10 gói)', 'Bao 20Kg', 0, 14500, '', '8934868062349'),
+(670, 2, 'Sửa tắm Double Rich đỏ', 'Dây', 0, 12000, '', '8935030218366'),
+(671, 2, 'Sửa tắm Double Rich hồng', 'Dây', 0, 12000, '', '8935030218380'),
+(672, 2, 'Dầu gội X-Men Sport(6g x 10 gói)', 'Dây', 0, 12000, '', '8935136808171'),
+(673, 2, 'Dầu gọi Sunsilk mềm mượt diệu kỳ(6g x 10 gói)', 'Dây', 0, 9000, '', '8934868090090'),
+(674, 2, 'Dầu gọi Sunsilk ống mượt rạng ngời-dây đen(7g x 10 gói)', 'Bao 20Kg', 0, 9000, '', '8934868090076'),
+(675, 2, 'Dầu gọi Sunsilk tóc thẳng hoàn hảo(6g x 10 gói)', 'Dây', 0, 9000, '', '8934868090052'),
+(676, 2, 'Dầu xả Sunsilk mềm mượt diệu kỳ(6g x 10 gói)', 'Bao 20Kg', 0, 9000, '', '8934868090038'),
+(677, 2, 'Dầu xả Sunsilk ống mượt rạng ngời-dây màu nâu(6g x 10 gói)', 'Dây', 0, 9000, '', '8934868089995'),
+(678, 2, 'Dầu gội sạch gàu clear(6g x 10 gói)', 'Dây', 0, 13000, '', '8934868086505'),
+(679, 2, 'Dầu gội Rejoice đen mượt(6g x 10 gói)', 'Dây', 0, 10000, '', '4902430451208'),
+(680, 2, 'Dầu gội Pantene Pro V- suôn mượt ống ả(6ml x 10 gói)', 'Dây', 0, 13000, '', '4902430512817'),
+(681, 2, 'Dầu xã Pantene chăm sóc tóc hư tổn(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430512800'),
+(682, 2, 'Dầu gội Pantene làm sạch gàu(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430512855'),
+(683, 2, 'Dầu xã Pantene dưỡng tóc suôn mượt óng ả(8g x 10 gói)', 'Cây', 0, 13000, '', '4902430512824'),
+(684, 2, 'Dầu gội Pantene bồng bềnh đầy sức sống(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430512862'),
+(685, 2, 'Dầu gội Pantene dưỡng tóc bóng mượt(8g x 10 gói)', 'Dây', 0, 13000, '', '4902430460170'),
+(686, 2, 'Dẩu xã Pantene dưỡng chất ngăn rụng tóc(6ml x 10 gói)', 'Dây', 0, 13000, '', '4902430512848'),
+(687, 2, 'Dầu gội Rejoice siêu mượt(6ml x 10 gói)', 'Dây', 0, 10000, '', '4902430511933'),
+(688, 2, 'Dầu gội Rejoice giảm tóc sơ rối(6ml x 10 gói)', 'Dây', 0, 10000, '', '4902430511964'),
+(689, 2, 'Dầu gội Rejoice làm sạch gàu(6ml x 10 gói)', 'Dây', 0, 10000, '', '4902430451260'),
+(690, 2, 'Rejoice mềm mại và mượt mà(6ml x 10 gói)', 'Dây', 0, 10000, '', '4902430451192'),
+(691, 2, 'Head Shoulder làm sạch gàu bạc hà mát rượi(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430501460'),
+(692, 2, 'Sữa tắm E100(4ml x 10 gói)', 'Dây', 0, 5000, '', '8935125816163'),
+(693, 2, 'Sữa tắm Thebol sữa dê(5,5g x 10 gói)', 'Dây', 0, 5000, '', '8936031262112'),
+(694, 2, 'Sữa tắm Thebol với tinh chất hoa hồng(5,5g x 10 gói)', 'Dây', 0, 5000, '', '8936031262013'),
+(695, 2, 'Sữa tắm Witchi(4ml x 12 gói)', 'Dây', 0, 5000, '', '8935125814770'),
+(696, 2, 'Dầu gội Head Shoulder ngăn rụng tóc(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430501477'),
+(697, 2, 'Dầu gội Head Shoulder làm sạch gàu dành cho nam(6g x 10 gói)', 'Dây', 0, 13000, '', '4902430508247'),
+(698, 2, 'Sửa tắm Enchanteur  (hoa hồng vàng)', 'Dây', 0, 13000, '', '8935212800266'),
+(699, 2, 'Dầu gội Ramus Men bồng bềnh(4ml x 12 gói)', 'Dây', 0, 5000, '', '8935125816903'),
+(700, 2, 'Dầu gội Pamolive dưỡng ẩm bổ sung cho tóc khô sơ(7ml x 12 gói)', 'Dây', 0, 10000, '', '8935102131012'),
+(701, 2, 'Dầu gội Clear men mát lạnh tột đỉnh', 'Dây', 0, 10000, '', '8934868090601'),
+(702, 2, 'Dầu gội Head Shoulder suôn mềm mượt(6g x 12 gói)', 'Dây', 0, 13000, '', '4902430501514'),
+(703, 2, 'Dầu gội Head Shoulder làm sạch gàu cho da đầu ngứa(6g x 12 gói)', 'Dây', 0, 13000, '', '4902430501491'),
+(704, 2, 'Dầu gội Head Shoulder hương táo(6g x 12 gói)', 'Dây', 0, 13000, '', '4902430501453'),
+(705, 2, 'Dầu gội Dove(6g x 12 gói)', 'Dây', 0, 13000, '', '8934868088011'),
+(706, 2, 'Dầu xã Dove(6g x 12 gói)', 'Dây', 0, 13000, '', '8934868077602'),
+(707, 2, 'Sữa tắm Hazeline tinh chất sữa dê(5g x 12 gói)', 'Dây', 0, 5000, '', '8934868073093'),
+(708, 2, 'Sữa tắm Hazeline mầm gạo nhật bản(5g x 12 gói)', 'Dây', 0, 5000, '', '8934868073161'),
+(709, 2, 'Dầu gội 100% men(5g x 12 gói)', 'Dây', 0, 5000, '', '8936031262617'),
+(710, 2, 'Sữa tắm dê Unicom(1200ml)', 'Chai', 0, 68000, '', '8938500549106'),
+(711, 2, 'Sữa tắm Biore', 'Dây', 0, 9000, '', '8934681553253'),
+(712, 2, 'Sữa tắm Enchentuer romantic', 'Dây', 0, 13000, '', '8935212804400'),
+(713, 2, 'Dầu gội Romano Classic', 'Dây', 0, 10000, '', '8935212810012'),
+(714, 2, 'Dầu gội Romano Unique', 'Dây', 0, 10000, '', '8935212810357'),
+(715, 2, 'Xịt phòng Glade chanh(280ml)', 'Chai', 0, 45000, '', '8934889500400'),
+(716, 2, 'Viso trắng sáng(3kg)', 'Bịch', 0, 104000, '', '8934868091530'),
+(717, 2, 'Tide hương Downy(4.5kg)', 'Bịch', 0, 145000, '', '4902430488051'),
+(718, 2, 'Tide chuyên dụng(6kg)', 'Bịch', 0, 178000, '', '4902430309912'),
 (719, 2, 'Bột giặt Suft bọt oxy ngat hương xuân(3.8kg)', 'bịch', 0, 105000, '', ''),
-(720, 2, 'ABA sạch tinh tươm(800g)', 'bịch', 0, 30000, '', ''),
-(721, 2, 'Tide Downy(800g)', 'bịch', 0, 33500, '', ''),
-(722, 2, 'Tide hương Downy(400g)', 'bịch', 0, 17000, '', ''),
-(723, 2, 'Sunlight lau sàn chai lớn(4kg)', 'chai', 0, 86000, '', ''),
-(724, 2, 'Sunlight lau sàn hương hoa hạ(1kg)', 'chai', 0, 27000, '', ''),
+(720, 2, 'ABA sạch tinh tươm(800g)', 'Bịch', 0, 34000, '', '8935125817122'),
+(721, 2, 'Tide Downy(800g)', 'Bịch', 0, 33500, '', '4902430462556'),
+(722, 2, 'Tide hương Downy(400g)', 'Bịch', 0, 17000, '', '4902430462563'),
+(723, 2, 'Sunlight lau sàn chai lớn(4kg)', 'Chai', 0, 86000, '', '8934868080756'),
+(724, 2, 'Sunlight lau sàn hương hoa hạ(1kg)', 'Chai', 0, 27000, '', '8934868080602'),
 (725, 2, 'Sunlight lau sàn hương bạc hà thông(1kg)', 'chai', 0, 27000, '', ''),
-(726, 2, 'Sunlight lau sàn hương huệ tây lan(1kg)', 'chai', 0, 27000, '', ''),
+(726, 2, 'Sunlight lau sàn hương huệ tây lan(1kg)', 'Chai', 0, 27000, '', '8934868080718'),
 (727, 2, 'Sunlight lau sàn hương lily nhài tây(1kg)', 'chai', 0, 27000, '', ''),
-(728, 2, 'Nước rửa kinh Ring(950ml)', 'chai', 0, 21000, '', ''),
-(729, 2, 'Nước rửa kinh Cif(520ml)', 'chai', 0, 26000, '', ''),
-(730, 2, 'Nước lau bếp Zonrox(500ml)', 'chai', 0, 25000, '', ''),
+(728, 2, 'Nước rửa kinh Ring(950ml)', 'Chai', 0, 21000, '', '8936047156054'),
+(729, 2, 'Nước rửa kinh Cif(520ml)', 'Chai', 0, 26000, '', '8934868079736'),
+(730, 2, 'Nước lau bếp Zonrox(500ml)', 'Chai', 0, 25000, '', '8936027441200'),
 (731, 2, 'Nước lau bếp Cif(520ml)', 'chai', 0, 30000, '', ''),
-(732, 2, 'Nước tẩy trắng Javel(550g)', 'chai', 0, 9500, '', ''),
-(733, 2, 'Nước tẩy trắng Javel(1kg)', 'chai', 0, 13500, '', ''),
+(732, 2, 'Nước tẩy trắng Javel(550g)', 'Chai', 0, 9500, '', '8936047157020'),
+(733, 2, 'Nước tẩy trắng Javel(1kg)', 'Chai', 0, 13500, '', '8936047157037'),
 (734, 2, 'Bình xịt côn trùng Jumbo super hương chanh(300ml)', 'bình', 0, 34000, '', ''),
 (735, 2, 'Bình xịt côn trùng Jumbo Fik(600ml)', 'bình', 0, 49000, '', ''),
 (736, 2, 'Bình xịt côn trùng Mostly Fik(600ml)', 'bình', 0, 32000, '', ''),
-(737, 2, 'Bình xịt côn trùng Mostly Fik(600ml)', 'bình', 0, 59000, '', ''),
+(737, 2, 'Bình xịt côn trùng Mostly Fik(600ml)', 'Chai', 0, 59000, '', '8935004999338'),
 (738, 2, 'Bình xịt côn trùng Mostly Aik(600ml)', 'bình', 0, 59000, '', ''),
-(739, 2, 'Omo matic chai(2.7kg)', 'chai', 0, 151000, '', ''),
-(740, 2, 'Omo giật tay(1 kg)', 'chai', 0, 52000, '', ''),
+(739, 2, 'Omo matic chai(2.7kg)', 'Chai', 0, 151000, '', '8934868084235'),
+(740, 2, 'Omo giật tay(1 kg)', 'Chai', 0, 52000, '', '8934868079071'),
 (741, 2, 'Bột giặt Omo Comfor(3kg)', 'chai', 0, 123000, '', ''),
 (742, 2, 'Nước tẩy quần áo Axo Spring Lavneder(800ml)', 'chai', 0, 45300, '', ''),
 (743, 2, 'Nước tẩy quần áo Axo Spring Lavneder(400ml)', 'chai', 0, 22500, '', ''),
@@ -2426,19 +2424,19 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (748, 2, 'Nước tẩy bồn cầu Dick Power(500ml)', 'chai', 0, 25000, '', ''),
 (749, 2, 'Nước giặt Ariel(3kg)', 'chai', 0, 155000, '', ''),
 (750, 2, 'ABA(3kg)', 'chai', 0, 112000, '', ''),
-(751, 2, 'Nước tẩy Duck(900ml)', 'chai', 0, 35000, '', ''),
+(751, 2, 'Nước tẩy Duck(900ml)', 'Chai', 0, 35000, '', '8934889190021'),
 (752, 2, 'Dung dịch vệ sinh phụ nữ Ehebol(100g)', 'chai', 0, 21000, '', ''),
-(753, 2, 'Nước tẩy Bạch Yến(500g)', 'chai', 0, 15000, '', ''),
-(754, 2, 'Bột giặt Ariel(3kg)', 'chai', 0, 118000, '', ''),
-(755, 2, 'ABA sạch tinh tươm(400g)', 'chai', 0, 15000, '', ''),
-(756, 2, 'Viso trắng sáng(4.5kg)', 'chai', 0, 143000, '', ''),
+(753, 2, 'Nước tẩy Bạch Yến(500g)', 'Chai', 0, 16000, '', '8936047151097'),
+(754, 2, 'Bột giặt Ariel(3kg)', 'Bịch', 0, 118000, '', '4902430454018'),
+(755, 2, 'ABA sạch tinh tươm(400g)', 'Bịch', 0, 15000, '', '8935125817214'),
+(756, 2, 'Viso trắng sáng(4.5kg)', 'Bịch', 0, 143000, '', '8934868050759'),
 (757, 2, 'Viso trắng sáng hương chanh(2.1kg)', 'chai', 0, 73000, '', ''),
-(758, 2, 'Viso trắng sáng hương chanh(4.5kg)', 'chai', 0, 143000, '', ''),
-(759, 2, 'OMO(4.5kg)', 'chai', 0, 168000, '', ''),
+(758, 2, 'Viso trắng sáng hương chanh(4.5kg)', 'Bịch', 0, 143000, '', '8934868057833'),
+(759, 2, 'OMO(4.5kg)', 'Bịch', 0, 168000, '', '8934868091714'),
 (760, 2, 'Omo Comfort(3kg)', 'chai', 0, 123500, '', ''),
 (761, 2, 'Omo Comfort(800g)', 'chai', 0, 36000, '', ''),
-(762, 2, 'OMO(1.2kg)', 'chai', 0, 50000, '', ''),
-(763, 2, 'Suft(2.2kg)', 'chai', 0, 63000, '', ''),
+(762, 2, 'OMO(1.2kg)', 'Bịch', 0, 50000, '', '8934868091653'),
+(763, 2, 'Suft(2.2kg)', 'Bịch', 0, 63000, '', '8934868069645'),
 (764, 2, 'Suft(3.8kg)', 'chai', 0, 105000, '', ''),
 (765, 3, 'Cá viên cầu tre(500g)', 'bịch', 0, 58000, '', ''),
 (766, 3, 'Bò viên cầu tre(200g)', 'bịch', 0, 37000, '', ''),
@@ -2507,44 +2505,44 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (829, 3, 'Mắm ruốt Thái(300g)', 'bịch', 0, 30000, '', ''),
 (830, 3, 'Ba khía trộn(500g)', 'bịch', 0, 48000, '', ''),
 (831, 3, 'Dưa bồn bồn(300g)', 'bịch', 0, 18000, '', ''),
-(832, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp thiếc(900g)', 'hộp', 0, 146000, '', ''),
-(833, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp thiếc(400g)', 'hộp', 0, 80000, '', ''),
-(834, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp giấy(400g)', 'hộp', 0, 67000, '', ''),
-(835, 3, 'Sữa bột Step 1 hộp thiếc (Duch Lady)(900g)', 'hộp', 0, 197000, '', ''),
-(836, 3, 'Sữa bột Step 2 hộp thiếc (Duch Lady)(900g)', 'hộp', 0, 292000, '', ''),
+(832, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp thiếc(900g)', 'Hộp', 0, 146000, '', '8936036770537'),
+(833, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp thiếc(400g)', 'Hộp', 0, 80000, '', '8936036770520'),
+(834, 3, 'Sữa bột nguyên kem uống liền (Duch Lady) hộp giấy(400g)', 'Hộp', 0, 67000, '', '8936036771862'),
+(835, 3, 'Sữa bột Step 1 hộp thiếc (Duch Lady)(900g)', 'Hộp', 0, 197000, '', '8936036771442'),
+(836, 3, 'Sữa bột Step 2 hộp thiếc (Duch Lady)(900g)', 'Hộp', 0, 292000, '', '8936036771589'),
 (837, 3, 'Sữa bột Step 1 hộp giấy (Duch Lady)(400g)', 'hộp', 0, 95000, '', ''),
 (838, 3, 'Sữa bột Step 2 hộp giấy (Duch Lady)(400g)', 'hộp', 0, 93000, '', ''),
-(839, 3, 'Sữa bột 123 Gold (Duch Lady) hộp thiếc(900g)', 'hộp', 0, 244000, '', ''),
+(839, 3, 'Sữa bột 123 Gold (Duch Lady) hộp thiếc(900g)', 'Hộp', 0, 244000, '', '8936036771671'),
 (840, 3, 'Sữa bột 123 (Duch Lady) hộp thiếc(900g)', 'hộp', 0, 188000, '', ''),
 (841, 3, 'Sữa bột 123 (Duch Lady) hộp giấy(400g)', 'hộp', 0, 83000, '', ''),
-(842, 3, 'Sữa bột 456 (Duch Lady) hộp thiếc(900g)', 'hộp', 0, 180000, '', ''),
+(842, 3, 'Sữa bột 456 (Duch Lady) hộp thiếc(900g)', 'Hộp', 0, 180000, '', '8936036771619'),
 (843, 3, 'Sữa bột 456 (Duch Lady) hộp giấy(400g)', 'hộp', 0, 80000, '', ''),
-(844, 3, 'Ngũ cốc dinh dưỡng thịt bò rau củ (Ridielac) hộp giấy(400g)', 'hộp', 0, 47000, '', ''),
+(844, 3, 'Ngũ cốc dinh dưỡng thịt bò rau củ (Ridielac) hộp giấy(400g)', 'Hộp', 0, 47000, '', '8934673207041'),
 (845, 3, 'Ngũ cốc dinh dưỡng gạo sữa (Ridielac) hộp giấy(400g)', 'hộp', 0, 38000, '', ''),
-(846, 3, 'Ngũ cốc dinh dưỡng thịt heo bó xôi (Ridielac)(400g)', 'hộp', 0, 46000, '', ''),
-(847, 3, 'Ngũ cốc dinh dưỡng gạo trái cây (Ridielac) hộp giấy(400g)', 'hộp', 0, 43000, '', ''),
-(848, 3, 'Dielac Alpha (Vitamin 456) hộp giấy(400g)', 'hộp', 0, 80000, '', ''),
-(849, 3, 'Dielac Mama (Vinamilk) hộp giấy(400g)', 'hộp', 0, 76000, '', ''),
-(850, 3, 'Sữa Diecema (Vinamilk)(400g)', 'hộp', 0, 213000, '', ''),
-(851, 3, 'Anlene (Vinamilk) hộp giấy trên 51 tuổi(400g)', 'hộp', 0, 142000, '', ''),
-(852, 3, 'Anlene (Vinamilk) hộp thiếc trên 51 tuổi(400g)', 'hộp', 0, 158000, '', ''),
-(853, 3, 'Anlene hộp thiếc(800g)', 'hộp', 0, 286000, '', ''),
-(854, 3, 'Ensure Gold (Abbot)(400g)', 'hộp', 0, 308000, '', ''),
-(855, 3, 'Ensure Gold (Abbot)(900g)', 'hộp', 0, 665000, '', ''),
-(856, 3, 'Sữa Sure Prevent (Vinamilk) hộp thiếc(900g)', 'hộp', 0, 386000, '', ''),
-(857, 3, 'Sữa Sure Prevent (Vinamilk) hộp thiếc(400g)', 'hộp', 0, 182000, '', ''),
-(858, 3, 'Sữa Abbot Giav hộp thiếc 1(400g)', 'hộp', 0, 163000, '', ''),
-(859, 3, 'Sữa Abbot Giav hộp thiếc 3(900g)', 'hộp', 0, 304000, '', ''),
-(860, 3, 'Sữa Gain Phes hộp thiếc (Abbot)(400g)', 'hộp', 0, 236000, '', ''),
-(861, 3, 'Sữa Gain Phes hộp thiếc (Abbot)(900g)', 'hộp', 0, 490000, '', ''),
+(846, 3, 'Ngũ cốc dinh dưỡng thịt heo bó xôi (Ridielac)(400g)', 'Hộp', 0, 46000, '', '8934673205047'),
+(847, 3, 'Ngũ cốc dinh dưỡng gạo trái cây (Ridielac) hộp giấy(400g)', 'Hộp', 0, 44000, '', '8934673209045'),
+(848, 3, 'Dielac Alpha (Vitamin 456) hộp giấy(400g)', 'Hộp', 0, 80000, '', '8934673738620'),
+(849, 3, 'Dielac Mama (Vinamilk) hộp giấy(400g)', 'Hộp', 0, 76000, '', '8934673114066'),
+(850, 3, 'Sữa Diecema (Vinamilk)(400g)', 'Hộp', 0, 213000, '', '8934673836616'),
+(851, 3, 'Anlene (Vinamilk) hộp giấy trên 51 tuổi(400g)', 'Hộp', 0, 142000, '', '9415007030553'),
+(852, 3, 'Anlene (Vinamilk) hộp thiếc trên 51 tuổi(400g)', 'Bao 20Kg', 0, 158000, '', '9415007030591'),
+(853, 3, 'Anlene hộp thiếc trên 51 tuổi (800g)', 'Hộp', 0, 286000, '', '9415007030614'),
+(854, 3, 'Ensure Gold (Abbot)(400g)', 'Hộp', 0, 308000, '', '8886451071378'),
+(855, 3, 'Ensure Gold (Abbot)(900g)', 'Hộp', 0, 665000, '', '8886451071361'),
+(856, 3, 'Sữa Sure Prevent (Vinamilk) hộp thiếc(900g)', 'Hộp', 0, 386000, '', '8934673121194'),
+(857, 3, 'Sữa Sure Prevent (Vinamilk) hộp thiếc(400g)', 'Hộp', 0, 182000, '', '8934673226301'),
+(858, 3, 'Sữa Abbot Grow 1 hộp thiếc (400g)', 'Hộp', 0, 163000, '', '5099864008685'),
+(859, 3, 'Sữa Abbot Grow 3 hộp thiếc (900g)', 'Hộp', 0, 304000, '', '5099864008739'),
+(860, 3, 'Sữa Gain Plus hộp thiếc (Abbot)(400g)', 'Hộp', 0, 236000, '', '5099864009330'),
+(861, 3, 'Sữa Gain Plus hộp thiếc (Abbot)(900g)', 'Hộp', 0, 490000, '', ''),
 (862, 3, 'Pedia (1-3 tuổi) 1+(400g)', 'hộp', 0, 160000, '', ''),
-(863, 3, 'Pedia (1-3 tuổi) 1+(900g)', 'hộp', 0, 330000, '', ''),
+(863, 3, 'Pedia (1-3 tuổi) 1+(900g)', 'Hộp', 0, 330000, '', '8934673117197'),
 (864, 3, 'Pedia (4-6 tuổi) 3+(400g)', 'hộp', 0, 160000, '', ''),
-(865, 3, 'Pedia (4-6 tuổi) 3+(900g)', 'hộp', 0, 330000, '', ''),
-(866, 3, 'Optimun Step 2(400g)', 'hộp', 0, 161000, '', ''),
-(867, 3, 'Optimun Step 123(900g)', 'hộp', 0, 355000, '', ''),
-(868, 3, 'Dielac Alpha (Vinamilk) 456 4-6 tuổi(900g)', 'hộp', 0, 185000, '', ''),
-(869, 3, 'Dielac Alpha (Vinamilk) 123 1-3 tuổi(900g)', 'hộp', 0, 190000, '', ''),
+(865, 3, 'Pedia (4-6 tuổi) 3+(900g)', 'Hộp', 0, 330000, '', '8934673118194'),
+(866, 3, 'Optimun Step 2(400g)', 'Hộp', 0, 167000, '', '8934673832618'),
+(867, 3, 'Optimun Step 123(900g)', 'Hộp', 0, 335000, '', '8934673833912'),
+(868, 3, 'Dielac Alpha (Vinamilk) 456 4-6 tuổi(900g)', 'Hộp', 0, 185000, '', '8934673738910'),
+(869, 3, 'Dielac Alpha (Vinamilk) 123 1-3 tuổi(900g)', 'Hộp', 0, 190000, '', '8934673737913'),
 (870, 1, 'Bánh gạo One - One vị bò nướng(150g)', 'hộp', 0, 22000, '', ''),
 (871, 1, 'Bánh gạo One - One vị ngọt diệu(150g)', 'hộp', 0, 18000, '', ''),
 (872, 1, 'Cosy bánh quế vị kem dứa(160g)', 'hộp', 0, 12000, '', ''),
@@ -2590,203 +2588,203 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (912, 1, 'Cosy Marie dạng hộp(200g)', 'hộp', 0, 22000, '', ''),
 (913, 1, 'Hủ tiếu nam vang (Gấu đỏ)(65g)', 'gói', 0, 6000, '', ''),
 (914, 1, 'Hủ tiếu nam vang (Vifon)(65g)', 'gói', 0, 6000, '', ''),
-(915, 1, 'Mì chay rau nấm (Gấu đỏ)(63g)', 'gói', 0, 3000, '', ''),
+(915, 1, 'Mì chay rau nấm (Gấu đỏ)(63g)', 'Gói', 0, 3000, '', '8934679940522'),
 (916, 1, 'Mì Colusa(80g)', 'gói', 0, 3000, '', ''),
-(917, 1, 'Mì Omachi (Lẩu tôm chua cay)(80g)', 'gói', 0, 6000, '', ''),
-(918, 1, 'Mì Omachi (Sườn hầm ngũ quả)(80g)', 'gói', 0, 6000, '', ''),
-(919, 1, 'Hủ tiếu nhịp sống(70g)', 'gói', 0, 6000, '', ''),
-(920, 1, 'Mì tôm Colusa(75g)', 'gói', 0, 3500, '', ''),
-(921, 1, 'Cháo thịt bằm (Gấu đỏ)(50g)', 'gói', 0, 3500, '', ''),
-(922, 1, 'Mì kim chi Hàn Quốc(85g)', 'gói', 0, 6000, '', ''),
+(917, 1, 'Mì Omachi (Lẩu tôm chua cay)(80g)', 'Gói', 0, 6000, '', '8936017361150'),
+(918, 1, 'Mì Omachi (Sườn hầm ngũ quả)(80g)', 'Gói', 0, 6000, '', '8936017361143'),
+(919, 1, 'Hủ tiếu nhịp sống(70g)', 'Gói', 0, 6000, '', '8934563458140'),
+(920, 1, 'Mì tôm Colusa(75g)', 'Gói', 0, 3500, '', '8934587992354'),
+(921, 1, 'Cháo thịt bằm (Gấu đỏ)(50g)', 'Gói', 0, 3500, '', '8934679452407'),
+(922, 1, 'Mì kim chi Hàn Quốc(84g)', 'Gói', 0, 6000, '', '8934563169169'),
 (923, 1, 'Mì tôm(80g)', 'gói', 0, 5000, '', ''),
-(924, 1, 'Bò rau thơm(72g)', 'gói', 0, 4000, '', ''),
-(925, 1, 'Mì Omachi (Sốt bò hầm)(82g)', 'gói', 0, 6500, '', ''),
+(924, 1, 'Bò rau thơm(72g)', 'Gói', 0, 4000, '', '8936000829254'),
+(925, 1, 'Mì Omachi (Sốt bò hầm)(82g)', 'Bao 20Kg', 0, 6500, '', '8936017361136'),
 (926, 1, 'Mì Omachi (Sốt Spaghetti)(89g)', 'gói', 0, 6000, '', ''),
-(927, 1, 'Mì Omachi (Rong biển vị hải sản)(80g)', 'gói', 0, 6000, '', ''),
-(928, 1, 'Mì 3 miền (Tôm chua cay)(65g)', 'gói', 0, 3000, '', ''),
-(929, 1, 'Mì 3 miền (Tôm hùm)(65g)', 'gói', 0, 3000, '', ''),
-(930, 1, 'Mì Kokomi (Dai ngon từng sợi)(65g)', 'gói', 0, 3000, '', ''),
+(927, 1, 'Mì Omachi (Rong biển vị hải sản)(80g)', 'Gói', 0, 6000, '', '8936017363703'),
+(928, 1, 'Mì 3 miền (Tôm chua cay)(65g)', 'Gói', 0, 3000, '', '8936048470012'),
+(929, 1, 'Mì 3 miền (Tôm hùm)(65g)', 'Gói', 0, 3000, '', '8936048470029'),
+(930, 1, 'Mì Kokomi Gà (Dai ngon từng sợi)(65g)', 'Gói', 0, 3000, '', '8936017363406'),
 (931, 1, 'Gấu đỏ (Gà sợi phở)(64g)', 'gói', 0, 3000, '', ''),
-(932, 1, 'Gấu đỏ (Thịt bằm)(64g)', 'gói', 0, 3000, '', ''),
+(932, 1, 'Gấu đỏ (Thịt bằm)(64g)', 'Gói', 0, 3000, '', '8934679942427'),
 (933, 1, 'Mì xào (Tiểu nhị)(80g)', 'gói', 0, 5000, '', ''),
-(934, 1, 'Phở bò (Vifon)(65g)', 'gói', 0, 5500, '', ''),
+(934, 1, 'Phở bò (Vifon)(65g)', 'Gói', 0, 5500, '', '8934561020035'),
 (935, 1, 'Phở chay (Bình tây)(65g)', 'gói', 0, 5000, '', ''),
-(936, 1, 'Gấu đỏ (Tôm chua cay)(65g)', 'gói', 0, 3000, '', ''),
+(936, 1, 'Gấu đỏ (Tôm chua cay)(65g)', 'Gói', 0, 3000, '', '8934679941826'),
 (937, 1, 'Miến chay ăn liền (Vina Bích Chi)(60g)', 'gói', 0, 3000, '', ''),
 (938, 1, 'Mì 3 miền (Mì chay lá đa)(65g)', 'gói', 0, 3000, '', ''),
-(939, 1, 'Mì số đỏ(65g)', 'gói', 0, 3000, '', ''),
-(940, 1, 'Mì Hảo Hảo xào khô(65g)', 'gói', 0, 3500, '', ''),
-(941, 1, 'Phở đệ nhất (Vina Acecook)(65g)', 'gói', 0, 5500, '', ''),
-(942, 1, 'Mikochi (các loại)(79g)', 'gói', 0, 6000, '', ''),
+(939, 1, 'Mì số đỏ(65g)', 'Gói', 0, 3000, '', '8934563139131'),
+(940, 1, 'Mì Hảo Hảo xào khô(65g)', 'Gói', 0, 3500, '', '8934563151157'),
+(941, 1, 'Phở đệ nhất (Vina Acecook)(65g)', 'Gói', 0, 5500, '', '8934563215132'),
+(942, 1, 'Mì Kokomi Tôm chua cay (65g)', 'Gói', 0, 3000, '', '8936017362911'),
 (943, 1, 'Cháo đậu xanh (Shangha) thịt bằm(50g)', 'hộp', 0, 7000, '', ''),
-(944, 1, 'Mì gà (VIFON)(60g)', 'gói', 0, 5500, '', ''),
+(944, 1, 'Mì ly Modern xanh dương(65g)', 'Ly', 0, 5500, '', '8934563618131'),
 (945, 1, 'Cháo đậu xanh (Shangha) trứng gà(50g)', 'gói', 0, 7000, '', ''),
-(946, 1, 'Kokomi dai ngon từng sợi(65g)', 'gói', 0, 3000, '', ''),
-(947, 1, 'Hảo hảo mì sa tế hành(75g)', 'gói', 0, 3500, '', ''),
-(948, 1, 'Hảo hảo mì gà(75g)', 'gói', 0, 3500, '', ''),
-(949, 1, 'Hảo hảo mì tôm chua cay(75g)', 'gói', 0, 3500, '', ''),
+(946, 1, 'Kokomi dai ngon từng sợi tôm(65g)', 'Bịch', 0, 3000, '', '8936017362911'),
+(947, 1, 'Hảo hảo mì sa tế hành(75g)', 'Gói', 0, 3500, '', '8934563108168'),
+(948, 1, 'Hảo hảo mì gà(75g)', 'Gói', 0, 3500, '', '8934563107161'),
+(949, 1, 'Hảo hảo mì tôm chua cay(75g)', 'Gói', 0, 3500, '', '8934563138165'),
 (950, 1, 'Đậu phộng bóc vỏ (Sanchi)(70g)', 'gói', 0, 12000, '', ''),
-(951, 1, 'Đậu phộng nước cốt dừa (Tài Tài)(100g)', 'gói', 0, 25000, '', ''),
-(952, 1, 'Động phộng snack phô mai(210g)', 'gói', 0, 45000, '', ''),
-(953, 1, 'Quả vải đóng lon Universal(565g)', 'gói', 0, 50000, '', ''),
+(951, 1, 'Mì ly Modern xanh lá(65g)', 'Ly', 0, 5500, '', '8934563621131'),
+(952, 1, 'Hủ tiếu bột gạo lọc SAGIANG', 'Bịch', 0, 16000, '', '8934746052028'),
+(953, 1, 'Vải thiều trong nước đường', 'Lon', 0, 30000, '', '8934696000223'),
 (954, 1, 'Hạt điều rang muối (NvàN)(35g)', 'gói', 0, 8000, '', ''),
-(955, 1, 'Đậu phộng chiên (Sanchi)(40g)', 'gói', 0, 5000, '', ''),
-(956, 1, 'Lipton (Yellow Label Tea)(25 túi x 2g/túi)', 'gói', 0, 35000, '', ''),
-(957, 1, 'Trà ATISO (Tâm Châu)(2g x 100 gói)', 'gói', 0, 52000, '', ''),
-(958, 1, 'Trà hoa lài (JASMINE TEA)(100g)', 'gói', 0, 11000, '', ''),
+(955, 1, 'Đậu phộng chiên (Sanchi)(70g)', 'Bịch', 0, 12000, '', '8935149506026'),
+(956, 1, 'Lipton (Yellow Label Tea)(25 túi x 2g/túi)', 'Hộp', 0, 35000, '', '8934707000969'),
+(957, 1, 'Trà ATISO (Tâm Châu)(2g x 100 gói)', 'Bịch', 0, 52000, '', '8935025320753'),
+(958, 1, 'Bánh mango Blast (18g)', 'Bịch', 0, 3000, '', '8992741905022'),
 (959, 1, 'Đậu phộng chiên muối (Tài Tài)(40g)', 'gói', 0, 8000, '', ''),
 (960, 1, 'Trà hương (Ngọc Trang) chim én(70g)', 'gói', 0, 6000, '', ''),
 (961, 1, 'Trà lài (Tâm Châu)(100g)', 'gói', 0, 11000, '', ''),
-(962, 1, 'Trà Olong (Phương Đông)(100g)', 'gói', 0, 56000, '', ''),
-(963, 1, 'Trà ATISO (Tâm Châu)(40g)', 'gói', 0, 15000, '', ''),
+(962, 1, 'Trà Olong (Phương Đông)(100g)', 'Hộp', 0, 58000, '', '8936046490135'),
+(963, 1, 'Trà ATISO (Tâm Châu)(40g)', 'Hộp', 0, 15000, '', '8935025320425'),
 (964, 1, 'Trà Tết đỏ', 'gói', 0, 20000, '', ''),
 (965, 1, 'Trà Tết vàng', 'gói', 0, 20000, '', ''),
 (966, 1, 'Tổ yến chưng đường phèn(70ml)', 'gói', 0, 38000, '', ''),
 (967, 1, 'Cháo đậu xanh (Shangha) thập cẩm(50g)', 'gói', 0, 7000, '', ''),
 (968, 1, 'Mì Tom Yum thịt bằm (VIFON)(60g)', 'gói', 0, 5500, '', ''),
 (969, 1, 'Milkita (Unican)(450g)', 'gói', 0, 2000, '', ''),
-(970, 1, 'Trà lài (Phương Đông)(100g)', 'hộp', 0, 20000, '', ''),
-(971, 1, 'Trà hoa cúc(400g)', 'hộp', 0, 45000, '', ''),
+(970, 1, 'Trà ô long (Phương Đông)(100g)', 'Bịch', 0, 42000, '', '8936046490098'),
+(971, 1, 'Trà hoa cúc(400g)', 'Lon', 0, 45000, '', '8936024120023'),
 (972, 1, 'Kẹo Jinmy(15g)', 'gói', 0, 5000, '', ''),
 (973, 1, 'Kẹo Yupi (Mango Blast)(18g)', 'gói', 0, 3000, '', ''),
 (974, 1, 'Big Hand (Lally Maria)(12g)', 'hộp', 0, 2000, '', ''),
-(975, 1, 'Doublemint(15g)', 'hộp', 0, 3000, '', ''),
+(975, 1, 'Doublemint(15g)', 'Bao 20Kg', 0, 3000, '', '02217206'),
 (976, 1, 'Kẹo nhai Mentos(30g)', 'hộp', 0, 5000, '', ''),
-(977, 1, 'Cool Air (10 viên)(146g)', 'hộp', 0, 4000, '', ''),
-(978, 1, 'Cool Air(584g)', 'hộp', 0, 12000, '', ''),
+(977, 1, 'Cool Air (10 viên)(146g)', 'Vĩ', 0, 4000, '', '8938500642258'),
+(978, 1, 'Cool Air(58.4g)', 'Chai', 0, 13000, '', '8938500642722'),
 (979, 1, 'Trà xanh Thái Nguyên đỏ(10 x 15g)', 'hộp', 0, 10000, '', ''),
-(980, 1, 'Mủ trôm cao cấp Dương Thảo(10 x 10g)', 'hộp', 0, 35000, '', ''),
-(981, 1, 'Mủ trôm yến sào cao cấp Dương Thảo(16g)', 'hộp', 0, 65000, '', ''),
+(980, 1, 'Mủ trôm cao cấp Dương Thảo(10 x 15g)', 'Hộp', 0, 35000, '', '8938503010016'),
+(981, 1, 'Mủ trôm yến sào cao cấp Dương Thảo(16g)', 'Hộp', 0, 65000, '', '8938503010078'),
 (982, 1, 'Cool Air (dạng bịch)', 'gói', 0, 28000, '', ''),
-(983, 1, 'Kẹo dẻo Zoo (Bibica)', 'gói', 0, 2000, '', ''),
+(983, 1, 'Kẹo dẻo Zoo (Bibica)', 'Bịch', 0, 2000, '', '8934609103027'),
 (984, 1, 'Lipton Ice Tea tặng bình(150g)', 'hộp', 0, 32000, '', ''),
 (985, 1, 'Trà xanh Thái Nguyên vàng', 'hộp', 0, 16000, '', ''),
-(986, 1, 'Trà lài (cầu tre)(200g)', 'hộp', 0, 18000, '', ''),
+(986, 1, 'Trà lài (cầu tre)(200g)', 'Bịch', 0, 18000, '', '8934717011054'),
 (987, 1, 'Trà xanh Thái Nguyên xanh', 'hộp', 0, 18000, '', ''),
 (988, 1, 'Trà xanh Thái Nguyên (dạng hủ) Trà Phúc Vân Tiên(200g)', 'hộp', 0, 32000, '', ''),
 (989, 1, 'Trà xanh Thái Nguyên (dạng hủ) Trà móc câu', 'hộp', 0, 30000, '', ''),
 (990, 1, 'Trà xanh hòa tan Hams(10 gói x 17g/gói)', 'hộp', 0, 18000, '', ''),
-(991, 1, 'Trà xanh hòa tan Hams(17 gói x 15g/gói)', 'hộp', 0, 32000, '', ''),
+(991, 1, 'Trà xanh hòa tan Harris(17 gói x 15g/gói)', 'Hộp', 0, 32000, '', '8936052158098'),
 (992, 1, 'Goodwrap (Starway)(12cm)', 'cây', 0, 10000, '', ''),
-(993, 1, 'Bánh Goute (Orion)(45g)', 'hộp', 0, 10000, '', ''),
-(994, 1, 'Marine Boy (Orion) vị rong biển(30g)', 'hộp', 0, 10000, '', ''),
-(995, 1, 'Marine Boy (Orion) vị cà chua(30g)', 'hộp', 0, 10000, '', ''),
-(996, 1, 'Marine Boy (Orion) vị tôm nướng(30g)', 'hộp', 0, 10000, '', ''),
+(993, 1, 'Bánh Goute (Orion)(45g)', 'Hộp', 0, 10000, '', '8936036021301'),
+(994, 1, 'Marine Boy (Orion) vị rong biển(30g)', 'Hộp', 0, 10000, '', '8936036021172'),
+(995, 1, 'Marine Boy (Orion) vị cà chua(30g)', 'Hộp', 0, 10000, '', '8936036021493'),
+(996, 1, 'Marine Boy (Orion) vị tôm nướng(30g)', 'Hộp', 0, 10000, '', '8936036021165'),
 (997, 1, 'Kẹo me Kim Phụng(250g)', 'bịch', 0, 12000, '', ''),
 (998, 1, 'Kẹo dâu tây(450g)', 'bịch', 0, 20000, '', ''),
-(999, 1, 'Tamarin (kẹo me)(150g)', 'bịch', 0, 14000, '', ''),
-(1000, 1, 'Kopiko (kẹo café sữa)(150g)', 'bịch', 0, 14000, '', ''),
-(1001, 1, 'FRES mint Barley(150g)', 'bịch', 0, 14000, '', ''),
+(999, 1, 'Tamarin (kẹo me)(150g)', 'Bịch', 0, 14000, '', '8996001338056'),
+(1000, 1, 'Kopiko (kẹo café sữa)(150g)', 'Bịch', 0, 14000, '', '8996001320136'),
+(1001, 1, 'FRES mint Barley(150g)', 'Bịch', 0, 14000, '', '8996001338063'),
 (1002, 1, 'Oishi (kẹo vị ổi)(90g)', 'bịch', 0, 7000, '', ''),
 (1003, 1, 'Oishi (kẹo vị dưa gang)(90g)', 'bịch', 0, 7000, '', ''),
 (1004, 1, 'Oishi (kẹo vị sữa chua)(90g)', 'bịch', 0, 8000, '', ''),
-(1005, 1, 'Kẹo meềm sữa (Sumika)(140g)', 'bịch', 0, 12000, '', ''),
+(1005, 1, 'Kẹo mềm sữa (Sumika)(140g)', 'Bịch', 0, 12000, '', '8934609105175'),
 (1006, 1, 'Rau câu thạch hương trái cây(1000g)', 'bịch', 0, 35000, '', ''),
-(1007, 1, 'Kẹo dẻo trái cây (Floppy)(200g)', 'bịch', 0, 30000, '', ''),
+(1007, 1, 'Kẹo dẻo trái cây (Floppy)(200g)', 'Bịch', 0, 30000, '', '8936023040209'),
 (1008, 1, 'Chocolate(150g)', 'hộp', 0, 30000, '', ''),
-(1009, 1, 'Bánh phồng tôm 10% (Sa Giang)(200g)', 'hộp', 0, 13500, '', ''),
+(1009, 1, 'Bánh phồng tôm 10% (Sa Giang)(200g)', 'Hộp', 0, 13500, '', '8934746015320'),
 (1010, 1, 'Bánh phồng cua đặc biệt (Sa Giang)(200g)', 'hộp', 0, 14000, '', ''),
-(1011, 1, 'Bánh phồng tôm hạnh phúc (Sa Giang)(200g)', 'hộp', 0, 15000, '', ''),
+(1011, 1, 'Bánh phồng tôm hạnh phúc (Sa Giang)(200g)', 'Hộp', 0, 15000, '', '8934746053919'),
 (1012, 1, 'Bánh phồng mực (Sa Giang)(200g)', 'hộp', 0, 14000, '', ''),
-(1013, 1, 'Bánh phồng chay (Sa Giang)(200g)', 'hộp', 0, 15000, '', ''),
+(1013, 1, 'Bánh phồng chay (Sa Giang)(200g)', 'Hộp', 0, 15000, '', '8934746051069'),
 (1014, 1, 'Bánh phồng tôm tứ quý (Sa Giang)(100g)', 'bịch', 0, 7000, '', ''),
-(1015, 1, 'Bánh gạo Sa Đéc (Sa Giang)(200g)', 'bịch', 0, 8500, '', ''),
-(1016, 1, 'Bánh phở Sa Đéc (Sa Giang)(400g)', 'bịch', 0, 16000, '', ''),
-(1017, 1, 'Miến Phú Hưng(210g)', 'bịch', 0, 23000, '', ''),
+(1015, 1, 'Bún gạo Sa Đéc (Sa Giang)(200g)', 'Bịch', 0, 8500, '', '8934746053728'),
+(1016, 1, 'Bánh phở Sa Đéc (Sa Giang)(400g)', 'Bịch', 0, 16000, '', '8934746052189'),
+(1017, 1, 'Miến Phú Hưng(210g)', 'Bịch', 0, 23000, '', '8934563321406'),
 (1018, 1, 'Mì hột gà (Tấn Phát)(400g)', 'bịch', 0, 12000, '', ''),
-(1019, 1, 'Mì rau củ (Safoco)(500g)', 'bịch', 0, 22000, '', ''),
+(1019, 1, 'Mì rau củ (Safoco)(500g)', 'Bịch', 0, 22000, '', '8934678020102'),
 (1020, 1, 'Nui nở rau củ (Safoco)(200g)', 'bịch', 0, 12000, '', ''),
-(1021, 1, 'Nui đặc biệt (Safoco) loại L(200g)', 'bịch', 0, 10000, '', ''),
+(1021, 1, 'Nui bốn mùa (200g)', 'Bịch', 0, 10000, '', '8935106834889'),
 (1022, 1, 'Nui đặc biệt (Safoco) loại N(200g)', 'bịch', 0, 10000, '', ''),
 (1023, 1, 'Nui đặc biệt (Safoco) loại K(200g)', 'bịch', 0, 10000, '', ''),
-(1024, 1, 'Nui sao (Mekong)(200g)', 'bịch', 0, 8000, '', ''),
-(1025, 1, 'Bánh canh ăn liền (Sa Giang)(70g)', 'bịch', 0, 4500, '', ''),
-(1026, 1, 'Mì ly Modern(65g)', 'gói', 0, 5500, '', ''),
-(1027, 1, 'Mì Đệ Nhất phở(65g)', 'gói', 0, 5500, '', ''),
-(1028, 1, 'Mì Hảo 100(65g)', 'gói', 0, 3000, '', ''),
-(1029, 1, 'Mì Mikochi(84g)', 'gói', 0, 6000, '', ''),
-(1030, 1, 'Mì Bốn Phương(70g)', 'gói', 0, 3500, '', ''),
-(1031, 1, 'Mì Tiến Vua bắp cải thịt(71g)', 'gói', 0, 3500, '', ''),
-(1032, 1, 'Mì Tiến Vua tôm chua cay(71g)', 'gói', 0, 3500, '', ''),
+(1024, 1, 'Nui (Mekong)(200g)', 'Bịch', 0, 8000, '', '8935019314294'),
+(1025, 1, 'Bánh canh ăn liền (Sa Giang)(70g)', 'Bịch', 0, 4500, '', '8934746051007'),
+(1026, 1, 'Mì ly Modern đỏ(65g)', 'Ly', 0, 5500, '', '8934563619138'),
+(1027, 1, 'Mì Đệ Nhất (82g)', 'Bịch', 0, 5500, '', '8934563165161'),
+(1028, 1, 'Mì Hảo 100(65g)', 'Bịch', 0, 3000, '', '8934563123130'),
+(1029, 1, 'Mì Mikochi(84g)', 'Bịch', 0, 6000, '', '8934563169169'),
+(1030, 1, 'Mì Bốn Phương(70g)', 'Bịch', 0, 3500, '', '8934563193140'),
+(1031, 1, 'Mì Tiến Vua bắp cải thịt(71g)', 'Bịch', 0, 3500, '', '8936017361006'),
+(1032, 1, 'Mì Tiến Vua tôm chua cay(71g)', 'Bịch', 0, 3500, '', '8936017363253'),
 (1033, 1, 'Kẹo Sumika socola sữa(70g)', 'bịch', 0, 7000, '', ''),
 (1034, 1, 'Kẹo Sumika sữa dâu(70g)', 'bịch', 0, 7000, '', ''),
-(1035, 1, 'Kẹo Sumika sữa(70g)', 'bịch', 0, 7000, '', ''),
+(1035, 1, 'Kẹo Sumika sữa(70g)', 'Bịch', 0, 7000, '', '8934609101917'),
 (1036, 1, 'Kẹo Volcano nhân socola(70g)', 'bịch', 0, 7000, '', ''),
-(1037, 1, 'Kẹo sữa cà phê (Bibica)(70g)', 'bịch', 0, 7000, '', ''),
+(1037, 1, 'Kẹo sữa cà phê (Bibica)(70g)', 'Bịch', 0, 7000, '', '8934609102952'),
 (1038, 1, 'Kẹo trái cây bốn mùa (Bibica)(70g)', 'bịch', 0, 7000, '', ''),
-(1039, 1, 'Kẹo Migita bạc hà(70g)', 'bịch', 0, 7000, '', ''),
-(1040, 1, 'Kẹo Migita hương me(70g)', 'bịch', 0, 7000, '', ''),
+(1039, 1, 'Kẹo Migita bạc hà(70g)', 'Bịch', 0, 7000, '', '8934609413133'),
+(1040, 1, 'Kẹo Migita hương me(70g)', 'Bịch', 0, 7000, '', '8934609412136'),
 (1041, 1, 'Kẹo Sumika sữa(140g)', 'bịch', 0, 12000, '', ''),
-(1042, 1, 'Kẹo Sumika sữa dâu(140g)', 'bịch', 0, 12000, '', ''),
+(1042, 1, 'Kẹo Sumika sữa dâu(140g)', 'Bịch', 0, 12000, '', '8934609105151'),
 (1043, 1, 'Kẹo Sumika socola sữa(140g)', 'bịch', 0, 12000, '', ''),
-(1044, 1, 'Kẹo tứ quý nhân trái cây(70g)', 'bịch', 0, 7000, '', ''),
-(1045, 1, 'Kẹo tứ quý nhân trái cây(140g)', 'bịch', 0, 10000, '', ''),
+(1044, 1, 'Kẹo trái cây bốn mùa(70g)', 'Bịch', 0, 7000, '', '8934609411337'),
+(1045, 1, 'Kẹo tứ quý nhân trái cây(140g)', 'Bịch', 0, 10000, '', '8934609102259'),
 (1046, 1, 'Kẹo dẻo Thanh Châu(160g)', 'bịch', 0, 20000, '', ''),
 (1047, 1, 'Kẹo dẻo Thanh Châu', 'bịch', 0, 14000, '', ''),
-(1048, 1, 'Mít sấy Đại Gia Thành(100g)', 'bịch', 0, 20000, '', ''),
-(1049, 1, 'Mít sấy Đại Gia Thành(20g)', 'bịch', 0, 7000, '', ''),
+(1048, 1, 'Mít sấy Đại Gia Thành(100g)', 'Bịch', 0, 20000, '', '8936013840642'),
+(1049, 1, 'Mít sấy Đại Gia Thành(20g)', 'Bịch', 0, 7000, '', '8936013840512'),
 (1050, 1, 'Chuối sấy Đại Gia Thành(30g)', 'bịch', 0, 6000, '', ''),
 (1051, 1, 'Mực Tân Tân', 'bịch', 0, 30000, '', ''),
 (1052, 1, 'Đậu phộng rang muối Thanh Hòa', 'bịch', 0, 3000, '', ''),
 (1053, 1, 'Kẹo Volcano(70g)', 'bịch', 0, 7000, '', ''),
-(1054, 1, 'Kẹo Volcano(100g)', 'bịch', 0, 9000, '', ''),
+(1054, 1, 'Kẹo Volcano(100g)', 'Bịch', 0, 9000, '', '8934609102785'),
 (1055, 2, 'Stella hương hoa hồng(250ml)', 'chai', 0, 40000, '', ''),
 (1056, 2, 'Stella Mùi Odour Neutralizer(250ml)', 'chai', 0, 40000, '', ''),
 (1057, 2, 'Clear Men bạc hà(180g)', 'chai', 0, 46000, '', ''),
 (1058, 2, 'Clear Men bạc hà(370g)', 'chai', 0, 81000, '', ''),
-(1059, 2, 'Clear mát lạnh bạc hà(180g)', 'chai', 0, 43000, '', ''),
+(1059, 2, 'Clear mát lạnh bạc hà(180g)', 'Chai', 0, 43000, '', '8934868046073'),
 (1060, 2, 'Clear dưỡng mềm mượt 2 trong 1(180g)', 'chai', 0, 41000, '', ''),
 (1061, 2, 'Ramus hot style(175g)', 'chai', 0, 43000, '', ''),
-(1062, 2, 'Heade Shoulder bạc hà(180g)', 'chai', 0, 41000, '', ''),
+(1062, 2, 'Heade Shoulder bạc hà(180g)', 'Chai', 0, 41000, '', '4902430375825'),
 (1063, 2, 'Heade Shoulder suôn mềm óng mượt(180g)', 'chai', 0, 41000, '', ''),
-(1064, 2, 'Heade Shoulder cho da đầu ngứa(180g)', 'chai', 0, 41000, '', ''),
+(1064, 2, 'Heade Shoulder cho da đầu ngứa(180g)', 'Chai', 0, 41000, '', '4902430375856'),
 (1065, 2, 'Heade Shoulder dưỡng chất ngăn rụng tóc(650g)', 'chai', 0, 115000, '', ''),
-(1066, 2, 'Clear bạc hà(650g)', 'chai', 0, 129000, '', ''),
+(1066, 2, 'Clear bạc hà(650g)', 'Chai', 0, 120000, '', '8934868046097'),
 (1067, 2, 'Pantene ngăn rụng tóc(670g)', 'chai', 0, 95000, '', ''),
 (1068, 2, 'Pantene dưỡng tóc bóng mượt(335g)', 'chai', 0, 59000, '', ''),
 (1069, 2, 'Pantene Nature care Shampoo(170g)', 'chai', 0, 29000, '', ''),
 (1070, 2, 'Sữa tắm E100 hoa hồng(800ml)', 'chai', 0, 65000, '', ''),
-(1071, 2, 'Sữa tắm E100 sữa dê(1.2 lít)', 'chai', 0, 85000, '', ''),
+(1071, 2, 'Sữa tắm E100 sữa dê(1.2 lít)', 'Chai', 0, 85000, '', '8935125816934'),
 (1072, 2, 'Pantene dưỡng tóc bóng mượt(170g)', 'chai', 0, 34000, '', ''),
 (1073, 2, 'Dove tinh dầu dưỡng(180g)', 'chai', 0, 34000, '', ''),
 (1074, 2, 'Dove ngăn rụng tóc(180g)', 'chai', 0, 34000, '', ''),
 (1075, 2, 'Dove thẳng mượt mà(180g)', 'chai', 0, 32000, '', ''),
-(1076, 2, 'E 100 sữa tắm dê(520ml)', 'chai', 0, 50000, '', ''),
-(1077, 2, 'Sunsilk mềm mượt kỳ diệu(170g)', 'chai', 0, 27000, '', ''),
-(1078, 2, 'Sunsilk mềm mượt kỳ diệu(180g)', 'chai', 0, 29000, '', ''),
+(1076, 2, 'E 100 sữa tắm dê(520ml)', 'Chai', 0, 50000, '', '8935125816491'),
+(1077, 2, 'Sunsilk óng mượt rạng ngời(180g)', 'Chai', 0, 29000, '', '8934868077732'),
+(1078, 2, 'Sunsilk mềm mượt kỳ diệu(180g)', 'Chai', 0, 29000, '', '8934868077824'),
 (1079, 2, 'Sunsilk mềm mượt kỳ diệu(380g)', 'chai', 0, 48000, '', ''),
-(1080, 2, 'The bol dầu gội dưỡng tóc mượt(210g)', 'chai', 0, 26000, '', ''),
-(1081, 2, 'The bol dầu gội 5 in 1 tinh chất olive(210g)', 'chai', 0, 26000, '', ''),
-(1082, 2, 'The bol sữa tắm tinh chất sữa dê(700g)', 'chai', 0, 8300, '', ''),
-(1083, 2, 'Dầu gội Clony mượt tóc không cần dầu xả(680ml)', 'chai', 0, 61000, '', ''),
+(1080, 2, 'The bol dầu gội dưỡng tóc mượt(210g)', 'Chai', 0, 26000, '', '8936031264758'),
+(1081, 2, 'The bol dầu gội 5 in 1 tinh chất olive(210g)', 'Chai', 0, 26000, '', '8936031264765'),
+(1082, 2, 'The bol sữa tắm tinh chất hoa hồng(700g)', 'Chai', 0, 83000, '', '8936031261887'),
+(1083, 2, 'Dầu gội Clony mượt tóc không cần dầu xả(680ml)', 'Chai', 0, 61000, '', '8935125815517'),
 (1084, 2, 'Head Shoulder ngăn rụng tóc(364g)', 'chai', 0, 71000, '', ''),
-(1085, 2, 'Head Shoulder hương táo(364g)', 'chai', 0, 71000, '', ''),
-(1086, 2, 'Dầu gội X-Men Sport(380g)', 'chai', 0, 83000, '', ''),
-(1087, 2, 'Dầu gội X-Men Active 1(380g)', 'chai', 0, 83000, '', ''),
+(1085, 2, 'Head Shoulder hương táo(364g)', 'Chai', 0, 71000, '', '4902430427647'),
+(1086, 2, 'Dầu gội X-Men Sport(380g)', 'Chai', 0, 83000, '', '8935136805156'),
+(1087, 2, 'Dầu gội X-Men Active 1(380g)', 'Chai', 0, 83000, '', '8935136815179'),
 (1088, 2, 'Dầu gội X-Men Active 2(380g)', 'chai', 0, 83000, '', ''),
 (1089, 2, 'Dầu gội X-Men Active 2 in 1(650g)', 'chai', 0, 132000, '', ''),
 (1090, 2, 'Dầu gội X-Men Active 1(650g)', 'chai', 0, 132000, '', ''),
 (1091, 2, 'Dầu gội X-Men Active(380g)', 'chai', 0, 83000, '', ''),
-(1092, 2, 'Romano classic shampoo(650g)', 'chai', 0, 129000, '', ''),
-(1093, 2, 'Romano classic shower sữa tắm(650g)', 'chai', 0, 129000, '', ''),
-(1094, 2, 'Romano classic pro series gel tạo kiểu(150g)', 'chai', 0, 45000, '', ''),
+(1092, 2, 'Romano classic shampoo(650g)', 'Chai', 0, 142000, '', '8935212810043'),
+(1093, 2, 'Romano classic shower sữa tắm(650g)', 'Chai', 0, 129000, '', '8935212810074'),
+(1094, 2, 'Romano classic shampoo men(150g)', 'Chai', 0, 49000, '', '8935212810029'),
 (1095, 2, 'Romano classic Clue Cel(150g)', 'chai', 0, 41000, '', ''),
 (1096, 2, 'Romano classic Body Spray nước hoa(100ml)', 'chai', 0, 68000, '', ''),
 (1097, 2, 'Romano classic Shaving Foan bọt cạo râu(175ml)', 'chai', 0, 58000, '', ''),
 (1098, 2, 'Romano classic Body Spray nước hoa(150ml)', 'chai', 0, 79500, '', ''),
-(1099, 2, 'Gillette Menthol(175g)', 'chai', 0, 59000, '', ''),
-(1100, 2, 'Gillette Lemon lime(175g)', 'chai', 0, 59000, '', ''),
-(1101, 2, 'Double Rich Blooming love H.Anh Đào(550g)', 'chai', 0, 82000, '', ''),
+(1099, 2, 'Gillette Menthol(175g)', 'Chai', 0, 59000, '', '047400247307'),
+(1100, 2, 'Gillette Lemon lime(175g)', 'Chai', 0, 59000, '', '047400245105'),
+(1101, 2, 'Double Rich Blooming love H.Anh Đào(550g)', 'Chai', 0, 82000, '', '8935030217833'),
 (1102, 2, 'Double Rich  Dreamy Romance Hoa Iris(550g)', 'chai', 0, 82000, '', ''),
-(1103, 2, 'Double Rich  Qhite Purity Hoa lài(550g)', 'chai', 0, 82000, '', ''),
-(1104, 2, 'Double Rich Soft và Smooth dầu gội(350g)', 'chai', 0, 54000, '', ''),
-(1105, 2, 'Double Rich Soft và Smooth dầu gội(180g)', 'chai', 0, 34000, '', ''),
-(1106, 2, 'Double Rich  Revitalizing dầu gội(180g)', 'chai', 0, 34000, '', ''),
-(1107, 2, 'Lifebouy chăm sóc da(270g)', 'chai', 0, 37000, '', ''),
-(1108, 2, 'Lifebouy thiên nhiên(270g)', 'chai', 0, 37000, '', ''),
+(1103, 2, 'Double Rich  Qhite Purity Hoa lily(550g)', 'Chai', 0, 82000, '', '8935030217826'),
+(1104, 2, 'Double Rich Soft và Smooth dầu gội(350g)', 'Chai', 0, 54000, '', '8935030218465'),
+(1105, 2, 'Double Rich Soft và Smooth dầu gội(180g)', 'Chai', 0, 34000, '', '8935030218458'),
+(1106, 2, 'Double Rich  Revitalizing dầu gội(180g)', 'Chai', 0, 34000, '', '8935030218427'),
+(1107, 2, 'Lifebouy chăm sóc da(270g)', 'Chai', 0, 37000, '', '8934868076544'),
+(1108, 2, 'Lifebouy thiên nhiên(270g)', 'Chai', 0, 37000, '', '8934868076483'),
 (1109, 2, 'Rejoice (Dầu gội đầu ngăn rụng tóc)(170g)', 'chai', 0, 27000, '', ''),
-(1110, 2, 'Rejoice (Dầu gội siêu mượt tóc)(170g)', 'chai', 0, 27000, '', ''),
-(1111, 2, 'Rejoice (Dầu gội 3 trong 1)(170g)', 'chai', 0, 27000, '', ''),
+(1110, 2, 'Rejoice (Dầu gội siêu mượt tóc)(170g)', 'Chai', 0, 29000, '', '4902430451611'),
+(1111, 2, 'Rejoice (Dầu gội 3 trong 1)(650g)', 'Chai', 0, 79000, '', '4902430451758'),
 (1112, 2, 'Rejoice (Dầu gội giảm tóc xơ rối)(170g)', 'chai', 0, 27000, '', ''),
 (1113, 2, 'Rejoice (Dầu gội đen mượt tóc)(170g)', 'chai', 0, 27000, '', ''),
 (1114, 2, 'Rejoice (Dầu gội giảm tóc xơ rối)(650g)', 'chai', 0, 72000, '', ''),
@@ -2795,25 +2793,25 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 (1117, 2, 'Head và Shoulders(Dầu xả bạc hà mát rượi)(170g)', 'chai', 0, 35000, '', ''),
 (1118, 2, 'Head và Shoulders(Dầu xả suôn mềm ,óng mượt)(170g)', 'chai', 0, 35000, '', ''),
 (1119, 2, 'Head và Shoulders(Dầu xả suôn mềm ,óng mượt)(180g)', 'chai', 0, 41000, '', ''),
-(1120, 2, 'Head và Shoulders(Cho da đầu ngứa)(180g)', 'chai', 0, 41000, '', ''),
+(1120, 2, 'Head và Shoulders(Cho da đầu ngứa)(180g)', 'Chai', 0, 41000, '', '4902430375856'),
 (1121, 2, 'Head và Shoulders(Ngăn rụng tóc cho nam)(364g)', 'chai', 0, 69000, '', ''),
-(1122, 2, 'LUX(Sữa tắm mềm mịn)(200g)', 'chai', 0, 37000, '', ''),
+(1122, 2, 'LUX(Sữa tắm mềm mịn)(200g)', 'Chai', 0, 37000, '', '8934868092681'),
 (1123, 2, 'LUX(Sữa tắm trắng mịn)(200g)', 'chai', 0, 37000, '', ''),
 (1124, 2, 'Dove (Dầu gội thẳng mượt mà)(180g)', 'chai', 0, 32000, '', ''),
 (1125, 2, 'Double rich(Sữa tắm từ hoa lris)(200g)', 'chai', 0, 37000, '', ''),
-(1126, 2, 'Double rich(Sữa tắm từ hoa lris)(400g)', 'chai', 0, 65000, '', ''),
-(1127, 2, 'Double rich(Sữa tắm từ hoa anh đào)(200g)', 'chai', 0, 37000, '', ''),
+(1126, 2, 'Double rich(Sữa tắm từ hoa lris)(400g)', 'Chai', 0, 65000, '', '8935030218809'),
+(1127, 2, 'Double rich(Sữa tắm từ hoa anh đào)(200g)', 'Chai', 0, 37000, '', '8935030217895'),
 (1128, 2, 'Double rich(Sữa tắm từ hoa anh đào)(400g)', 'chai', 0, 65000, '', ''),
-(1129, 2, 'Double rich(Sữa tắm từ hoa hồng)(200g)', 'chai', 0, 37000, '', ''),
+(1129, 2, 'Double rich(Sữa tắm từ hoa hồng)(200g)', 'Chai', 0, 37000, '', '8935030217871'),
 (1130, 2, 'Double rich(Sữa tắm từ hoa hồng)(400g)', 'chai', 0, 65000, '', ''),
-(1131, 2, 'Double rich(Sữa tắm từ hoa lily)(400g)', 'chai', 0, 65000, '', ''),
-(1132, 2, 'E 100 (Sữa tắm ( tinh chất sữa dê))(800ml)', 'chai', 0, 69000, '', ''),
-(1133, 2, 'Glade lilac Spring(280ml)', 'chai', 0, 45000, '', ''),
-(1134, 2, 'Glade fresh lemon(280ml)', 'chai', 0, 45000, '', ''),
-(1135, 2, 'Glade Classic rose(280ml)', 'chai', 0, 45000, '', ''),
-(1136, 2, 'Ramus Creation(190g)', 'chai', 0, 35000, '', ''),
-(1137, 2, 'Ramus Dynamism(190g)', 'chai', 0, 30000, '', ''),
-(1138, 2, 'Dầu gội Pamolive(200ml)', 'chai', 0, 32000, '', ''),
+(1131, 2, 'Double rich(Sữa tắm từ hoa lily)(400g)', 'Chai', 0, 65000, '', '8935030217857'),
+(1132, 2, 'E 100 (Sữa tắm ( tinh chất sữa dê))(800ml)', 'Chai', 0, 65000, '', '8935125816552'),
+(1133, 2, 'Glade lilac Spring(280ml)', 'Chai', 0, 45000, '', '8934889500462'),
+(1134, 2, 'Pamolive dưởng ẩm bổ sung', 'Chai', 0, 32000, '', '8935102130978'),
+(1135, 2, 'Glade Classic rose(280ml)', 'Chai', 0, 45000, '', '8934889500424'),
+(1136, 2, 'Ramus Creation(190g)', 'Chai', 0, 35000, '', '8935125815418'),
+(1137, 2, 'Ramus Dynamism(190g)', 'Chai', 0, 30000, '', '8935125815425'),
+(1138, 2, 'Dầu gội Pamolive suôn mượt óng ả(200ml)', 'Chai', 0, 32000, '', '8935102130985'),
 (1139, 2, 'Thebol (Dung dịch vệ sinh phụ nữ)(250g)', 'chai', 0, 41000, '', ''),
 (1140, 2, 'Thebol (Dung dịch vệ sinh phụ nữ)(100g)', 'chai', 0, 21000, '', ''),
 (1141, 2, 'Thebol (Sữa tắm tinh chất sữa cừu và hoa hồng)(210g)', 'chai', 0, 28000, '', ''),
@@ -2910,7 +2908,7 @@ INSERT INTO `sieuthimini_resource` (`id`, `idsupplier`, `name`, `unit`, `price_i
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_supplier`
+-- Table structure for table `sieuthimini_supplier`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_supplier` (
@@ -2921,10 +2919,10 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_supplier` (
   `note` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `debt` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `sieuthimini_supplier`
+-- Dumping data for table `sieuthimini_supplier`
 --
 
 INSERT INTO `sieuthimini_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
@@ -2938,7 +2936,7 @@ INSERT INTO `sieuthimini_supplier` (`id`, `name`, `phone`, `address`, `note`, `d
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_table`
+-- Table structure for table `sieuthimini_table`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_table` (
@@ -2952,7 +2950,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_table` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Contenu de la table `sieuthimini_table`
+-- Dumping data for table `sieuthimini_table`
 --
 
 INSERT INTO `sieuthimini_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
@@ -2970,7 +2968,7 @@ INSERT INTO `sieuthimini_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_tag`
+-- Table structure for table `sieuthimini_tag`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_tag` (
@@ -2980,7 +2978,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_tag` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=47 ;
 
 --
--- Contenu de la table `sieuthimini_tag`
+-- Dumping data for table `sieuthimini_tag`
 --
 
 INSERT INTO `sieuthimini_tag` (`id`, `name`) VALUES
@@ -3033,17 +3031,17 @@ INSERT INTO `sieuthimini_tag` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_tag_selected`
+-- Table structure for table `sieuthimini_tag_selected`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_tag_selected` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idtag` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `sieuthimini_tag_selected`
+-- Dumping data for table `sieuthimini_tag_selected`
 --
 
 INSERT INTO `sieuthimini_tag_selected` (`id`, `idtag`) VALUES
@@ -3057,7 +3055,7 @@ INSERT INTO `sieuthimini_tag_selected` (`id`, `idtag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_term`
+-- Table structure for table `sieuthimini_term`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_term` (
@@ -3068,7 +3066,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_term` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `sieuthimini_term`
+-- Dumping data for table `sieuthimini_term`
 --
 
 INSERT INTO `sieuthimini_term` (`id`, `name`, `type`) VALUES
@@ -3083,7 +3081,7 @@ INSERT INTO `sieuthimini_term` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_term_collect`
+-- Table structure for table `sieuthimini_term_collect`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_term_collect` (
@@ -3093,7 +3091,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_term_collect` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `sieuthimini_term_collect`
+-- Dumping data for table `sieuthimini_term_collect`
 --
 
 INSERT INTO `sieuthimini_term_collect` (`id`, `name`) VALUES
@@ -3103,7 +3101,7 @@ INSERT INTO `sieuthimini_term_collect` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_tracking`
+-- Table structure for table `sieuthimini_tracking`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_tracking` (
@@ -3115,7 +3113,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_tracking` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `sieuthimini_tracking`
+-- Dumping data for table `sieuthimini_tracking`
 --
 
 INSERT INTO `sieuthimini_tracking` (`id`, `date_start`, `date_end`, `estate_rate`) VALUES
@@ -3124,7 +3122,7 @@ INSERT INTO `sieuthimini_tracking` (`id`, `date_start`, `date_end`, `estate_rate
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_tracking_store`
+-- Table structure for table `sieuthimini_tracking_store`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_tracking_store` (
@@ -3141,17 +3139,17 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_tracking_store` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_unit`
+-- Table structure for table `sieuthimini_unit`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_unit` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=25 ;
 
 --
--- Contenu de la table `sieuthimini_unit`
+-- Dumping data for table `sieuthimini_unit`
 --
 
 INSERT INTO `sieuthimini_unit` (`id`, `name`) VALUES
@@ -3174,12 +3172,15 @@ INSERT INTO `sieuthimini_unit` (`id`, `name`) VALUES
 (18, 'Bao 25Kg'),
 (19, 'Lốc'),
 (20, 'Tuýp'),
-(21, 'Cuộn');
+(21, 'Cuộn'),
+(22, 'Túi'),
+(23, 'Dây'),
+(24, 'Vĩ');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sieuthimini_user`
+-- Table structure for table `sieuthimini_user`
 --
 
 CREATE TABLE IF NOT EXISTS `sieuthimini_user` (
@@ -3198,7 +3199,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `sieuthimini_user`
+-- Dumping data for table `sieuthimini_user`
 --
 
 INSERT INTO `sieuthimini_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
@@ -3206,72 +3207,72 @@ INSERT INTO `sieuthimini_user` (`id`, `name`, `email`, `pass`, `gender`, `note`,
 (2, 'Bán hàng', 'banhang@gmail.com', '123456', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '');
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `sieuthimini_collect_customer`
+-- Constraints for table `sieuthimini_collect_customer`
 --
 ALTER TABLE `sieuthimini_collect_customer`
   ADD CONSTRAINT `sieuthimini_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `sieuthimini_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_collect_general`
+-- Constraints for table `sieuthimini_collect_general`
 --
 ALTER TABLE `sieuthimini_collect_general`
   ADD CONSTRAINT `sieuthimini_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `sieuthimini_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_course`
+-- Constraints for table `sieuthimini_course`
 --
 ALTER TABLE `sieuthimini_course`
   ADD CONSTRAINT `sieuthimini_course_1` FOREIGN KEY (`idcategory`) REFERENCES `sieuthimini_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_order_import`
+-- Constraints for table `sieuthimini_order_import`
 --
 ALTER TABLE `sieuthimini_order_import`
   ADD CONSTRAINT `sieuthimini_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `sieuthimini_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_order_import_detail`
+-- Constraints for table `sieuthimini_order_import_detail`
 --
 ALTER TABLE `sieuthimini_order_import_detail`
   ADD CONSTRAINT `sieuthimini_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `sieuthimini_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sieuthimini_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `sieuthimini_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_paid_customer`
+-- Constraints for table `sieuthimini_paid_customer`
 --
 ALTER TABLE `sieuthimini_paid_customer`
   ADD CONSTRAINT `sieuthimini_customer_paid_1` FOREIGN KEY (`idcustomer`) REFERENCES `sieuthimini_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_paid_general`
+-- Constraints for table `sieuthimini_paid_general`
 --
 ALTER TABLE `sieuthimini_paid_general`
   ADD CONSTRAINT `sieuthimini_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `sieuthimini_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_paid_pay_roll`
+-- Constraints for table `sieuthimini_paid_pay_roll`
 --
 ALTER TABLE `sieuthimini_paid_pay_roll`
   ADD CONSTRAINT `sieuthimini_paid_pay_roll_1` FOREIGN KEY (`idemployee`) REFERENCES `sieuthimini_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_paid_supplier`
+-- Constraints for table `sieuthimini_paid_supplier`
 --
 ALTER TABLE `sieuthimini_paid_supplier`
   ADD CONSTRAINT `sieuthimini_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `sieuthimini_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_resource`
+-- Constraints for table `sieuthimini_resource`
 --
 ALTER TABLE `sieuthimini_resource`
   ADD CONSTRAINT `sieuthimini_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `sieuthimini_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sieuthimini_table`
+-- Constraints for table `sieuthimini_table`
 --
 ALTER TABLE `sieuthimini_table`
   ADD CONSTRAINT `sieuthimini_table_1` FOREIGN KEY (`iddomain`) REFERENCES `sieuthimini_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
