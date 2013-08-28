@@ -6,12 +6,11 @@ class Tracking extends Object{
     private $Id;
 	private $DateStart;
 	private $DateEnd;
-	private $EstateRate;
-	
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $DateStart=null, $DateEnd=null, $EstateRate=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; $this->EstateRate = $EstateRate;  parent::__construct( $Id );}
+    function __construct( $Id=null, $DateStart=null, $DateEnd=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; parent::__construct( $Id );}
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
@@ -24,10 +23,6 @@ class Tracking extends Object{
 	function setDateEnd( $DateEnd ) {$this->DateEnd= $DateEnd;$this->markDirty();}   
 	function getDateEnd( ) {return $this->DateEnd;}	
 	function getDateEndPrint( ) {$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
-	
-	function setEstateRate( $EstateRate ) {$this->EstateRate = $EstateRate;$this->markDirty();}   
-	function getEstateRate( ) {return $this->EstateRate;}
-	function getEstateRatePrint( ) {$N = new \MVC\Library\Number($this->EstateRate);return $N->formatCurrency();}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
