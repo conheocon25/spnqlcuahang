@@ -17,16 +17,22 @@
 							<ul class="nav nav-list">
 								<li class="nav-header">THỐNG KÊ MẶT HÀNG</li>
 								<li>
-									<i class="icon-th"/>
-									TỔNG SỐ <span class="badge badge-info pull-right" tal:content="ResourceAll/count"/>
+									<a href="#">
+										<i class="icon-th"/>
+										TỔNG SỐ <span class="badge badge-info pull-right" tal:content="ResourceAll/count"/>
+									</a>
 								</li>
 								<li>
-									<i class="icon-th"/>
-									CÓ MÃ VẠCH <span class="badge badge-info pull-right" tal:content="ResourceBarcode/count"/>
+									<a href="#">
+										<i class="icon-th"/>
+										CÓ MÃ VẠCH <span class="badge badge-info pull-right" tal:content="ResourceBarcode/count"/>
+									</a>
 								</li>
 								<li>
-									<i class="icon-th"/>
-									CHƯA CÓ MÃ VẠCH <span class="badge badge-info pull-right" tal:content="php: ResourceAll->count() - ResourceBarcode->count()"/>
+									<a href="/setting/barcode/none">
+										<i class="icon-th"/>
+										CHƯA CÓ MÃ VẠCH <span class="badge badge-info pull-right" tal:content="php: ResourceAll->count() - ResourceBarcode->count()"/>
+									</a>
 								</li>
 							</ul>
 						</div>

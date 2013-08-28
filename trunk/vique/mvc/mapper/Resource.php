@@ -15,6 +15,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							values( ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$havingBarcodeStmt = sprintf("select * from %s where barcode<>''", $tblResource);
+		$noneBarcodeStmt = sprintf("select * from %s where barcode=''", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
 		$findByBarcodeStmt = sprintf("select * from %s where barcode=?", $tblResource);
 		$findByBarcode1Stmt = sprintf("select * from %s where idsupplier=? AND barcode=?", $tblResource);
@@ -34,14 +35,13 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
 		$this->havingBarcodeStmt = self::$PDO->prepare($havingBarcodeStmt);
+		$this->noneBarcodeStmt = self::$PDO->prepare($noneBarcodeStmt);
 		$this->findByBarcodeStmt = self::$PDO->prepare($findByBarcodeStmt);
 		$this->findByBarcode1Stmt = self::$PDO->prepare($findByBarcode1Stmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		$this->findFreqStmt = self::$PDO->prepare($findFreqStmt);
     } 
-    function getCollection( array $raw ) {
-        return new ResourceCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Resource( 
@@ -58,7 +58,6 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
     }
 	
     protected function targetClass() {return "Resource";}
-
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdSupplier(),
@@ -93,6 +92,11 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	function havingBarcode(array $values) {
         $this->havingBarcodeStmt->execute( $values );
         return new ResourceCollection( $this->havingBarcodeStmt->fetchAll(), $this );
+    }
+	
+	function noneBarcode(array $values) {
+        $this->noneBarcodeStmt->execute( $values );
+        return new ResourceCollection( $this->noneBarcodeStmt->fetchAll(), $this );
     }
 	
 	function findBySupplier(array $values) {

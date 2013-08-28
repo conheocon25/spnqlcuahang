@@ -13,8 +13,8 @@
 			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
-		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
-		<command name="App"><view>App</view></command>				
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="App"><view>App</view></command>
 		<command name="BarcodeCheck"><view>BarcodeCheck</view></command>
 		
 		<!-- ============================================================================== -->
@@ -28,7 +28,9 @@
 		<command name="Import"><view>Import</view></command>
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
+		
 		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingBarcodeNone"><view>SettingBarcodeNone</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->

@@ -139,6 +139,7 @@ RewriteRule ^setting/supplier/([0-9]+)/upd/load$ 				?cmd=SettingSupplierUpdLoad
 RewriteRule ^setting/supplier/([0-9]+)/upd/exe$ 				?cmd=SettingSupplierUpdExe&IdSupplier=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/del/load$ 				?cmd=SettingSupplierDelLoad&IdSupplier=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/del/exe$ 				?cmd=SettingSupplierDelExe&IdSupplier=$1 [L]
+RewriteRule ^setting/barcode/none$ 								?cmd=SettingBarcodeNone [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.SUPPLIER.RESOURCE
