@@ -6,7 +6,10 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 			/*<![CDATA[*/
-			$(function() {$('#DateStart').datetimepicker({ dateFormat: 'yy-mm-dd' });});
+			$(function() {
+				$('#DateStart').datepicker();
+				$('#DateEnd').datepicker();
+			});
 			/*]]>*/
 		</script>
 	</head>	
@@ -20,15 +23,14 @@
 					<form class="form-horizontal" action="/report/ins/exe" method="post">
 						<div class="control-group">
 							<label class="control-label" for="DateStart">Bắt đầu</label>
-							<div class="controls input-append">
-								<input id="DateStart" name="DateStart" type="text" />
-								<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" /></span>
+							<div class="controls">
+								<input id="DateStart" name="DateStart" type="text" data-date-format="yyyy-mm-dd"/>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="DateEnd">Kết thúc</label>
 							<div class="controls">
-								<input id="DateEnd" name="DateEnd" type="text" />
+								<input id="DateEnd" name="DateEnd" type="text" data-date-format="yyyy-mm-dd" />
 							</div>
 						</div>
 						<div class="control-group">
