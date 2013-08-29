@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.5
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 27, 2013 at 10:50 PM
--- Server version: 5.1.70-cll
--- PHP Version: 5.3.17
+-- Generation Time: Aug 29, 2013 at 08:40 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `spnsoft_customer`
+-- Database: `qlcuahan_db`
 --
 
 -- --------------------------------------------------------
@@ -62,6 +61,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_collect_customer` (
   KEY `sieuthimini_customer_collect_1` (`idcustomer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `sieuthimini_collect_customer`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +81,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_collect_general` (
   PRIMARY KEY (`id`),
   KEY `sieuthimini_collect_1` (`id_term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `sieuthimini_collect_general`
+--
+
 
 -- --------------------------------------------------------
 
@@ -96,11 +105,7 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_config` (
 --
 
 INSERT INTO `sieuthimini_config` (`id`, `param`, `value`) VALUES
-(1, 'PRICE_HOUR_NORMAL_1', '70000'),
-(2, 'PRICE_HOUR_NORMAL_2', '90000'),
-(3, 'PRICE_HOUR_VIP_1', '80000'),
-(4, 'PRICE_HOUR_VIP_2', '100000'),
-(5, 'DISCOUNT', '0'),
+(5, 'GUEST_VISIT', '11'),
 (6, 'ROW_PER_PAGE', '10');
 
 -- --------------------------------------------------------
@@ -123,6 +128,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_course` (
   PRIMARY KEY (`id`),
   KEY `foreign_field` (`idcategory`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `sieuthimini_course`
+--
+
 
 -- --------------------------------------------------------
 
@@ -202,6 +212,28 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_employee` (
 INSERT INTO `sieuthimini_employee` (`id`, `name`, `job`, `gender`, `phone`, `address`) VALUES
 (1, 'Nhân Viên 01', '', 1, '0989 111 222', 'Phường 1 - Tp Vĩnh Long'),
 (2, 'Nhân Viên 02', '', 0, '0996 333 444', 'Phường 2 - Tp Vĩnh Long');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sieuthimini_guest`
+--
+
+CREATE TABLE IF NOT EXISTS `sieuthimini_guest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(16) CHARACTER SET latin1 NOT NULL,
+  `entry_time` varchar(32) CHARACTER SET latin1 NOT NULL,
+  `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
+  `agent` varchar(16) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sieuthimini_guest`
+--
+
+INSERT INTO `sieuthimini_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
+(1, '192.168.1.3', '1377801423', '1377805023', '192.168.1.3');
 
 -- --------------------------------------------------------
 
@@ -312,6 +344,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_order_import_detail` (
   KEY `sieuthimini_order_import_detail_2` (`idresource`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `sieuthimini_order_import_detail`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -328,6 +365,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_customer` (
   KEY `sieuthimini_customer_paid_1` (`idcustomer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `sieuthimini_paid_customer`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -343,6 +385,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_paid_general` (
   PRIMARY KEY (`id`),
   KEY `sieuthimini_paid_1` (`id_term`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `sieuthimini_paid_general`
+--
+
 
 -- --------------------------------------------------------
 
@@ -3110,14 +3157,15 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_tracking` (
   `date_end` date NOT NULL,
   `estate_rate` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `sieuthimini_tracking`
 --
 
 INSERT INTO `sieuthimini_tracking` (`id`, `date_start`, `date_end`, `estate_rate`) VALUES
-(1, '2013-08-16', '2013-08-17', 0);
+(3, '2013-09-01', '2013-09-30', 0),
+(5, '2013-08-01', '2013-08-31', 0);
 
 -- --------------------------------------------------------
 
@@ -3135,6 +3183,11 @@ CREATE TABLE IF NOT EXISTS `sieuthimini_tracking_store` (
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `sieuthimini_tracking_store`
+--
+
 
 -- --------------------------------------------------------
 
@@ -3276,7 +3329,3 @@ ALTER TABLE `sieuthimini_resource`
 --
 ALTER TABLE `sieuthimini_table`
   ADD CONSTRAINT `sieuthimini_table_1` FOREIGN KEY (`iddomain`) REFERENCES `sieuthimini_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
