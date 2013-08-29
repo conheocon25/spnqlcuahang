@@ -1,0 +1,45 @@
+[29-Aug-2013 10:11:08 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php:29
+Stack trace:
+#0 /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php(29): PDO->__construct('mysql:host=loca...', 'qlcuahan_userdb', 'admin068198', Array)
+#1 /home/qlcuahan/public_html/vique/mvc/mapper/Resource.php(8): MVC\Mapper\Mapper->__construct()
+#2 /home/qlcuahan/public_html/vique/mvc/command/SettingSupplierResourceUpdLoad.php(20): MVC\Mapper\Resource->__construct()
+#3 /home/qlcuahan/public_html/vique/mvc/base/command/Command.php(16): MVC\Command\SettingSupplierResourceUpdLoad->doExecute(Object(MVC\Controller\Request))
+#4 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(28): MVC\Command\Command->execute(Object(MVC\Controller\Request))
+#5 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(13): MVC\Controller\Controller->handleRequest()
+#6 /home/q in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php on line 29
+[29-Aug-2013 10:11:08 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php:29
+Stack trace:
+#0 /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php(29): PDO->__construct('mysql:host=loca...', 'qlcuahan_userdb', 'admin068198', Array)
+#1 /home/qlcuahan/public_html/vique/mvc/mapper/Resource.php(8): MVC\Mapper\Mapper->__construct()
+#2 /home/qlcuahan/public_html/vique/mvc/command/SettingSupplierResourceUpdLoad.php(20): MVC\Mapper\Resource->__construct()
+#3 /home/qlcuahan/public_html/vique/mvc/base/command/Command.php(16): MVC\Command\SettingSupplierResourceUpdLoad->doExecute(Object(MVC\Controller\Request))
+#4 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(28): MVC\Command\Command->execute(Object(MVC\Controller\Request))
+#5 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(13): MVC\Controller\Controller->handleRequest()
+#6 /home/q in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php on line 29
+[29-Aug-2013 10:11:13 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php:29
+Stack trace:
+#0 /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php(29): PDO->__construct('mysql:host=loca...', 'qlcuahan_userdb', 'admin068198', Array)
+#1 /home/qlcuahan/public_html/vique/mvc/mapper/OrderImport.php(8): MVC\Mapper\Mapper->__construct()
+#2 /home/qlcuahan/public_html/vique/mvc/base/mapper/MapperDefault.php(2): MVC\Mapper\OrderImport->__construct()
+#3 /home/qlcuahan/public_html/vique/mvc/command/SettingTagResource.php(19): require_once('/home/qlcuahan/...')
+#4 /home/qlcuahan/public_html/vique/mvc/base/command/Command.php(16): MVC\Command\SettingTagResource->doExecute(Object(MVC\Controller\Request))
+#5 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(28): MVC\Command\Command->execute(Object(MVC\Controller\Request))
+#6 /home/qlcuahan/public_html/vique/mv in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php on line 29
+[29-Aug-2013 10:11:21 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php:29
+Stack trace:
+#0 /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php(29): PDO->__construct('mysql:host=loca...', 'qlcuahan_userdb', 'admin068198', Array)
+#1 /home/qlcuahan/public_html/vique/mvc/mapper/OrderImport.php(8): MVC\Mapper\Mapper->__construct()
+#2 /home/qlcuahan/public_html/vique/mvc/base/mapper/MapperDefault.php(2): MVC\Mapper\OrderImport->__construct()
+#3 /home/qlcuahan/public_html/vique/mvc/command/Setting.php(18): require_once('/home/qlcuahan/...')
+#4 /home/qlcuahan/public_html/vique/mvc/base/command/Command.php(16): MVC\Command\Setting->doExecute(Object(MVC\Controller\Request))
+#5 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(28): MVC\Command\Command->execute(Object(MVC\Controller\Request))
+#6 /home/qlcuahan/public_html/vique/mvc/base/controller/Cont in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php on line 29
+[29-Aug-2013 10:11:21 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)' in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php:29
+Stack trace:
+#0 /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php(29): PDO->__construct('mysql:host=loca...', 'qlcuahan_userdb', 'admin068198', Array)
+#1 /home/qlcuahan/public_html/vique/mvc/mapper/OrderImport.php(8): MVC\Mapper\Mapper->__construct()
+#2 /home/qlcuahan/public_html/vique/mvc/base/mapper/MapperDefault.php(2): MVC\Mapper\OrderImport->__construct()
+#3 /home/qlcuahan/public_html/vique/mvc/command/Setting.php(18): require_once('/home/qlcuahan/...')
+#4 /home/qlcuahan/public_html/vique/mvc/base/command/Command.php(16): MVC\Command\Setting->doExecute(Object(MVC\Controller\Request))
+#5 /home/qlcuahan/public_html/vique/mvc/base/controller/Controller.php(28): MVC\Command\Command->execute(Object(MVC\Controller\Request))
+#6 /home/qlcuahan/public_html/vique/mvc/base/controller/Cont in /home/qlcuahan/public_html/vique/mvc/base/mapper/Mapper.php on line 29
