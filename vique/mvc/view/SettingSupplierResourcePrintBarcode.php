@@ -54,17 +54,21 @@
 	$posY = 1;
 	
 	$i = 0;
-	while ($i <= 11){
-		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*0, 	$posY+$height*$i+$i*8, $width, $height, $ratio, $style, 'N');
-		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*1, 	$posY+$height*$i+$i*8, $width, $height, $ratio, $style, 'N');
-		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*2, 	$posY+$height*$i+$i*8, $width, $height, $ratio, $style, 'N');
-		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*3, 	$posY+$height*$i+$i*8, $width, $height, $ratio, $style, 'N');	
-		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*4, 	$posY+$height*$i+$i*8, $width, $height, $ratio, $style, 'N');
-		$pdf->MultiCell($width, 4, $Resource->getPriceExportPrint(), 0, 'C', 0, 0);
-		$pdf->MultiCell($width, 4, $Resource->getPriceExportPrint(), 0, 'C', 0, 0);
-		$pdf->MultiCell($width, 4, $Resource->getPriceExportPrint(), 0, 'C', 0, 0);
-		$pdf->MultiCell($width, 4, $Resource->getPriceExportPrint(), 0, 'C', 0, 0);
-		$pdf->MultiCell($width, 4, $Resource->getPriceExportPrint(), 0, 'C', 0, 1);
+	while ($i <= 9){
+				
+		//Mã vạch
+		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*0, 	$posY+$height*$i+$i*12, $width, $height, $ratio, $style, 'N');
+		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*1, 	$posY+$height*$i+$i*12, $width, $height, $ratio, $style, 'N');
+		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*2, 	$posY+$height*$i+$i*12, $width, $height, $ratio, $style, 'N');
+		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*3, 	$posY+$height*$i+$i*12, $width, $height, $ratio, $style, 'N');	
+		$pdf->write1DBarcode($Resource->getBarcode(), 'EAN13', 	$posX + $width*4, 	$posY+$height*$i+$i*12, $width, $height, $ratio, $style, 'N');
+		
+		//Giá
+		$pdf->MultiCell($width, 4, $Resource->getNameShort()." ".$Resource->getPriceExportPrint(), 0, 'C', 0, 0);
+		$pdf->MultiCell($width, 4, $Resource->getNameShort()." ".$Resource->getPriceExportPrint(), 0, 'C', 0, 0);
+		$pdf->MultiCell($width, 4, $Resource->getNameShort()." ".$Resource->getPriceExportPrint(), 0, 'C', 0, 0);
+		$pdf->MultiCell($width, 4, $Resource->getNameShort()." ".$Resource->getPriceExportPrint(), 0, 'C', 0, 0);
+		$pdf->MultiCell($width, 4, $Resource->getNameShort()." ".$Resource->getPriceExportPrint(), 0, 'C', 0, 1);
 		
 		$i++;
 	}

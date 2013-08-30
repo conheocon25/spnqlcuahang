@@ -8,6 +8,7 @@ class Resource extends Object{
     private $Id;
 	private $IdSupplier;
 	private $Name;
+	private $NameShort;
     private $PriceImport;
     private $Unit;
 	private $Description;
@@ -16,10 +17,11 @@ class Resource extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdSupplier=null, $Name=null, $Unit=null, $PriceImport=null, $PriceExport=null, $Description=null, $Barcode=null) {
+    function __construct( $Id=null, $IdSupplier=null, $Name=null, $NameShort=null, $Unit=null, $PriceImport=null, $PriceExport=null, $Description=null, $Barcode=null) {
         $this->Id = $Id;
 		$this->IdSupplier = $IdSupplier;
 		$this->Name = $Name;
+		$this->NameShort = $NameShort;
 		$this->PriceImport = $PriceImport;
 		$this->PriceExport = $PriceExport;
 		$this->Unit = $Unit;
@@ -39,6 +41,9 @@ class Resource extends Object{
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
+	
+	function setNameShort( $NameShort ) {$this->NameShort = $NameShort; $this->markDirty();}
+    function getNameShort( ) {return $this->NameShort;}
 	
 	function setPriceImport( $PriceImport ) {$this->PriceImport = $PriceImport;$this->markDirty();}
     function getPriceImport( ) {return $this->PriceImport;}
