@@ -10,9 +10,9 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
-		$updateStmt = sprintf("update %s set idsupplier=?, name=?, unit=?, price_import=?, price_export=?, description=?, barcode=? where id=?", $tblResource);
-		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price_import, price_export, description, barcode ) 
-							values( ?, ?, ?, ?, ?, ?, ?)", $tblResource);
+		$updateStmt = sprintf("update %s set idsupplier=?, name=?, name_short=?, unit=?, price_import=?, price_export=?, description=?, barcode=? where id=?", $tblResource);
+		$insertStmt = sprintf("insert into %s ( idsupplier, name, name_short, unit, price_import, price_export, description, barcode ) 
+							values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$havingBarcodeStmt = sprintf("select * from %s where barcode<>''", $tblResource);
 		$noneBarcodeStmt = sprintf("select * from %s where barcode=''", $tblResource);
@@ -48,6 +48,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$array['id'],
 			$array['idsupplier'],
 			$array['name'],
+			$array['name_short'],
 			$array['unit'],				
 			$array['price_import'],	
 			$array['price_export'],
@@ -62,6 +63,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $values = array(  
 			$object->getIdSupplier(),
 			$object->getName(),	
+			$object->getNameShort(),	
 			$object->getUnit(),	
 			$object->getPriceImport(),
 			$object->getPriceExport(),
@@ -77,6 +79,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $values = array( 
 			$object->getIdSupplier(),
 			$object->getName(),
+			$object->getNameShort(),
 			$object->getUnit(),
 			$object->getPriceImport(),
 			$object->getPriceExport(),

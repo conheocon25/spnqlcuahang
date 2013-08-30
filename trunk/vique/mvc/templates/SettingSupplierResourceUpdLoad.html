@@ -12,8 +12,8 @@
 					var Result = false;
 					var Name = "";
 					
-					if (str.length <9){
-						$('#BarcodeMessage').html("Ít nhất 9 kí tự");						
+					if (str.length <1){
+						$('#BarcodeMessage').html("Ít nhất 1 kí tự");						
 					}else{
 						URL = "/barcode/"+str;
 						$.ajax({
@@ -58,6 +58,12 @@
 							<label class="control-label" for="Name">Tên</label>
 							<div class="controls">
 								<input id="Name" name="Name" type="text" tal:attributes="value Resource/getName"/>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="NameShort">Tên ngắn gọn</label>
+							<div class="controls">
+								<input id="NameShort" name="NameShort" type="text" tal:attributes="value Resource/getNameShort"/>
 							</div>
 						</div>
 						<div class="control-group">

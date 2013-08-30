@@ -13,7 +13,8 @@
 			//-------------------------------------------------------------
 			$IdSupplier = $request->getProperty("IdSupplier");
 			$IdResource = $request->getProperty("IdResource");
-			$Name = $request->getProperty("Name");						
+			$Name = $request->getProperty("Name");
+			$NameShort = $request->getProperty("NameShort");
 			$PriceImport = $request->getProperty("PriceImport");
 			$PriceExport = $request->getProperty("PriceExport");
 			$Unit = $request->getProperty("Unit");
@@ -33,6 +34,7 @@
 							
 			$Resource->setIdSupplier($IdSupplier);
 			$Resource->setName($Name);
+			$Resource->setNameShort($NameShort);
 			$Resource->setPriceImport($PriceImport);
 			$Resource->setPriceExport($PriceExport);
 			$Resource->setUnit($Unit);

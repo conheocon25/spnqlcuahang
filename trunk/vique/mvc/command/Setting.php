@@ -36,8 +36,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('URLHeader'	, '/app');
+			$request->setProperty('Title'		, $Title);			
 			$request->setProperty('ActiveAdmin'	, 'app');
 			$request->setObject('Navigation'	, $Navigation);
 						

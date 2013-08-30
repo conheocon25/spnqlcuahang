@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------			
 			$IdSupplier = $request->getProperty('IdSupplier');
 			$Name = $request->getProperty('Name');
+			$ShortName = $request->getProperty('ShortName');
 			$Unit = $request->getProperty('Unit');
 			$PriceImport = $request->getProperty('PriceImport');
 			$PriceExport = $request->getProperty('PriceExport');
@@ -27,13 +28,13 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if (!isset($Name))
-				return self::statuses('CMD_OK');
+			if (!isset($Name)) return self::statuses('CMD_OK');
 				
 			$Resource = new \MVC\Domain\Resource(
 				null,
 				$IdSupplier,
 				$Name,
+				$ShortName,
 				$Unit,
 				$PriceImport,
 				$PriceExport,
