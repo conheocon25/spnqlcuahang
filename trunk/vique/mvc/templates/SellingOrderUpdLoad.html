@@ -4,6 +4,16 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-addon.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.ui.datepicker-vi.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-vi.js" />
+		
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {$('#Date').datetimepicker({ dateFormat: 'yy-mm-dd' });});
+			/*]]>*/
+		</script>
 	</head>	
 	<body>
 		<div class="container-fluid">
