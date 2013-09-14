@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingInfoPasswdLoad.js"/>
+	</head>
+<body>
+	<div id="PageSettingInfoPasswdLoad" data-role="page">
+		<div data-role="header" data-theme="d">
+			<h1 tal:content="Title"/>
+			<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="FormSettingInfoPasswdLoad" tal:attributes="action App/getURLSettingInfoPasswdExe" method="post" ajax="false" class="ui-body ui-body-a ui-corner-all">
+				<fieldset>
+					<div data-role="fieldcontain">
+						<label for="Passwd1" class="text">Mật khẩu mới:</label>
+						<input class="required" id="Passwd1" name="Passwd1" type="password"/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Passwd2" class="text">Lập lại mật khẩu:</label>
+						<input class="required" id="Passwd2" name="Passwd2" type="password"/>
+					</div>				
+				</fieldset>
+				<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Thay đổi</button>
+			</form>
+		</div>	
+	</div>
+</body>
+</html>

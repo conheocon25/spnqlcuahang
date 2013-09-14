@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>	
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/PaidEmployeeList.js"/>
+	</head>
+<body>
+	<div id="main" data-role="page" class="type-interior" />
+	<div tal:attributes="id Employee/getIdPrint" data-role="page" class="employee type-interior" tal:repeat="Employee Employees">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="php:'TRẢ TIỀN CHO '.Employee->getName()" />
+			<a tal:attributes="href User/getApp/getURLPaid" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSettingEmployee" data-icon="gear" data-transition="none" data-ajax="false">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<a data-ajax="false" tal:attributes="href Employee/getURLPaidInsLoad" data-role="button" data-icon="plus" data-theme="b">THÊM TRẢ TIỀN</a>
+				<ul data-role="listview" data-inset="true">
+					<li tal:repeat="Paid Employee/getPaidsTop10">
+						<a data-ajax="false" tal:attributes="href Paid/getURLUpdLoad">
+							<strong>
+								<span tal:content="repeat/Paid/number" />. <span tal:content="Paid/getDatePrint" />
+							</strong>
+							<p class="ui-li-aside"><strong tal:content="Paid/getValuePrint"></strong></p>
+						</a>
+						<a tal:attributes="href Paid/getURLDelLoad" data-theme="c" data-icon="delete" />
+					</li>
+				</ul>
+				<a data-ajax="false" tal:attributes="href Employee/getURLPaidInsLoad" data-role="button" data-icon="plus" data-theme="b">THÊM TRẢ TIỀN</a>
+			</div><!--/content-primary -->
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>NHÂN VIÊN</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Employee1 Employees1" tal:attributes="data-theme php: Employee1->getId()==Employee->getId() ? 'a' : 'c'">
+							<a data-transition="none" tal:attributes="href Employee1/getURLPaid">
+								<span tal:content="repeat/Employee1/number"/>. <span tal:content="Employee1/getName"/>
+							</a>							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

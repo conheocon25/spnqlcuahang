@@ -1,0 +1,135 @@
+<style type="text/css">
+	.hor-minimalist-a{	background: #fff;margin: 45px;border-collapse: collapse;text-align: left;}
+	.hor-minimalist-a th{ font-weight: normal; border: 1px solid #000; }
+	.hor-minimalist-a td{ padding: 8px; border-right: 1px solid #000; border-left: 1px solid #000; }
+</style>
+
+<font size="10">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>
+			<td width="33%" align="center">ĐẠI LÝ THỨC ĂN GIA SÚC MINH TÀI</td>
+			<td width="67%" rowspan="2" align="center">
+				<font size="24"><b>HÓA ĐƠN BÁN HÀNG</b></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="33%" align="center">170/10 Phạm Hùng - P9 - TPVL</td>			
+		</tr>
+		<tr>
+			<td width="33%" align="center">ĐT: 070.3824169 Fax: 3822748</td>
+			<td width="32%" align="right"><font size="12">KHÁCH HÀNG:</font></td>
+			<td width="35%" align="left"><font size="12"><span tal:content="Customer/getPrefix"/> <span tal:content="Customer/getName"/></font></td>
+		</tr>
+		<tr>			
+			<td width="33%" align="center">DĐ:(0932) 92 62 44</td>
+			<td width="67%" colspan="2" align="center"><font size="12">ĐC:<span tal:content="Customer/getAddress"/> - ĐT: <span tal:content="Customer/getPhone"/></font></td>
+		</tr>
+	</table>
+</font>
+<h5 />
+<font size="12pt">
+	<table class="hor-minimalist-a" width="100%" cellpadding="2" cellspacing="0" border="0">
+	<thead>
+		<tr>
+			<th scope="col" width="6%" align='center'><B>STT</B></th>
+			<th scope="col" width="22%" align='left'><B>TÊN HÀNG</B></th>						
+			<th scope="col" width="14%" align='left'><B>ĐƠN VỊ</B></th>
+			<th scope="col" width="7%" align='right'><B>SL</B></th>
+			<th scope="col" width="12%" align='right'><B>ĐƠN GIÁ</B></th>
+			<th scope="col" width="19%" align='right'><B>KHUYẾN MÃI</B></th>
+			<th scope="col" width="20%" align='right'><B>THÀNH TIỀN</B></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="ODED OE/getDetails">
+			<td width="6%" align='center' tal:content="repeat/ODED/number" />
+			<td width="22%" align='left' tal:content="ODED/getResource/getName" />
+			<td width="14%" align='left' tal:content="ODED/getResource/getUnit/getName" />
+			<td width="7%" align='right' tal:content="ODED/getCountPrint" />
+			<td width="12%" align='right' tal:content="ODED/getPricePrint" />
+			<td width="19%" align='right'>
+				<span tal:condition="ODED/getExtra" tal:content="ODED/getExtra/getValuePrint"/>	
+				<span tal:condition="not:ODED/getExtra">0</span>
+			</td>
+			<td width="20%" align='right' tal:content="ODED/getValuePrint" />
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th align='right' colspan="5" width="61%"/>
+			<th align='right' width="19%">
+				<B tal:content="OE/getValue2Print" />
+			</th>
+			<th align='right' width="20%">
+				<B tal:content="OE/getValue1Print" />
+			</th>
+		</tr>
+	</tfoot>
+	</table>	
+	<BR/>
+</font>
+
+<font size="12">
+	<table width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tr>
+			<td width="80%" align='right'>NỢ CŨ:</td>
+			<td width="20%" align='right'>
+				<span tal:content="Customer/getOldDebt1Print" />
+			</td>
+		</tr>
+		<tr>
+			<td width="80%" align='right'>TIỀN HÀNG:</td>
+			<td width="20%" align='right'>
+				+<span tal:content="OE/getValue1Print" />
+			</td>
+		</tr>
+		<tr>
+				<td width="80%" align='right'>KHUYẾN MÃI:</td>
+				<td width="20%" align='right'>
+					-<span tal:content="OE/getValue2Print" />
+				</td>
+		</tr>
+		<tr>
+			<td width="80%" align='right'>TRẢ TRƯỚC:</td>
+			<td align='right' width="20%">
+				<span tal:content="Customer/getPaidsTrackingValue1Print"/>
+			</td>
+		</tr>		
+		<tr>
+			<td width="80%" align='right'>
+				____________________
+			</td>
+			<td width="20%" align='left'>							
+				_________________				
+			</td>
+		</tr>
+		<tr>
+			<td align='right'><B>NỢ MỚI:</B></td>
+			<td align='right'>
+				<font size="14px">
+					<B tal:content="Customer/getNewDebt1Print"/>
+				</font>
+			</td>
+		</tr>
+	</table>
+	<div align='right'><font size="14">(<span tal:content="Customer/getNewDebt1StrPrint"/> đồng)</font></div>
+	<BR/>
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td width="30%" align="center" />				
+			<td width="30%" align="center" />
+			<td width="40%" align="center"><span tal:content="OE/getDatePrint1"/></td>
+		</tr>		
+		<tr>
+			<td align="center">
+				Người lập phiếu
+			</td>
+			<td align="center">
+				Người nhận hàng
+			</td>
+			<td align="center">
+				Đại lý thức ăn gia súc Minh Tài
+			</td>
+		</tr>		
+	</table>
+</font>

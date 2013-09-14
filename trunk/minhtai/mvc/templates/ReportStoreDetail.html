@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		
+	</head>
+<body>
+	<div tal:attributes="id Store/getIdPrint" data-role="page" class="type-interior" tal:repeat="Store Stores">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="Title" />
+			<a tal:attributes="href User/getApp/getURLReport" data-icon="back" data-ajax="false">LUI</a>
+			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<div tal:repeat="Supplier Store/getSuppliers" data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">					
+					<h3><span tal:content="repeat/Supplier/number"/>. <span tal:content="Supplier/getName"/></h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true">
+						
+						<li tal:repeat="Resource Supplier/getResources">
+							<span tal:content="repeat/Resource/number"/>. <span tal:content="Resource/getName"/>
+							: tồn đầu kỳ <span tal:content="Resource/getCountInit"/> + 
+							nhập vào <span tal:content="Resource/getCountImport"/>, 
+							xuất ra <span tal:content="Resource/getCountExport"/> = 
+							còn lại <span tal:content="Resource/getCountRemain"/>
+						</li>
+					</ul>
+				</div>	
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>KHO HÀNG</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a  href ="/minhtai/report/store/general#general">TỔNG TỒN</a></li>
+						<li tal:repeat="Store1 Stores1" tal:attributes="data-theme php:Store->getId()==Store1->getId()?'a':'c'">
+							<a tal:attributes="href Store1/getURLStoreDetail"><span tal:content="Store1/getName" /></a>
+						</li>
+					</ul>			
+				</div>				
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+	
+	<div id="general" data-role="page" class="type-interior">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="Title" />
+			<a tal:attributes="href User/getApp/getURLReport" data-icon="back" data-ajax="false">LUI</a>
+			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">								
+				<ul data-role="listview"  data-inset="true">
+					<li tal:repeat="Store Stores">
+						<h3><span tal:content="repeat/Store/number"/>. <span tal:content="Store/getName"/></h3>
+						<span class="ui-li-aside" tal:content="Store/getValuePrint" />
+					</li>
+					<li>
+						<h3>TỔNG TỒN</h3>
+						(<span tal:content="SumStrPrint" />)
+						<span class="ui-li-aside" tal:content="SumPrint" />
+					</li>
+				</ul>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>KHO HÀNG</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li data-theme="a"><a href ="/minhtai/report/store/general#general">TỔNG TỒN</a></li>
+						<li tal:repeat="Store1 Stores1">
+							<a tal:attributes="href Store1/getURLStoreDetail"><span tal:content="Store1/getName" /></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>
