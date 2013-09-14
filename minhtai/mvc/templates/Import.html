@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Import.js"/>
+		
+	</head>
+<body>
+	<div id="import" data-role="page" class="type-interior" />
+
+	<!-- supplier -->
+	<div tal:attributes="id Supplier/getIdPrint" data-role="page" class="supplier type-interior" tal:repeat="Supplier Suppliers">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="php:'NHẬP HÀNG TỪ '.Supplier->getName()"/>
+			<a tal:attributes="href User/getApp/getURLApp" data-icon="back">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSetting" data-icon="gear" data-transition="none">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-filter="true" data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true" data-filter-placeholder="Gõ để đơn hàng...">
+					<li tal:repeat="Order Supplier/getOrdersTop10">
+						<a data-ajax="false" tal:attributes="href Order/getURLDetail">
+							<span tal:content="repeat/Order/number"/>. <span tal:content="Order/getDatePrint"/>
+							<span class="ui-li-count" tal:content="Order/getValuePrint" />
+						</a>
+						<a tal:attributes="href Order/getURLDelLoad" data-theme="c" data-icon="delete" />
+					</li>					
+				</ul>
+				<a rel="external" data-theme="b" data-ajax="false" tal:attributes="href Supplier/getURLImportInsLoad" data-role="button" data-icon="plus">THÊM ĐƠN HÀNG</a>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>NHÀ CUNG CẤP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Supplier1 Suppliers1" tal:attributes="data-theme php:Supplier->getId()==Supplier1->getId() ? 'a' : 'c'">
+							<a data-transition="none" tal:attributes="href Supplier1/getURLImport">
+								<span tal:content="repeat/Supplier1/number"/>. <span tal:content="Supplier1/getName"/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>	
+</body>
+</html>

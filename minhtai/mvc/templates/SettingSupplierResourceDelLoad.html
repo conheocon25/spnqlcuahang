@@ -1,0 +1,11 @@
+<div data-role="page">
+	<div data-role="header" data-theme="d">
+		<h1 tal:content="Title"/>
+		<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+	</div>
+	<div data-role="content" data-theme="a">
+		<form tal:attributes="action Resource/getURLDelExe" method="post" data-ajax="false" class="ui-body ui-body-a ui-corner-all">
+			<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Đồng ý</button>
+		</form>
+	</div>	
+</div>
