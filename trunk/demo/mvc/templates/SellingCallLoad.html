@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+				$(document).ready(function(){
+					$(".Tag").click(function(){
+						var URL = $(this).attr('alt');								
+						$.ajax({
+							type: "POST", 
+							async: false,
+							url: URL,
+							dataType: 'json',
+							success: function(data){
+								Count = data.Count;				
+							}
+						});
+						//$(this.parentNode.parentNode.childNodes[7]).html( Count);
+						$(this).html("Chọn ("+Count+")");
+					});
+				});
+			/*]]>*/
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="row-fluid">
+					<div class="span3">						
+						<div class="menu">
+							<ul class="nav nav-list">
+								<li class="nav-header">CHỌN THẺ</li>
+								<li tal:repeat="TagSelected1 TagSelectedAll" tal:attributes="class php:TagSelected1->getId()==TagSelected->getId()?'active':'disable'">
+									<a tal:attributes="href TagSelected1/getURLCallLoad">
+										<span tal:content="TagSelected1/getTag/getName"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="span9">												
+						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>							
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="30"><div class="text-center">STT</div></th>
+										<th>TÊN HÀNG</th>										
+										<th width="90" />
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="R2T TagSelected/getTag/getR2TAll" >
+										<td><div class="text-center" tal:content="repeat/R2T/number" /></td>
+										<td><div class="text-left" tal:content="R2T/getResource/getName" /></td>
+										<td>
+											<div class="btn">
+												<div class="Tag" tal:attributes="alt php:TagSelected->getURLCallExe() . '/' . R2T->getIdResource()">
+													Chọn (0)
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>								
+							</table>							
+						</div>						
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>

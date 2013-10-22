@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(document).ready(function(){$("#Barcode").focus();});
+			/*]]>*/
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="row-fluid">
+					<div class="span3">
+						<ul class="nav nav-list">
+							<li>
+								<form tal:attributes="action Supplier/getFindResourceByBarcode" method="post">
+									<div class="control-group">
+										<label class="control-label" for="Barcode">Quét mã vạch</label>
+										<div class="controls">
+											<input id="Barcode" name="Barcode" type="text" />
+										</div>
+									</div>
+								</form>
+							</li>								
+						</ul>						
+					</div>
+					<div class="span9">
+						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="32">STT</th>
+										<th width="100">MÃ VẠCH</th>
+										<th>TÊN</th>
+										<th width="60">ĐƠN VỊ</th>
+										<th width="120">GIÁ NHẬP</th>
+										<th width="120">GIÁ BÁN</th>
+										<th width="32">TAG</th>
+										<th width="32">XÓA</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Resource ResourceAll" tal:attributes="class php: Resource->getBarcode()?'':'error'">
+										<td>
+											<div tal:content="repeat/Resource/number" />
+										</td>
+										<td>
+											<a tal:attributes="href Resource/getURLBarcodePrint" target="blank">
+												<div tal:content="Resource/getBarcode" />
+											</a>
+										</td>
+										<td>
+											<a tal:attributes="href Resource/getURLUpdLoad">
+												<div tal:content="Resource/getName" />
+											</a>
+										</td>
+										<td><div tal:content="Resource/getUnit" /></td>
+										<td><div tal:content="Resource/getPriceImportPrint" /></td>
+										<td><div tal:content="Resource/getPriceExportPrint" /></td>
+										<td><a class="btn" tal:attributes="href Resource/getURLTag"><span tal:content="Resource/getTagAll/count"/></a></td>
+										<td><a class="btn" tal:attributes="href Resource/getURLDelLoad"><span class="icon-remove"/></a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="4" align="center">
+											<a class="btn" tal:attributes="href Supplier/getURLResourceInsLoad">
+												<span class="icon-plus"/>Thêm mới
+											</a>
+										</td>
+									</tr>
+								</tfoot>
+							</table>							
+							<span metal:use-macro="mAdmin.xhtml/PageBar"/>
+						</div>						
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>
