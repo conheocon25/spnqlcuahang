@@ -21,17 +21,9 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$CategoryAll = $mCategory->findAll();			
-			$DomainAll = $mDomain->findAll();			
-			$EmployeeAll = $mEmployee->findAll();
-			$UnitAll = $mUnit->findAll();			
-			$CustomerAll = $mCustomer->findAll();
-			$TermPaidAll = $mTermPaid->findAll();
-			$TermCollectAll = $mTermCollect->findAll();			
-			$UserAll = $mUser->findAll();
+			//-------------------------------------------------------------						
 			$SupplierAll = $mSupplier->findAll();
-			$ConfigAll = $mConfig->findAll();
+			$UnitAll = $mUnit->findAll();
 			
 			$Supplier = $mSupplier->find($IdSupplier);			
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
@@ -53,20 +45,11 @@
 			$request->setObject('Navigation', $Navigation);
 			
 			$request->setObject('ResourceAll1'	, $ResourceAll1);
+			$request->setObject('SupplierAll'	, $SupplierAll);
+			$request->setObject('UnitAll'		, $UnitAll);
 			$request->setObject('Supplier'		, $Supplier);
 			$request->setObject('PN'			, $PN);
-			
-			$request->setObject('CategoryAll'	, $CategoryAll);			
-			$request->setObject('DomainAll'		, $DomainAll);
-			$request->setObject('EmployeeAll'	, $EmployeeAll);
-			$request->setObject('UnitAll'		, $UnitAll);			
-			$request->setObject('CustomerAll'	, $CustomerAll);
-			$request->setObject('TermPaidAll'	, $TermPaidAll);
-			$request->setObject('TermCollectAll', $TermCollectAll);
-			$request->setObject('UserAll'		, $UserAll);			
-			$request->setObject('ConfigAll'		, $ConfigAll);
-			$request->setObject('SupplierAll'	, $SupplierAll);
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

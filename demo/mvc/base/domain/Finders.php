@@ -33,5 +33,7 @@ interface TrackingFinder extends Finder {}
 interface TrackingStoreFinder extends Finder {}
 
 interface GuestFinder extends Finder {}
+interface TermPaidFinder extends Finder {}
+interface TermCollectFinder extends Finder {}
 
 ?>
