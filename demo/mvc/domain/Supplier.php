@@ -60,16 +60,35 @@ class Supplier extends Object{
 		return json_encode($json);
 	}
 	
-	function toXML(){		
-		$newsXML = new \SimpleXMLElement("<Supplier></Supplier>");
-		$newsXML->addAttribute('Id'			, $this->getId());
-		$newsXML->addAttribute('Name'		, $this->getName());
-		$newsXML->addAttribute('Phone'		, $this->getPhone());
-		$newsXML->addAttribute('Address'	, $this->getAddress());
-		$newsXML->addAttribute('Note'		, $this->getNote());
-		$newsXML->addAttribute('Debt'		, $this->getDebt());		
-		Header('Content-type: text/xml');
-		return $newsXML->asXML();
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "Supplier" );
+		
+		$Id = $Doc->createElement( "Id" );
+		$Id->appendChild($Doc->createTextNode( $this->getId() ));
+		
+		$Name = $Doc->createElement( "Name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$Phone = $Doc->createElement( "Phone" );
+		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
+		
+		$Address = $Doc->createElement( "Address" );
+		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
+		
+		$Note = $Doc->createElement( "Note" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
+		
+		$Debt = $Doc->createElement( "Debt" );
+		$Debt->appendChild($Doc->createTextNode( $this->getDebt() ));
+		
+		$Obj->appendChild( $Id );
+		$Obj->appendChild( $Name );
+		$Obj->appendChild( $Phone );
+		$Obj->appendChild( $Address);
+		$Obj->appendChild( $Note);
+		$Obj->appendChild( $Debt);
+		
+		return $Obj;
 	}
 	
 	function setArray( $Data ){

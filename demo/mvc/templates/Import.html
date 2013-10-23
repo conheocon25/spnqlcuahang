@@ -42,19 +42,24 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-			$('.btn').click(function(){				
-				var Params = [];				
-				var Url = "/s2a/get/one";
+			$('.btn').click(function(){
+				var Params = [];
+				/*
+				var Url 	= "/s2a/get/one";
 				Params[0]	= "Supplier";
 				Params[1]	= "1";
+				*/
 				
+				var Url = "/s2a/get/all";
+				Params[0]	= "Supplier";
+								
 				$.ajax({
 					type: "POST",
 					data: {Params:Params},
 					url: Url,
-					//dataType: "xml",
+					dataType: "xml",
 					success: function(data){
-						alert("thành công");
+						//alert("thành công");
 					}
 				});
 			});
