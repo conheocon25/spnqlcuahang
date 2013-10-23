@@ -60,6 +60,18 @@ class Supplier extends Object{
 		return json_encode($json);
 	}
 	
+	function toXML(){		
+		$newsXML = new \SimpleXMLElement("<Supplier></Supplier>");
+		$newsXML->addAttribute('Id'			, $this->getId());
+		$newsXML->addAttribute('Name'		, $this->getName());
+		$newsXML->addAttribute('Phone'		, $this->getPhone());
+		$newsXML->addAttribute('Address'	, $this->getAddress());
+		$newsXML->addAttribute('Note'		, $this->getNote());
+		$newsXML->addAttribute('Debt'		, $this->getDebt());		
+		Header('Content-type: text/xml');
+		return $newsXML->asXML();
+	}
+	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];

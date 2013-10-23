@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
+	
 	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<div class="menu">
-							<ul class="nav nav-list">
-								<li class="nav-header">CHỌN NHÀ CUNG CẤP</li>
-								<li tal:repeat="Supplier SupplierAll">
-									<a tal:attributes="href Supplier/getURLImport" >
-										<i class="icon-th-list"/>
-										<span tal:content="Supplier/getName"/>
-									</a>
-								</li>								
-							</ul>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<div class="widget-box">
+						<button class="btn btn-primary">Test XML </button>
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr role="row">
+										<th width="35">STT</th>
+										<th><div class="text-left">TÊN</div></th>
+										<th width="32"><i class="glyphicons-truck"/></th>
+									</tr>
+								</thead>
+								<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="gradeA odd" tal:repeat="Supplier SupplierAll">
+										<td align="center" tal:content="repeat/Supplier/number"/>
+										<td><a tal:attributes="href Supplier/getURLImport" ><span tal:content="Supplier/getName"/></a></td>
+										<td align="center"><a tal:attributes="href Supplier/getURLImport"><i class="glyphicons-truck"/></a></td>
+									</tr>											
+								</tbody>
+							</table>
 						</div>
-					</div>
-					<div class="span9">												
-						<div class="content">
-							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-								
-						</div>						
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.btn').click(function(){				
+				var Params = [];				
+				var Url = "/s2a/get/one";
+				Params[0]	= "Supplier";
+				Params[1]	= "1";
+				
+				$.ajax({
+					type: "POST",
+					data: {Params:Params},
+					url: Url,
+					//dataType: "xml",
+					success: function(data){
+						alert("thành công");
+					}
+				});
+			});
+		/*]]>*/</script>	
 	</body>
 </html>

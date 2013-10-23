@@ -27,6 +27,8 @@
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
+		<command name="S2AGet"><view>S2AGet</view></command>
+	
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->

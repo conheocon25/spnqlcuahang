@@ -37,7 +37,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);			
-			$request->setProperty('ActiveAdmin'	, 'app');
+			$request->setProperty('ActiveAdmin'	, 'Setting');
 			$request->setObject('Navigation'	, $Navigation);
 						
 			$request->setObject('SupplierAll'	, $SupplierAll);
