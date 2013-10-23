@@ -28,5 +28,6 @@ interface TrackingStoreCollection extends \Iterator {function add( Object $Track
 
 interface PageCollection extends \Iterator {function add( Object $Page);}
 interface GuestCollection extends \Iterator {function add( Object $Guest);}
-
+interface TermCollectCollection extends \Iterator {function add( Object $TermCollect);}
+interface TermPaidCollection extends \Iterator {function add( Object $TermPaid);}
 ?>
