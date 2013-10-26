@@ -145,5 +145,34 @@
 			}
 			return $Doc;
 		}
+		function exeBYID( \MVC\Controller\Request $request ){
+			$ObjectName 		= $request->getProperty('ObjectName');
+			$ObjectParentName 	= $request->getProperty('ObjectParentName');
+			$ObjectParentId 	= $request->getProperty('ObjectParentId');
+									
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectParentName );
+			$Obj 		= $mMapper->find($ObjectParentId);
+			$F			= "get".$ObjectName."All";
+			$ObjAll		= $Obj->$F();
+			
+			//Xuất ra file XML Doc
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			while ($ObjAll->valid()){
+				$Obj = $ObjAll->current();
+				
+				//mỗi nút Obj là con App
+				$O 	=  $Obj->toXML($Doc);				
+				$App->appendChild( $O );
+									
+				$ObjAll->next();
+			}
+			return $Doc;
+		}
 	}
 ?>
