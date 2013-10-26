@@ -28,7 +28,26 @@
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
 		<command name="S2AGet"><view>S2AGet</view></command>
-	
+		
+		<!-- ============================================================================== -->
+		<!-- MONEY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollWork"><view>PayRollWork</view></command>
+		<command name="PayRollWorkDetail">
+			<status value="CMD_OK">
+				<forward>PayRollWork</forward>
+			</status>
+			<view>PayRollWorkDetail</view>
+		</command>
+		
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->
@@ -185,12 +204,7 @@
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
 		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
-		<command name="ImportSupplierOrderInsLoad"><view>ImportSupplierOrderInsLoad</view></command>
-		<command name="ImportSupplierOrderInsExe"><view>ImportSupplierOrderInsExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierOrderUpdLoad"><view>ImportSupplierOrderUpdLoad</view></command>
-		<command name="ImportSupplierOrderUpdExe"><view>ImportSupplierOrderUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierOrderDelLoad"><view>ImportSupplierOrderDelLoad</view></command>
-		<command name="ImportSupplierOrderDelExe"><view>ImportSupplierOrderDelExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
+		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
 		
 	</control>
 </options>

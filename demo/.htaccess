@@ -24,6 +24,34 @@ RewriteRule ^s2a/get/range/([A-Za-z0-9]+)/([0-9]+)/([0-9]+)$ 		?cmd=S2AGet&Type=
 RewriteRule ^s2a/get/byid/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([0-9]+)$ 	?cmd=S2AGet&Type=byid&ObjectName=$1&ObjectParentName=$2&ObjectParentId=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# MONEY
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^money$ 												?cmd=Money [L]
+
+RewriteRule ^money/collect/general$ 								?cmd=MoneyCollectGeneral [L]
+RewriteRule ^money/collect/general/([0-9]+)$ 						?cmd=MoneyCollectGeneral&IdTerm=$1 [L]
+RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectGeneral&IdTerm=$1&Page=$2 [L]
+
+RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
+RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
+RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAYROLL
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^payroll$ 												?cmd=PayRoll [L]
+RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)$ 							?cmd=PayRollWork&IdTrack=$1&IdEmployee=$2 [L]
+
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/all/yes$ 							?cmd=PayRollWorkDetail&IdTrack=$1&Date=all&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)$ 			?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4&Extra=$5 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4&Extra=$5 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 								?cmd=App [L]
@@ -66,6 +94,8 @@ RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&
 
 RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
 RewriteRule ^import/([0-9]+)/([0-9]+)/barcode$ 		?cmd=ImportSupplierOrderBarcode&IdSupplier=$1&IdOrder=$2&Barcode=$3 [L]
+
+RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT

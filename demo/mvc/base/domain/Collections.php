@@ -4,6 +4,9 @@ namespace MVC\Domain;
 interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
 
+interface CollectGeneralCollection extends \Iterator {function add( Object $CollectGeneral );}
+interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGeneral );}
+
 interface TagCollection extends \Iterator {function add( Object $tag );}
 interface TagSelectedCollection extends \Iterator {function add( Object $tag );}
 

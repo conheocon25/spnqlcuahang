@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<div class="menu">
-							<ul class="nav nav-list">								
-								<li class="nav-header">BÁO CÁO TỔNG HỢP</li>
-								<li tal:repeat="Track TrackingAll" tal:attributes="class php:Track->getId()==Tracking->getId()?'active':'disable'">
-									<a tal:attributes="href Track/getURLView">
-										<span tal:content="Track/getName" />
-									</a>
-								</li>
-							</ul>
-						</div>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">			
+			<div id="sidebar">
+				<ul style="display: block;">																				
+					<li tal:repeat="Tracking1 TrackingAll" tal:attributes="class php:Tracking1->getId()==Tracking->getId()?'active':'disable'">
+						<a tal:attributes="href Tracking1/getURLView">
+							<i class="icon-book" /><span tal:content="Tracking1/getName"/>							
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">																
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLCollectGeneral">(1) TỔNG HỢP THU</a>
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLPaidGeneral">(2) TỔNG HỢP CHI</a>						
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLGeneral">(3) TỔNG HỢP THÁNG</a>
 						<BR/>
-						<div class="menu">
-							<ul class="nav nav-list">								
-								<li class="nav-header">THỐNG KÊ</li>
-								<li>
-									<a target="blank" tal:attributes="href '#'">HÀNG TỒN KHO</a>
-								</li>
-							</ul>
-						</div>						
-					</div>
-					<div class="span9">
-						<div class="content">
-							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-							<table class="table table-striped table-hover">
-								<caption><h4>BÁO CÁO CHI TIẾT</h4></caption>
-								<thead>
-									<tr>										
-										<th>NGÀY</th>										
-										<th width="120">DOANH SỐ</th>
-										<th width="120">NHẬP HÀNG</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="Day Tracking/getURLDayAll">
-										<td><a tal:attributes="href php:Day[1]" target="blank"><span tal:content="php:Day[0]"/></a></td>
-										<td width="32"><a class="btn" tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>
-										<td width="32"><a class="btn" tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>
-									</tr>
-									<tr>
-										<td><a tal:attributes="href Tracking/getURLSellingGeneral" target="blank">TỔNG HỢP</a></td>
-										<td width="32"><a class="btn btn-primary" tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>
-										<td width="32"><a class="btn btn-primary" tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>
-									</tr>
-								</tbody>								
-							</table>
-						</div>
+						<a class="btn btn-block btn-primary" tal:attributes="href Tracking/getURLStore">XEM TỒN KHO</a>
+						<a class="btn btn-block btn-primary" tal:attributes="href Tracking/getURLCustomer">XEM CÔNG NỢ CỦA KHÁCH HÀNG</a>
+						<BR/>
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLCourse">THỐNG KÊ CÁC MÓN</a>
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLResource">THỐNG KÊ NHẬP HÀNG</a>
+						<a class="btn btn-block btn-primary" target="blank" tal:attributes="href Tracking/getURLHours">THỐNG KÊ GIỜ HÁT</a>
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>
