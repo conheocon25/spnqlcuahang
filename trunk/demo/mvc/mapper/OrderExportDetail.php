@@ -7,9 +7,9 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "sieuthimini_resource";
-		$tblOrderExport = "sieuthimini_order_export";
-		$tblOrderExportDetail = "sieuthimini_order_export_detail";
+		$tblResource = "tbl_resource";
+		$tblOrderExport = "tbl_order_export";
+		$tblOrderExportDetail = "tbl_order_export_detail";
 										
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetail);

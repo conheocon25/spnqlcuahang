@@ -7,7 +7,7 @@ class TagSelected extends Mapper implements \MVC\Domain\TagSelectedFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTagSelected = "sieuthimini_tag_selected";
+		$tblTagSelected = "tbl_tag_selected";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblTagSelected);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTagSelected);
