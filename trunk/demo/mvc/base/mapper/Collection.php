@@ -78,6 +78,10 @@ abstract class Collection {
     } 
     public function count() {
         return $this->total;
-    }    
+    }
+	public function last(){
+		$row = $this->getRow( $this->total -1 );        
+        return $row;
+	}
 }
 ?>

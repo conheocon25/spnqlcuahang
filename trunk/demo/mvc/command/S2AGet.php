@@ -3,26 +3,14 @@
 	class S2AGet extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");	
-			
-			//-------------------------------------------------------------
-			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
-
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
+											
+			$Session = \MVC\Base\SessionRegistry::instance();			
 			$Type 		= strtoupper($request->getProperty('Type'));			
-			//-------------------------------------------------------------
-			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-									
-			//-------------------------------------------------------------
-			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
+			
 			header('Content-Type: text/xml');
 			$fName = "exe".$Type;
 			$Doc = $this->$fName($request);
+			
 			echo $Doc->saveXML();
 		}
 		function exeONE( \MVC\Controller\Request $request ){
@@ -86,6 +74,75 @@
 			$Size->appendChild($Doc->createTextNode( $ObjAll->count() ));
 			$App->appendChild($Size);
 			
+			return $Doc;
+		}
+		function exeFIRST( \MVC\Controller\Request $request ){
+			$ObjectName = $request->getProperty('ObjectName');
+									
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$ObjAll		= $mMapper->findAll( );
+			
+			//Xuất ra file XML Doc			
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			//Nút Obj là con App
+			$O 	=  $ObjAll->current()->toXML($Doc);
+			$App->appendChild( $O );
+			return $Doc;
+			
+			return $Doc;
+		}
+		
+		function exeLAST( \MVC\Controller\Request $request ){
+			$ObjectName = $request->getProperty('ObjectName');
+									
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$ObjAll		= $mMapper->findAll( );
+			
+			//Xuất ra file XML Doc			
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			//Nút Obj là con App
+			$O 	=  $ObjAll->last()->toXML($Doc);
+			$App->appendChild( $O );
+			return $Doc;
+					
+		}
+		function exePAGE( \MVC\Controller\Request $request ){
+			$ObjectName = $request->getProperty('ObjectName');
+			$Page = $request->getProperty("Page");
+			$RPP = $request->getProperty("RPP");
+			
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$ObjAll 	= $mMapper->findByPage(array($Page, $RPP));
+												
+			//Xuất ra file XML Doc			
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			while ($ObjAll->valid()){
+				$Obj = $ObjAll->current();
+				
+				//mỗi nút Obj là con App
+				$O 	=  $Obj->toXML($Doc);				
+				$App->appendChild( $O );
+									
+				$ObjAll->next();
+			}
 			return $Doc;
 		}
 	}
