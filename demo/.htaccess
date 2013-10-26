@@ -16,8 +16,11 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 					?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^s2a/get/one/([A-Za-z0-9]+)/([0-9]+)$ 			?cmd=S2AGet&Type=one&ObjectName=$1&ObjectId=$2 [L]
 RewriteRule ^s2a/get/all/([A-Za-z0-9]+)$ 					?cmd=S2AGet&Type=all&ObjectName=$1 [L]
+RewriteRule ^s2a/get/first/([A-Za-z0-9]+)$ 					?cmd=S2AGet&Type=first&ObjectName=$1 [L]
+RewriteRule ^s2a/get/last/([A-Za-z0-9]+)$ 					?cmd=S2AGet&Type=last&ObjectName=$1 [L]
 RewriteRule ^s2a/get/size/([A-Za-z0-9]+)$ 					?cmd=S2AGet&Type=size&ObjectName=$1 [L]
-RewriteRule ^s2a/get/page/([A-Za-z0-9]+)/([0-9]+)$ 			?cmd=S2AGet&Type=page&ObjectName=$1&Page=$2 [L]
+RewriteRule ^s2a/get/page/([A-Za-z0-9]+)/([0-9]+)/([0-9]+)$ ?cmd=S2AGet&Type=page&ObjectName=$1&Page=$2&RPP=$3 [L]
+RewriteRule ^s2a/get/range/([A-Za-z0-9]+)/([0-9]+)/([0-9]+)$ ?cmd=S2AGet&Type=range&ObjectName=$1&Range1=$2&Range2=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
