@@ -6,7 +6,7 @@ class R2T extends Mapper implements \MVC\Domain\R2TFinder{
 
     function __construct() {
         parent::__construct();
-		$tblR2T = "sieuthimini_r2t";
+		$tblR2T = "tbl_r2t";
 				
 		$selectAllStmt = sprintf("select * from %s", $tblR2T);
 		$selectStmt = sprintf("select * from %s where id=?", $tblR2T);

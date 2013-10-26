@@ -67,7 +67,7 @@
 												STT
 											</div>
 										</th>
-										<th>TÊN HÀNG</th>
+										<th><div class="text-left">TÊN HÀNG</div></th>
 										<th width="120">
 											<div class="text-right">
 												SỐ LƯỢNG
@@ -97,12 +97,12 @@
 										<td><div class="text-right" tal:content="Detail/getCount" /></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint" /></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint" /></td>
-										<td><a class="btn" tal:attributes="href Detail/getURLDelLoad"><span class="icon-remove"/></a></td>
+										<td><a tal:attributes="href Detail/getURLDelLoad"><span class="glyphicons-bin"/></a></td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
-										<td colspan="4"><div class="text-right">TỔNG CỘNG</div></td>
+										<td colspan="4"><B>TỔNG CỘNG</B></td>
 										<td><div class="text-right" tal:content="Order/getValuePrint" /></td>
 										<td />
 									</tr>

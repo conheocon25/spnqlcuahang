@@ -7,8 +7,8 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblOrderExport = "sieuthimini_order_export";
-		$tblOrderExportDetail = "sieuthimini_order_export_detail";
+		$tblOrderExport = "tbl_order_export";
+		$tblOrderExportDetail = "tbl_order_export_detail";
 								
 		$selectAllStmt = sprintf("select * from %s order by date DESC", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
