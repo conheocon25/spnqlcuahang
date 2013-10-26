@@ -281,21 +281,23 @@ class Tracking extends Object{
 		return $SessionAll;
 	}
 	
-	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
 	function getURLDayAll(){
 		$Data = array();
 		$Date = $this->getDateStart();
 		$EndDate = $this->getDateEnd();
 		while (strtotime($Date) <= strtotime($EndDate)){
 			$Data[] = array(
-					\date("d/m", strtotime($Date)),
-					"/report/selling/".$Date."/detail",
-					"/report/import/".$Date."/detail",
-					"/report/paid/".$Date."/detail",
-					"/report/collect/".$Date."/detail"
-			);
-			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;
+						\date("d/m", strtotime($Date)),
+						"/report/selling/".$Date."/detail",
+						"/report/log/".$Date,
+						"/payroll/".$this->getId()."/absent/".$Date,
+						"/payroll/".$this->getId()."/late/".$Date,
+						$Date
+					);
+			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
+		return $Data;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
@@ -359,9 +361,9 @@ class Tracking extends Object{
 	function getURLUpdExe(){return "/report/".$this->getId()."/upd/exe";}	
 	function getURLDelLoad(){return "/report/".$this->getId()."/del/load";}
 	function getURLDelExe(){return "/report/".$this->getId()."/del/exe";}
-	
-	function getURLPayRoll(){return "/report/".$this->getId()."/del/exe";}
-	function getURLPayRollEmployee(){return "/report/".$this->getId()."/del/exe";}
+		
+	function getURLPayRoll(){return "/payroll/".$this->getId();}
+	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

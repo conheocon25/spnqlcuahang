@@ -21,6 +21,7 @@ interface OrderExportCollection extends \Iterator {function add( Object $orderex
 interface OrderExportDetailCollection extends \Iterator {function add( Object $orderexportdetail );	}
 
 interface EmployeeCollection extends \Iterator {function add( Object $Employee );}
+interface PayRollCollection extends \Iterator {function add( Object $PayRoll );}
 
 interface R2TCollection extends \Iterator {function add( Object $R2T );}
 
