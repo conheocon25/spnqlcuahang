@@ -29,7 +29,10 @@ interface OrderExportDetailFinder extends Finder {}
 interface OrderImportFinder extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
 interface CustomerFinder extends Finder {}
+
 interface EmployeeFinder extends Finder {}
+interface PayRollFinder extends Finder {}
+
 interface UnitFinder extends Finder {}
 interface ConfigFinder extends Finder {}
 interface TrackingFinder extends Finder {}
