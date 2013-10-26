@@ -82,6 +82,26 @@ class OrderImport extends Object{
 		$this->Description 	= $Data[3];
     }
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "orderimport" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$IdSupplier = $Doc->createElement( "idsupplier" );
+		$IdSupplier->appendChild($Doc->createTextNode( $this->getIdSupplier() ));
+		
+		$Date = $Doc->createElement( "date" );
+		$Date->appendChild($Doc->createTextNode( $this->getDate() ));
+									
+		$Description = $Doc->createElement( "description" );
+		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
+		
+		$Obj->appendChild( $IdSupplier	);		
+		$Obj->appendChild( $Date 		);		
+		$Obj->appendChild( $Description	);
+		
+		return $Obj;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

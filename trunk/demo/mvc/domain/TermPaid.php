@@ -34,6 +34,18 @@ class TermPaid extends Object{
 		$this->Name = $Data[1];		
     }
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "termpaid" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+				
+		$Obj->appendChild( $Name 		);
+				
+		return $Obj;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------

@@ -30,7 +30,20 @@ class TermCollect extends Object{
 	function setArray( $Data ){
         $this->Id = $Data[0];
 		$this->Name = $Data[1];		
-    }	
+    }
+	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "termcollect" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+				
+		$Obj->appendChild( $Name 		);
+				
+		return $Obj;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------

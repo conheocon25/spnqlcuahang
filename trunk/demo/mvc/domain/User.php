@@ -126,6 +126,54 @@ class User extends Object{
 		$this->Type 		= $Data[9];
 		$this->Code 		= $Data[10];
     }
+	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "user" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$Email = $Doc->createElement( "email" );
+		$Email->appendChild($Doc->createTextNode( $this->getEmail() ));
+		
+		$Pass = $Doc->createElement( "pass" );
+		$Pass->appendChild($Doc->createTextNode( $this->getPass() ));
+		
+		$Gender = $Doc->createElement( "gender" );
+		$Gender->appendChild($Doc->createTextNode( $this->getGender() ));
+		
+		$Note = $Doc->createElement( "note" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
+		
+		$DateCreate = $Doc->createElement( "datecreate" );
+		$DateCreate->appendChild($Doc->createTextNode( $this->getDateCreate() ));
+		
+		$DateUpdate = $Doc->createElement( "dateupdate" );
+		$DateUpdate->appendChild($Doc->createTextNode( $this->getDateUpdate() ));
+		
+		$DateActivity = $Doc->createElement( "dateactivity" );
+		$DateActivity->appendChild($Doc->createTextNode( $this->getDateActivity() ));
+		
+		$Type = $Doc->createElement( "type" );
+		$Type->appendChild($Doc->createTextNode( $this->getType() ));
+		
+		$Code = $Doc->createElement( "code" );
+		$Code->appendChild($Doc->createTextNode( $this->getCode() ));
+				
+		$Obj->appendChild( $Name );
+		$Obj->appendChild( $Email );
+		$Obj->appendChild( $Pass);
+		$Obj->appendChild( $Gender);
+		$Obj->appendChild( $Note);
+		$Obj->appendChild( $DateCreate);
+		$Obj->appendChild( $DateUpdate);
+		$Obj->appendChild( $DateActivity);
+		$Obj->appendChild( $Type);
+		$Obj->appendChild( $Code);
+				
+		return $Obj;
+	}
 			
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

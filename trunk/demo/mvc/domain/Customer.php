@@ -75,6 +75,41 @@ class Customer extends Object{
 		$this->Discount	= $Data[7];
     }
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "customer" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$Type = $Doc->createElement( "type" );
+		$Type->appendChild($Doc->createTextNode( $this->getType() ));
+		
+		$Card = $Doc->createElement( "card" );
+		$Card->appendChild($Doc->createTextNode( $this->getCard() ));
+		
+		$Phone = $Doc->createElement( "phone" );
+		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
+		
+		$Address = $Doc->createElement( "address" );
+		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
+		
+		$Note = $Doc->createElement( "note" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
+		
+		$Discount = $Doc->createElement( "discount" );
+		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
+		
+		$Obj->appendChild( $Name 		);
+		$Obj->appendChild( $Type 		);
+		$Obj->appendChild( $Card 		);
+		$Obj->appendChild( $Phone 		);
+		$Obj->appendChild( $Address 	);
+		$Obj->appendChild( $Note 		);
+		$Obj->appendChild( $Discount 	);
+		
+		return $Obj;
+	}
 	
 	function getSessionAll(){
 		$mSession = new	\MVC\Mapper\Session();

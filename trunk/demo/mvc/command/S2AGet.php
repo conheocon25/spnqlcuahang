@@ -12,9 +12,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Type = $request->getProperty('Type');
-			$Params = $request->getProperty('Params');
-			
+			$Type 		= strtoupper($request->getProperty('Type'));			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
@@ -22,56 +20,73 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			//Params[0]	:	Tên của Model
-			//Params[1]	: 	Mã của Model						
-			if ($Type == "one"){
-				$mMapper 	= \MVC\Domain\HelperFactory::getFinder($Params[0]);
-				$Obj 		= $mMapper->find($Params[1]);				
+			header('Content-Type: text/xml');
+			$fName = "exe".$Type;
+			$Doc = $this->$fName($request);
+			echo $Doc->saveXML();
+		}
+		function exeONE( \MVC\Controller\Request $request ){
+						
+			$ObjectName = $request->getProperty('ObjectName');
+			$ObjectId 	= $request->getProperty('ObjectId');
+						
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$Obj 		= $mMapper->find( $ObjectId );
+			
+			//Xuất ra file XML Doc			
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			//Nút Obj là con App
+			$O 	=  $Obj->toXML($Doc);				
+			$App->appendChild( $O );
+			return $Doc;
+		}
+		function exeALL( \MVC\Controller\Request $request ){
+			$ObjectName = $request->getProperty('ObjectName');
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$ObjAll 	= $mMapper->findAll();
+			
+			//Xuất ra file XML Doc			
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			
+			while ($ObjAll->valid()){
+				$Obj = $ObjAll->current();
 				
-				//Xuất ra file XML Doc
-				$Doc 		= new \DOMDocument('1.0', 'utf-8');
-				$Doc->formatOutput = true;
-				
-				//Nút App là nút gốc là con của Doc
-				$App = $Doc->createElement( "App" );				
-				$Doc->appendChild( $App );
-				
-				//Nút Obj là con App
+				//mỗi nút Obj là con App
 				$O 	=  $Obj->toXML($Doc);				
 				$App->appendChild( $O );
+									
+				$ObjAll->next();
 			}
-			else if ($Type == "all"){				
-				$mMapper 	= \MVC\Domain\HelperFactory::getFinder($Params[0]);
-				$ObjAll 	= $mMapper->findAll();
-				
-				//Xuất ra file XML Doc
-				$Doc 		= new \DOMDocument('1.0', 'utf-8');
-				$Doc->formatOutput = true;
-				
-				//Nút App là nút gốc là con của Doc
-				$App = $Doc->createElement( "App" );				
-				$Doc->appendChild( $App );
-				
-				while ($ObjAll->valid()){
-					$Obj = $ObjAll->current();
-					
-					//mỗi nút Obj là con App
-					$O 	=  $Obj->toXML($Doc);				
-					$App->appendChild( $O );
-										
-					$ObjAll->next();
-				}
-				
-			}else if ($Type == "page"){
-				
-			}else if ($Type == "condition"){
-				
-			}
+			return $Doc;
+		}
+		function exeSIZE( \MVC\Controller\Request $request ){
+			$ObjectName = $request->getProperty('ObjectName');
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder( $ObjectName );
+			$ObjAll 	= $mMapper->findAll();
 			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			echo $Doc->saveXML();
+			//Xuất ra file XML Doc
+			$Doc 		= new \DOMDocument();
+			$Doc->formatOutput = true;
+			
+			//Nút App là nút gốc là con của Doc
+			$App = $Doc->createElement( "app" );
+			$Doc->appendChild( $App );
+			$Size = $Doc->createElement( "size" );
+			$Size->appendChild($Doc->createTextNode( $ObjAll->count() ));
+			$App->appendChild($Size);
+			
+			return $Doc;
 		}
 	}
 ?>

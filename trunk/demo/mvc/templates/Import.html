@@ -45,17 +45,15 @@
 			$('.btn').click(function(){
 				var Params = [];
 				/*
-				var Url 	= "/s2a/get/one";
-				Params[0]	= "Supplier";
-				Params[1]	= "1";
+				var Url 	= "/s2a/get/one/User/1";								
+				var Url 	= "/s2a/get/all/User";
+				var Url 	= "/s2a/get/all/Supplier";
 				*/
 				
-				var Url = "/s2a/get/all";
-				Params[0]	= "Supplier";
-								
+				var Url = "/s2a/get/all/Supplier";
 				$.ajax({
-					type: "POST",
-					data: {Params:Params},
+					type: "GET",
+					//data: {Params:Params},
 					url: Url,
 					dataType: "xml",
 					success: function(data){

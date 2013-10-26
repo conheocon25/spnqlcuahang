@@ -21,6 +21,12 @@
 		function handleRequest() {			
 			$request = new Request();
 			$AppController = \MVC\Base\ApplicationRegistry::appController();						
+			
+			while( $cmd = $AppController->getCommand( $request ) ) {
+				$cmd->execute( $request );
+			}
+				
+			/*
 			@$User = \MVC\Base\SessionRegistry::getCurrentUser();			
 			
 			if (isset($User)&&$User->getEmail()!=""){
@@ -39,7 +45,8 @@
 				while( $cmd = $AppController->getCommand( $request ) ) {
 					$cmd->execute( $request );
 				}
-			}						
+			}
+			*/
 			$this->invokeView( $AppController->getView( $request ) );
 		}
 		function invokeView( $target ) {
