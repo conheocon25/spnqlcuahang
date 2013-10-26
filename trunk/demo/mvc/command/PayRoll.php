@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class Report extends Command {
+	class PayRoll extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -9,15 +9,29 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 														
 			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------
+			$IdTrack = $request->getProperty('IdTrack');
+			
+			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mTracking = new \MVC\Mapper\Tracking();
+			$mEmployee = new \MVC\Mapper\Employee();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracks = $mTracking->findAll();
-			$Title = "BÁO CÁO";			
+			$EmployeeAll = $mEmployee->findAll();
+			$TrackAll = $mTracking->findAll();
+			if (!isset($IdTrack)){
+				$Track = $TrackAll->current();
+				$IdTrack = $Track->getId();
+			}else{
+				$Track = $mTracking->find($IdTrack);
+			}
+			
+			$Title = "CHẤM CÔNG";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app")
 			);
@@ -26,8 +40,9 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);						
-			$request->setProperty('ActiveAdmin', 'Report');
-			$request->setObject('Tracks', $Tracks);
+			$request->setObject('TrackAll', $TrackAll);
+			$request->setObject('EmployeeAll', $EmployeeAll);
+			$request->setObject('Track', $Track);
 			$request->setObject('Navigation', $Navigation);
 		}
 	}

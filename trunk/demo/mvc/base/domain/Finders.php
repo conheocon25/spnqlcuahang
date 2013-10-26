@@ -13,6 +13,9 @@ interface Finder {
 interface AppFinder  extends Finder {}
 interface UserFinder  extends Finder {}
 
+interface CollectGeneralFinder  extends Finder {}
+interface PaidGeneralFinder  extends Finder {}
+
 interface TagFinder extends Finder {}
 interface TagSelectedFinder extends Finder {}
 interface R2TFinder extends Finder {}

@@ -11,8 +11,8 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTracking);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
-		$updateStmt = sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
-		$insertStmt = sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);
+		$updateStmt = sprintf("update %s set date_start=?, date_end=?, estate_rate=? where id=?", $tblTracking);
+		$insertStmt = sprintf("insert into %s (date_start, date_end, estate_rate) values(?, ?, ?)", $tblTracking);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTracking);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -30,19 +30,18 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
 			$array['date_start'],
-			$array['date_end']			
+			$array['date_end'],
+			$array['estate_rate']
 		);
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "Tracking";
-    }
-
+    protected function targetClass() { return "Tracking";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
-			$object->getDateEnd()			
+			$object->getDateEnd(),
+			$object->getEstateRate()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -52,22 +51,15 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
-			$object->getDateEnd(),			
+			$object->getDateEnd(),
+			$object->getEstateRate(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
     }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
-	
+    function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}	
 }
 ?>

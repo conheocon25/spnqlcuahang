@@ -6,6 +6,9 @@ require_once( "mvc/base/mapper/Collection.php");
 class AppCollection extends Collection implements \MVC\Domain\AppCollection {function targetClass( ) {return "\MVC\Domain\App";}}
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 
+class CollectGeneralCollection extends Collection implements \MVC\Domain\CollectGeneralCollection {function targetClass( ) {return "\MVC\Domain\CollectGeneral";}}
+class PaidGeneralCollection extends Collection implements \MVC\Domain\PaidGeneralCollection {function targetClass( ) {return "\MVC\Domain\PaidGeneral";}}
+
 class TagCollection extends Collection implements \MVC\Domain\TagCollection {function targetClass( ) {return "\MVC\Domain\Tag";}}
 class TagSelectedCollection extends Collection implements \MVC\Domain\TagSelectedCollection {function targetClass( ) {return "\MVC\Domain\TagSelected";}}
 class SupplierCollection extends Collection implements \MVC\Domain\SupplierCollection {function targetClass( ) {return "\MVC\Domain\Supplier";}}
