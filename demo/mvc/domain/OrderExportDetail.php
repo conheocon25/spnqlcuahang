@@ -52,6 +52,30 @@ class OrderExportDetail extends Object{
 	function getValue( ) {return $this->Count*$this->Price;}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "orderexportdetail" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$IdOrder = $Doc->createElement( "idorder" );
+		$IdOrder->appendChild($Doc->createTextNode( $this->getIdOrder() ));
+		
+		$IdResource = $Doc->createElement( "idresource" );
+		$IdResource->appendChild($Doc->createTextNode( $this->getIdResource() ));
+		
+		$Count = $Doc->createElement( "count" );
+		$Count->appendChild($Doc->createTextNode( $this->getCount() ));
+		
+		$Price = $Doc->createElement( "price" );
+		$Price->appendChild($Doc->createTextNode( $this->getPrice() ));
+		
+		$Obj->appendChild( $IdOrder	);
+		$Obj->appendChild( $IdResource	);
+		$Obj->appendChild( $Count 		);
+		$Obj->appendChild( $Price	);
+										
+		return $Obj;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	

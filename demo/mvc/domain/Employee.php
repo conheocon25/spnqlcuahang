@@ -103,6 +103,38 @@ class Employee extends Object{
 		$this->SalaryBase 	= $Data[6];
     }
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "employee" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$Gender = $Doc->createElement( "gender" );
+		$Gender->appendChild($Doc->createTextNode( $this->getGender() ));
+		
+		$Job = $Doc->createElement( "job" );
+		$Job->appendChild($Doc->createTextNode( $this->getJob() ));
+		
+		$Phone = $Doc->createElement( "phone" );
+		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
+		
+		$Address = $Doc->createElement( "address" );
+		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
+		
+		$SalaryBase = $Doc->createElement( "salarybase" );
+		$SalaryBase->appendChild($Doc->createTextNode( $this->getSalaryBase() ));
+		
+		$Obj->appendChild( $Name 		);
+		$Obj->appendChild( $Gender 		);
+		$Obj->appendChild( $Job 		);
+		$Obj->appendChild( $Phone 		);
+		$Obj->appendChild( $Address 	);
+		$Obj->appendChild( $SalaryBase 	);
+		
+		return $Obj;
+	}
+		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------						

@@ -70,6 +70,30 @@ class OrderExport extends Object{
 		return $Value->readDigit()." đồng";
 	}
 	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "orderexport" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$IdUser = $Doc->createElement( "iduser" );
+		$IdUser->appendChild($Doc->createTextNode( $this->getIdUser() ));
+		
+		$Date = $Doc->createElement( "date" );
+		$Date->appendChild($Doc->createTextNode( $this->getDate() ));
+		
+		$State = $Doc->createElement( "state" );
+		$State->appendChild($Doc->createTextNode( $this->getState() ));
+		
+		$Description = $Doc->createElement( "description" );
+		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
+		
+		$Obj->appendChild( $IdUser	);
+		$Obj->appendChild( $Date 		);
+		$Obj->appendChild( $State 		);
+		$Obj->appendChild( $Description	);
+						
+		return $Obj;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

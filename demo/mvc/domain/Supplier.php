@@ -61,27 +61,24 @@ class Supplier extends Object{
 	}
 	
 	function toXML($Doc){
-		$Obj = $Doc->createElement( "Supplier" );
-		
-		$Id = $Doc->createElement( "Id" );
-		$Id->appendChild($Doc->createTextNode( $this->getId() ));
-		
-		$Name = $Doc->createElement( "Name" );
+		$Obj = $Doc->createElement( "supplier" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+				
+		$Name = $Doc->createElement( "name" );
 		$Name->appendChild($Doc->createTextNode( $this->getName() ));
 		
-		$Phone = $Doc->createElement( "Phone" );
+		$Phone = $Doc->createElement( "phone" );
 		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
 		
-		$Address = $Doc->createElement( "Address" );
+		$Address = $Doc->createElement( "address" );
 		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
 		
-		$Note = $Doc->createElement( "Note" );
+		$Note = $Doc->createElement( "note" );
 		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
 		
-		$Debt = $Doc->createElement( "Debt" );
+		$Debt = $Doc->createElement( "debt" );
 		$Debt->appendChild($Doc->createTextNode( $this->getDebt() ));
-		
-		$Obj->appendChild( $Id );
+				
 		$Obj->appendChild( $Name );
 		$Obj->appendChild( $Phone );
 		$Obj->appendChild( $Address);

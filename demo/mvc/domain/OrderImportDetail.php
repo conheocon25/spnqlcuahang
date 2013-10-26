@@ -69,7 +69,31 @@ class OrderImportDetail extends Object{
 		$this->IdResource 	= $Data[2];	
 		$this->Count 		= $Data[3];	
 		$this->Price 		= $Data[4];	
-    }	
+    }
+	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "orderimportdetail" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$IdOrder = $Doc->createElement( "idorder" );
+		$IdOrder->appendChild($Doc->createTextNode( $this->getIdOrder() ));
+		
+		$IdResource = $Doc->createElement( "idresource" );
+		$IdResource->appendChild($Doc->createTextNode( $this->getIdResource() ));
+		
+		$Count = $Doc->createElement( "count" );
+		$Count->appendChild($Doc->createTextNode( $this->getCount() ));
+		
+		$Price = $Doc->createElement( "price" );
+		$Price->appendChild($Doc->createTextNode( $this->getPrice() ));
+		
+		$Obj->appendChild( $IdOrder	);
+		$Obj->appendChild( $IdResource	);
+		$Obj->appendChild( $Count 		);
+		$Obj->appendChild( $Price	);
+										
+		return $Obj;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL

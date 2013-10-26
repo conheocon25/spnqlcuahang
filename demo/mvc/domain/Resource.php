@@ -85,6 +85,46 @@ class Resource extends Object{
 		$this->Description 	= $Data[7];
 		$this->Barcode 		= $Data[8];
     }
+	
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "resource" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+		
+		$IdSupplier = $Doc->createElement( "idsupplier" );
+		$IdSupplier->appendChild($Doc->createTextNode( $this->getIdSupplier() ));
+		
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$NameShort = $Doc->createElement( "nameshort" );
+		$NameShort->appendChild($Doc->createTextNode( $this->getNameShort() ));
+		
+		$PriceImport = $Doc->createElement( "priceimport" );
+		$PriceImport->appendChild($Doc->createTextNode( $this->getPriceImport() ));
+		
+		$PriceExport = $Doc->createElement( "priceexport" );
+		$PriceExport->appendChild($Doc->createTextNode( $this->getPriceExport() ));
+		
+		$Unit = $Doc->createElement( "unit" );
+		$Unit->appendChild($Doc->createTextNode( $this->getUnit() ));
+		
+		$Description = $Doc->createElement( "description" );
+		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
+		
+		$Barcode = $Doc->createElement( "barcode" );
+		$Barcode->appendChild($Doc->createTextNode( $this->getBarcode() ));
+		
+		$Obj->appendChild( $IdSupplier 	);
+		$Obj->appendChild( $Name 		);
+		$Obj->appendChild( $NameShort	);
+		$Obj->appendChild( $PriceImport	);
+		$Obj->appendChild( $PriceExport	);
+		$Obj->appendChild( $Unit 		);
+		$Obj->appendChild( $Description );
+		$Obj->appendChild( $Barcode 	);
+		
+		return $Obj;
+	}
 				
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
