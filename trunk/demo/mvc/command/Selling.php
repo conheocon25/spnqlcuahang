@@ -26,9 +26,7 @@
 			$ResourceAll = $mResource->findFreq(array());
 			
 			$Title = "BÁN HÀNG";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app")
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

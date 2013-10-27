@@ -5,6 +5,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" );
 	
 	require_once( "mvc/mapper/CollectGeneral.php" );
+	require_once( "mvc/mapper/CollectCustomer.php" );
 	require_once( "mvc/mapper/PaidGeneral.php" );
 	
 	require_once( "mvc/mapper/Tag.php");

@@ -302,22 +302,65 @@ class Tracking extends Object{
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
 	//-------------------------------------------------------------------------------
-	function getPaidPayRollAll(){ $mPPR = new \MVC\Mapper\PaidPayRoll(); $PPRAll = $mPPR->findByTracking( array( $this->getDateStart(), $this->getDateEnd() )); return $PPRAll;}	
-	//TỔNG LƯƠNG CƠ BẢN
-	function getPaidPayRollAllValueBase(){ $PPRAll = $this->getPaidPayRollAll(); $Value = 0; $PPRAll->rewind(); while ( $PPRAll->valid() ){ $PPR = $PPRAll->current(); $Value += $PPR->getValueBase(); $PPRAll->next(); }  return $Value; }
-	function getPaidPayRollAllValueBasePrint(){ $N = new \MVC\Library\Number( $this->getPaidPayRollAllValueBase() ); return $N->formatCurrency()." đ"; }	
-	//TỔNG LƯƠNG PHỤ CẤP
-	function getPaidPayRollAllValueSub(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValueSub();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValueSubPrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValueSub() );return $N->formatCurrency()." đ";}	
-	//TỔNG LƯƠNG ỨNG TIỀN
-	function getPaidPayRollAllValuePre(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValuePre();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValuePrePrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValuePre() );return $N->formatCurrency()." đ";}	
-	//TỔNG LƯƠNG THỰC LÃNH
-	function getPaidPayRollALlValueReal(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValueReal();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValueRealPrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValueReal() );return $N->formatCurrency()." đ";}
-	//TỔNG LƯƠNG
-	function getPaidPayRollAllValue(){$Value = $this->getPaidPayRollAllValueBase() + $this->getPaidPayRollAllValueSub();return $Value;}	
-	function getPaidPayRollAllValuePrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValue() );return $N->formatCurrency()." đ";}
+	function getPayRollEmployee( $IdEmployee){ 
+		$mPPR = new \MVC\Mapper\PayRoll(); 
+		$PPRAll = $mPPR->findByTracking( array( $IdEmployee, $this->getDateStart(), $this->getDateEnd() )); 
+		return $PPRAll;
+	}
+	
+	function getPayRollEmployeeValue( $IdEmployee){
+		$mEmployee 		= new \MVC\Mapper\Employee();
+		$mConfig 		= new \MVC\Mapper\Config();
+		
+		$Employee 		= $mEmployee->find($IdEmployee);
+		$Config5Minutes = $mConfig->findByName('EVERY_5_MINUTES');
+		
+		$PRAll = $this->getPayRollEmployee($IdEmployee);
+		$Extra = 0;
+		$Late = 0;
+		$Absent = 0;
+		$DayValue = $Employee->getSalaryBase()/30;
+		while ($PRAll->valid()){
+			$PR = $PRAll->current();
+			$Extra += $PR->getExtra();
+			$Absent += $PR->getState()==0?1:0;
+			$Late += $PR->getLate();
+			$PRAll->next();
+		}
+		//Tính thời gian trễ
+		$LateValue = ($Late/5)*$Config5Minutes->getValue();
+					
+		//Tính làm thêm
+		$ExtraValue = $Extra*$DayValue;
+					
+		//Tính nghỉ ca
+		$AbsentValue = $Absent*$DayValue;
+					
+		//Tổng lương
+		$Salary = $Employee->getSalaryBase() + $ExtraValue - $AbsentValue - $LateValue;
+		
+		return $Salary;
+	}
+	function getPayRollEmployeeValuePrint( $IdEmployee){
+		$N = new \MVC\Library\Number( $this->getPayRollEmployeeValue($IdEmployee) );
+		return $N->formatCurrency()." đ";
+	}
+	
+	function getPayRollValue(){
+		$mEmployee 		= new \MVC\Mapper\Employee();
+		$EmployeeAll 	= $mEmployee->findAll();
+		$Sum = 0;
+		while($EmployeeAll->valid()){
+			$Employee = $EmployeeAll->current();
+			$Sum += $this->getPayRollEmployeeValue($Employee->getId());
+			$EmployeeAll->next();
+		}
+		return $Sum;		
+	}
+	function getPayRollValuePrint( ){
+		$N = new \MVC\Library\Number( $this->getPayRollValue() );
+		return $N->formatCurrency(). " đ";
+	}
 	
 	function toJSON(){
 		$json = array(

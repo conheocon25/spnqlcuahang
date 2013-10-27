@@ -22,7 +22,7 @@
 			//-------------------------------------------------------------
 			$Title = "THIẾT LẬP";			
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app")
+				
 			);
 						
 			$SupplierAll 	= $mSupplier->findAll();

@@ -7,6 +7,7 @@ class AppCollection extends Collection implements \MVC\Domain\AppCollection {fun
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 
 class CollectGeneralCollection extends Collection implements \MVC\Domain\CollectGeneralCollection {function targetClass( ) {return "\MVC\Domain\CollectGeneral";}}
+class CollectCustomerCollection extends Collection implements \MVC\Domain\CollectCustomerCollection {function targetClass( ) {return "\MVC\Domain\CollectCustomer";}}
 class PaidGeneralCollection extends Collection implements \MVC\Domain\PaidGeneralCollection {function targetClass( ) {return "\MVC\Domain\PaidGeneral";}}
 
 class TagCollection extends Collection implements \MVC\Domain\TagCollection {function targetClass( ) {return "\MVC\Domain\Tag";}}
