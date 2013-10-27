@@ -5,6 +5,7 @@ interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
 
 interface CollectGeneralCollection extends \Iterator {function add( Object $CollectGeneral );}
+interface CollectCustomerCollection extends \Iterator {function add( Object $CollectCustomer );}
 interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGeneral );}
 
 interface TagCollection extends \Iterator {function add( Object $tag );}

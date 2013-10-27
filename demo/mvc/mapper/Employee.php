@@ -10,8 +10,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 						
 		$selectAllStmt = sprintf("select * from %s", $tblEmployee);
 		$selectStmt = sprintf("select * from %s where id=?", $tblEmployee);
-		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=? where id=?", $tblEmployee);
-		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address) values(?, ?, ?, ?, ?)", $tblEmployee);
+		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=? where id=?", $tblEmployee);
+		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address, salary_base) values(?, ?, ?, ?, ?, ?)", $tblEmployee);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblEmployee);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
 				
@@ -21,11 +21,9 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-    } 
-    function getCollection( array $raw ) {
-        return new EmployeeCollection( $raw, $this );
     }
-
+	
+    function getCollection( array $raw ) {return new EmployeeCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Employee( 
 			$array['id'],			
@@ -33,14 +31,13 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$array['gender'],
 			$array['job'],
 			$array['phone'],			
-			$array['address']
+			$array['address'],
+			$array['salary_base']
 		);
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Employee";
-    }
+    protected function targetClass() {return "Employee";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
@@ -48,7 +45,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getGender(),
 			$object->getJob(),
 			$object->getPhone(),			
-			$object->getAddress()
+			$object->getAddress(),
+			$object->getSalaryBase()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -62,6 +60,7 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getJob(),
 			$object->getPhone(),
 			$object->getAddress(),
+			$object->getSalaryBase(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

@@ -16,14 +16,16 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
-			$mPaid = new \MVC\Mapper\PaidGeneral();
-			$mTerm = new \MVC\Mapper\TermPaid();
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mPaid 		= new \MVC\Mapper\PaidGeneral();
+			$mTerm 		= new \MVC\Mapper\TermPaid();
+			$mEmployee 	= new \MVC\Mapper\Employee();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking = $mTracking->find($IdTrack);			
+			$EmployeeAll = $mEmployee->findAll();
 			$TermAll = $mTerm->findAll();
 			$Title = "TỔNG HỢP CHI THÁNG ".\date("m", strtotime($Tracking->getDateStart()))."/".\date("Y", strtotime($Tracking->getDateStart()));
 			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
@@ -31,10 +33,11 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('DateCurrent', $DateCurrent);
-			$request->setObject('Tracking', $Tracking);
-			$request->setObject('TermAll', $TermAll);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('DateCurrent'	, $DateCurrent);
+			$request->setObject('Tracking'		, $Tracking);
+			$request->setObject('TermAll'		, $TermAll);
+			$request->setObject('EmployeeAll'	, $EmployeeAll);
 		}
 	}
 ?>

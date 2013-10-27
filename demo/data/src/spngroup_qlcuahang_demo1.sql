@@ -2,10 +2,10 @@
 -- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Serveur: localhost
--- Généré le : Sam 26 Octobre 2013 à 21:10
--- Version du serveur: 5.5.8
--- Version de PHP: 5.3.5
+-- Host: localhost
+-- Generation Time: Oct 27, 2013 at 09:26 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,13 +16,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `spngroup_qlcuahang_demo1`
+-- Database: `spngroup_qlcuahang_demo1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_category`
+-- Table structure for table `tbl_category`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_category` (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `tbl_category`
+-- Dumping data for table `tbl_category`
 --
 
 INSERT INTO `tbl_category` (`id`, `name`, `picture`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `tbl_category` (`id`, `name`, `picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_collect_customer`
+-- Table structure for table `tbl_collect_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_collect_customer` (
@@ -62,14 +62,14 @@ CREATE TABLE IF NOT EXISTS `tbl_collect_customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `tbl_collect_customer`
+-- Dumping data for table `tbl_collect_customer`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_collect_general`
+-- Table structure for table `tbl_collect_general`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_collect_general` (
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `tbl_collect_general` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `tbl_collect_general`
+-- Dumping data for table `tbl_collect_general`
 --
 
 INSERT INTO `tbl_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `tbl_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_config`
+-- Table structure for table `tbl_config`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_config` (
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
--- Contenu de la table `tbl_config`
+-- Dumping data for table `tbl_config`
 --
 
 INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
@@ -115,7 +115,7 @@ INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_course`
+-- Table structure for table `tbl_course`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_course` (
@@ -134,14 +134,14 @@ CREATE TABLE IF NOT EXISTS `tbl_course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `tbl_course`
+-- Dumping data for table `tbl_course`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_customer`
+-- Table structure for table `tbl_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_customer` (
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `tbl_customer`
+-- Dumping data for table `tbl_customer`
 --
 
 INSERT INTO `tbl_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
@@ -171,7 +171,7 @@ INSERT INTO `tbl_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `n
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_domain`
+-- Table structure for table `tbl_domain`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_domain` (
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `tbl_domain` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `tbl_domain`
+-- Dumping data for table `tbl_domain`
 --
 
 INSERT INTO `tbl_domain` (`id`, `name`) VALUES
@@ -192,7 +192,7 @@ INSERT INTO `tbl_domain` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_employee`
+-- Table structure for table `tbl_employee`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_employee` (
@@ -202,22 +202,23 @@ CREATE TABLE IF NOT EXISTS `tbl_employee` (
   `gender` tinyint(2) NOT NULL,
   `phone` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `salary_base` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `tbl_employee`
+-- Dumping data for table `tbl_employee`
 --
 
-INSERT INTO `tbl_employee` (`id`, `name`, `job`, `gender`, `phone`, `address`) VALUES
-(1, 'Lý Văn Thạnh', '', 0, '0989 111 2221', 'TP HCM'),
-(2, 'Bùi Thanh Tuấn', '', 0, '0996 333 444', 'Đồng Tháp'),
-(3, 'Nguyễn Thanh Bảo', '', 0, '', 'Vĩnh Long');
+INSERT INTO `tbl_employee` (`id`, `name`, `job`, `gender`, `phone`, `address`, `salary_base`) VALUES
+(1, 'Lý Văn Thạnh', 'Bán hàng', 0, '0989 111 2221', 'TP HCM', 2000000),
+(2, 'Bùi Thanh Tuấn', 'Bán hàng', 0, '0996 333 444', 'Đồng Tháp', 2000000),
+(3, 'Nguyễn Thanh Bảo', 'Bảo vệ', 0, '', 'Vĩnh Long', 1800000);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_guest`
+-- Table structure for table `tbl_guest`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_guest` (
@@ -230,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `tbl_guest` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `tbl_guest`
+-- Dumping data for table `tbl_guest`
 --
 
 INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
@@ -239,7 +240,7 @@ INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_order_export`
+-- Table structure for table `tbl_order_export`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_order_export` (
@@ -252,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order_export` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Contenu de la table `tbl_order_export`
+-- Dumping data for table `tbl_order_export`
 --
 
 INSERT INTO `tbl_order_export` (`id`, `iduser`, `date`, `description`, `state`) VALUES
@@ -270,7 +271,7 @@ INSERT INTO `tbl_order_export` (`id`, `iduser`, `date`, `description`, `state`) 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_order_export_detail`
+-- Table structure for table `tbl_order_export_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_order_export_detail` (
@@ -283,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order_export_detail` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
--- Contenu de la table `tbl_order_export_detail`
+-- Dumping data for table `tbl_order_export_detail`
 --
 
 INSERT INTO `tbl_order_export_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
@@ -309,7 +310,7 @@ INSERT INTO `tbl_order_export_detail` (`id`, `idorder`, `idresource`, `count`, `
 (31, 9, 1, 1, 42000),
 (32, 9, 2, 2, 40000),
 (33, 10, 2, 1, 40000),
-(34, 11, 276, 2, 63000),
+(34, 11, 276, 4, 63000),
 (35, 11, 277, 1, 70000),
 (36, 11, 278, 1, 70000),
 (37, 11, 279, 1, 78000),
@@ -318,7 +319,7 @@ INSERT INTO `tbl_order_export_detail` (`id`, `idorder`, `idresource`, `count`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_order_import`
+-- Table structure for table `tbl_order_import`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_order_import` (
@@ -331,19 +332,19 @@ CREATE TABLE IF NOT EXISTS `tbl_order_import` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `tbl_order_import`
+-- Dumping data for table `tbl_order_import`
 --
 
 INSERT INTO `tbl_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
 (1, 3, '2013-08-19', ''),
 (2, 1, '2013-08-01', ''),
-(3, 1, '2013-10-23', 'A1'),
+(3, 1, '2013-08-14', 'A1'),
 (4, 1, '2013-10-27', '');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_order_import_detail`
+-- Table structure for table `tbl_order_import_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_order_import_detail` (
@@ -355,19 +356,21 @@ CREATE TABLE IF NOT EXISTS `tbl_order_import_detail` (
   PRIMARY KEY (`id`),
   KEY `tbl_order_import_detail_1` (`idorder`),
   KEY `tbl_order_import_detail_2` (`idresource`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `tbl_order_import_detail`
+-- Dumping data for table `tbl_order_import_detail`
 --
 
 INSERT INTO `tbl_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
-(1, 3, 1, 20, 20000);
+(1, 3, 1, 20, 20000),
+(2, 2, 4, 1, 250000),
+(3, 2, 10, 2, 250000);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_paid_customer`
+-- Table structure for table `tbl_paid_customer`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_paid_customer` (
@@ -381,14 +384,14 @@ CREATE TABLE IF NOT EXISTS `tbl_paid_customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `tbl_paid_customer`
+-- Dumping data for table `tbl_paid_customer`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_paid_general`
+-- Table structure for table `tbl_paid_general`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_paid_general` (
@@ -399,17 +402,20 @@ CREATE TABLE IF NOT EXISTS `tbl_paid_general` (
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_paid_1` (`id_term`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `tbl_paid_general`
+-- Dumping data for table `tbl_paid_general`
 --
 
+INSERT INTO `tbl_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
+(1, 6, '2013-08-07', 1000000, 'Tiền điện'),
+(2, 6, '2013-08-15', 200000, 'Tiền nước');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_paid_pay_roll`
+-- Table structure for table `tbl_paid_pay_roll`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_paid_pay_roll` (
@@ -425,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `tbl_paid_pay_roll` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `tbl_paid_pay_roll`
+-- Dumping data for table `tbl_paid_pay_roll`
 --
 
 INSERT INTO `tbl_paid_pay_roll` (`id`, `idemployee`, `date`, `value_base`, `value_sub`, `value_pre`, `note`) VALUES
@@ -435,7 +441,7 @@ INSERT INTO `tbl_paid_pay_roll` (`id`, `idemployee`, `date`, `value_base`, `valu
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_paid_supplier`
+-- Table structure for table `tbl_paid_supplier`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_paid_supplier` (
@@ -449,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `tbl_paid_supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `tbl_paid_supplier`
+-- Dumping data for table `tbl_paid_supplier`
 --
 
 INSERT INTO `tbl_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
@@ -464,7 +470,7 @@ INSERT INTO `tbl_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_pay_roll`
+-- Table structure for table `tbl_pay_roll`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_pay_roll` (
@@ -476,10 +482,10 @@ CREATE TABLE IF NOT EXISTS `tbl_pay_roll` (
   `late` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cafecoirieng_pay_roll_1` (`idemployee`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=94 ;
 
 --
--- Contenu de la table `tbl_pay_roll`
+-- Dumping data for table `tbl_pay_roll`
 --
 
 INSERT INTO `tbl_pay_roll` (`id`, `idemployee`, `date`, `state`, `extra`, `late`) VALUES
@@ -506,12 +512,81 @@ INSERT INTO `tbl_pay_roll` (`id`, `idemployee`, `date`, `state`, `extra`, `late`
 (21, 1, '2013-08-28', 1, 0, 0),
 (22, 1, '2013-08-29', 1, 0, 0),
 (23, 1, '2013-08-30', 1, 0, 0),
-(24, 1, '2013-08-31', 1, 0, 0);
+(24, 1, '2013-08-31', 1, 0, 0),
+(25, 1, '2013-08-07', 1, 0, 0),
+(26, 1, '2013-08-06', 1, 0, 0),
+(27, 1, '2013-08-04', 1, 0, 0),
+(28, 1, '2013-08-03', 1, 0, 0),
+(29, 1, '2013-08-01', 1, 0, 0),
+(30, 1, '2013-08-05', 1, 0, 0),
+(31, 1, '2013-08-02', 1, 0, 0),
+(32, 2, '2013-08-01', 1, 0, 0),
+(33, 2, '2013-08-02', 1, 0, 0),
+(34, 2, '2013-08-03', 1, 0, 0),
+(35, 2, '2013-08-04', 1, 0, 0),
+(36, 2, '2013-08-05', 1, 0, 0),
+(37, 2, '2013-08-06', 1, 0, 0),
+(38, 2, '2013-08-07', 1, 0, 0),
+(39, 2, '2013-08-08', 1, 0, 0),
+(40, 2, '2013-08-09', 1, 0, 0),
+(41, 2, '2013-08-10', 1, 0, 0),
+(42, 2, '2013-08-11', 1, 0, 0),
+(43, 2, '2013-08-12', 1, 0, 0),
+(44, 2, '2013-08-13', 1, 0, 0),
+(45, 2, '2013-08-14', 1, 0, 0),
+(46, 2, '2013-08-15', 1, 0, 0),
+(47, 2, '2013-08-16', 1, 0, 0),
+(48, 2, '2013-08-17', 1, 0, 0),
+(49, 2, '2013-08-18', 1, 0, 0),
+(50, 2, '2013-08-19', 1, 0, 0),
+(51, 2, '2013-08-20', 1, 0, 0),
+(52, 2, '2013-08-21', 1, 0, 0),
+(53, 2, '2013-08-22', 1, 0, 0),
+(54, 2, '2013-08-23', 1, 0, 0),
+(55, 2, '2013-08-24', 1, 0, 0),
+(56, 2, '2013-08-25', 1, 0, 0),
+(57, 2, '2013-08-26', 1, 0, 0),
+(58, 2, '2013-08-27', 1, 0, 0),
+(59, 2, '2013-08-28', 1, 0, 0),
+(60, 2, '2013-08-29', 1, 0, 0),
+(61, 2, '2013-08-30', 1, 0, 0),
+(62, 2, '2013-08-31', 1, 0, 0),
+(63, 3, '2013-08-01', 1, 0, 0),
+(64, 3, '2013-08-02', 1, 0, 0),
+(65, 3, '2013-08-03', 1, 0, 0),
+(66, 3, '2013-08-04', 1, 0, 0),
+(67, 3, '2013-08-05', 1, 0, 0),
+(68, 3, '2013-08-06', 1, 0, 0),
+(69, 3, '2013-08-07', 1, 0, 0),
+(70, 3, '2013-08-08', 1, 0, 0),
+(71, 3, '2013-08-09', 1, 0, 0),
+(72, 3, '2013-08-10', 1, 0, 0),
+(73, 3, '2013-08-11', 1, 0, 0),
+(74, 3, '2013-08-12', 1, 0, 0),
+(75, 3, '2013-08-13', 1, 0, 0),
+(76, 3, '2013-08-14', 1, 0, 0),
+(77, 3, '2013-08-15', 1, 0, 0),
+(78, 3, '2013-08-16', 1, 0, 0),
+(79, 3, '2013-08-17', 1, 0, 0),
+(80, 3, '2013-08-18', 1, 0, 0),
+(81, 3, '2013-08-19', 1, 0, 0),
+(82, 3, '2013-08-20', 1, 0, 0),
+(83, 3, '2013-08-21', 1, 0, 0),
+(84, 3, '2013-08-22', 1, 0, 0),
+(85, 3, '2013-08-23', 1, 0, 0),
+(86, 3, '2013-08-24', 1, 0, 0),
+(87, 3, '2013-08-25', 1, 0, 0),
+(88, 3, '2013-08-26', 1, 0, 0),
+(89, 3, '2013-08-27', 1, 0, 0),
+(90, 3, '2013-08-28', 1, 0, 0),
+(91, 3, '2013-08-29', 1, 0, 0),
+(92, 3, '2013-08-30', 1, 0, 0),
+(93, 3, '2013-08-31', 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_r2t`
+-- Table structure for table `tbl_r2t`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_r2t` (
@@ -524,7 +599,7 @@ CREATE TABLE IF NOT EXISTS `tbl_r2t` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1232 ;
 
 --
--- Contenu de la table `tbl_r2t`
+-- Dumping data for table `tbl_r2t`
 --
 
 INSERT INTO `tbl_r2t` (`id`, `id_resource`, `id_tag`) VALUES
@@ -1761,7 +1836,7 @@ INSERT INTO `tbl_r2t` (`id`, `id_resource`, `id_tag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_resource`
+-- Table structure for table `tbl_resource`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_resource` (
@@ -1779,7 +1854,7 @@ CREATE TABLE IF NOT EXISTS `tbl_resource` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1231 ;
 
 --
--- Contenu de la table `tbl_resource`
+-- Dumping data for table `tbl_resource`
 --
 
 INSERT INTO `tbl_resource` (`id`, `idsupplier`, `name`, `name_short`, `unit`, `price_import`, `price_export`, `description`, `barcode`) VALUES
@@ -3019,7 +3094,7 @@ INSERT INTO `tbl_resource` (`id`, `idsupplier`, `name`, `name_short`, `unit`, `p
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_supplier`
+-- Table structure for table `tbl_supplier`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_supplier` (
@@ -3033,7 +3108,7 @@ CREATE TABLE IF NOT EXISTS `tbl_supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `tbl_supplier`
+-- Dumping data for table `tbl_supplier`
 --
 
 INSERT INTO `tbl_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
@@ -3047,7 +3122,7 @@ INSERT INTO `tbl_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_table`
+-- Table structure for table `tbl_table`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_table` (
@@ -3061,7 +3136,7 @@ CREATE TABLE IF NOT EXISTS `tbl_table` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Contenu de la table `tbl_table`
+-- Dumping data for table `tbl_table`
 --
 
 INSERT INTO `tbl_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
@@ -3079,7 +3154,7 @@ INSERT INTO `tbl_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_tag`
+-- Table structure for table `tbl_tag`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tag` (
@@ -3089,7 +3164,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tag` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=47 ;
 
 --
--- Contenu de la table `tbl_tag`
+-- Dumping data for table `tbl_tag`
 --
 
 INSERT INTO `tbl_tag` (`id`, `name`) VALUES
@@ -3142,7 +3217,7 @@ INSERT INTO `tbl_tag` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_tag_selected`
+-- Table structure for table `tbl_tag_selected`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tag_selected` (
@@ -3152,7 +3227,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tag_selected` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `tbl_tag_selected`
+-- Dumping data for table `tbl_tag_selected`
 --
 
 INSERT INTO `tbl_tag_selected` (`id`, `idtag`) VALUES
@@ -3166,7 +3241,7 @@ INSERT INTO `tbl_tag_selected` (`id`, `idtag`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_term_collect`
+-- Table structure for table `tbl_term_collect`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_term_collect` (
@@ -3176,7 +3251,7 @@ CREATE TABLE IF NOT EXISTS `tbl_term_collect` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `tbl_term_collect`
+-- Dumping data for table `tbl_term_collect`
 --
 
 INSERT INTO `tbl_term_collect` (`id`, `name`) VALUES
@@ -3186,7 +3261,7 @@ INSERT INTO `tbl_term_collect` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_term_paid`
+-- Table structure for table `tbl_term_paid`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_term_paid` (
@@ -3197,7 +3272,7 @@ CREATE TABLE IF NOT EXISTS `tbl_term_paid` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `tbl_term_paid`
+-- Dumping data for table `tbl_term_paid`
 --
 
 INSERT INTO `tbl_term_paid` (`id`, `name`, `type`) VALUES
@@ -3212,7 +3287,7 @@ INSERT INTO `tbl_term_paid` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_tracking`
+-- Table structure for table `tbl_tracking`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tracking` (
@@ -3224,18 +3299,18 @@ CREATE TABLE IF NOT EXISTS `tbl_tracking` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `tbl_tracking`
+-- Dumping data for table `tbl_tracking`
 --
 
 INSERT INTO `tbl_tracking` (`id`, `date_start`, `date_end`, `estate_rate`) VALUES
 (3, '2013-09-01', '2013-09-30', 0),
-(5, '2013-08-08', '2013-08-31', 0),
+(5, '2013-08-01', '2013-08-31', 0),
 (6, '2013-10-01', '2013-10-31', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_tracking_store`
+-- Table structure for table `tbl_tracking_store`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tracking_store` (
@@ -3250,14 +3325,14 @@ CREATE TABLE IF NOT EXISTS `tbl_tracking_store` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 --
--- Contenu de la table `tbl_tracking_store`
+-- Dumping data for table `tbl_tracking_store`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_unit`
+-- Table structure for table `tbl_unit`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_unit` (
@@ -3267,7 +3342,7 @@ CREATE TABLE IF NOT EXISTS `tbl_unit` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 --
--- Contenu de la table `tbl_unit`
+-- Dumping data for table `tbl_unit`
 --
 
 INSERT INTO `tbl_unit` (`id`, `name`) VALUES
@@ -3298,7 +3373,7 @@ INSERT INTO `tbl_unit` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tbl_user`
+-- Table structure for table `tbl_user`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user` (
@@ -3317,7 +3392,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `tbl_user`
+-- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
@@ -3325,72 +3400,72 @@ INSERT INTO `tbl_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecr
 (2, 'Bán hàng1', 'banhang1@gmail.com', '1234561', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 3, '1');
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `tbl_collect_customer`
+-- Constraints for table `tbl_collect_customer`
 --
 ALTER TABLE `tbl_collect_customer`
   ADD CONSTRAINT `tbl_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `tbl_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_collect_general`
+-- Constraints for table `tbl_collect_general`
 --
 ALTER TABLE `tbl_collect_general`
   ADD CONSTRAINT `tbl_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `tbl_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_course`
+-- Constraints for table `tbl_course`
 --
 ALTER TABLE `tbl_course`
   ADD CONSTRAINT `tbl_course_1` FOREIGN KEY (`idcategory`) REFERENCES `tbl_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_order_import`
+-- Constraints for table `tbl_order_import`
 --
 ALTER TABLE `tbl_order_import`
   ADD CONSTRAINT `tbl_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `tbl_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_order_import_detail`
+-- Constraints for table `tbl_order_import_detail`
 --
 ALTER TABLE `tbl_order_import_detail`
   ADD CONSTRAINT `tbl_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `tbl_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `tbl_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_paid_customer`
+-- Constraints for table `tbl_paid_customer`
 --
 ALTER TABLE `tbl_paid_customer`
   ADD CONSTRAINT `tbl_customer_paid_1` FOREIGN KEY (`idcustomer`) REFERENCES `tbl_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_paid_general`
+-- Constraints for table `tbl_paid_general`
 --
 ALTER TABLE `tbl_paid_general`
   ADD CONSTRAINT `tbl_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `tbl_term_paid` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_paid_pay_roll`
+-- Constraints for table `tbl_paid_pay_roll`
 --
 ALTER TABLE `tbl_paid_pay_roll`
   ADD CONSTRAINT `tbl_paid_pay_roll_1` FOREIGN KEY (`idemployee`) REFERENCES `tbl_employee` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_paid_supplier`
+-- Constraints for table `tbl_paid_supplier`
 --
 ALTER TABLE `tbl_paid_supplier`
   ADD CONSTRAINT `tbl_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `tbl_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_resource`
+-- Constraints for table `tbl_resource`
 --
 ALTER TABLE `tbl_resource`
   ADD CONSTRAINT `tbl_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `tbl_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tbl_table`
+-- Constraints for table `tbl_table`
 --
 ALTER TABLE `tbl_table`
   ADD CONSTRAINT `tbl_table_1` FOREIGN KEY (`iddomain`) REFERENCES `tbl_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

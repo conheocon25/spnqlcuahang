@@ -1,41 +1,40 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportSellingRefresh extends Command {
+	class ReportCollectGeneral extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------
 			$Session = \MVC\Base\SessionRegistry::instance();
-			
+														
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------			
 			$IdTrack = $request->getProperty('IdTrack');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mTracking = new \MVC\Mapper\Tracking();
-			$mSession = new \MVC\Mapper\Session();
+			$mCollect = new \MVC\Mapper\CollectGeneral();
+			$mTerm = new \MVC\Mapper\TermCollect();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Track = $mTracking->find($IdTrack);
-			$SessionAll = $Track->getSessionAll();
-			while($SessionAll->valid()){
-				$Session = $SessionAll->current();
-				$Value = $Session->getReValue();
-				$Session->setValue($Value);
-				$mSession->update($Session);
-				$SessionAll->next();
-			}
+			$Tracking = $mTracking->find($IdTrack);
+			$TermAll = $mTerm->findAll();
+			$Title = "TỔNG HỢP THU THÁNG ".\date("m", strtotime($Tracking->getDateStart()))."/".\date("Y", strtotime($Tracking->getDateStart()));
+			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
-			$Title = "LÀM TƯƠI LẠI DỮ LIỆU";			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
+			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', "/app");
-			$request->setObject('Track', $Track);
+			$request->setProperty('DateCurrent', $DateCurrent);
+			$request->setObject('Tracking', $Tracking);
+			$request->setObject('TermAll', $TermAll);
 		}
 	}
 ?>
