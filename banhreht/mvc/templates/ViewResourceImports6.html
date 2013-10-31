@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeBase"/>
+	<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+						
+		$('#DataTable').find('tbody tr').hover(
+			function(){ $(this).find('td').addClass('table_highlighted');}, 
+			function(){	$(this).find('td').removeClass('table_highlighted');}
+		);
+		
+		var oTable = $('#DataTable').dataTable({			
+			"bScrollCollapse": true,			
+			"bStateSave": false,
+			"bFilter": false,
+			"bInfo": false,
+			"bSort": false,
+			"bPaginate": false			
+		}).makeEditable({
+                sUpdateURL: "?cmd=UpdateResourceImport",
+                "aoColumns": [
+					null,	
+                    {
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng DẦU ĐẶC'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng BỘT NĂNG'
+                    },
+					{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng BỘT PHA'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng MŨ CŨ'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng THUỐC'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng CAL'
+                    }
+				]
+			});
+			new FixedHeader( oTable, { "top": true, "zTop": 105 } );
+	});
+	/*]]>*/	
+	</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleSuppliers"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>					
+				</div>
+			</div>
+			<div id="Column1of1">
+				<div id="Title">					
+					<a title="Tới" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes="href Supplier/getURLResourceImportsNext">
+							<span class="ButtonIcon ButtonIconSeekNext"/>
+					</a>
+					<a title="Lui" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll"
+							tal:attributes="href Supplier/getURLResourceImportsBefore">
+							<span class="ButtonIcon ButtonIconSeekPrev"/>
+					</a>
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes = "href ParentsLinked">
+							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
+					</a>
+										
+				</div>
+				<div id="Table">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
+						<thead>					
+							<tr>								
+								<th align='center'>NGÀY</th>
+								<th align='center'>Dầu đặc</th>
+								<th align='center'>Bột năng</th>
+								<th align='center'>Bột pha</th>
+								<th align='center'>Mũ cũ</th>
+								<th align='center'>Thuốc</th>
+								<th align='center'>Cal</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="RIT RITs">								
+								<td align='center'><b tal:content="RIT/getDatePrint"/></td>								
+								<td align='center' tal:content="RIT/getResource03"/>
+								<td align='center' tal:content="RIT/getResource07"/>
+								<td align='center' tal:content="RIT/getResource08"/>
+								<td align='center' tal:content="RIT/getResource09"/>
+								<td align='center' tal:content="RIT/getResource10"/>
+								<td align='center' tal:content="RIT/getResource05"/>
+							</tr>
+						</tbody>						
+					</table>										
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>
+</body>
+</html>

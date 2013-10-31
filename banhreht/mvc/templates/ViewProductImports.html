@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeBase"/>
+	<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+						
+		$('#DataTable').find('tbody tr').hover(
+			function(){ $(this).find('td').addClass('table_highlighted');}, 
+			function(){	$(this).find('td').removeClass('table_highlighted');}
+		);
+		
+		var oTable = $('#DataTable').dataTable({			
+			"bScrollCollapse": true,		
+			"bStateSave": false,
+			"bFilter": false,
+			"bInfo": false,
+			"bSort": false,
+			"bPaginate": false
+		}).makeEditable({
+                sUpdateURL: "?cmd=UpdateProductImport",
+                "aoColumns": [
+					null,	
+					{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    },{
+                	    indicator: 'Lưu số lượng...',
+						tooltip: 'Click để chỉnh sửa số lượng'
+                    }
+				]
+			});
+			new FixedHeader( oTable, { "top": true, "zTop": 105 } );
+	});
+	/*]]>*/
+	</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleFactories"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>
+			</div>
+			<div id="Column1of1">
+				<div id="Title">
+					<a title="Tới" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+						tal:attributes="href Factory/getURLViewProductImportsNextMonth">
+						<span class="ButtonIcon ButtonIconArrowthick1-e"/>
+					</a>
+					<a title="Lui" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll"
+						tal:attributes="href Factory/getURLViewProductImportsBeforeMonth">
+						<span class="ButtonIcon ButtonIconArrowthick1-w"/>
+					</a>
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes = "href ParentsLinked">
+							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
+					</a>	
+
+					<!-- Menu In -->
+					<a title="In bảng chấm công" target="blank" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes="href Factory/getURLPrintProductImports">
+							<span class="ButtonIcon ButtonIconPrint"></span>
+					</a>
+					<a title="In bảng theo dõi" target="blank" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes="href Factory/getURLPrintProductImports1">
+							<span class="ButtonIcon ButtonIconPrint"></span>
+					</a>
+				</div>
+				<div id="Table">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
+						<thead>					
+							<tr>								
+								<th align='center'>NGÀY</th>
+								<th align='center'>nhỏx6<BR/>(18g)</th>
+								<th align='center'>nhỏx7<BR/>(21g)</th>
+								<th align='center'>nhỏx10<BR/>(30g)</th>
+								<th align='center'>nhỏx18<BR/>(54g)</th>
+								<th align='center'>16x30<BR/>(90g)</th>
+								<th align='center'>16x30<BR/>(150g)</th>								
+								<th align='center'>16Cx30<BR/>(150g)</th>
+								<th align='center'>16Cx50<BR/>(250g)</th>
+								<th align='center'>16Cx90<BR/>(500g)</th>
+								<th align='center'>18x30<BR/>(180g)</th>
+								<th align='center'>19x45<BR/>(300g)</th>
+								<th align='center'>20x30<BR/>(210g)</th>
+								<th align='center'>22x30<BR/>(240g)</th>
+								<th align='center'>22Cx60<BR/>(500g)</th>
+								<th align='center'>18Cx70<BR/>(500g)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PI PIs">
+								<td align='center'><b tal:content="PI/getDatePrint" /></td>
+								<td align='center' tal:content="PI/getProduct16"/>
+								<td align='center' tal:content="PI/getProduct17"/>
+								<td align='center' tal:content="PI/getProduct20"/>
+								<td align='center' tal:content="PI/getProduct21"/>
+								<td align='center' tal:content="PI/getProduct02"/>
+								<td align='center' tal:content="PI/getProduct04"/>
+								<td align='center' tal:content="PI/getProduct06"/>
+								<td align='center' tal:content="PI/getProduct10"/>
+								<td align='center' tal:content="PI/getProduct18"/>
+								<td align='center' tal:content="PI/getProduct08"/>								
+								<td align='center' tal:content="PI/getProduct11"/>					
+								<td align='center' tal:content="PI/getProduct13"/>
+								<td align='center' tal:content="PI/getProduct15"/>
+								<td align='center' tal:content="PI/getProduct19"/>								
+								<td align='center' tal:content="PI/getProduct22"/>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>		
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 		
+		<link rel="icon" type="image/ico" href="mvc/templates/theme/image/favicon.ico" />
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.js"/>		
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.dataTables.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery-ui-1.8.11.custom.min.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/main.js"/>		
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/Button.js"/>
+		
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/main_2.css"/>
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/ButtonTheme.css"/>		
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/jquery-ui-1.8.11.custom.css"/>
+		
+	<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+		//alert('có');
+		$.fx.speeds._default = 1000;				
+		$('#DialogSignin').dialog({
+					autoOpen: true,
+					show: "blind",
+					hide: "explode",
+					modal: true,
+					width: 500,					
+					buttons: {
+						"Đăng nhập": function() {							
+							if (($('#frmuser').val() != "") && ($('#UserKeyDown').val() != ""))
+							{
+								document.getElementById('frmUserInfo').submit();
+							}
+							$(this).dialog("close");
+						}
+					}
+		});	
+		
+	});		
+	/*]]>*/		
+	</script>
+	</head>
+<body>
+<div id='frame'>
+	<div id='page'>		
+		<span metal:use-macro="macros.xhtml/HeaderModuleMain"/>
+		<div id='module2'>
+				<div style='padding-left:25px;padding-top:130px' align='center'>									
+					<img tal:attributes="src string:mvc/templates/theme/image/MainBackground.png;"/>								
+				</div>		
+		</div>			
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>
+</body>
+</html>

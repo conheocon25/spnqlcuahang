@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeBase"/>
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/form.css"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+		$(document).ready(
+			function(){								
+				var DateStart = $('#DateStart').val();
+				var DateEnd = $('#DateEnd').val();
+				$("#PrintLinked").attr("href", "?cmd=PrintResourceExportTrackings&DateStart="+DateStart+"&DateEnd="+DateEnd);
+				$('#DateStart').datepicker({
+					dateFormat: 'yy-mm-dd',
+					onSelect: function(dateText, inst) {						
+						DateStart = dateText;
+						if (DateStart>DateEnd){
+							alert("Ngày bắt đầu phải lớn hơn bằng ngày kết thúc");
+						}
+						$("#PrintLinked").attr("href", "?cmd=PrintResourceExportTrackings&DateStart="+DateStart+"&DateEnd="+DateEnd);
+					}
+				});
+				$('#DateEnd').datepicker({					
+					dateFormat: 'yy-mm-dd',
+					onSelect: function(dateText, inst){
+						DateEnd = dateText;
+						if (DateStart>DateEnd){
+							alert("Ngày bắt đầu phải lớn hơn bằng ngày kết thúc");
+						}
+						$("#PrintLinked").attr("href", "?cmd=PrintResourceExportTrackings&DateStart="+DateStart+"&DateEnd="+DateEnd);
+					}
+				});
+			});
+		/*]]>*/
+		</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleFactories"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>
+			</div>
+			<div id="Column1of1">
+				<div id="Title">					
+					<a title="Quay lại" class="Button StateDefault ButtonIconSolo CornerAll" 
+						tal:attributes = "href ParentsLinked">
+						<span class="ButtonIcon ButtonIconArrowreturn1-n"/>
+					</a>
+				</div>
+				<div id="form1">
+					<form id="form" method="post" class='form' style="margin: 10px 0px 0px 10px;padding: 5px 5px 5px 5px;">
+						<table align='center'>
+							<tr>
+								<td align='right'><LABEL>Bắt đầu: </LABEL></td> 
+								<td align='left'><INPUT size='10' type="text" tal:attributes="value DateStart" id="DateStart" name="DateStart"/></td>
+							</tr>
+							<tr>
+								<td align='right'><LABEL>Kết thúc: </LABEL></td> 
+								<td align='left'><INPUT size='10' type="text" tal:attributes="value DateEnd" id="DateEnd" name="DateEnd"/></td>
+							</tr>
+						</table>
+						<div id="button1">	
+						<table align='center'>
+							<tr>
+								<td>
+									<a id="PrintLinked" target='blank' style='float:center;' tal:attributes="href '#'" onclick="document.getElementById('form').submit()" class="Button StateDefault ButtonIconLeft CornerAll">
+										<span class="ButtonIcon ButtonIconPrint"/>In bảng
+									</a>
+								</td>
+							</tr>
+						</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>		
+
+</body>
+</html>

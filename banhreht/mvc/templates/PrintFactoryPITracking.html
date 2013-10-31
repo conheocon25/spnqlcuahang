@@ -1,0 +1,20 @@
+<html>	
+<body>
+	<table border="1" cellspacing="0" cellpadding="2">
+		<tr>
+			<th align='center' width="15%"><b>NGÀY</b></th>
+			<th align='left' width="35%"><b>TÊN</b></th>
+			<th align='right' width="15%"><b>SỐ LƯỢNG</b></th>
+			<th align='right' width="15%"><b>ĐƠN GIÁ</b></th>
+			<th align='right' width="20%"><b>THÀNH TIỀN</b></th>
+		</tr>
+		<tr tal:repeat="PI PIs">
+			<td align='center' tal:content="PI/getDatePrint"/>
+			<td align='left' tal:content="PI/getNameProduct"/>
+			<td align='right' tal:content="PI/getQuantityPrint"/>
+			<td align='right' tal:content="PI/getPricePrint"/>
+			<td align='right' tal:content="PI/getValuePrint"/>
+		</tr>
+	</table>		
+</body>
+</html>
