@@ -1,13 +1,12 @@
 <?php
 	namespace MVC\Command;
-	require_once("mvc/base/Library.php");	
 	abstract class Command { 
 		private static $STATUS_STRINGS = array ( 
 			'CMD_DEFAULT'=>0, 
 			'CMD_OK' => 1, 
 			'CMD_ERROR' => 2, 
 			'CMD_INSUFFICIENT_DATA' => 3, 
-			'CMD_NO_SIGNIN' => 4 
+			'CMD_NO_AUTHOR' => 4 
 		); 
 		private $status = 0;
    

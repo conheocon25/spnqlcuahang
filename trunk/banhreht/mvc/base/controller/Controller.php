@@ -18,22 +18,36 @@
 			$applicationHelper->init(); 
 		} 
  				
-		function handleRequest() {
+		function handleRequest() {			
 			$request = new Request();
-			$app_c = \MVC\Base\ApplicationRegistry::appController();
-						
-			@$User = \MVC\Base\SessionRegistry::getCurrentUser();
-			if (isset($User) && $User != ""){								
-				while( $cmd = $app_c->getCommand( $request ) ) {
+			$AppController = \MVC\Base\ApplicationRegistry::appController();						
+			
+			while( $cmd = $AppController->getCommand( $request ) ) {
+				$cmd->execute( $request );
+			}
+				
+			/*
+			@$User = \MVC\Base\SessionRegistry::getCurrentUser();			
+			
+			if (isset($User)&&$User->getEmail()!=""){
+				while( $cmd = $AppController->getCommand( $request ) ) {			
 					$cmd->execute( $request );					
 				}
 			}else{
-				$request->setProperty('cmd','Signin');
-				while( $cmd = $app_c->getCommand( $request ) ) {
+				$Type = $AppController->getCommandType( $request);
+				$NameCommand = $request->getProperty('cmd');				
+				if ($Type != "public" && isset($NameCommand)){
+					$request->setProperty('cmd','Home');
+				}else if (!isset($NameCommand)){
+					$request->setProperty('cmd','Home');
+				}
+				
+				while( $cmd = $AppController->getCommand( $request ) ) {
 					$cmd->execute( $request );
 				}
 			}
-			$this->invokeView( $app_c->getView( $request ) );
+			*/
+			$this->invokeView( $AppController->getView( $request ) );
 		}
 		function invokeView( $target ) {
 			require( "mvc/view/$target.php" );

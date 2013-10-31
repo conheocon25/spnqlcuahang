@@ -4,33 +4,31 @@ use MVC\Library\Encrypted;
 require_once("mvc/base/Registry.php");
 require_once("mvc/base/Exceptions.php");
 require_once("mvc/base/domain/Finders.php");
-require_once("mvc/domain.php" );date_default_timezone_set('Asia/Ho_Chi_Minh');	
+require_once("mvc/domain.php" );
+//date_default_timezone_set('Asia/Ho_Chi_Minh');		
+//error_reporting ('E_ALL | E_STRICT');
+
 //Default Value: E_ALL & ~E_NOTICE
 //Development Value: E_ALL | E_STRICT
 //Production Value: E_ALL & ~E_DEPRECATED
-error_reporting ("E_ALL & ~E_DEPRECATED");
+//error_reporting ('E_ALL & ~E_DEPRECATED');
+
 abstract class Mapper implements \MVC\Domain\Finder {
     protected static $PDO;
+		
     function __construct() { 
-        if ( ! isset(self::$PDO) ) { 
-            /*			
-			$Encrypt = new Encrypted();				
-			$ReadFileKey = $Encrypt->readFromFile($Encrypt->SizeFileConfig());
-			$dsn = $Encrypt->decryptData($ReadFileKey[0]);			
-			$dbname = $Encrypt->decryptData($ReadFileKey[1]);			
-			$user = $Encrypt->decryptData($ReadFileKey[2]);				
-			$pass = $Encrypt->decryptData($ReadFileKey[3]);
-			*/
+        if ( ! isset(self::$PDO) ) {             
 			$dsn = "mysql:host=localhost;";
-			$dbname = "dbname=spngroup_qlcuahang_banhreht";
+			$dbname = "dbname=spngroup_qlcuahang_demo1";
 			$user = "spngroup_userdb";
 			$pass = "admin068198";
 			
             if ( is_null( $dsn ) ) {
                 throw new \MVC\Base\AppException( "No DSN" );
             }
-            self::$PDO = new \PDO( $dsn . $dbname, $user, $pass, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") );
+            self::$PDO = new \PDO( $dsn . $dbname, $user, $pass, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true) );
             self::$PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			
         }
     }
 
@@ -42,8 +40,7 @@ abstract class Mapper implements \MVC\Domain\Finder {
     private function addToMap( \MVC\Domain\Object $obj ) {
         return \MVC\Domain\ObjectWatcher::add( $obj );
     }
-	
-	
+				
     function find( $id ) {
         $old = $this->getFromMap( $id );
         if ( $old ) { return $old; }
@@ -84,6 +81,7 @@ abstract class Mapper implements \MVC\Domain\Finder {
 	function delete( array $obj ) {
         $this->doDelete( $obj ); 		
     }
+	
     protected abstract function getCollection( array $raw );
     protected abstract function doCreateObject( array $array );
     protected abstract function doInsert( \MVC\Domain\Object $object );

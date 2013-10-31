@@ -1,0 +1,486 @@
+<options>   
+	<control>
+		<!-- ==================================================	-->
+		<!-- Các lệnh xử lí SYSTEM 								-->		
+		<!-- ==================================================	-->
+		
+		<command name="Main">
+			<view>Main</view>
+		</command>
+		
+		<command name="DefaultCommand">
+			<view>DefaultCommand</view>			
+			<status value="CMD_OK">
+				<forward>Main</forward>
+			</status>
+		</command>
+		
+		<command name="Signin">
+			<view>Signin</view>
+			<status value="CMD_OK">
+				<forward>ViewFactories</forward>
+			</status>
+		</command>
+	
+		<command name="Signout">
+			<view>Signout</view>
+			<status value="CMD_OK">
+				<forward>Main</forward>
+			</status>
+		</command>
+		
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ LÒ GIA CÔNG 						-->
+		<!-- ==================================================	-->									
+		<command name="ViewFactories">
+			<view>ViewFactories</view>			
+		</command>
+		
+		<command name="InsertFactory">
+			<view>InsertFactory</view>			
+			<status value="CMD_OK">
+				<forward>ViewFactories</forward>
+			</status>
+		</command>
+		
+		<command name="UpdateFactory">
+			<view>UpdateFactory</view>			
+			<status value="CMD_OK">
+				<forward>ViewFactories</forward>
+			</status>
+		</command>
+		
+		<command name="DeleteFactory">
+			<view>DeleteFactory</view>			
+			<status value="CMD_OK">
+				<forward>ViewFactories</forward>
+			</status>
+		</command>
+		
+		<command name="ViewFactoryTrackings">
+			<view>ViewFactoryTrackings</view>			
+		</command>
+		
+		<command name="ViewFactoryTracking">
+			<view>ViewFactoryTracking</view>
+		</command>
+		
+		<command name="PrintFactoryTracking">
+			<view>PrintFactoryTracking</view>			
+		</command>
+		
+		<command name="PrintFactoryTrackings">
+			<view>PrintFactoryTrackings</view>			
+		</command>
+		
+		<command name="ViewFactoryLogs">
+			<view>ViewFactoryLogs</view>
+		</command>
+		<command name="InsertFactoryLog">
+			<view>InsertFactoryLog</view>
+			<status value="CMD_OK">
+				<forward>ViewFactoryLogs</forward>
+			</status>
+		</command>
+		<command name="DeleteFactoryLog">
+			<view>DeleteFactoryLog</view>
+			<status value="CMD_OK">
+				<forward>ViewFactoryLogs</forward>
+			</status>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh TẠM ỨNG TIỀN LÒ GIA CÔNG 					-->
+		<!-- ==================================================	-->													
+		<command name="UpdateFactoryLoan">
+			<view>UpdateFactoryLoan</view>			
+			<status value="CMD_OK">
+				<forward>ViewFactoryLoanTrackings</forward>
+			</status>
+		</command>
+		<command name="ViewFactoryLoanTrackings">
+			<view>ViewFactoryLoanTrackings</view>
+		</command>
+		<command name="ViewFactoryLoans">
+			<view>ViewFactoryLoans</view>
+		</command>
+		<command name="PrintFactoryLoans">
+			<view>PrintFactoryLoans</view>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ NHÂN VIÊN 						-->
+		<!-- ==================================================	-->		
+		<command name="ViewEmployees">
+			<view>ViewEmployees</view>			
+		</command>
+		<command name="InsertEmployee">
+			<view>InsertEmployee</view>			
+			<status value="CMD_OK">
+				<forward>ViewEmployees</forward>
+			</status>
+		</command>
+		<command name="UpdateEmployee">
+			<view>UpdateEmployee</view>			
+			<status value="CMD_OK">
+				<forward>ViewEmployees</forward>
+			</status>
+		</command>
+		<command name="DeleteEmployee">
+			<view>DeleteEmployee</view>			
+			<status value="CMD_OK">
+				<forward>ViewEmployees</forward>
+			</status>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ ỨNG TIỀN NHÂN VIÊN 						-->
+		<!-- ==================================================	-->				
+		<command name="UpdateEmployeeLoan">
+			<view>UpdateEmployeeLoan</view>			
+			<status value="CMD_OK">
+				<forward>ViewEmployeeLoanTrackings</forward>
+			</status>
+		</command>
+		
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ CHẤM CÔNG NHÂN VIÊN 				-->
+		<!-- ==================================================	-->						
+		<command name="UpdateEmployeeProduce">
+			<view>UpdateEmployeeProduce</view>			
+			<status value="CMD_OK">
+				<forward>ViewEmployeeProduceTrackings</forward>
+			</status>
+		</command>				
+		<command name="AjaxUpdateEmployeeProduce">
+			<view>AjaxUpdateEmployeeProduce</view>
+		</command>
+		<command name="ViewEmployeeTrackings">
+			<view>ViewEmployeeTrackings</view>			
+		</command>
+		
+		<command name="ViewEmployeeProduceTrackings">
+			<view>ViewEmployeeProduceTrackings</view>			
+		</command>
+		
+		<command name="PrintEmployeeProduceTrackings">
+			<view>PrintEmployeeProduceTrackings</view>			
+		</command>
+		
+		<command name="ViewEmployeeLoanTrackings">
+			<view>ViewEmployeeLoanTrackings</view>			
+		</command>
+		
+		<command name="PrintEmployeeTrackings">
+			<view>PrintEmployeeTrackings</view>			
+		</command>
+		<command name="PrintEmployeeTracking">
+			<view>PrintEmployeeTracking</view>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ GIÁ	 							-->
+		<!-- ==================================================	-->
+		<command name="UpdatePriceEmployeeProduce">
+			<view>UpdatePriceEmployeeProduce</view>			
+			<status value="CMD_OK">
+				<forward>ViewPriceEmployeeProduceTrackings</forward>
+			</status>
+		</command>
+		<command name="ViewPriceEmployeeProduceTrackings">
+			<view>ViewPriceEmployeeProduceTrackings</view>			
+		</command>
+		<command name="ViewPriceProductImportTrackings">
+			<view>ViewPriceProductImportTrackings</view>			
+		</command>
+		<command name="UpdatePriceProductImport">
+			<view>UpdatePriceProductImport</view>			
+			<status value="CMD_OK">
+				<forward>ViewPriceProductImportTrackings</forward>
+			</status>
+		</command>
+		
+		<command name="UpdatePriceProductExport">
+			<view>UpdatePriceProductExport</view>		
+			<status value="CMD_OK">
+				<forward>ViewPriceProductExportTrackings</forward>
+			</status>
+		</command>
+		
+		<command name="UpdatePriceResourceExport">
+			<view>UpdatePriceResourceExport</view>			
+			<status value="CMD_OK">
+				<forward>ViewPriceResourceExportTrackings</forward>
+			</status>
+		</command>
+		<command name="ViewPriceResourceExportTrackings">
+			<view>ViewPriceResourceExportTrackings</view>			
+		</command>
+		
+		<command name="ViewPriceProductExportTrackings">
+			<view>ViewPriceProductExportTrackings</view>			
+		</command>
+		
+		<command name="ViewPriceResourceImportTrackings">
+			<view>ViewPriceResourceImportTrackings</view>			
+		</command>
+		<command name="UpdatePriceResourceImport">
+			<view>UpdatePriceResourceImport</view>			
+			<status value="CMD_OK">
+				<forward>ViewPriceResourceImportTrackings</forward>
+			</status>
+		</command>
+		
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ SẢN PHẨM	 						-->
+		<!-- ==================================================	-->
+		<command name="ViewProducts">
+			<view>ViewProducts</view>			
+		</command>
+		<command name="PrintProductLabel">
+			<view>PrintProductLabel</view>
+		</command>
+		<command name="ViewProductLabel">
+			<view>ViewProductLabel</view>		
+		</command>
+		
+		<command name="InsertProduct">
+			<view>InsertProduct</view>			
+			<status value="CMD_OK">
+				<forward>ViewProducts</forward>
+			</status>
+		</command>
+		<command name="UpdateProduct">
+			<view>UpdateProduct</view>			
+			<status value="CMD_OK">
+				<forward>ViewProducts</forward>
+			</status>
+		</command>
+		<command name="DeleteProduct">
+			<view>DeleteProduct</view>			
+			<status value="CMD_OK">
+				<forward>ViewProducts</forward>
+			</status>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ SẢN PHẨM TỪ LÒ GIA CÔNG			-->
+		<!-- ==================================================	-->						
+		<command name="UpdateProductImport">
+			<view>UpdateProductImport</view>
+		</command>
+		<command name="ViewProductImports">
+			<view>ViewProductImports</view>
+		</command>
+		<command name="PrintProductImports">
+			<view>PrintProductImports</view>
+		</command>
+		<command name="PrintProductImports1">
+			<view>PrintProductImports1</view>
+		</command>
+		<command name="ViewProductImportTrackings">
+			<view>ViewProductImportTrackings</view>			
+		</command>
+		<command name="PrintProductImportTrackings">
+			<view>PrintProductImportTrackings</view>			
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ SẢN PHẨM XUẤT CHO KHÁCH HÀNG 		-->
+		<!-- ==================================================	-->				
+		<command name="UpdateProductExport">
+			<view>UpdateProductExport</view>
+		</command>
+		<command name="ViewProductExportTrackings">
+			<view>ViewProductExportTrackings</view>			
+		</command>
+		<command name="ViewProductExports">
+			<view>ViewProductExports</view>			
+		</command>
+		<command name="PrintProductExports">
+			<view>PrintProductExports</view>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ NGUYÊN LIỆU 						-->
+		<!-- ==================================================	-->		
+		<command name="ViewResources">
+			<view>ViewResources</view>			
+		</command>
+		<command name="InsertResource">
+			<view>InsertResource</view>			
+			<status value="CMD_OK">
+				<forward>ViewResources</forward>
+			</status>
+		</command>
+		<command name="UpdateResource">
+			<view>UpdateResource</view>			
+			<status value="CMD_OK">
+				<forward>ViewResources</forward>
+			</status>
+		</command>
+		<command name="DeleteResource">
+			<view>DeleteResource</view>			
+			<status value="CMD_OK">
+				<forward>ViewResources</forward>
+			</status>
+		</command>
+		
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ NGUYÊN LIỆU XUẤT CHO CÁC LÒ		-->
+		<!-- ==================================================	-->				
+		<command name="ViewResourceExports">
+			<view>ViewResourceExports</view>			
+		</command>
+		<command name="PrintResourceExports">
+			<view>PrintResourceExports</view>			
+		</command>
+		
+		<command name="ViewResourceExportTrackings">
+			<view>ViewResourceExportTrackings</view>			
+		</command>
+		
+		<command name="PrintResourceExportTrackings">
+			<view>PrintResourceExportTrackings</view>			
+		</command>
+		
+		<command name="UpdateResourceExport">
+			<view>UpdateResourceExport</view>
+		</command>
+						
+		<command name="LoadResource">
+			<view>LoadResource</view>			
+		</command>
+		
+		<command name="LoadProduct">
+			<view>LoadProduct</view>			
+		</command>
+		
+		<command name="UpdateResourceImport">
+			<view>UpdateResourceImport</view>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ NGUYÊN LIỆU NHẬP TỪ CÔNG TY 		-->
+		<!-- ==================================================	-->		
+		<command name="ViewResourceImports">
+			<view>ViewResourceImports</view>			
+		</command>
+		<command name="UpdateResourceImport">
+			<view>UpdateResourceImport</view>			
+			<status value="CMD_OK">
+				<forward>ViewResourceImports</forward>
+			</status>
+		</command>
+		<command name="DeleteResourceImport">
+			<view>DeleteResourceImport</view>			
+		</command>
+		
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ KHÁCH HÀNG 						-->
+		<!-- ==================================================	-->		
+		<command name="ViewCustomerTracking">
+			<view>ViewCustomerTracking</view>
+			<status value="CMD_OK">
+				<forward>PrintCustomerTracking</forward>
+			</status>
+		</command>
+		<command name="PrintCustomerTracking">
+			<view>PrintCustomerTracking</view>			
+		</command>
+		
+		<command name="PrintCustomerTracking1">
+			<view>PrintCustomerTracking1</view>			
+		</command>
+		
+		<command name="ViewCustomerLogs">
+			<view>ViewCustomerLogs</view>
+		</command>
+		<command name="InsertCustomerLog">
+			<view>InsertCustomerLog</view>
+			<status value="CMD_OK">
+				<forward>ViewCustomerLogs</forward>
+			</status>
+		</command>
+		<command name="DeleteCustomerLog">
+			<view>DeleteCustomerLog</view>
+			<status value="CMD_OK">
+				<forward>ViewCustomerLogs</forward>
+			</status>
+		</command>
+		
+		<command name="ViewCustomers">
+			<view>ViewCustomers</view>			
+		</command>
+		<command name="ViewCustomerPaids">
+			<view>ViewCustomerPaids</view>			
+		</command>
+		<command name="PrintCustomerPaids">
+			<view>PrintCustomerPaids</view>			
+		</command>
+		
+		<command name="UpdateCustomer">
+			<view>UpdateCustomer</view>
+			<status value="CMD_OK">
+				<forward>ViewCustomers</forward>
+			</status>			
+		</command>
+		<command name="InsertCustomer">
+			<view>InsertCustomer</view>			
+			<status value="CMD_OK">
+				<forward>ViewCustomers</forward>
+			</status>
+		</command>
+		<command name="DeleteCustomer">
+			<view>DeleteCustomer</view>			
+			<status value="CMD_OK">
+				<forward>ViewCustomers</forward>
+			</status>
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh THEO DÕI KHÁCH TRẢ TIỀN 					-->
+		<!-- ==================================================	-->		
+		<command name="ViewCustomerPaidTrackings">
+			<view>ViewCustomerPaidTrackings</view>			
+		</command>
+		
+		<command name="UpdateCustomerPaid">
+			<view>UpdateCustomerPaid</view>			
+		</command>
+		<!-- ==================================================	-->				
+		<!-- Các lệnh CÀI ĐẶT THIẾT LẬP 						-->
+		<!-- ==================================================	-->
+		<command name="ViewSettings">
+			<view>ViewSettings</view>			
+		</command>				
+		<!-- ==================================================	-->				
+		<!-- Các lệnh QUẢN LÝ NHÀ CUNG CẤP 						-->
+		<!-- ==================================================	-->									
+		<command name="ViewSuppliers">
+			<view>ViewSuppliers</view>			
+		</command>
+		<command name="InsertSupplier">
+			<view>InsertSupplier</view>
+			<status value="CMD_OK">
+				<forward>ViewSuppliers</forward>
+			</status>
+		</command>
+		<command name="UpdateSupplier">
+			<view>UpdateSupplier</view>
+			<status value="CMD_OK">
+				<forward>ViewSuppliers</forward>
+			</status>
+		</command>
+		<command name="DeleteSupplier">
+			<view>DeleteSupplier</view>
+			<status value="CMD_OK">
+				<forward>ViewSuppliers</forward>
+			</status>
+		</command>
+		<command name="ViewSupplierTracking">
+			<view>ViewSupplierTracking</view>			
+		</command>
+		<command name="PrintSupplierTracking">
+			<view>PrintSupplierTracking</view>			
+		</command>
+		
+		<command name="ViewSupplierDebts">
+			<view>ViewSupplierDebts</view>
+		</command>
+		<command name="UpdateSupplierDebt">
+			<view>UpdateSupplierDebt</view>
+		</command>
+	</control>
+</options>
