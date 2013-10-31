@@ -145,23 +145,19 @@ RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
 RewriteRule ^setting$ 											?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 						?cmd=SettingThemeChangeExe&Theme=$1 [L]
 
+RewriteRule ^setting/factory$ 									?cmd=SettingFactory [L]
+RewriteRule ^setting/factory/page/([0-9]+)$ 					?cmd=SettingFactory&Page=$1 [L]
 RewriteRule ^setting/employee$ 									?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/page/([0-9]+)$ 					?cmd=SettingEmployee&Page=$1 [L]
-
 RewriteRule ^setting/customer$ 									?cmd=SettingCustomer [L]
 RewriteRule ^setting/customer/page/([0-9]+)$ 					?cmd=SettingCustomer&Page=$1 [L]
 RewriteRule ^setting/supplier$ 									?cmd=SettingSupplier [L]
 RewriteRule ^setting/supplier/page/([0-9]+)$ 					?cmd=SettingSupplier&Page=$1 [L]
-RewriteRule ^setting/barcode/none$ 								?cmd=SettingBarcodeNone [L]
 
-RewriteRule ^setting/supplier/([0-9]+)$ 						?cmd=SettingSupplierResource&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/print/barcode$ 	?cmd=SettingSupplierResourcePrintBarcode&IdSupplier=$1&IdResource=$2 [L]
-
-RewriteRule ^setting/supplier/([0-9]+)/barcode$ 			?cmd=SettingSupplierBarcode&IdSupplier=$1 [L]
-RewriteRule ^barcode/([a-z0-9]+)$ 							?cmd=BarcodeCheck&Barcode=$1 [L]
-
+RewriteRule ^setting/supplier/([0-9]+)$ 					?cmd=SettingSupplierResource&IdSupplier=$1 [L]
+RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 		?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag$ 		?cmd=SettingResourceTag&IdSupplier=$1&IdResource=$2 [L]
+
 RewriteRule ^setting/unit$ 									?cmd=SettingUnit [L]
 RewriteRule ^setting/unit/page/([0-9]+)$ 					?cmd=SettingUnit&Page=$1 [L]
 RewriteRule ^setting/tag$ 									?cmd=SettingTag [L]

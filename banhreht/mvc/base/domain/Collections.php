@@ -11,6 +11,8 @@ interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGen
 interface TagCollection extends \Iterator {function add( Object $tag );}
 interface TagSelectedCollection extends \Iterator {function add( Object $tag );}
 
+interface FactoryCollection extends \Iterator {function add( Object $Factory );	}
+
 interface SupplierCollection extends \Iterator {function add( Object $supplier );	}
 interface ResourceCollection extends \Iterator {function add( Object $resource );	}
 

@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Demo cửa hàng tiện lợi"/>
-		<base href="http://demo1.quanly-cuahang.com"/>
+		<title tal:content="string:CƠ SỞ SẢN XUẤT BÁNH RẾ HOÀNG THÚY"/>
+		<base href="http://banhreht.quanly-cuahang.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Demo cửa hàng tiện lợi"/>
-		<meta name="description" content="Demo cửa hàng tiện lợi"/>
-		<meta name="page-topic" content="Demo cửa hàng tiện lợi"/>
-		<meta name="Abstract" content="Demo cửa hàng tiện lợi"/>
-		<meta name="classification" content="Demo cửa hàng tiện lợi"/>
+		<meta name="keywords" content="Cơ sở sản xuất Bánh Rế Hoàng Thúy"/>
+		<meta name="description" content="Cơ sở sản xuất Bánh Rế Hoàng Thúy"/>
+		<meta name="page-topic" content="Cơ sở sản xuất Bánh Rế Hoàng Thúy"/>
+		<meta name="Abstract" content="Cơ sở sản xuất Bánh Rế Hoàng Thúy"/>
+		<meta name="classification" content="Cơ sở sản xuất Bánh Rế Hoàng Thúy"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
 	</span>
 	
@@ -87,7 +87,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CỬA HÀNG TIỆN LỢI</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>CƠ SỞ SẢN XUẤT BÁNH RẾ HOÀNG THÚY</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -166,7 +166,12 @@
 				<a tal:attributes="href '/setting/supplier'" >
 					<i class="glyphicons-truck" />NHÀ CUNG CẤP
 				</a>
-			</li>			
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Factory'?'active':'disable'">
+				<a tal:attributes="href '/setting/factory'" >
+					<i class="glyphicons-factory" />LÒ SẢN XUẤT
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/setting/user'">
 					<i class="glyphicons-user" />NGƯỜI DÙNG 
@@ -210,7 +215,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2011 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
+			2009 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
 		</div>
 	</div>
 	

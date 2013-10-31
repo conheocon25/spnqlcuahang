@@ -10,19 +10,19 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
-		$updateStmt = sprintf("update %s set idsupplier=?, name=?, name_short=?, unit=?, price_import=?, price_export=?, description=?, barcode=? where id=?", $tblResource);
-		$insertStmt = sprintf("insert into %s ( idsupplier, name, name_short, unit, price_import, price_export, description, barcode ) 
+		$updateStmt = sprintf("update %s set id_supplier=?, name=?, name_short=?, unit=?, price_import=?, price_export=?, description=?, barcode=? where id=?", $tblResource);
+		$insertStmt = sprintf("insert into %s ( id_supplier, name, name_short, unit, price_import, price_export, description, barcode ) 
 							values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$havingBarcodeStmt = sprintf("select * from %s where barcode<>''", $tblResource);
 		$noneBarcodeStmt = sprintf("select * from %s where barcode=''", $tblResource);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
+		$findBySupplierStmt = sprintf("select * from %s where id_supplier=?", $tblResource);
 		$findByBarcodeStmt = sprintf("select * from %s where barcode=?", $tblResource);
-		$findByBarcode1Stmt = sprintf("select * from %s where idsupplier=? AND barcode=?", $tblResource);
+		$findByBarcode1Stmt = sprintf("select * from %s where id_supplier=? AND barcode=?", $tblResource);
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
-							WHERE idsupplier=:idsupplier
+							WHERE id_supplier=:id_supplier
 							LIMIT :start,:max
 				", $tblResource);
 				
@@ -46,7 +46,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Resource( 
 			$array['id'],
-			$array['idsupplier'],
+			$array['id_supplier'],
 			$array['name'],
 			$array['name_short'],
 			$array['unit'],				
@@ -108,7 +108,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
     }
 	
 	function findByPage( $values ) {		
-		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':id_supplier', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();

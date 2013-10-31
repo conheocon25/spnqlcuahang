@@ -11,10 +11,10 @@ class Customer extends Object{
     private $Card;
     private $Note;
     private $Address;
-	private $Discount;
+	private $Debt;
 	
 	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
+    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Debt=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
@@ -22,7 +22,7 @@ class Customer extends Object{
 		$this->Phone 	= $Phone;
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
-		$this->Discount = $Discount;
+		$this->Debt = $Debt;
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -47,8 +47,8 @@ class Customer extends Object{
     function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress(){return $this->Address;}
 		
-	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
-	function getDiscount(){return $this->Discount;}
+	function setDebt( $Debt ) {$this->Debt = $Debt;$this->markDirty();}
+	function getDebt(){return $this->Debt;}
 	
 	function toJSON(){
 		$json = array(
@@ -59,7 +59,7 @@ class Customer extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount()
+			'Debt'			=> $this->getDebt()
 		);
 		return json_encode($json);
 	}
@@ -72,7 +72,7 @@ class Customer extends Object{
 		$this->Phone	= $Data[4];
 		$this->Address	= $Data[5];
 		$this->Note		= $Data[6];
-		$this->Discount	= $Data[7];
+		$this->Debt		= $Data[7];
     }
 	
 	function toXML($Doc){
@@ -97,8 +97,8 @@ class Customer extends Object{
 		$Note = $Doc->createElement( "note" );
 		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
 		
-		$Discount = $Doc->createElement( "discount" );
-		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
+		$Debt = $Doc->createElement( "discount" );
+		$Debt->appendChild($Doc->createTextNode( $this->getDebt() ));
 		
 		$Obj->appendChild( $Name 		);
 		$Obj->appendChild( $Type 		);
@@ -106,7 +106,7 @@ class Customer extends Object{
 		$Obj->appendChild( $Phone 		);
 		$Obj->appendChild( $Address 	);
 		$Obj->appendChild( $Note 		);
-		$Obj->appendChild( $Discount 	);
+		$Obj->appendChild( $Debt 		);
 		
 		return $Obj;
 	}
