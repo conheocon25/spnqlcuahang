@@ -21,6 +21,8 @@ interface TagFinder extends Finder {}
 interface TagSelectedFinder extends Finder {}
 interface R2TFinder extends Finder {}
 
+interface FactoryFinder extends Finder {}
+
 interface SupplierFinder extends Finder {}
 interface ResourceFinder extends Finder {}
 

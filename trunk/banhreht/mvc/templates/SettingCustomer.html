@@ -56,7 +56,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -98,9 +98,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label">Giảm giá</label>
+												<label class="control-label">Nợ</label>
 												<div class="controls">
-													<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
+													<input id="Debt1" name="Debt1" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 										</div>
@@ -120,7 +120,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
 								</div>
 								<div class="form-horizontal" id="update-link">
 									<div class="modal-body">
@@ -162,9 +162,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label">Giảm giá</label>
+												<label class="control-label">Nợ</label>
 												<div class="controls">
-													<input id="Discount2" name="Discount2" type="text" class="form-control input-small"/>
+													<input id="Debt2" name="Debt2" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 										</div>
@@ -238,7 +238,7 @@
 				Data[4] = $('#Phone1').val();
 				Data[5] = $('#Address1').val();
 				Data[6] = $('#Note1').val();
-				Data[7] = $('#Discount1').val();
+				Data[7] = $('#Debt1').val();
 														
 				var URL = "/object/ins/Customer";
 				$.ajax({
@@ -268,7 +268,7 @@
 					$('#Phone2').attr('value', 		data.Phone);
 					$('#Address2').attr('value', 	data.Address);
 					$('#Note2').attr('value', 		data.Note);
-					$('#Discount2').attr('value', 	data.Discount);
+					$('#Debt2').attr('value', 	data.Debt);
 				});
 			});
 			
@@ -284,7 +284,7 @@
 				Data[4] = $('#Phone2').val();
 				Data[5] = $('#Address2').val();
 				Data[6] = $('#Note2').val();
-				Data[7] = $('#Discount2').val();
+				Data[7] = $('#Debt2').val();
 														
 				var URL = "/object/upd/Customer";
 				$.ajax({

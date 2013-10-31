@@ -150,8 +150,9 @@
 		</command>
 										
 		<!-- ============================================================================== -->
-		<!-- SETTING.CUSTOMER	 															-->
+		<!-- SETTING	 															-->
 		<!-- ============================================================================== -->
+		<command name="SettingFactory"><view>SettingFactory</view></command>
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingEmployee"><view>SettingEmployee</view></command>

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingCustomer extends Command {
+	class SettingFactory extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -20,30 +20,28 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$UnitAll = $mUnit->findAll();
-			$CustomerAll = $mCustomer->findAll();
-									
-			$Title = "KHÁCH HÀNG";
+			//-------------------------------------------------------------						
+			$FactoryAll = $mFactory->findAll();
+						
+			$Title = "NHÀ CUNG CẤP";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
-			
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$CustomerAll1 = $mCustomer->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/setting/customer" );
+			$FactoryAll1 = $mFactory->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($FactoryAll->count(), $Config->getValue(), "/setting/supplier" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Customer');
+			$request->setProperty('ActiveAdmin', 'Factory');
 			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('CustomerAll1', $CustomerAll1);
-									
+			$request->setObject('FactoryAll1', $FactoryAll1);
+			$request->setObject('PN', $PN);
+												
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
