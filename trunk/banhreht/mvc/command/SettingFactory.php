@@ -30,7 +30,7 @@
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
 			$FactoryAll1 = $mFactory->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($FactoryAll->count(), $Config->getValue(), "/setting/supplier" );
+			$PN = new \MVC\Domain\PageNavigation($FactoryAll->count(), $Config->getValue(), "/setting/factory" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

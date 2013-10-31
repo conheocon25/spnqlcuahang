@@ -2,19 +2,19 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class OrderImport extends Object{
+class SupplierOrder extends Object{
 
     private $Id;
 	private $IdSupplier;
 	private $Date;
-    private $Description;
+    private $Note;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdSupplier=null, $Date=null, $Description=null) {
+    function __construct( $Id=null, $IdSupplier=null, $Date=null, $Note=null) {
         $this->Id = $Id;
 		$this->IdSupplier = $IdSupplier;
 		$this->Date = $Date;
-		$this->Description = $Description;
+		$this->Note = $Note;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -31,18 +31,13 @@ class OrderImport extends Object{
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date); return $Date->getDateFormat();}
 			
-	function getDescription( ) {return $this->Description;}
-	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
+	function getNote( ) {return $this->Note;}
+	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
 	function getDetailAll(){		
-		$mOID = new \MVC\Mapper\OrderImportDetail();
-		$Tracks = $mOID->trackBy(array(
-			$this->getId(),
-			$this->getIdSupplier(),
-			$this->getId()
-		));
-		
-		return $Tracks;
+		$mOID = new \MVC\Mapper\SupplierOrderDetail();
+		$DetailAll = $mOID->findBy(array($this->getId()));		
+		return $DetailAll;
 	}
 	
 	function getValue(){
@@ -70,7 +65,7 @@ class OrderImport extends Object{
 			'Id' 			=> $this->getId(),
 			'IdSupplier' 	=> $this->getIdSupplier(),
 			'Date'			=> $this->getDate(),
-			'Description'	=> $this->getDescription()
+			'Note'	=> $this->getNote()
 		);
 		return json_encode($json);
 	}
@@ -79,7 +74,7 @@ class OrderImport extends Object{
         $this->Id 			= $Data[0];	
 		$this->IdSupplier 	= $Data[1];	
 		$this->Date 		= $Data[2];
-		$this->Description 	= $Data[3];
+		$this->Note 	= $Data[3];
     }
 	
 	function toXML($Doc){
@@ -92,12 +87,12 @@ class OrderImport extends Object{
 		$Date = $Doc->createElement( "date" );
 		$Date->appendChild($Doc->createTextNode( $this->getDate() ));
 									
-		$Description = $Doc->createElement( "description" );
-		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
+		$Note = $Doc->createElement( "description" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
 		
 		$Obj->appendChild( $IdSupplier	);		
 		$Obj->appendChild( $Date 		);		
-		$Obj->appendChild( $Description	);
+		$Obj->appendChild( $Note	);
 		
 		return $Obj;
 	}

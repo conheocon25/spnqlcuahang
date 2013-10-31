@@ -2,27 +2,26 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
+class SupplierOrder extends Mapper implements \MVC\Domain\SupplierOrderFinder {
 
     function __construct() {
         parent::__construct();
 		
-		$tblOrderImport = "tbl_order_import";
-		$tblOrderImportDetail = "tbl_order_import_detail";
-								
-		$selectAllStmt = sprintf("select * from %s", $tblOrderImport);
-		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImport);
-		$updateStmt = sprintf("update %s set idsupplier=?, date=?, description=? where id=?", $tblOrderImport);
-		$insertStmt = sprintf("insert into %s ( idsupplier, date, description ) values( ?, ?, ?)", $tblOrderImport);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImport);
+		$tblSupplierOrder = "tbl_supplier_order";
+										
+		$selectAllStmt = sprintf("select * from %s", $tblSupplierOrder);
+		$selectStmt = sprintf("select * from %s where id=?", $tblSupplierOrder);
+		$updateStmt = sprintf("update %s set id_supplier=?, date=?, note=? where id=?", $tblSupplierOrder);
+		$insertStmt = sprintf("insert into %s ( id_supplier, date, note ) values( ?, ?, ?)", $tblSupplierOrder);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblSupplierOrder);
 		$findByStmt = sprintf("
 			select 
 				*
 			from 
 				%s 
-			where idsupplier=?
+			where id_supplier=?
 			order by date DESC
-		", $tblOrderImport);
+		", $tblSupplierOrder);
 				
 		$findByTrackingStmt = sprintf("
 			select
@@ -34,7 +33,7 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 			order by 
 				date DESC
 			"
-		, $tblOrderImport);
+		, $tblSupplierOrder);
 		
 		$findByTracking1Stmt = sprintf("
 			select
@@ -42,19 +41,19 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 			from 
 				%s
 			where
-				idsupplier=? AND date >= ? AND date <= ?
+				id_supplier=? AND date >= ? AND date <= ?
 			order by 
 				date DESC
 			"
-		, $tblOrderImport);
+		, $tblSupplierOrder);
 		
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE idsupplier=:idsupplier
+							WHERE id_supplier=:id_supplier
 							ORDER BY date desc
 							LIMIT :start,:max
-				", $tblOrderImport);
+				", $tblSupplierOrder);
 										
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare( $selectStmt );
@@ -68,28 +67,28 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
     }
 	
     function getCollection( array $raw ) {
-        return new OrderImportCollection( $raw, $this );
+        return new SupplierOrderCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\OrderImport( 
+        $obj = new \MVC\Domain\SupplierOrder( 
 			$array['id'],  
-			$array['idsupplier'], 
+			$array['id_supplier'], 
 			$array['date'],	
-			$array['description']
+			$array['note']
 		);
         return $obj;
     }
 	
     protected function targetClass() {        
-		return "OrderImport";
+		return "SupplierOrder";
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdSupplier(), 
 			$object->getDate(),
-			$object->getDescription()
+			$object->getNote()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -100,7 +99,7 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
         $values = array( 
 			$object->getIdSupplier(), 
 			$object->getDate(),
-			$object->getDescription(),
+			$object->getNote(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -113,25 +112,25 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 	//-------------------------------------------------------
 	function findBy(array $values) {
         $this->findByStmt->execute( $values );
-        return new OrderImportCollection( $this->findByStmt->fetchAll(), $this );
+        return new SupplierOrderCollection( $this->findByStmt->fetchAll(), $this );
     }
 		
 	function findByTracking(array $values){
         $this->findByTrackingStmt->execute( $values );
-        return new OrderImportCollection( $this->findByTrackingStmt->fetchAll(), $this );
+        return new SupplierOrderCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
 	
 	function findByTracking1(array $values){
         $this->findByTracking1Stmt->execute( $values );
-        return new OrderImportCollection( $this->findByTracking1Stmt->fetchAll(), $this );
+        return new SupplierOrderCollection( $this->findByTracking1Stmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {		
-		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':id_supplier', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new OrderImportCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new SupplierOrderCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	//-------------------------------------------------------

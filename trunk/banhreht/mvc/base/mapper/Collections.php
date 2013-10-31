@@ -14,11 +14,12 @@ class FactoryCollection extends Collection implements \MVC\Domain\FactoryCollect
 
 class TagCollection extends Collection implements \MVC\Domain\TagCollection {function targetClass( ) {return "\MVC\Domain\Tag";}}
 class TagSelectedCollection extends Collection implements \MVC\Domain\TagSelectedCollection {function targetClass( ) {return "\MVC\Domain\TagSelected";}}
-class SupplierCollection extends Collection implements \MVC\Domain\SupplierCollection {function targetClass( ) {return "\MVC\Domain\Supplier";}}
-class ResourceCollection extends Collection implements \MVC\Domain\ResourceCollection {function targetClass( ) {return "\MVC\Domain\Resource";}}
 
-class OrderImportCollection extends Collection implements \MVC\Domain\OrderImportCollection {function targetClass( ) {return "\MVC\Domain\OrderImport";}}
-class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}
+class ResourceCollection extends Collection implements \MVC\Domain\ResourceCollection {function targetClass( ) {return "\MVC\Domain\Resource";}}
+class SupplierCollection extends Collection implements \MVC\Domain\SupplierCollection {function targetClass( ) {return "\MVC\Domain\Supplier";}}
+class SupplierOrderCollection extends Collection implements \MVC\Domain\SupplierOrderCollection {function targetClass( ) {return "\MVC\Domain\SupplierOrder";}}
+class SupplierOrderDetailCollection extends Collection implements \MVC\Domain\SupplierOrderDetailCollection {function targetClass( ) {return "\MVC\Domain\SupplierOrderDetail";}}
+
 class CustomerCollection extends Collection implements \MVC\Domain\CustomerCollection {function targetClass( ) {return "\MVC\Domain\Customer";}}
 class EmployeeCollection extends Collection implements \MVC\Domain\EmployeeCollection {function targetClass( ) {return "\MVC\Domain\Employee";}}
 class PayRollCollection extends Collection implements \MVC\Domain\PayRollCollection {function targetClass( ) {return "\MVC\Domain\PayRoll";}}

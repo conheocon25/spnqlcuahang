@@ -15,9 +15,9 @@ interface FactoryCollection extends \Iterator {function add( Object $Factory );	
 
 interface SupplierCollection extends \Iterator {function add( Object $supplier );	}
 interface ResourceCollection extends \Iterator {function add( Object $resource );	}
+interface SupplierOrderCollection extends \Iterator {function add( Object $SupplierOrder );	}
+interface SupplierOrderDetailCollection extends \Iterator {function add( Object $SupplierOrderDetail );	}
 
-interface OrderImportCollection extends \Iterator {function add( Object $orderimport );	}
-interface OrderImportDetailCollection extends \Iterator {function add( Object $orderimportdetail );	}
 interface CustomerCollection extends \Iterator {function add( Object $Customer );}
 
 interface OrderExportCollection extends \Iterator {function add( Object $orderexport );	}
