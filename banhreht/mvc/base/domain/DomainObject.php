@@ -4,6 +4,7 @@ namespace MVC\Domain;
 require_once( "mvc/base/domain/Collections.php" );
 require_once( "mvc/base/domain/ObjectWatcher.php" );
 require_once( "mvc/base/domain/HelperFactory.php" );
+require_once( "mvc/base/Library.php" );
 
 abstract class Object {
     private $id = -1;

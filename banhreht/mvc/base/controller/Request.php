@@ -3,7 +3,7 @@
 	
 	require_once("mvc/base/Registry.php");
 	
-	class Request { 		
+	class Request{
 		private $appreg;
 		private $properties;
 		private $objects = array();
@@ -12,7 +12,7 @@
 		/*--------------------------------------------------------------------------------*/
 		function __construct() { 
 			$this->init(); 
-			\MVC\Base\RequestRegistry::setRequest($this ); 
+			\MVC\Base\RequestRegistry::setRequest($this); 
 		} 
 		/*--------------------------------------------------------------------------------*/
 		function init() { 
@@ -29,15 +29,18 @@
 			} 
 		} 	
 		/*--------------------------------------------------------------------------------*/
+		function setProperty( $key, $val ) { 
+			$this->properties[$key] = $val; 
+		}
 		function getProperty( $key ) { 
 			if ( isset( $this->properties[$key] ) ) { 
 				return $this->properties[$key]; 
 			} 
-		} 
-		/*--------------------------------------------------------------------------------*/
-		function setProperty( $key, $val ) { 
-			$this->properties[$key] = $val; 
-		} 
+		}		
+		function getProperties( ){
+			return $this->properties;
+		}
+		
 		/*--------------------------------------------------------------------------------*/
 		function __clone() {
 			$this->properties = array();
@@ -57,21 +60,23 @@
 		/*--------------------------------------------------------------------------------*/
 		function setObject( $name, $object ) {
 			$this->objects[$name] = $object;
-		}
-		/*--------------------------------------------------------------------------------*/
+		}		
 		function getObject( $name ) {
 			if ( isset( $this->objects[$name] ) ) {
 				return $this->objects[$name];
 			}
 			return null;
 		}
+		function getObjects(){
+			return $this->objects;
+		}
 		/*--------------------------------------------------------------------------------*/
 		function setCommand( \MVC\Command\Command $command ) {
 			$this->lastCommand = $command;
 		}
 		/*--------------------------------------------------------------------------------*/
-		function getLastCommand() {
+		function getLastCommand(){
 			return $this->lastCommand;
 		}		
-	}		
+	}
 ?>

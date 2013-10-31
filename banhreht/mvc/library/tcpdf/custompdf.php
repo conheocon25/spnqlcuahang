@@ -375,25 +375,29 @@ class CUSTOMPDF extends TCPDF {
 	public function reFormat($format, $orientation='P'){
 		parent::setPageFormat($format, $orientation);
 	}
-	public function Header() {
-		//Logomvc\templates\theme\base\images\app
-		$image_file = 'mvc/templates/theme/base/images/app/logo_report.png';
-        $this->Image($image_file, 6, 2, 13, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-		//setfont
-		$this->SetFont('freeserif', '',10);
-		//title
-		$this->SetX(20);
-		$this->Write(0, 'Ðại lý Thức Ăn Gia Súc Minh Tài', '', 0, 'L', true, 0, false, false, 0);
-		$this->SetX(20);
-		$this->Write(0, 'F9 - Thành phố Vĩnh Long', '', 0, 'L', true, 0, false, false, 0);
-		$this->SetX(20);
-		$this->Write(0, '(0703) 85 66 77', '', 0, 'L', true, 0, false, false, 0);
-	}
-	// Page footer
-	public function Footer() {
-		$this->SetY(-15);
-		$this->SetFont('freeserif', '', 8);
-		$this->Cell(0, 10, 'Trang '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');	
-	}
+	
+	//Page header
+    public function Header() {        
+        // Set font
+        $this->SetFont('arial', 'B', 14);
+        // Title
+		$this->Ln(6);		
+        $this->Cell(0, 5, 'CAFE CÕI RIÊNG', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+		$this->SetFont('arial', '', 11);
+		$this->Ln(5);			 
+        $this->Cell(0, 0, 'ĐC: Phạm Thái Bường, P.4, TP.VL', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+		$this->Ln(5);		
+        $this->Cell(0, 0, 'ĐT: 0939 000 848', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    }
+
+    // Page footer
+    public function Footer11() {
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('freeserif', 'I', 8);
+        // Page number
+        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+    }
 }
 ?>

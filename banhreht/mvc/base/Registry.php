@@ -13,13 +13,15 @@
 	class SessionRegistry extends Registry { 
 		private static $instance; 
 		
+		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			session_start(); 
+			require_once 'mvc/domain/User.php';			
+			session_start();
 		}
 		
- 		static function instance() { 
+ 		static function instance(){
 			if ( ! isset(self::$instance) ) { self::$instance = new self(); } 
-				return self::$instance;          
+				return self::$instance;
 		} 
  
 		protected function get( $key ) { 
@@ -31,151 +33,45 @@
 		protected function set( $key, $val ) { 
 			$_SESSION[__CLASS__][$key] = $val; 
 		} 
-		
-		//Quản lí HeadNetwork
-		function setCurrentHeadNetwork( $value ) { 
-			self::instance()->set('bra_HeadNetwork', $value); 
-		}
-		function getCurrentHeadNetwork( ) { 
-			return self::instance()->get('bra_HeadNetwork');
-		}
-		
-		function setCurrentNetwork( $value ) { 
-			self::instance()->set('bra_CurrentNetwork', $value); 
-		}
-		function getCurrentNetwork( ) { 
-			return self::instance()->get('bra_CurrentNetwork');
-		}
-		
-		//Quản lí IdDomain
-		function setCurrentDomain( $value ) { 
-			self::instance()->set('bra_IdDomain', $value); 
-		}
-		function getCurrentDomain( ) { 
-			return self::instance()->get('bra_IdDomain');
-		}
-				
-		//Quản lí ngày tháng lọc thông tin
-		function setCurrentMonth( $value ) { 
-			self::instance()->set('bra_CurrentMonth', $value ); 
-		}
-		function getCurrentMonth( ) { 
-			return self::instance()->get('bra_CurrentMonth');
-		}
-		
-		function setCurrentYear( $value ) { 
-			self::instance()->set('bra_CurrentYear', $value ); 
-		}
-		function getCurrentYear( ) { 
-			return self::instance()->get('bra_CurrentYear');
-		}
-		
+												
 		//Quản lí User
-		function setCurrentUser( $user ) {
-			return self::instance()->set('bra_CurrentUser', $user);
+		function setCurrentUser( \MVC\Domain\User $user ) {
+			return self::instance()->set('cafe_current_user', $user);
 		}
 		function getCurrentUser() {
-			return self::instance()->get('bra_CurrentUser');
+			return self::instance()->get('cafe_current_user');
 		}
 		
-		function setCurrentIdUser( $user ) {
-			return self::instance()->set('bra_CurrentIdUser', $user);
+		function setCurrentTheme( $theme ) {
+			return self::instance()->set('cafe_current_theme', $theme);
+		}
+		
+		function getCurrentTheme(){
+			$Theme = self::instance()->get('cafe_current_theme');
+			if (!isset($Theme)){
+				$mConfig = new \MVC\Mapper\Config();
+				$Config = $mConfig->findByName("THEME");
+				if (!isset($Config))
+					return "grey";
+				else
+					return $Config->getValue();
+			}
+				
+			return self::instance()->get('cafe_current_theme');
+		}
+		
+		function setCurrentIdUser( $Iduser ) {
+			return self::instance()->set('cafe_current_Iduser', $Iduser);
 		}
 		function getCurrentIdUser() {
-			return self::instance()->get('bra_CurrentIdUser');
+			return self::instance()->get('cafe_current_Iduser');
 		}
 		
-		function setCurrentPermission( $permission ) {
-			return self::instance()->set('bra_CurrentPermission', $permission);
+		function setCurrentAction( $Action ) {return self::instance()->set('cafe_current_action', $Action);}		
+		function getCurrentAction() {
+			$result = self::instance()->get('cafe_current_action');			
+			return $result;
 		}
-		function getCurrentPermission() {
-			return self::instance()->get('bra_CurrentPermission');
-		}
-		function setCurrentOrder( $order ) {
-			return self::instance()->set('bra_CurrentOrder', $order);
-		}
-		function getCurrentOrder() {
-			return self::instance()->get('bra_CurrentOrder');
-		}
-		function setCurrentCustomer( $Customer ) {
-			return self::instance()->set('bra_CurrentCustomer', $Customer);
-		}
-		function getCurrentCustomer() {
-			return self::instance()->get('bra_CurrentCustomer');
-		}
-		
-		function setViewProductsPage( $ViewProducts ) {
-			return self::instance()->set('bra_ViewProducts', $ViewProducts);
-		}
-		function getViewProductsPage() {
-			return self::instance()->get('bra_ViewProducts');
-		}
-		
-		function setViewProductsCompany( $ViewProductsCompany ) {
-			return self::instance()->set('bra_ViewProductsCompany', $ViewProductsCompany);
-		}
-		function getViewProductsCompany() {
-			return self::instance()->get('bra_ViewProductsCompany');
-		}
-		function setViewImportsPage( $ViewImports ) {
-			return self::instance()->set('bra_ViewImports', $ViewImports);
-		}
-		function getViewImportsPage() {
-			return self::instance()->get('bra_ViewImports');
-		}
-		function setViewImportsCompany( $ViewImportsCompany ) {
-			return self::instance()->set('bra_ViewImportsCompany', $ViewImportsCompany);
-		}
-		function getViewImportsCompany() {
-			return self::instance()->get('bra_ViewImportsCompany');
-		}		
-		function setViewExportsCustomer( $ViewExportsCustomer ) {
-			return self::instance()->set('bra_ViewExportsCustomer', $ViewExportsCustomer);
-		}
-		function getViewExportsCustomer() {
-			return self::instance()->get('bra_ViewExportsCustomer');
-		}
-		function setViewExportsPage( $ViewExportsPage ) {
-			return self::instance()->set('bra_ViewExportsPage', $ViewExportsPage);
-		}
-		function getViewExportsPage() {
-			return self::instance()->get('bra_ViewExportsPage');
-		}
-		function setCurrentDate( $CurrentDate ) {
-			return self::instance()->set('bra_CurrentDate', $CurrentDate);
-		}
-		function getCurrentDate() {
-			return self::instance()->get('bra_CurrentDate');
-		}
-		
-		function setCurrentFactory( $CurrentFactory ) {
-			return self::instance()->set('bra_CurrentFactory', $CurrentFactory);
-		}
-		function getCurrentFactory() {
-			return self::instance()->get('bra_CurrentFactory');
-		}
-		
-		function setCurrentDateStart( $CurrentDateStart ) {
-			return self::instance()->set('bra_CurrentDateStart', $CurrentDateStart);
-		}
-		function getCurrentDateStart() {
-			return self::instance()->get('bra_CurrentDateStart');
-		}
-		
-		function setCurrentDateEnd( $CurrentDateEnd ) {
-			return self::instance()->set('bra_CurrentDateEnd', $CurrentDateEnd);
-		}
-		function getCurrentDateEnd() {
-			return self::instance()->get('bra_CurrentDateEnd');
-		}
-		
-		function setCurrentSupplier( $CurrentSupplier ) {
-			return self::instance()->set('bra_CurrentSupplier', $CurrentSupplier);
-		}
-		function getCurrentSupplier() {
-			return self::instance()->get('bra_CurrentSupplier');
-		}
-		
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
@@ -214,6 +110,8 @@
 		private $freezedir = "data";
 		private $values = array();
 		private $mtimes = array();
+		private $base;
+		private $user;
 
 		private function __construct() { }
 
@@ -246,28 +144,21 @@
 			file_put_contents( $path, serialize( $val ) );
 			$this->mtimes[$key]=time();
 		}
-		
-		static function setInfo( $info ) {
-			return self::instance()->set('info', $info);
-		}
-		static function getInfo() {
-			return self::instance()->get('info');
-		}
-			
+								
+		//---------------------------------------------------------------------
+		// Thông tin App của hệ thống
+		//---------------------------------------------------------------------
+				
+		//---------------------------------------------------------------------
+		// Thông tin DNS của hệ thống
+		//---------------------------------------------------------------------		
 		static function getDSN() {
 			return self::instance()->get('dsn');
 		}
 		static function setDSN( $dsn ) {
 			return self::instance()->set('dsn', $dsn);
 		}
-		/*
-		static function setUser( \MVC\Domain\User $user ) {
-			return self::instance()->set('user', $user);
-		}
-		static function getUser() {
-			return self::instance()->get('user');
-		}
-		*/
+		
 		static function setControllerMap( \MVC\Controller\ControllerMap $map  ) {
 			self::instance()->set( 'cmap', $map );
 		}
@@ -284,6 +175,11 @@
 				$obj->appController = new \MVC\Controller\AppController( $cmap );
 			}
 			return $obj->appController;
+		}
+		
+		static function getLimit(){
+			
+			return false;
 		}
 	}
 	
