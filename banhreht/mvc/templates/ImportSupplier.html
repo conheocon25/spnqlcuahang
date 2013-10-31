@@ -45,7 +45,7 @@
 									<tr tal:repeat="Order OrderAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Order/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
-										<td><div class="text-left" tal:content="Order/getDescription"/></td>
+										<td><div class="text-left" tal:content="Order/getNote"/></td>
 										<td>
 											<div class="text-right">
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
@@ -77,7 +77,7 @@
 									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
-											<input id="Description1" name="Description1" type="text" class="form-control input-small"/>
+											<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -107,7 +107,7 @@
 									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
-											<input id="Description2" name="Description2" type="text" class="form-control input-small"/>
+											<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -134,7 +134,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/OrderImport/0";
+				var URL = "/object/del/SupplierOrder/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -161,7 +161,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/OrderImport/" + $(this).attr('alt');
+				var URL = "/object/del/SupplierOrder/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -178,9 +178,9 @@
 				Data[0] = 'null';
 				Data[1] = $('#IdSupplier').attr('alt');
 				Data[2] = $('#Date1').val();				
-				Data[3] = $('#Description1').val();
+				Data[3] = $('#Note1').val();
 							
-				var URL = "/object/ins/OrderImport";
+				var URL = "/object/ins/SupplierOrder";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -196,13 +196,13 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/OrderImport/" + $(this).attr('data-id');
+				var url = "/object/load/SupplierOrder/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
 					$('#Date2').attr('value', data.Date);
-					$('#Description2').attr('value', data.Description);
+					$('#Note2').attr('value', data.Note);
 				});
 			});
 			
@@ -214,9 +214,9 @@
 				Data[0] = $('#URLUpdButton').attr('alt');				
 				Data[1] = $('#IdSupplier').attr('alt');
 				Data[2] = $('#Date2').val();				
-				Data[3] = $('#Description2').val();
+				Data[3] = $('#Note2').val();
 				
-				var URL = "/object/upd/OrderImport";
+				var URL = "/object/upd/SupplierOrder";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

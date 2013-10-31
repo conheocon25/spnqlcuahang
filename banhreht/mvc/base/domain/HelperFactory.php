@@ -13,15 +13,14 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Tag.php");
 	require_once( "mvc/mapper/TagSelected.php");
 	require_once( "mvc/mapper/R2T.php");
-	
-	require_once( "mvc/mapper/Supplier.php" );	
-	require_once( "mvc/mapper/Resource.php" );
-		
+				
 	require_once( "mvc/mapper/OrderExport.php" );
 	require_once( "mvc/mapper/OrderExportDetail.php" );
-		
-	require_once( "mvc/mapper/OrderImport.php" );
-	require_once( "mvc/mapper/OrderImportDetail.php");
+	
+	require_once( "mvc/mapper/Supplier.php" );
+	require_once( "mvc/mapper/Resource.php" );
+	require_once( "mvc/mapper/SupplierOrder.php" );
+	require_once( "mvc/mapper/SupplierOrderDetail.php");
 	
 	require_once( "mvc/mapper/Customer.php" );
 	require_once( "mvc/mapper/Employee.php" );

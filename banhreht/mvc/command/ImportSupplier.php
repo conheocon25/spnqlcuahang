@@ -34,7 +34,7 @@
 			);
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$OrderAll = $mOrderImport->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
+			$OrderAll = $mSupplierOrder->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($Supplier->getOrderAll()->count(), $Config->getValue(), $Supplier->getURLImport());
 			
 			//-------------------------------------------------------------

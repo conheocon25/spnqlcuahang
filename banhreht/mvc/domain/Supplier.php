@@ -150,73 +150,18 @@ class Supplier extends Object{
 	//Lấy về danh sách trả tiền	
 	function getPaidAll(){		
 		$mSP = new \MVC\Mapper\PaidSupplier();
-		$PaidAll = $mSP->findBy(array($this->getId()));
-		
+		$PaidAll = $mSP->findBy(array($this->getId()));		
 		return $PaidAll;
-	}
-	function getPaidsTracking(){
-		if (!isset($this->PaidsTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSupplierDateStart();
-			$DateEnd = $Session->getReportSupplierDateEnd();
-
-			$mPaid = new \MVC\Mapper\PaidSupplier();
-			$this->PaidsTracking = $mPaid->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
-		}
-		return $this->PaidsTracking;
-	}
-	function getPaidsTrackingValue(){
-		$Paids = $this->getPaidsTracking();
-		$Sum = 0;
-		$Paids->rewind();
-		while ($Paids->valid()){
-			$Sum += $Paids->current()->getValue();
-			$Paids->next();
-		}
-		return $Sum;
-	}
-	function getPaidsTrackingValuePrint(){
-		$Value = $this->getPaidsTrackingValue();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
 	}
 	
 			
 	//Lấy về danh sách các đơn hàng
 	function getOrderAll(){
-		$mOrderImport = new \MVC\Mapper\OrderImport();
-		$OrderAll = $mOrderImport->findBy(array($this->getId()));
+		$mSupplierOrder = new \MVC\Mapper\SupplierOrder();
+		$OrderAll = $mSupplierOrder->findBy(array($this->getId()));
 		return $OrderAll;
 	}
-		
-	function getOrdersTracking(){
-		if (!isset($this->OrdersTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSupplierDateStart();
-			$DateEnd = $Session->getReportSupplierDateEnd();
-
-			$mOrder = new \MVC\Mapper\OrderImport();
-			$this->OrdersTracking = $mOrder->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
-		}
-		return $this->OrdersTracking;
-	}
-	
-	function getOrdersTrackingValue(){
-		$Orders = $this->getOrdersTracking();
-		$Sum = 0;
-		$Orders->rewind();
-		while ($Orders->valid()){
-			$Sum += $Orders->current()->getValue();
-			$Orders->next();
-		}
-		return $Sum;
-	}
-	function getOrdersTrackingValuePrint(){
-		$Value = $this->getOrdersTrackingValue();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
-	}
-	
+			
 	//Lấy về danh sách các tài nguyên nhà cung cấp có
 	function getResourceAll() {
 		$mResource = new \MVC\Mapper\Resource();
