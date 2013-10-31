@@ -1,0 +1,14 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="0" cellpadding="2">
+		<tr>			
+			<th align='center'><b>NGÀY</b></th>						
+			<th align='right'><b>TIỀN ỨNG</b></th>
+		</tr>
+		<tr tal:repeat="EL ELs">
+			<td align='center' tal:content="EL/getDatePrint"></td>
+			<td align='right' tal:content="EL/getValuePrint"></td>
+		</tr>
+	</table>	
+</body>
+</html>

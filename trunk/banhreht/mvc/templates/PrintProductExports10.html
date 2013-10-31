@@ -1,0 +1,22 @@
+					<table cellpadding="2" cellspacing="0" border="1">
+						<thead>					
+							<tr>								
+								<th align='center'>NGÀY</th>
+								<th align='center'>4gx30<BR/>(120g)</th>
+								<th align='center'>5gx30<BR/>(150g)</th>
+								<th align='center'>6gx30<BR/>(180g)</th>								
+								<th align='center'>7gx30<BR/>(210g)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PETracking PETrackings">								
+								<td align='center'>
+									<B tal:content="PETracking/getDatePrint" />
+								</td>
+								<td align='center' tal:content="PETracking/getProduct07"/>
+								<td align='center' tal:content="PETracking/getProduct08"/>
+								<td align='center' tal:content="PETracking/getProduct12"/>
+								<td align='center' tal:content="PETracking/getProduct18"/>
+							</tr>
+						</tbody>
+					</table>

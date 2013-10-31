@@ -1,0 +1,21 @@
+<html>	
+<body>			
+				<table border="1" cellspacing="0" cellpadding="2">
+					<tr>
+						<th align='center' width="20%"><b>NGÀY</b></th>
+						<th align='left'><b>SẢN PHẨM</b></th>
+						<th align='right'><b>SỐ LƯỢNG</b></th>
+						<th align='right'><b>ĐƠN GIÁ</b></th>
+						<th align='right'><b>THÀNH TIỀN</b></th>
+					</tr>
+					<tr tal:repeat="RI	RIs">
+						<td align='center' tal:content="RI/getDatePrint"/>
+						<td align='left' tal:content="RI/getNameResource"/>
+						<td align='right' tal:content="RI/getQuantityPrint"/>
+						<td align='right' tal:content="RI/getPricePrint"/>
+						<td align='right' tal:content="RI/getValuePrint"/>
+					</tr>
+				</table>
+		
+</body>
+</html>

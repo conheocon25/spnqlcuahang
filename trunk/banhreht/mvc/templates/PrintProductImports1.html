@@ -1,0 +1,42 @@
+					<table cellpadding="0" cellspacing="0" border="1">
+						<thead>					
+							<tr>								
+								<th align='right'>NGÀY</th>
+								<th align='center'>nhỏx6<BR/>(18g)</th>
+								<th align='center'>nhỏx7<BR/>(21g)</th>
+								<th align='center'>nhỏx10<BR/>(30g)</th>
+								<th align='center'>nhỏx18<BR/>(54g)</th>
+								<th align='center'>16x30<BR/>(90g)</th>
+								<th align='center'>16x30<BR/>(150g)</th>								
+								<th align='center'>16calx30<BR/>(150g)</th>
+								<th align='center'>16calx50<BR/>(250g)</th>
+								<th align='center'>16calx90<BR/>(500g)</th>
+								<th align='center'>18x30<BR/>(180g)</th>
+								<th align='center'>19x45<BR/>(300g)</th>
+								<th align='center'>20x30<BR/>(210g)</th>
+								<th align='center'>22x30<BR/>(240g)</th>
+								<th align='center'>22calx60<BR/>(500g)</th>
+								<th align='center'>18calx70<BR/>(500g)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PI PIs">
+								<td align='right'><b tal:content="PI/getDatePrint1" /></td>
+								<td align='center' tal:content="PI/getProduct16"/>
+								<td align='center' tal:content="PI/getProduct17"/>
+								<td align='center' tal:content="PI/getProduct20"/>
+								<td align='center' tal:content="PI/getProduct21"/>
+								<td align='center' tal:content="PI/getProduct02"/>
+								<td align='center' tal:content="PI/getProduct04"/>
+								<td align='center' tal:content="PI/getProduct06"/>
+								<td align='center' tal:content="PI/getProduct10"/>
+								<td align='center' tal:content="PI/getProduct18"/>
+								<td align='center' tal:content="PI/getProduct08"/>								
+								<td align='center' tal:content="PI/getProduct11"/>					
+								<td align='center' tal:content="PI/getProduct13"/>
+								<td align='center' tal:content="PI/getProduct15"/>
+								<td align='center' tal:content="PI/getProduct19"/>
+								<td align='center' tal:content="PI/getProduct22"/>
+							</tr>
+						</tbody>
+					</table>				
