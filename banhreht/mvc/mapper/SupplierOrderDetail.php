@@ -36,6 +36,7 @@ class SupplierOrderDetail extends Mapper implements \MVC\Domain\SupplierOrderDet
 				%s S inner join %s SD on S.id = SD.id_order
 			where id_resource=? and date >= ? and date <= ?
 		", $tblOrderImport, $tblSupplierOrderDetail);		
+		
 		$trackByStmt = sprintf("
 							SELECT
 								IFNULL(0, ODI.id) as id,
@@ -56,23 +57,18 @@ class SupplierOrderDetail extends Mapper implements \MVC\Domain\SupplierOrderDet
 							) ODI
 							ON P.id = ODI.id_resource
 		
-		", $tblResource, $tblSupplierOrderDetail);
-						
-		
+		", $tblResource, $tblSupplierOrderDetail);		
 		$existStmt = sprintf("select id from %s where id_order=? and id_resource=?", $tblSupplierOrderDetail);
-		$EvaluateStmt = sprintf("select sum(count*price) from %s where id_order=?", $tblSupplierOrderDetail);
-						
+								
         $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);                            
         $this->selectStmt = self::$PDO->prepare( $selectStmt );
         $this->updateStmt = self::$PDO->prepare( $updateStmt );
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		$this->findByStmt = self::$PDO->prepare($findByStmt);		
 		$this->trackByStmt = self::$PDO->prepare($trackByStmt);
-		$this->trackByCountStmt = self::$PDO->prepare($trackByCountStmt);		
 		$this->existStmt = self::$PDO->prepare($existStmt);
-		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);
-		$this->evalPriceStmt = self::$PDO->prepare($evalPriceStmt);		
+		
 		
     } 
     function getCollection( array $raw ) {return new SupplierOrderDetailCollection( $raw, $this );}
@@ -116,6 +112,11 @@ class SupplierOrderDetail extends Mapper implements \MVC\Domain\SupplierOrderDet
     }
 	
 	//-------------------------------------------------------
+	function trackBy( $values ) {
+        $this->trackByStmt->execute( $values );
+        return new SupplierOrderDetailCollection( $this->trackByStmt->fetchAll(), $this );
+    }
+	
 	function findBy( $values ) {
         $this->findByStmt->execute( $values );
         return new SupplierOrderDetailCollection( $this->findByStmt->fetchAll(), $this );

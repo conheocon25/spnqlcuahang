@@ -34,9 +34,15 @@ class SupplierOrder extends Object{
 	function getNote( ) {return $this->Note;}
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
+	function getTrackAll(){		
+		$mOD = new \MVC\Mapper\SupplierOrderDetail();
+		$DetailAll = $mOD->trackBy(array($this->getId(), $this->getIdSupplier(), $this->getId()));
+		return $DetailAll;
+	}
+	
 	function getDetailAll(){		
-		$mOID = new \MVC\Mapper\SupplierOrderDetail();
-		$DetailAll = $mOID->findBy(array($this->getId()));		
+		$mOD = new \MVC\Mapper\SupplierOrderDetail();
+		$DetailAll = $mOD->findBy(array($this->getId()));		
 		return $DetailAll;
 	}
 	
@@ -102,6 +108,7 @@ class SupplierOrder extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLPrint(){return "/import/".$this->getIdSupplier()."/".$this->getId()."/print";}	
 	function getURLDetail(){return "/import/".$this->getIdSupplier()."/".$this->getId();}
+	function getURLExe(){return "/import/".$this->getIdSupplier()."/".$this->getId()."/exe";}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

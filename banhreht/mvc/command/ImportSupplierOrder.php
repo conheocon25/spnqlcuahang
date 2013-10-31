@@ -17,14 +17,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mOrderImport 	= new \MVC\Mapper\OrderImport();
-			$mSupplier 		= new \MVC\Mapper\Supplier();
+			$mSupplierOrder 	= new \MVC\Mapper\SupplierOrder();
+			$mSupplier 			= new \MVC\Mapper\Supplier();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$Supplier 	= $mSupplier->find($IdSupplier);
-			$Order 		= $mOrderImport->find($IdOrder);
+			$Order 		= $mSupplierOrder->find($IdOrder);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

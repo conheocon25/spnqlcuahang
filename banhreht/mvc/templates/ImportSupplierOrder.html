@@ -28,7 +28,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Detail Order/getDetailAll">
+									<tr tal:repeat="Detail Order/getTrackAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
@@ -90,6 +90,7 @@
 			</div>
 		</div>
 		<div id="IdOrder" tal:attributes="alt Order/getId" />
+		<div id="URLExe" tal:attributes="alt Order/getURLExe" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -116,10 +117,11 @@
 				Data[3] = $('#Count2').val();
 				Data[4] = $('#Price2').val();
 				
-				var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+				var URL = $("#URLExe").attr('alt');
 				$.ajax({
-					type: "POST",					
+					type: "POST",
 					url: URL,
+					data: {Data:Data},
 					success: function(msg){
 						location.reload();
 					}

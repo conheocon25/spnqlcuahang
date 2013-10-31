@@ -2,7 +2,7 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class OrderImportDetail extends Object{
+class SupplierOrderDetail extends Object{
     private $Id;
 	private $IdOrder;
 	private $IdResource;
