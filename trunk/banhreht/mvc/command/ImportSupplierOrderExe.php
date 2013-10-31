@@ -11,19 +11,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty("IdSupplier");
-			$IdOrder = $request->getProperty("IdOrder");
-			$IdResource = $request->getProperty("IdResource");
-			$Count = $request->getProperty("Count");
-			$Price = $request->getProperty("Price");
+			$Data = $request->getProperty('Data');
+										
+			$IdSupplier = $Data[0];
+			$IdOrder 	= $Data[1];
+			$IdResource = $Data[2];
+			$Count 		= $Data[3];
+			$Price 		= $Data[4];
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 						
 			$mSupplier = new \MVC\Mapper\Supplier();
-			$mOI = new \MVC\Mapper\OrderImport();
-			$mOID = new \MVC\Mapper\OrderImportDetail();
+			$mOI = new \MVC\Mapper\SupplierOrder();
+			$mOID = new \MVC\Mapper\SupplierOrderDetail();
 			$mResource = new \MVC\Mapper\Resource();
 						
 			//-------------------------------------------------------------
@@ -46,7 +48,7 @@
 					$mOID->update($OID);
 				}
 			}else{
-				$OID = new \MVC\Domain\OrderImportDetail(
+				$OID = new \MVC\Domain\SupplierOrderDetail(
 					null,
 					$IdOrder,
 					$IdResource,
