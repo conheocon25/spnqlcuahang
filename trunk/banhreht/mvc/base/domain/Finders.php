@@ -26,7 +26,7 @@ interface FactoryFinder extends Finder {}
 interface SupplierFinder extends Finder {}
 interface ResourceFinder extends Finder {}
 
-interface OrderExportFinder extends Finder {}
+interface CustomerOrderFinder extends Finder {}
 interface OrderExportDetailFinder extends Finder {}
 
 interface SupplierOrderFinder extends Finder {}

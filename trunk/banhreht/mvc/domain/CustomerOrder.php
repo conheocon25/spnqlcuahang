@@ -2,31 +2,29 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class OrderExport extends Object{
+class CustomerOrder extends Object{
 
     private $Id;
-	private $IdUser;
-	private $Date;
-	private $State;
-    private $Description;
+	private $IdCustomer;
+	private $Date;	
+    private $Note;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdUser=null, $Date=null, $State=null, $Description=null){
+    function __construct( $Id=null, $IdCustomer=null, $Date=null, $Note=null){
         $this->Id = $Id;
-		$this->IdUser = $IdUser;
-		$this->Date = $Date;
-		$this->State = $State;
-		$this->Description = $Description;
+		$this->IdCustomer = $IdCustomer;
+		$this->Date = $Date;		
+		$this->Note = $Note;
         parent::__construct( $Id );
     }
 	function setId( $Id) { $this->Id = $Id;}
     function getId( ) {return $this->Id;}
 	
-	function getIdUser( ) {return $this->IdUser;}
-    function setIdUser( $IdUser ){$this->IdUser = $IdUser;$this->markDirty();}
+	function getIdCustomer( ) {return $this->IdCustomer;}
+    function setIdCustomer( $IdCustomer ){$this->IdCustomer = $IdCustomer;$this->markDirty();}
 	function getUser( ) {
 		$mUser = new \MVC\Mapper\User();
-		$User = $mUser->find($this->IdUser);
+		$User = $mUser->find($this->IdCustomer);
 		return $User;
 	}
 	
@@ -39,13 +37,10 @@ class OrderExport extends Object{
 	function getState( ) {return $this->State;}
 	function getStatePrint( ) {return $this->State==1?'đã tính tiền':'chưa tính tiền';}
     function setState( $State ) {$this->State = $State;$this->markDirty();}
-	
-	function getDescription( ) {return $this->Description;}
-	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
-	
-	function getDetailAll(){		
-		$mOED = new \MVC\Mapper\OrderExportDetail();
-		$DetailAll = $mOED->findBy(array($this->getId()));
+			
+	function getDetailAll(){
+		$mOD = new \MVC\Mapper\CustomerOrderDetail();
+		$DetailAll = $mOD->findBy(array($this->getId()));
 		return $DetailAll;
 	}
 	
@@ -60,22 +55,15 @@ class OrderExport extends Object{
 		return $Value;
 	}
 	
-	function getValuePrint(){
-		$Value = new \MVC\Library\Number($this->getValue());
-		return $Value->formatCurrency()." đ";
-	}
-	
-	function getValueStrPrint(){
-		$Value = new \MVC\Library\Number($this->getValue());
-		return $Value->readDigit()." đồng";
-	}
+	function getValuePrint(){$Value = new \MVC\Library\Number($this->getValue()); return $Value->formatCurrency()." đ";}	
+	function getValueStrPrint(){$Value = new \MVC\Library\Number($this->getValue()); return $Value->readDigit()." đồng";}
 	
 	function toXML($Doc){
 		$Obj = $Doc->createElement( "orderexport" );
 		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
 						
-		$IdUser = $Doc->createElement( "iduser" );
-		$IdUser->appendChild($Doc->createTextNode( $this->getIdUser() ));
+		$IdCustomer = $Doc->createElement( "iduser" );
+		$IdCustomer->appendChild($Doc->createTextNode( $this->getIdCustomer() ));
 		
 		$Date = $Doc->createElement( "date" );
 		$Date->appendChild($Doc->createTextNode( $this->getDate() ));
@@ -83,13 +71,13 @@ class OrderExport extends Object{
 		$State = $Doc->createElement( "state" );
 		$State->appendChild($Doc->createTextNode( $this->getState() ));
 		
-		$Description = $Doc->createElement( "description" );
-		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
+		$Note = $Doc->createElement( "description" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
 		
-		$Obj->appendChild( $IdUser	);
+		$Obj->appendChild( $IdCustomer	);
 		$Obj->appendChild( $Date 		);
 		$Obj->appendChild( $State 		);
-		$Obj->appendChild( $Description	);
+		$Obj->appendChild( $Note	);
 						
 		return $Obj;
 	}
@@ -97,14 +85,8 @@ class OrderExport extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/selling/".$this->getId()."/print";}
-		
-	function getURLUpdLoad(){return "/selling/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/selling/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/selling/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/selling/".$this->getId()."/del/exe";}
-	function getURLDetail(){return "/selling/".$this->getId();}
+	function getURLPrint(){return "/export/".$this->getId()."/print";}
+	function getURLDetail(){return "/export/".$this->getId();}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

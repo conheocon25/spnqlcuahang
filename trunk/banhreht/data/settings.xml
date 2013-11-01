@@ -30,6 +30,28 @@
 		<command name="S2AGet"><view>S2AGet</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- EXPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Export"><view>Export</view></command>
+		<command name="ExportCustomer"><view>ExportCustomer</view></command>
+		<command name="ExportCustomerOrder"><view>ExportCustomerOrder</view></command>
+		<command name="ExportCustomerOrderPrint"><view>ExportCustomerOrderPrint</view></command>
+		<command name="ExportCustomerOrderDetail"><view>ExportCustomerOrderDetail</view></command>
+		<command name="ExportCustomerOrderDetailExe"><view>ExportCustomerOrderDetailExe</view></command>
+		
+		<command name="ExportFactory"><view>ExportFactory</view></command>
+		<command name="ExportFactoryOrder"><view>ExportFactoryOrder</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>												
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
+		
+		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
 		<command name="Money"><view>Money</view></command>
@@ -55,8 +77,7 @@
 		<command name="SellingLog"><view>SellingLog</view></command>
 		<command name="SellingCallLoad"><view>SellingCallLoad</view></command>
 		<command name="SellingCallExe"><view>SellingCallExe</view></command>
-		
-		<command name="Import"><view>Import</view></command>
+				
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
 		
@@ -175,37 +196,7 @@
 		
 		<command name="SettingSupplierResourcePrintBarcode"><view>SettingSupplierResourcePrintBarcode</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-		
-								
-		<!-- ============================================================================== -->
-		<!-- SETTING.INFO		 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
-		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>
-		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
-		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
-												
-		<!-- ============================================================================== -->
-		<!-- IMPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>
-		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
-		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
-		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		
-		<command name="ImportSupplierOrderBarcode">
-			<view>ImportSupplierOrderBarcode</view>
-			<status value="CMD_OK"><forward>ImportSupplierOrderUpdLoad</forward></status>
-			<status value="CMD_NO_AUTHOR"><forward>ImportSupplierOrder</forward></status>
-		</command>
-		
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
-		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
-		
+													
+				
 	</control>
 </options>

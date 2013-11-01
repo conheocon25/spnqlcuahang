@@ -20,7 +20,7 @@ interface SupplierOrderDetailCollection extends \Iterator {function add( Object 
 
 interface CustomerCollection extends \Iterator {function add( Object $Customer );}
 
-interface OrderExportCollection extends \Iterator {function add( Object $orderexport );	}
+interface CustomerOrderCollection extends \Iterator {function add( Object $CustomerOrder );	}
 interface OrderExportDetailCollection extends \Iterator {function add( Object $orderexportdetail );	}
 
 interface EmployeeCollection extends \Iterator {function add( Object $Employee );}

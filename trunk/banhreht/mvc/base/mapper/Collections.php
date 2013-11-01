@@ -24,7 +24,7 @@ class CustomerCollection extends Collection implements \MVC\Domain\CustomerColle
 class EmployeeCollection extends Collection implements \MVC\Domain\EmployeeCollection {function targetClass( ) {return "\MVC\Domain\Employee";}}
 class PayRollCollection extends Collection implements \MVC\Domain\PayRollCollection {function targetClass( ) {return "\MVC\Domain\PayRoll";}}
 
-class OrderExportCollection extends Collection implements \MVC\Domain\OrderExportCollection {function targetClass( ) {return "\MVC\Domain\OrderExport";}}
+class CustomerOrderCollection extends Collection implements \MVC\Domain\CustomerOrderCollection {function targetClass( ) {return "\MVC\Domain\CustomerOrder";}}
 class OrderExportDetailCollection extends Collection implements \MVC\Domain\OrderExportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderExportDetail";}}
 
 class UnitCollection extends Collection implements \MVC\Domain\UnitCollection{function targetClass(){return "\MVC\Domain\Unit";}}

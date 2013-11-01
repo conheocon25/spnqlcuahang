@@ -124,7 +124,8 @@ class Customer extends Object{
 	}
 	
 	//=================================================================================
-	function getURLCollect(){return "/collect/customer/".$this->getId();}			
+	function getURLCollect(){return "/collect/customer/".$this->getId();}
+	function getURLExport(){return "/export/customer/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
