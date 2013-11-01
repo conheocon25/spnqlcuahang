@@ -111,10 +111,13 @@ class Customer extends Object{
 		return $Obj;
 	}
 	
-	function getSessionAll(){
-		$mSession = new	\MVC\Mapper\Session();
-		$Sessions = $mSession->findByCustomer(array($this->Id));
-		return $Sessions;
+	//===================================================================
+	//Danh sách những mặt hàng thường xuyên lấy
+	//Sử dụng danh sách này để nhập nhanh dữ liệu
+	function getProductAll(){
+		$mCustomerProduct 	= new	\MVC\Mapper\CustomerProduct();
+		$ProductAll 		= $mCustomerProduct->findBy(array($this->Id));
+		return $ProductAll;
 	}
 	
 	function getCollectAll(){
@@ -126,6 +129,8 @@ class Customer extends Object{
 	//=================================================================================
 	function getURLCollect(){return "/collect/customer/".$this->getId();}
 	function getURLExport(){return "/export/customer/".$this->getId();}
+	function getURLSettingProduct(){return "/setting/customer/".$this->getId()."/product";}
+	
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

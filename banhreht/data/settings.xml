@@ -14,9 +14,7 @@
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
-		<command name="App"><view>App</view></command>
-		<command name="BarcodeCheck"><view>BarcodeCheck</view></command>
-		
+		<command name="App"><view>App</view></command>		
 		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
 		
 		<!-- ============================================================================== -->
@@ -74,12 +72,7 @@
 		
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
-		<!-- ============================================================================== -->
-		<command name="Selling"><view>Selling</view></command>
-		<command name="SellingLog"><view>SellingLog</view></command>
-		<command name="SellingCallLoad"><view>SellingCallLoad</view></command>
-		<command name="SellingCallExe"><view>SellingCallExe</view></command>
-				
+		<!-- ============================================================================== -->						
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
 		
@@ -118,60 +111,9 @@
 		<command name="ReportCourse"><view>ReportCourse</view></command>
 		<command name="ReportStore"><view>ReportStore</view></command>
 		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
-		<command name="ReportGeneral"><view>ReportGeneral</view></command>
-		
+		<command name="ReportGeneral"><view>ReportGeneral</view></command>		
 		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
-						
-		<!-- ============================================================================== -->
-		<!-- SELLING.ORDER		 															-->
-		<!-- ============================================================================== -->
-		<command name="SellingCheckin">
-			<view>SellingCheckin</view>
-			<status value="CMD_OK"><forward>Selling</forward></status>
-		</command>
-		
-		<command name="SellingCheckout">
-			<view>SellingCheckout</view>
-			<status value="CMD_OK"><forward>Selling</forward></status>
-		</command>
-		
-		<command name="SellingOrderPrint"><view>SellingOrderPrint</view></command>
-		<command name="SellingOrderInsLoad"><view>SellingOrderInsLoad</view></command>		
-		<command name="SellingOrderInsExe">
-			<status value="CMD_OK"><forward>Selling</forward></status>
-			<view>SellingOrderInsExe</view>
-		</command>
-		
-		<command name="SellingOrderUpdLoad"><view>SellingOrderUpdLoad</view></command>		
-		<command name="SellingOrderUpdExe">
-			<status value="CMD_OK"><forward>Selling</forward></status>
-			<view>SellingOrderUpdExe</view>
-		</command>
-		
-		<command name="SellingOrderDelLoad"><view>SellingOrderDelLoad</view></command>
-		<command name="SellingOrderDelExe">
-			<status value="CMD_OK"><forward>Selling</forward></status>
-			<view>SellingOrderDelExe</view>
-		</command>
-		
-		
-		<command name="SellingOrderDetailUpdLoad"><view>SellingOrderDetailUpdLoad</view></command>
-		<command name="SellingOrderDetailUpdExe">
-			<status value="CMD_OK"><forward>Selling</forward></status>
-			<view>SellingOrderDetailUpdExe</view>
-		</command>
-		
-		<command name="SellingOrderDetailDelLoad"><view>SellingOrderDetailDelLoad</view></command>
-		<command name="SellingOrderDetailDelExe">
-			<status value="CMD_OK"><forward>Selling</forward></status>
-			<view>SellingOrderDetailDelExe</view>
-		</command>
-		
-		<command name="SellingBarcode">
-			<view>SellingBarcode</view>
-			<status value="CMD_OK"><forward>Selling</forward></status>
-		</command>
-										
+												
 		<!-- ============================================================================== -->
 		<!-- SETTING	 															-->
 		<!-- ============================================================================== -->
@@ -179,8 +121,10 @@
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingEmployee"><view>SettingEmployee</view></command>
+		
 		<command name="SettingCustomer"><view>SettingCustomer</view></command>
-		<command name="SettingCustomerBarcode"><view>SettingCustomerBarcode</view></command>								
+		<command name="SettingCustomerProduct"><view>SettingCustomerProduct</view></command>								
+		
 		<command name="SettingUser"><view>SettingUser</view></command>
 		<command name="SettingUnit"><view>SettingUnit</view></command>						
 		<command name="SettingTag"><view>SettingTag</view></command>				

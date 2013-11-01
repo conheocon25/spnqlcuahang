@@ -10,51 +10,25 @@
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">				
+				<div class="col-6"><a tal:attributes="href '/setting/customer'"  	class="btn btn-primary"><i class="glyphicons-cogwheel"/> KHÁCH HÀNG</a></div>
+				<div class="col-6"><a tal:attributes="href '/setting/factory'" 		class="btn btn-primary"><i class="glyphicons-cogwheel"/> LÒ SẢN XUẤT</a></div>
+			</div>
 			<div class="row">
-				<div class="col-12">
-					<div class="widget-box">
-						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover">
-								<thead>
-									<tr>
-										<th width="40"><i class="glyphicons-cogwheels"/></th>
-										<th><div class="text-left">THIẾT LẬP</div></th>
-									</tr>
-								</thead>
-								<tbody>									
-									<tr>
-										<td align="center"><a href="/setting/supplier"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/supplier'" >NHÀ CUNG CẤP</a></td>
-									</tr>									
-									<tr>
-										<td align="center"><a href="/setting/user"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
-									</tr>									
-									<tr>
-										<td align="center"><a href="/setting/unit"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/unit'" >ĐƠN VỊ TÍNH</a></td>
-									</tr>
-									<tr>
-										<td align="center"><a href="/setting/employee"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/employee'" >NHÂN VIÊN</a></td>
-									</tr>
-									<tr>
-										<td align="center"><a href="/setting/termpaid"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/termpaid'" >DANH MỤC THU</a></td>
-									</tr>
-									<tr>
-										<td align="center"><a href="/setting/termcollect"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/termcollect'" >DANH MỤC CHI</a></td>
-									</tr>
-									<tr>
-										<td align="center"><a href="/setting/config"><i class="glyphicons-cogwheel"/></a></td>
-										<td><a tal:attributes="href '/setting/config'" >CẤU HÌNH</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+				<div class="col-6"><a tal:attributes="href '/setting/supplier'" 	class="btn btn-primary"><i class="glyphicons-cogwheel"/> NHÀ CUNG CẤP</a></div>
+				<div class="col-6"><a tal:attributes="href '/setting/user'" 		class="btn btn-primary"><i class="glyphicons-cogwheel"/> NGƯỜI DÙNG</a></div>
+			</div>
+			<div class="row">
+				<div class="col-6"><a tal:attributes="href '/setting/unit'" 		class="btn btn-primary"><i class="glyphicons-cogwheel"/> ĐƠN VỊ TÍNH</a></div>
+				<div class="col-6"><a tal:attributes="href '/setting/employee'" 	class="btn btn-primary"><i class="glyphicons-cogwheel"/> NHÂN VIÊN</a></div>
+			</div>
+			<div class="row">
+				<div class="col-6"><a tal:attributes="href '/setting/termpaid'" 	class="btn btn-primary"><i class="glyphicons-cogwheel"/> DANH MỤC THU</a></div>
+				<div class="col-6"><a tal:attributes="href '/setting/termcollect'" 	class="btn btn-primary"><i class="glyphicons-cogwheel"/> DANH MỤC CHI</a></div>
+			</div>
+			<div class="row">
+				<div class="col-6"><a tal:attributes="href '/setting/config'" 		class="btn btn-primary"><i class="glyphicons-cogwheel"/> CẤU HÌNH</a></div>
+				<div class="col-6"></div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>

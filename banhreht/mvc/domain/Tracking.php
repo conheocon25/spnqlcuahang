@@ -376,7 +376,8 @@ class Tracking extends Object{
         $this->Id 			= $Data[0];
 		$this->DateStart 	= $Data[1];
 		$this->DateEnd	 	= $Data[2];
-		$this->EstateRate 	= $Data[3];
+		//$this->EstateRate = $Data[3];
+		$this->EstateRate 	= 0;
     }
 	
 	//-------------------------------------------------------------------------------
