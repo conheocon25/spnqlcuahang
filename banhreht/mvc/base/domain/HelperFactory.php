@@ -14,7 +14,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/TagSelected.php");
 	require_once( "mvc/mapper/R2T.php");
 				
-	require_once( "mvc/mapper/OrderExport.php" );
+	require_once( "mvc/mapper/CustomerOrder.php" );
 	require_once( "mvc/mapper/OrderExportDetail.php" );
 	
 	require_once( "mvc/mapper/Supplier.php" );

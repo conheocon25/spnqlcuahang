@@ -93,9 +93,19 @@ RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
 RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
 
 RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/barcode$ 		?cmd=ImportSupplierOrderBarcode&IdSupplier=$1&IdOrder=$2&Barcode=$3 [L]
-
 RewriteRule ^import/([0-9]+)/([0-9]+)/exe$			?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# EXPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^export$ 									?cmd=Export [L]
+RewriteRule ^export/customer$ 							?cmd=ExportCustomer [L]
+RewriteRule ^export/customer/([0-9]+)$ 					?cmd=ExportCustomerOrder&IdCustomer=$1 [L]
+RewriteRule ^export/customer/([0-9]+)/page/([0-9]+)$ 	?cmd=ExportCustomerOrder&IdCustomer=$1&Page=$2 [L]
+RewriteRule ^export/customer/([0-9]+)/([0-9]+)$			?cmd=ExportCustomerOrderDetail&IdCustomer=$1&IdOrder=$2 [L]
+RewriteRule ^export/customer/([0-9]+)/([0-9]+)/exe$		?cmd=ExportCustomerOrderDetailExe&IdCustomer=$1&IdOrder=$2 [L]
+
+RewriteRule ^export/factory$ 							?cmd=ExportFactory [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT

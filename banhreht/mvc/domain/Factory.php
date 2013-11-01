@@ -227,9 +227,9 @@ class Factory extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
-	function getURLImport(){return "/import/".$this->getId();}				
-	function getURLResource(){return "/setting/supplier/".$this->getId();}	
-	function getURLPaid(){return "/paid/supplier/".$this->getId();}
+	function getURLExport(){return "/export/factory/".$this->getId();}
+	function getURLImport(){return "/import/factory/".$this->getId();}	
+	function getURLPaid(){return "/paid/factory/".$this->getId();}
 								
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
