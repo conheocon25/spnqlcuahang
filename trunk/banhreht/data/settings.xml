@@ -46,10 +46,12 @@
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
 		<command name="Import"><view>Import</view></command>
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>												
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
+		<command name="ImportSupplierOrderDetail"><view>ImportSupplierOrderDetail</view></command>
+		<command name="ImportSupplierOrderDetailExe"><view>ImportSupplierOrderDetailExe</view></command>
+		<command name="ImportFactory"><view>ImportFactory</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->

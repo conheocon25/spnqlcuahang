@@ -21,14 +21,14 @@
 									<tr role="row">
 										<th width="35">STT</th>
 										<th><div class="text-left">TÊN</div></th>
-										<th width="32"><i class="glyphicons-cart_in"/></th>
+										<th width="32"><i class="glyphicons-cart_out"/></th>
 									</tr>
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
-									<tr class="gradeA odd" tal:repeat="Supplier SupplierAll">
-										<td align="center" tal:content="repeat/Supplier/number"/>
-										<td><a tal:attributes="href Supplier/getURLImport" ><span tal:content="Supplier/getName"/></a></td>
-										<td align="center"><a tal:attributes="href Supplier/getURLImport"><i class="glyphicons-cart_in"/></a></td>
+									<tr class="gradeA odd" tal:repeat="Factory FactoryAll">
+										<td align="center" tal:content="repeat/Factory/number"/>
+										<td><a tal:attributes="href Factory/getURLImport" ><span tal:content="Factory/getName"/></a></td>
+										<td align="center"><a tal:attributes="href Factory/getURLImport"><i class="glyphicons-cart_out"/></a></td>
 									</tr>											
 								</tbody>
 							</table>
@@ -38,28 +38,6 @@
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('.btn').click(function(){
-				var Params = [];
-				/*
-				var Url 	= "/s2a/get/one/User/1";								
-				var Url 	= "/s2a/get/all/User";
-				var Url 	= "/s2a/get/all/Supplier";
-				*/
-				
-				var Url = "/s2a/get/all/Supplier";
-				$.ajax({
-					type: "GET",
-					//data: {Params:Params},
-					url: Url,
-					dataType: "xml",
-					success: function(data){
-						//alert("thành công");
-					}
-				});
-			});
-		/*]]>*/</script>	
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
 	</body>
 </html>

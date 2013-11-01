@@ -106,9 +106,9 @@ class SupplierOrder extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/import/".$this->getIdSupplier()."/".$this->getId()."/print";}	
-	function getURLDetail(){return "/import/".$this->getIdSupplier()."/".$this->getId();}
-	function getURLExe(){return "/import/".$this->getIdSupplier()."/".$this->getId()."/exe";}
+	function getURLPrint()	{return "/import/supplier/".$this->getIdSupplier()."/".$this->getId()."/print";}
+	function getURLDetail()	{return "/import/supplier/".$this->getIdSupplier()."/".$this->getId();}
+	function getURLExe()	{return "/import/supplier/".$this->getIdSupplier()."/".$this->getId()."/exe";}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
