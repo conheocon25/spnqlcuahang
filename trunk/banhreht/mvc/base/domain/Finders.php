@@ -33,6 +33,7 @@ interface SupplierOrderFinder extends Finder {}
 interface SupplierOrderDetailFinder extends Finder {}
 
 interface CustomerFinder extends Finder {}
+interface CustomerProductFinder extends Finder {}
 
 interface EmployeeFinder extends Finder {}
 interface PayRollFinder extends Finder {}

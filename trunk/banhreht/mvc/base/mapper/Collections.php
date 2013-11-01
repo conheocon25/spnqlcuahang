@@ -21,6 +21,8 @@ class SupplierOrderCollection extends Collection implements \MVC\Domain\Supplier
 class SupplierOrderDetailCollection extends Collection implements \MVC\Domain\SupplierOrderDetailCollection {function targetClass( ) {return "\MVC\Domain\SupplierOrderDetail";}}
 
 class CustomerCollection extends Collection implements \MVC\Domain\CustomerCollection {function targetClass( ) {return "\MVC\Domain\Customer";}}
+class CustomerProductCollection extends Collection implements \MVC\Domain\CustomerProductCollection {function targetClass( ) {return "\MVC\Domain\CustomerProduct";}}
+
 class EmployeeCollection extends Collection implements \MVC\Domain\EmployeeCollection {function targetClass( ) {return "\MVC\Domain\Employee";}}
 class PayRollCollection extends Collection implements \MVC\Domain\PayRollCollection {function targetClass( ) {return "\MVC\Domain\PayRoll";}}
 

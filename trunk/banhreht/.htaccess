@@ -56,30 +56,6 @@ RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=Pa
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 								?cmd=App [L]
 
-RewriteRule ^selling$ 							?cmd=Selling [L]
-RewriteRule ^selling/checkout$ 					?cmd=SellingCheckout [L]
-RewriteRule ^selling/checkin$ 					?cmd=SellingCheckin [L]
-RewriteRule ^selling/barcode$ 					?cmd=SellingBarcode [L]
-RewriteRule ^selling/log$ 						?cmd=SellingLog&Page=1 [L]
-RewriteRule ^selling/log/page/([0-9]+)$ 		?cmd=SellingLog&Page=$1 [L]
-
-RewriteRule ^selling/call/load$ 					?cmd=SellingCallLoad [L]
-RewriteRule ^selling/call/load/([0-9]+)$			?cmd=SellingCallLoad&IdTag=$1 [L]
-RewriteRule ^selling/call/exe/([0-9]+)/([0-9]+)$ 	?cmd=SellingCallExe&IdTag=$1&IdResource=$2 [L]
-
-RewriteRule ^selling/ins/load$ 					?cmd=SellingOrderInsLoad [L]
-RewriteRule ^selling/ins/exe$ 					?cmd=SellingOrderInsExe [L]
-RewriteRule ^selling/([0-9]+)/print$ 			?cmd=SellingOrderPrint&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/upd/load$ 		?cmd=SellingOrderUpdLoad&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/upd/exe$ 			?cmd=SellingOrderUpdExe&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/del/load$ 		?cmd=SellingOrderDelLoad&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/del/exe$ 			?cmd=SellingOrderDelExe&IdOrder=$1 [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/upd/load$ 	?cmd=SellingOrderDetailUpdLoad&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/upd/exe$ 	?cmd=SellingOrderDetailUpdExe&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/load$ 	?cmd=SellingOrderDetailDelLoad&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/exe$ 	?cmd=SellingOrderDetailDelExe&IdOrder=$1&IdOrderDetail=$2 [L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # CUSTOMER
 #---------------------------------------------------------------------------------------------------------------------------
@@ -160,8 +136,12 @@ RewriteRule ^setting/factory$ 									?cmd=SettingFactory [L]
 RewriteRule ^setting/factory/page/([0-9]+)$ 					?cmd=SettingFactory&Page=$1 [L]
 RewriteRule ^setting/employee$ 									?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/page/([0-9]+)$ 					?cmd=SettingEmployee&Page=$1 [L]
+
 RewriteRule ^setting/customer$ 									?cmd=SettingCustomer [L]
 RewriteRule ^setting/customer/page/([0-9]+)$ 					?cmd=SettingCustomer&Page=$1 [L]
+RewriteRule ^setting/customer/([0-9]+)/product$ 				?cmd=SettingCustomerProduct&IdCustomer=$1 [L]
+RewriteRule ^setting/customer/([0-9]+)/product/page/([0-9]+)$ 	?cmd=SettingCustomerProduct&IdCustomer=$1&Page=$2 [L]
+
 RewriteRule ^setting/supplier$ 									?cmd=SettingSupplier [L]
 RewriteRule ^setting/supplier/page/([0-9]+)$ 					?cmd=SettingSupplier&Page=$1 [L]
 

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingBarcodeNone extends Command {
+	class SettingCustomerProduct extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,31 +11,36 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
-			
+			$IdCustomer = $request->getProperty('IdCustomer');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mUnit 		= new \MVC\Mapper\Unit();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
-			$ResourceAll = $mResource->noneBarcode(array());
-						
-			$Title = "KHÔNG MÃ VẠCH";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("THIẾT LẬP", "/setting")
+			//-------------------------------------------------------------									
+			$UnitAll 	= $mUnit->findAll();
+			$Customer 	= $mCustomer->find($IdCustomer);
+									
+			$Title = mb_strtoupper($Customer->getName(), 'UTF8');
+			$Navigation = array(				
+				array("THIẾT LẬP", "/setting"),
+				array("KHÁCH HÀNG", "/setting/customer")
 			);
-												
+					
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);						
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('ResourceAll', $ResourceAll);
-												
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Customer');			
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Customer'		, $Customer);
+			$request->setObject('UnitAll'		, $UnitAll);
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
