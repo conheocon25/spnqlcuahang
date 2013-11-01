@@ -14,55 +14,14 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<div class="widget-box">
-						<!--
-						<button class="btn btn-primary">Test XML </button>
-						!-->
-						<div class="widget-content nopadding">							
-							<table class="table table-bordered table-striped table-hover">
-								<thead>
-									<tr role="row">
-										<th width="35">STT</th>
-										<th><div class="text-left">TÊN</div></th>
-										<th width="32"><i class="glyphicons-truck"/></th>
-									</tr>
-								</thead>
-								<tbody role="alert" aria-live="polite" aria-relevant="all">
-									<tr class="gradeA odd" tal:repeat="Supplier SupplierAll">
-										<td align="center" tal:content="repeat/Supplier/number"/>
-										<td><a tal:attributes="href Supplier/getURLImport" ><span tal:content="Supplier/getName"/></a></td>
-										<td align="center"><a tal:attributes="href Supplier/getURLImport"><i class="glyphicons-truck"/></a></td>
-									</tr>											
-								</tbody>
-							</table>
-						</div>
+					<div class="widget-box">						
+						<a class="btn btn-block btn-primary" href="/import/supplier">NHÀ CUNG CẤP nhập hàng</a>
+						<a class="btn btn-block btn-primary" href="/import/factory">LÒ SẢN XUẤT nhập nguyên liệu</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('.btn').click(function(){
-				var Params = [];
-				/*
-				var Url 	= "/s2a/get/one/User/1";								
-				var Url 	= "/s2a/get/all/User";
-				var Url 	= "/s2a/get/all/Supplier";
-				*/
-				
-				var Url = "/s2a/get/all/Supplier";
-				$.ajax({
-					type: "GET",
-					//data: {Params:Params},
-					url: Url,
-					dataType: "xml",
-					success: function(data){
-						//alert("thành công");
-					}
-				});
-			});
-		/*]]>*/</script>	
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
 	</body>
 </html>

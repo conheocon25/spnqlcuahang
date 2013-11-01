@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ImportSupplierOrder extends Command {
+	class ImportSupplierOrderDetail extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,44 +11,38 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty('IdSupplier');
-			$Page 		= $request->getProperty('Page');
+			$IdSupplier 	= $request->getProperty('IdSupplier');
+			$IdOrder 		= $request->getProperty('IdOrder');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mSupplierOrder 	= new \MVC\Mapper\SupplierOrder();
+			$mSupplier 			= new \MVC\Mapper\Supplier();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
-			$Supplier = $mSupplier->find($IdSupplier);
-						
+			//-------------------------------------------------------------									
+			$Supplier 	= $mSupplier->find($IdSupplier);
+			$Order 		= $mSupplierOrder->find($IdOrder);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
+			$Title = $Order->getDatePrint();
 			$Navigation = array(
-				array("NHẬP"			, "/import"),
-				array("NHÀ CUNG CẤP"	, "/import/supplier")
+				array("NHẬP", "/import"),
+				array("NHÀ CUNG CẤP", "/import/supplier"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())
 			);
-			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$OrderAll = $mSupplierOrder->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($Supplier->getOrderAll()->count(), $Config->getValue(), $Supplier->getURLImport());
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setProperty('Page', $Page);
-			$request->setProperty('ActiveAdmin', 'Import');
+			$request->setProperty('Title', $Title);			
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('PN', $PN);
-			
-			$request->setObject('SupplierAll', $SupplierAll);
-			$request->setObject('OrderAll', $OrderAll);
+									
+			$request->setObject('Order', $Order);
 			$request->setObject('Supplier', $Supplier);
 			
 			return self::statuses('CMD_DEFAULT');

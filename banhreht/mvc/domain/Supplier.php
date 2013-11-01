@@ -172,31 +172,10 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
-	function getURLImport(){return "/import/".$this->getId();}	
-	function getURLImportInsLoad(){return "/import/".$this->getId()."/ins/load";}	
-	function getURLImportInsExe(){return "/import/".$this->getId()."/ins/exe";}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL SETTING.SUPPLIER
-	//-------------------------------------------------------------------------------	
-	function getURLResource(){return "/setting/supplier/".$this->getId();}
-		
-	function getURLUpdLoad(){return "/setting/supplier/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/supplier/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/supplier/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/supplier/".$this->getId()."/del/exe";}
-			
-	function getURLResourceInsLoad(){return "/setting/supplier/".$this->getId()."/ins/load";}
-	function getURLResourceInsExe(){return "/setting/supplier/".$this->getId()."/ins/exe";}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.SUPPLIER
-	//-------------------------------------------------------------------------------	
-	function getURLPaid(){return "/paid/supplier/".$this->getId();}
-	function getURLPaidInsLoad(){return "/paid/supplier/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/paid/supplier/".$this->getId()."/ins/exe";}
-							
+	function getURLImport()		{return "/import/supplier/".$this->getId();}	
+	function getURLPaid()		{return "/paid/supplier/".$this->getId();}
+	function getURLResource()	{return "/setting/supplier/".$this->getId();}
+									
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
