@@ -1,0 +1,210 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="App"><view>App</view></command>
+		<command name="BarcodeCheck"><view>BarcodeCheck</view></command>
+		
+		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->		
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+		
+		<command name="S2AGet"><view>S2AGet</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- MONEY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollWork"><view>PayRollWork</view></command>
+		<command name="PayRollWorkDetail">
+			<status value="CMD_OK">
+				<forward>PayRollWork</forward>
+			</status>
+			<view>PayRollWorkDetail</view>
+		</command>
+		
+		<!-- ============================================================================== -->
+		<!-- GLOBAL			 																-->
+		<!-- ============================================================================== -->
+		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingLog"><view>SellingLog</view></command>
+		<command name="SellingCallLoad"><view>SellingCallLoad</view></command>
+		<command name="SellingCallExe"><view>SellingCallExe</view></command>
+		
+		<command name="Import"><view>Import</view></command>
+		<command name="Paid"><view>Paid</view></command>
+		<command name="Report"><view>Report</view></command>
+		
+		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingBarcodeNone"><view>SettingBarcodeNone</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- REPORT.DETAIL			 														-->
+		<!-- ============================================================================== -->		
+		<command name="ReportStoreRecipePrint"><view>ReportStoreRecipePrint</view></command>
+		<command name="ReportFormStorePrint"><view>ReportFormStorePrint</view></command>
+								
+		<command name="ReportDetail"><view>ReportDetail</view></command>
+		<command name="ReportDetailInsLoad"><view>ReportDetailInsLoad</view></command>
+		<command name="ReportDetailInsExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailInsExe</view></command>
+		<command name="ReportDetailUpdLoad"><view>ReportDetailUpdLoad</view></command>
+		<command name="ReportDetailUpdExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailUpdExe</view></command>
+		<command name="ReportDetailDelLoad"><view>ReportDetailDelLoad</view></command>
+		<command name="ReportDetailDelExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailDelExe</view></command>
+				
+		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
+		<command name="ReportCustomerGeneral"><view>ReportCustomerGeneral</view></command>
+		
+		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
+		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
+		<command name="ReportImportDetail"><view>ReportImportDetail</view></command>
+		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>
+		
+		<command name="ReportCollectDetail"><view>ReportCollectDetail</view></command>
+		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>
+		
+		<command name="ReportSellingGeneral"><view>ReportSellingGeneral</view></command>
+		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>
+		<command name="ReportSellingRefresh"><view>ReportSellingRefresh</view></command>
+		
+		<command name="ReportCourse"><view>ReportCourse</view></command>
+		<command name="ReportStore"><view>ReportStore</view></command>
+		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
+		<command name="ReportGeneral"><view>ReportGeneral</view></command>
+		
+		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
+						
+		<!-- ============================================================================== -->
+		<!-- SELLING.ORDER		 															-->
+		<!-- ============================================================================== -->
+		<command name="SellingCheckin">
+			<view>SellingCheckin</view>
+			<status value="CMD_OK"><forward>Selling</forward></status>
+		</command>
+		
+		<command name="SellingCheckout">
+			<view>SellingCheckout</view>
+			<status value="CMD_OK"><forward>Selling</forward></status>
+		</command>
+		
+		<command name="SellingOrderPrint"><view>SellingOrderPrint</view></command>
+		<command name="SellingOrderInsLoad"><view>SellingOrderInsLoad</view></command>		
+		<command name="SellingOrderInsExe">
+			<status value="CMD_OK"><forward>Selling</forward></status>
+			<view>SellingOrderInsExe</view>
+		</command>
+		
+		<command name="SellingOrderUpdLoad"><view>SellingOrderUpdLoad</view></command>		
+		<command name="SellingOrderUpdExe">
+			<status value="CMD_OK"><forward>Selling</forward></status>
+			<view>SellingOrderUpdExe</view>
+		</command>
+		
+		<command name="SellingOrderDelLoad"><view>SellingOrderDelLoad</view></command>
+		<command name="SellingOrderDelExe">
+			<status value="CMD_OK"><forward>Selling</forward></status>
+			<view>SellingOrderDelExe</view>
+		</command>
+		
+		
+		<command name="SellingOrderDetailUpdLoad"><view>SellingOrderDetailUpdLoad</view></command>
+		<command name="SellingOrderDetailUpdExe">
+			<status value="CMD_OK"><forward>Selling</forward></status>
+			<view>SellingOrderDetailUpdExe</view>
+		</command>
+		
+		<command name="SellingOrderDetailDelLoad"><view>SellingOrderDetailDelLoad</view></command>
+		<command name="SellingOrderDetailDelExe">
+			<status value="CMD_OK"><forward>Selling</forward></status>
+			<view>SellingOrderDetailDelExe</view>
+		</command>
+		
+		<command name="SellingBarcode">
+			<view>SellingBarcode</view>
+			<status value="CMD_OK"><forward>Selling</forward></status>
+		</command>
+										
+		<!-- ============================================================================== -->
+		<!-- SETTING.CUSTOMER	 															-->
+		<!-- ============================================================================== -->
+		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
+		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
+		<command name="SettingEmployee"><view>SettingEmployee</view></command>
+		<command name="SettingCustomer"><view>SettingCustomer</view></command>
+		<command name="SettingCustomerBarcode"><view>SettingCustomerBarcode</view></command>								
+		<command name="SettingUser"><view>SettingUser</view></command>
+		<command name="SettingUnit"><view>SettingUnit</view></command>						
+		<command name="SettingTag"><view>SettingTag</view></command>				
+		<command name="SettingTagResource"><view>SettingTagResource</view></command>		
+		<command name="SettingTagSelected"><view>SettingTagSelected</view></command>		
+		<command name="SettingResourceTag"><view>SettingResourceTag</view></command>				
+		<command name="SettingConfig"><view>SettingConfig</view></command>
+						
+		<command name="SettingSupplier"><view>SettingSupplier</view></command>				
+		<command name="SettingSupplierBarcode">
+			<view>SettingSupplierBarcode</view>
+			<status value="CMD_OK"><forward>SettingSupplierResourceUpdLoad</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>SettingSupplierResource</forward></status>
+		</command>
+		
+		<command name="SettingSupplierResourcePrintBarcode"><view>SettingSupplierResourcePrintBarcode</view></command>
+		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		
+								
+		<!-- ============================================================================== -->
+		<!-- SETTING.INFO		 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
+		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>
+		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
+		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+												
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>
+		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
+		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
+		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
+		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
+		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
+		
+		<command name="ImportSupplierOrderBarcode">
+			<view>ImportSupplierOrderBarcode</view>
+			<status value="CMD_OK"><forward>ImportSupplierOrderUpdLoad</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>ImportSupplierOrder</forward></status>
+		</command>
+		
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
+		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
+		
+	</control>
+</options>
