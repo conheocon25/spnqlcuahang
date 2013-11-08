@@ -4,6 +4,8 @@ namespace MVC\Domain;
 interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
 
+interface DomainCollection extends \Iterator {function add( Object $Domain );}
+
 interface CollectGeneralCollection extends \Iterator {function add( Object $CollectGeneral );}
 interface CollectCustomerCollection extends \Iterator {function add( Object $CollectCustomer );}
 interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGeneral );}
@@ -12,11 +14,13 @@ interface TagCollection extends \Iterator {function add( Object $tag );}
 interface TagSelectedCollection extends \Iterator {function add( Object $tag );}
 
 interface SupplierCollection extends \Iterator {function add( Object $supplier );	}
+interface SupplierDomainCollection extends \Iterator {function add( Object $SupplierDomain );	}
 interface ResourceCollection extends \Iterator {function add( Object $resource );	}
 
 interface OrderImportCollection extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection extends \Iterator {function add( Object $orderimportdetail );	}
 interface CustomerCollection extends \Iterator {function add( Object $Customer );}
+interface CustomerDomainCollection extends \Iterator {function add( Object $CustomerDomain );}
 
 interface OrderExportCollection extends \Iterator {function add( Object $orderexport );	}
 interface OrderExportDetailCollection extends \Iterator {function add( Object $orderexportdetail );	}

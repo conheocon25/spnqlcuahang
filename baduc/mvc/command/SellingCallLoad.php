@@ -34,10 +34,7 @@
 			}
 			
 			$Title = "CHỌN MÓN";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("BÁN HÀNG", "/selling")
-			);
+			$Navigation = array(array("BÁN HÀNG", "/selling"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
