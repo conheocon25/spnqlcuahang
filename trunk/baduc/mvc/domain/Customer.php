@@ -123,8 +123,15 @@ class Customer extends Object{
 		return $CollectAll;
 	}
 	
+	function getDomainAll(){
+		$mCD = new \MVC\Mapper\CustomerDomain();
+		$CDAll = $mCD->findBy(array($this->getId()));
+		return $CDAll;
+	}
+	
 	//=================================================================================
 	function getURLCollect(){return "/collect/customer/".$this->getId();}			
+	function getURLSettingDomain(){return "/setting/customer/".$this->getId()."/domain";}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

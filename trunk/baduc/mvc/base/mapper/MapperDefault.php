@@ -1,5 +1,6 @@
 <?php	
-	$mOrderImport 		= new \MVC\Mapper\OrderImport();	
+	$mDomain 			= new \MVC\Mapper\Domain();
+	$mOrderImport 		= new \MVC\Mapper\OrderImport();
 	$mOrderExport 		= new \MVC\Mapper\OrderExport();	
 	$mSupplier 			= new \MVC\Mapper\Supplier();
 	$mUnit 				= new \MVC\Mapper\Unit();

@@ -35,19 +35,7 @@
 		<command name="Money"><view>Money</view></command>
 		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
 		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- PAYROLL			 															-->
-		<!-- ============================================================================== -->		
-		<command name="PayRoll"><view>PayRoll</view></command>
-		<command name="PayRollWork"><view>PayRollWork</view></command>
-		<command name="PayRollWorkDetail">
-			<status value="CMD_OK">
-				<forward>PayRollWork</forward>
-			</status>
-			<view>PayRollWorkDetail</view>
-		</command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->
@@ -150,12 +138,14 @@
 		</command>
 										
 		<!-- ============================================================================== -->
-		<!-- SETTING.CUSTOMER	 															-->
+		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->
+		<command name="SettingDomain"><view>SettingDomain</view></command>
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingEmployee"><view>SettingEmployee</view></command>
 		<command name="SettingCustomer"><view>SettingCustomer</view></command>
+		<command name="SettingCustomerDomain"><view>SettingCustomerDomain</view></command>
 		<command name="SettingCustomerBarcode"><view>SettingCustomerBarcode</view></command>								
 		<command name="SettingUser"><view>SettingUser</view></command>
 		<command name="SettingUnit"><view>SettingUnit</view></command>						
@@ -165,7 +155,8 @@
 		<command name="SettingResourceTag"><view>SettingResourceTag</view></command>				
 		<command name="SettingConfig"><view>SettingConfig</view></command>
 						
-		<command name="SettingSupplier"><view>SettingSupplier</view></command>				
+		<command name="SettingSupplier"><view>SettingSupplier</view></command>
+		<command name="SettingSupplierDomain"><view>SettingSupplierDomain</view></command>
 		<command name="SettingSupplierBarcode">
 			<view>SettingSupplierBarcode</view>
 			<status value="CMD_OK"><forward>SettingSupplierResourceUpdLoad</forward></status>
@@ -174,27 +165,11 @@
 		
 		<command name="SettingSupplierResourcePrintBarcode"><view>SettingSupplierResourcePrintBarcode</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-		
-								
-		<!-- ============================================================================== -->
-		<!-- SETTING.INFO		 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
-		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>
-		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
-		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
 												
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>
-		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
-		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
-		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>ImportSupplier</forward></status></command>
-		
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>				
 		<command name="ImportSupplierOrderBarcode">
 			<view>ImportSupplierOrderBarcode</view>
 			<status value="CMD_OK"><forward>ImportSupplierOrderUpdLoad</forward></status>

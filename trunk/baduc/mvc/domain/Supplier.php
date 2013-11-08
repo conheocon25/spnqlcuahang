@@ -224,34 +224,20 @@ class Supplier extends Object{
 		return $Resources;
 	}
 	
+	function getDomainAll(){
+		$mSD 	= new \MVC\Mapper\SupplierDomain();
+		$SDAll 	= $mSD->findBy(array($this->getId()));
+		return $SDAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
-	function getURLImport(){return "/import/".$this->getId();}	
-	function getURLImportInsLoad(){return "/import/".$this->getId()."/ins/load";}	
-	function getURLImportInsExe(){return "/import/".$this->getId()."/ins/exe";}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL SETTING.SUPPLIER
-	//-------------------------------------------------------------------------------	
+	function getURLSettingDomain(){return "/setting/supplier/".$this->getId()."/domain";}
+	function getURLImport(){return "/import/".$this->getId();}
 	function getURLResource(){return "/setting/supplier/".$this->getId();}
-		
-	function getURLUpdLoad(){return "/setting/supplier/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/supplier/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/supplier/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/supplier/".$this->getId()."/del/exe";}
-			
-	function getURLResourceInsLoad(){return "/setting/supplier/".$this->getId()."/ins/load";}
-	function getURLResourceInsExe(){return "/setting/supplier/".$this->getId()."/ins/exe";}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.SUPPLIER
-	//-------------------------------------------------------------------------------	
 	function getURLPaid(){return "/paid/supplier/".$this->getId();}
-	function getURLPaidInsLoad(){return "/paid/supplier/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/paid/supplier/".$this->getId()."/ins/exe";}
-							
+								
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}

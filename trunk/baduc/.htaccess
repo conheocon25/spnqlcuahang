@@ -6,7 +6,6 @@ RewriteEngine on
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
 RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
-RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
 
 RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 			?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
@@ -35,21 +34,6 @@ RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectG
 RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
 RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
 RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# PAYROLL
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^payroll$ 												?cmd=PayRoll [L]
-RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)$ 							?cmd=PayRollWork&IdTrack=$1&IdEmployee=$2 [L]
-
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/all/yes$ 							?cmd=PayRollWorkDetail&IdTrack=$1&Date=all&IdEmployee=$2&State=yes [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)$ 			?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4&Extra=$5 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4&Extra=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
@@ -145,28 +129,29 @@ RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
 RewriteRule ^setting$ 											?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 						?cmd=SettingThemeChangeExe&Theme=$1 [L]
 
+RewriteRule ^setting/domain$ 									?cmd=SettingDomain [L]
+RewriteRule ^setting/domain/page/([0-9]+)$ 						?cmd=SettingDomain&Page=$1 [L]
 RewriteRule ^setting/employee$ 									?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/page/([0-9]+)$ 					?cmd=SettingEmployee&Page=$1 [L]
 
 RewriteRule ^setting/customer$ 									?cmd=SettingCustomer [L]
 RewriteRule ^setting/customer/page/([0-9]+)$ 					?cmd=SettingCustomer&Page=$1 [L]
+RewriteRule ^setting/customer/([0-9]+)/domain$ 					?cmd=SettingCustomerDomain&IdCustomer=$1 [L]
+
 RewriteRule ^setting/supplier$ 									?cmd=SettingSupplier [L]
 RewriteRule ^setting/supplier/page/([0-9]+)$ 					?cmd=SettingSupplier&Page=$1 [L]
+RewriteRule ^setting/supplier/([0-9]+)/domain$ 					?cmd=SettingSupplierDomain&IdSupplier=$1 [L]
 RewriteRule ^setting/barcode/none$ 								?cmd=SettingBarcodeNone [L]
-
 RewriteRule ^setting/supplier/([0-9]+)$ 						?cmd=SettingSupplierResource&IdSupplier=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/print/barcode$ 	?cmd=SettingSupplierResourcePrintBarcode&IdSupplier=$1&IdResource=$2 [L]
-
 RewriteRule ^setting/supplier/([0-9]+)/barcode$ 			?cmd=SettingSupplierBarcode&IdSupplier=$1 [L]
 RewriteRule ^barcode/([a-z0-9]+)$ 							?cmd=BarcodeCheck&Barcode=$1 [L]
-
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag$ 		?cmd=SettingResourceTag&IdSupplier=$1&IdResource=$2 [L]
 RewriteRule ^setting/unit$ 									?cmd=SettingUnit [L]
 RewriteRule ^setting/unit/page/([0-9]+)$ 					?cmd=SettingUnit&Page=$1 [L]
 RewriteRule ^setting/tag$ 									?cmd=SettingTag [L]
 RewriteRule ^setting/tag/page/([0-9]+)$ 					?cmd=SettingTag&Page=$1 [L]
-
 RewriteRule ^setting/tag/([0-9]+)/resource$ 				?cmd=SettingTagResource&IdTag=$1 [L]
 RewriteRule ^setting/tagselected$ 							?cmd=SettingTagSelected [L]
 RewriteRule ^setting/tagselected/page/([0-9]+)$ 			?cmd=SettingTagSelected&Page=$1 [L]

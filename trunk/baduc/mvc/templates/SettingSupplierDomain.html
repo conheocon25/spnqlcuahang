@@ -3,11 +3,11 @@
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>	
+	</head>
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -21,57 +21,54 @@
 					</a>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check">								
+							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">THAM SỐ</th>
-										<th width="120"><div class="text-right">GIÁ TRỊ</div></th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th class="left">TÊN</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Config ConfigAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Config/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Config" tal:attributes="data-id Config/getId" tal:content="Config/getParam"/></td>
-										<td class="right"><span tal:content="Config/getValue"/></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Config" tal:attributes="data-id Config/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Config/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="SD Supplier/getDomainAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id SD/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id SD/getId" tal:content="SD/getDomain/getName"/></td>
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id SD/getId">
+												<i class="glyphicons-remove_2"/>
+											</a>
+										</td>
 									</tr>
-								</tbody>																								
+								</tbody>
 							</table>							
 						</div>
-					</div>
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					</div>					
 					
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI CẤU HÌNH</h3>
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI LĨNH VỰC</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
 										<div class="form-group">
-											<label class="control-label">Tham số</label>
+											<label class="control-label">Lĩnh vực</label>
 											<div class="controls">
-												<input id="Param1" name="Param1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Giá trị</label>
-											<div class="controls">
-												<input id="Value1" name="Value1" type="text" class="form-control input-small"/>
+												<select name="IdDomain1" id="IdDomain1" style="width:80%;">
+													<option tal:repeat="Domain DomainAll" tal:attributes="value Domain/getId">
+														<span tal:content="Domain/getName" />
+													</option>
+												</select>
 											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</div>								
 							</div>
 						</div>
 					</div>
@@ -82,25 +79,23 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CẤU HÌNH</h3>
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT LĨNH VỰC</h3>
 								</div>
-								<div class="form-horizontal">
+								<div class="form-horizontal" id="update-link">
 									<div class="modal-body">
 										<div class="form-group">
-											<label class="control-label">Tham số</label>
+											<label class="control-label">Lĩnh vực</label>
 											<div class="controls">
-												<input id="Param2" name="Param2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Giá trị</label>
-											<div class="controls">
-												<input id="Value2" name="Value2" type="text" class="form-control input-small"/>
+												<select name="IdDomain2" id="IdDomain2" style="width:80%;">
+													<option tal:repeat="Domain DomainAll" tal:attributes="value Domain/getId">
+														<span tal:content="Domain/getName" />
+													</option>
+												</select>
 											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</div>
@@ -109,22 +104,20 @@
 					</div>
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
-					
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>					
 				</div>
 			</div>
 		</div>
+		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		
 		<script type="text/javascript">
 		/*<![CDATA[*/
-			//-----------------------------------------------------------------------------------
-			//Delete 1 CONFIG			
-			//-----------------------------------------------------------------------------------
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Config/0";
+				var URL = "/object/del/SupplierDomain/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -142,15 +135,17 @@
 					}
 				});
 			});
-			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 EMPLOYEEE			
+			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Config/" + $(this).attr('alt');
+				var URL = "/object/del/SupplierDomain/" + $(this).attr('alt');
 				$.ajax({
-					type: "POST",
+					type: "POST",					
 					url: URL,
 					success: function(msg){
 						location.reload();
@@ -159,14 +154,14 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 CONFIG
+			//Insert 1 EMPLOYEEE
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Param1').val();
-				Data[2] = $('#Value1').val();
+				Data[0] = 'null';				
+				Data[1] = $('#IdSupplier').attr('alt');
+				Data[2] = $('#IdDomain1').val();
 				
-				var URL = "/object/ins/Config";
+				var URL = "/object/ins/SupplierDomain";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -178,30 +173,30 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 CONFIG
+			//Load 1 Supplier
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Config/" + $(this).attr('data-id');
+				var url = "/object/load/SupplierDomain/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
-				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Param2').attr('value', data.Param);
-					$('#Value2').attr('value', data.Value);
+				$('#update-link').attr('action', $(this).attr('alt'));
+				$.getJSON(url, function(data) {
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#IdDomain2').select2('val', data.IdDomain);					
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 UNIT
+			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Param2').val();
-				Data[2] = $('#Value2').val();
-				
-				var URL = "/object/upd/Config";
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#IdSupplier').attr('alt');
+				Data[2] = $('#IdDomain2').val();
+														
+				var URL = "/object/upd/Supplier";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -210,7 +205,8 @@
 						location.reload();
 					}
 				});
-			});		
-		/*]]>*/</script>
+			});
+			
+		/*]]>*/</script>		
 	</body>
 </html>

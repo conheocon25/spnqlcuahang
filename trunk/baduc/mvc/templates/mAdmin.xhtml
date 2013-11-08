@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Demo cửa hàng tiện lợi"/>
-		<base href="http://demo1.quanly-cuahang.com"/>
+		<title tal:content="string:Cửa hàng thức ăn thủy sản gia súc Ba Đức"/>
+		<base href="http://baduc.quanly-cuahang.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Demo cửa hàng tiện lợi"/>
-		<meta name="description" content="Demo cửa hàng tiện lợi"/>
-		<meta name="page-topic" content="Demo cửa hàng tiện lợi"/>
-		<meta name="Abstract" content="Demo cửa hàng tiện lợi"/>
-		<meta name="classification" content="Demo cửa hàng tiện lợi"/>
+		<meta name="keywords" content="Cửa hàng thức ăn thủy sản & gia súc Ba Đức"/>
+		<meta name="description" content="Cửa hàng thức ăn thủy sản & gia súc Ba Đức"/>
+		<meta name="page-topic" content="Cửa hàng thức ăn thủy sản & gia súc Ba Đức"/>
+		<meta name="Abstract" content="Cửa hàng thức ăn thủy sản & gia súc Ba Đức"/>
+		<meta name="classification" content="Cửa hàng thức ăn thủy sản & gia súc Ba Đức"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
 	</span>
 	
@@ -66,7 +66,7 @@
 		<div id="user-nav">
             <ul class="btn-group">
                 <li class="btn">
-					<a><i class="glyphicons-wifi" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a>
+					<a><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a>
 				</li>
 				<li class="btn"><a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/exe">
 					<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
@@ -87,7 +87,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CỬA HÀNG TIỆN LỢI</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CỬA HÀNG BA ĐỨC</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -108,10 +108,7 @@
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
-				<a tal:attributes="href '/payroll'"><i class="glyphicons-check" />CHẤM CÔNG</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
 				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
 			</li>
@@ -161,12 +158,17 @@
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">					
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
+				<a tal:attributes="href '/setting/domain'" >
+					<i class="glyphicons-show_big_thumbnails" />LĨNH VỰC
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
 				<a tal:attributes="href '/setting/supplier'" >
 					<i class="glyphicons-truck" />NHÀ CUNG CẤP
 				</a>
-			</li>			
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/setting/user'">
 					<i class="glyphicons-user" />NGƯỜI DÙNG 
@@ -233,7 +235,7 @@
 	<div metal:define-macro="ReportHeader">
 		<table width="100%" border="0" cellpadding="2" >
 			<tr>			
-				<td width="50%" align="left"><B>QUÁN CAFE DEMO</B></td>
+				<td width="50%" align="left"><B>CỬA HÀNG THỨC ĂN THỦY SẢN & GIA SÚC BA ĐỨC</B></td>
 				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
 			</tr>
 			<tr>
@@ -246,23 +248,6 @@
 			</tr>
 		</table>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- ALERT TOOLS															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="AlertTools">		
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Insert'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Thêm mới hoàn tất', text: 'Đã thêm mới dữ liệu', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Update'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Chỉnh sửa hoàn tất', text: 'Đã cập nhật dữ liệu mới nhất', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Delete'?true:false" type="text/javascript">
-			/*<![CDATA[*/
-				$.gritter.add({title: 'Gỡ bỏ hoàn tất', text: 'Đã xóa dữ liệu vừa chọn', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});
-			/*]]>*/
-		</script>
-	</div>
-	
+		
 </body>
 </html>

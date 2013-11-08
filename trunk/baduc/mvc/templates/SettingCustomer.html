@@ -13,10 +13,10 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-remove_2"/> Xóa chọn
 					</a>
 					<div class="widget-box">
@@ -26,7 +26,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>										
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="120">HOẠT ĐỘNG</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -35,8 +35,8 @@
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
 										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
-												<i class="glyphicon glyphicon-pencil"/>
+											<a tal:attributes="href Customer/getURLSettingDomain">
+												<span tal:content="Customer/getDomainAll/count"/> lĩnh vực
 											</a>
 										</td>
 										<td class="center">
@@ -56,7 +56,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -120,7 +120,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
 								</div>
 								<div class="form-horizontal" id="update-link">
 									<div class="modal-body">
