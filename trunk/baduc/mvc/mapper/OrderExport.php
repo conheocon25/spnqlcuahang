@@ -12,42 +12,24 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 								
 		$selectAllStmt = sprintf("select * from %s order by date DESC", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
-		$updateStmt = sprintf("update %s set iduser=?, date=?, state=?, description=? where id=?", $tblOrderExport);
-		$insertStmt = sprintf("insert into %s ( iduser, date, state, description ) values( ?, ?, ?, ?)", $tblOrderExport);
+		$updateStmt = sprintf("update %s set id_tracking=?, date=?, note=? where id=?", $tblOrderExport);
+		$insertStmt = sprintf("insert into %s ( id_tracking, date, note ) values( ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
 		$findByStmt = sprintf("
-			select 
-				*
-			from 
-				%s 
-			where iduser=? AND state=?
+			select * from  %s 
+			where id_tracking=?
 			order by date DESC
 		", $tblOrderExport);
 				
 		$findByTrackingStmt = sprintf("
-			select
-				*
-			from 
-				%s
+			select * from  %s
 			where
-				date >= ? AND date <= ?
+				id_tracking=?
 			order by 
 				date DESC
 			"
 		, $tblOrderExport);
-		
-		$findByTracking1Stmt = sprintf("
-			select
-				*
-			from 
-				%s
-			where
-				idsupplier=? AND date >= ? AND date <= ?
-			order by 
-				date DESC
-			"
-		, $tblOrderExport);
-		
+						
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 							
@@ -61,8 +43,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
 		$this->findByStmt = self::$PDO->prepare( $findByStmt );		
-		$this->findByTrackingStmt = self::$PDO->prepare( $findByTrackingStmt );
-		$this->findByTracking1Stmt = self::$PDO->prepare( $findByTracking1Stmt );
+		$this->findByTrackingStmt = self::$PDO->prepare( $findByTrackingStmt );		
 		$this->findByPageStmt = self::$PDO->prepare( $findByPageStmt );		
     }
 	
@@ -71,10 +52,9 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\OrderExport( 
 			$array['id'],
-			$array['iduser'],
-			$array['date'],	
-			$array['state'],
-			$array['description']
+			$array['id_tracking'],
+			$array['date'],		
+			$array['note']
 		);
         return $obj;
     }
@@ -83,10 +63,9 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdUser(),
+			$object->getIdTracking(),
 			$object->getDate(),
-			$object->getState(),
-			$object->getDescription()
+			$object->getNote()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -95,18 +74,15 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdUser(),
-			$object->getDate(),
-			$object->getState(),
-			$object->getDescription(),
+			$object->getIdTracking(),
+			$object->getDate(),			
+			$object->getNote(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 	
 	//-------------------------------------------------------
 	function findBy($values) {		
@@ -118,12 +94,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $this->findByTrackingStmt->execute( $values );
         return new OrderExportCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
-	
-	function findByTracking1(array $values){
-        $this->findByTracking1Stmt->execute( $values );
-        return new OrderExportCollection( $this->findByTracking1Stmt->fetchAll(), $this );
-    }
-	
+			
 	function findByPage( $values ) {		
 		//$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
@@ -134,7 +105,6 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 	
 	//-------------------------------------------------------
     function selectStmt() {return $this->selectStmt;}
-    function selectAllStmt() {return $this->selectAllStmt;}
-	
+    function selectAllStmt() {return $this->selectAllStmt;}	
 }
 ?>

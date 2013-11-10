@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
+	
 	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-							
-					</div>
-					<div class="span9">
-						<div class="content">
-							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-							<table class="table table-striped table-hover">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">STT</th>
-										<th>TÊN</th>
-										<th width="32">XÓA</th>
+										<th width="40">
+											ID
+										</th>
+										<th><div class="text-left">THẺ</div></th>										
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="R2T Resource/getTagAll">
-										<td><div tal:content="repeat/R2T/number" /></td>
-										<td><div tal:content="R2T/getTag/getName" /></td>
-										<td><a class="btn" tal:attributes="href R2T/getURLDelLoad"><span class="icon-remove"/></a></td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="4" align="center">
-											<a class="btn" tal:attributes="href Resource/getURLTagInsLoad"><span class="icon-plus"/>Thêm mới</a>
+									<tr tal:repeat="Tag TagAll">
+										<td class="center">											
+											<div class="Tag" tal:attributes="alt php: URL . '/' . Tag->getId() . '/no'" tal:condition="php:Resource->checkTag( Tag->getId() )">
+												<i class="glyphicons-check"/>
+											</div>											
+											<div class="Tag" tal:attributes="alt php: URL . '/' . Tag->getId() . '/yes'" tal:condition="php:not Resource->checkTag( Tag->getId() )">
+												<i class="glyphicons-unchecked"/>												
+											</div>											
 										</td>
+										<td><span tal:content="Tag/getName"/></td>										
 									</tr>
-								</tfoot>
+								</tbody>								
 							</table>
 						</div>
-					</div>
+					</div>										
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+				
+			//-----------------------------------------------------------------------------------
+			//Insert 1 UNIT
+			$('.Tag').click(function(){
+				var URL = $(this).attr('alt');						
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){						
+						location.reload();
+					}
+				});
+				
+			});
+						
+		/*]]>*/</script>
 	</body>
 </html>

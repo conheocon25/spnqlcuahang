@@ -26,25 +26,19 @@
 								<thead>
 									<tr>
 										<th width="40"><i class="glyphicons-transfer"/></th>
-										<th width="120" class="left">BẮT ĐẦU</th>
-										<th width="120" class="left">KẾT THÚC</th>
+										<th width="120" class="left">THỜI GIAN</th>										
 										<th class="left">DIỄN GIẢI</th>
 										<th width="120" class="left">CHI TIẾT</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Tracking TrackingAll">
-										<td class="center"><span tal:content="repeat/Tracking/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Tracking/getId" tal:content="Tracking/getDateStartPrint"/></td>
-										<td><span tal:content="Tracking/getDateEndPrint"/></td>
-										<td><span tal:content="Tracking/getNote"/></td>
-										<td>
-											<a tal:attributes="href Tracking/getURLOrder">
-												Xem
-											</a>
-										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Tracking/getId"><i class="glyphicons-remove_2"/></a></td>
+									<tr tal:repeat="Order Tracking/getOrderAll">
+										<td class="center"><span tal:content="repeat/Order/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
+										<td><span tal:content="Order/getNote"/></td>
+										<td><a tal:attributes="href '#'">Xem</a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicons-remove_2"/></a></td>
 									</tr>									
 								</tbody>
 							</table>
@@ -55,21 +49,15 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-transfer modal-icon"/>THÊM MỚI GIAO DỊCH</h3>
+									<h3><i class="glyphicons-transfer modal-icon"/>THÊM MỚI PHIẾU HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label">Ngày bắt đầu</label>
+										<label class="control-label">Ngày</label>
 										<div class="controls">
-											<input id="DateStart1" name="DateStart1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Ngày kết thúc</label>
-										<div class="controls">
-											<input id="DateEnd1" name="DateEnd1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
-										</div>
-									</div>
+									</div>									
 									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
@@ -91,21 +79,15 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-transfer modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
+									<h3><i class="glyphicons-transfer modal-icon"/>CẬP NHẬT PHIẾU HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label">Ngày bắt đầu</label>
+										<label class="control-label">Ngày</label>
 										<div class="controls">
-											<input id="DateStart2" name="DateStart2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											<input id="DateStart2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Ngày kết thúc</label>
-										<div class="controls">
-											<input id="DateEnd2" name="DateEnd2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
-										</div>
-									</div>
+									</div>									
 									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
@@ -126,21 +108,18 @@
 				</div>
 			</div>
 		</div>
-		<div id="IdCustomer" tal:attributes="alt Customer/getId" />
-		<div id="IdDomain" tal:attributes="alt Domain/getId" />
+		<div id="IdTracking" tal:attributes="alt Tracking/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('#DateStart1').datepicker({language:'vi'});
-			$('#DateStart2').datepicker({language:'vi'});
-			$('#DateEnd1').datepicker({language:'vi'});
-			$('#DateEnd2').datepicker({language:'vi'});
+		/*<![CDATA[*/						
+			$('#Date1').datepicker({language:'vi'});
+			$('#Date2').datepicker({language:'vi'});
 			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/CustomerTracking/0";
+				var URL = "/object/del/OrderExport/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -167,7 +146,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/CustomerTracking/" + $(this).attr('alt');
+				var URL = "/object/del/OrderExport/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -182,13 +161,11 @@
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';
-				Data[1] = $('#IdCustomer').attr('alt');
-				Data[2] = $('#IdDomain').attr('alt');
-				Data[3] = $('#DateStart1').val();
-				Data[4] = $('#DateEnd1').val();
-				Data[5] = $('#Note1').val();
+				Data[1] = $('#IdTracking').attr('alt');	
+				Data[2] = $('#Date1').val();				
+				Data[3] = $('#Note1').val();
 							
-				var URL = "/object/ins/CustomerTracking";
+				var URL = "/object/ins/OrderExport";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -204,13 +181,12 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/CustomerTracking/" + $(this).attr('data-id');
+				var url = "/object/load/OrderExport/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#DateStart2').attr('value', data.DateStart);
-					$('#DateEnd2').attr('value', data.DateEnd);
+					$('#Date2').attr('value', data.Date);					
 					$('#Note2').attr('value', data.Note);
 				});
 			});
@@ -220,14 +196,12 @@
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#IdCustomer').attr('alt');
-				Data[2] = $('#IdDomain').attr('alt');
-				Data[3] = $('#DateStart2').val();
-				Data[4] = $('#DateEnd2').val();
-				Data[5] = $('#Note2').val();
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#IdTracking').attr('alt');
+				Data[2] = $('#Date2').val();
+				Data[3] = $('#Note2').val();
 				
-				var URL = "/object/upd/CustomerTracking";
+				var URL = "/object/upd/OrderExport";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -236,7 +210,7 @@
 						location.reload();
 					}
 				});
-			});			
+			});
 		/*]]>*/
 		</script>
 	</body>

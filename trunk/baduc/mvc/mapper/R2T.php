@@ -13,6 +13,9 @@ class R2T extends Mapper implements \MVC\Domain\R2TFinder{
 		$updateStmt = sprintf("update %s set id_resource=?, id_tag=? where id=?", $tblR2T);
 		$insertStmt = sprintf("insert into %s (id_resource, id_tag) values( ?, ?)", $tblR2T);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblR2T);
+		$deleteByStmt = sprintf("delete from %s where id_resource=? and id_tag=?", $tblR2T);
+		$existStmt = sprintf("select id from %s where id_resource=? and id_tag=?", $tblR2T);
+		
 		$findByResourceStmt = sprintf("select * from %s where id_resource=?", $tblR2T);
 		$findByTagStmt = sprintf("select * from %s where id_tag=?", $tblR2T);
 										
@@ -20,7 +23,10 @@ class R2T extends Mapper implements \MVC\Domain\R2TFinder{
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
+		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->deleteByStmt = self::$PDO->prepare($deleteByStmt);
+		
+		$this->existStmt = self::$PDO->prepare($existStmt);
 		$this->findByResourceStmt = self::$PDO->prepare($findByResourceStmt);
 		$this->findByTagStmt = self::$PDO->prepare($findByTagStmt);
 		
@@ -60,6 +66,10 @@ class R2T extends Mapper implements \MVC\Domain\R2TFinder{
 
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 	
+	function deleteBy($values) {
+		return $this->deleteByStmt->execute( $values );
+    }
+	
 	function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
@@ -72,5 +82,16 @@ class R2T extends Mapper implements \MVC\Domain\R2TFinder{
         $this->findByTagStmt->execute( $values );
 		return new R2TCollection( $this->findByTagStmt->fetchAll(), $this );
     }
+	
+	function exist($values) {
+		$this->existStmt->execute($values);
+		$result = $this->existStmt->fetchAll();
+		if($result != null) {
+			return $result[0][0];
+		} else {
+			return -1;
+		}
+    }
+	
 }
 ?>

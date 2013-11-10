@@ -79,10 +79,17 @@ class CustomerTracking extends Object{
 		$this->Note 		= $Data[5];
     }
 	
+	function getOrderAll(){
+		$mOrder 	= new \MVC\Mapper\OrderExport();
+		$OrderAll 	= $mOrder->findBy(array( $this->getId() ));
+		return $OrderAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-					
+	function getURLOrder(){return "/export/big/".$this->IdDomain."/".$this->IdCustomer."/".$this->Id;}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

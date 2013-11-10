@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingResourceTag extends Command {
+	class SettingResourceTagExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -13,40 +13,32 @@
 			//-------------------------------------------------------------
 			$IdSupplier = $request->getProperty('IdSupplier');
 			$IdResource = $request->getProperty('IdResource');
+			$IdTag 		= $request->getProperty('IdTag');
+			$State 		= $request->getProperty('State');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mSupplier 	= new \MVC\Mapper\Supplier();
-			$mResource 	= new \MVC\Mapper\Resource();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mConfig 	= new \MVC\Mapper\Config();
-			
+			//-------------------------------------------------------------						
+			$mR2T 		= new \MVC\Mapper\R2T();
 			//-------------------------------------------------------------
 			//XỬ LÍ CHÍNH
 			//-------------------------------------------------------------						
-			$TagAll 	= $mTag->findAll();
-			$Supplier 	= $mSupplier->find($IdSupplier);
-			$Resource 	= $mResource->find($IdResource);
-			$Config 	= $mConfig->findByName('ROW_PER_PAGE');
-						
-			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
-			$Navigation = array(				
-				array("THIẾT LẬP"		, "/setting"),
-				array("NHÀ CUNG CẤP"	, "/setting/supplier"),
-				array( mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource() )
-			);
-			$URL = $Resource->getURLSettingTag();
+			if ($State == "yes"){
+				$R2T = new \MVC\Domain\R2T(
+					null,
+					$IdResource,
+					$IdTag
+				);
+				$mR2T->insert($R2T);
+			}else{
+				$mR2T->deleteBy(array($IdResource, $IdTag));
+			}
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('URL'			, $URL);
-			$request->setObject("Navigation"	, $Navigation);
-			$request->setObject("TagAll"		, $TagAll);
-			$request->setObject("Supplier"		, $Supplier);
-			$request->setObject("Resource"		, $Resource);
+			$json = array('result' => "OK");
+			echo json_encode($json);
 		}
 	}
 ?>

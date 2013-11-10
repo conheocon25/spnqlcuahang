@@ -3,45 +3,36 @@ namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class OrderExport extends Object{
-
     private $Id;
-	private $IdUser;
-	private $Date;
-	private $State;
-    private $Description;
+	private $IdTracking;
+	private $Date;	
+    private $Note;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdUser=null, $Date=null, $State=null, $Description=null){
+    function __construct( $Id=null, $IdTracking=null, $Date=null, $Note=null){
         $this->Id = $Id;
-		$this->IdUser = $IdUser;
-		$this->Date = $Date;
-		$this->State = $State;
-		$this->Description = $Description;
+		$this->IdTracking = $IdTracking;
+		$this->Date = $Date;		
+		$this->Note = $Note;
         parent::__construct( $Id );
     }
 	function setId( $Id) { $this->Id = $Id;}
     function getId( ) {return $this->Id;}
 	
-	function getIdUser( ) {return $this->IdUser;}
-    function setIdUser( $IdUser ){$this->IdUser = $IdUser;$this->markDirty();}
-	function getUser( ) {
-		$mUser = new \MVC\Mapper\User();
-		$User = $mUser->find($this->IdUser);
-		return $User;
+	function getIdTracking( ) {return $this->IdTracking;}
+    function setIdTracking( $IdTracking ){$this->IdTracking = $IdTracking;$this->markDirty();}
+	function getTracking( ) {
+		$mCT 		= new \MVC\Mapper\CustomerTracking();
+		$Tracking 	= $mCT->find( $this->getId() );
+		return $Tracking;
 	}
 	
 	function getDate( ) {return $this->Date;}
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
-	function getDatePrint( ) {
-		$Date = new \MVC\Library\Date($this->Date);return $Date->getDateTimeFormat();
-	}
-	
-	function getState( ) {return $this->State;}
-	function getStatePrint( ) {return $this->State==1?'đã tính tiền':'chưa tính tiền';}
-    function setState( $State ) {$this->State = $State;$this->markDirty();}
-	
-	function getDescription( ) {return $this->Description;}
-	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
+	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date);return $Date->getDateFormat();}
+			
+	function getNote( ) {return $this->Note;}
+	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
 	function getDetailAll(){		
 		$mOED = new \MVC\Mapper\OrderExportDetail();
@@ -70,45 +61,31 @@ class OrderExport extends Object{
 		return $Value->readDigit()." đồng";
 	}
 	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "orderexport" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-						
-		$IdUser = $Doc->createElement( "iduser" );
-		$IdUser->appendChild($Doc->createTextNode( $this->getIdUser() ));
-		
-		$Date = $Doc->createElement( "date" );
-		$Date->appendChild($Doc->createTextNode( $this->getDate() ));
-		
-		$State = $Doc->createElement( "state" );
-		$State->appendChild($Doc->createTextNode( $this->getState() ));
-		
-		$Description = $Doc->createElement( "description" );
-		$Description->appendChild($Doc->createTextNode( $this->getDescription() ));
-		
-		$Obj->appendChild( $IdUser	);
-		$Obj->appendChild( $Date 		);
-		$Obj->appendChild( $State 		);
-		$Obj->appendChild( $Description	);
-						
-		return $Obj;
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdTracking' 	=> $this->getIdTracking(),
+			'Date'			=> $this->getDate(),
+			'Note'			=> $this->getNote()
+		);
+		return json_encode($json);
 	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];	
+		$this->IdTracking 	= $Data[1];
+		$this->Date 		= $Data[2];
+		$this->Note 		= $Data[3];
+    }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLPrint(){return "/selling/".$this->getId()."/print";}
-		
-	function getURLUpdLoad(){return "/selling/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/selling/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/selling/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/selling/".$this->getId()."/del/exe";}
 	function getURLDetail(){return "/selling/".$this->getId();}
 	
 	//---------------------------------------------------------
-    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	
+	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 }
 ?>
