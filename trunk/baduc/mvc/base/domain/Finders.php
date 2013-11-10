@@ -33,6 +33,7 @@ interface OrderExportDetailFinder 	extends Finder {}
 interface OrderImportFinder 		extends Finder {}
 interface OrderImportDetailFinder 	extends Finder {}
 interface CustomerFinder 			extends Finder {}
+interface CustomerTrackingFinder 	extends Finder {}
 interface CustomerDomainFinder 		extends Finder {}
 
 interface EmployeeFinder 			extends Finder {}
@@ -46,5 +47,4 @@ interface TrackingStoreFinder 		extends Finder {}
 interface GuestFinder 				extends Finder {}
 interface TermPaidFinder 			extends Finder {}
 interface TermCollectFinder 		extends Finder {}
-
 ?>

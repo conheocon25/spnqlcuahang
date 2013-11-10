@@ -29,6 +29,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$tblCustomer = "tbl_customer";
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		
+		$this->findByDomainStmt = self::$PDO->prepare("
+						SELECT *
+						FROM tbl_customer C
+						WHERE 
+							C.id IN (SELECT CD.id_customer FROM tbl_customer_domain CD WHERE id_domain=?)
+		");
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -109,7 +116,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function findByDomain($values ){
+        $this->findByDomainStmt->execute( $values );
+        return new CustomerCollection( $this->findByDomainStmt->fetchAll(), $this );
+    }
+	
 }
 ?>
