@@ -18,7 +18,20 @@ class Tag extends Object{
     function getId() {return $this->Id;}			
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
-		
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'Name'			=> $this->getName()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){
+        $this->Id 		= $Data[0];
+		$this->Name 	= $Data[1];
+    }
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -31,12 +44,7 @@ class Tag extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLResource(){return "/setting/tag/".$this->getId()."/resource";}
-	function getURLUpdLoad(){return "/setting/tag/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/tag/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/tag/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/tag/".$this->getId()."/del/exe";}
-			
+				
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

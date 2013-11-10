@@ -20,18 +20,11 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
+			//-------------------------------------------------------------									
 			$TagAll = $mTag->findAll();
-			$TagSelectedAll = $mTagSelected->findAll();			
-			$CustomerAll = $mCustomer->findAll();			
-			$UnitAll = $mUnit->findAll();
-			$UserAll = $mUser->findAll();
-			$ConfigAll = $mConfig->findAll();
-			
-			$Title = "THẺ";			
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+						
+			$Title = "THẺ SẢN PHẨM";
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
 			
@@ -43,21 +36,13 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Tag');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);
-						
-			$request->setObject('SupplierAll', $SupplierAll);
-			$request->setObject('UnitAll', $UnitAll);
-			$request->setObject('TagAll', $TagAll);
-			$request->setObject('TagSelectedAll', $TagSelectedAll);
-			$request->setObject('TagAll1', $TagAll1);
-			$request->setObject('CustomerAll', $CustomerAll);			
-			$request->setObject('UserAll', $UserAll);
-			$request->setObject('ConfigAll', $ConfigAll);
-									
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Tag');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('TagAll1'		, $TagAll1);
+												
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

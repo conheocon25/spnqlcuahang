@@ -40,41 +40,13 @@ RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 								?cmd=App [L]
 
-RewriteRule ^selling$ 							?cmd=Selling [L]
-RewriteRule ^selling/checkout$ 					?cmd=SellingCheckout [L]
-RewriteRule ^selling/checkin$ 					?cmd=SellingCheckin [L]
-RewriteRule ^selling/barcode$ 					?cmd=SellingBarcode [L]
-RewriteRule ^selling/log$ 						?cmd=SellingLog&Page=1 [L]
-RewriteRule ^selling/log/page/([0-9]+)$ 		?cmd=SellingLog&Page=$1 [L]
-
-RewriteRule ^selling/call/load$ 					?cmd=SellingCallLoad [L]
-RewriteRule ^selling/call/load/([0-9]+)$			?cmd=SellingCallLoad&IdTag=$1 [L]
-RewriteRule ^selling/call/exe/([0-9]+)/([0-9]+)$ 	?cmd=SellingCallExe&IdTag=$1&IdResource=$2 [L]
-
-RewriteRule ^selling/ins/load$ 					?cmd=SellingOrderInsLoad [L]
-RewriteRule ^selling/ins/exe$ 					?cmd=SellingOrderInsExe [L]
-RewriteRule ^selling/([0-9]+)/print$ 			?cmd=SellingOrderPrint&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/upd/load$ 		?cmd=SellingOrderUpdLoad&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/upd/exe$ 			?cmd=SellingOrderUpdExe&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/del/load$ 		?cmd=SellingOrderDelLoad&IdOrder=$1 [L]
-RewriteRule ^selling/([0-9]+)/del/exe$ 			?cmd=SellingOrderDelExe&IdOrder=$1 [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/upd/load$ 	?cmd=SellingOrderDetailUpdLoad&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/upd/exe$ 	?cmd=SellingOrderDetailUpdExe&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/load$ 	?cmd=SellingOrderDetailDelLoad&IdOrder=$1&IdOrderDetail=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/exe$ 	?cmd=SellingOrderDetailDelExe&IdOrder=$1&IdOrderDetail=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# CUSTOMER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^customer/([a-z0-9]+)$				?cmd=FindCustomer&IdCard=$1 [L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # EXPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^export$ 								?cmd=Export [L]
 RewriteRule ^export/big/([0-9]+)$ 					?cmd=ExportBig&IdDomain=$1 [L]
 RewriteRule ^export/big/([0-9]+)/([0-9]+)$ 			?cmd=ExportBigCustomer&IdDomain=$1&IdCustomer=$2 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)$ ?cmd=ExportBigCustomerTracking&IdDomain=$1&IdCustomer=$2&IdTracking=$3 [L]
 
 RewriteRule ^export/tiny/([0-9]+)$ 					?cmd=ExportTiny&IdDomain=$1 [L]
 
@@ -156,7 +128,11 @@ RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplierRes
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/print/barcode$ 	?cmd=SettingSupplierResourcePrintBarcode&IdSupplier=$1&IdResource=$2 [L]
 RewriteRule ^setting/supplier/([0-9]+)/barcode$ 			?cmd=SettingSupplierBarcode&IdSupplier=$1 [L]
 RewriteRule ^barcode/([a-z0-9]+)$ 							?cmd=BarcodeCheck&Barcode=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag$ 		?cmd=SettingResourceTag&IdSupplier=$1&IdResource=$2 [L]
+
+RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag$ 				?cmd=SettingResourceTag&IdSupplier=$1&IdResource=$2 [L]
+RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag/([0-9]+)/no$ 	?cmd=SettingResourceTagExe&IdSupplier=$1&IdResource=$2&IdTag=$3&State=no [L]
+RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag/([0-9]+)/yes$ 	?cmd=SettingResourceTagExe&IdSupplier=$1&IdResource=$2&IdTag=$3&State=yes [L]
+
 RewriteRule ^setting/unit$ 									?cmd=SettingUnit [L]
 RewriteRule ^setting/unit/page/([0-9]+)$ 					?cmd=SettingUnit&Page=$1 [L]
 RewriteRule ^setting/tag$ 									?cmd=SettingTag [L]
