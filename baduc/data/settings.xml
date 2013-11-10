@@ -44,6 +44,14 @@
 		<command name="SellingCallLoad"><view>SellingCallLoad</view></command>
 		<command name="SellingCallExe"><view>SellingCallExe</view></command>
 		
+		<!-- ============================================================================== -->
+		<!-- EXPORt			 														-->
+		<!-- ============================================================================== -->
+		<command name="Export"><view>Export</view></command>
+		<command name="ExportBig"><view>ExportBig</view></command>
+		<command name="ExportBigCustomer"><view>ExportBigCustomer</view></command>
+		
+		
 		<command name="Import"><view>Import</view></command>
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>

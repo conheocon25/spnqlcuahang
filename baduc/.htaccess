@@ -70,6 +70,15 @@ RewriteRule ^selling/([0-9]+)/([0-9]+)/del/exe$ 	?cmd=SellingOrderDetailDelExe&I
 RewriteRule ^customer/([a-z0-9]+)$				?cmd=FindCustomer&IdCard=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# EXPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^export$ 								?cmd=Export [L]
+RewriteRule ^export/big/([0-9]+)$ 					?cmd=ExportBig&IdDomain=$1 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)$ 			?cmd=ExportBigCustomer&IdDomain=$1&IdCustomer=$2 [L]
+
+RewriteRule ^export/tiny/([0-9]+)$ 					?cmd=ExportTiny&IdDomain=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^import$ 								?cmd=Import [L]

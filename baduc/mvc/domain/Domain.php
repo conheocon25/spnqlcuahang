@@ -32,11 +32,17 @@ class Domain extends Object{
 		$this->Name = $Data[1];
     }
 	
+	function getCustomerAll(){
+		$mCustomer = new \MVC\Mapper\Customer();
+		$CustomerAll = $mCustomer->findByDomain(array($this->getId()));
+		return $CustomerAll;
+	}
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLResource(){return "/setting/tag/".$this->getId()."/resource";}
-				
+	function getURLBigExport(){return "/export/big/".$this->getId();}	
+	function getURLTinyExport(){return "/export/tiny/".$this->getId();}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
