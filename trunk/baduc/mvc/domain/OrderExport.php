@@ -23,7 +23,7 @@ class OrderExport extends Object{
     function setIdTracking( $IdTracking ){$this->IdTracking = $IdTracking;$this->markDirty();}
 	function getTracking( ) {
 		$mCT 		= new \MVC\Mapper\CustomerTracking();
-		$Tracking 	= $mCT->find( $this->getId() );
+		$Tracking 	= $mCT->find( $this->getIdTracking() );
 		return $Tracking;
 	}
 	
@@ -61,6 +61,12 @@ class OrderExport extends Object{
 		return $Value->readDigit()." đồng";
 	}
 	
+	function findItem($IdResource){
+		$mOD = new \MVC\Mapper\OrderExportDetail();
+		$OD = $mOD->findItem( array($this->getId(), $IdResource) );
+		return $OD;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -80,9 +86,23 @@ class OrderExport extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/selling/".$this->getId()."/print";}
-	function getURLDetail(){return "/selling/".$this->getId();}
+	//-------------------------------------------------------------------------------	
+	function getURLDetail(){
+		$Tracking = $this->getTracking();		
+		return "/export/big/".$Tracking->getIdDomain()."/".$Tracking->getIdCustomer()."/".$Tracking->getId()."/".$this->getId();		
+	}
+	function getURLPrint(){
+		$Tracking = $this->getTracking();
+		return "/export/big/".$Tracking->getIdDomain()."/".$Tracking->getIdCustomer()."/".$Tracking->getId()."/".$this->getId()."/print";		
+	}	
+	function getURLCall(){
+		$Tracking = $this->getTracking();		
+		return "/export/big/".$Tracking->getIdDomain()."/".$Tracking->getIdCustomer()."/".$Tracking->getId()."/".$this->getId()."/call";		
+	}
+	function getURLCallExe(){
+		$Tracking = $this->getTracking();
+		return "/export/big/".$Tracking->getIdDomain()."/".$Tracking->getIdCustomer()."/".$Tracking->getId()."/".$this->getId()."/call/exe";
+	}
 	
 	//---------------------------------------------------------
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

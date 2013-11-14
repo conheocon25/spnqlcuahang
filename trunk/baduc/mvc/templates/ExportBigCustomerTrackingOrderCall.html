@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+					<a tal:attributes="href php:URL . '/' . Supplier1->getId()">
+						<i class="glyphicons-truck"/><span tal:content="Supplier1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40">ID</th>
+										<th class="left">TÊN</th>
+										<th width="120" class="right">SỐ LƯỢNG</th>
+										<th width="120" class="left">ĐVT</th>
+										<th width="120" class="right">ĐƠN GIÁ</th>
+										<th width="120" class="right">THÀNH TIỀN</th>										
+									</tr>
+								</thead>
+								<tbody>									
+									<tr tal:repeat="Resource Supplier/getResourceAll">
+										<td class="center"><span tal:content="repeat/Resource/number"/></td>
+										<td>
+											<a tal:condition="php:	  Order->findItem( Resource->getId() )" class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-idresource Resource/getId; data-resourcename Resource/getName; data-count php:Order->findItem( Resource->getId() )->getCount(); data-price php:Order->findItem( Resource->getId() )->getPrice()" tal:content="Resource/getName"/>
+											<a tal:condition="php:not Order->findItem( Resource->getId() )" class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-idresource Resource/getId; data-resourcename Resource/getName; data-count string:1; data-price Resource/getPriceExport" tal:content="Resource/getName"/>
+										</td>
+										<td align="right">
+											<span tal:condition="php:Order->findItem( Resource->getId() )" tal:content="php:Order->findItem( Resource->getId() )->getCount()"/>
+										</td>
+										<td align="left">
+											<span tal:content="Resource/getUnit"/>
+										</td>
+										<td align="right">
+											<span tal:condition="php:not Order->findItem( Resource->getId() )" tal:content="Resource/getPriceExportPrint"/>
+											<span tal:condition="php:Order->findItem( Resource->getId() )" tal:content="php:Order->findItem( Resource->getId() )->getPricePrint()"/>
+										</td>
+										<td align="right">
+											<span tal:condition="php:not Order->findItem( Resource->getId() )" tal:content="string:0 đ"/>
+											<span tal:condition="php:Order->findItem( Resource->getId() )" tal:content="php:Order->findItem( Resource->getId() )->getValuePrint()"/>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+										
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-cart_in modal-icon"/>CẬP NHẬT CHI TIẾT</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Id</label>
+										<div class="controls">
+											<input readonly="true" id="IdResource2" name="IdResource2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input readonly="true" id="ResourceName2" name="ResourceName2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Số lượng</label>
+										<div class="controls">
+											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Đơn giá</label>
+										<div class="controls">
+											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div id="IdOrder" tal:attributes="alt Order/getId" />
+		<div id="URL" tal:attributes="alt URL" />
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+														
+			//-----------------------------------------------------------------------------------
+			//Load 1 DETAIL
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				//var url = "/object/load/OrderExportDetail/" + $(this).attr('data-id');
+								
+				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
+				$('#ResourceName2').attr('value', $(this).attr('data-resourcename'));
+				$('#Count2').attr('value', $(this).attr('data-count'));
+				$('#Price2').attr('value', $(this).attr('data-price'));
+				
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 TABLE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];				
+				Data[0] = $('#IdOrder').attr('alt');
+				Data[1] = $('#IdResource2').val();
+				Data[2] = $('#Count2').val();
+				Data[3] = $('#Price2').val();
+				
+				var URL = $("#URL").attr('alt') + "/0/exe";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+						//alert("OK");
+					}
+				});
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>
