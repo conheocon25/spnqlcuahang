@@ -35,23 +35,24 @@
 		<command name="Money"><view>Money</view></command>
 		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
 		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-				
 		
 		<!-- ============================================================================== -->
-		<!-- EXPORt			 														-->
+		<!-- EXPORT			 																-->
 		<!-- ============================================================================== -->
 		<command name="Export"><view>Export</view></command>
 		<command name="ExportBig"><view>ExportBig</view></command>
 		<command name="ExportBigCustomer"><view>ExportBigCustomer</view></command>
 		<command name="ExportBigCustomerTracking"><view>ExportBigCustomerTracking</view></command>
+		<command name="ExportBigCustomerTrackingOrder"><view>ExportBigCustomerTrackingOrder</view></command>
+		<command name="ExportBigCustomerTrackingOrderPrint"><view>ExportBigCustomerTrackingOrderPrint</view></command>
+		<command name="ExportBigCustomerTrackingOrderCall"><view>ExportBigCustomerTrackingOrderCall</view></command>
+		<command name="ExportBigCustomerTrackingOrderCallExe"><view>ExportBigCustomerTrackingOrderCallExe</view></command>
 		
 		<command name="Import"><view>Import</view></command>
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
 		
-		<command name="Setting"><view>Setting</view></command>
-		<command name="SettingBarcodeNone"><view>SettingBarcodeNone</view></command>
-		
+		<command name="Setting"><view>Setting</view></command>				
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->		

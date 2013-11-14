@@ -14,88 +14,76 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-plus"/> Thêm mới
+					<a tal:attributes="href Order/getURLCall" class="btn btn-primary">
+						<i class="glyphicons-plus"/> Thêm chi tiết
 					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-remove_2"/> Xóa chọn
+					<a target="blank" tal:attributes="href Order/getURLPrint" class="btn btn-primary">
+						<i class="glyphicons-print"/> In
 					</a>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40"><i class="glyphicons-transfer"/></th>
-										<th width="120" class="left">THỜI GIAN</th>										
-										<th class="left">DIỄN GIẢI</th>
-										<th width="120" class="left">CHI TIẾT</th>
+										<th width="40">ID</th>
+										<th class="left">TÊN</th>
+										<th width="120" class="right">SỐ LƯỢNG</th>
+										<th width="120" class="left">ĐVT</th>
+										<th width="120" class="right">ĐƠN GIÁ</th>
+										<th width="120" class="right">THÀNH TIỀN</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Order Tracking/getOrderAll">
-										<td class="center"><span tal:content="repeat/Order/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
-										<td><span tal:content="Order/getNote"/></td>
-										<td>
-											<a tal:attributes="href Order/getURLDetail">
-												<span tal:content="Order/getValuePrint" />
-											</a>
-										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicons-remove_2"/></a></td>
-									</tr>									
+									<tr tal:repeat="Detail Order/getDetailAll">
+										<td class="center"><span tal:content="repeat/Detail/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getResource/getName"/></td>
+										<td align="right"><span tal:content="Detail/getCount"/></td>
+										<td align="left"><span tal:content="Detail/getResource/getUnit"/></td>
+										<td align="right"><span tal:content="Detail/getPricePrint"/></td>
+										<td align="right"><span tal:content="Detail/getValuePrint"/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicons-remove_2"/></a></td>
+									</tr>
+									<tr>
+										<td colspan="5" class="text-right"><B>TỔNG PHIẾU</B></td>
+										<td class="text-right"><B tal:content="Order/getValuePrint"/></td>
+										<td class="text-center" />
+									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<!-- INSERT DIALOG  -->
-					<div id="DialogIns" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-transfer modal-icon"/>THÊM MỚI PHIẾU HÀNG</h3>
-								</div>
-								<div class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Ngày</label>
-										<div class="controls">
-											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">Diễn giải</label>
-										<div class="controls">
-											<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END INSERT DIALOG  -->
-					
+										
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-transfer modal-icon"/>CẬP NHẬT PHIẾU HÀNG</h3>
+									<h3><i class="glyphicons-transfer modal-icon"/>CẬP NHẬT CHI TIẾT</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label">Ngày</label>
+										<label class="control-label">Id</label>
 										<div class="controls">
-											<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											<input readonly="true" id="IdResource2" name="IdResource2" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>
 									<div class="control-group">
-										<label class="control-label">Diễn giải</label>
+										<label class="control-label">Tên</label>
 										<div class="controls">
-											<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+											<input readonly="true" id="ResourceName2" name="ResourceName2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Số lượng</label>
+										<div class="controls">
+											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Đơn giá</label>
+										<div class="controls">
+											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -112,18 +100,16 @@
 				</div>
 			</div>
 		</div>
-		<div id="IdTracking" tal:attributes="alt Tracking/getId" />
+		<div id="IdOrder" tal:attributes="alt Order/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/						
-			$('#Date1').datepicker({language:'vi'});
-			$('#Date2').datepicker({language:'vi'});
-			
+						
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/OrderExport/0";
+				var URL = "/object/del/OrderExportDetail/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -150,7 +136,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/OrderExport/" + $(this).attr('alt');
+				var URL = "/object/del/OrderExportDetail/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -159,39 +145,21 @@
 					}
 				});
 			});
-		
-			//-----------------------------------------------------------------------------------
-			//Insert 1 ORDER
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#IdTracking').attr('alt');	
-				Data[2] = $('#Date1').val();				
-				Data[3] = $('#Note1').val();
-							
-				var URL = "/object/ins/OrderExport";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-			});
-			
+								
 			//-----------------------------------------------------------------------------------
 			//Load 1 ORDER
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/OrderExport/" + $(this).attr('data-id');
+				var url = "/object/load/OrderExportDetail/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Date2').attr('value', data.Date);					
-					$('#Note2').attr('value', data.Note);
+					$('#IdResource2').attr('value', data.IdResource);
+					$('#ResourceName2').attr('value', data.ResourceName);
+					$('#Count2').attr('value', data.Count);
+					$('#Price2').attr('value', data.Price);
 				});
 			});
 			
@@ -201,11 +169,12 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdTracking').attr('alt');
-				Data[2] = $('#Date2').val();
-				Data[3] = $('#Note2').val();
+				Data[1] = $('#IdOrder').attr('alt');
+				Data[2] = $('#IdResource2').val();
+				Data[3] = $('#Count2').val();
+				Data[4] = $('#Price2').val();
 				
-				var URL = "/object/upd/OrderExport";
+				var URL = "/object/upd/OrderExportDetail";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

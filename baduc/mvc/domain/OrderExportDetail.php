@@ -47,48 +47,33 @@ class OrderExportDetail extends Object{
 
 	function getPrice( ) {return $this->Price;}
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
-	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency();}
+	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency()." đ";}
 
 	function getValue( ) {return $this->Count*$this->Price;}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
-	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "orderexportdetail" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-						
-		$IdOrder = $Doc->createElement( "idorder" );
-		$IdOrder->appendChild($Doc->createTextNode( $this->getIdOrder() ));
-		
-		$IdResource = $Doc->createElement( "idresource" );
-		$IdResource->appendChild($Doc->createTextNode( $this->getIdResource() ));
-		
-		$Count = $Doc->createElement( "count" );
-		$Count->appendChild($Doc->createTextNode( $this->getCount() ));
-		
-		$Price = $Doc->createElement( "price" );
-		$Price->appendChild($Doc->createTextNode( $this->getPrice() ));
-		
-		$Obj->appendChild( $IdOrder	);
-		$Obj->appendChild( $IdResource	);
-		$Obj->appendChild( $Count 		);
-		$Obj->appendChild( $Price	);
-										
-		return $Obj;
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){
-		$Order = $this->getOrder();	
-		return "/selling/".$this->getIdOrder()."/".$this->getId()."/upd/load";
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdOrder' 		=> $this->getIdOrder(),
+			'ResourceName'	=> $this->getResource()->getName(),
+			'IdResource'	=> $this->getIdResource(),
+			'Count'			=> $this->getCount(),
+			'Price'			=> $this->getPrice()
+		);
+		return json_encode($json);
 	}
-	function getURLUpdExe(){return "/selling/".$this->getIdOrder()."/".$this->getId()."/upd/exe";}
-	function getURLDelLoad(){
-		$Order = $this->getOrder();	
-		return "/selling/".$this->getIdOrder()."/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){return "/selling/".$this->getIdOrder()."/".$this->getId()."/del/exe";}
+	
+	function setArray( $Data ){        
+		$this->Id 			= $Data[0];
+		$this->IdOrder 		= $Data[1];	
+		$this->IdResource 	= $Data[2];	
+		$this->Count 		= $Data[3];	
+		$this->Price 		= $Data[4];	
+    }
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
