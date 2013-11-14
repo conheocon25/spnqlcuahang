@@ -41,11 +41,11 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("print_vi_que.pdf", 'I');
+		$Out = $pdf->Output("print_ba_duc.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
-			
+	
 	function custompdf(){		
 		$html = $this->html();
 		$width = 73; 
@@ -62,30 +62,30 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('a4_vi_que.pdf', 'I');
+		$Out = $pdf->Output('a4_ba_duc.pdf', 'I');
 		unset($pdf);
 		
 		return $Out;
 	}
 	
-	function pdfFormatSize() {
+	function pdfA5() {
 		
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		
-		$pdf->reFormat("A4", "L");
+		$pdf->reFormat("A5", "P");
 
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);		
+		$pdf->SetMargins(1, 2, 1);		
 		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("pdfFormatSize.pdf", 'I');
+		$Out = $pdf->Output("a5_ba_duc.pdf", 'I');
 		unset($pdf);
 		
 		return $Out;

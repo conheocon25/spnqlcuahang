@@ -13,7 +13,7 @@ class Date{
 	}
 	
 	function getDateTimeFormat(){
-		return date('d/m H:i',strtotime($this->Value));
+		return date('d/m/y H:i:s',strtotime($this->Value));
 	}
 	
 	function getTimeFormat(){

@@ -30,6 +30,7 @@ class OrderExport extends Object{
 	function getDate( ) {return $this->Date;}
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date);return $Date->getDateFormat();}
+	function getDateTimePrint( ) {$Date = new \MVC\Library\Date($this->Date);return $Date->getDateTimeFormat();}
 			
 	function getNote( ) {return $this->Note;}
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
