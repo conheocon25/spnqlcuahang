@@ -1,104 +1,131 @@
 <table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 	<tr>
-		<td width="100%" align="center">
-			<font size="11pt"><b>CỬA HÀNG BA ĐỨC</b></font>
+		<td width="20%" rowspan="5" align="center">
+			<img width="90" src="/data/images/logo_gray.jpg"/>
+		</td>
+		<td width="80%" align="left">
+			<font size="10pt">CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y</font>
 		</td>
 	</tr>
+	<tr>		
+		<td width="80%" align="left">
+			<font size="12pt">BA ĐỨC</font>
+		</td>
+	</tr>
+	<tr>		
+		<td width="80%" align="left">
+			<font size="9pt">Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp</font>
+		</td>
+	</tr>
+	<tr>		
+		<td width="80%" align="left">
+			<font size="9pt">ĐT: 0673 842 747 – Fax: 0673 611 798</font>
+		</td>
+	</tr>
+	<tr><td width="80%" /></tr>
 	<tr>
 		<td width="100%" align="center">
-			<font size="11pt">Cái Tàu Hạ, Châu Thành, Đồng Tháp</font>
+			<font size="16pt"><b>HÓA ĐƠN BÁN HÀNG</b></font>
 		</td>
-	</tr>
-	<tr>
-		<td width="100%" align="center">
-			<font size="11pt">0673 11 22 33</font>
-		</td>
-	</tr>
-	<tr>
-		<td width="100%" align="center">
-			<font size="13pt"><b>PHIẾU XUẤT HÀNG</b></font>
-		</td>
-	</tr>
-	<tr>			
-		<td width="100%" align="center">
-			<font size="10pt"><span tal:content="Order/getDatePrint" /></font>
-		</td>
-	</tr>
+	</tr>	
 </table>
 <br/>
 <font size="10pt">	
 	<table style="padding-top:0px;" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 		<tr>
-			<td width="50%" align="left">				
-				<span tal:content="php:mb_strtoupper(Order->getTracking()->getCustomer()->getName(),'UTF8')"/>
+			<td width="50%" align="left">
+				Số HĐ: <span tal:content="Order/getId"/>
 			</td>
 			<td width="50%" align="right">
-				???
+				Ngày: <span tal:content="Order/getDateTimePrint"/>
 			</td>
 		</tr>
 		<tr>
 			<td width="50%" align="left">				
-				
+				Khách hàng: <span tal:content="php:mb_strtoupper(Order->getTracking()->getCustomer()->getName(),'UTF8')"/>
 			</td>
 			<td width="50%" align="right">
-				NV: <span tal:content="string:Nguyễn Văn A" />
+				CMND: <span tal:content="php:mb_strtoupper(Order->getTracking()->getCustomer()->getCard(),'UTF8')"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" width="100%" align="left">
+				Địa chỉ (Ao nuôi): <span tal:content="Order/getNote" />
 			</td>
 		</tr>		
 	</table>
 </font>
 <br/>
-<font size="8pt">
+<font size="10pt">
 	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
 		<thead>
 			<tr>
-				<th width="42%"><b>TÊN HÀNG</b></th>
+				<th width="7%" align="center"><b>STT</b></th>
+				<th width="34%"><b>TÊN HÀNG</b></th>
+				<th width="9%"><b>ĐVT</b></th>
 				<th width="11%" align="right"><b>SL</b></th>
-				<th width="21%" align="right"><b>Đ.GIÁ</b></th>			
-				<th width="26%" align="right"><b>T.TIỀN</b></th>
+				<th width="19%" align="right"><b>Đ.GIÁ</b></th>			
+				<th width="20%" align="right"><b>T.TIỀN</b></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr tal:repeat="Detail Order/getDetailAll">
-				<td width="42%" align='left' tal:content="Detail/getResource/getName" />
-				<td width="11%" align='right' tal:content="Detail/getCount" />
-				<td width="21%" align='right' tal:content="Detail/getPricePrint" />
-				<td width="26%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+				<td width="7%" 	align='center' 	tal:content="repeat/Detail/number" />
+				<td width="34%" align='left' 	tal:content="Detail/getResource/getName" />
+				<td width="9%" align='left' 	tal:content="Detail/getResource/getUnit" />
+				<td width="11%" align='right' 	tal:content="Detail/getCount" />
+				<td width="19%" align='right' 	tal:content="Detail/getPricePrint" />
+				<td width="20%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
 			</tr>		
 		</tbody>
 	</table>
 	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
 		<tbody>						
 			<tr>
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="12pt">TỔNG TIỀN: <b tal:content="Order/getValuePrint"/></font>
+				<td align='right' width="80%">
+					<font align='right' size="12pt">TỔNG TIỀN:</font>
+				</td>
+				<td align='right' width="20%">
+					<font align='right' size="12pt"><span tal:content="Order/getValuePrint"/></font>
 				</td>
 			</tr>
 			<tr>
-				<td align='right' colspan="5" width="100%">
-					<p>( Bằng chữ: <span tal:content="Order/getValueStrPrint" /> )</p>
+				<td align='right' width="80%">
+					<font align='right' size="12pt">THANH TOÁN:</font>
+				</td>
+				<td align='right' width="20%">
+					<font align='right' size="12pt">0 đ</font>
 				</td>
 			</tr>
+			<tr>
+				<td align='right' width="80%">
+					<font align='right' size="12pt"><B>CÒN NỢ:</B></font>
+				</td>
+				<td align='right' width="20%">
+					<font align='right' size="12pt"><B tal:content="Order/getValuePrint"/></font>
+				</td>
+			</tr>			
 		</tbody>
 	</table>
 </font>
+<BR/><BR/>
 <table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 	<tr>
-		<td width="100%" align="right">
-			<font size="11pt"><b>NHÂN VIÊN</b></font>
+		<td width="30%" align="center">
+			<font size="11pt">Đại diện Mua Hàng</font>
+		</td>
+		<td width="40%" />					
+		<td width="30%" align="center">
+			<font size="11pt">Đại diện Bán Hàng</font>
 		</td>
 	</tr>
-	<tr><td /></tr>
-	<tr><td /></tr>
 	<tr>
-		<td width="100%" align="right">
-			<font size="11pt"><b>KHÁCH HÀNG</b></font>
+		<td width="30%" align="center">
+			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
 		</td>
-	</tr>	
-	<tr><td /></tr>
-	<tr><td /></tr><tr><td /></tr>
-	<tr>
-		<td width="100%" align="right">
-			<font size="11pt"><span tal:content="php:mb_strtoupper(Order->getTracking()->getCustomer()->getName(),'UTF8')"/></font>
+		<td width="40%" />					
+		<td width="30%" align="center">
+			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
 		</td>
 	</tr>
 </table>
