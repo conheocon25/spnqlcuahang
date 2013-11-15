@@ -38,7 +38,7 @@
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><span tal:content="repeat/Detail/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getResource/getName"/></td>
-										<td align="right"><span tal:content="Detail/getCount"/></td>
+										<td align="right"><span tal:content="Detail/getCountPrint"/></td>
 										<td align="left"><span tal:content="Detail/getResource/getUnit"/></td>
 										<td align="right"><span tal:content="Detail/getPricePrint"/></td>
 										<td align="right"><span tal:content="Detail/getValuePrint"/></td>

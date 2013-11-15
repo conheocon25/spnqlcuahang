@@ -22,10 +22,10 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-remove_2"/> Xóa chọn
 					</a>
 					<div class="widget-box">
@@ -37,7 +37,7 @@
 										<th width="90" class="left">NGÀY</th>										
 										<th class="left">DIỄN GIẢI</th>
 										<th class="right" width="120">GIÁ TRỊ</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40">IN</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -51,7 +51,9 @@
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
 											</div>
 										</td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
+										<td class="center">
+											<a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicons-print"/></a>
+										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																
@@ -65,7 +67,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ĐƠN HÀNG</h3>
+									<h3><i class="glyphicons-cart_in modal-icon"/>THÊM MỚI ĐƠN HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">
@@ -95,7 +97,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
+									<h3><i class="glyphicons-cart_in modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">

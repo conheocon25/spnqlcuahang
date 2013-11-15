@@ -59,7 +59,7 @@
 									<div class="control-group">
 										<label class="control-label">Ngày</label>
 										<div class="controls">
-											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd hh:ii" class="form-control input-small"/>
 										</div>
 									</div>									
 									<div class="control-group">
@@ -89,7 +89,7 @@
 									<div class="control-group">
 										<label class="control-label">Ngày</label>
 										<div class="controls">
-											<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd hh:ii" class="form-control input-small"/>
 										</div>
 									</div>									
 									<div class="control-group">
@@ -113,12 +113,32 @@
 			</div>
 		</div>
 		<div id="IdTracking" tal:attributes="alt Tracking/getId" />
+		<div id="IdUser" tal:attributes="alt IdUser" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/						
-			$('#Date1').datepicker({language:'vi'});
-			$('#Date2').datepicker({language:'vi'});
+		/*<![CDATA[*/
+			
+			$('#Date1').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			$('#Date2').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
 			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
@@ -166,8 +186,9 @@
 				var Data = [];
 				Data[0] = 'null';
 				Data[1] = $('#IdTracking').attr('alt');	
-				Data[2] = $('#Date1').val();				
-				Data[3] = $('#Note1').val();
+				Data[2] = $('#IdUser').attr('alt');	
+				Data[3] = $('#Date1').val();
+				Data[4] = $('#Note1').val();
 							
 				var URL = "/object/ins/OrderExport";
 				$.ajax({
@@ -201,9 +222,10 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdTracking').attr('alt');
-				Data[2] = $('#Date2').val();
-				Data[3] = $('#Note2').val();
+				Data[1] = $('#IdTracking').attr('alt');	
+				Data[2] = $('#IdUser').attr('alt');	
+				Data[3] = $('#Date1').val();
+				Data[4] = $('#Note1').val();
 				
 				var URL = "/object/upd/OrderExport";
 				$.ajax({

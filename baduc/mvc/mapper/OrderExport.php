@@ -7,13 +7,13 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblOrderExport = "tbl_order_export";
-		$tblOrderExportDetail = "tbl_order_export_detail";
+		$tblOrderExport 		= "tbl_order_export";
+		$tblOrderExportDetail 	= "tbl_order_export_detail";
 								
 		$selectAllStmt = sprintf("select * from %s order by date DESC", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
-		$updateStmt = sprintf("update %s set id_tracking=?, date=?, note=? where id=?", $tblOrderExport);
-		$insertStmt = sprintf("insert into %s ( id_tracking, date, note ) values( ?, ?, ?)", $tblOrderExport);
+		$updateStmt = sprintf("update %s set id_tracking=?, id_user=?, date=?, note=? where id=?", $tblOrderExport);
+		$insertStmt = sprintf("insert into %s ( id_tracking, id_user, date, note ) values( ?, ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
 		$findByStmt = sprintf("
 			select * from  %s 
@@ -53,6 +53,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $obj = new \MVC\Domain\OrderExport( 
 			$array['id'],
 			$array['id_tracking'],
+			$array['id_user'],
 			$array['date'],		
 			$array['note']
 		);
@@ -64,6 +65,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdTracking(),
+			$object->getIdUser(),
 			$object->getDate(),
 			$object->getNote()
 		); 
@@ -75,6 +77,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdTracking(),
+			$object->getIdUser(),
 			$object->getDate(),			
 			$object->getNote(),
 			$object->getId()

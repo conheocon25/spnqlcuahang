@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class MoneyPaidGeneral extends Command {
+	class MoneyPaidSupplier extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,32 +11,32 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTerm = $request->getProperty('IdTerm');
+			$IdSupplier = $request->getProperty('IdSupplier');
 			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTerm = new \MVC\Mapper\TermPaid();
-			$mPaidGeneral = new \MVC\Mapper\PaidGeneral();
-			$mConfig = new \MVC\Mapper\Config();
+			$mSupplier 		= new \MVC\Mapper\Supplier();
+			$mPaidSupplier 	= new \MVC\Mapper\PaidSupplier();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$TermAll = $mTerm->findAll();
-			if (isset($IdTerm)){
-				$Term = $mTerm->find($IdTerm);
+			$SupplierAll = $mSupplier->findAll();
+			if (isset($IdSupplier)){
+				$Supplier = $mSupplier->find($IdSupplier);
 			}else{
-				$Term = $TermAll->current();
-				$IdTerm = $Term->getId();
+				$Supplier = $SupplierAll->current();
+				$IdSupplier = $Supplier->getId();
 			}						
 			$Config = $mConfig->findByName('ROW_PER_PAGE');
 			if (!isset($Page)) $Page = 1;
-			$PaidAll = $mPaidGeneral->findByPage(array($IdTerm, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Term->getPaids()->count(), $Config->getValue(), $Term->getURLDetail());
+			$PaidAll = $mPaidSupplier->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation( $Supplier->getPaidAll()->count(), $Config->getValue(), $Supplier->getURLPaid());
 			
-			$Title = "KHOẢN CHI CHUNG";
+			$Title = "TRẢ TIỀN > ".$Supplier->getName();
 			$Navigation = array(
 				array("THU / CHI", "/money")			
 			);
@@ -44,8 +44,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('Term', $Term);
-			$request->setObject('TermAll', $TermAll);
+			$request->setObject('Supplier', $Supplier);
+			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setObject('PaidAll', $PaidAll);
 			$request->setObject('PN', $PN);
 			$request->setProperty('Page', $Page);

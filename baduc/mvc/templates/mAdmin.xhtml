@@ -53,6 +53,8 @@
 		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>		
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -104,10 +106,10 @@
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Export'?'active':'disable'">
-				<a tal:attributes="href '/export'"><i class="glyphicons-drink" />XUẤT HÀNG</a>
+				<a tal:attributes="href '/export'"><i class="glyphicons-cart_out" />XUẤT HÀNG</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
+				<a tal:attributes="href '/import'"><i class="glyphicons-cart_in" />NHẬP HÀNG</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
 				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>

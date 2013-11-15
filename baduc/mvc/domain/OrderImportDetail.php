@@ -38,11 +38,9 @@ class OrderImportDetail extends Object{
 		
 	function getCount( ) {return $this->Count;}
     function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}
-	function getCountPrint( ) {
-		if (!isset($this->Count)){
-			return 0;
-		}
-        return $this->Count;
+	function getCountPrint( ){
+		$N = new \MVC\Library\Number($this->Count);
+		return $N->formatCurrency();
     }
 
 	function getPrice( ) {return $this->Price;}
