@@ -31,9 +31,21 @@ RewriteRule ^money/collect/general$ 								?cmd=MoneyCollectGeneral [L]
 RewriteRule ^money/collect/general/([0-9]+)$ 						?cmd=MoneyCollectGeneral&IdTerm=$1 [L]
 RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectGeneral&IdTerm=$1&Page=$2 [L]
 
+RewriteRule ^money/collect/customer$ 								?cmd=MoneyCollectCustomer [L]
+RewriteRule ^money/collect/customer/([0-9]+)$ 						?cmd=MoneyCollectCustomer&IdCustomer=$1 [L]
+RewriteRule ^money/collect/customer/([0-9]+)/page/([0-9]+)$ 		?cmd=MoneyCollectCustomer&IdCustomer=$1&Page=$2 [L]
+
 RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
 RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
 RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
+
+RewriteRule ^money/paid/customer$ 									?cmd=MoneyPaidCustomer [L]
+RewriteRule ^money/paid/customer/([0-9]+)$ 							?cmd=MoneyPaidCustomer&IdCustomer=$1 [L]
+RewriteRule ^money/paid/customer/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidCustomer&IdCustomer=$1&Page=$2 [L]
+
+RewriteRule ^money/paid/supplier$ 									?cmd=MoneyPaidSupplier [L]
+RewriteRule ^money/paid/supplier/([0-9]+)$ 							?cmd=MoneyPaidSupplier&IdSupplier=$1 [L]
+RewriteRule ^money/paid/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidSupplier&IdSupplier=$1&Page=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
@@ -43,12 +55,12 @@ RewriteRule ^app$ 								?cmd=App [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # EXPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^export$ 													?cmd=Export [L]
-RewriteRule ^export/big/([0-9]+)$ 										?cmd=ExportBig&IdDomain=$1 [L]
-RewriteRule ^export/big/([0-9]+)/([0-9]+)$ 								?cmd=ExportBigCustomer&IdDomain=$1&IdCustomer=$2 [L]
-RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)$ 					?cmd=ExportBigCustomerTracking&IdDomain=$1&IdCustomer=$2&IdTracking=$3 [L]
-RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 			?cmd=ExportBigCustomerTrackingOrder&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4 [L]
-RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/call$ 		?cmd=ExportBigCustomerTrackingOrderCall&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4 [L]
+RewriteRule ^export$ 															?cmd=Export [L]
+RewriteRule ^export/big/([0-9]+)$ 												?cmd=ExportBig&IdDomain=$1 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)$ 										?cmd=ExportBigCustomer&IdDomain=$1&IdCustomer=$2 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)$ 							?cmd=ExportBigCustomerTracking&IdDomain=$1&IdCustomer=$2&IdTracking=$3 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 					?cmd=ExportBigCustomerTrackingOrder&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4 [L]
+RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/call$ 				?cmd=ExportBigCustomerTrackingOrderCall&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4 [L]
 RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/call/([0-9]+)$ 		?cmd=ExportBigCustomerTrackingOrderCall&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4&IdSupplier=$5 [L]
 RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/call/([0-9]+)/exe$ 	?cmd=ExportBigCustomerTrackingOrderCallExe&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4&IdSupplier=$5 [L]
 RewriteRule ^export/big/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/print$ 				?cmd=ExportBigCustomerTrackingOrderPrint&IdDomain=$1&IdCustomer=$2&IdTracking=$3&IdOrder=$4 [L]
@@ -63,7 +75,7 @@ RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
 RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
 
 RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/barcode$ 		?cmd=ImportSupplierOrderBarcode&IdSupplier=$1&IdOrder=$2&Barcode=$3 [L]
+RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
 
 RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
 
@@ -80,12 +92,6 @@ RewriteRule ^report/selling/([a-z0-9]+)/general$ 		?cmd=ReportSellingGeneral&IdT
 RewriteRule ^report/selling/([a-z0-9_-]+)/detail$ 		?cmd=ReportSellingDetail&Type=$1 [L]
 
 RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
-RewriteRule ^report/ins/load$ 							?cmd=ReportDetailInsLoad [L]
-RewriteRule ^report/ins/exe$ 							?cmd=ReportDetailInsExe [L]
-RewriteRule ^report/([a-z0-9]+)/upd/load$ 				?cmd=ReportDetailUpdLoad&IdTrack=$1 [L]
-RewriteRule ^report/([a-z0-9]+)/upd/exe$ 				?cmd=ReportDetailUpdExe&IdTrack=$1 [L]
-RewriteRule ^report/([a-z0-9]+)/del/load$ 				?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
-RewriteRule ^report/([a-z0-9]+)/del/exe$ 				?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
 RewriteRule ^report/([a-z0-9]+)/1$ 						?cmd=ReportDetailType1&IdTrack=$1 [L]
 RewriteRule ^report/([a-z0-9]+)/2$ 						?cmd=ReportDetailType2&IdTrack=$1 [L]
@@ -127,12 +133,8 @@ RewriteRule ^setting/customer/([0-9]+)/domain$ 					?cmd=SettingCustomerDomain&I
 RewriteRule ^setting/supplier$ 									?cmd=SettingSupplier [L]
 RewriteRule ^setting/supplier/page/([0-9]+)$ 					?cmd=SettingSupplier&Page=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/domain$ 					?cmd=SettingSupplierDomain&IdSupplier=$1 [L]
-RewriteRule ^setting/barcode/none$ 								?cmd=SettingBarcodeNone [L]
 RewriteRule ^setting/supplier/([0-9]+)$ 						?cmd=SettingSupplierResource&IdSupplier=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/print/barcode$ 	?cmd=SettingSupplierResourcePrintBarcode&IdSupplier=$1&IdResource=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/barcode$ 			?cmd=SettingSupplierBarcode&IdSupplier=$1 [L]
-RewriteRule ^barcode/([a-z0-9]+)$ 							?cmd=BarcodeCheck&Barcode=$1 [L]
 
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag$ 				?cmd=SettingResourceTag&IdSupplier=$1&IdResource=$2 [L]
 RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/tag/([0-9]+)/no$ 	?cmd=SettingResourceTagExe&IdSupplier=$1&IdResource=$2&IdTag=$3&State=no [L]

@@ -45,6 +45,14 @@ class OrderImport extends Object{
 		return $Tracks;
 	}
 	
+	function getDetailAllPrint(){
+		$mOID = new \MVC\Mapper\OrderImportDetail();
+		$DetailAll = $mOID->findBy(array(			
+			$this->getId()
+		));		
+		return $DetailAll;
+	}
+	
 	function getValue(){
 		$DetailAll = $this->getDetailAll();
 		$Count = 0;
@@ -61,7 +69,7 @@ class OrderImport extends Object{
 	}
 	
 	function getValueStrPrint(){
-		$Value = new Number($this->getValue());
+		$Value = new \MVC\Library\Number($this->getValue());
 		return $Value->readDigit()." đồng";
 	}
 	

@@ -1,4 +1,4 @@
-<options>    
+<options>
 	<control>
 		<!-- ============================================================================== -->
 		<!-- Các lệnh xử lí SYSTEM 															-->
@@ -6,35 +6,32 @@
 		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="Home" type="public"><view>Home</view></command>
 		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
-		
 		<command name="SigninExe" type="public">
 			<view>SigninExe</view>
 			<status value="CMD_OK"><forward>App</forward></status>
 			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
-		</command>
-		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		</command>		
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="App"><view>App</view></command>
-		<command name="BarcodeCheck"><view>BarcodeCheck</view></command>
-		
-		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
 		<command name="ObjectLoad"><view>ObjectLoad</view></command>
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
-		<command name="ObjectUpd"><view>ObjectUpd</view></command>
-		
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>		
 		<command name="S2AGet"><view>S2AGet</view></command>
-		
+						
 		<!-- ============================================================================== -->
-		<!-- MONEY		 																	-->
+		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="Money"><view>Money</view></command>
-		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
-		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="Import"><view>Import</view></command>		
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>								
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
+		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- EXPORT			 																-->
@@ -48,30 +45,28 @@
 		<command name="ExportBigCustomerTrackingOrderCall"><view>ExportBigCustomerTrackingOrderCall</view></command>
 		<command name="ExportBigCustomerTrackingOrderCallExe"><view>ExportBigCustomerTrackingOrderCallExe</view></command>
 		
-		<command name="Import"><view>Import</view></command>
-		<command name="Paid"><view>Paid</view></command>
-		<command name="Report"><view>Report</view></command>
-		
-		<command name="Setting"><view>Setting</view></command>				
 		<!-- ============================================================================== -->
-		<!-- REPORT.DETAIL			 														-->
+		<!-- MONEY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidSupplier"><view>MoneyPaidSupplier</view></command>
+		<command name="MoneyPaidCustomer"><view>MoneyPaidCustomer</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- REPORT			 																-->
 		<!-- ============================================================================== -->		
-		<command name="ReportStoreRecipePrint"><view>ReportStoreRecipePrint</view></command>
-		<command name="ReportFormStorePrint"><view>ReportFormStorePrint</view></command>
-								
+		<command name="Report"><view>Report</view></command>										
 		<command name="ReportDetail"><view>ReportDetail</view></command>
-		<command name="ReportDetailInsLoad"><view>ReportDetailInsLoad</view></command>
-		<command name="ReportDetailInsExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailInsExe</view></command>
-		<command name="ReportDetailUpdLoad"><view>ReportDetailUpdLoad</view></command>
-		<command name="ReportDetailUpdExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailUpdExe</view></command>
-		<command name="ReportDetailDelLoad"><view>ReportDetailDelLoad</view></command>
-		<command name="ReportDetailDelExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailDelExe</view></command>
-				
+						
 		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
 		<command name="ReportCustomerGeneral"><view>ReportCustomerGeneral</view></command>
 		
 		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
+		
 		<command name="ReportImportDetail"><view>ReportImportDetail</view></command>
 		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>
 		
@@ -88,11 +83,13 @@
 		<command name="ReportGeneral"><view>ReportGeneral</view></command>
 		
 		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
-					
 												
 		<!-- ============================================================================== -->
 		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->
+		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
+		
 		<command name="SettingDomain"><view>SettingDomain</view></command>
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
@@ -107,33 +104,10 @@
 		<command name="SettingTagSelected"><view>SettingTagSelected</view></command>		
 		<command name="SettingResourceTag"><view>SettingResourceTag</view></command>
 		<command name="SettingResourceTagExe"><view>SettingResourceTagExe</view></command>
-		<command name="SettingConfig"><view>SettingConfig</view></command>
-						
+		<command name="SettingConfig"><view>SettingConfig</view></command>						
 		<command name="SettingSupplier"><view>SettingSupplier</view></command>
 		<command name="SettingSupplierDomain"><view>SettingSupplierDomain</view></command>
-		<command name="SettingSupplierBarcode">
-			<view>SettingSupplierBarcode</view>
-			<status value="CMD_OK"><forward>SettingSupplierResourceUpdLoad</forward></status>
-			<status value="CMD_NO_AUTHOR"><forward>SettingSupplierResource</forward></status>
-		</command>
-		
-		<command name="SettingSupplierResourcePrintBarcode"><view>SettingSupplierResourcePrintBarcode</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-												
-		<!-- ============================================================================== -->
-		<!-- IMPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>				
-		<command name="ImportSupplierOrderBarcode">
-			<view>ImportSupplierOrderBarcode</view>
-			<status value="CMD_OK"><forward>ImportSupplierOrderUpdLoad</forward></status>
-			<status value="CMD_NO_AUTHOR"><forward>ImportSupplierOrder</forward></status>
-		</command>
-		
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
-		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
 		
 	</control>
 </options>

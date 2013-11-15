@@ -5,15 +5,17 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class OrderExport extends Object{
     private $Id;
 	private $IdTracking;
+	private $IdUser;
 	private $Date;	
     private $Note;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdTracking=null, $Date=null, $Note=null){
-        $this->Id = $Id;
-		$this->IdTracking = $IdTracking;
-		$this->Date = $Date;		
-		$this->Note = $Note;
+    function __construct( $Id=null, $IdTracking=null, $IdUser=null, $Date=null, $Note=null){
+        $this->Id 			= $Id;
+		$this->IdTracking 	= $IdTracking;
+		$this->IdUser 		= $IdUser;
+		$this->Date 		= $Date;		
+		$this->Note 		= $Note;
         parent::__construct( $Id );
     }
 	function setId( $Id) { $this->Id = $Id;}
@@ -25,6 +27,14 @@ class OrderExport extends Object{
 		$mCT 		= new \MVC\Mapper\CustomerTracking();
 		$Tracking 	= $mCT->find( $this->getIdTracking() );
 		return $Tracking;
+	}
+	
+	function getIdUser( ) {return $this->IdUser;}
+    function setIdUser( $IdTracking ){$this->IdUser = $IdUser; $this->markDirty();}
+	function getUser( ) {
+		$mUser 		= new \MVC\Mapper\User();
+		$User 		= $mUser->find( $this->getIdUser() );
+		return $User;
 	}
 	
 	function getDate( ) {return $this->Date;}
@@ -72,6 +82,7 @@ class OrderExport extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdTracking' 	=> $this->getIdTracking(),
+			'IdUser' 		=> $this->getIdUser(),
 			'Date'			=> $this->getDate(),
 			'Note'			=> $this->getNote()
 		);
@@ -81,8 +92,9 @@ class OrderExport extends Object{
 	function setArray( $Data ){
         $this->Id 			= $Data[0];	
 		$this->IdTracking 	= $Data[1];
-		$this->Date 		= $Data[2];
-		$this->Note 		= $Data[3];
+		$this->IdUser 		= $Data[2];
+		$this->Date 		= $Data[3];
+		$this->Note 		= $Data[4];
     }
 	
 	//-------------------------------------------------------------------------------

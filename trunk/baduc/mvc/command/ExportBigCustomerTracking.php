@@ -39,7 +39,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);			
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('IdUser'		, $Session->getCurrentIdUser());
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Domain'		, $Domain);
 			$request->setObject('Customer'		, $Customer);

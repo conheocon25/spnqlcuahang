@@ -59,35 +59,7 @@ class Supplier extends Object{
 		);
 		return json_encode($json);
 	}
-	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "supplier" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-				
-		$Name = $Doc->createElement( "name" );
-		$Name->appendChild($Doc->createTextNode( $this->getName() ));
-		
-		$Phone = $Doc->createElement( "phone" );
-		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
-		
-		$Address = $Doc->createElement( "address" );
-		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
-		
-		$Note = $Doc->createElement( "note" );
-		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
-		
-		$Debt = $Doc->createElement( "debt" );
-		$Debt->appendChild($Doc->createTextNode( $this->getDebt() ));
-				
-		$Obj->appendChild( $Name );
-		$Obj->appendChild( $Phone );
-		$Obj->appendChild( $Address);
-		$Obj->appendChild( $Note);
-		$Obj->appendChild( $Debt);
-		
-		return $Obj;
-	}
-	
+			
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];
@@ -236,7 +208,7 @@ class Supplier extends Object{
 	function getURLSettingDomain(){return "/setting/supplier/".$this->getId()."/domain";}
 	function getURLImport(){return "/import/".$this->getId();}
 	function getURLResource(){return "/setting/supplier/".$this->getId();}
-	function getURLPaid(){return "/paid/supplier/".$this->getId();}
+	function getURLPaid(){return "/money/paid/supplier/".$this->getId();}
 								
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

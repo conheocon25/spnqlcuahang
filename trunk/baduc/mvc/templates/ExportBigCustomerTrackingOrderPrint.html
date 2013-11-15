@@ -34,7 +34,7 @@
 	<table style="padding-top:0px;" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 		<tr>
 			<td width="50%" align="left">
-				Số HĐ: <span tal:content="Order/getId"/>
+				Số HĐ: <span tal:content="Order/getId"/> NV: <span tal:content="Order/getUser/getName"/>
 			</td>
 			<td width="50%" align="right">
 				Ngày: <span tal:content="Order/getDateTimePrint"/>
@@ -61,70 +61,75 @@
 		<thead>
 			<tr>
 				<th width="7%" align="center"><b>STT</b></th>
-				<th width="34%"><b>TÊN HÀNG</b></th>
-				<th width="9%"><b>ĐVT</b></th>
-				<th width="11%" align="right"><b>SL</b></th>
-				<th width="19%" align="right"><b>Đ.GIÁ</b></th>			
-				<th width="20%" align="right"><b>T.TIỀN</b></th>
+				<th width="37%"><b>TÊN HÀNG</b></th>
+				<th width="13%"><b>ĐVT</b></th>
+				<th width="9%" align="right"><b>SL</b></th>
+				<th width="15%" align="right"><b>Đ.GIÁ</b></th>			
+				<th width="19%" align="right"><b>T.TIỀN</b></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr tal:repeat="Detail Order/getDetailAll">
 				<td width="7%" 	align='center' 	tal:content="repeat/Detail/number" />
-				<td width="34%" align='left' 	tal:content="Detail/getResource/getName" />
-				<td width="9%" align='left' 	tal:content="Detail/getResource/getUnit" />
-				<td width="11%" align='right' 	tal:content="Detail/getCount" />
-				<td width="19%" align='right' 	tal:content="Detail/getPricePrint" />
-				<td width="20%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+				<td width="37%" align='left' 	tal:content="Detail/getResource/getName" />
+				<td width="13%" 	align='left' 	tal:content="Detail/getResource/getUnit" />
+				<td width="9%"	align='right' 	tal:content="Detail/getCountPrint" />
+				<td width="15%"	align='right' 	tal:content="Detail/getPricePrint" />
+				<td width="19%"	align='right' ><span tal:content="Detail/getValuePrint" /></td>
 			</tr>		
 		</tbody>
 	</table>
 	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
 		<tbody>						
 			<tr>
-				<td align='right' width="80%">
-					<font align='right' size="12pt">TỔNG TIỀN:</font>
+				<td align='right' width="81%">
+					<font align='right' size="10pt">TỔNG TIỀN:</font>
 				</td>
-				<td align='right' width="20%">
-					<font align='right' size="12pt"><span tal:content="Order/getValuePrint"/></font>
-				</td>
-			</tr>
-			<tr>
-				<td align='right' width="80%">
-					<font align='right' size="12pt">THANH TOÁN:</font>
-				</td>
-				<td align='right' width="20%">
-					<font align='right' size="12pt">0 đ</font>
+				<td align='right' width="19%">
+					<font align='right' size="10pt"><span tal:content="Order/getValuePrint"/></font>
 				</td>
 			</tr>
 			<tr>
-				<td align='right' width="80%">
-					<font align='right' size="12pt"><B>CÒN NỢ:</B></font>
+				<td align='right' width="81%">
+					<font align='right' size="10pt">THANH TOÁN:</font>
 				</td>
-				<td align='right' width="20%">
-					<font align='right' size="12pt"><B tal:content="Order/getValuePrint"/></font>
+				<td align='right' width="19%">
+					<font align='right' size="10pt">0 đ</font>
 				</td>
-			</tr>			
+			</tr>
+			<tr>
+				<td align='right' width="81%">
+					<font align='right' size="10pt"><B>CÒN NỢ:</B></font>
+				</td>
+				<td align='right' width="19%">
+					<font align='right' size="10pt"><B tal:content="Order/getValuePrint"/></font>
+				</td>
+			</tr>
+			<tr>
+				<td align='right' width="100%">
+					<font align='right' size="10pt">(<span tal:content="Order/getValueStrPrint"/>)</font>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </font>
 <BR/><BR/>
 <table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 	<tr>
-		<td width="30%" align="center">
+		<td width="35%" align="center">
 			<font size="11pt">Đại diện Mua Hàng</font>
 		</td>
-		<td width="40%" />					
-		<td width="30%" align="center">
+		<td width="30%" />					
+		<td width="35%" align="center">
 			<font size="11pt">Đại diện Bán Hàng</font>
 		</td>
 	</tr>
 	<tr>
-		<td width="30%" align="center">
+		<td width="35%" align="center">
 			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
 		</td>
-		<td width="40%" />					
-		<td width="30%" align="center">
+		<td width="30%" />					
+		<td width="35%" align="center">
 			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
 		</td>
 	</tr>
