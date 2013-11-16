@@ -10,6 +10,7 @@ interface CollectGeneralCollection extends \Iterator {function add( Object $Coll
 interface CollectCustomerCollection extends \Iterator {function add( Object $CollectCustomer );}
 interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGeneral );}
 interface PaidSupplierCollection extends \Iterator {function add( Object $PaidSupplier );}
+interface PaidCustomerCollection extends \Iterator {function add( Object $PaidCustomer );}
 
 interface TagCollection extends \Iterator {function add( Object $tag );}
 interface TagSelectedCollection extends \Iterator {function add( Object $tag );}
