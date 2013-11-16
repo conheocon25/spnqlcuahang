@@ -13,6 +13,7 @@ class CollectCustomerCollection extends Collection implements \MVC\Domain\Collec
 
 class PaidGeneralCollection extends Collection implements \MVC\Domain\PaidGeneralCollection {function targetClass( ) {return "\MVC\Domain\PaidGeneral";}}
 class PaidSupplierCollection extends Collection implements \MVC\Domain\PaidSupplierCollection {function targetClass( ) {return "\MVC\Domain\PaidSupplier";}}
+class PaidCustomerCollection extends Collection implements \MVC\Domain\PaidCustomerCollection {function targetClass( ) {return "\MVC\Domain\PaidCustomer";}}
 
 class TagCollection extends Collection implements \MVC\Domain\TagCollection {function targetClass( ) {return "\MVC\Domain\Tag";}}
 class TagSelectedCollection extends Collection implements \MVC\Domain\TagSelectedCollection {function targetClass( ) {return "\MVC\Domain\TagSelected";}}

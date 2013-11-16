@@ -19,6 +19,7 @@ interface CollectGeneralFinder  	extends Finder {}
 interface CollectCustomerFinder  	extends Finder {}
 interface PaidGeneralFinder  		extends Finder {}
 interface PaidSupplierFinder  		extends Finder {}
+interface PaidCustomerFinder  		extends Finder {}
 
 interface TagFinder 				extends Finder {}
 interface TagSelectedFinder 		extends Finder {}

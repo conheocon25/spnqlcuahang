@@ -74,47 +74,11 @@ class Customer extends Object{
 		$this->Note		= $Data[6];
 		$this->Discount	= $Data[7];
     }
-	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "customer" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-						
-		$Name = $Doc->createElement( "name" );
-		$Name->appendChild($Doc->createTextNode( $this->getName() ));
 		
-		$Type = $Doc->createElement( "type" );
-		$Type->appendChild($Doc->createTextNode( $this->getType() ));
-		
-		$Card = $Doc->createElement( "card" );
-		$Card->appendChild($Doc->createTextNode( $this->getCard() ));
-		
-		$Phone = $Doc->createElement( "phone" );
-		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
-		
-		$Address = $Doc->createElement( "address" );
-		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
-		
-		$Note = $Doc->createElement( "note" );
-		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
-		
-		$Discount = $Doc->createElement( "discount" );
-		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
-		
-		$Obj->appendChild( $Name 		);
-		$Obj->appendChild( $Type 		);
-		$Obj->appendChild( $Card 		);
-		$Obj->appendChild( $Phone 		);
-		$Obj->appendChild( $Address 	);
-		$Obj->appendChild( $Note 		);
-		$Obj->appendChild( $Discount 	);
-		
-		return $Obj;
-	}
-	
-	function getSessionAll(){
-		$mSession = new	\MVC\Mapper\Session();
-		$Sessions = $mSession->findByCustomer(array($this->Id));
-		return $Sessions;
+	function getPaidAll(){
+		$mCP = new \MVC\Mapper\PaidCustomer();
+		$PaidAll = $mCP->findBy(array($this->getId()));
+		return $PaidAll;
 	}
 	
 	function getCollectAll(){
@@ -129,9 +93,16 @@ class Customer extends Object{
 		return $CDAll;
 	}
 	
+	function getTracking(){
+		$mCT 	= new \MVC\Mapper\CustomerTracking();
+		$CTAll 	= $mCT->findByCustomer(array($this->getId()));
+		return $CTAll;
+	}
+	
 	//=================================================================================
 	function getURLTracking( $IdDomain ){return "/export/big/".$IdDomain."/".$this->getId();}
-	function getURLCollect(){return "/collect/customer/".$this->getId();}
+	function getURLCollect(){return "/money/collect/customer/".$this->getId();}
+	function getURLPaid(){return "/money/paid/customer/".$this->getId();}
 	function getURLSettingDomain(){return "/setting/customer/".$this->getId()."/domain";}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

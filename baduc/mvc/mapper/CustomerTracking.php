@@ -15,6 +15,7 @@ class CustomerTracking extends Mapper implements \MVC\Domain\CustomerTrackingFin
 		$insertStmt = sprintf("insert into %s (id_customer, id_domain, date_start, date_end, note) values(?, ?, ?, ?, ?)", $tblCustomerTracking);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCustomerTracking);
 		$findByStmt = sprintf("SELECT * FROM  %s WHERE id_customer=? AND id_domain=? ORDER BY date_start DESC", $tblCustomerTracking);
+		$findByCustomerStmt = sprintf("SELECT * FROM  %s WHERE id_customer=? ORDER BY date_start DESC", $tblCustomerTracking);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCustomerTracking);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -23,6 +24,7 @@ class CustomerTracking extends Mapper implements \MVC\Domain\CustomerTrackingFin
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		$this->findByCustomerStmt = self::$PDO->prepare($findByCustomerStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
     function getCollection( array $raw ) {return new CustomerTrackingCollection( $raw, $this );}
@@ -72,6 +74,11 @@ class CustomerTracking extends Mapper implements \MVC\Domain\CustomerTrackingFin
 	function findBy($values ){
         $this->findByStmt->execute( $values );
         return new CustomerTrackingCollection( $this->findByStmt->fetchAll(), $this );
+    }
+	
+	function findByCustomer($values ){
+        $this->findByCustomerStmt->execute( $values );
+        return new CustomerTrackingCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {		
