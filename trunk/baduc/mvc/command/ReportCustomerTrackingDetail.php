@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportCustomer extends Command{
+	class ReportCustomerTrackingDetail extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,33 +11,39 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$IdTrack = $request->getProperty('IdTrack');
+			$IdTrack 	= $request->getProperty('IdTrack');
+			$IdCustomer = $request->getProperty('IdCustomer');
+			$IdCT 		= $request->getProperty('IdCT');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
-			$mCustomer = new \MVC\Mapper\Customer();
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mCT 		= new \MVC\Mapper\CustomerTracking();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracking = $mTracking->find($IdTrack);
-			$CustomerAll = $mCustomer->findAll();
+			$Tracking 	= $mTracking->find($IdTrack);
+			$Customer 	= $mCustomer->find($IdCustomer);
+			$CT 		= $mCT->find($IdCT);
 									
-			$Title = "CÔNG NỢ KHÁCH HÀNG";
-			$Navigation = array(				
+			$Title = $CT->getNote();
+			$Navigation = array(
 				array("BÁO CÁO", "/report"),
-				array($Tracking->getName(), $Tracking->getURLView() )
+				array($Tracking->getName(), $Tracking->getURLView() ),
+				array("GIAO DỊCH CỦA ".$Customer->getName(), $Tracking->getURLCustomerTracking($IdCustomer) )
 			);
-						
+					
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);			
-			$request->setObject('Tracking', $Tracking);
+			$request->setProperty('Title', $Title);						
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('CustomerAll', $CustomerAll);			
+			$request->setObject('Tracking', $Tracking);
+			$request->setObject('Customer', $Customer);
+			$request->setObject('CT', $CT);
 		}
 	}
 ?>

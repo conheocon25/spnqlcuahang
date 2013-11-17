@@ -61,9 +61,10 @@
 		<command name="Report"><view>Report</view></command>										
 		<command name="ReportDetail"><view>ReportDetail</view></command>
 						
-		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
-		<command name="ReportCustomerGeneral"><view>ReportCustomerGeneral</view></command>
-		
+		<command name="ReportCustomer"><view>ReportCustomer</view></command>
+		<command name="ReportCustomerTracking"><view>ReportCustomerTracking</view></command>
+		<command name="ReportCustomerTrackingDetail"><view>ReportCustomerTrackingDetail</view></command>
+				
 		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
 		
