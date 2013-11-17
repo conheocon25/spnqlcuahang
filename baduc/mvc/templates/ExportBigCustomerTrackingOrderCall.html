@@ -43,7 +43,7 @@
 											<a tal:condition="php:not Order->findItem( Resource->getId() )" class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-idresource Resource/getId; data-resourcename Resource/getName; data-count string:1; data-price Resource/getPriceExport" tal:content="Resource/getName"/>
 										</td>
 										<td align="right">
-											<span tal:condition="php:Order->findItem( Resource->getId() )" tal:content="php:Order->findItem( Resource->getId() )->getCount()"/>
+											<span tal:condition="php:Order->findItem( Resource->getId() )" tal:content="php:Order->findItem( Resource->getId() )->getCountPrint()"/>
 										</td>
 										<td align="left">
 											<span tal:content="Resource/getUnit"/>

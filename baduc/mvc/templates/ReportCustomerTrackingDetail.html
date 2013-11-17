@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">															
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<H3>1. NỢ TIỀN THỨC ĂN</H3>
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40">STT</th>
+											<th width="80" class="left">NGÀY</th>
+											<th class="left">DIỄN GIẢI</th>
+											<th width="120" class="right">GIÁ TRỊ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Order php:Tracking->getCustomerTrackingOrderAll(CT->getId())">
+											<td class="center" tal:content="repeat/Order/number" />
+											<td><span tal:content="Order/getDatePrint" /></td>
+											<td><span tal:content="Order/getNote" /></td>
+											<td align="right"><span tal:content="Order/getValuePrint" /></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="right">TỔNG NỢ TIỀN THỨC ĂN</td>
+											<td align="right"><B tal:content="php:Tracking->getCustomerTrackingOrderAllValuePrint(CT->getId())" /></td>
+										</tr>
+									</tbody>
+								</table>
+							<H3>2. NỢ TIỀN THUỐC</H3>
+							<H3>3. ỨNG TIỀN</H3>
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40">STT</th>
+											<th width="80" class="left">NGÀY</th>
+											<th class="left">DIỄN GIẢI</th>
+											<th width="120" class="right">GIÁ TRỊ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Paid php:Tracking->getCustomerTrackingPaidAll(CT->getId())">
+											<td class="center" tal:content="repeat/Paid/number" />
+											<td><span tal:content="Paid/getDatePrint" /></td>
+											<td><span tal:content="Paid/getNote" /></td>
+											<td align="right"><span tal:content="Paid/getValuePrint" /></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="right">TỔNG ỨNG TIỀN</td>
+											<td align="right"><B tal:content="php:Tracking->getCustomerTrackingPaidAllValuePrint(CT->getId())" /></td>
+										</tr>
+									</tbody>
+								</table>
+							<H3>4. TRẢ TIỀN</H3>
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40">STT</th>
+											<th width="80" class="left">NGÀY</th>
+											<th class="left">DIỄN GIẢI</th>
+											<th width="120" class="right">GIÁ TRỊ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Collect php:Tracking->getCustomerTrackingCollectAll(CT->getId())">
+											<td class="center" tal:content="repeat/Collect/number" />
+											<td><span tal:content="Collect/getDatePrint" /></td>
+											<td><span tal:content="Collect/getNote" /></td>
+											<td align="right"><span tal:content="Collect/getValuePrint" /></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="right">TỔNG TRẢ TIỀN</td>
+											<td align="right"><B tal:content="php:Tracking->getCustomerTrackingCollectAllValuePrint(CT->getId())" /></td>
+										</tr>
+									</tbody>
+								</table>
+							<H3>5. TỔNG KẾT</H3>
+							<table border="0" width="100%">
+								<tr>
+									<td class="right" width="70%">NỢ CŨ (1)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+								<tr>
+									<td class="right" width="70%">NỢ TIỀN HÀNG (2)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+								<tr>
+									<td class="right" width="70%">NỢ TIỀN THUỐC (3)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+								<tr>
+									<td class="right" width="70%">ỨNG TIỀN (4)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+								<tr>
+									<td class="right" width="70%">TRẢ TIỀN (5)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+								<tr>
+									<td class="right" width="70%">NỢ MỚI = (1) + (2) + (3) + (4) - (5)</td>
+									<td class="right" width="30%">
+										0
+									</td>
+								</tr>
+							</table>							
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+	</body>
+</html>

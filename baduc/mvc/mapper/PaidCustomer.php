@@ -18,20 +18,12 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$findByTrackingStmt = sprintf(
 					"select * from %s
 					where
-						date >= ? AND date <= ?
+						id_tracking=? AND date >= ? AND date <= ?
 					order by
 						date DESC
 					"
 		, $tblPaid);
-		
-		$findByTracking1Stmt = sprintf(
-					"select * from %s
-					where
-						id_customer=? AND date >= ? AND date <= ?
-					order by
-						date DESC
-					"
-		, $tblPaid);
+				
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
@@ -46,8 +38,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
-		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);
+		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);		
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
@@ -108,12 +99,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
         $this->findByTrackingStmt->execute( $values );
         return new PaidCustomerCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
-	
-	function findByTracking1($values ) {
-        $this->findByTracking1Stmt->execute( $values );
-        return new PaidCustomerCollection( $this->findByTracking1Stmt->fetchAll(), $this );
-    }
-	
+			
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':id_customer', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);

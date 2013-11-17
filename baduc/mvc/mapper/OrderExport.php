@@ -24,9 +24,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		$findByTrackingStmt = sprintf("
 			select * from  %s
 			where
-				id_tracking=?
-			order by 
-				date DESC
+				id_tracking=? AND date(`date`)>=? AND date(`date`)<=?
 			"
 		, $tblOrderExport);
 						
