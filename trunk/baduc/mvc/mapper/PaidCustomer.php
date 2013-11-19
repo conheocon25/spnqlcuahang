@@ -23,7 +23,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 						date DESC
 					"
 		, $tblPaid);
-				
+			
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 

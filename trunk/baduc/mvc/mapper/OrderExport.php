@@ -12,22 +12,14 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 								
 		$selectAllStmt = sprintf("select * from %s order by date DESC", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
-		$updateStmt = sprintf("update %s set id_tracking=?, id_user=?, date=?, note=? where id=?", $tblOrderExport);
-		$insertStmt = sprintf("insert into %s ( id_tracking, id_user, date, note ) values( ?, ?, ?, ?)", $tblOrderExport);
+		$updateStmt = sprintf("update %s set id_tracking=?, id_user=?, tag=?, date=?, note=? where id=?", $tblOrderExport);
+		$insertStmt = sprintf("insert into %s ( id_tracking, id_user, tag, date, note ) values( ?, ?, ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
-		$findByStmt = sprintf("
-			select * from  %s 
-			where id_tracking=?
-			order by date DESC
-		", $tblOrderExport);
+		$findByStmt = sprintf("select * from  %s where id_tracking=? order by date DESC ", $tblOrderExport);
 				
-		$findByTrackingStmt = sprintf("
-			select * from  %s
-			where
-				id_tracking=? AND date(`date`)>=? AND date(`date`)<=?
-			"
-		, $tblOrderExport);
-						
+		$findByTrackingStmt = sprintf("select * from  %s where id_tracking=? AND date(`date`)>=? AND date(`date`)<=?", $tblOrderExport);		
+		$findByTracking1Stmt = sprintf("select * from  %s where id_tracking=? AND tag=? AND date(`date`)>=? AND date(`date`)<=?", $tblOrderExport);
+		
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 							
@@ -35,14 +27,15 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 							LIMIT :start,:max
 				", $tblOrderExport);
 										
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
-		$this->findByStmt = self::$PDO->prepare( $findByStmt );		
-		$this->findByTrackingStmt = self::$PDO->prepare( $findByTrackingStmt );		
-		$this->findByPageStmt = self::$PDO->prepare( $findByPageStmt );		
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 			= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 			= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 			= self::$PDO->prepare( $deleteStmt );
+		$this->findByStmt 			= self::$PDO->prepare( $findByStmt );		
+		$this->findByTrackingStmt 	= self::$PDO->prepare( $findByTrackingStmt );		
+		$this->findByTracking1Stmt 	= self::$PDO->prepare( $findByTracking1Stmt );
+		$this->findByPageStmt 		= self::$PDO->prepare( $findByPageStmt );
     }
 	
     function getCollection( array $raw ) {return new OrderExportCollection( $raw, $this );}
@@ -52,6 +45,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 			$array['id'],
 			$array['id_tracking'],
 			$array['id_user'],
+			$array['tag'],
 			$array['date'],		
 			$array['note']
 		);
@@ -64,6 +58,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $values = array( 
 			$object->getIdTracking(),
 			$object->getIdUser(),
+			$object->getTag(),
 			$object->getDate(),
 			$object->getNote()
 		); 
@@ -76,6 +71,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $values = array(
 			$object->getIdTracking(),
 			$object->getIdUser(),
+			$object->getTag(),
 			$object->getDate(),			
 			$object->getNote(),
 			$object->getId()
@@ -95,7 +91,12 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $this->findByTrackingStmt->execute( $values );
         return new OrderExportCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
-			
+	
+	function findByTracking1(array $values){
+        $this->findByTracking1Stmt->execute( $values );
+        return new OrderExportCollection( $this->findByTracking1Stmt->fetchAll(), $this );
+    }
+	
 	function findByPage( $values ) {		
 		//$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);

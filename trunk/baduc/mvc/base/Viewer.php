@@ -89,26 +89,26 @@ class Viewer {
 		unset($pdf);
 		
 		return $Out;
-	}	
+	}
 	
-	function pdfSizeA5() {
+	function pdfA4($O="P") {
 		
 		$html = $this->html();		
-		$pdf = new \CUSTOMPDFBDC(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		
-		$pdf->reFormat("A5", "L");
+		$pdf->reFormat("A4", $O);
 
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);		
+		$pdf->SetMargins(1, 2, 1);		
 		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("pdfSizeA5.pdf", 'I');
+		$Out = $pdf->Output("a4_ba_duc.pdf", 'I');
 		unset($pdf);
 		
 		return $Out;

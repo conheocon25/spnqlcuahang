@@ -6,15 +6,17 @@ class OrderExport extends Object{
     private $Id;
 	private $IdTracking;
 	private $IdUser;
+	private $Tag;
 	private $Date;	
     private $Note;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdTracking=null, $IdUser=null, $Date=null, $Note=null){
+    function __construct( $Id=null, $IdTracking=null, $IdUser=null, $Tag=null,  $Date=null, $Note=null){
         $this->Id 			= $Id;
 		$this->IdTracking 	= $IdTracking;
 		$this->IdUser 		= $IdUser;
-		$this->Date 		= $Date;		
+		$this->Tag 			= $Tag;
+		$this->Date 		= $Date;
 		$this->Note 		= $Note;
         parent::__construct( $Id );
     }
@@ -35,6 +37,13 @@ class OrderExport extends Object{
 		$mUser 		= new \MVC\Mapper\User();
 		$User 		= $mUser->find( $this->getIdUser() );
 		return $User;
+	}
+	
+	function getTag( ) {return $this->Tag;}
+    function setTag( $Tag ){$this->Tag = $Tag; $this->markDirty();}
+	function getTagPrint( ) {
+		$arr = array("BÌNH THƯỜNG", "THUỐC", "THỨC ĂN");
+		return $arr[$this->Tag];
 	}
 	
 	function getDate( ) {return $this->Date;}
@@ -83,6 +92,7 @@ class OrderExport extends Object{
 			'Id' 			=> $this->getId(),
 			'IdTracking' 	=> $this->getIdTracking(),
 			'IdUser' 		=> $this->getIdUser(),
+			'Tag'			=> $this->getTag(),
 			'Date'			=> $this->getDate(),
 			'Note'			=> $this->getNote()
 		);
@@ -93,8 +103,13 @@ class OrderExport extends Object{
         $this->Id 			= $Data[0];	
 		$this->IdTracking 	= $Data[1];
 		$this->IdUser 		= $Data[2];
-		$this->Date 		= $Data[3];
-		$this->Note 		= $Data[4];
+		$this->Tag 			= $Data[3];
+		if ($Data[4]=="")
+			$this->Date 	= \date('Y-m-d H:i:s');
+		else	
+			$this->Date 	= $Data[4];
+		
+		$this->Note 		= $Data[5];
     }
 	
 	//-------------------------------------------------------------------------------

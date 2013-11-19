@@ -13,13 +13,15 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
 		$updateStmt = sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
 		$insertStmt = sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblTracking);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblTracking);		
+		$findPreStmt = sprintf("select *  from %s where date_start<? ORDER BY date_start DESC LIMIT 1", $tblTracking);
 		
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->findPreStmt 		= self::$PDO->prepare($findPreStmt);
 		
     } 
     function getCollection( array $raw ) {
@@ -58,5 +60,16 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}	
+	
+	function findPre( $values ) {	
+        $this->findPreStmt->execute( $values );
+        $array = $this->findPreStmt->fetch();		
+        $this->findPreStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
+    }
+	
 }
 ?>

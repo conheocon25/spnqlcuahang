@@ -64,6 +64,7 @@
 		<command name="ReportCustomer"><view>ReportCustomer</view></command>
 		<command name="ReportCustomerTracking"><view>ReportCustomerTracking</view></command>
 		<command name="ReportCustomerTrackingDetail"><view>ReportCustomerTrackingDetail</view></command>
+		<command name="ReportCustomerTrackingDetailPrint"><view>ReportCustomerTrackingDetailPrint</view></command>
 				
 		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
