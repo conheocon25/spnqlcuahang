@@ -1,0 +1,114 @@
+<font size="10pt">
+<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+	<tr>
+		<td width="8%" rowspan="4" align="center">
+			<img width="64" src="/data/images/logo_gray.jpg"/>
+		</td>
+		<td width="45%" align="left">
+			CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC
+		</td>
+		<td width="47%" align="right"><B>BIÊN BẢN ĐỐI CHIẾU CÔNG NỢ KHÁCH HÀNG</B></td>
+	</tr>	
+	<tr>		
+		<td width="45%" align="left">Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp</td>
+		<td width="47%" align="right"><B tal:content="Tracking/getName"/></td>
+	</tr>	
+	<tr>
+		<td width="45%" align="left">
+			ĐT: 0673 842 747 – Fax: 0673 611 798
+		</td>
+		<td width="47%" align="right">
+			BÊN MUA HÀNG: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')"/> CMND: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getCard(),'UTF8')"/> (<span tal:content="CT/getNote" />)
+		</td>
+	</tr>
+	<tr><td width="92%" /></tr>
+</table>
+</font>
+<br/>
+<font size="10pt">
+	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
+		<thead>
+			<tr>
+				<th align='right' 	width="90%"><B>DƯ NỢ CŨ</B></th>
+				<th align='right' 	width="10%">
+					<B tal:condition="PreTracking" tal:content="php: PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
+					<B tal:condition="not: PreTracking" tal:content="string:0"/>
+				</th>
+			</tr>
+			<tr>				
+				<th align='left' 	width="5%" 	rowspan="2"><b>NGÀY</b></th>
+				<th align='left' 	width="55%"><b>CHI TIẾT NHẬP HÀNG</b></th>
+				<th align='right' 	width="10%" rowspan="2"><b>TIỀN HÀNG</b></th>
+				<th align='right' 	width="10%"	rowspan="2"><b>ỨNG TIỀN</b></th>
+				<th align='right' 	width="10%" rowspan="2"><b>THANH TOÁN</b></th>
+				<th align='right' 	width="10%"	rowspan="2"><b>CÒN NỢ</b></th>
+			</tr>
+			<tr>				
+				<th align='left' 	width="25%"><b>TÊN HÀNG</b></th>
+				<th align='right' 	width="8%"><b>SỐ LƯỢNG</b></th>
+				<th align='left' 	width="7%"><b>ĐVT</b></th>
+				<th align='right' 	width="7%"><b>ĐƠN GIÁ</b></th>
+				<th align='right' 	width="8%"><b>THÀNH TIỀN</b></th>
+			</tr>
+		</thead>
+		<tbody>						
+			<tr tal:repeat="TCT php:Tracking->getTCT( CT->getId() )">
+				<td align='left' 	width="5%" tal:content="TCT/getDatePrint" />
+				<td align='left' 	width="55%">
+					<table width="100%" border="0" tal:repeat="OE TCT/getOEAll">
+						<tr tal:repeat="Detail OE/getDetailAll">
+							<td width="50%" tal:content="Detail/getResource/getName"/>
+							<td width="10%" align="right" tal:content="Detail/getCountPrint"/>
+							<td width="15%" align="left" tal:content="Detail/getResource/getUnit"/>
+							<td width="10%" align="right" tal:content="Detail/getPricePrint"/>
+							<td width="15%" align="right" tal:content="Detail/getValuePrint"/>
+						</tr>
+					</table>					
+				</td>
+				<td align='right' 	width="10%" tal:content="TCT/getOEValuePrint" />
+				<td align='right' 	width="10%" tal:content="TCT/getPCValuePrint" />
+				<td align='right' 	width="10%" tal:content="TCT/getCCValuePrint" />
+				<td align='right' 	width="10%" tal:content="TCT/getDebtValuePrint" />
+			</tr>
+			<tr>
+				<td align='right' 	width="90%"><B>DƯ NỢ CŨ MỚI</B></td>
+				<td align='right' 	width="10%"><B tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/></td>
+			</tr>
+		</tbody>
+	</table>
+	<p>Sau khi đối chiếu sổ sách, số lượng hàng hóa, số tiền cụ thể, hai bên công nhận số liệu trên là đúng,
+	không sai lệch, đồng ý và ký tên xác nhận đúng nội dung trong bảng theo dõi nợ tiền hàng này.
+	</p>
+</font>
+<font size="12pt">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0">
+		<tr>
+			<td width="35%" align="center">
+				<font size="11pt">Bên mua hàng</font>
+			</td>
+			<td width="30%" />					
+			<td width="35%" align="center">
+				<font size="11pt">Bên bán hàng</font>
+			</td>
+		</tr>
+		<tr>
+			<td width="35%" align="center">
+				<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
+			</td>
+			<td width="30%" />					
+			<td width="35%" align="center">
+				<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
+			</td>
+		</tr>
+		<tr><td /><td /><td /></tr>
+		<tr><td /><td /><td /></tr>
+		<tr><td /><td /><td /></tr>
+		<tr>
+			<td width="35%"/>		
+			<td width="30%" />
+			<td width="35%" align="center">
+				<B>Nguyễn Thị Đông</B>
+			</td>
+		</tr>
+	</table>
+</font>

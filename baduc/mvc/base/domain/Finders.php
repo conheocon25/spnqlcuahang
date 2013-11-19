@@ -43,8 +43,10 @@ interface PayRollFinder 			extends Finder {}
 
 interface UnitFinder 				extends Finder {}
 interface ConfigFinder 				extends Finder {}
+
 interface TrackingFinder 			extends Finder {}
 interface TrackingStoreFinder 		extends Finder {}
+interface TrackingCTFinder 			extends Finder {}
 
 interface GuestFinder 				extends Finder {}
 interface TermPaidFinder 			extends Finder {}

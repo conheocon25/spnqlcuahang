@@ -54,6 +54,10 @@ class CustomerTracking extends Object{
 		$D = new \MVC\Library\Date($this->DateEnd);
 		return $D->getDateFormat();
 	}
+	function getMonthName(){
+		$M = \date("m/Y",strtotime($this->DateEnd));
+		return "THÁNG ".$M;
+	}
 	
 	function setNote( $Note ) {$this->Note = $Note; $this->markDirty();}   
 	function getNote( ) {return $this->Note;}

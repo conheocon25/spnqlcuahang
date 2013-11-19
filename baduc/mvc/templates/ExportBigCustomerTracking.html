@@ -14,30 +14,36 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
+					<!--
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						
+					</a>
+					!-->
+					<button id="InsButton" class="btn btn-primary">
 						<i class="glyphicons-plus"/> Thêm mới
-					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>
+					</button>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40"><i class="glyphicons-transfer"/></th>
-										<th width="120" class="left">THỜI GIAN</th>										
+										<th width="40">STT</th>
+										<th width="120" class="left">LOẠI</th>
+										<th width="120" class="left">THỜI GIAN</th>
 										<th class="left">DIỄN GIẢI</th>
-										<th width="120" class="left">CHI TIẾT</th>
+										<th width="120" class="right">CHI TIẾT</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
 									<tr tal:repeat="Order Tracking/getOrderAll">
 										<td class="center"><span tal:content="repeat/Order/number"/></td>
+										<td class="left">											
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getTagPrint"/>
+										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
 										<td><span tal:content="Order/getNote"/></td>
-										<td>
+										<td align="right">
 											<a tal:attributes="href Order/getURLDetail">
 												<span tal:content="Order/getValuePrint" />
 											</a>
@@ -47,37 +53,13 @@
 								</tbody>
 							</table>
 						</div>
+						<!--
+						<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+							<i class="glyphicons-remove_2"/> Xóa chọn
+						</a>
+						!-->
 					</div>
-					<!-- INSERT DIALOG  -->
-					<div id="DialogIns" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-transfer modal-icon"/>THÊM MỚI PHIẾU HÀNG</h3>
-								</div>
-								<div class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Ngày</label>
-										<div class="controls">
-											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd hh:ii" class="form-control input-small"/>
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">Diễn giải</label>
-										<div class="controls">
-											<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END INSERT DIALOG  -->
-					
+										
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
@@ -86,6 +68,16 @@
 									<h3><i class="glyphicons-transfer modal-icon"/>CẬP NHẬT PHIẾU HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Loại</label>
+										<div class="controls">
+											<select name="Tag2" id="Tag2" style="width:80%;">
+												<option value="0">BÌNH THƯỜNG</option>
+												<option value="1">THUỐC</option>
+												<option value="2">THỨC ĂN</option>
+											</select>
+										</div>
+									</div>
 									<div class="control-group">
 										<label class="control-label">Ngày</label>
 										<div class="controls">
@@ -182,14 +174,15 @@
 		
 			//-----------------------------------------------------------------------------------
 			//Insert 1 ORDER
-			$('#URLInsButton').click(function(){
+			$('#InsButton').click(function(){				
 				var Data = [];
 				Data[0] = 'null';
 				Data[1] = $('#IdTracking').attr('alt');	
-				Data[2] = $('#IdUser').attr('alt');	
-				Data[3] = $('#Date1').val();
-				Data[4] = $('#Note1').val();
-							
+				Data[2] = $('#IdUser').attr('alt');
+				Data[3] = 0;
+				Data[4] = "";
+				Data[5] = "";
+				
 				var URL = "/object/ins/OrderExport";
 				$.ajax({
 					type: "POST",
@@ -211,7 +204,8 @@
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Date2').attr('value', data.Date);					
+					$('#Tag2').select2('val', data.Tag);
+					$('#Date2').attr('value', data.Date);
 					$('#Note2').attr('value', data.Note);
 				});
 			});
@@ -224,8 +218,9 @@
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#IdTracking').attr('alt');	
 				Data[2] = $('#IdUser').attr('alt');	
-				Data[3] = $('#Date2').val();
-				Data[4] = $('#Note2').val();
+				Data[3] = $('#Tag2').val();
+				Data[4] = $('#Date2').val();
+				Data[5] = $('#Note2').val();
 				
 				var URL = "/object/upd/OrderExport";
 				$.ajax({

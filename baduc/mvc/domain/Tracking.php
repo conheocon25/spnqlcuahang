@@ -27,71 +27,19 @@ class Tracking extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	
-	//-------------------------------------------------------------------------------	
-	//TỔNG HỢP THU = TỔNG THU DOANH SỐ + TỔNG THU KHÁC + TỔNG THU KHÁCH HÀNG
-	//-------------------------------------------------------------------------------
-	function getCollectAll($IdTerm){$mCollect = new \MVC\Mapper\CollectGeneral();$CollectAll = $mCollect->findByTracking1(array($IdTerm, $this->getDateStart(), $this->getDateEnd()));return $CollectAll;}
-	function getCollectAllValue($IdTerm){$CollectAll = $this->getCollectAll($IdTerm);$Value = 0;while ($CollectAll->valid()){$Collect = $CollectAll->current();$Value += $Collect->getValue();$CollectAll->next();}return $Value;}
-	function getCollectAllValuePrint($IdTerm){$N = new \MVC\Library\Number($this->getCollectAllValue($IdTerm));return $N->formatCurrency()." đ";}
-	function getCollectAllSum(){ $mCollect = new \MVC\Mapper\CollectGeneral(); $CollectAll = $mCollect->findByTracking(array($this->getDateStart(), $this->getDateEnd())); return $CollectAll; }
-	
-	function getCollectAllSumValue(){				
-		$mCollect = new \MVC\Mapper\CollectGeneral();
-		$CollectAll = $mCollect->findByTracking(array($this->getDateStart(), $this->getDateEnd()));		
-		$Value = 0;
-		while ($CollectAll->valid()){
-			$Collect = $CollectAll->current();
-			$Value += $Collect->getValue();
-			$CollectAll->next();
-		}				
-		return $Value;
+	function getPre(){
+		$mTracking = new \MVC\Mapper\Tracking();
+		$T = $mTracking->findPre(array($this->getDateStart()));
+		return $T;
 	}
-	function getCollectAllSumValuePrint(){$N = new \MVC\Library\Number( $this->getCollectAllSumValue() );return $N->formatCurrency();}
-	
-	function getCollectGeneralValue(){return ($this->getCollectAllSumValue() + $this->getSessionAllValue() + $this->getCustomerCollectGeneralValue() );}
-	function getCollectGeneralValuePrint(){$N = new \MVC\Library\Number($this->getCollectGeneralValue());return $N->formatCurrency()." đ";}
-		
-	//-------------------------------------------------------------------------------
-	//TỔNG HỢP CHI = TỔNG CHI NHẬP HÀNG + TỔNG CHI KHÁC + TỔNG CHI LƯƠNG
-	//-------------------------------------------------------------------------------
-	function getPaidAll($IdTerm){$mPaid = new \MVC\Mapper\PaidGeneral();$PaidAll = $mPaid->findByTracking1(array($IdTerm, $this->getDateStart(), $this->getDateEnd()));return $PaidAll;}
-	function getPaidAllValue($IdTerm){$PaidAll = $this->getPaidAll($IdTerm);$Value = 0;while ($PaidAll->valid()){$Paid = $PaidAll->current();$Value += $Paid->getValue();$PaidAll->next();}return $Value;}
-	function getPaidAllValuePrint($IdTerm){$N = new \MVC\Library\Number($this->getPaidAllValue($IdTerm));return $N->formatCurrency()." đ";}
-	function getPaidAllValueStrPrint($IdTerm){$N = new \MVC\Library\Number($this->getPaidAllValue($IdTerm));return $N->readDigit()."đồng";}	
-	function getPaidAllSum(){$mPaid = new \MVC\Mapper\PaidGeneral();$PaidAll = $mPaid->findByTracking(array($this->getDateStart(), $this->getDateEnd()));return $PaidAll;}	
-	function getPaidAllSumValue(){
-		//Các khoản chi tổng quát
-		$PaidAll = $this->getPaidAllSum();
-		$Value = 0;
-		while ($PaidAll->valid()){
-			$Paid = $PaidAll->current();
-			$Value += $Paid->getValue();
-			$PaidAll->next();
-		}				
-		return $Value;
+	function getTCT($IdCT){
+		$mTCT 	= new \MVC\Mapper\TrackingCT();
+		$TCTAll = $mTCT->findBy( array($IdCT, $this->getDateStart(), $this->getDateEnd()) );
+		return $TCTAll;
 	}
-	function getPaidAllSumValuePrint(){$N = new \MVC\Library\Number($this->getPaidAllSumValue());return $N->formatCurrency()." đ";}
 	
-	function getPaidGeneralValue(){
-		return ($this->getPaidAllSumValue() + $this->getPaidPayRollAllValue() + $this->getOrderAllSumValue() );
-	}
-	function getPaidGeneralValuePrint(){$N = new \MVC\Library\Number($this->getPaidGeneralValue());return $N->formatCurrency()." đ";}
-	
-	//--------------------------------------------------------------------------------	
-	//NHẬP HÀNG
 	//--------------------------------------------------------------------------------
-	function getOrderAll($IdSupplier){$mOrder = new \MVC\Mapper\OrderImport();$OrderAll = $mOrder->findByTracking1(array($IdSupplier, $this->getDateStart(), $this->getDateEnd()));return $OrderAll;}
-	function getOrderAllValue($IdSupplier){$OrderAll = $this->getOrderAll($IdSupplier);$Value = 0;while ($OrderAll->valid()){$Order = $OrderAll->current();$Value += $Order->getValue();$OrderAll->next();}return $Value;}
-	function getOrderAllValuePrint($IdSupplier){$N = new \MVC\Library\Number($this->getOrderAllValue($IdSupplier));return $N->formatCurrency()." d";}
-	function getOrderAllValueStrPrint($IdSupplier){$N = new \MVC\Library\Number($this->getOrderAllValue($IdSupplier));return $N->readDigit()." đồng";}
-	
-	function getOrderAllSum(){$mOrder = new \MVC\Mapper\OrderImport();$OrderAll = $mOrder->findByTracking(array($this->getDateStart(), $this->getDateEnd()));return $OrderAll;}
-	function getOrderAllSumValue(){$OrderAll = $this->getOrderAllSum();$Value = 0;while ($OrderAll->valid()){$Order = $OrderAll->current();$Value += $Order->getValue();$OrderAll->next();}return $Value;}
-	function getOrderAllSumValuePrint(){$N = new \MVC\Library\Number($this->getOrderAllSumValue());return $N->formatCurrency()." đ";}
-		
-	//--------------------------------------------------------------------------------
-	//KHÁCH HÀNG > MUA HÀNG - EXPORT
+	//KHÁCH HÀNG > GIAO DỊCH > ĐƠN HÀNG XUẤT
 	//--------------------------------------------------------------------------------
 	function getCustomerTrackingOrderAll($IdCustomerTracking){
 		$mOrder = new \MVC\Mapper\OrderExport();
@@ -112,8 +60,29 @@ class Tracking extends Object{
 		$N = new \MVC\Library\Number($this->getCustomerTrackingOrderAllValue($IdCustomerTracking));
 		return $N->formatCurrency()." đ";
 	}
+	
+	//Lọc dữ liệu bán hàng: THUỐC - BÌNH THƯỜNG - THỨC ĂN
+	function getCustomerTrackingOrderAllByTag($IdCustomerTracking, $Tag){
+		$mOrder = new \MVC\Mapper\OrderExport();
+		$OrderAll = $mOrder->findByTracking1(array($IdCustomerTracking, $Tag, $this->getDateStart(), $this->getDateEnd()));
+		return $OrderAll;
+	}
+	function getCustomerTrackingOrderAllByTagValue($IdCustomerTracking, $Tag){
+		$Value = 0;
+		$OrderAll = $this->getCustomerTrackingOrderAllByTag($IdCustomerTracking, $Tag);
+		while ($OrderAll->valid()){
+			$Order = $OrderAll->current();
+			$Value += $Order->getValue();
+			$OrderAll->next();
+		}
+		return $Value;
+	}
+	function getCustomerTrackingOrderAllByTagValuePrint($IdCustomerTracking, $Tag){
+		$N = new \MVC\Library\Number($this->getCustomerTrackingOrderAllByTagValue($IdCustomerTracking, $Tag));
+		return $N->formatCurrency()." đ";
+	}
 	//--------------------------------------------------------------------------------
-	//KHÁCH HÀNG > ỨNG TIỀN
+	//KHÁCH HÀNG > GIAO DỊCH > ỨNG TIỀN
 	//--------------------------------------------------------------------------------
 	function getCustomerTrackingPaidAll($IdCustomerTracking){
 		$mPaid = new \MVC\Mapper\PaidCustomer();
@@ -136,7 +105,7 @@ class Tracking extends Object{
 	}
 	
 	//--------------------------------------------------------------------------------
-	//KHÁCH HÀNG > TRẢ TIỀN
+	//KHÁCH HÀNG > GIAO DỊCH > TRẢ TIỀN
 	//--------------------------------------------------------------------------------
 	function getCustomerTrackingCollectAll($IdCustomerTracking){
 		$mCollect = new \MVC\Mapper\CollectCustomer();
@@ -157,74 +126,30 @@ class Tracking extends Object{
 		$N = new \MVC\Library\Number($this->getCustomerTrackingCollectAllValue($IdCustomerTracking));
 		return $N->formatCurrency()." đ";
 	}
-					
+	
 	//-------------------------------------------------------------------------------------
-	//THEO DÕI CÔNG NỢ KHÁCH HÀNG
+	//KHÁCH HÀNG > GIAO DỊCH > DƯ NỢ CŨ
 	//-------------------------------------------------------------------------------------
-	//TÍNH NỢ CŨ
-	function getCustomerOldDebt($IdCustomer){		
-		return 0;
-	}
-	function getCustomerOldDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerOldDebt($IdCustomer) );return $N->formatCurrency()." đ";}
 	
-	//CÁC GIAO DỊCH CỦA KHÁCH HÀNG TRONG KÌ
-	function getCustomerSessionAll($IdCustomer){$mSession = new \MVC\Mapper\Session();$Date1 = \date("Y-m-d", strtotime($this->getDateStart()))." 8:0:0";$Date2 = \date("Y-m-d", strtotime("+1 day", strtotime($this->getDateEnd())))." 7:59:59";$SessionAll = $mSession->findByTrackingCustomer( array($IdCustomer, $Date1, $Date2) );return $SessionAll;}
-	function getCustomerSessionAllValue($IdCustomer){$SessionAll = $this->getCustomerSessionAll($IdCustomer);$Value = 0;while ($SessionAll->valid()){$Session = $SessionAll->current();$Value += $Session->getValue();$SessionAll->next();}return $Value;}
-	function getCustomerSessionAllValuePrint($IdCustomer){$N = new \MVC\Library\Number($this->getCustomerSessionAllValue($IdCustomer));return $N->formatCurrency()." đ";}
 	
-	//CÁC GIAO DỊCH NỢ CỦA KHÁCH HÀNG TRONG KÌ
-	function getCustomerDebtSessionAll($IdCustomer){
-		return null;	
-	}
-	function getCustomerDebtSessionAllValue($IdCustomer){
-		return 0;
-	}
-	function getCustomerDebtSessionAllValuePrint($IdCustomer){$N = new \MVC\Library\Number($this->getCustomerDebtSessionAllValue($IdCustomer));return $N->formatCurrency()." đ";}
-	
-	//CÁC GIAO DỊCH THANH TOÁN ĐỦ CỦA KHÁCH HÀNG TRONG KÌ
-	function getCustomerFullSessionAll($IdCustomer){$mSession = new \MVC\Mapper\Session();$Date1 = \date("Y-m-d", strtotime($this->getDateStart()))." 8:0:0";$Date2 = \date("Y-m-d", strtotime("+1 day", strtotime($this->getDateEnd())))." 7:59:59";$SessionAll = $mSession->findByTrackingFullCustomer( array($IdCustomer, $Date1, $Date2) );return $SessionAll;}
-	function getCustomerFullSessionAllValue($IdCustomer){$SessionAll = $this->getCustomerFullSessionAll($IdCustomer);$Value = 0;while ($SessionAll->valid()){$Session = $SessionAll->current();$Value += $Session->getValue();$SessionAll->next();}return $Value;}
-	function getCustomerFullSessionAllValuePrint($IdCustomer){$N = new \MVC\Library\Number($this->getCustomerFullSessionAllValue($IdCustomer));return $N->formatCurrency()." đ";}	
-	
-	//CÁC GIAO DỊCH THU TIỀN KHÁCH HÀNG TRONG KÌ
-	function getCustomerCollectAll($IdCustomer){$mCC = new \MVC\Mapper\CollectCustomer();$Date1 = \date("Y-m-d", strtotime($this->getDateStart() ));$Date2 = \date("Y-m-d", strtotime($this->getDateEnd()   ));$CollectAll = $mCC->findByTracking( array($IdCustomer, $Date1, $Date2) );return $CollectAll;}
-	function getCustomerCollectAllValue($IdCustomer){$CollectAll = $this->getCustomerCollectAll($IdCustomer);$Value = 0;while ($CollectAll->valid()){$Collect = $CollectAll->current();$Value += $Collect->getValue();$CollectAll->next();}return $Value;}
-	function getCustomerCollectAllValuePrint($IdCustomer){$N = new \MVC\Library\Number($this->getCustomerCollectAllValue($IdCustomer));return $N->formatCurrency()." đ";}
-	
-	function getCustomerCollectGeneral(){
-		$mCC = new \MVC\Mapper\CollectCustomer();
-		$Date1 = \date("Y-m-d", strtotime($this->getDateStart() ));
-		$Date2 = \date("Y-m-d", strtotime($this->getDateEnd()   ));
-		$CollectAll = $mCC->findByTracking1( array($Date1, $Date2) );
-		return $CollectAll;
-	}
-	
-	function getCustomerCollectGeneralValue(){
-		$CollectAll = $this->getCustomerCollectGeneral();
-		$Value = 0;
-		while ($CollectAll->valid()){
-			$Collect = $CollectAll->current();
-			$Value += $Collect->getValue();
-			$CollectAll->next();
-		}
+	//-------------------------------------------------------------------------------------
+	//KHÁCH HÀNG > GIAO DỊCH > DƯ NỢ MỚI
+	//-------------------------------------------------------------------------------------	
+	function getCustomerTrackingNewDebt($IdCustomerTracking){
+		$Value = 	$this->getCustomerTrackingOrderAllValue($IdCustomerTracking,2) 		+ 
+					$this->getCustomerTrackingOrderAllValue($IdCustomerTracking,1)		+
+					$this->getCustomerTrackingPaidAllValuePrint($IdCustomerTracking)	+
+					0																	-
+					$this->getCustomerTrackingCollectAllValuePrint($IdCustomerTracking)
+		;
 		return $Value;
 	}
-	function getCustomerCollectGeneralValuePrint(){$N = new \MVC\Library\Number( $this->getCustomerCollectGeneralValue() );return $N->formatCurrency()." đ";}	
-	
-	//NỢ MỚI
-	function getCustomerNewDebt($IdCustomer){return \abs($this->getCustomerOldDebt($IdCustomer)) + $this->getCustomerDebtSessionAllValue($IdCustomer) - $this->getCustomerCollectAllValue($IdCustomer);}
-	function getCustomerNewDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->formatCurrency()." đ";}	
-	function getCustomerNewDebtStrPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->readDigit();}
-	
-	//THỐNG KÊ PHÒNG/PHIẾU/GIỜ
-	function getTableSession($IdTable){		
-		$Date1 = \date("Y-m-d", strtotime($this->getDateStart()))." 8:0:0";
-		$Date2 = \date("Y-m-d", strtotime("+1 day", strtotime($this->getDateEnd())))." 7:59:59";		
-		$mSession = new \MVC\Mapper\Session();
-		$SessionAll = $mSession->findByTableTracking(array($IdTable,$Date1,$Date2));
-		return $SessionAll;
+	function getCustomerTrackingNewDebtPrint($IdCustomerTracking){
+		$N = new \MVC\Library\Number($this->getCustomerTrackingNewDebt($IdCustomerTracking));
+		return $N->formatCurrency()." đ";
 	}
 	
+	//LẤY VỀ DANH SÁCH NGÀY
 	function getURLDayAll(){
 		$Data = array();
 		$Date = $this->getDateStart();
@@ -329,6 +254,8 @@ class Tracking extends Object{
 	function getURLCustomer(){return "/report/customer/".$this->getId();}	
 	function getURLCustomerTracking($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLCustomerTrackingDetail($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT;}
+	function getURLCustomerTrackingDetailSave($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/save";}
+	function getURLCustomerTrackingDetailPrint($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/print";}
 	
 	function getURLPaidGeneral(){return "/report/paid/".$this->getId();}	
 	function getURLPaidGeneralSave(){return "/report/paid/".$this->getId();}	
@@ -347,12 +274,8 @@ class Tracking extends Object{
 	function getURLCourse(){return "/report/course/".$this->getId();}
 	function getURLResource(){return "/report/resource/".$this->getId();}
 	function getURLHours(){return "/report/hours/".$this->getId();}
-	function getURLGeneral(){return "/report/general/".$this->getId();}		
-	function getURLUpdLoad(){return "/report/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/report/".$this->getId()."/upd/exe";}	
-	function getURLDelLoad(){return "/report/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/report/".$this->getId()."/del/exe";}
-		
+	function getURLGeneral(){return "/report/general/".$this->getId();}
+			
 	function getURLPayRoll(){return "/payroll/".$this->getId();}
 	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
 	//--------------------------------------------------------------------------

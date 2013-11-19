@@ -45,10 +45,10 @@ class OrderExportDetail extends Object{
 
 	function getPrice( ) {return $this->Price;}
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
-	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency()." đ";}
+	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency();}
 
 	function getValue( ) {return $this->Count*$this->Price;}
-	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
+	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency();}
 			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
