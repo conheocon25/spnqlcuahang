@@ -1,30 +1,43 @@
+<style>
+		
+	table { border-collapse: collapse; }	
+	table td {
+		padding: 15px;				/* PaA */
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	table table {
+		margin: -20px;		/* Margin = -(PaA + BoA) */
+	}
+</style>
 <font size="10pt">
-<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
-	<tr>
-		<td width="8%" rowspan="4" align="center">
-			<img width="64" src="/data/images/logo_gray.jpg"/>
-		</td>
-		<td width="45%" align="left">
-			CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC
-		</td>
-		<td width="47%" align="right"><B>BIÊN BẢN ĐỐI CHIẾU CÔNG NỢ KHÁCH HÀNG</B></td>
-	</tr>	
-	<tr>		
-		<td width="45%" align="left">Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp</td>
-		<td width="47%" align="right"><B tal:content="Tracking/getName"/></td>
-	</tr>	
-	<tr>
-		<td width="45%" align="left">
-			ĐT: 0673 842 747 – Fax: 0673 611 798
-		</td>
-		<td width="47%" align="right">
-			BÊN MUA HÀNG: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')"/> CMND: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getCard(),'UTF8')"/> (<span tal:content="CT/getNote" />)
-		</td>
-	</tr>
-	<tr><td width="92%" /></tr>
-</table>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0">
+		<tr>
+			<td width="8%" rowspan="3" align="center">
+				<img width="64" src="/data/images/logo_gray.jpg"/>
+			</td>
+			<td width="45%" align="left"><B>CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC</B></td>
+			<td width="47%" align="right"><B>BIÊN BẢN ĐỐI CHIẾU CÔNG NỢ KHÁCH HÀNG</B></td>
+		</tr>	
+		<tr>		
+			<td width="45%" align="left">Địa chỉ: 234 Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp</td>
+			<td width="47%" align="right">TỪ NGÀY <B tal:content="Tracking/getDateStartPrint"/> ĐẾN <B tal:content="Tracking/getDateEndPrint"/></td>
+		</tr>
+		<tr>
+			<td width="45%" align="left">
+				Điện thoại: 0673 842 747 – Fax: 0673 611 798
+			</td>
+			<td width="47%" align="right">
+				
+			</td>
+		</tr>		
+	</table>
 </font>
-<br/>
+<p align="center">Kính gửi quí khách hàng: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')"/> CMND: <B tal:content="CT/getCustomer/getCard"/></p>	
+<p align="center">Địa chỉ: <span tal:content="CT/getNote"/></p>
+<p>1. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> quí khách hàng còn nợ cửa hàng chúng tôi:</p>
+<p>2. Chi tiết phát sinh công nợ bao gồm các khoản sau:</p>
 <font size="10pt">
 	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
 		<thead>
@@ -44,22 +57,22 @@
 				<th align='right' 	width="10%"	rowspan="2"><b>CÒN NỢ</b></th>
 			</tr>
 			<tr>				
-				<th align='left' 	width="25%"><b>TÊN HÀNG</b></th>
-				<th align='right' 	width="8%"><b>SỐ LƯỢNG</b></th>
-				<th align='left' 	width="7%"><b>ĐVT</b></th>
-				<th align='right' 	width="7%"><b>ĐƠN GIÁ</b></th>
-				<th align='right' 	width="8%"><b>THÀNH TIỀN</b></th>
+				<th align='left' 	width="27.5%"><b>TÊN HÀNG</b></th>
+				<th align='left' 	width="8.25%"><b>ĐVT</b></th>
+				<th align='right' 	width="5.5%"><b>SL</b></th>				
+				<th align='right' 	width="5.5%"><b>Đ.GIÁ</b></th>
+				<th align='right' 	width="8.25%"><b>THÀNH TIỀN</b></th>
 			</tr>
 		</thead>
 		<tbody>						
 			<tr tal:repeat="TCT php:Tracking->getTCT( CT->getId() )">
 				<td align='left' 	width="5%" tal:content="TCT/getDatePrint" />
 				<td align='left' 	width="55%">
-					<table width="100%" border="0" tal:repeat="OE TCT/getOEAll">
+					<table width="100%" border="1" tal:repeat="OE TCT/getOEAll">
 						<tr tal:repeat="Detail OE/getDetailAll">
-							<td width="50%" tal:content="Detail/getResource/getName"/>
-							<td width="10%" align="right" tal:content="Detail/getCountPrint"/>
+							<td width="50%" align="left" tal:content="Detail/getResource/getName"/>
 							<td width="15%" align="left" tal:content="Detail/getResource/getUnit"/>
+							<td width="10%" align="right" tal:content="Detail/getCountPrint"/>							
 							<td width="10%" align="right" tal:content="Detail/getPricePrint"/>
 							<td width="15%" align="right" tal:content="Detail/getValuePrint"/>
 						</tr>
@@ -75,40 +88,47 @@
 				<td align='right' 	width="10%"><B tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/></td>
 			</tr>
 		</tbody>
-	</table>
-	<p>Sau khi đối chiếu sổ sách, số lượng hàng hóa, số tiền cụ thể, hai bên công nhận số liệu trên là đúng,
-	không sai lệch, đồng ý và ký tên xác nhận đúng nội dung trong bảng theo dõi nợ tiền hàng này.
-	</p>
+	</table>	
 </font>
-<font size="12pt">
-	<table width="100%" cellpadding="1" cellspacing="0" border="0">
-		<tr>
-			<td width="35%" align="center">
-				<font size="11pt">Bên mua hàng</font>
-			</td>
-			<td width="30%" />					
-			<td width="35%" align="center">
-				<font size="11pt">Bên bán hàng</font>
-			</td>
-		</tr>
-		<tr>
-			<td width="35%" align="center">
-				<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
-			</td>
-			<td width="30%" />					
-			<td width="35%" align="center">
-				<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
-			</td>
-		</tr>
-		<tr><td /><td /><td /></tr>
-		<tr><td /><td /><td /></tr>
-		<tr><td /><td /><td /></tr>
-		<tr>
-			<td width="35%"/>		
-			<td width="30%" />
-			<td width="35%" align="center">
-				<B>Nguyễn Thị Đông</B>
-			</td>
-		</tr>
-	</table>
-</font>
+<p>
+3. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <B tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
+(bằng chữ)
+</p>
+<p>
+4. Qui khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có):
+</p>
+<p>
+........................................................................................................................................................................................................................................................
+Biên bản này được lập thành 02 bản có giá trị như nhau. Mỗi bên giữ 01 bản làm cơ sở cho việc thanh toán sau này giữa 02 bên. Trong vòng
+03 ngày kể từ ngày nhận được biên bản đối chiếu công nợ này mà cửa hàng chúng tôi không nhận được phản hồi từ quí khách hàng thì công nợ 
+trên xem như được chấp nhận.
+</p>
+<table width="100%" cellpadding="1" cellspacing="0" border="0">
+	<tr>
+		<td width="35%" />
+		<td width="30%" />
+		<td width="35%" align="center"><font size="11pt" tal:content="DateCurrent"/></td>
+	</tr>
+	<tr>
+		<td width="35%" align="center">
+			<font size="11pt">Khách hàng xác nhận</font>
+		</td>
+		<td width="30%" align="center">
+			<font size="11pt">Người lập</font>
+		</td>	
+		<td width="35%" align="center">
+			<font size="11pt">Bên bán hàng</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="35%" align="center">
+			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
+		</td>
+		<td width="30%" align="center">
+			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
+		</td>
+		<td width="35%" align="center">
+			<font size="11pt"><i>(ký, ghi rõ họ tên)</i></font>
+		</td>
+	</tr>
+</table>

@@ -98,7 +98,7 @@ class Viewer {
 		
 		$pdf->reFormat("A4", $O);
 
-		$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setHeaderFont(Array('arial', '', '12'));
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
 		$pdf->SetMargins(1, 2, 1);		
@@ -106,7 +106,7 @@ class Viewer {
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		
 		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 8);					
+		$pdf->SetFont('arial', 'N', 12);					
 		$pdf->writeHTML($html, true, false, true, false, '');
 		$Out = $pdf->Output("a4_ba_duc.pdf", 'I');
 		unset($pdf);
