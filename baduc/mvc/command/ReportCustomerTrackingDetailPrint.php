@@ -29,12 +29,14 @@
 			$CT			= $mCT->find($IdCT);
 			
 			$PreTracking = $Tracking->getPre();
+			$DateCurrent = "Đồng Tháp, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------														
-			$request->setObject('Tracking'	, $Tracking);
-			$request->setObject('CT'		, $CT);
+			$request->setProperty('DateCurrent'	, $DateCurrent);
+			$request->setObject('Tracking'		, $Tracking);
+			$request->setObject('CT'			, $CT);
 			$request->setObject('PreTracking'	, $PreTracking);
 		}
 	}
