@@ -29,7 +29,7 @@
 									</tr>
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
-									<tr tal:repeat="Track Tracks">
+									<tr tal:repeat="Track TrackingAll">
 										<td align="center" tal:content="repeat/Track/number"/>
 										<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>
 										<td class="center">
@@ -47,6 +47,7 @@
 							</table>
 						</div>
 					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">

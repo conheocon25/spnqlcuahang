@@ -9,23 +9,25 @@ class CustomerTracking extends Mapper implements \MVC\Domain\CustomerTrackingFin
 				
 		$tblCustomerTracking = "tbl_customer_tracking";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY date_start DESC", $tblCustomerTracking);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblCustomerTracking);
-		$updateStmt = sprintf("update %s set id_customer=?, id_domain=?, date_start=?, date_end=?, note=? where id=?", $tblCustomerTracking);
-		$insertStmt = sprintf("insert into %s (id_customer, id_domain, date_start, date_end, note) values(?, ?, ?, ?, ?)", $tblCustomerTracking);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblCustomerTracking);
-		$findByStmt = sprintf("SELECT * FROM  %s WHERE id_customer=? AND id_domain=? ORDER BY date_start DESC", $tblCustomerTracking);
+		$selectAllStmt 		= sprintf("select * from %s ORDER BY date_start DESC", $tblCustomerTracking);
+		$selectStmt 		= sprintf("select *  from %s where id=?", $tblCustomerTracking);
+		$updateStmt 		= sprintf("update %s set id_customer=?, id_domain=?, date_start=?, date_end=?, note=? where id=?", $tblCustomerTracking);
+		$insertStmt 		= sprintf("insert into %s (id_customer, id_domain, date_start, date_end, note) values(?, ?, ?, ?, ?)", $tblCustomerTracking);
+		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCustomerTracking);
+		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_customer=? AND id_domain=? ORDER BY date_start DESC", $tblCustomerTracking);
 		$findByCustomerStmt = sprintf("SELECT * FROM  %s WHERE id_customer=? ORDER BY date_start DESC", $tblCustomerTracking);
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCustomerTracking);
+		$findByPageStmt 	= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCustomerTracking);
+		$findByTimeStmt 	= sprintf("SELECT * FROM  %s WHERE id_customer=? AND date_start<=? AND date_end>=? ORDER BY date_start  DESC", $tblCustomerTracking);
 		
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
-		$this->findByCustomerStmt = self::$PDO->prepare($findByCustomerStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
+		$this->findByTimeStmt 		= self::$PDO->prepare($findByTimeStmt);
+		$this->findByCustomerStmt 	= self::$PDO->prepare($findByCustomerStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
     } 
     function getCollection( array $raw ) {return new CustomerTrackingCollection( $raw, $this );}
 
@@ -81,12 +83,16 @@ class CustomerTracking extends Mapper implements \MVC\Domain\CustomerTrackingFin
         return new CustomerTrackingCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
 	
+	function findByTime($values ){
+        $this->findByTimeStmt->execute( $values );
+        return new CustomerTrackingCollection( $this->findByTimeStmt->fetchAll(), $this );
+    }
+	
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new CustomerTrackingCollection( $this->findByPageStmt->fetchAll(), $this );
-    }
-	
+    }	
 }
 ?>

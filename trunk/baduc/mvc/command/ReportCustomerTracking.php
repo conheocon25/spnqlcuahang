@@ -17,15 +17,17 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
-			$mCustomer = new \MVC\Mapper\Customer();
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mCT 		= new \MVC\Mapper\CustomerTracking();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking 	= $mTracking->find($IdTrack);
 			$Customer 	= $mCustomer->find($IdCustomer);
-									
+			$CTAll		= $mCT->findByTime(array($IdCustomer, $Tracking->getDateStart(), $Tracking->getDateEnd()));
+			
 			$Title = "GIAO DỊCH CỦA ".$Customer->getName();
 			$Navigation = array(
 				array("BÁO CÁO", "/report"),
@@ -35,10 +37,11 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);						
+			$request->setProperty('Title'	, $Title);
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Tracking', $Tracking);
-			$request->setObject('Customer', $Customer);
+			$request->setObject('Tracking'	, $Tracking);
+			$request->setObject('Customer'	, $Customer);
+			$request->setObject('CTAll'		, $CTAll);
 		}
 	}
 ?>

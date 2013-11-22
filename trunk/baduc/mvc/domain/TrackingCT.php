@@ -82,6 +82,10 @@ class TrackingCT extends Object{
 		$N = new \MVC\Library\Number($this->DebtValue);
 		return $N->formatCurrency();
 	}
+	function getDebtValueStrPrint(){
+		$N = new \MVC\Library\Number($this->DebtValue);
+		return $N->readDigit();
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs

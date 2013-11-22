@@ -34,7 +34,7 @@
 		</tr>		
 	</table>
 </font>
-<p align="center">Kính gửi quí khách hàng: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')"/> CMND: <B tal:content="CT/getCustomer/getCard"/></p>	
+<p align="center">Kính gửi quí khách hàng: <B tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')"/> CMND: <B tal:content="CT/getCustomer/getCard"/></p>
 <p align="center">Địa chỉ: <span tal:content="CT/getNote"/></p>
 <p>1. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> quí khách hàng còn nợ cửa hàng chúng tôi:</p>
 <p>2. Chi tiết phát sinh công nợ bao gồm các khoản sau:</p>
@@ -91,14 +91,13 @@
 	</table>	
 </font>
 <p>
-3. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <B tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
-(bằng chữ)
+3. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <B tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
+( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
 </p>
 <p>
-4. Qui khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có):
+4. Qui khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): ...............................................................................................................
 </p>
 <p>
-........................................................................................................................................................................................................................................................
 Biên bản này được lập thành 02 bản có giá trị như nhau. Mỗi bên giữ 01 bản làm cơ sở cho việc thanh toán sau này giữa 02 bên. Trong vòng
 03 ngày kể từ ngày nhận được biên bản đối chiếu công nợ này mà cửa hàng chúng tôi không nhận được phản hồi từ quí khách hàng thì công nợ 
 trên xem như được chấp nhận.
