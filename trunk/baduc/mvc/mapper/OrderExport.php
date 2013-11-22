@@ -22,7 +22,8 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		
 		$findByPageStmt = sprintf("
 							SELECT * 
-							FROM %s 							 							
+							FROM %s
+							WHERE id_tracking=:id_tracking
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblOrderExport);
@@ -98,9 +99,9 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     }
 	
 	function findByPage( $values ) {		
-		//$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
-		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
-		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);		
+		$this->findByPageStmt->bindValue(':id_tracking', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
         return new OrderExportCollection( $this->findByPageStmt->fetchAll(), $this );
     }
