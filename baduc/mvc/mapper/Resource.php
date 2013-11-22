@@ -8,7 +8,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         parent::__construct();
 		$tblResource = "tbl_resource";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblResource);
+		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
 		$updateStmt = sprintf("update %s set idsupplier=?, name=?, name_short=?, unit=?, price_import=?, price_export=?, description=?, barcode=? where id=?", $tblResource);
 		$insertStmt = sprintf("insert into %s ( idsupplier, name, name_short, unit, price_import, price_export, description, barcode ) 
@@ -16,13 +16,14 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$havingBarcodeStmt = sprintf("select * from %s where barcode<>''", $tblResource);
 		$noneBarcodeStmt = sprintf("select * from %s where barcode=''", $tblResource);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
-		$findByBarcodeStmt = sprintf("select * from %s where barcode=?", $tblResource);
+		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? ORDER BY name", $tblResource);
+		$findByBarcodeStmt = sprintf("select * from %s where barcode=? ORDER BY name", $tblResource);
 		$findByBarcode1Stmt = sprintf("select * from %s where idsupplier=? AND barcode=?", $tblResource);
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
 							WHERE idsupplier=:idsupplier
+							ORDER BY name
 							LIMIT :start,:max
 				", $tblResource);
 				

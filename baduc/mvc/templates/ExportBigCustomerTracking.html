@@ -13,12 +13,7 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<!--
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-						
-					</a>
-					!-->
+				<div class="col-12">					
 					<button id="InsButton" class="btn btn-primary">
 						<i class="glyphicons-plus"/> Thêm mới
 					</button>
@@ -36,7 +31,7 @@
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Order Tracking/getOrderAll">
+									<tr tal:repeat="Order OrderAll">
 										<td class="center"><span tal:content="repeat/Order/number"/></td>
 										<td class="left">											
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getTagPrint"/>
@@ -52,14 +47,10 @@
 									</tr>									
 								</tbody>
 							</table>
-						</div>
-						<!--
-						<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-							<i class="glyphicons-remove_2"/> Xóa chọn
-						</a>
-						!-->
+						</div>						
 					</div>
-										
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
