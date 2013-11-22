@@ -9,12 +9,13 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 				
 		$tblTracking = "tbl_tracking";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTracking);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
-		$updateStmt = sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
-		$insertStmt = sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblTracking);		
-		$findPreStmt = sprintf("select *  from %s where date_start<? ORDER BY date_start DESC LIMIT 1", $tblTracking);
+		$selectAllStmt 			= sprintf("select * from %s ORDER BY date_start", $tblTracking);
+		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTracking);
+		$updateStmt 			= sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
+		$insertStmt 			= sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);
+		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTracking);		
+		$findPreStmt 			= sprintf("select *  from %s where date_start<? ORDER BY date_start DESC LIMIT 1", $tblTracking);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY date_start DESC LIMIT :start,:max", $tblTracking);		
 		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -22,12 +23,10 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findPreStmt 		= self::$PDO->prepare($findPreStmt);
-		
-    } 
-    function getCollection( array $raw ) {
-        return new TrackingCollection( $raw, $this );
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
     }
-
+	
+    function getCollection( array $raw ) {return new TrackingCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
@@ -71,5 +70,11 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         return $object;
     }
 	
+	function findByPage( $values ){
+		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->execute();
+        return new SupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+    }	
 }
 ?>
