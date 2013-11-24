@@ -57,7 +57,7 @@
 								<tr tal:repeat="TCT php:Tracking->getTCT(CT->getId())">
 									<td align='center' tal:content="TCT/getDatePrint"/>
 									<td align='left' colspan="5">
-										<table tal:repeat="OE TCT/getOEAll" border="1" cellpadding="2" cellspacing="0">
+										<table tal:repeat="OE TCT/getOEAll" border="0" cellpadding="2" cellspacing="0">
 											<tr tal:repeat="Detail OE/getDetailAll">
 												<td width="50%" align="left" tal:content="Detail/getResource/getName"/>
 												<td width="15%" align="left" tal:content="Detail/getResource/getUnit"/>
