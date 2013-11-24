@@ -13,7 +13,7 @@ class Customer extends Object{
     private $Address;
 	private $Discount;
 	
-	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
+	/*Hàm khởi tạo và thiết lập các thuộc tính*/
     function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
@@ -93,7 +93,13 @@ class Customer extends Object{
 		return $CDAll;
 	}
 	
-	function getTracking(){
+	function getTracking($IdDomain){
+		$mCT 	= new \MVC\Mapper\CustomerTracking();
+		$CTAll 	= $mCT->findBy(array($this->getId(), $IdDomain));
+		return $CTAll;
+	}
+	
+	function getTrackingAll(){
 		$mCT 	= new \MVC\Mapper\CustomerTracking();
 		$CTAll 	= $mCT->findByCustomer(array($this->getId()));
 		return $CTAll;

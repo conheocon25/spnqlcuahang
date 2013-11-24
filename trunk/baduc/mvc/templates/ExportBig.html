@@ -28,8 +28,8 @@
 									<tr tal:repeat="Customer Domain/getCustomerAll">
 										<td class="center"><span tal:content="repeat/Customer/number"/></td>
 										<td><span tal:content="Customer/getName"/></td>
-										<td><a tal:attributes="href php:Customer->getURLTracking( Domain->getId() )">Xem</a></td>
-									</tr>									
+										<td><a tal:attributes="href php:Customer->getURLTracking( Domain->getId() )">Xem (<span tal:content="php:Customer->getTracking( Domain->getId() )->count()"/>)</a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

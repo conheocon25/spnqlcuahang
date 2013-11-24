@@ -4,7 +4,7 @@
 			<tbody>
 				<tr style="font-size:13px; line-height:1px;">
 					<td width="6%">
-						<img width="57" src="/data/images/logo_gray.jpg"/>
+						<img width="60" src="/data/images/logo_gray.jpg"/>
 					</td>
 					<td width="50%">
 						<h4>CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC</h4>
@@ -20,8 +20,7 @@
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px; text-align:center;">
 					<td colspan="3">
-						<p>Kính gửi quí khách hàng: <b tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')" style="font-size:15px;"/></p>
-						<p>CMND: <B tal:content="CT/getCustomer/getCard"/></p>
+						<p>Kính gửi quí khách hàng: <b tal:content="php:mb_strtoupper(CT->getCustomer()->getName(),'UTF8')" style="font-size:15px;"/> CMND: <B tal:content="CT/getCustomer/getCard"/></p>
 						<p>Địa chỉ: <span tal:content="CT/getNote"/></p>
 					</td>
 				</tr>
@@ -36,29 +35,29 @@
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px;">
 					<td colspan="3">
-						<table cellpadding="0" cellspacing="0" border="1">
+						<table cellpadding="2" cellspacing="0" border="1">
 							<thead>	
 								<tr>
 									<th width="5%"	rowspan="2" align="center"><b>NGÀY</b></th>
-									<th width="55%" colspan="5" align="center"><b>CHI TIẾT NHẬP HÀNG</b></th>
-									<th width="10%" rowspan="2" align="center"><b>TIỀN HÀNG</b></th>
-									<th width="10%"	rowspan="2" align="center"><b>ỨNG TIỀN</b></th>
-									<th width="10%" rowspan="2" align="center"><b>THANH TOÁN</b></th>
-									<th width="10%"	rowspan="2" align="center"><b>CÒN NỢ</b></th>
+									<th width="55%" colspan="5" align="left"><b>CHI TIẾT NHẬP HÀNG</b></th>
+									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG</b></th>
+									<th width="10%"	rowspan="2" align="right"><b>ỨNG TIỀN</b></th>
+									<th width="10%" rowspan="2" align="right"><b>THANH TOÁN</b></th>
+									<th width="10%"	rowspan="2" align="right"><b>CÒN NỢ</b></th>
 								</tr>
 								<tr>
-									<th width="27.5%" align="center"><b>TÊN HÀNG</b></th>
-									<th width="8.25%" align="center"><b>ĐVT</b></th>
-									<th width="5.5%" align="center"><b>SL</b></th>				
-									<th width="5.5%" align="center"><b>Đ.GIÁ</b></th>
-									<th width="8.25%" align="center"><b>T.TIỀN</b></th>
+									<th width="27.5%" align="left"><b>TÊN HÀNG</b></th>
+									<th width="8.25%" align="left"><b>ĐVT</b></th>
+									<th width="5.5%" align="right"><b>SL</b></th>				
+									<th width="5.5%" align="right"><b>Đ.GIÁ</b></th>
+									<th width="8.25%" align="right"><b>T.TIỀN</b></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr tal:repeat="TCT php:Tracking->getTCT(CT->getId())">
 									<td align='center' tal:content="TCT/getDatePrint"/>
 									<td align='left' colspan="5">
-										<table tal:repeat="OE TCT/getOEAll" border="1" cellpadding="0" cellspacing="0">
+										<table tal:repeat="OE TCT/getOEAll" border="1" cellpadding="2" cellspacing="0">
 											<tr tal:repeat="Detail OE/getDetailAll">
 												<td width="50%" align="left" tal:content="Detail/getResource/getName"/>
 												<td width="15%" align="left" tal:content="Detail/getResource/getUnit"/>
@@ -72,11 +71,7 @@
 									<td align='right' tal:content="TCT/getPCValuePrint"/>
 									<td align='right' tal:content="TCT/getCCValuePrint"/>
 									<td align='right' tal:content="TCT/getDebtValuePrint"/>
-								</tr>
-								<tr>
-									<td colspan="9" align="right"><b>TỔNG</b></td>
-									<td align="right">???</td>
-								</tr>
+								</tr>								
 								<tr>
 									<td colspan="9" align="right"><b>DƯ NỢ CŨ</b></td>
 									<td align="right">
@@ -99,6 +94,8 @@
 					<td colspan="3">
 						<p>
 							3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
+						</p>
+						<p>
 							( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
 						</p>
 						<p>4. Quí khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): ...............................................................................................................</p>
