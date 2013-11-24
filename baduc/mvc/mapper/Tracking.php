@@ -9,7 +9,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 				
 		$tblTracking = "tbl_tracking";
 		
-		$selectAllStmt 			= sprintf("select * from %s ORDER BY date_start", $tblTracking);
+		$selectAllStmt 			= sprintf("select * from %s ORDER BY date_start DESC", $tblTracking);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTracking);
 		$updateStmt 			= sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
 		$insertStmt 			= sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);

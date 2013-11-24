@@ -41,7 +41,7 @@
 										<td><span tal:content="Tracking/getNote"/></td>
 										<td>
 											<a tal:attributes="href Tracking/getURLOrder">
-												Xem
+												Xem (<span tal:content="Tracking/getOrderAll/count"/>)
 											</a>
 										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Tracking/getId"><i class="glyphicons-remove_2"/></a></td>
