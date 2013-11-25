@@ -38,6 +38,17 @@
 						<table cellpadding="2" cellspacing="0" border="1">
 							<thead>	
 								<tr>
+									<th width="90%"	align="right"><b>DƯ NỢ CŨ</b></th>
+									<th width="10%"	align="right">
+										<b tal:condition="PreTracking" tal:content="php: PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
+										<b tal:condition="not: PreTracking" tal:content="string:0"/>
+									</th>
+								</tr>								
+							</thead>
+						</table>
+						<table cellpadding="2" cellspacing="0" border="1">
+							<thead>	
+								<tr>
 									<th width="5%"	rowspan="2" align="center"><b>NGÀY</b></th>
 									<th width="55%" colspan="5" align="left"><b>CHI TIẾT NHẬP HÀNG</b></th>
 									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG</b></th>
@@ -71,13 +82,6 @@
 									<td align='right' tal:content="TCT/getPCValuePrint"/>
 									<td align='right' tal:content="TCT/getCCValuePrint"/>
 									<td align='right' tal:content="TCT/getDebtValuePrint"/>
-								</tr>								
-								<tr>
-									<td colspan="9" align="right"><b>DƯ NỢ CŨ</b></td>
-									<td align="right">
-										<b tal:condition="PreTracking" tal:content="php: PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
-										<b tal:condition="not: PreTracking" tal:content="string:0"/>
-									</td>
 								</tr>
 								<tr>
 									<td colspan="9" align="right"><b>DƯ NỢ CŨ MỚI</b></td>
@@ -91,19 +95,31 @@
 				</tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
-					<td colspan="3">
-						<p>
-							3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
-						</p>
-						<p>
-							( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
-						</p>
-						<p>4. Quí khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): ...............................................................................................................</p>
-						<p style="line-height:2px; text-indent:15px;">Biên bản này được lập thành 02 bản có giá trị như nhau. Mỗi bên giữ 01 bản làm cơ sở cho việc thanh toán sau này giữa 02 bên. Trong vòng
-						03 ngày kể từ ngày nhận được biên bản đối chiếu công nợ này mà cửa hàng chúng tôi không nhận được phản hồi từ quí khách hàng thì công nợ 
-						trên xem như được chấp nhận.</p><br/>
+					<td colspan="3">						
+						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
 					</td>
 				</tr>
+				<tr><td colspan="3"/></tr>
+				<tr style="font-size:13px; line-height:1px;">
+					<td colspan="3">												
+						( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
+					</td>
+				</tr>
+				<tr><td colspan="3"/></tr>
+				<tr style="font-size:13px; line-height:1px;">
+					<td colspan="3">
+						4. Quí khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): ..........................................................................................................
+					</td>
+				</tr>
+				<tr><td colspan="3"/></tr>
+				<tr style="font-size:13px; line-height:1px;">
+					<td colspan="3">
+						Biên bản này được lập thành 02 bản có giá trị như nhau. Mỗi bên giữ 01 bản làm cơ sở cho việc thanh toán sau này giữa 02 bên. Trong vòng
+						03 ngày kể từ ngày nhận được biên bản đối chiếu công nợ này mà cửa hàng chúng tôi không nhận được phản hồi từ quí khách hàng thì công nợ 
+						trên xem như được chấp nhận.
+					</td>
+				</tr>
+				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
 					<td colspan="3">
 						<table width="100%" cellpadding="1" cellspacing="0" border="0">
@@ -127,6 +143,5 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</body>
 </html>
