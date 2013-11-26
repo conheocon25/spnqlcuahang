@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">															
+					<div class="widget-box">
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover">
+								<thead>									
+									<tr>
+										<th class="left">NGÀY</th>
+										<th width="120" class="right">GIÁ TRỊ</th>
+										<th width="120" class="right">SỐ NGÀY</th>
+										<th width="120" class="right">LÃI SUẤT</th>
+										<th width="120" class="right">TIỀN LÃI</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="D Data">
+										<td align="left"><span tal:content="php:D['Date']"/></td>
+										<td align="right"><span tal:content="php:D['Value']"/></td>
+										<td align="right"><span tal:content="php:D['nDay']"/></td>
+										<td align="right"><span tal:content="php:D['Rate']"/></td>
+										<td align="right"><span tal:content="php:D['RateValue']"/></td>
+									</tr>
+									<tr>
+										<td align="right" colspan="4">TỔNG LÃI</td>
+										<td align="right"><B tal:content="SumRateValue"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+	</body>
+</html>

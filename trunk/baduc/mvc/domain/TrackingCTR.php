@@ -2,17 +2,16 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class TrackingCT extends Object{
+class TrackingCTR extends Object{
 
     private $Id;
 	private $IdCT;
 	private $IdTracking;
 	private $Date;
-	private $OEValue;
-	private $PCValue;
-	private $CCValue;
+	private $Value;
+	private $nDay;
+	private $Rate;
 	private $RateValue;
-	private $DebtValue;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -22,21 +21,19 @@ class TrackingCT extends Object{
 		$IdCT=null, 
 		$IdTracking=null, 
 		$Date=null,
-		$OEValue=null, 
-		$PCValue=null, 
-		$CCValue=null, 
-		$RateValue=null, 
-		$DebtValue=null
+		$Value=null, 
+		$nDay=null, 
+		$Rate=null, 
+		$RateValue=null
 	) {
         $this->Id = $Id;
 		$this->IdCT 		= $IdCT;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
-		$this->OEValue 		= $OEValue;
-		$this->PCValue 		= $PCValue;
-		$this->CCValue 		= $CCValue;
+		$this->Value 		= $Value;
+		$this->nDay 		= $nDay;
+		$this->Rate 		= $Rate;
 		$this->RateValue 	= $RateValue;
-		$this->DebtValue 	= $DebtValue;
 		
         parent::__construct( $Id );
     }
@@ -50,57 +47,48 @@ class TrackingCT extends Object{
 		return $Tracking;
 	}
 	
-	function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking; $this->markDirty();}
+	function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}
 	function getIdTracking( ) {return $this->IdTracking;}
 	function getTracking( ) {
 		$mTracking 	= new \MVC\Mapper\Tracking();
 		$Tracking 	= $mTracking->find( $this->getIdTracking() );
 		return $Tracking;
 	}
-		
+	
 	function setDate( $Date ) {$this->Date = $Date; $this->markDirty();}
 	function getDate( ) {return $this->Date;}
 	function getDatePrint(){		
 		return \date("d/m", strtotime($this->Date));
 	}
 	
-	function setOEValue( $OEValue ) {$this->OEValue = $OEValue; $this->markDirty();}
-	function getOEValue( ) {return $this->OEValue;}
-	function getOEValuePrint(){
-		$N = new \MVC\Library\Number($this->OEValue);
+	function setValue( $Value ) {$this->Value = $Value; $this->markDirty();}
+	function getValue( ) {return $this->Value;}
+	function getValuePrint(){
+		$N = new \MVC\Library\Number($this->Value);
 		return $N->formatCurrency();
 	}
-	function getOEAll( ) {
-		$mOrder 	= new \MVC\Mapper\OrderExport();
-		$OrderAll 	= $mOrder->findByTracking(array($this->IdCT, $this->Date, $this->Date));
-		return $OrderAll;
-	}
-	
-	function setPCValue( $PCValue ) {$this->PCValue = $PCValue; $this->markDirty();}
-	function getPCValue( ) {return $this->PCValue;}
-	function getPCValuePrint(){
-		$N = new \MVC\Library\Number($this->PCValue);
+		
+	function setnDay( $nDay ) {$this->nDay = $nDay; $this->markDirty();}
+	function getnDay( ) {return $this->nDay;}
+	function getnDayPrint(){
+		$N = new \MVC\Library\Number($this->nDay);
 		return $N->formatCurrency();
 	}
 	
-	function setCCValue( $PCValue ) {$this->CCValue = $CCValue; $this->markDirty();}
-	function getCCValue( ) {return $this->CCValue;}
-	function getCCValuePrint(){
-		$N = new \MVC\Library\Number($this->CCValue);
+	function setRate( $Rate ) {$this->Rate = $Rate; $this->markDirty();}
+	function getRate( ) {return $this->Rate;}
+	function getRatePrint(){
+		$N = new \MVC\Library\Number($this->Rate);
 		return $N->formatCurrency();
 	}
 	
-	function setDebtValue( $DebtValue ) {$this->DebtValue = $DebtValue; $this->markDirty();}
-	function getDebtValue( ) {return $this->DebtValue;}
-	function getDebtValuePrint(){
-		$N = new \MVC\Library\Number($this->DebtValue);
+	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}
+	function getRateValue( ) {return $this->RateValue;}
+	function getRateValuePrint(){
+		$N = new \MVC\Library\Number($this->RateValue);
 		return $N->formatCurrency();
 	}
-	function getDebtValueStrPrint(){
-		$N = new \MVC\Library\Number($this->DebtValue);
-		return $N->readDigit();
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------

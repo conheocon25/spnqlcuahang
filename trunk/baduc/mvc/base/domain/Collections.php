@@ -38,6 +38,7 @@ interface ConfigCollection 				extends \Iterator {function add( Object $Config )
 interface TrackingCollection 			extends \Iterator {function add( Object $Tracking);}
 interface TrackingStoreCollection 		extends \Iterator {function add( Object $TrackingStore);}
 interface TrackingCTCollection 			extends \Iterator {function add( Object $TrackingCT);}
+interface TrackingCTRCollection 		extends \Iterator {function add( Object $TrackingCTR);}
 
 interface PageCollection 				extends \Iterator {function add( Object $Page);}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);}

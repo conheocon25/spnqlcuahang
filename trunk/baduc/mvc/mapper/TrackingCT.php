@@ -34,10 +34,12 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
         $obj = new \MVC\Domain\TrackingCT( 
 			$array['id'],
 			$array['id_ct'],
+			$array['id_tracking'],
 			$array['date'],
 			$array['oe_value'],
 			$array['pc_value'],
 			$array['cc_value'],
+			$array['rate_value'],
 			$array['debt_value']
 		);
 	    return $obj;
@@ -54,6 +56,7 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 			$object->getOEValue(),
 			$object->getPCValue(),
 			$object->getCCValue(),
+			$object->getRateValue(),
 			$object->getDebtValue()
 		);
         $this->insertStmt->execute( $values );
@@ -68,6 +71,7 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 			$object->getOEValue(),
 			$object->getPCValue(),
 			$object->getCCValue(),
+			$object->getRateValue(),
 			$object->getDebtValue(),
 			$object->getId()
 		);
