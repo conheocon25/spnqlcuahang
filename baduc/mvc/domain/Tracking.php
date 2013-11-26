@@ -37,7 +37,13 @@ class Tracking extends Object{
 		$TCTAll = $mTCT->findBy( array($IdCT, $this->getDateStart(), $this->getDateEnd()) );
 		return $TCTAll;
 	}
-	
+	function getOrderRating($IdCT){
+		$T 			= $this->getPre();
+		$mOrder 	= new \MVC\Mapper\OrderExport();
+		$OrderAll 	= $mOrder->findByTracking( array($IdCT, $T->getDateStart(), $T->getDateEnd()) );
+		return $OrderAll;
+	}
+		
 	//--------------------------------------------------------------------------------
 	//KHÁCH HÀNG > GIAO DỊCH > ĐƠN HÀNG XUẤT
 	//--------------------------------------------------------------------------------
@@ -254,6 +260,8 @@ class Tracking extends Object{
 	function getURLCustomer(){return "/report/customer/".$this->getId();}	
 	function getURLCustomerTracking($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLCustomerTrackingDetail($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT;}
+	function getURLCustomerTrackingDetailDebt($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/debt";}
+	function getURLCustomerTrackingDetailDebtPrint($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/debt/print";}
 	function getURLCustomerTrackingDetailSave($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/save";}
 	function getURLCustomerTrackingDetailPrint($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/print";}
 	

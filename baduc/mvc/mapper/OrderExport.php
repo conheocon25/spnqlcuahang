@@ -17,7 +17,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
 		$findByStmt = sprintf("select * from  %s where id_tracking=? order by date DESC ", $tblOrderExport);
 				
-		$findByTrackingStmt = sprintf("select * from  %s where id_tracking=? AND date(`date`)>=? AND date(`date`)<=?", $tblOrderExport);		
+		$findByTrackingStmt = sprintf("select * from  %s where id_tracking=? AND date(`date`)>=? AND date(`date`)<=?", $tblOrderExport);
 		$findByTracking1Stmt = sprintf("select * from  %s where id_tracking=? AND tag=? AND date(`date`)>=? AND date(`date`)<=?", $tblOrderExport);
 		
 		$findByPageStmt = sprintf("

@@ -20,10 +20,11 @@
 								<thead>
 									<tr>
 										<th width="40"><i class="glyphicons-fax"/></th>
-										<th><div class="text-left">TÊN</div></th>										
-										<th width="120">CHI TIẾT</th>										
-										<th width="120">LƯU</th>
-										<th width="120">IN</th>
+										<th><div class="text-left">TÊN</div></th>
+										<th width="120">TIỀN LÃI</th>
+										<th width="120">TIỀN LÃI</th>
+										<th width="120">ĐỐI CHIẾU</th>
+										<th width="120">ĐỐI CHIẾU</th>
 									</tr>
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -31,18 +32,23 @@
 										<td align="center" tal:content="repeat/CT/number"/>
 										<td><span tal:content="CT/getNote"/></td>
 										<td class="center">
-											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetail(Customer->getId(), CT->getId())">
-												Xem
+											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebt(Customer->getId(), CT->getId())">
+												Lưu
 											</a>
-										</td>										
+										</td>
+										<td class="center">
+											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebtPrint(Customer->getId(), CT->getId())" target="blank">
+												In
+											</a>
+										</td>
 										<td class="center">
 											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailSave(Customer->getId(), CT->getId())">
-												Click
+												Lưu
 											</a>
 										</td>
 										<td class="center">
 											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailPrint(Customer->getId(), CT->getId())" target="blank">
-												Click
+												In
 											</a>
 										</td>
 									</tr>

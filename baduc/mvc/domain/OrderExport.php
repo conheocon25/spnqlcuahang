@@ -54,6 +54,21 @@ class OrderExport extends Object{
 	function getNote( ) {return $this->Note;}
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
+	function getDays($Date){
+		$D1 = strtotime($this->getDate());
+		$D2 = strtotime($Date);
+		return round(($D2 - $D1)/ 86400, 0);
+	}
+	
+	function getRateValue($Date, $Rate){
+		return ($this->getDays($Date)*($this->getValue()*$Rate))/100;
+	}
+	function getRateValuePrint($Date, $Rate){
+		$Value = $this->getRateValue($Date, $Rate);
+		$N = new \MVC\Library\Number($Value);
+		return $N->formatCurrency();
+	}
+	
 	function getDetailAll(){		
 		$mOED = new \MVC\Mapper\OrderExportDetail();
 		$DetailAll = $mOED->findBy(array($this->getId()));

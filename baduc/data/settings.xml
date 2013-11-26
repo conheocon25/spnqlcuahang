@@ -21,8 +21,7 @@
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>		
-		<command name="S2AGet"><view>S2AGet</view></command>
-						
+								
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
@@ -65,6 +64,8 @@
 		<command name="ReportCustomerTracking"><view>ReportCustomerTracking</view></command>
 		<command name="ReportCustomerTrackingDetail"><view>ReportCustomerTrackingDetail</view></command>
 		<command name="ReportCustomerTrackingDetailPrint"><view>ReportCustomerTrackingDetailPrint</view></command>
+		<command name="ReportCustomerTrackingDetailDebt"><view>ReportCustomerTrackingDetailDebt</view></command>
+		<command name="ReportCustomerTrackingDetailDebtPrint"><view>ReportCustomerTrackingDetailDebtPrint</view></command>
 				
 		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
