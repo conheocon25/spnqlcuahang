@@ -11,10 +11,10 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaid);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);
-		$updateStmt = sprintf("update %s set id_customer=?, id_tracking=?, date=?, value=?, note=? where id=?", $tblPaid);
-		$insertStmt = sprintf("insert into %s (id_customer, id_tracking, date, value, note) values(?,?,?,?,?)", $tblPaid);
+		$updateStmt = sprintf("update %s set id_tracking=?, date=?, value=?, note=? where id=?", $tblPaid);
+		$insertStmt = sprintf("insert into %s (id_tracking, date, value, note) values(?,?,?,?)", $tblPaid);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
-		$findByStmt = sprintf("select * from %s where id_customer=? order by date DESC", $tblPaid);
+		$findByStmt = sprintf("select * from %s WHERE id_tracking IN (SELECT id FROM tbl_customer_tracking WHERE id_customer=?) order by date DESC", $tblPaid);
 		$findByTrackingStmt = sprintf(
 					"select * from %s
 					where
@@ -27,7 +27,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE id_customer=:id_customer
+							WHERE id_tracking IN (SELECT id FROM tbl_customer_tracking WHERE id_customer=:id_customer)
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblPaid);
@@ -46,8 +46,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
     function getCollection( array $raw ) {return new PaidCustomerCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\PaidCustomer( 
-			$array['id'],
-			$array['id_customer'],
+			$array['id'],			
 			$array['id_tracking'],
 			$array['date'],
 			$array['value'],
@@ -59,8 +58,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
     protected function targetClass() {return "PaidCustomer";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(			
-			$object->getIdCustomer(),
+        $values = array(						
 			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getValue(),
@@ -72,8 +70,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array(
-			$object->getIdCustomer(),
+        $values = array(			
 			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getValue(),

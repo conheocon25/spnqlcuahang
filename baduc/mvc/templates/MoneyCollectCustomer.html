@@ -73,7 +73,7 @@
 											<label class="control-label">Giao dịch</label>
 											<div class="controls">
 												<select name="IdTracking1" id="IdTracking1" style="width:80%;">
-													<option tal:repeat="Tracking Customer/getTracking" tal:attributes="value Tracking/getId">
+													<option tal:repeat="Tracking php:Customer->getTrackingAll( )" tal:attributes="value Tracking/getId">
 														<span tal:content="Tracking/getNote" />
 													</option>
 												</select>
@@ -121,7 +121,7 @@
 											<label class="control-label">Giao dịch</label>
 											<div class="controls">
 												<select name="IdTracking2" id="IdTracking2" style="width:80%;">
-													<option tal:repeat="Tracking Customer/getTracking" tal:attributes="value Tracking/getId">
+													<option tal:repeat="Tracking Customer/getTrackingAll" tal:attributes="value Tracking/getId">
 														<span tal:content="Tracking/getNote" />
 													</option>
 												</select>
@@ -208,12 +208,11 @@
 			//Insert 1 PAID GENERAL
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#IdCustomer').attr('alt');
-				Data[2] = $('#IdTracking1').val();
-				Data[3] = $('#Date1').val();				
-				Data[4] = $('#Value1').val();
-				Data[5] = $('#Note1').val();
+				Data[0] = 'null';				
+				Data[1] = $('#IdTracking1').val();
+				Data[2] = $('#Date1').val();				
+				Data[3] = $('#Value1').val();
+				Data[4] = $('#Note1').val();
 													
 				var URL = "/object/ins/CollectCustomer";
 				$.ajax({
@@ -250,12 +249,11 @@
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdCustomer').attr('alt');
-				Data[2] = $('#IdTracking2').val();;
-				Data[3] = $('#Date2').val();
-				Data[4] = $('#Value2').val();
-				Data[5] = $('#Note2').val();
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#IdTracking2').val();;
+				Data[2] = $('#Date2').val();
+				Data[3] = $('#Value2').val();
+				Data[4] = $('#Note2').val();
 				
 				var URL = "/object/upd/CollectCustomer";
 				$.ajax({

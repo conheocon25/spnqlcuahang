@@ -3,18 +3,27 @@
 		<table border="0" cellpadding="0" cellspacing="0">
 			<tbody>
 				<tr style="font-size:10px; line-height:1px;">
-					<td width="6%">
+					<td width="6%" rowspan="3">
 						<img width="60" src="/data/images/logo_gray.jpg"/>
 					</td>
 					<td width="60%">
-						<h4>CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC</h4>
-						<p>Địa chỉ: 234 Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp</p>
-						<p>Điện thoại: 0673 842 747 – Fax: 0673 611 798</p>
+						<B>CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC</B>						
 					</td>
 					<td width="32%" align="right">
-						<h4>PHỤ LỤC CHI TIẾT LÃI</h4>
-						<p>TỪ NGÀY <b tal:content="Tracking/getDateStartPrint"/> ĐẾN <b tal:content="Tracking/getDateEndPrint"/></p>
+						<B>PHỤ LỤC CHI TIẾT LÃI</B>						
 					</td>
+				</tr>
+				<tr style="font-size:10px; line-height:1px;">
+					<td width="60%">
+						Địa chỉ: 234 Khóm Phú Hòa - TT Cái Tàu Hạ - Châu Thành – Đồng Tháp
+					</td>
+					<td width="32%" align="right">						
+						TỪ NGÀY <b tal:content="Tracking/getDateStartPrint"/> ĐẾN <b tal:content="Tracking/getDateEndPrint"/>
+					</td>
+				</tr>
+				<tr style="font-size:10px; line-height:1px;">
+					<td width="60%">Điện thoại: 0673 842 747 – Fax: 0673 611 798</td>
+					<td width="32%" align="right" />
 				</tr>
 				<tr><td colspan="3"/></tr>
 				<tr><td colspan="3"/></tr>
@@ -50,32 +59,27 @@
 									<td align="left"><span tal:content="TCTR/getDatePrint"/></td>
 									<td align="right"><span tal:content="TCTR/getValuePrint"/></td>
 									<td align="right"><span tal:content="TCTR/getnDay"/></td>
-									<td align="right"><span tal:content="TCTR/getRate"/></td>
-									<td align="right"><span tal:content="TCTR/getRateValuePrint"/></td>
+									<td align="right"><span tal:content="TCTR/getRatePrint"/></td>
+									<td align="right"><span tal:content="TCTR/getRateValuePrint"/> đ</td>
 								</tr>
 								<tr>
-									<td align="right" colspan="4">TỔNG LÃI</td>
-									<td align="right"><B tal:content="string:0"/></td>
+									<td align="right" colspan="4"><B>LÃI TRONG KÌ</B></td>
+									<td align="right"><span tal:content="NRateValue/formatCurrency"/> đ</td>
+								</tr>
+								<tr>
+									<td align="right" colspan="4"><B>LÃI CŨ</B></td>
+									<td align="right"><span tal:content="NRateValueOld/formatCurrency"/> đ</td>
+								</tr>								
+								<tr>
+									<td align="right" colspan="4"><B>LÃI MỚI</B></td>
+									<td align="right"><B tal:content="NRateValueNew/formatCurrency"/> đ</td>
 								</tr>
 							</tbody>
 						</table>
 					</td>
 				</tr>
-				<!--
+				<span align="center">(<span tal:content="NRateValueNew/readDigit" />đồng)</span><BR/>				
 				<tr><td colspan="3"/></tr>
-				<tr style="font-size:13px; line-height:1px;">
-					<td colspan="3">						
-						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
-					</td>
-				</tr>
-				<tr><td colspan="3"/></tr>
-				<tr style="font-size:13px; line-height:1px;">
-					<td colspan="3">												
-						( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
-					</td>
-				</tr>
-				!-->
-				<tr><td colspan="3"/></tr>																
 				<tr style="font-size:11px; line-height:1px;">
 					<td colspan="3">
 						<table width="100%" cellpadding="1" cellspacing="0" border="0">

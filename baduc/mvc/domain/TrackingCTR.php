@@ -77,9 +77,8 @@ class TrackingCTR extends Object{
 	
 	function setRate( $Rate ) {$this->Rate = $Rate; $this->markDirty();}
 	function getRate( ) {return $this->Rate;}
-	function getRatePrint(){
-		$N = new \MVC\Library\Number($this->Rate);
-		return $N->formatCurrency();
+	function getRatePrint(){		
+		return $this->Rate."% / ngày";
 	}
 	
 	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}

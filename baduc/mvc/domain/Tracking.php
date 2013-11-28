@@ -34,7 +34,7 @@ class Tracking extends Object{
 	}
 	function getTCT($IdCT){
 		$mTCT 	= new \MVC\Mapper\TrackingCT();
-		$TCTAll = $mTCT->findBy( array($IdCT, $this->getDateStart(), $this->getDateEnd()) );
+		$TCTAll = $mTCT->findBy( array($IdCT, $this->getId()) );
 		return $TCTAll;
 	}
 	function getOrderRating($IdCT){
@@ -43,7 +43,13 @@ class Tracking extends Object{
 		$OrderAll 	= $mOrder->findByTracking( array($IdCT, $T->getDateStart(), $T->getDateEnd()) );
 		return $OrderAll;
 	}
-		
+	
+	function getNDay(){
+		//return round (())/86400,2);
+		$Value = strtotime($this->getDateEnd()) - strtotime($this->getDateStart());
+		return round($Value/84600,0);
+	}
+	
 	//--------------------------------------------------------------------------------
 	//KHÁCH HÀNG > GIAO DỊCH > ĐƠN HÀNG XUẤT
 	//--------------------------------------------------------------------------------

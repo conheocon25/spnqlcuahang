@@ -21,43 +21,23 @@
 									<tr>
 										<th width="40"><i class="glyphicons-fax"/></th>
 										<th><div class="text-left">TÊN</div></th>
-										<th width="120">TIỀN LÃI</th>
-										<th width="120">TIỀN LÃI</th>
-										<th width="120">ĐỐI CHIẾU</th>
-										<th width="120">ĐỐI CHIẾU</th>
+										<th width="120">LƯU TIỀN LÃI</th>
+										<th width="120">IN TIỀN LÃI</th>
+										<th width="120">LƯU ĐỐI CHIẾU</th>
+										<th width="120">IN ĐỐI CHIẾU</th>
 									</tr>
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
 									<tr tal:repeat="CT CTAll">
 										<td align="center" tal:content="repeat/CT/number"/>
 										<td><span tal:content="CT/getNote"/></td>
-										<td class="center">
-											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebt(Customer->getId(), CT->getId())">
-												Lưu
-											</a>
-										</td>
-										<td class="center">
-											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebtPrint(Customer->getId(), CT->getId())" target="blank">
-												In
-											</a>
-										</td>
-										<td class="center">
-											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailSave(Customer->getId(), CT->getId())">
-												Lưu
-											</a>
-										</td>
-										<td class="center">
-											<a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailPrint(Customer->getId(), CT->getId())" target="blank">
-												In
-											</a>
-										</td>
+										<td class="center"><a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebt(Customer->getId(), CT->getId())">Click (1)</a></td>
+										<td class="center"><a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailDebtPrint(Customer->getId(), CT->getId())" target="blank">Click (2) </a></td>
+										<td class="center"><a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailSave(Customer->getId(), CT->getId())">Click (3)</a></td>
+										<td class="center"><a tal:attributes="href php:Tracking->getURLCustomerTrackingDetailPrint(Customer->getId(), CT->getId())" target="blank">Click (4)</a></td>
 									</tr>
 								</tbody>
 							</table>
-							<p/>
-							<p><B>CHI TIẾT</B> xem chi tiết công nợ của một <B>GIAO DỊCH</B> của <B>KHÁCH HÀNG</B> cụ thể</p>
-							<p><B>LƯU</B> Sau khi xem nội dung <B>CHI TIẾT</B> thì tiến hành nhấn lưu để <B>HỆ THỐNG</B> lưu trữ lại các tính toán <B>CÔNG NỢ</B></p>
-							<p><B>IN</B> tiến hành in chi tiết công nợ của một <B>GIAO DỊCH</B> của <B>KHÁCH HÀNG</B> để tiến hành quá trình đối chiếu</p>
 						</div>
 					</div>					
 				</div>

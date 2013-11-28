@@ -14,8 +14,7 @@
 			$IdTrack 	= $request->getProperty('IdTrack');
 			$IdCustomer = $request->getProperty('IdCustomer');
 			$IdCT 		= $request->getProperty('IdCT');
-			$Save 		= $request->getProperty('Save');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -30,6 +29,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			
 			$Tracking 		= $mTracking->find($IdTrack);
 			$PreTracking 	= $Tracking->getPre();
 			$Customer 		= $mCustomer->find($IdCustomer);
@@ -40,13 +40,18 @@
 			$Date 		= $Tracking->getDateStart();
 			$EndDate 	= $Tracking->getDateEnd();
 			
+			//Lấy về Lãi Nợ Cũ & Nợ Cũ 
 			if (!isset($PreTracking))
-				$OldDebt	= 0;
+				$OldDebt	= 0;				
 			else{
-				$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtValue();
+				if ($PreTracking->getTCT($IdCT)->count()==0){					
+					$OldDebt	= 0;					
+				}else{
+					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtValue();					
+				}				
 			}			
 			$DebtValue = $OldDebt;
-			
+												
 			while (strtotime($Date) <= strtotime($EndDate)){
 				//-------------------------------------------------------------
 				//Tổng thanh toán trong ngày hiện tại
@@ -82,14 +87,20 @@
 				}
 				$NOEValue = new \MVC\Library\Number($OEValue);
 				
-				//Tổng nợ tính đến thời điểm hiện tại
+				$RateValue 	= 0;
+				$NRateValue = new \MVC\Library\Number($RateValue);
+				
+				//Nợ tính đến thời điểm hiện tại
 				$DebtValue = $DebtValue + ($OEValue + $PCValue - $CCValue);
 				$NDebtValue = new \MVC\Library\Number($DebtValue);
 				
-								
+				//Tổng nợ tính đến thời điểm hiện tại
+				$SDebtValue = $RateValue + ($OEValue + $PCValue - $CCValue);
+				$NSDebtValue = new \MVC\Library\Number($SDebtValue);
+												
 				$DataTemp[] = array(
-							\date("d/m", strtotime($Date)),
-							$Date,
+							'DatePrint'		=>\date("d/m", strtotime($Date)),
+							'Date'			=>$Date,
 							array(),
 							'OEValue'		=>$OEValue,
 							'OEValuePrint'	=>$NOEValue->formatCurrency(),
@@ -97,37 +108,36 @@
 							'PCValuePrint'	=>$NPCValue->formatCurrency(),
 							'CCValue'		=>$CCValue,
 							'CCValuePrint'	=>$NCCValue->formatCurrency(),
+							'RateValue'		=>$RateValue,
+							'RateValuePrint'=>$NRateValue->formatCurrency(),
 							'DebtValue'		=>$DebtValue,
-							'DebtValuePrint'=>$NDebtValue->formatCurrency()
+							'DebtValuePrint'=>$NDebtValue->formatCurrency(),
+							'SDebtValue'	=>$SDebtValue,
+							'SDebtValuePrint'=>$NSDebtValue->formatCurrency()
 				);
 				$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 			}
 			
-			if ($Save=="yes"){
-				$mTCT->deleteByTracking( array($IdCT, $Tracking->getDateStart(), $Tracking->getDateEnd()) );
-				foreach ($DataTemp as &$Value){					
-					if ($Value['CCValue'] + $Value['PCValue'] + $Value['OEValue'] > 0){
-						$Data[] = $Value;
-						$TCT = new \MVC\Domain\TrackingCT(
-							null,
-							$IdCT,
-							$Value[1],
-							$Value['OEValue'],
-							$Value['PCValue'],
-							$Value['CCValue'],
-							$Value['DebtValue']
-						);						
-						$mTCT->insert($TCT);
-					}
+			//Lưu lại CSDL
+			$mTCT->deleteByTracking( array($IdCT, $Tracking->getId()) );
+			foreach ($DataTemp as &$Value){					
+				if ($Value['CCValue'] + $Value['PCValue'] + $Value['OEValue'] > 0){
+					$Data[] = $Value;
+					$TCT = new \MVC\Domain\TrackingCT(
+						null,
+						$IdCT,
+						$IdTrack,
+						$Value['Date'],
+						$Value['OEValue'],
+						$Value['PCValue'],
+						$Value['CCValue'],
+						$Value['RateValue'],
+						$Value['DebtValue']
+					);						
+					$mTCT->insert($TCT);																																												
 				}
-			}else{
-				foreach ($DataTemp as &$Value){
-					if ($Value['CCValue'] + $Value['PCValue'] + $Value['OEValue'] > 0){
-						$Data[] = $Value;
-					}
-				}				
 			}
-						
+									
 			$Title = $CT->getNote();
 			$Navigation = array(
 				array("BÁO CÁO", "/report"),
