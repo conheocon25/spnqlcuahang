@@ -19,8 +19,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class PaidCustomer extends Object{
 
-    private $Id;
-	private $IdCustomer;
+    private $Id;	
 	private $IdTracking;
 	private $Date;
     private $Value;
@@ -30,15 +29,13 @@ class PaidCustomer extends Object{
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
     function __construct(
-		$Id=null,
-		$IdCustomer=null,
+		$Id=null,		
 		$IdTracking=null,
 		$Date=null,
 		$Value=0,
 		$Note=null
 	) {
-        $this->Id 			= $Id;
-		$this->IdCustomer 	= $IdCustomer;
+        $this->Id 			= $Id;		
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
 		$this->Value 		= $Value;
@@ -48,10 +45,6 @@ class PaidCustomer extends Object{
     function setId( $Id ) {$this->Id = $Id;$this->markDirty();}
     function getId( ) {return $this->Id;}
 	
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
-    function getIdCustomer( ) {return $this->IdCustomer;}
-	function getCustomer( ) {$mCustomer = new \MVC\Mapper\Customer(); $Customer = $mCustomer->find($this->IdCustomer); return $Customer;}
-    
 	function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}
     function getIdTracking( ) {return $this->IdTracking;}
 	function getTracking( ) {
@@ -73,8 +66,7 @@ class PaidCustomer extends Object{
 	
 	function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),
-			'IdCustomer'	=> $this->getIdCustomer(),
+			'Id' 			=> $this->getId(),	
 			'IdTracking'	=> $this->getIdTracking(),
 			'Date'			=> $this->getDate(),
 			'Value'			=> $this->getValue(),			
@@ -84,12 +76,11 @@ class PaidCustomer extends Object{
 	}
 			
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCustomer 	= $Data[1];
-		$this->IdTracking 	= $Data[2];
-		$this->Date 		= $Data[3];
-		$this->Value 		= $Data[4];
-		$this->Note 		= $Data[5];
+        $this->Id 			= $Data[0];		
+		$this->IdTracking 	= $Data[1];
+		$this->Date 		= $Data[2];
+		$this->Value 		= $Data[3];
+		$this->Note 		= $Data[4];
     }
 	
 	/*--------------------------------------------------------------------*/

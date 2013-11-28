@@ -27,12 +27,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="D Data">
-										<td align="left"><span tal:content="php:D['Date']"/></td>
-										<td align="right"><span tal:content="php:D['Value']"/></td>
-										<td align="right"><span tal:content="php:D['nDay']"/></td>
-										<td align="right"><span tal:content="php:D['Rate']"/></td>
-										<td align="right"><span tal:content="php:D['RateValue']"/></td>
+									<tr tal:repeat="TCTR TCTRAll">
+										<td align="left"><span tal:content="TCTR/getDatePrint"/></td>
+										<td align="right"><span tal:content="TCTR/getValuePrint"/></td>
+										<td align="right"><span tal:content="TCTR/getnDay"/></td>
+										<td align="right"><span tal:content="TCTR/getRatePrint"/></td>
+										<td align="right"><span tal:content="TCTR/getRateValuePrint"/></td>
 									</tr>
 									<tr>
 										<td align="right" colspan="4">TỔNG LÃI</td>

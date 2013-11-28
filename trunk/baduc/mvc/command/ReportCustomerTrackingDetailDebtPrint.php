@@ -28,11 +28,28 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracking 	= $mTracking->find($IdTrack);			
+			$Tracking 	= $mTracking->find($IdTrack);
+			$PreTracking= $Tracking->getPre();
 			$TCTRAll 	= $mTCTR->findBy(array($IdCT, $IdTrack));
 			$Customer 	= $mCustomer->find($IdCustomer);
 			$CT			= $mCT->find($IdCT);
-						
+			
+			if (isset($PreTracking)){ 				
+				$RateValueOld	= $PreTracking->getTCT($IdCT)->last()->getRateValue();
+			}else{
+				$RateValueOld 	= 0;
+			}
+			
+			$Value		= 0;
+			while ($TCTRAll->valid()){
+				$TCTR = $TCTRAll->current();
+				$Value += $TCTR->getRateValue();
+				$TCTRAll->next();
+			}
+			$NRateValue 	= new \MVC\Library\Number($Value);
+			$NRateValueOld 	= new \MVC\Library\Number($RateValueOld);
+			$NRateValueNew 	= new \MVC\Library\Number($RateValueOld + $Value);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------														
@@ -40,6 +57,9 @@
 			$request->setObject('CT'			, $CT);			
 			$request->setObject('Tracking'		, $Tracking);
 			$request->setObject('Customer'		, $Customer);
+			$request->setObject('NRateValue'	, $NRateValue);
+			$request->setObject('NRateValueOld'	, $NRateValueOld);
+			$request->setObject('NRateValueNew'	, $NRateValueNew);
 		}
 	}
 ?>

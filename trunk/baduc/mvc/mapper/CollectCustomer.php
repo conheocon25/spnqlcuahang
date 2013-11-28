@@ -11,10 +11,10 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
 		
 		$selectAllStmt = sprintf("select * from %s", $tblCollect);
 		$selectStmt = sprintf("select * from %s where id=?", $tblCollect);
-		$updateStmt = sprintf("update %s set id_customer=?, id_tracking=?, date=?, value=?, note=? where id=?", $tblCollect);
-		$insertStmt = sprintf("insert into %s (id_customer, id_tracking, date, value, note) values(?,?,?,?,?)", $tblCollect);
+		$updateStmt = sprintf("update %s set id_tracking=?, date=?, value=?, note=? where id=?", $tblCollect);
+		$insertStmt = sprintf("insert into %s (id_tracking, date, value, note) values(?,?,?,?)", $tblCollect);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCollect);
-		$findByStmt = sprintf("select * from %s where id_customer=? order by date DESC", $tblCollect);
+		$findByStmt = sprintf("select * from %s WHERE id_tracking IN (SELECT id FROM tbl_customer_tracking WHERE id_customer=?) order by date DESC", $tblCollect);
 		$findByTrackingStmt = sprintf(
 					"select * from %s
 					where
@@ -27,7 +27,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE id_customer=:id_customer
+							WHERE id_tracking IN (SELECT id FROM tbl_customer_tracking WHERE id_customer=:id_customer)
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblCollect);
@@ -46,8 +46,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
     function getCollection( array $raw ) {return new CollectCustomerCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\CollectCustomer( 
-			$array['id'],
-			$array['id_customer'],
+			$array['id'],			
 			$array['id_tracking'],
 			$array['date'],
 			$array['value'],
@@ -59,8 +58,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
     protected function targetClass() {return "CollectCustomer";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(			
-			$object->getIdCustomer(),
+        $values = array(						
 			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getValue(),
@@ -72,8 +70,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array(
-			$object->getIdCustomer(),
+        $values = array(			
 			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getValue(),

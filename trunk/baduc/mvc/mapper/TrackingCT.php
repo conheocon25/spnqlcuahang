@@ -11,11 +11,11 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTrackingCT);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTrackingCT);
-		$updateStmt = sprintf("update %s set date_start=?, date_end=? where id=?", $tblTrackingCT);
-		$insertStmt = sprintf("insert into %s (id_ct, `date`, oe_value, pc_value, cc_value, debt_value) values(?, ?, ?, ?, ?, ?)", $tblTrackingCT);
+		$updateStmt = sprintf("update %s set id_ct=?, id_tracking=?, `date`=?, oe_value=?, pc_value=?, cc_value=?, rate_value=?, debt_value=? where id=?", $tblTrackingCT);
+		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, oe_value, pc_value, cc_value, rate_value, debt_value) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCT);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTrackingCT);
-		$deleteByTrackingStmt = sprintf("delete from %s where id_ct=? AND `date`>=? AND `date`<=?", $tblTrackingCT);
-		$findByStmt = sprintf("select *  from %s where id_ct=? AND `date`>=? AND `date`<=?", $tblTrackingCT);
+		$deleteByTrackingStmt = sprintf("delete from %s where id_ct=? AND id_tracking=?", $tblTrackingCT);
+		$findByStmt = sprintf("select *  from %s where id_ct=? AND id_tracking=?", $tblTrackingCT);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -26,11 +26,8 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new TrackingCTCollection( $raw, $this );
-    }
-
-    protected function doCreateObject( array $array ) {
+    function getCollection( array $raw ) {return new TrackingCTCollection( $raw, $this );}
+    protected function doCreateObject( array $array ){
         $obj = new \MVC\Domain\TrackingCT( 
 			$array['id'],
 			$array['id_ct'],
@@ -45,13 +42,12 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 	    return $obj;
     }
 
-    protected function targetClass() {        
-		return "TrackingCT";
-    }
+    protected function targetClass() {return "TrackingCT";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCT(),
+			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getOEValue(),
 			$object->getPCValue(),
@@ -67,6 +63,7 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCT(),
+			$object->getIdTracking(),
 			$object->getDate(),
 			$object->getOEValue(),
 			$object->getPCValue(),
@@ -78,16 +75,12 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
         $this->updateStmt->execute( $values );
     }
 	
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function deleteByTracking(array $values) {return $this->deleteByTrackingStmt->execute( $values );}
-	
-	function findBy(array $values) { 
+	function deleteByTracking(array $values) {return $this->deleteByTrackingStmt->execute( $values );}	
+	function findBy(array $values){
 		$this->findByStmt->execute( $values );
         return new TrackingCTCollection( $this->findByStmt->fetchAll(), $this );
     }

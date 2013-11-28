@@ -18,17 +18,17 @@ class TrackingCT extends Object{
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id=null, 
-		$IdCT=null, 
-		$IdTracking=null, 
-		$Date=null,
-		$OEValue=null, 
-		$PCValue=null, 
-		$CCValue=null, 
-		$RateValue=null, 
-		$DebtValue=null
+		$Id			=null, 
+		$IdCT		=null, 
+		$IdTracking	=null, 
+		$Date		=null,
+		$OEValue	=null, 
+		$PCValue	=null, 
+		$CCValue	=null, 
+		$RateValue	=null, 
+		$DebtValue	=null
 	) {
-        $this->Id = $Id;
+        $this->Id 			= $Id;
 		$this->IdCT 		= $IdCT;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
@@ -87,6 +87,13 @@ class TrackingCT extends Object{
 	function getCCValue( ) {return $this->CCValue;}
 	function getCCValuePrint(){
 		$N = new \MVC\Library\Number($this->CCValue);
+		return $N->formatCurrency();
+	}
+	
+	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}
+	function getRateValue( ) {return $this->RateValue;}
+	function getRateValuePrint(){
+		$N = new \MVC\Library\Number($this->RateValue);
 		return $N->formatCurrency();
 	}
 	

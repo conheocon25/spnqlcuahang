@@ -40,8 +40,8 @@
 								<tr>
 									<th width="90%"	align="right"><b>DƯ NỢ CŨ</b></th>
 									<th width="10%"	align="right">
-										<b tal:condition="PreTracking" tal:content="php: PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
 										<b tal:condition="not: PreTracking" tal:content="string:0"/>
+										<b tal:condition="PreTracking" 		tal:content="php:PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
 									</th>
 								</tr>								
 							</thead>
@@ -84,7 +84,7 @@
 									<td align='right' tal:content="TCT/getDebtValuePrint"/>
 								</tr>
 								<tr>
-									<td colspan="9" align="right"><b>DƯ NỢ CŨ MỚI</b></td>
+									<td colspan="9" align="right"><b>DƯ NỢ MỚI</b></td>
 									<td align="right">
 										<b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
 									</td>
@@ -124,17 +124,31 @@
 					<td colspan="3">
 						<table width="100%" cellpadding="1" cellspacing="0" border="0">
 							<tr>
+								<td width="35%" align="center"/>
+								<td width="30%" align="center"/>								
 								<td width="35%" align="center">
-									<p>Khách hàng xác nhận</p>
+									Đồng Tháp, ngày ........ tháng ........ năm............
+								</td>
+							</tr>
+							<tr>
+								<td width="35%" align="center">
+									Khách hàng xác nhận
+								</td>
+								<td width="30%" align="center">
+									Người lập
+								</td>
+								<td width="35%" align="center">
+									<p>Bên bán hàng</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="35%" align="center">
 									<i>(ký và ghi rõ họ tên)</i>
 								</td>
 								<td width="30%" align="center">
-									<p>Người lập</p>
 									<i>(ký và ghi rõ họ tên)</i>
 								</td>
-								<td width="35%" align="center">
-									<p>Đồng Tháp, ngày ........ tháng ........ năm............</p>
-									<p>Bên bán hàng</p>
+								<td width="35%" align="center">									
 									<i>(ký và ghi rõ họ tên)</i>
 								</td>
 							</tr>
