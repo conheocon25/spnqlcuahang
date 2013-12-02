@@ -39,11 +39,12 @@
 							<thead>	
 								<tr>
 									<th width="90%"	align="right"><b>DƯ NỢ CŨ</b></th>
-									<th width="10%"	align="right">
+									<th width="0.5%" />
+									<th width="9.5%"	align="right">
 										<b tal:condition="not: PreTracking" tal:content="string:0"/>
 										<b tal:condition="PreTracking" 		tal:content="php:PreTracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
 									</th>
-								</tr>								
+								</tr>
 							</thead>
 						</table>
 						<table cellpadding="2" cellspacing="0" border="1">
@@ -51,10 +52,13 @@
 								<tr>
 									<th width="5%"	rowspan="2" align="center"><b>NGÀY</b></th>
 									<th width="55%" colspan="5" align="left"><b>CHI TIẾT NHẬP HÀNG</b></th>
-									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG</b></th>
-									<th width="10%"	rowspan="2" align="right"><b>ỨNG TIỀN</b></th>
-									<th width="10%" rowspan="2" align="right"><b>THANH TOÁN</b></th>
-									<th width="10%"	rowspan="2" align="right"><b>CÒN NỢ</b></th>
+									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG</b></th>									
+									<th width="0.5%"	rowspan="2" />
+									<th width="9.5%"	rowspan="2" align="right"><b>ỨNG TIỀN</b></th>
+									<th width="0.5%"	rowspan="2" />
+									<th width="9.5%" rowspan="2" align="right"><b>TRẢ TIỀN</b></th>
+									<th width="0.5%"	rowspan="2" />
+									<th width="9.5%"	rowspan="2" align="right"><b>PHẢI THANH TOÁN</b></th>
 								</tr>
 								<tr>
 									<th width="27.5%" align="left"><b>TÊN HÀNG</b></th>
@@ -65,44 +69,57 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr tal:repeat="TCT php:Tracking->getTCT(CT->getId())">
+								<tr tal:repeat="TCT TCTAll">
 									<td align='center' tal:content="TCT/getDatePrint"/>
 									<td align='left' colspan="5">
 										<table tal:repeat="OE TCT/getOEAll" border="0" cellpadding="2" cellspacing="0">
 											<tr tal:repeat="Detail OE/getDetailAll">
 												<td width="50%" align="left" tal:content="Detail/getResource/getName" style="border-right:1px dashed #696969;"/>
 												<td width="15.1%" align="left" tal:content="Detail/getResource/getUnit" style="border-right:1px dashed #696969;"/>
-												<td width="10.1%" align="right" tal:content="Detail/getCountPrint" style="border-right:1px dashed #696969;"/>							
+												<td width="10.1%" align="right" tal:content="Detail/getCountPrint" style="border-right:1px dashed #696969;"/>
 												<td width="10.1%" align="right" tal:content="Detail/getPricePrint" style="border-right:1px dashed #696969;"/>
 												<td width="15%" align="right" tal:content="Detail/getValuePrint"/>
 											</tr>
 										</table>					
-									</td>
+									</td>									
 									<td align='right' tal:content="TCT/getOEValuePrint"/>
+									<td />
 									<td align='right' tal:content="TCT/getPCValuePrint"/>
+									<td />
 									<td align='right' tal:content="TCT/getCCValuePrint"/>
-									<td align='right' tal:content="TCT/getDebtValuePrint"/>
+									<td />
+									<td align='right'>-</td>
 								</tr>
 								<tr>
-									<td colspan="9" align="right"><b>DƯ NỢ MỚI</b></td>
-									<td align="right">
-										<b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/>
-									</td>
+									<td colspan="6" align="right"><b>TỔNG CỘNG</b></td>
+									<td align="right"><b tal:content="TCTLast/getOEValuePrint"/></td>
+									<td />
+									<td align="right"><b tal:content="TCTLast/getPCValuePrint"/></td>
+									<td />
+									<td align="right"><b tal:content="TCTLast/getCCValuePrint"/></td>
+									<td />
+									<td align="right"><b tal:content="TCTLast/getDebtValuePrint"/></td>
 								</tr>
 							</tbody>
 						</table>
 					</td>
-				</tr>
+				</tr>				
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
 					<td colspan="3">						
-						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValuePrint()"/> đồng
+						Trong đó <B>[PHẢI THANH TOÁN]</B> = [NỢ TIỀN HÀNG] + [TIỀN LÃI TRẢ CHẬM] = <span tal:content="TCTLast/getDebtValuePrint"/> + <span tal:content="TCTLast/getRateValuePrint1"/> = <span tal:content="TCTLast/getDebtValuePrint"/> 
+					</td>
+				</tr>
+				<tr><td colspan="3"/></tr>
+				<tr style="font-size:13px; line-height:1px;">
+					<td colspan="3">
+						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="TCTLast/getDebtValuePrint"/> đồng
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
 					<td colspan="3">												
-						( <span tal:content="php:Tracking->getTCT( CT->getId() )->last()->getDebtValueStrPrint()"/>đồng chẳn)
+						( <span tal:content="TCTLast/getDebtValueStrPrint"/>đồng chẳn)
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>

@@ -8,6 +8,7 @@ class TrackingCTR extends Object{
 	private $IdCT;
 	private $IdTracking;
 	private $Date;
+	private $DateLimit;
 	private $Value;
 	private $nDay;
 	private $Rate;
@@ -21,6 +22,7 @@ class TrackingCTR extends Object{
 		$IdCT=null, 
 		$IdTracking=null, 
 		$Date=null,
+		$DateLimit=null,
 		$Value=null, 
 		$nDay=null, 
 		$Rate=null, 
@@ -30,6 +32,7 @@ class TrackingCTR extends Object{
 		$this->IdCT 		= $IdCT;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
+		$this->DateLimit 	= $DateLimit;
 		$this->Value 		= $Value;
 		$this->nDay 		= $nDay;
 		$this->Rate 		= $Rate;
@@ -58,7 +61,19 @@ class TrackingCTR extends Object{
 	function setDate( $Date ) {$this->Date = $Date; $this->markDirty();}
 	function getDate( ) {return $this->Date;}
 	function getDatePrint(){		
-		return \date("d/m", strtotime($this->Date));
+		return \date("d/m/Y", strtotime($this->Date));
+	}
+	
+	function setDateLimit( $DateLimit ) {$this->DateLimit = $DateLimit; $this->markDirty();}
+	function getDateLimit( ) {return $this->DateLimit;}
+	function getDateLimitPrint(){		
+		return \date("d/m/Y", strtotime($this->DateLimit));
+	}
+	
+	function getDateRange(){
+		$D1 = \date("d/m", strtotime($this->DateLimit) + (24*3600) );
+		$D2 = \date("d/m", strtotime($this->DateLimit) + (24*3600*$this->nDay) );
+		return $D1."->".$D2;
 	}
 	
 	function setValue( $Value ) {$this->Value = $Value; $this->markDirty();}
@@ -78,7 +93,7 @@ class TrackingCTR extends Object{
 	function setRate( $Rate ) {$this->Rate = $Rate; $this->markDirty();}
 	function getRate( ) {return $this->Rate;}
 	function getRatePrint(){		
-		return $this->Rate."% / ngày";
+		return $this->Rate."%";
 	}
 	
 	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}

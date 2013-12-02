@@ -10,7 +10,7 @@
 						<B>CỬA HÀNG THỨC ĂN THỦY SẢN – GIA SÚC – THUỐC THÚ Y BA ĐỨC</B>						
 					</td>
 					<td width="32%" align="right">
-						<B>PHỤ LỤC CHI TIẾT LÃI</B>						
+						<B>PHỤ LỤC CHI TIẾT LÃI TRẢ CHẬM</B>
 					</td>
 				</tr>
 				<tr style="font-size:10px; line-height:1px;">
@@ -38,7 +38,7 @@
 				<tr style="font-size:11px; line-height:1px;">
 					<td colspan="3">
 						<p>1. Tính đến ngày <B tal:content="Tracking/getDateEndPrint"/> lãi suất của đơn hàng quá hạn:</p>
-						<p>2. Phát sinh lãi chi tiết như sau:</p>
+						<p>2. Bảng kê lãi tiền hàng trả chậm chi tiết như sau:</p>
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>
@@ -47,53 +47,73 @@
 						<table width="100%" border="1" cellpadding="2" cellspacing="0">
 							<thead>
 								<tr>
-									<th width="20%" class="left"><B>NGÀY</B></th>
-									<th width="20%" align="right"><B>GIÁ TRỊ</B></th>
-									<th width="20%" align="right"><B>SỐ NGÀY</B></th>
-									<th width="20%" align="right"><B>LÃI SUẤT</B></th>
-									<th width="20%" align="right"><B>TIỀN LÃI</B></th>
+									<th width="12%" class="left"><B>NGÀY</B></th>
+									<th width="12%" class="left"><B>ĐẾN HẠN</B></th>
+									<th width="18%" class="left"><B>NGÀY TÍNH <BR/>QUÁ HẠN</B></th>
+									<th width="15%" align="right"><B>TIỀN HÀNG <BR/>QUÁ HẠN</B></th>
+									<th width="10%" align="right"><B>SỐ NGÀY</B></th>
+									<th width="15%" align="right"><B>LÃI SUẤT / <BR/>NGÀY</B></th>
+									<th width="18%" align="right"><B>TIỀN LÃI<BR/>TRẢ CHẬM</B></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr tal:repeat="TCTR TCTRAll">
 									<td align="left"><span tal:content="TCTR/getDatePrint"/></td>
+									<td align="left"><span tal:content="TCTR/getDateLimit"/></td>
+									<td align="left"><span tal:content="TCTR/getDateRange"/></td>
 									<td align="right"><span tal:content="TCTR/getValuePrint"/></td>
 									<td align="right"><span tal:content="TCTR/getnDay"/></td>
 									<td align="right"><span tal:content="TCTR/getRatePrint"/></td>
 									<td align="right"><span tal:content="TCTR/getRateValuePrint"/> đ</td>
 								</tr>
 								<tr>
-									<td align="right" colspan="4"><B>LÃI TRONG KÌ</B></td>
+									<td align="right" colspan="6"><span>TIỀN LÃI TRẢ CHẬM TRONG KÌ</span></td>
 									<td align="right"><span tal:content="NRateValue/formatCurrency"/> đ</td>
 								</tr>
 								<tr>
-									<td align="right" colspan="4"><B>LÃI CŨ</B></td>
+									<td align="right" colspan="6"><span>TIỀN LÃI TRẢ CHẬM CŨ</span></td>
 									<td align="right"><span tal:content="NRateValueOld/formatCurrency"/> đ</td>
 								</tr>								
 								<tr>
-									<td align="right" colspan="4"><B>LÃI MỚI</B></td>
+									<td align="right" colspan="6"><B>TIỀN LÃI TRẢ CHẬM LÃI MỚI</B></td>
 									<td align="right"><B tal:content="NRateValueNew/formatCurrency"/> đ</td>
 								</tr>
 							</tbody>
 						</table>
-					</td>
-				</tr>
-				<span align="center">(<span tal:content="NRateValueNew/readDigit" />đồng)</span><BR/>				
+					</td>					
+				</tr>	
+				<tr><td colspan="3" align="right">(<span tal:content="NRateValueNew/readDigit" />đồng)</td></tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:11px; line-height:1px;">
 					<td colspan="3">
 						<table width="100%" cellpadding="1" cellspacing="0" border="0">
 							<tr>
+								<td width="30%" align="center" />								
+								<td width="30%" align="center" />
+								<td width="40%" align="center">
+									Ngày ........ tháng ........ năm............
+								</td>
+							</tr>
+							<tr>
 								<td width="30%" align="center">
-									
+									Xác nhận bên mua
 								</td>
-								<td width="20%" align="center">
-									
+								<td width="30%" align="center">
+									Lập bảng
 								</td>
-								<td width="50%" align="center">
-									<p>Đồng Tháp, ngày ........ tháng ........ năm............</p>
-									<p>Cửa hàng</p>
-									<i>(ký và ghi rõ họ tên)</i>
+								<td width="40%" align="center">									
+									Xác nhận bên bán									
+								</td>
+							</tr>
+							<tr>
+								<td width="30%" align="center">
+									<i>Kí và ghi rõ họ tên</i>
+								</td>
+								<td width="30%" align="center">
+									<i>Kí và ghi rõ họ tên</i>
+								</td>
+								<td width="40%" align="center">									
+									<i>Kí và ghi rõ họ tên</i>
 								</td>
 							</tr>
 						</table>

@@ -79,6 +79,8 @@ class TrackingCT extends Object{
 	function setPCValue( $PCValue ) {$this->PCValue = $PCValue; $this->markDirty();}
 	function getPCValue( ) {return $this->PCValue;}
 	function getPCValuePrint(){
+		if ($this->PCValue==0)
+			return "-";
 		$N = new \MVC\Library\Number($this->PCValue);
 		return $N->formatCurrency();
 	}
@@ -86,6 +88,8 @@ class TrackingCT extends Object{
 	function setCCValue( $PCValue ) {$this->CCValue = $CCValue; $this->markDirty();}
 	function getCCValue( ) {return $this->CCValue;}
 	function getCCValuePrint(){
+		if ($this->CCValue==0)
+			return "-";
 		$N = new \MVC\Library\Number($this->CCValue);
 		return $N->formatCurrency();
 	}
@@ -93,18 +97,30 @@ class TrackingCT extends Object{
 	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}
 	function getRateValue( ) {return $this->RateValue;}
 	function getRateValuePrint(){
+		if ($this->RateValue==0)
+			return "-";
+		$N = new \MVC\Library\Number($this->RateValue);
+		return $N->formatCurrency();
+	}
+	function getRateValuePrint1(){		
 		$N = new \MVC\Library\Number($this->RateValue);
 		return $N->formatCurrency();
 	}
 	
 	function setDebtValue( $DebtValue ) {$this->DebtValue = $DebtValue; $this->markDirty();}
-	function getDebtValue( ) {return $this->DebtValue;}
+	function getDebtValue( ) {return $this->OEValue + $this->RateValue;}
 	function getDebtValuePrint(){
-		$N = new \MVC\Library\Number($this->DebtValue);
+		if ($this->DebtValue==0)
+			return "-";
+		$N = new \MVC\Library\Number($this->getDebtValue());
+		return $N->formatCurrency();
+	}
+	function getDebtValuePrint1(){		
+		$N = new \MVC\Library\Number($this->getDebtValue());
 		return $N->formatCurrency();
 	}
 	function getDebtValueStrPrint(){
-		$N = new \MVC\Library\Number($this->DebtValue);
+		$N = new \MVC\Library\Number($this->getDebtValue());
 		return $N->readDigit();
 	}
 	

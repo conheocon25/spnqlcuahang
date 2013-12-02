@@ -27,16 +27,18 @@
 			//-------------------------------------------------------------
 			$Tracking 	= $mTracking->find($IdTrack);
 			$CT			= $mCT->find($IdCT);
-			
-			$PreTracking = $Tracking->getPre();
-			$DateCurrent = "Đồng Tháp, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
-			
+			$PreTracking = $Tracking->getPre();			
+			$TCTAll		= $Tracking->getTCT($IdCT);			
+			$TCTLast	= $TCTAll->last();
+			$TCTAll->remove();
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------														
-			$request->setProperty('DateCurrent'	, $DateCurrent);
+			//-------------------------------------------------------------																	
 			$request->setObject('Tracking'		, $Tracking);
 			$request->setObject('CT'			, $CT);
+			$request->setObject('TCTAll'		, $TCTAll);
+			$request->setObject('TCTLast'		, $TCTLast);
 			$request->setObject('PreTracking'	, $PreTracking);
 		}
 	}

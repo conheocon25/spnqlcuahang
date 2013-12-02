@@ -15,7 +15,7 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, oe_value, pc_value, cc_value, rate_value, debt_value) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCT);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTrackingCT);
 		$deleteByTrackingStmt = sprintf("delete from %s where id_ct=? AND id_tracking=?", $tblTrackingCT);
-		$findByStmt = sprintf("select *  from %s where id_ct=? AND id_tracking=?", $tblTrackingCT);
+		$findByStmt = sprintf("select *  from %s where id_ct=? AND id_tracking=? ORDER BY `date`", $tblTrackingCT);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

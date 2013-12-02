@@ -47,11 +47,15 @@
 				if ($PreTracking->getTCT($IdCT)->count()==0){					
 					$OldDebt	= 0;					
 				}else{
-					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtValue();					
-				}				
-			}			
+					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtValue();
+				}
+			}
 			$DebtValue = $OldDebt;
-												
+			
+			$SCCValue 	= 0;
+			$SPCValue 	= 0;
+			$SOEValue 	= 0;
+			
 			while (strtotime($Date) <= strtotime($EndDate)){
 				//-------------------------------------------------------------
 				//Tổng thanh toán trong ngày hiện tại
@@ -64,28 +68,31 @@
 					$CCAll->next();
 				}
 				$NCCValue = new \MVC\Library\Number($CCValue);
+				$SCCValue+= $CCValue;
 				
 				//-------------------------------------------------------------
 				//Tổng ứng tiền trong ngày hiện tại
 				//-------------------------------------------------------------
-				$PCAll 		= $mPC->findByTracking(array($IdCT, $Date, $Date));
 				$PCValue 	= 0;
+				$PCAll 		= $mPC->findByTracking(array($IdCT, $Date, $Date));				
 				while ($PCAll->valid()){
 					$PC = $PCAll->current();
 					$PCValue += $PC->getValue();
 					$PCAll->next();		
 				}
 				$NPCValue = new \MVC\Library\Number($PCValue);
+				$SPCValue+= $PCValue;
 				
 				//Tổng nhập hàng trong ngày hiện tại
-				$OEAll 		= $mOE->findByTracking(array($IdCT, $Date, $Date));
 				$OEValue 	= 0;
+				$OEAll 		= $mOE->findByTracking(array($IdCT, $Date, $Date));				
 				while ($OEAll->valid()){
 					$OE 	= $OEAll->current();
 					$OEValue += $OE->getValue();
 					$OEAll->next();
 				}
 				$NOEValue = new \MVC\Library\Number($OEValue);
+				$SOEValue+= $OEValue;
 				
 				$RateValue 	= 0;
 				$NRateValue = new \MVC\Library\Number($RateValue);
@@ -95,8 +102,8 @@
 				$NDebtValue = new \MVC\Library\Number($DebtValue);
 				
 				//Tổng nợ tính đến thời điểm hiện tại
-				$SDebtValue = $RateValue + ($OEValue + $PCValue - $CCValue);
-				$NSDebtValue = new \MVC\Library\Number($SDebtValue);
+				$SDebtValue 	= $RateValue + ($SOEValue + $SPCValue - $SCCValue);
+				$NSDebtValue 	= new \MVC\Library\Number($SDebtValue);
 												
 				$DataTemp[] = array(
 							'DatePrint'		=>\date("d/m", strtotime($Date)),
@@ -133,10 +140,24 @@
 						$Value['CCValue'],
 						$Value['RateValue'],
 						$Value['DebtValue']
-					);						
-					$mTCT->insert($TCT);																																												
+					);
+					$mTCT->insert($TCT);
 				}
 			}
+			
+			//Chèn vào dòng tổng cuối báo cáo
+			$TCT = new \MVC\Domain\TrackingCT(
+				null,
+				$IdCT,
+				$IdTrack,
+				$EndDate,
+				$SOEValue,
+				$SPCValue,
+				$SCCValue,
+				$RateValue,
+				$SDebtValue
+			);
+			$mTCT->insert($TCT);					
 									
 			$Title = $CT->getNote();
 			$Navigation = array(
