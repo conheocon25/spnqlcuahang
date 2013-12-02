@@ -74,10 +74,10 @@
 									<td align='left' colspan="5">
 										<table tal:repeat="OE TCT/getOEAll" border="0" cellpadding="2" cellspacing="0">
 											<tr tal:repeat="Detail OE/getDetailAll">
-												<td width="50%" align="left" tal:content="Detail/getResource/getName" style="border-right:1px dashed #696969;"/>
-												<td width="15.1%" align="left" tal:content="Detail/getResource/getUnit" style="border-right:1px dashed #696969;"/>
-												<td width="10.1%" align="right" tal:content="Detail/getCountPrint" style="border-right:1px dashed #696969;"/>
-												<td width="10.1%" align="right" tal:content="Detail/getPricePrint" style="border-right:1px dashed #696969;"/>
+												<td width="50%" align="left" tal:content="Detail/getResource/getName" style="border-right:1px solid #000;"/>
+												<td width="15.1%" align="left" tal:content="Detail/getResource/getUnit" style="border-right:1px solid #000;"/>
+												<td width="10.1%" align="right" tal:content="Detail/getCountPrint" style="border-right:1px solid #000;"/>							
+												<td width="10.1%" align="right" tal:content="Detail/getPricePrint" style="border-right:1px solid #000;"/>
 												<td width="15%" align="right" tal:content="Detail/getValuePrint"/>
 											</tr>
 										</table>					
