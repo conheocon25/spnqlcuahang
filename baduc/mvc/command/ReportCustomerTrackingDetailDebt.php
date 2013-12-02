@@ -57,16 +57,17 @@
 				//--------------------------------------------------------------
 				//Lấy về 		[TIỀN NỢ QUÁ HẠN] Tháng trước 16.244.000
 				//Trừ ra phần 	[TIỀN HẠN ĐẾN HẠN TÍNH LÃI]
-				$OldDebt		= $PreTracking->getTCT($IdCT)->current()->getDebtValue() - $OV1;
+				$OldDebt		= $PreTracking->getTCT($IdCT)->last()->getNewDebtValue() - $OV1;
+				//$OldDebt		= $OV1;
 				
 				//--------------------------------------------------------------
 				//Lãi suất theo ngày ==> THAM SỐ HÓA Profie của khách hàng
-				$Rate			= 0.04;
+				$Rate			= $Tracking->getCustomerRate();
 								
 				//--------------------------------------------------------------
-				if ($OldDebt>0){					
-					$Date 		= $PreTracking->getTCT($IdCT)->current()->getDate();
-					$DateLimit 	= $PreTracking->getTCT($IdCT)->current()->getDate();
+				if ($OldDebt>0){
+					$Date 		= $PreTracking->getTCT($IdCT)->last()->getDate();
+					$DateLimit 	= $PreTracking->getTCT($IdCT)->last()->getDate();
 										
 					$TCTR = new \MVC\Domain\TrackingCTR(
 						null,
@@ -78,7 +79,7 @@
 						$Tracking->getNDay(),
 						$Rate,
 						($OldDebt*$Rate*$Tracking->getNDay())/100
-					);					
+					);
 					$mTCTR->insert($TCTR);
 					$SumRateValue +=  ($OldDebt*$Rate*$Tracking->getNDay())/100;
 				}
@@ -107,7 +108,7 @@
 					);
 					$mTCTR->insert($TCTR);
 					
-					$SumRateValue += $RateValue;
+					$SumRateValue += $TCTR->getRateValue();
 					$OrderRatingAll->next();
 				}
 			}else{

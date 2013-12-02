@@ -6,11 +6,13 @@ class Tracking extends Object{
     private $Id;
 	private $DateStart;
 	private $DateEnd;
-		
+	private $CustomerRate;
+	private $CustomerRatePaid;
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $DateStart=null, $DateEnd=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; parent::__construct( $Id );}
+    function __construct( $Id=null, $DateStart=null, $DateEnd=null, $CustomerRate=null, $CustomerRatePaid=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd;  $this->CustomerRate = $CustomerRate; $this->CustomerRatePaid = $CustomerRatePaid; parent::__construct( $Id );}
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
@@ -23,7 +25,20 @@ class Tracking extends Object{
 	function setDateEnd( $DateEnd ) {$this->DateEnd= $DateEnd;$this->markDirty();}   
 	function getDateEnd( ) {return $this->DateEnd;}	
 	function getDateEndPrint( ) {$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
-			
+	
+	function setCustomerRate( $CustomerRate ) {$this->CustomerRate= $CustomerRate;$this->markDirty();}   
+	function getCustomerRate( ) {return $this->CustomerRate;}	
+	function getCustomerRatePrint( ) {
+		return $this->getCustomerRate()."%";
+	}
+	
+	function setCustomerRatePaid( $CustomerRate ) {$this->CustomerRatePaid = $CustomerRatePaid; $this->markDirty();}
+	function getCustomerRatePaid( ) {return $this->CustomerRatePaid;}
+	function getCustomerRatePaidPrint( ){
+		$N = new \MVC\Library\Number($this->getCustomerRatePaid());
+		return $N->formatCurrency();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -244,17 +259,21 @@ class Tracking extends Object{
 	
 	function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),			
-			'DateStart'		=> $this->getDateStart(),
-			'DateEnd'		=> $this->getDateEnd()			
+			'Id' 				=> $this->getId(),
+			'DateStart'			=> $this->getDateStart(),
+			'DateEnd'			=> $this->getDateEnd(),
+			'CustomerRate'		=> $this->getCustomerRate(),
+			'CustomerRatePaid'	=> $this->getCustomerRatePaid()
 		);		
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->DateStart 	= $Data[1];
-		$this->DateEnd	 	= $Data[2];		
+        $this->Id 				= $Data[0];
+		$this->DateStart 		= $Data[1];
+		$this->DateEnd	 		= $Data[2];		
+		$this->CustomerRate		= $Data[3];
+		$this->CustomerRatePaid	= $Data[4];
     }
 	
 	//-------------------------------------------------------------------------------
