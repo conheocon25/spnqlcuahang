@@ -69,6 +69,18 @@
 												<input id="DateEnd1" name="DateEnd1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label" for="CustomerRate1">Lãi suất KH %/ngày</label>
+											<div class="controls">
+												<input id="CustomerRate1" name="CustomerRate1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="CustomerRatePaid1">Trả lãi quá hạn</label>
+											<div class="controls">
+												<input id="CustomerRatePaid1" name="CustomerRatePaid1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -118,6 +130,18 @@
 											<label class="control-label">Kết thúc</label>
 											<div class="controls">
 												<input id="DateEnd2" name="DateEnd2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="CustomerRate2">Lãi suất KH %/ngày</label>
+											<div class="controls">
+												<input id="CustomerRate2" name="CustomerRate2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="CustomerRatePaid2">Trả lãi quá hạn</label>
+											<div class="controls">
+												<input id="CustomerRatePaid2" name="CustomerRatePaid2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>									
@@ -187,6 +211,8 @@
 				Data[0] = 'null';
 				Data[1] = $('#DateStart1').val();
 				Data[2] = $('#DateEnd1').val();
+				Data[3] = $('#CustomerRate1').val();
+				Data[4] = $('#CustomerRatePaid1').val();
 				
 				var URL = "/object/ins/Tracking";
 				$.ajax({
@@ -208,9 +234,11 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#DateStart2').attr('value', data.DateStart);
-					$('#DateEnd2').attr('value', data.DateEnd);
+					$('#URLUpdButton').attr('alt'	, data.Id);
+					$('#DateStart2').attr('value'	, data.DateStart);
+					$('#DateEnd2').attr('value'		, data.DateEnd);
+					$('#CustomerRate2').attr('value', data.CustomerRate);
+					$('#CustomerRatePaid2').attr('value', data.CustomerRatePaid);
 				});
 			});
 			
@@ -222,15 +250,15 @@
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#DateStart2').val();
 				Data[2] = $('#DateEnd2').val();
-								
+				Data[3] = $('#CustomerRate2').val();
+				Data[4] = $('#CustomerRatePaid2').val();
+				
 				var URL = "/object/upd/Tracking";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
-						location.reload();
-					}
+					success: function( msg ){ location.reload();}
 				});
 			});			
 		/*]]>*/

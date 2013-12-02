@@ -45,12 +45,12 @@
 				$OldDebt	= 0;				
 			else{
 				if ($PreTracking->getTCT($IdCT)->count()==0){					
-					$OldDebt	= 0;					
+					$OldDebt	= 0;
 				}else{
-					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtValue();
+					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getNewDebtValue();
 				}
-			}
-			$DebtValue = $OldDebt;
+			}			
+			$SDebtValue	= $OldDebt;
 			
 			$SCCValue 	= 0;
 			$SPCValue 	= 0;
@@ -78,7 +78,7 @@
 				while ($PCAll->valid()){
 					$PC = $PCAll->current();
 					$PCValue += $PC->getValue();
-					$PCAll->next();		
+					$PCAll->next();
 				}
 				$NPCValue = new \MVC\Library\Number($PCValue);
 				$SPCValue+= $PCValue;
@@ -98,13 +98,9 @@
 				$NRateValue = new \MVC\Library\Number($RateValue);
 				
 				//Nợ tính đến thời điểm hiện tại
-				$DebtValue = $DebtValue + ($OEValue + $PCValue - $CCValue);
+				$DebtValue 	= 0;
 				$NDebtValue = new \MVC\Library\Number($DebtValue);
-				
-				//Tổng nợ tính đến thời điểm hiện tại
-				$SDebtValue 	= $RateValue + ($SOEValue + $SPCValue - $SCCValue);
-				$NSDebtValue 	= new \MVC\Library\Number($SDebtValue);
-												
+																				
 				$DataTemp[] = array(
 							'DatePrint'		=>\date("d/m", strtotime($Date)),
 							'Date'			=>$Date,
@@ -119,8 +115,8 @@
 							'RateValuePrint'=>$NRateValue->formatCurrency(),
 							'DebtValue'		=>$DebtValue,
 							'DebtValuePrint'=>$NDebtValue->formatCurrency(),
-							'SDebtValue'	=>$SDebtValue,
-							'SDebtValuePrint'=>$NSDebtValue->formatCurrency()
+							0,
+							0
 				);
 				$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 			}
@@ -155,7 +151,7 @@
 				$SPCValue,
 				$SCCValue,
 				$RateValue,
-				$SDebtValue
+				$OldDebt
 			);
 			$mTCT->insert($TCT);					
 									

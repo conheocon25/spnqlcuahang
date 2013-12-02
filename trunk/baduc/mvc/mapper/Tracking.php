@@ -11,9 +11,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY date_start DESC", $tblTracking);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTracking);
-		$updateStmt 			= sprintf("update %s set date_start=?, date_end=? where id=?", $tblTracking);
-		$insertStmt 			= sprintf("insert into %s (date_start, date_end) values(?, ?)", $tblTracking);
-		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTracking);		
+		$updateStmt 			= sprintf("update %s set date_start=?, date_end=?, customer_rate=?, customer_rate_paid=? where id=?", $tblTracking);
+		$insertStmt 			= sprintf("insert into %s (date_start, date_end, customer_rate, customer_rate_paid) values(?, ?, ?, ?)", $tblTracking);
+		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTracking);
 		$findPreStmt 			= sprintf("select *  from %s where date_start<? ORDER BY date_start DESC LIMIT 1", $tblTracking);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY date_start DESC LIMIT :start,:max", $tblTracking);		
 		
@@ -31,7 +31,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
 			$array['date_start'],
-			$array['date_end']			
+			$array['date_end'],
+			$array['customer_rate'],
+			$array['customer_rate_paid']
 		);
         return $obj;
     }
@@ -40,7 +42,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
-			$object->getDateEnd()			
+			$object->getDateEnd(),
+			$object->getCustomerRate(),
+			$object->getCustomerRatePaid()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -49,8 +53,10 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getDateStart(), 
-			$object->getDateEnd(),			
+			$object->getDateStart(),
+			$object->getDateEnd(),
+			$object->getCustomerRate(),
+			$object->getCustomerRatePaid(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
