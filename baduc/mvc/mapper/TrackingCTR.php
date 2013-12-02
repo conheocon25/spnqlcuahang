@@ -12,7 +12,7 @@ class TrackingCTR extends Mapper implements \MVC\Domain\TrackingCTRFinder{
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTrackingCTR);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTrackingCTR);
 		$updateStmt = sprintf("update %s set date_start=?, date_end=? where id=?", $tblTrackingCTR);
-		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, value, n_day, rate, rate_value) values(?, ?, ?, ?, ?, ?, ?)", $tblTrackingCTR);
+		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, date_limit, value, n_day, rate, rate_value) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCTR);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTrackingCTR);
 		$deleteByTrackingStmt = sprintf("delete from %s where id_ct=? AND id_tracking=?", $tblTrackingCTR);
 		$findByStmt = sprintf("select *  from %s where id_ct=? AND id_tracking=?", $tblTrackingCTR);
@@ -34,6 +34,7 @@ class TrackingCTR extends Mapper implements \MVC\Domain\TrackingCTRFinder{
 			$array['id_ct'],
 			$array['id_tracking'],
 			$array['date'],
+			$array['date_limit'],
 			$array['value'],
 			$array['n_day'],
 			$array['rate'],
@@ -48,11 +49,12 @@ class TrackingCTR extends Mapper implements \MVC\Domain\TrackingCTRFinder{
 			$object->getIdCT(),
 			$object->getIdTracking(),
 			$object->getDate(),
+			$object->getDateLimit(),
 			$object->getValue(),
 			$object->getnDay(),
 			$object->getRate(),
 			$object->getRateValue()
-		);
+		);		
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
@@ -63,6 +65,7 @@ class TrackingCTR extends Mapper implements \MVC\Domain\TrackingCTRFinder{
 			$object->getIdCT(),
 			$object->getIdTracking(),
 			$object->getDate(),
+			$object->getDateLimit(),
 			$object->getValue(),
 			$object->getnDay(),
 			$object->getRate(),

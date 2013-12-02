@@ -44,8 +44,7 @@ class Tracking extends Object{
 		return $OrderAll;
 	}
 	
-	function getNDay(){
-		//return round (())/86400,2);
+	function getNDay(){		
 		$Value = strtotime($this->getDateEnd()) - strtotime($this->getDateStart());
 		return round($Value/84600,0);
 	}

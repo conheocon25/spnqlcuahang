@@ -83,5 +83,8 @@ abstract class Collection {
 		$row = $this->getRow( $this->total -1 );        
         return $row;
 	}
+	public function remove(){
+		$this->total--;
+	}
 }
 ?>

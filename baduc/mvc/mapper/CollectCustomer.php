@@ -18,7 +18,8 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
 		$findByTrackingStmt = sprintf(
 					"select * from %s
 					where
-						id_tracking=? AND date >= ? AND date <= ?
+						id_tracking=? 
+						AND date >= ? AND date <= ?
 					order by
 						date DESC
 					"
