@@ -179,7 +179,7 @@ class Number {
 			$number = intval($number/1000);			
 			$index += 1;
 		}
-		return $s;
+		return trim($s);
 	}
 	/*
 	---------------------------------------------------------------

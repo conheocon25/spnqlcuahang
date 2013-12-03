@@ -11,8 +11,8 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTrackingCT);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTrackingCT);
-		$updateStmt = sprintf("update %s set id_ct=?, id_tracking=?, `date`=?, oe_value=?, pc_value=?, cc_value=?, rate_value=?, debt_value=? where id=?", $tblTrackingCT);
-		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, oe_value, pc_value, cc_value, rate_value, debt_value) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCT);
+		$updateStmt = sprintf("update %s set id_ct=?, id_tracking=?, `date`=?, oe_value=?, pc_value=?, cc_value=?, rate_value=?, rate_old_value=?, rate_paid_value=?, debt_value=? where id=?", $tblTrackingCT);
+		$insertStmt = sprintf("insert into %s (id_ct, id_tracking, `date`, oe_value, pc_value, cc_value, rate_value, rate_old_value, rate_paid_value, debt_value) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCT);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTrackingCT);
 		$deleteByTrackingStmt = sprintf("delete from %s where id_ct=? AND id_tracking=?", $tblTrackingCT);
 		$findByStmt = sprintf("select *  from %s where id_ct=? AND id_tracking=? ORDER BY `date`", $tblTrackingCT);
@@ -37,6 +37,8 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 			$array['pc_value'],
 			$array['cc_value'],
 			$array['rate_value'],
+			$array['rate_old_value'],
+			$array['rate_paid_value'],
 			$array['debt_value']
 		);
 	    return $obj;
@@ -53,6 +55,8 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 			$object->getPCValue(),
 			$object->getCCValue(),
 			$object->getRateValue(),
+			$object->getRateOldValue(),
+			$object->getRatePaidValue(),
 			$object->getDebtValue()
 		);
         $this->insertStmt->execute( $values );
@@ -69,9 +73,11 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 			$object->getPCValue(),
 			$object->getCCValue(),
 			$object->getRateValue(),
+			$object->getRateOldValue(),
+			$object->getRatePaidValue(),
 			$object->getDebtValue(),
 			$object->getId()
-		);
+		);		
         $this->updateStmt->execute( $values );
     }
 	
@@ -83,7 +89,6 @@ class TrackingCT extends Mapper implements \MVC\Domain\TrackingCTFinder{
 	function findBy(array $values){
 		$this->findByStmt->execute( $values );
         return new TrackingCTCollection( $this->findByStmt->fetchAll(), $this );
-    }
-	
+    }	
 }
 ?>

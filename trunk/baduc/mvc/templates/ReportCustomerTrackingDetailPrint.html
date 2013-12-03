@@ -38,11 +38,13 @@
 						<table cellpadding="2" cellspacing="0" border="1">
 							<thead>	
 								<tr>
-									<th width="90%"	align="right"><b>DƯ NỢ CŨ (1)</b></th>
+									<th width="90%"	align="right">
+										<b>DƯ NỢ CŨ <span tal:condition="PreTracking" tal:content="php:'TÍNH ĐẾN ' . PreTracking->getDateEndPrint()"/></b>
+									</th>
 									<th width="0.5%" />
 									<th width="9.5%"	align="right">
 										<b tal:condition="not: PreTracking" tal:content="string:0"/>
-										<b tal:condition="PreTracking" 		tal:content="php:PreTracking->getTCT( CT->getId() )->last()->getNewDebtValuePrint()"/>
+										<b tal:condition="PreTracking" 		tal:content="php:PreTracking->getTCT( CT->getId() )->last()->getDebtNewValuePrint()"/>
 									</th>
 								</tr>
 							</thead>
@@ -52,13 +54,13 @@
 								<tr>
 									<th width="5%"	rowspan="2" align="center"><b>NGÀY</b></th>
 									<th width="55%" colspan="5" align="left"><b>CHI TIẾT NHẬP HÀNG</b></th>
-									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG<br/>(2)</b></th>
+									<th width="10%" rowspan="2" align="right"><b>TIỀN HÀNG<br/></b></th>
 									<th width="0.5%"	rowspan="2" />
-									<th width="9.5%"	rowspan="2" align="right"><b>ỨNG TIỀN<br/>(3)</b></th>
+									<th width="9.5%"	rowspan="2" align="right"><b>ỨNG TIỀN<br/></b></th>
 									<th width="0.5%"	rowspan="2" />
-									<th width="9.5%" rowspan="2" align="right"><b>TRẢ TIỀN<br/>(4)</b></th>
+									<th width="9.5%" rowspan="2" align="right"><b>TRẢ TIỀN<br/></b></th>
 									<th width="0.5%"	rowspan="2" />
-									<th width="9.5%"	rowspan="2" align="right"><b>PHẢI THANH TOÁN (5)</b></th>
+									<th width="9.5%"	rowspan="2" align="right"><b>PHẢI THANH TOÁN</b></th>
 								</tr>
 								<tr>
 									<th width="27.5%" align="left"><b>TÊN HÀNG</b></th>
@@ -98,41 +100,77 @@
 									<td />
 									<td align="right"><b tal:content="TCTLast/getCCValuePrint"/></td>
 									<td />
-									<td align="right"><b tal:content="TCTLast/getNewDebtValuePrint"/></td>
-								</tr>
+									<td align="right"><b tal:content="TCTLast/getDebtNewValuePrint"/></td>
+								</tr>								
 							</tbody>
 						</table>
 					</td>
-				</tr>				
+				</tr>
 				<tr><td colspan="3"/></tr>
-				<tr style="font-size:13px; line-height:1px;">
-					<td colspan="3">						
-						Trong đó <B>(5)</B> = (1) + (2) + (3) - (4) = 
-						<span tal:condition="not: PreTracking" tal:content="string:0"/>
-						<span tal:condition="PreTracking" 	tal:content="php:PreTracking->getTCT( CT->getId() )->last()->getNewDebtValuePrint()"/> +
-						<span tal:content="TCTLast/getOEValuePrint"/> +
-						<span tal:content="TCTLast/getPCValuePrint1"/> +
-						<span tal:content="TCTLast/getCCValuePrint1"/> +
-						<span tal:content="TCTLast/getRateValuePrint1"/> = 
-						<span tal:content="TCTLast/getNewDebtValuePrint"/>
+				<tr style="font-size:13px">
+					<td colspan="3">
+						<table cellpadding="2" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td width="10%"><B><U>Ghi chú</U></B></td>
+								<td width="15%" />
+								<td width="20%" />
+								<td width="15%" />
+								<td width="40%"/>
+							</tr>
+							<tr>
+								<td width="10%" />
+								<td align='left' width="15%"><B>Nợ tiền hàng</B></td>
+								<td align='right' width="20%"></td>
+								<td align='right' width="15%"><span tal:content="TCTLast/getDebtBaseValuePrint"/></td>
+								<td width="40%"/>
+							</tr>
+							<tr>
+								<td width="10%" />
+								<td align='left' width="15%"><B>Nợ tiền lãi trả chậm</B></td>
+								<td align='left' width="20%">(1) + (2) - (3)</td>
+								<td align='right' width="15%"><span tal:content="TCTLast/getRateNewValuePrint1"/></td>
+								<td width="40%"/>
+							</tr>
+							<tr>
+								<td width="10%" />
+								<td align='left' width="15%">Trong đó</td>
+								<td align='left' width="20%">(1) Số dư tiền lãi đầu kì</td>
+								<td align='right' width="15%"><span tal:content="TCTLast/getRateOldValuePrint1"/></td>
+								<td width="40%"/>
+							</tr>
+							<tr>
+								<td width="10%" />
+								<td align='left' width="15%" />
+								<td align='left' width="20%">(2) Số phát sinh lãi trong kì</td>
+								<td align='right' width="15%"><span tal:content="TCTLast/getRateValuePrint1"/></td>
+								<td width="40%"/>
+							</tr>
+							<tr>
+								<td width="10%" />
+								<td align='left' width="15%" />
+								<td align='left' width="20%">(3) Số phát sinh trả lãi trong kì</td>
+								<td align='right' width="15%"><span tal:content="Tracking/getCustomerRatePaidPrint"/></td>
+								<td width="40%"/>
+							</tr>
+						</table>
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
 					<td colspan="3">
-						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="TCTLast/getNewDebtValuePrint"/> đồng
-					</td>
-				</tr>
-				<tr><td colspan="3"/></tr>
-				<tr style="font-size:13px; line-height:1px;">
-					<td colspan="3">												
-						( <span tal:content="TCTLast/getNewDebtValueStrPrint"/>đồng chẳn)
+						3. Tính đến ngày <b tal:content="Tracking/getDateEndPrint"/> quí khách hàng phải trả cho cửa hàng chúng tôi là: <b tal:content="TCTLast/getDebtNewValuePrint"/> đồng
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:13px; line-height:1px;">
 					<td colspan="3">
-						4. Quí khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): .......................................................................................................................................
+						( <span tal:content="TCTLast/getDebtNewValueStrPrint"/> đồng chẳn)
+					</td>
+				</tr>
+				<tr><td colspan="3"/></tr>
+				<tr style="font-size:13px; line-height:1px;">
+					<td colspan="3">
+						4. Quí khách hàng vui lòng thanh toán nợ cho cửa hàng chúng tôi đến hạn (nếu có): ...............................................................................................................................................
 					</td>
 				</tr>
 				<tr><td colspan="3"/></tr>

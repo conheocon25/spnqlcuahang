@@ -26,6 +26,7 @@
 			//-------------------------------------------------------------
 			$Tracking 	= $mTracking->find($IdTrack);
 			$Customer 	= $mCustomer->find($IdCustomer);
+			$CustomerAll= $mCustomer->findAll();
 			$CTAll		= $mCT->findByTime(array($IdCustomer, $Tracking->getDateStart(), $Tracking->getDateEnd()));
 			
 			$Title = "GIAO DỊCH CỦA ".$Customer->getName();
@@ -37,11 +38,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'	, $Title);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Tracking'	, $Tracking);
-			$request->setObject('Customer'	, $Customer);
-			$request->setObject('CTAll'		, $CTAll);
+			$request->setProperty('Title'		, $Title);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Tracking'		, $Tracking);
+			$request->setObject('Customer'		, $Customer);
+			$request->setObject('CustomerAll'	, $CustomerAll);
+			$request->setObject('CTAll'			, $CTAll);
 		}
 	}
 ?>

@@ -22,8 +22,9 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracking = $mTracking->find($IdTrack);
-			$CustomerAll = $mCustomer->findAll();
+			$TrackingAll 	= $mTracking->findAll();
+			$Tracking 		= $mTracking->find($IdTrack);
+			$CustomerAll 	= $mCustomer->findAll();
 									
 			$Title = "CÔNG NỢ KHÁCH HÀNG";
 			$Navigation = array(				
@@ -34,10 +35,11 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);			
-			$request->setObject('Tracking', $Tracking);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('CustomerAll', $CustomerAll);			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Tracking'		, $Tracking);
+			$request->setObject('TrackingAll'	, $TrackingAll);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('CustomerAll'	, $CustomerAll);			
 		}
 	}
 ?>

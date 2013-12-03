@@ -21,45 +21,25 @@
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTCT 		= new \MVC\Mapper\TrackingCT();
 			$mTCTR 		= new \MVC\Mapper\TrackingCTR();
-			$mCT 		= new \MVC\Mapper\CustomerTracking();			
-			$mOE 		= new \MVC\Mapper\OrderExport();
+			$mCT 		= new \MVC\Mapper\CustomerTracking();						
 			$mCustomer 	= new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracking 	= $mTracking->find($IdTrack);
-			$PreTracking= $Tracking->getPre();
+			$Tracking 	= $mTracking->find($IdTrack);			
 			$TCTRAll 	= $mTCTR->findBy(array($IdCT, $IdTrack));
 			$Customer 	= $mCustomer->find($IdCustomer);
 			$CT			= $mCT->find($IdCT);
-			
-			if (isset($PreTracking)){ 				
-				$RateValueOld	= $PreTracking->getTCT($IdCT)->last()->getRateValue();
-			}else{
-				$RateValueOld 	= 0;
-			}
-			
-			$Value		= 0;
-			while ($TCTRAll->valid()){
-				$TCTR = $TCTRAll->current();
-				$Value += $TCTR->getRateValue();
-				$TCTRAll->next();
-			}
-			$NRateValue 	= new \MVC\Library\Number($Value);
-			$NRateValueOld 	= new \MVC\Library\Number($RateValueOld);
-			$NRateValueNew 	= new \MVC\Library\Number($RateValueOld + $Value);
-			
+			$TCT 		= $Tracking->getTCT($IdCT)->last();
+			//print_r($TCT);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------														
+			//-------------------------------------------------------------																	
+			$request->setObject('CT'			, $CT);
+			$request->setObject('TCT'			, $TCT);
 			$request->setObject('TCTRAll'		, $TCTRAll);
-			$request->setObject('CT'			, $CT);			
-			$request->setObject('Tracking'		, $Tracking);
-			$request->setObject('Customer'		, $Customer);
-			$request->setObject('NRateValue'	, $NRateValue);
-			$request->setObject('NRateValueOld'	, $NRateValueOld);
-			$request->setObject('NRateValueNew'	, $NRateValueNew);
+			$request->setObject('Tracking'		, $Tracking);			
 		}
 	}
 ?>
