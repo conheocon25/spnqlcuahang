@@ -12,31 +12,37 @@ class TrackingCT extends Object{
 	private $PCValue;
 	private $CCValue;
 	private $RateValue;
+	private $RateOldValue;
+	private $RatePaidValue;
 	private $DebtValue;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id			=null, 
-		$IdCT		=null, 
-		$IdTracking	=null, 
-		$Date		=null,
-		$OEValue	=null, 
-		$PCValue	=null, 
-		$CCValue	=null, 
-		$RateValue	=null, 
-		$DebtValue	=null
+		$Id				=null, 
+		$IdCT			=null, 
+		$IdTracking		=null, 
+		$Date			=null,
+		$OEValue		=null, 
+		$PCValue		=null, 
+		$CCValue		=null, 
+		$RateValue		=null, 
+		$RateOldValue	=null, 
+		$RatePaidValue	=null, 
+		$DebtValue		=null
 	) {
-        $this->Id 			= $Id;
-		$this->IdCT 		= $IdCT;
-		$this->IdTracking 	= $IdTracking;
-		$this->Date 		= $Date;
-		$this->OEValue 		= $OEValue;
-		$this->PCValue 		= $PCValue;
-		$this->CCValue 		= $CCValue;
-		$this->RateValue 	= $RateValue;
-		$this->DebtValue 	= $DebtValue;
+        $this->Id 				= $Id;
+		$this->IdCT 			= $IdCT;
+		$this->IdTracking 		= $IdTracking;
+		$this->Date 			= $Date;
+		$this->OEValue 			= $OEValue;
+		$this->PCValue 			= $PCValue;
+		$this->CCValue 			= $CCValue;
+		$this->RateValue 		= $RateValue;
+		$this->RateOldValue 	= $RateOldValue;
+		$this->RatePaidValue 	= $RatePaidValue;
+		$this->DebtValue 		= $DebtValue;
 		
         parent::__construct( $Id );
     }
@@ -64,6 +70,7 @@ class TrackingCT extends Object{
 		return \date("d/m", strtotime($this->Date));
 	}
 	
+	//Tổng giá trị hàng nhập về
 	function setOEValue( $OEValue ) {$this->OEValue = $OEValue; $this->markDirty();}
 	function getOEValue( ) {return $this->OEValue;}
 	function getOEValuePrint(){
@@ -76,6 +83,7 @@ class TrackingCT extends Object{
 		return $OrderAll;
 	}
 	
+	//Tổng giá trị khách hàng ứng tiền
 	function setPCValue( $PCValue ) {$this->PCValue = $PCValue; $this->markDirty();}
 	function getPCValue( ) {return $this->PCValue;}
 	function getPCValuePrint(){
@@ -89,6 +97,7 @@ class TrackingCT extends Object{
 		return $N->formatCurrency();
 	}
 	
+	//Tổng giá trị khách hàng thanh toán
 	function setCCValue( $PCValue ) {$this->CCValue = $CCValue; $this->markDirty();}
 	function getCCValue( ) {return $this->CCValue;}
 	function getCCValuePrint(){
@@ -102,6 +111,7 @@ class TrackingCT extends Object{
 		return $N->formatCurrency();
 	}
 	
+	//Tổng giá trị lãi trả chậm đơn hàng
 	function setRateValue( $RateValue ) {$this->RateValue = $RateValue; $this->markDirty();}
 	function getRateValue( ) {return $this->RateValue;}
 	function getRateValuePrint(){
@@ -115,6 +125,52 @@ class TrackingCT extends Object{
 		return $N->formatCurrency();
 	}
 	
+	//Trả tiền lãi trong kì
+	function setRatePaidValue( $RatePaidValue ) {$this->RatePaidValue = $RatePaidValue; $this->markDirty();}
+	function getRatePaidValue( ) {return $this->RatePaidValue;}
+	function getRatePaidValuePrint(){
+		if ($this->RatePaidValue==0)
+			return "-";
+		$N = new \MVC\Library\Number($this->RatePaidValue);
+		return $N->formatCurrency();
+	}
+	function getRatePaidValuePrint1(){		
+		$N = new \MVC\Library\Number($this->RatePaidValue);
+		return $N->formatCurrency();
+	}
+	
+	//Tiền lãi trả cũ
+	function setRateOldValue( $RateOldValue ) {$this->RateOldValue = $RateOldValue; $this->markDirty();}
+	function getRateOldValue( ) {return $this->RateOldValue;}
+	function getRateOldValuePrint(){
+		if ($this->getRateOldValue()==0)
+			return "-";
+		$N = new \MVC\Library\Number($this->getRateOldValue());
+		return $N->formatCurrency();
+	}
+	function getRateOldValuePrint1(){
+		$N = new \MVC\Library\Number($this->getRateOldValue());
+		return $N->formatCurrency();
+	}
+	
+	//Tiền lãi trả chậm mới
+	function getRateNewValue( ) {return $this->RateOldValue + $this->RateValue - $this->RatePaidValue;}
+	function getRateNewValuePrint(){
+		if ($this->getRateNewValue()==0)
+			return "-";
+		$N = new \MVC\Library\Number($this->getRateNewValue());
+		return $N->formatCurrency();
+	}
+	function getRateNewValuePrint1(){
+		$N = new \MVC\Library\Number($this->getRateNewValue());
+		return $N->formatCurrency();
+	}
+	function getRateNewValueStrPrint(){
+		$N = new \MVC\Library\Number($this->getRateNewValue());
+		return $N->readDigit();
+	}
+	
+	//Nợ tiền hàng cũ
 	function setDebtValue( $DebtValue ) {
 		$this->DebtValue = $DebtValue; $this->markDirty();
 	}
@@ -129,16 +185,30 @@ class TrackingCT extends Object{
 		$N = new \MVC\Library\Number($this->getDebtValue());
 		return $N->formatCurrency();
 	}
-		
-	function getNewDebtValue( ) {		
-		return $this->DebtValue + $this->RateValue + $this->OEValue + $this->PCValue - $this->CCValue;
+	
+	//Nợ tiền hàng cơ sở
+	function getDebtBaseValue( ){
+		return $this->DebtValue + $this->OEValue + $this->PCValue - $this->CCValue;
 	}
-	function getNewDebtValuePrint(){		
-		$N = new \MVC\Library\Number($this->getNewDebtValue());
+	function getDebtBaseValuePrint(){
+		$N = new \MVC\Library\Number($this->getDebtBaseValue());
 		return $N->formatCurrency();
 	}
-	function getNewDebtValueStrPrint(){
-		$N = new \MVC\Library\Number($this->getNewDebtValue());
+	function getDebtBaseValueStrPrint(){
+		$N = new \MVC\Library\Number($this->getDebtBaseValue());
+		return $N->readDigit();
+	}
+	
+	//Nợ tiền hàng mới
+	function getDebtNewValue( ){
+		return $this->DebtValue + $this->getRateNewValue() + $this->OEValue + $this->PCValue - $this->CCValue;
+	}
+	function getDebtNewValuePrint(){
+		$N = new \MVC\Library\Number($this->getDebtNewValue());
+		return $N->formatCurrency();
+	}
+	function getDebtNewValueStrPrint(){
+		$N = new \MVC\Library\Number($this->getDebtNewValue());
 		return $N->readDigit();
 	}
 	//-------------------------------------------------------------------------------

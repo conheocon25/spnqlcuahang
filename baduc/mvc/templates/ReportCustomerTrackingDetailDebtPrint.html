@@ -68,21 +68,25 @@
 								</tr>
 								<tr>
 									<td align="right" colspan="6"><span>TIỀN LÃI TRẢ CHẬM TRONG KÌ</span></td>
-									<td align="right"><span tal:content="NRateValue/formatCurrency"/> đ</td>
+									<td align="right"><span tal:content="TCT/getRateValuePrint1"/> đ</td>
 								</tr>
 								<tr>
 									<td align="right" colspan="6"><span>TIỀN LÃI TRẢ CHẬM CŨ</span></td>
-									<td align="right"><span tal:content="NRateValueOld/formatCurrency"/> đ</td>
-								</tr>								
+									<td align="right"><span tal:content="TCT/getRateOldValuePrint1"/> đ</td>
+								</tr>
 								<tr>
-									<td align="right" colspan="6"><B>TIỀN LÃI TRẢ CHẬM LÃI MỚI</B></td>
-									<td align="right"><B tal:content="NRateValueNew/formatCurrency"/> đ</td>
+									<td align="right" colspan="6"><span>THU LÃI TRẢ CHẬM</span></td>
+									<td align="right"><span tal:content="TCT/getRatePaidValuePrint1"/> đ</td>
+								</tr>
+								<tr>
+									<td align="right" colspan="6"><B>TIỀN LÃI TRẢ CHẬM MỚI</B></td>
+									<td align="right"><B tal:content="TCT/getRateNewValuePrint1"/> đ</td>
 								</tr>
 							</tbody>
 						</table>
 					</td>					
 				</tr>	
-				<tr><td colspan="3" align="right">(<span tal:content="NRateValueNew/readDigit" />đồng)</td></tr>
+				<tr><td colspan="3" align="right">(<span tal:content="TCT/getRateNewValueStrPrint" /> đồng)</td></tr>
 				<tr><td colspan="3"/></tr>
 				<tr style="font-size:11px; line-height:1px;">
 					<td colspan="3">

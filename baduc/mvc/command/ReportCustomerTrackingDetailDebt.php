@@ -52,14 +52,14 @@
 				
 				//--------------------------------------------------------------
 				//[TIỀN LÃI NỢ TRẢ CHẬM] 	==> lấy về tháng trước
-				$SumRateValue	= $PreTracking->getTCT($IdCT)->last()->getRateValue();
+				$SumRateValue		= $PreTracking->getTCT($IdCT)->last()->getRateNewValue();
+				$OldSumRateValue	= $PreTracking->getTCT($IdCT)->last()->getRateNewValue();
 								
 				//--------------------------------------------------------------
 				//Lấy về 		[TIỀN NỢ QUÁ HẠN] Tháng trước 16.244.000
 				//Trừ ra phần 	[TIỀN HẠN ĐẾN HẠN TÍNH LÃI]
-				$OldDebt		= $PreTracking->getTCT($IdCT)->last()->getNewDebtValue() - $OV1;
-				//$OldDebt		= $OV1;
-				
+				$OldDebt		= $PreTracking->getTCT($IdCT)->last()->getDebtNewValue() - $OV1;
+								
 				//--------------------------------------------------------------
 				//Lãi suất theo ngày ==> THAM SỐ HÓA Profie của khách hàng
 				$Rate			= $Tracking->getCustomerRate();
@@ -103,7 +103,7 @@
 						$DateLimit,
 						$Value,
 						$nDay,
-						$Rate,
+						$Rate,						
 						$RateValue
 					);
 					$mTCTR->insert($TCTR);
@@ -112,14 +112,17 @@
 					$OrderRatingAll->next();
 				}
 			}else{
-				$SumRateValue = 0;
-			}
-			$NSumRateValue = new \MVC\Library\Number($SumRateValue);
-			
+				$SumRateValue 		= 0;
+				$OldSumRateValue 	= 0;
+				$OrderRatingAll		= null;
+			}			
+						
 			//--------------------------------------------------------------
 			//Cập nhật số nợ mới này vào DB
 			$TCT = $Tracking->getTCT($IdCT)->last();
+			$TCT->setRateOldValue($OldSumRateValue);
 			$TCT->setRateValue($SumRateValue);
+			$TCT->setRatePaidValue($Tracking->getCustomerRatePaid());
 			$mTCT->update($TCT);
 			
 			$TCTRAll = $mTCTR->findBy(array($IdCT, $IdTrack));
@@ -134,13 +137,14 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);			
-			$request->setProperty('SumRateValue', $NSumRateValue->formatCurrency());
+			$request->setProperty('Title'		, $Title);
+			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('Tracking'		, $Tracking);
 			$request->setObject('Customer'		, $Customer);
 			$request->setObject('TCTRAll'		, $TCTRAll);
 			$request->setObject('CT'			, $CT);
+			$request->setObject('TCT'			, $TCT);
 			$request->setObject('OrderRatingAll', $OrderRatingAll);
 		}
 	}

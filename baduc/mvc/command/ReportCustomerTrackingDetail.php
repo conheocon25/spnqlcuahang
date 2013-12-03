@@ -47,7 +47,7 @@
 				if ($PreTracking->getTCT($IdCT)->count()==0){					
 					$OldDebt	= 0;
 				}else{
-					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getNewDebtValue();
+					$OldDebt	= $PreTracking->getTCT($IdCT)->last()->getDebtNewValue();
 				}
 			}			
 			$SDebtValue	= $OldDebt;
@@ -135,6 +135,8 @@
 						$Value['PCValue'],
 						$Value['CCValue'],
 						$Value['RateValue'],
+						0,
+						0,
 						$Value['DebtValue']
 					);
 					$mTCT->insert($TCT);
@@ -151,6 +153,8 @@
 				$SPCValue,
 				$SCCValue,
 				$RateValue,
+				0,
+				$Tracking->getCustomerRatePaid(),
 				$OldDebt
 			);
 			$mTCT->insert($TCT);					

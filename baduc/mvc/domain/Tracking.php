@@ -65,6 +65,16 @@ class Tracking extends Object{
 	}
 	
 	//--------------------------------------------------------------------------------
+	//KHÁCH HÀNG > GIAO DỊCH
+	//--------------------------------------------------------------------------------
+	//Lấy về danh sách những giao dịch nằm trong diện được theo dõi
+	function getCustomerTrackingAll($IdCustomer){
+		$mCT 		= new \MVC\Mapper\CustomerTracking();
+		$CTAll 		= $mCT->findByTime(array($IdCustomer, $this->getDateStart(), $this->getDateEnd()));
+		return $CTAll;
+	}
+	
+	//--------------------------------------------------------------------------------
 	//KHÁCH HÀNG > GIAO DỊCH > ĐƠN HÀNG XUẤT
 	//--------------------------------------------------------------------------------
 	function getCustomerTrackingOrderAll($IdCustomerTracking){
@@ -107,6 +117,7 @@ class Tracking extends Object{
 		$N = new \MVC\Library\Number($this->getCustomerTrackingOrderAllByTagValue($IdCustomerTracking, $Tag));
 		return $N->formatCurrency()." đ";
 	}
+	
 	//--------------------------------------------------------------------------------
 	//KHÁCH HÀNG > GIAO DỊCH > ỨNG TIỀN
 	//--------------------------------------------------------------------------------
@@ -281,7 +292,7 @@ class Tracking extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
 	
-	function getURLCustomer(){return "/report/customer/".$this->getId();}	
+	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerTracking($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLCustomerTrackingDetail($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT;}
 	function getURLCustomerTrackingDetailDebt($IdCustomer, $IdCT){return "/report/customer/".$this->getId()."/".$IdCustomer."/".$IdCT."/debt";}
