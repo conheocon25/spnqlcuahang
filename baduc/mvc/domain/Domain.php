@@ -40,6 +40,8 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLSelling(){return "/selling/".$this->getId();}	
+	
 	function getURLBigExport(){return "/export/big/".$this->getId();}	
 	function getURLTinyExport(){return "/export/tiny/".$this->getId();}
 	

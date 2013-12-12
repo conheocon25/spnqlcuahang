@@ -21,6 +21,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Resource.php" );
 		
 	require_once( "mvc/mapper/OrderExport.php" );
+	require_once( "mvc/mapper/OrderExportLog.php" );
 	require_once( "mvc/mapper/OrderExportDetail.php" );
 	
 	require_once( "mvc/mapper/Customer.php" );

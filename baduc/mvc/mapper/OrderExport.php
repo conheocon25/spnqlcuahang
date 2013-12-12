@@ -63,7 +63,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 			$object->getTag(),
 			$object->getDate(),
 			$object->getNote()
-		); 
+		); 		
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );

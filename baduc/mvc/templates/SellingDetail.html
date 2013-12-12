@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul>
+				<li tal:repeat="Supplier SupplierAll" class="Supplier" tal:attributes="alt Supplier/getId">
+					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Supplier/getName"/></a>
+				</li>				
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div class="row">
+				<div class="col-4"><div id="OELAll"/></div>
+				<div class="col-5"><div id="OrderActive"/></div>
+				<div class="col-3"><div id="ResourceAll"/></div>
+			</div>
+		</div>
+		<div id="DomainActive" tal:attributes="alt Domain/getId" />
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+        <script>
+			var IdDomain 	= $("#DomainActive").attr('alt');
+			
+			$("#OELAll").load("/selling/"+IdDomain+"/load/oel/all");
+			$('.Supplier').click(function(){								
+				var IdSupplier 	= $(this).attr('alt');				
+				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+IdSupplier);
+			});
+        </script>
+	</body>
+</html>

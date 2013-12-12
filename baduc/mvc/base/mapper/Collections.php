@@ -34,6 +34,7 @@ class PayRollCollection 			extends Collection implements \MVC\Domain\PayRollColl
 
 class OrderExportCollection 		extends Collection implements \MVC\Domain\OrderExportCollection {function targetClass( ) {return "\MVC\Domain\OrderExport";}}
 class OrderExportDetailCollection 	extends Collection implements \MVC\Domain\OrderExportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderExportDetail";}}
+class OrderExportLogCollection 		extends Collection implements \MVC\Domain\OrderExportLogCollection {function targetClass( ) {return "\MVC\Domain\OrderExportLog";}}
 
 class UnitCollection 				extends Collection implements \MVC\Domain\UnitCollection{function targetClass(){return "\MVC\Domain\Unit";}}
 class R2TCollection 				extends Collection implements \MVC\Domain\R2TCollection{function targetClass(){return "\MVC\Domain\R2T";}}

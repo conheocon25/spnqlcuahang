@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingOrderUpdLoad extends Command{
+	class SellingDetailLoadOEL extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -9,32 +9,25 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$IdOrder = $request->getProperty("IdOrder");
-			
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------
+			$IdDomain 	= $request->getProperty("IdDomain");
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mOrder = new \MVC\Mapper\OrderExport();
-			
+			//-------------------------------------------------------------
+			$mOEL 		= new \MVC\Mapper\OrderExportLog();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Order = $mOrder->find($IdOrder);			
-			$Title = $Order->getDatePrint();
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("BÁN HÀNG", "/selling"),
-				array("NHẬT KÍ", "/selling/log")
-			);
-			
+			$OELAll 			= $mOEL->findAll();
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Order', $Order);
+			$request->setObject('OELAll'			, $OELAll);						
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

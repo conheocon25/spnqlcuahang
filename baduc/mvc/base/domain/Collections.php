@@ -26,6 +26,7 @@ interface CustomerTrackingCollection 	extends \Iterator {function add( Object $C
 interface CustomerDomainCollection 		extends \Iterator {function add( Object $CustomerDomain );}
 
 interface OrderExportCollection 		extends \Iterator {function add( Object $orderexport );	}
+interface OrderExportLogCollection 		extends \Iterator {function add( Object $orderexportlog );	}
 interface OrderExportDetailCollection 	extends \Iterator {function add( Object $orderexportdetail );	}
 
 interface EmployeeCollection 			extends \Iterator {function add( Object $Employee );}
