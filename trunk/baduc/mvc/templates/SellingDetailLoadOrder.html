@@ -191,15 +191,17 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(e){								
-				var URL = "/object/del/SessionDetail/" + $(this).attr('alt');
-				var IdTable = $("#CurrentTable").attr('alt');
+				var URL 		= "/object/del/OrderExportDetail/" + $(this).attr('alt');
+				var IdDomain 	= $("#DomainActive").attr('alt');
+				var IdOrder 	= $('#OrderInfo').attr('data-id');
+				
 				$("#DialogDel").modal('hide');
 				e.stopImmediatePropagation();
 				$.ajax({
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/selling/load/table/"+IdTable);
+						$("#OrderActive").load("/selling/" + IdDomain + "/load/order/"+ IdOrder);
 					}
 				});
 			});
