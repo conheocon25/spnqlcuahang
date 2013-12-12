@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<div id="ResourceAll">
+		<P>DANH SÁCH MẶT HÀNG</P>
+		<ul class="activity-list">
+			<li tal:repeat="Resource ResourceAll">
+				<a class="resource-item">
+					<button class="Resource pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button>
+					<strong tal:content="Resource/getName"/>
+					<button class="Resource pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button>
+				</a>
+			</li>
+		</ul>
+	</div>	
+	<script>
+		
+	</script>
+</html>

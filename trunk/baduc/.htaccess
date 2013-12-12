@@ -58,7 +58,14 @@ RewriteRule ^money/paid/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidSuppli
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^app$ 								?cmd=App [L]
+RewriteRule ^app$ 																?cmd=App [L]
+
+RewriteRule ^selling$ 															?cmd=Selling [L]
+RewriteRule ^selling/([0-9]+)$ 													?cmd=SellingDetail&IdDomain=$1 [L]
+RewriteRule ^selling/([0-9]+)/load/resource/([0-9]+)$ 							?cmd=SellingDetailLoadResource&IdDomain=$1&IdSupplier=$2 [L]
+RewriteRule ^selling/([0-9]+)/load/order/([0-9]+)$ 								?cmd=SellingDetailLoadOrder&IdDomain=$1&IdOrder=$2 [L]
+RewriteRule ^selling/([0-9]+)/load/oel/all$ 									?cmd=SellingDetailLoadOEL&IdDomain=$1 [L]
+RewriteRule ^selling/([0-9]+)/insert/order$ 									?cmd=SellingDetailInsertOrder&IdDomain=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # EXPORT

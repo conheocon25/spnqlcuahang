@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingCheckout extends Command{
+	class SellingDetailLoadOrder extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -9,29 +9,26 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-						
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------
+			$IdDomain 	= $request->getProperty("IdDomain");
+			$IdOrder 	= $request->getProperty("IdOrder");
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------									
-			$mOrder = new \MVC\Mapper\OrderExport();
-												
+			//-------------------------------------------------------------
+			$mOrder 		= new \MVC\Mapper\OrderExport();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$OrderAll = $mOrder->findBy( array( $Session->getCurrentUser()->getId(), 0 ) );
-			$Order = $OrderAll->current();
-			if (!isset($Order))
-				return self::statuses('CMD_OK');
-				
-			$Order->setState(1);
-			$mOrder->update($Order);
-									
+			//-------------------------------------------------------------						
+			$Order 			= $mOrder->find($IdOrder);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			return self::statuses('CMD_OK');
+			//-------------------------------------------------------------			
+			$request->setObject('Order'			, $Order);
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

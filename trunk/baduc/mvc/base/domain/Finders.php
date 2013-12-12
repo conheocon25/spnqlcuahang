@@ -30,6 +30,7 @@ interface SupplierDomainFinder 		extends Finder {}
 interface ResourceFinder 			extends Finder {}
 
 interface OrderExportFinder 		extends Finder {}
+interface OrderExportLogFinder 		extends Finder {}
 interface OrderExportDetailFinder 	extends Finder {}
 
 interface OrderImportFinder 		extends Finder {}

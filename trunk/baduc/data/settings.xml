@@ -21,7 +21,17 @@
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>		
-								
+		
+		<!-- ============================================================================== -->
+		<!-- SELLING			 															-->
+		<!-- ============================================================================== -->
+		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingDetail"><view>SellingDetail</view></command>
+		<command name="SellingDetailLoadResource"><view>SellingDetailLoadResource</view></command>
+		<command name="SellingDetailLoadOrder"><view>SellingDetailLoadOrder</view></command>
+		<command name="SellingDetailLoadOEL"><view>SellingDetailLoadOEL</view></command>
+		<command name="SellingDetailInsertOrder"><view>SellingDetailInsertOrder</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
