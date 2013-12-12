@@ -28,11 +28,18 @@
         <script>
 			var IdDomain 	= $("#DomainActive").attr('alt');
 			
+			//Load hết tất cả những đơn hàng đang được quản lý
 			$("#OELAll").load("/selling/"+IdDomain+"/load/oel/all");
-			$('.Supplier').click(function(){								
+			
+			//Xử lí click event nhà cung cấp
+			$('.Supplier').click(function(){
 				var IdSupplier 	= $(this).attr('alt');				
+				$(this).toggleClass('active').siblings().removeClass('active');
 				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+IdSupplier);
 			});
+			
+			//Mặc định lấy click của nhà phân phối đầu tiên
+			$('.Supplier:first').click();
         </script>
 	</body>
 </html>

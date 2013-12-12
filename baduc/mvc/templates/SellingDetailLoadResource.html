@@ -13,6 +13,26 @@
 		</ul>
 	</div>	
 	<script>
-		
+		//-----------------------------------------------------------------------------------
+		// Click gọi hàng
+		//-----------------------------------------------------------------------------------
+		$('.Resource').click(function(e){
+			var IdResource 	= $(this).attr('alt');
+			var Delta 		= $(this).attr('data-delta');				
+			var IdDomain 	= $("#DomainActive").attr('alt');
+			var IdOrder 	= $("#OrderInfo").attr('data-id');
+			
+			URL = "/selling/"+IdDomain+"/call/order/"+IdOrder+"/"+IdResource+"/"+Delta;
+			e.stopImmediatePropagation();
+			$.ajax({
+				type: "POST", 
+				async: false,
+				url: URL,
+				dataType: 'json',
+				success: function(data){										
+					$("#OrderActive").load("/selling/" + IdDomain + "/load/order/"+IdOrder);
+				}
+			});
+		});
 	</script>
 </html>

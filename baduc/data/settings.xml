@@ -29,6 +29,7 @@
 		<command name="SellingDetail"><view>SellingDetail</view></command>
 		<command name="SellingDetailLoadResource"><view>SellingDetailLoadResource</view></command>
 		<command name="SellingDetailLoadOrder"><view>SellingDetailLoadOrder</view></command>
+		<command name="SellingDetailCallOrder"><view>SellingDetailCallOrder</view></command>
 		<command name="SellingDetailLoadOEL"><view>SellingDetailLoadOEL</view></command>
 		<command name="SellingDetailInsertOrder"><view>SellingDetailInsertOrder</view></command>
 		

@@ -24,5 +24,9 @@
 			var IdOrder 	= $(this).attr('alt');
 			$("#OrderActive").load("/selling/" + IdDomain + "/load/order/"+IdOrder);
 		});
+		
+		//Mặc định click chọn Đơn hàng đầu tiên
+		$(".OrderLog:first").click();
+		
 	</script>
 </html>
