@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-	<div id="OELAll">
-		<p>NHẬT KÝ BÁN HÀNG</p>
-		<table class="table table-hover">
-			<thead>
-				<tr>															
-					<th><div class="text-left">THỜI GIAN</div></th>
-					<th><div class="text-right">GIÁ TRỊ</div></th>					
-				</tr>
-			</thead>
-			<tbody>
-				<tr tal:repeat="OEL OELAll">					
-					<td><div class="OrderLog text-left" tal:content="OEL/getDateTimePrint" tal:attributes="alt OEL/getIdOrder"/></td>
-					<td><div class="text-right" tal:content="OEL/getOrder/getValuePrint"/></td>					
-				</tr>
-			</tbody>
-		</table>
+	<div id="OELAll" class="widget-box">
+		<div class="widget-title">
+			<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+			<h5>NHẬT KÝ BÁN HÀNG</h5>
+		</div>
+		<div class="widget-content nopadding size-12">
+			<table class="table table-hover">
+				<thead>
+					<tr>															
+						<th><div class="text-left">THỜI GIAN</div></th>
+						<th><div class="text-right">GIÁ TRỊ</div></th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr tal:repeat="OEL OELAll">					
+						<td><div class="OrderLog text-left" tal:content="OEL/getDateTimePrint" tal:attributes="alt OEL/getIdOrder"/></td>
+						<td><div class="text-right" tal:content="OEL/getOrder/getValuePrint"/></td>					
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>	
 	<script>		
 		//Click vào đơn hàng load lại nội dung
