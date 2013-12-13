@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	<div id="ResourceAll">
-		<P>DANH SÁCH MẶT HÀNG</P>
-		<ul class="activity-list">
-			<li tal:repeat="Resource ResourceAll">
-				<a class="resource-item">
-					<button class="Resource pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button>
-					<strong tal:content="Resource/getName"/>
-					<button class="Resource pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button>
-				</a>
-			</li>
-		</ul>
+		<div id="OELAll" class="widget-box">
+			<div class="widget-title">
+				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+				<h5>DANH SÁCH MẶT HÀNG</h5>
+			</div>
+			<div class="widget-content nopadding size-12">
+				<ul class="activity-list">
+					<li tal:repeat="Resource ResourceAll">
+						<a class="course-item">
+							<button class="Resource pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button>
+							<strong tal:content="Resource/getName"/>
+							<button class="Resource pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>	
 	<script>
 		//-----------------------------------------------------------------------------------
