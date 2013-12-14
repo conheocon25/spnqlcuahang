@@ -26,11 +26,7 @@
 								<tbody>
 									<tr tal:repeat="Domain DomainAll">
 										<td class="center">1</td>
-										<td><a tal:attributes="href Domain/getURLBigExport" >Xuất bán sỉ <span tal:content="Domain/getName"/></a></td>
-									</tr>
-									<tr tal:repeat="Domain DomainAll">
-										<td class="center">2</td>
-										<td><a tal:attributes="href Domain/getURLTinyExport" >Xuất bán lẻ <span tal:content="Domain/getName"/></a></td>
+										<td><a tal:attributes="href Domain/getURLBigExport" ><span tal:content="Domain/getName"/></a></td>
 									</tr>									
 								</tbody>
 							</table>

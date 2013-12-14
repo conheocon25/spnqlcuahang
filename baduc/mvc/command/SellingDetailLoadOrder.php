@@ -23,11 +23,15 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Order 			= $mOrder->find($IdOrder);
-						
+			$CT				= $Order->getTracking();
+			$CTAll			= $CT->getCustomer()->getTrackingAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject('Order'			, $Order);
+			$request->setObject('CT'			, $CT);
+			$request->setObject('CTAll'			, $CTAll);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

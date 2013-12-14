@@ -33,6 +33,7 @@
 		<command name="SellingDetailLoadOEL"><view>SellingDetailLoadOEL</view></command>
 		<command name="SellingDetailInsertOrder"><view>SellingDetailInsertOrder</view></command>
 		
+		<command name="SearchCustomer"><view>SearchCustomer</view></command>
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->

@@ -3,7 +3,7 @@
 	<body>				
 		<div id="OrderActive" class="widget-box">
 			<div class="widget-title">
-				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+				<span class="icon"><i class="glyphicons-notes_2"></i></span>
 				<h5>HÓA ĐƠN BÁN HÀNG</h5>
 				<div class="buttons">
 					<a title="Chỉnh sửa" data-toggle="modal" class="btn OrderUpdate" href="#DialogOrder" tal:attributes="data-id '#'"><i class="glyphicons-edit" /></a>
@@ -17,7 +17,7 @@
 						<div class="invoice-to">
 							<ul><li><span tal:content="Order/getUser/getName"/></li></ul>
 						</div>
-						<div class="invoice-from">
+						<div class="invoice-from text-right">
 							<ul><li><span tal:content="Order/getDateTimePrint"/></li></ul>
 						</div>
 					</div>
@@ -25,27 +25,30 @@
 						<div class="invoice-to">
 							<ul><li><span tal:content="Order/getTracking/getCustomer/getName"/></li></ul>
 						</div>
-						<div class="invoice-from">
-							<ul><li></li></ul>
+						<div class="invoice-from text-right">
+							<ul><li><span tal:content="Order/getNote"/></li></ul>
 						</div>
 					</div>
+				</div>	
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>																		
+								<th><div class="text-center">STT</div></th>
 								<th><div class="text-left">TÊN</div></th>
-								<th width="30">SL</th>
+								<th width="30"><div class="text-right">SL</div></th>
 								<th width="80"><div class="text-right">Đ.GIÁ</div></th>
-								<th width="80"><div class="text-right">T.TIỀN</div></th>
+								<th width="90"><div class="text-right">T.TIỀN</div></th>
 								<th width="30"><i class="glyphicons-bin"/></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr tal:repeat="Detail Order/getDetailAll">								
+							<tr tal:repeat="Detail Order/getDetailAll">
+								<td><div class="text-center" tal:content="repeat/Detail/number"/></td>
 								<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 										tal:attributes="data-id Detail/getId; data-id-resource Detail/getIdResource; data-name Detail/getResource/getName; data-price Detail/getPrice; data-count Detail/getCount" 
 										tal:content="Detail/getResource/getName"/>
 								</td>
-								<td><div class="text-center" tal:content="Detail/getCountPrint"/></td>
+								<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
 								<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 								<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 								<td class="center">
@@ -54,15 +57,18 @@
 									</a>
 								</td>
 							</tr>
+							<tr>
+								<td colspan="4"><div class="text-right">TỔNG CỘNG:</div></td>
+								<td><div class="text-right"><B tal:content="Order/getValuePrint"/></div></td>
+								<td/>
+							</tr>
+							<tr>
+								<td colspan="5"><div class="text-right" tal:content="Order/getValueStrPrint"/></td>
+								<td/>
+							</tr>
 						</tbody>
 					</table>
-					<table width="100%">							
-						<tr>
-							<td style="text-align:right;">TỔNG CỘNG:</td>
-							<td tal:content="Order/getValuePrint" style="color:#5476A6;text-align:right;"/>
-						</tr>
-					</table>
-															
+																				
 					<!-- DIALOG EDIT	-->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
@@ -109,7 +115,7 @@
 					<div id="DialogOrder" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-notes_2 modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3></div>
 								<div class="form-horizontal">									
 									<div class="form-group">
 										<label class="control-label">Thời gian</label>
@@ -128,6 +134,16 @@
 										<div class="controls">
 											<input id="CustomerName" name="CustomerName" readonly="true" type="text" class="form-control input-small" />
 										</div>
+									</div>									
+									<div class="form-group">
+										<label class="control-label">Giao dịch</label>
+										<div class="controls">
+											<select name="IdTracking1" id="IdTracking1" style="width:80%;">
+												<option tal:repeat="CT1 CTAll" value="0" >
+													<span tal:content="CT1/getNote"/>
+												</option>												
+											</select>
+										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Diễn giải</label>
@@ -144,12 +160,11 @@
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->																		
-					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-				</div>
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>				
 			</div>
 			<div id="OrderInfo" tal:attributes="data-id Order/getId; data-id-tracking Order/getIdTracking; data-id-user Order/getIdUser; data-tag Order/getTag; data-date Order/getDate; data-note Order/getNote; data-customer-name Order/getTracking/getCustomer/getName"/>
 		</div>
-		
+		<!--
 		<div class="widget-box">
 			<div class="widget-content notify-ui">
 				<div class="row">
@@ -207,9 +222,9 @@
 				</div>
 			</div>
 		</div>
-		
+		!-->
         <script>						
-			$('#DateTime1').datetimepicker({
+			$('#Date1').datetimepicker({
 				language:  'vi',
 				weekStart: 1,
 				todayBtn:  1,
@@ -222,10 +237,17 @@
 			
 			$("#SearchIdCustomer").change(function(){				
 				URL = "/search/customer/"+$(this).val();
-				$.getJSON(URL, function(data){
-					$("#IdCustomer1").attr('alt', data.Id);					
-					$("#DiscountPercent1").val(data.Discount);
-					$("#CustomerName").val(data.Name);
+				$.getJSON(URL, function(data){										
+					$("#CustomerName").val(data.name);
+										
+					$('#IdTracking1').empty();
+					$.each(data.data, function (i, item) {
+						$('#IdTracking1').append($('<option/>', { 
+							value: item.Id,
+							text : item.Note 
+						}));
+					});
+					
 				});
 			});
 			
@@ -282,10 +304,10 @@
 				var IdOrder 	= $('#OrderInfo').attr('data-id');
 				
 				Data[0] 	= $("#OrderInfo").attr('data-id');
-				Data[1] 	= $("#OrderInfo").attr('data-id-tracking');
+				Data[1] 	= $("#IdTracking1").val();
 				Data[2] 	= $("#OrderInfo").attr('data-id-user');
 				Data[3] 	= $("#OrderInfo").attr('data-tag');								
-				Data[4] 	= $("#Date1").val();;
+				Data[4] 	= $("#Date1").val();
 				Data[5] 	= $("#Note1").val();
 								
 				$("#DialogOrder").modal('hide');
@@ -296,37 +318,12 @@
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){						
+					success: function(msg){
 						$("#OrderActive").load("/selling/" + IdDomain + "/load/order/"+ IdOrder);
 					}
 				});				
 			});
-			
-						
-			//-----------------------------------------------------------------------------------
-			//click gọi món
-			//-----------------------------------------------------------------------------------
-			$('.Course').click(function(e){
-				var IdResource 	= $(this).attr('alt');
-				var Delta 		= $(this).attr('data-delta');				
-				var IdTable 	= $("#CurrentTable").attr('alt');
-				URL = "/selling/call/table/"+IdTable+"/"+IdResource+"/"+Delta;				
-				e.stopImmediatePropagation();
-				$.ajax({
-					type: "POST", 
-					async: false,
-					url: URL,
-					dataType: 'json',
-					success: function(data){
-						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/selling/load/table/"+IdTable);
-						
-						//Đánh dấu Table có khách
-						$(TableActive).addClass('actived');
-					}
-				});
-			});
-			
+									
 			//-----------------------------------------------------------------------------------
 			//Load 1 SESSION DETAIL
 			//-----------------------------------------------------------------------------------
