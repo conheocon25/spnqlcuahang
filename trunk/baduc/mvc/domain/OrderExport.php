@@ -88,7 +88,7 @@ class OrderExport extends Object{
 	
 	function getValuePrint(){
 		$Value = new \MVC\Library\Number($this->getValue());
-		return $Value->formatCurrency()." đ";
+		return $Value->formatCurrency();
 	}
 	
 	function getValueStrPrint(){

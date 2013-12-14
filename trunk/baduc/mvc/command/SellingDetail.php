@@ -26,7 +26,9 @@
 			$SupplierAll 	= $mSupplier->findAll();
 			
 			$Title = $Domain->getName();
-			$Navigation = array();
+			$Navigation = array(				
+				array("BÁN HÀNG", "/selling")
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

@@ -69,6 +69,8 @@ RewriteRule ^selling/([0-9]+)/call/order/([0-9]+)/([0-9]+)/minus$ 				?cmd=Selli
 RewriteRule ^selling/([0-9]+)/load/oel/all$ 									?cmd=SellingDetailLoadOEL&IdDomain=$1 [L]
 RewriteRule ^selling/([0-9]+)/insert/order$ 									?cmd=SellingDetailInsertOrder&IdDomain=$1 [L]
 
+RewriteRule ^search/customer/([A-Za-z0-9]+)$ 									?cmd=SearchCustomer&IdCard=$1 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # EXPORT
 #---------------------------------------------------------------------------------------------------------------------------
