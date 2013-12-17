@@ -34,9 +34,10 @@
 				$CTAll->next();
 			}
 			$B = array(
-				"name"	=> $Customer->getName(),
-				"data"	=> $A
-			);			
+				"name"		=> $Customer->getName(),
+				"picture"	=> $Customer->getPicture(),
+				"data"		=> $A
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

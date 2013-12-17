@@ -11,8 +11,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdDomain 	= $request->getProperty("IdDomain");
-			$IdSupplier = $request->getProperty("IdSupplier");
+			$IdDomain 		= $request->getProperty("IdDomain");
+			$IdSupplier 	= $request->getProperty("IdSupplier");
+			$NameResource 	= $request->getProperty("NameResource");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -24,8 +25,13 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Domain 			= $mDomain->find($IdDomain);			
-			$ResourceAll		= $mResource->findBySupplier(array($IdSupplier));
+			$Domain 			= $mDomain->find($IdDomain);
+			
+			if (isset($NameResource)){
+				$ResourceAll		= $mResource->findByName(array($NameResource));
+			}else{
+				$ResourceAll		= $mResource->findBySupplier(array($IdSupplier));
+			}			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

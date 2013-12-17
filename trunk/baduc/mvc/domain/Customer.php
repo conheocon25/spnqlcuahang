@@ -3,26 +3,27 @@ namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Customer extends Object{
-
     private $Id;
 	private $Name;
+	private $Alias;
 	private $Phone;
     private $Type;
     private $Card;
     private $Note;
     private $Address;
-	private $Discount;
+	private $Picture;
 	
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
+    function __construct( $Id=null, $Name=null, $Alias=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Picture=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
+		$this->Alias 	= $Alias;
 		$this->Type 	= $Type;
 		$this->Card 	= $Card;
 		$this->Phone 	= $Phone;
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
-		$this->Discount = $Discount;
+		$this->Picture = $Picture;
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -41,25 +42,29 @@ class Customer extends Object{
 	function getName(){return $this->Name;}	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
+	function getAlias(){return $this->Alias;}
+    function setAlias( $Alias ) {$this->Alias = $Alias;$this->markDirty();}
+	
 	function getPhone(){return $this->Phone;}
     function setPhone( $Phone ) {$this->Phone = $Phone;$this->markDirty();}
 			
     function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress(){return $this->Address;}
 		
-	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
-	function getDiscount(){return $this->Discount;}
+	function setPicture( $Picture ) {$this->Picture = $Picture;$this->markDirty();}
+	function getPicture(){return $this->Picture;}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'Name'			=> $this->getName(),
+			'Alias'			=> $this->getAlias(),
 			'Type'			=> $this->getType(),
 			'Card'			=> $this->getCard(),
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount()
+			'Picture'		=> $this->getPicture()
 		);
 		return json_encode($json);
 	}
@@ -67,12 +72,13 @@ class Customer extends Object{
 	function setArray( $Data ){
 		$this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];
-		$this->Type		= $Data[2];
-		$this->Card		= $Data[3];
-		$this->Phone	= $Data[4];
-		$this->Address	= $Data[5];
-		$this->Note		= $Data[6];
-		$this->Discount	= $Data[7];
+		$this->Alias 	= $Data[2];
+		$this->Type		= $Data[3];
+		$this->Card		= $Data[4];
+		$this->Phone	= $Data[5];
+		$this->Address	= $Data[6];
+		$this->Note		= $Data[7];
+		$this->Picture	= $Data[8];
     }
 		
 	function getPaidAll(){

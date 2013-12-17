@@ -2,7 +2,7 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
+class Customer extends Mapper implements \MVC\Domain\CustomerFinder{
 
     function __construct() {
         parent::__construct();
@@ -11,10 +11,10 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $this->selectStmt = self::$PDO->prepare( 
                             "select * from tbl_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 
-                            "update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+                            "update tbl_customer set name=?, alias=?, type=?, card=?, phone=?, address=?, note=?, picture=? where id=?");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into tbl_customer (name, type, card, phone, address, note, discount) 
-							values( ?, ?, ?, ?, ?, ?, ?)");
+                            "insert into tbl_customer (name, alias, type, card, phone, address, note, picture) 
+							values( ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( 
                             "delete from tbl_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
@@ -44,12 +44,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $obj = new \MVC\Domain\Customer( 
 			$array['id'],  
 			$array['name'],
+			$array['alias'],
 			$array['type'],
 			$array['card'],
 			$array['phone'],
 			$array['address'],
 			$array['note'],
-			$array['discount']
+			$array['picture']
 		);
         return $obj;
     }
@@ -61,12 +62,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getName(),
+			$object->getAlias(),
 			$object->getType(),	
 			$object->getCard(),	
 			$object->getPhone(),	
 			$object->getAddress(),	
 			$object->getNote(),
-			$object->getDiscount()
+			$object->getPicture()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -76,12 +78,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),
+			$object->getAlias(),
 			$object->getType(),	
 			$object->getCard(),	
 			$object->getPhone(),	
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getDiscount(),
+			$object->getPicture(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
