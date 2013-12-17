@@ -134,7 +134,13 @@
 										<div class="controls">
 											<input id="CustomerName" name="CustomerName" readonly="true" type="text" class="form-control input-small" />
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label" />
+										<div class="controls">
+											<img width="144px" id="PictureDisplay" />
+										</div>
+									</div>
 									<div class="form-group">
 										<label class="control-label">Giao dịch</label>
 										<div class="controls">
@@ -162,68 +168,9 @@
 					<!-- END DIALOG EDIT -->																		
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>				
 			</div>
-			<div id="OrderInfo" tal:attributes="data-id Order/getId; data-id-tracking Order/getIdTracking; data-id-user Order/getIdUser; data-tag Order/getTag; data-date Order/getDate; data-note Order/getNote; data-customer-name Order/getTracking/getCustomer/getName"/>
-		</div>
-		<!--
-		<div class="widget-box">
-			<div class="widget-content notify-ui">
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 1</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 2</button>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 3</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 4</button>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 5</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 6</button>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 7</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 8</button>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 9</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 10</button>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 11</button>
-					</div>
-					<div class="col-6">
-						<button class="btn btn-success" style="width:100%">Button 12</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		!-->
-        <script>						
+			<div id="OrderInfo" tal:attributes="data-id Order/getId; data-id-tracking Order/getIdTracking; data-id-user Order/getIdUser; data-tag Order/getTag; data-date Order/getDate; data-note Order/getNote; data-customer-name Order/getTracking/getCustomer/getName; data-customer-picture Order/getTracking/getCustomer/getPicture"/>
+		</div>		
+        <script>
 			$('#Date1').datetimepicker({
 				language:  'vi',
 				weekStart: 1,
@@ -239,6 +186,7 @@
 				URL = "/search/customer/"+$(this).val();
 				$.getJSON(URL, function(data){										
 					$("#CustomerName").val(data.name);
+					$('#PictureDisplay').attr('src', data.picture);
 										
 					$('#IdTracking1').empty();
 					$.each(data.data, function (i, item) {
@@ -293,7 +241,8 @@
 			$('.OrderUpdate').click(function(e){							
 				$('#Date1').attr('value'			, $("#OrderInfo").attr("data-date"));
 				$('#Note1').attr('value'			, $("#OrderInfo").attr("data-note"));
-				$('#CustomerName').attr('value'		, $("#OrderInfo").attr("data-customer-name"));				
+				$('#CustomerName').attr('value'		, $("#OrderInfo").attr("data-customer-name"));
+				$('#PictureDisplay').attr('src'		, $("#OrderInfo").attr("data-customer-picture"));
 			});
 			//-----------------------------------------------------------------------------------
 			//Update 1 ORDER

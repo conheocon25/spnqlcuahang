@@ -17,6 +17,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$havingBarcodeStmt = sprintf("select * from %s where barcode<>''", $tblResource);
 		$noneBarcodeStmt = sprintf("select * from %s where barcode=''", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? ORDER BY name", $tblResource);
+		$findByNameStmt = sprintf("select * from %s where name like :nameresource ORDER BY name", $tblResource);
+		
 		$findByBarcodeStmt = sprintf("select * from %s where barcode=? ORDER BY name", $tblResource);
 		$findByBarcode1Stmt = sprintf("select * from %s where idsupplier=? AND barcode=?", $tblResource);
 		$findByPageStmt = sprintf("
@@ -34,13 +36,14 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
-		$this->havingBarcodeStmt = self::$PDO->prepare($havingBarcodeStmt);
-		$this->noneBarcodeStmt = self::$PDO->prepare($noneBarcodeStmt);
-		$this->findByBarcodeStmt = self::$PDO->prepare($findByBarcodeStmt);
-		$this->findByBarcode1Stmt = self::$PDO->prepare($findByBarcode1Stmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findFreqStmt = self::$PDO->prepare($findFreqStmt);
+		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
+		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
+		$this->havingBarcodeStmt 	= self::$PDO->prepare($havingBarcodeStmt);
+		$this->noneBarcodeStmt 		= self::$PDO->prepare($noneBarcodeStmt);
+		$this->findByBarcodeStmt 	= self::$PDO->prepare($findByBarcodeStmt);
+		$this->findByBarcode1Stmt 	= self::$PDO->prepare($findByBarcode1Stmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->findFreqStmt 		= self::$PDO->prepare($findFreqStmt);
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
 
@@ -106,6 +109,12 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
         return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
+    }
+	
+	function findByName( $values ) {		
+		$this->findByNameStmt->bindValue(':nameresource', $values[0]."%", \PDO::PARAM_STR);
+		$this->findByNameStmt->execute();
+        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {		

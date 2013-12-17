@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-	<div class="widget-box">
-		<div class="controls">
-			<input type="text" placeholder="Nhập tên để tìm" style="width:100%;"/>
-		</div>
-	</div>
-	
+<html lang="en">		
 	<div id="ResourceAll">
 		<div id="OELAll" class="widget-box">
 			<div class="widget-content nopadding size-12">
 				<ul class="activity-list">
 					<li tal:repeat="Resource ResourceAll">
 						<a class="course-item">
-							<button class="Resource pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button>
 							<strong tal:content="Resource/getName"/>
-							<button class="Resource pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button>
+							<button class="glyphicons-ok_2 Resource pull-right" tal:attributes="alt Resource/getId;data-delta 'plus' " />
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<script>
 		//-----------------------------------------------------------------------------------
 		// Click gọi hàng

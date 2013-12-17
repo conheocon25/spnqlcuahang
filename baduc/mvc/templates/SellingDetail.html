@@ -20,7 +20,14 @@
 			<div class="row">
 				<div class="col-3"><div id="OELAll"/></div>
 				<div class="col-6"><div id="OrderActive"/></div>
-				<div class="col-3"><div id="ResourceAll"/></div>
+				<div class="col-3">
+					<div class="widget-box">
+						<div class="controls">
+							<input id="SearchName" type="text" placeholder="Nhập tên để tìm" style="width:100%;"/>
+						</div>
+					</div>	
+					<div id="ResourceAll"/>
+				</div>
 			</div>
 		</div>
 		<div id="DomainActive" tal:attributes="alt Domain/getId" />
@@ -32,11 +39,26 @@
 			//Load hết tất cả những đơn hàng đang được quản lý
 			$("#OELAll").load("/selling/"+IdDomain+"/load/oel/all");
 			
+			//Xử lí search tên
+			$('#SearchName').bind("enterKey",function(e){
+				var Name = $(this).val();
+				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+Name);
+			});
+			$('#SearchName').keyup(function(e){
+				if(e.keyCode == 13){
+					$(this).trigger("enterKey");
+				}
+			});
+			$('#SearchName').click(function(){
+				
+			});
+			
 			//Xử lí click event nhà cung cấp
 			$('.Supplier').click(function(){
 				var IdSupplier 	= $(this).attr('alt');				
 				$(this).toggleClass('active').siblings().removeClass('active');
 				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+IdSupplier);
+				//$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/MK");
 			});
 			
 			//Mặc định lấy click của nhà phân phối đầu tiên

@@ -25,8 +25,10 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>										
+										<th class="left">TÊN</th>
+										<th width="150" class="left">BÍ DANH</th>
 										<th width="120">HOẠT ĐỘNG</th>
+										<th width="120">MÃ KH</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -34,6 +36,8 @@
 									<tr tal:repeat="Customer CustomerAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
+										<td><span tal:content="Customer/getAlias"/></td>
+										<td><span tal:content="Customer/getCard"/></td>
 										<td class="center">
 											<a tal:attributes="href Customer/getURLSettingDomain">
 												<span tal:content="Customer/getDomainAll/count"/> lĩnh vực
@@ -66,17 +70,27 @@
 												<div class="controls">
 													<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 												</div>
-											</div>																															
+											</div>
+											<div class="control-group">
+												<label class="control-label">Bí danh</label>
+												<div class="controls">
+													<input id="Alias1" name="Alias1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
 											<div class="control-group">
 												<label class="control-label">Điện thoại</label>
 												<div class="controls">								
 													<input id="Phone1" name="Phone1" type="text" class="form-control input-small"/>
 												</div>
-											</div>
+											</div>											
 											<div class="control-group">
-												<label class="control-label">Loại</label>
-												<div class="controls">								
-													<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
+												<label class="control-label">Loại thẻ</label>
+												<div class="controls">
+													<select name="Type1" id="Type1" style="width:80%;">
+														<option value="0">Thẻ đồng</option>
+														<option value="1">Thẻ bạc</option>
+														<option value="2">Thẻ vàng</option>
+													</select>
 												</div>
 											</div>
 											<div class="control-group">
@@ -98,11 +112,11 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label">Giảm giá</label>
+												<label class="control-label">Hình ảnh</label>
 												<div class="controls">
-													<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
+													<input id="Picture1" name="Picture1" type="text" class="form-control input-small"/>
 												</div>
-											</div>
+											</div>											
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -130,7 +144,13 @@
 												<div class="controls">
 													<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 												</div>
-											</div>																															
+											</div>
+											<div class="control-group">
+												<label class="control-label">Bí danh</label>
+												<div class="controls">
+													<input id="Alias2" name="Alias2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
 											<div class="control-group">
 												<label class="control-label">Điện thoại</label>
 												<div class="controls">								
@@ -138,9 +158,13 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label">Loại</label>
-												<div class="controls">								
-													<input id="Type2" name="Type2" type="text" class="form-control input-small"/>
+												<label class="control-label">Loại thẻ</label>
+												<div class="controls">
+													<select name="Type2" id="Type2" style="width:80%;">
+														<option value="0">Thẻ đồng</option>
+														<option value="1">Thẻ bạc</option>
+														<option value="2">Thẻ vàng</option>
+													</select>
 												</div>
 											</div>
 											<div class="control-group">
@@ -162,9 +186,15 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label">Giảm giá</label>
+												<label class="control-label">Hình ảnh</label>
 												<div class="controls">
-													<input id="Discount2" name="Discount2" type="text" class="form-control input-small"/>
+													<input id="Picture2" name="Picture2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label" />
+												<div class="controls">
+													<img width="144px" id="PictureDisplay2" />
 												</div>
 											</div>
 										</div>
@@ -233,12 +263,13 @@
 				var Data = [];
 				Data[0] = 'null';				
 				Data[1] = $('#Name1').val();
-				Data[2] = $('#Type1').val();
-				Data[3] = $('#Card1').val();
-				Data[4] = $('#Phone1').val();
-				Data[5] = $('#Address1').val();
-				Data[6] = $('#Note1').val();
-				Data[7] = $('#Discount1').val();
+				Data[2] = $('#Alias1').val();
+				Data[3] = $('#Type1').val();
+				Data[4] = $('#Card1').val();
+				Data[5] = $('#Phone1').val();
+				Data[6] = $('#Address1').val();
+				Data[7] = $('#Note1').val();
+				Data[8] = $('#Picture1').val();
 														
 				var URL = "/object/ins/Customer";
 				$.ajax({
@@ -263,12 +294,14 @@
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
 					$('#Name2').attr('value', 		data.Name);										
-					$('#Type2').attr('value', 		data.Type);
+					$('#Alias2').attr('value', 		data.Alias);
+					$('#Type2').select2('val', 		data.Type);
 					$('#Card2').attr('value', 		data.Card);
 					$('#Phone2').attr('value', 		data.Phone);
 					$('#Address2').attr('value', 	data.Address);
 					$('#Note2').attr('value', 		data.Note);
-					$('#Discount2').attr('value', 	data.Discount);
+					$('#Picture2').attr('value', 	data.Picture);
+					$('#PictureDisplay2').attr('src', 	data.Picture);
 				});
 			});
 			
@@ -279,12 +312,13 @@
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');				
 				Data[1] = $('#Name2').val();
-				Data[2] = $('#Type2').val();
-				Data[3] = $('#Card2').val();
-				Data[4] = $('#Phone2').val();
-				Data[5] = $('#Address2').val();
-				Data[6] = $('#Note2').val();
-				Data[7] = $('#Discount2').val();
+				Data[2] = $('#Alias2').val();
+				Data[3] = $('#Type2').val();
+				Data[4] = $('#Card2').val();
+				Data[5] = $('#Phone2').val();
+				Data[6] = $('#Address2').val();
+				Data[7] = $('#Note2').val();
+				Data[8] = $('#Picture2').val();
 														
 				var URL = "/object/upd/Customer";
 				$.ajax({
@@ -295,8 +329,8 @@
 						location.reload();
 					}
 				});
-			});
-			
-		/*]]>*/</script>		
+			});			
+		/*]]>*/
+		</script>
 	</body>
 </html>
