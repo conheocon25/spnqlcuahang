@@ -10,7 +10,7 @@
 	<div id="selling" data-role="page" class="type-interior" />
 	
 	<!-- TRANG CUSTOMER !-->
-	<div tal:attributes="id Customer/getIdPrint" data-role="page" class="type-interior customer" tal:repeat="Customer Customers">
+	<div tal:attributes="id Customer/getIdPrint" data-role="page" class="type-interior" tal:repeat="Customer Customers">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1 tal:content="php:'ĐƠN HÀNG CỦA '.Customer->getName()"/>
 			<a tal:attributes="href User/getApp/getURLApp" data-icon="back" data-ajax="false">LUI</a>
@@ -34,7 +34,7 @@
 				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
 					<h3>KHÁCH HÀNG</h3>
 					<ul data-role="listview" data-theme="c">						
-						<li tal:repeat="Customer1 Customers1" tal:attributes="data-theme php:Customer1->getId()==Customer->getId()?'a':'c'">
+						<li class="customer" tal:repeat="Customer1 Customers1" tal:attributes="id Customer1/getIdPrint; data-theme php:Customer1->getId()==Customer->getId()?'a':'c'">
 							<a data-transition="none" tal:attributes="href Customer1/getURLSelling">
 								<span tal:content="repeat/Customer1/number" />. <span tal:content="Customer1/getName" />
 							</a>

@@ -221,8 +221,11 @@
 				<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Gõ để tìm khách hàng...">
 					<li tal:repeat="Customer Customers">
 						<a data-ajax="false" tal:attributes="href Customer/getURLUpdLoad">
-							<span tal:content="repeat/Customer/number"/>. <span tal:content="Customer/getName"/>
-							<p class="ui-li-aside"><strong tal:content="Customer/getPhone"></strong></p>
+							<span tal:content="repeat/Customer/number"/>. <span tal:content="Customer/getName"/>							
+							<p class="ui-li-aside">
+								 ( <strong tal:content="Customer/getTypePrint"></strong> ) - 
+								<strong tal:content="Customer/getPhone"></strong>
+							</p>
 						</a>						
 						<a tal:attributes="href Customer/getURLDelLoad" data-theme="c" data-icon="delete" />
 					</li>

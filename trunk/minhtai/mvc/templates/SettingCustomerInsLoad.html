@@ -23,6 +23,14 @@
 						<input id="Name" name="Name" type="text" class="required minlength:5" />
 					</div>
 					<div data-role="fieldcontain">
+						<label for="Name" class="text">Loại khách hàng:</label>
+						<select name="Type" id="Type">
+							<option tal:repeat="lst Types" tal:attributes="value lst/Id">
+								<span tal:content="lst/Name" />
+							</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
 						<label for="Alias" class="text">Thường gọi:</label>
 						<input id="Alias" name="Alias" type="text" />
 					</div>

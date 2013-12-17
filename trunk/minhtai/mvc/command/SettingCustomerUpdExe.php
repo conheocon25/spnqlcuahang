@@ -19,6 +19,7 @@
 			$Address = $request->getProperty('Address');
 			$Note = $request->getProperty('Note');
 			$Debt = $request->getProperty('Debt');
+			$Type = $request->getProperty('Type');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -40,6 +41,7 @@
 			$Customer->setAddress($Address);
 			$Customer->setNote($Note);
 			$Customer->setDebt($Debt);
+			$Customer->setType($Type);
 			
 			$mCustomer->update($Customer);
 			

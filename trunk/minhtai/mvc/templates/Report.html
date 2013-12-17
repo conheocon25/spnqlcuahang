@@ -9,7 +9,7 @@
 	<!-- REPORT -->
 	<div id="report" data-role="page" class="type-interior">
 		<div data-role="header" data-position="fixed" data-theme="f">
-			<h1>MODULE BÁO CÁO</h1>
+			<h1>THỐNG KÊ BÁO CÁO</h1>
 			<a tal:attributes="href User/getApp/getURLApp" data-icon="home" data-ajax="false">TRANG CHỦ</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
@@ -18,7 +18,8 @@
 				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
 					<h3>LOẠI BÁO CÁO</h3>
 					<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d">
-						<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling">1. BÁN HÀNG</a></li>
+						<li tal:condition="php:IdFillter==1?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling1">1. BÁN HÀNG THUỐC</a></li>
+						<li tal:condition="php:IdFillter==2?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling2">1. BÁN HÀNG THỨC ĂN</a></li>
 						<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSupplier">2. NHẬP HÀNG</a></li>
 						<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportStore">3. TỔN KHO</a></li>
 					</ul>
@@ -28,10 +29,12 @@
 				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
 					<h3>MODULE</h3>
 					<ul data-role="listview" data-theme="c" data-dividertheme="d">
-						<li><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLSelling">BÁN HÀNG</a></li>
+						<li tal:condition="php:IdFillter==1?true:false" ><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLSelling1">BÁN HÀNG THUỐC</a></li>
+						<li tal:condition="php:IdFillter==2?true:false" ><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLSelling2">BÁN HÀNG THỨC ĂN</a></li>
 						<li><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLImport">NHẬP HÀNG</a></li>
 						<li><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLPaid">CHI TRẢ</a></li>
-						<li data-theme="a"><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLReport">BÁO CÁO</a></li>
+						<li tal:condition="php:IdFillter==1?true:false"  data-theme="a"><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLReport1">BÁO CÁO ĐƠN HÀNG THUỐC</a></li>
+						<li tal:condition="php:IdFillter==2?true:false"  data-theme="a"><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLReport2">BÁO CÁO ĐƠN HÀNG THỨC ĂN</a></li>
 						<li><a data-ajax="false" data-transition="none" tal:attributes="href User/getApp/getURLSetting">THIẾT LẬP</a></li>
 					</ul>
 				</div>
@@ -44,34 +47,56 @@
 	<div id="selling" data-role="page" class="type-interior">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1>BÁO CÁO BÁN HÀNG</h1>
-			<a tal:attributes="href User/getApp/getURLReport" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==1?true:false" tal:attributes="href User/getApp/getURLReport1" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==2?true:false" tal:attributes="href User/getApp/getURLReport1" data-icon="back" data-ajax="false">LUI</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
 		<div data-role="content">
 			<div class="content-primary">
 				<div data-role="collapsible" data-inset="true" data-collapsed="false" data-theme="b" data-content-theme="d">					
 					<h3>CHỌN SẴN</h3>
-					<ul data-inset="true" data-role="listview" data-theme="c" data-dividertheme="d">
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingToday">HÔM NAY</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingYesterday">HÔM QUA</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisWeek">TUẦN NÀY</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisMonth">THÁNG NÀY</a></li>
+					<ul tal:condition="php:IdFillter==1?true:false" data-inset="true" data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingToday1">HÔM NAY</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingYesterday1">HÔM QUA</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisWeek1">TUẦN NÀY</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisMonth1">THÁNG NÀY</a></li>
+					</ul>
+					
+					<ul tal:condition="php:IdFillter==2?true:false" data-inset="true" data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingToday2">HÔM NAY</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingYesterday2">HÔM QUA</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisWeek2">TUẦN NÀY</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReportSellingThisMonth2">THÁNG NÀY</a></li>
 					</ul>					
 				</div>
 				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
 					<h3>TÙY CHỈNH</h3>
-					<form data-ajax="false" tal:attributes="action User/getApp/getURLReportSellingCustom" method="post">
-					<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d">
-						<li data-role="fieldcontain">
-							<label for="DateStart_Selling">Bắt đầu:</label>
-							<input type="text" name="DateStart_Selling" id="DateStart_Selling" value=""  />
-						</li>
-						<li data-role="fieldcontain">
-							<label for="DateEnd_Selling">Kết thúc:</label>
-							<input type="text" name="DateEnd_Selling" id="DateEnd_Selling" value=""  />
-						</li>
-						<button type="submit" data-theme="c">XEM</button>
-					</ul>
+					<form tal:condition="php:IdFillter==1?true:false"  data-ajax="false" tal:attributes="action User/getApp/getURLReportSellingCustom1" method="post">
+						<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d">
+							<li data-role="fieldcontain">
+								<label for="DateStart_Selling">Bắt đầu:</label>
+								<input type="text" name="DateStart_Selling" id="DateStart_Selling" value=""  />
+							</li>
+							<li data-role="fieldcontain">
+								<label for="DateEnd_Selling">Kết thúc:</label>
+								<input type="text" name="DateEnd_Selling" id="DateEnd_Selling" value=""  />
+							</li>
+							<button type="submit" data-theme="c">XEM</button>
+						</ul>
+					</form>
+					
+					<form tal:condition="php:IdFillter==2?true:false"  data-ajax="false" tal:attributes="action User/getApp/getURLReportSellingCustom2" method="post">
+						<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d">
+							<li data-role="fieldcontain">
+								<label for="DateStart_Selling">Bắt đầu:</label>
+								<input type="text" name="DateStart_Selling" id="DateStart_Selling" value=""  />
+							</li>
+							<li data-role="fieldcontain">
+								<label for="DateEnd_Selling">Kết thúc:</label>
+								<input type="text" name="DateEnd_Selling" id="DateEnd_Selling" value=""  />
+							</li>
+							<button type="submit" data-theme="c">XEM</button>
+						</ul>
 					</form>
 				</div>				
 			</div>
@@ -79,7 +104,8 @@
 				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
 				<h3>BÁO CÁO</h3>
 				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-					<li data-theme="a"><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling">1. BÁN HÀNG</a></li>
+					<li data-theme="a" tal:condition="php:IdFillter==1?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling1">1. BÁN HÀNG - THUỐC</a></li>
+					<li data-theme="a" tal:condition="php:IdFillter==2?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling2">1. BÁN HÀNG - THỨC ĂN</a></li>
 					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSupplier">2. NHẬP HÀNG</a></li>
 					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportStore">3. TỒN KHO</a></li>
 				</ul>
@@ -93,7 +119,8 @@
 	<div id="supplier" data-role="page" class="type-interior">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1>BÁO CÁO NHẬP HÀNG</h1>
-			<a tal:attributes="href User/getApp/getURLReport" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==1?true:false" tal:attributes="href User/getApp/getURLReport1" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==2?true:false" tal:attributes="href User/getApp/getURLReport2" data-icon="back" data-ajax="false">LUI</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
 		<div data-role="content">
@@ -125,7 +152,8 @@
 				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
 				<h3>BÁO CÁO</h3>
 				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling">1. BÁN HÀNG</a></li>
+					<li tal:condition="php:IdFillter==1?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling1">1. BÁN HÀNG - THUỐC</a></li>
+					<li tal:condition="php:IdFillter==2?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling2">1. BÁN HÀNG - THỨC ĂN</a></li>
 					<li data-theme="a"><a data-transition="none" tal:attributes="href User/getApp/getURLReportSupplier">2. NHẬP HÀNG</a></li>
 					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportStore">3. TỒN KHO</a></li>
 				</ul>
@@ -139,7 +167,8 @@
 	<div id="store" data-role="page" class="type-interior">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1>BÁO CÁO TỒN KHO</h1>
-			<a tal:attributes="href User/getApp/getURLReport" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==1?true:false"  tal:attributes="href User/getApp/getURLReport1" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:condition="php:IdFillter==2?true:false"  tal:attributes="href User/getApp/getURLReport2" data-icon="back" data-ajax="false">LUI</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
 		<div data-role="content">
@@ -150,7 +179,8 @@
 				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
 				<h3>BÁO CÁO</h3>
 				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling">1. BÁN HÀNG</a></li>
+					<li tal:condition="php:IdFillter==1?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling1">1. BÁN HÀNG - THUỐC</a></li>
+					<li tal:condition="php:IdFillter==2?true:false" ><a data-transition="none" tal:attributes="href User/getApp/getURLReportSelling2">1. BÁN HÀNG - THỨC ĂN</a></li>
 					<li><a data-transition="none" tal:attributes="href User/getApp/getURLReportSupplier">2. NHẬP HÀNG</a></li>
 					<li data-theme="a"><a data-transition="none" tal:attributes="href User/getApp/getURLReportStore">3. TỒN KHO</a></li>
 				</ul>

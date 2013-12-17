@@ -1,12 +1,12 @@
 <?php
 namespace MVC\Mapper;
-use MVC\Library\Encrypted;
+//use MVC\Library\Encrypted;
 require_once("mvc/base/Registry.php");
 require_once("mvc/base/Exceptions.php");
 require_once("mvc/base/domain/Finders.php");
 require_once("mvc/domain.php" );
-//date_default_timezone_set('Asia/Ho_Chi_Minh');		
-//error_reporting ('E_ALL | E_STRICT');
+date_default_timezone_set('Asia/Ho_Chi_Minh');		
+error_reporting ('E_ALL & ~E_NOTICE');
 
 //Default Value: E_ALL & ~E_NOTICE
 //Development Value: E_ALL | E_STRICT
@@ -15,14 +15,13 @@ require_once("mvc/domain.php" );
 
 abstract class Mapper implements \MVC\Domain\Finder {
     protected static $PDO;
-		
     function __construct() { 
-        if ( ! isset(self::$PDO) ) {             
+        if ( ! isset(self::$PDO) ) { 
+            
 			$dsn = "mysql:host=localhost;";
-			$dbname = "dbname=qlcuahan_db";
-			$user = "qlcuahan_userdb";
+			$dbname = "dbname=minhtai";
+			$user = "spngroup_userdb";
 			$pass = "admin068198";
-			
             if ( is_null( $dsn ) ) {
                 throw new \MVC\Base\AppException( "No DSN" );
             }
@@ -81,7 +80,6 @@ abstract class Mapper implements \MVC\Domain\Finder {
 	function delete( array $obj ) {
         $this->doDelete( $obj ); 		
     }
-	
     protected abstract function getCollection( array $raw );
     protected abstract function doCreateObject( array $array );
     protected abstract function doInsert( \MVC\Domain\Object $object );
