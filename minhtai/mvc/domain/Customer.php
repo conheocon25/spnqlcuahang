@@ -12,6 +12,7 @@ class Customer extends Object{
     private $Address;
 	private $Phone;
 	private $Note;
+	private $Type;
 			
 	private $Orders;	
 	private $OrderTrackings;
@@ -32,7 +33,8 @@ class Customer extends Object{
 		$Phone=null, 
 		$Address=null, 
 		$Note=null, 
-		$Debt=null ) 
+		$Debt=null,
+		$Type=null ) 
 	{
         $this->Id = $Id;
 		$this->IdCard = $IdCard;
@@ -43,6 +45,7 @@ class Customer extends Object{
 		$this->Phone = $Phone;
 		$this->Note = $Note;
 		$this->Debt = $Debt;
+		$this->Type = $Type;
         parent::__construct( $Id );
     }
 	function getId(){
@@ -86,12 +89,27 @@ class Customer extends Object{
 	function getPhone( ) {
         return $this->Phone;
     }
+	
 	function setNote( $Note_s ) {
         $this->Note = $Note_s;
         $this->markDirty();
     }
 	function getNote( ) {
         return $this->Note;
+    }
+	
+	function setType( $Type ) {
+        $this->Type = $Type;
+        $this->markDirty();
+    }
+	function getType( ) {
+        return $this->Type;
+    }
+	
+	function getTypePrint( ) {
+		if ($this->Type == 1) {
+			return "Đơn Hàng Thuốc";
+		} else return "Đơn Hàng Thức Ăn";
     }
 	
 	function setIdCard( $IdCard_s ) {
@@ -125,6 +143,16 @@ class Customer extends Object{
 		return "data/images/app/customer.png";		
 	}
 	
+	function isCustomerFoodFish(){
+		if ( ($this->getType() == 0) || ($this->getType() == 2)) {
+			return true;
+		} else return false;		
+	}
+	function isCustomerMedicalFish(){
+		if ( ($this->getType() == 1) || ($this->getType() == 2)) {
+			return true;
+		} else return false;		
+	}
 	//--------------------------------------------------------	
 	//TÍNH CÔNG NỢ
 	//--------------------------------------------------------	
@@ -377,22 +405,22 @@ class Customer extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLSelling(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling#".$this->getIdPrint();
+		return "/".$App."/".$this->getType()."/selling#".$this->getIdPrint();
 	}
 	
 	function getURLSellingPage(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$this->getId();
+		return "/".$App."/".$this->getType()."/selling/".$this->getId();
 	}
 	
 	function getURLSellingInsLoad(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$this->getId()."/ins/load";
+		return "/".$App."/".$this->getType()."/selling/".$this->getId()."/ins/load";
 	}
 	
 	function getURLSellingInsExe(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$this->getId()."/ins/exe";
+		return "/".$App."/".$this->getType()."/selling/".$this->getId()."/ins/exe";
 	}
 	
 	/*--------------------------------------------------------------------*/

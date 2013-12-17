@@ -223,8 +223,16 @@ class App extends Object{
 	function getURLSetting(){
 		return "/".$this->Alias."/setting";
 	}
+	
 	function getURLReport(){
-		return "/".$this->Alias."/report";
+		return "/".$this->Alias."/1/report";
+	}
+	
+	function getURLReport1(){
+		return "/".$this->Alias."/1/report";
+	}
+	function getURLReport2(){
+		return "/".$this->Alias."/2/report";
 	}
 	function getURLPaid(){
 		return "/".$this->Alias."/paid";
@@ -232,8 +240,17 @@ class App extends Object{
 	function getURLImport(){
 		return "/".$this->Alias."/import";
 	}
+		
 	function getURLSelling(){
-		return "/".$this->Alias."/selling";
+		return "/".$this->Alias."/1/selling";
+	}
+	
+	function getURLSelling1(){
+		return "/".$this->Alias."/1/selling";
+	}
+	
+	function getURLSelling2(){
+		return "/".$this->Alias."/2/selling";
 	}
 	
 	function getURLSignin(){		
@@ -395,22 +412,45 @@ class App extends Object{
 	//Danh sách các URL Reports	
 	//---------------------------------------------------------------------
 	function getURLReportSelling(){
-		return "/".$this->Alias."/report#selling";
+		return "/".$this->Alias."/1/report#selling";
 	}
-	function getURLReportSellingToday(){
-		return "/".$this->Alias."/report/selling/today";
+	function getURLReportSelling1(){
+		return "/".$this->Alias."/1/report#selling";
+	}	
+	function getURLReportSelling2(){
+		return "/".$this->Alias."/2/report#selling";
 	}
-	function getURLReportSellingYesterday(){
-		return "/".$this->Alias."/report/selling/yesterday";
+	
+	function getURLReportSellingToday1(){
+		return "/".$this->Alias."/1/report/selling/today";
 	}
-	function getURLReportSellingThisWeek(){
-		return "/".$this->Alias."/report/selling/thisweek";
+	function getURLReportSellingYesterday1(){
+		return "/".$this->Alias."/1/report/selling/yesterday";
 	}
-	function getURLReportSellingThisMonth(){
-		return "/".$this->Alias."/report/selling/thismonth";
+	function getURLReportSellingThisWeek1(){
+		return "/".$this->Alias."/1/report/selling/thisweek";
 	}
-	function getURLReportSellingCustom(){
-		return "/".$this->Alias."/report/selling/custom";
+	function getURLReportSellingThisMonth1(){
+		return "/".$this->Alias."/1/report/selling/thismonth";
+	}
+	function getURLReportSellingCustom1(){
+		return "/".$this->Alias."/1/report/selling/custom";
+	}
+	
+	function getURLReportSellingToday2(){
+		return "/".$this->Alias."/2/report/selling/today";
+	}
+	function getURLReportSellingYesterday2(){
+		return "/".$this->Alias."/2/report/selling/yesterday";
+	}
+	function getURLReportSellingThisWeek2(){
+		return "/".$this->Alias."/2/report/selling/thisweek";
+	}
+	function getURLReportSellingThisMonth2(){
+		return "/".$this->Alias."/2/report/selling/thismonth";
+	}
+	function getURLReportSellingCustom2(){
+		return "/".$this->Alias."/2/report/selling/custom";
 	}
 	
 	function getURLReportSupplier(){

@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
+			$IdFillter = $request->getProperty("IdFillter");
 			$IdCustomer = $request->getProperty("IdCustomer");
 			$IdOrder = $request->getProperty("IdOrderExport");
 						
@@ -28,10 +29,14 @@
 			$OE = $mOE->find($IdOrder);
 			
 			$Session->setOrderExportDate( $OE->getDate() );
-			
+			$Tittle = "";
+			if ($IdFillter == 1) {
+					$Tittle = "HÓA ĐƠN THUỐC";
+			}else { $Tittle = "HÓA ĐƠN THỨC ĂN";}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
+			$request->setObject('Tittle', $Tittle);
 			$request->setObject('Customer', $Customer);
 			$request->setObject('OE', $OE);
 		}

@@ -19,6 +19,7 @@
 			$Address = $request->getProperty('Address');
 			$Note = $request->getProperty('Note');
 			$Debt = $request->getProperty('Debt');
+			$Type = $request->getProperty('Type');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -40,7 +41,8 @@
 				$Phone,
 				$Address,
 				$Note,
-				$Debt
+				$Debt,
+				$Type
 			);												
 			$mCustomer->insert($Customer);
 			

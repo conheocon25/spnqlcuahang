@@ -1,5 +1,5 @@
 ﻿$("#selling").live( "pagecreate", function( ){
-	var CurrentPage = $.session.get('vendaf_selling_current_page');	
+	var CurrentPage = $.session.get('minhtai_CurrentPage');	
 	//Di chuyển đến trang đã lưu trước đó
 	if (CurrentPage==null)
 		CurrentPage = $(".customer").attr('id');
@@ -10,5 +10,5 @@
 
 $(".customer").live( "pageshow", function( ){
 	var CurrentPage = $.mobile.activePage.attr("id");
-	$.session.set('vendaf_selling_current_page', CurrentPage);
+	$.session.set('minhtai_CurrentPage', CurrentPage);
 });
