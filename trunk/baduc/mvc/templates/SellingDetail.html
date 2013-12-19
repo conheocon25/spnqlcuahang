@@ -42,25 +42,22 @@
 			//Xử lí search tên
 			$('#SearchName').bind("enterKey",function(e){
 				var Name = $(this).val();
-				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+Name);
+				//$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+Name);
+				
 			});
 			$('#SearchName').keyup(function(e){
 				if(e.keyCode == 13){
 					$(this).trigger("enterKey");
 				}
 			});
-			$('#SearchName').click(function(){
-				
-			});
+			
 			
 			//Xử lí click event nhà cung cấp
 			$('.Supplier').click(function(){
 				var IdSupplier 	= $(this).attr('alt');				
 				$(this).toggleClass('active').siblings().removeClass('active');
-				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+IdSupplier);
-				//$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/MK");
-			});
-			
+				$("#ResourceAll").load("/selling/"+IdDomain+"/load/resource/"+IdSupplier);				
+			});			
 			//Mặc định lấy click của nhà phân phối đầu tiên
 			$('.Supplier:first').click();
         </script>
