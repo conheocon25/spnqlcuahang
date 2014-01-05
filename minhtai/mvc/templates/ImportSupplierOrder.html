@@ -19,20 +19,20 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40">STT</th>
+										<th width="64">STT</th>
 										<th class="left">TÊN</th>
 										<th class="right" width="80">SỐ LƯỢNG</th>
-										<th class="left" width="80">ĐƠN VỊ</th>
+										<th class="left" width="120">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Detail Order/getDetailAll">
+									<tr tal:repeat="Detail Order/getTrackAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
-										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
+										<td><div class="text-left" tal:content="Detail/getResource/getUnit/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 									</tr>
@@ -50,7 +50,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT ĐƠN HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="control-group">

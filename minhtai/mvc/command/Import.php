@@ -15,12 +15,12 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSupplier = new \MVC\Mapper\Supplier();
-			
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
+			$SupplierAll 	= $mSupplier->findAll();
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -35,7 +35,7 @@
 			$request->setProperty('ActiveAdmin', 'Import');
 			$request->setObject('Navigation', $Navigation);
 			
-			$request->setObject('SupplierAll', $SupplierAll);			
+			$request->setObject('SupplierAll', $SupplierAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

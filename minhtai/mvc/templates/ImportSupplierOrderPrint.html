@@ -2,23 +2,23 @@
 	<BR/>
 	<table width="100%" border="0" cellpadding="2" >
 		<tr>			
-			<td width="50%" align="left"><B>KARAOKE BA ĐỨC</B></td>
+			<td width="50%" align="left"><B>ĐẠI LÝ THỨC ĂN GIA SÚC MINH TÀI</B></td>
 			<td width="50%" align="right"><B>PHIẾU NHẬP HÀNG</B></td>
 		</tr>
 		<tr>			
-			<td width="50%" align="left">ĐC: 67/26B Phó Cơ Điều, P.4, TP.VL</td>
-			<td width="50%" align="right"><span tal:content="php:mb_strtoupper(Supplier->getName(),'UTF8')"/></td>
+			<td width="50%" align="left">ĐC: Phạm Hùng, P9, TP.VL</td>
+			<td width="50%" align="right">NHÀ CUNG CẤP <span tal:content="php:mb_strtoupper(Supplier->getName(),'UTF8')"/></td>
 		</tr>
 		<tr>			
-			<td width="50%" align="left">ĐT: (0703) 828 555</td>
-			<td width="50%" align="right"><span tal:content="OI/getDatePrint"/></td>
+			<td width="50%" align="left">ĐT: (0933) 66 99 07</td>
+			<td width="50%" align="right"><span tal:content="OI/getStore/getName"/> / <span tal:content="OI/getDatePrint"/></td>
 		</tr>
 	</table>
-	<p align="center"><span tal:content="OI/getDescription"/></p>
+	<BR/>
 	<table width="100%" border="1" cellpadding="2" >
 		<tr>
-			<th width="5%"><B>STT</B></th>
-			<th width="30%" align="left"><B>TÊN</B></th>
+			<th width="8%" 	align="center"><B>STT</B></th>
+			<th width="27%" align="left"><B>TÊN</B></th>
 			<th width="15%" align="right" ><B>SỐ LƯỢNG</B></th>
 			<th width="25%" align="right"><B>ĐƠN GIÁ</B></th>
 			<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
@@ -27,7 +27,7 @@
 			<td align="center" tal:content="repeat/Detail/number" />
 			<td>
 				<span tal:content="Detail/getResource/getName" />
-				(<span tal:content="Detail/getResource/getUnit" />)
+				(<span tal:content="Detail/getResource/getUnit/getName" />)
 			</td>
 			<td align="right" tal:content="Detail/getCountPrint" />
 			<td align="right" tal:content="Detail/getPricePrint" />
@@ -38,25 +38,17 @@
 			<th align="right" colspan="1" tal:content="OI/getValuePrint" />
 		</tr>
 	</table>
-	<p align="right">( <span tal:content="OI/getValueStrPrint"/> )</p>
+	<span align="right">( <span tal:content="OI/getValueStrPrint"/> )</span><br/>
 	<table width="100%" border="0" cellpadding="2" >
 		<tr>
 			<td width="35%" align="center"></td>
-			<td width="30%" align="center" />
-			<td width="35%" align="center"><span tal:content="DateCurrent" /></td>
+			<td width="25%" align="center" />
+			<td width="40%" align="center"><span tal:content="DateCurrent" /></td>
 		</tr>
 		<tr>
 			<td width="35%" align="center">NGƯỜI LẬP PHIẾU</td>
-			<td width="30%" align="center" />
-			<td width="35%" align="center">P.GIÁM ĐỐC</td>
-		</tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr>
-			<td width="35%" align="center" />
-			<td width="30%" align="center" />
-			<td width="35%" align="center">Lê Nguyễn Đông Khoa</td>
-		</tr>
+			<td width="25%" align="center" />
+			<td width="40%" align="center">ĐẠI LÝ</td>
+		</tr>		
 	</table>
 </body>

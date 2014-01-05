@@ -12,17 +12,10 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
-		$updateStmt = sprintf("
-			update 
-				%s
-			set 
-				count=?, 
-				price=? 
-			where 
-				id=?
-		", $tblOrderImportDetail);
+		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
 		$insertStmt = sprintf("insert into %s ( id_order, id_resource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
+		$findByStmt = sprintf("select * from %s where id_order=?", $tblOrderImportDetail);
 		$trackByStmt = sprintf("
 							SELECT
 								IFNULL(0, ODI.id) as id,
@@ -47,12 +40,13 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$existStmt = sprintf("select id from %s where id_order=? and id_resource=?", $tblOrderImportDetail);
 								
         $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);                            
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            
-		$this->trackByStmt = self::$PDO->prepare($trackByStmt);						
-		$this->existStmt = self::$PDO->prepare($existStmt);		
+        $this->selectStmt 	= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 	= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 	= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 	= self::$PDO->prepare( $deleteStmt );                            
+		$this->trackByStmt 	= self::$PDO->prepare($trackByStmt);						
+		$this->findByStmt 	= self::$PDO->prepare($findByStmt);						
+		$this->existStmt 	= self::$PDO->prepare($existStmt);		
 		
     } 
     function getCollection( array $raw ) {
@@ -70,10 +64,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "OrderImportDetail";
-    }
-
+    protected function targetClass() {return "OrderImportDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdOrder(), 
@@ -100,6 +91,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     }
 	
 	//-------------------------------------------------------
+	function findBy( $values ) {		
+        $this->findByStmt->execute( $values );
+        return new OrderImportDetailCollection( $this->findByStmt->fetchAll(), $this );
+    }
+	
 	function trackBy( $values ) {		
         $this->trackByStmt->execute( $values );
         return new OrderImportDetailCollection( $this->trackByStmt->fetchAll(), $this );

@@ -20,12 +20,14 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mOrderImport 	= new \MVC\Mapper\OrderImport();
+			$mStore 		= new \MVC\Mapper\Store();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
-			$Supplier = $mSupplier->find($IdSupplier);
+			$StoreAll 		= $mStore->findAll();
+			$SupplierAll 	= $mSupplier->findAll();
+			$Supplier 		= $mSupplier->find($IdSupplier);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -48,9 +50,10 @@
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('PN', $PN);
 			
-			$request->setObject('SupplierAll', $SupplierAll);
-			$request->setObject('OrderAll', $OrderAll);
-			$request->setObject('Supplier', $Supplier);
+			$request->setObject('SupplierAll'	, $SupplierAll);
+			$request->setObject('StoreAll'		, $StoreAll);
+			$request->setObject('OrderAll'		, $OrderAll);
+			$request->setObject('Supplier'		, $Supplier);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -1,8 +1,7 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
-class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
+class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder{
 
     function __construct() {
         parent::__construct();
@@ -123,12 +122,8 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 			$array['note']
 		);
         return $obj;
-    }
-	
-    protected function targetClass() {        
-		return "OrderImport";
-    }
-
+    }	
+    protected function targetClass() { return "OrderImport";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdSupplier(), 
