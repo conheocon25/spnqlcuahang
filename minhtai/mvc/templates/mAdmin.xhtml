@@ -106,10 +106,7 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-display" />QL.BÁN HÀNG</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Export'?'active':'disable'">
 				<a tal:attributes="href '/export'"><i class="glyphicons-cart_out" />QL.XUẤT HÀNG</a>
 			</li>

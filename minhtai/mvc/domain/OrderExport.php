@@ -132,7 +132,26 @@ class OrderExport extends Object{
 		$Value = new Number($this->getValue());
 		return $Value->readDigit()." đồng";
 	}
-		
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdCustomer'	=> $this->getIdCustomer(),
+			'IdStore'		=> $this->getIdStore(),
+			'Date'			=> $this->getDate(),
+			'Note'			=> $this->getNote()
+		);
+		return json_encode($json);		
+	}
+	
+	function setArray( $Data ){								
+		$this->Id		= $Data[0];
+		$this->IdCustomer= $Data[1];
+		$this->IdStore	= $Data[2];
+		$this->Date		= $Data[3];
+		$this->Note		= $Data[4];
+    }
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
