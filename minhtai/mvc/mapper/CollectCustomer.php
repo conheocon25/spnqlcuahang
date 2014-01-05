@@ -2,26 +2,26 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
+class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblPaid = "vendaf_mta_paid_customer";
+		$tblCollect = "vendaf_mta_collect_customer";
 		
-		$selectAllStmt = sprintf("select * from %s", $tblPaid);
-		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);
-		$updateStmt = sprintf("update %s set id_customer=?, date=?, value=?, note=? where id=?", $tblPaid);
-		$insertStmt = sprintf("insert into %s (id_customer, date, value, note) values(?,?,?,?)", $tblPaid);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
-		$findByStmt = sprintf("select * from %s WHERE id_customer =? order by date DESC", $tblPaid);						
+		$selectAllStmt = sprintf("select * from %s", $tblCollect);
+		$selectStmt = sprintf("select * from %s where id=?", $tblCollect);
+		$updateStmt = sprintf("update %s set id_customer=?, date=?, value=?, note=? where id=?", $tblCollect);
+		$insertStmt = sprintf("insert into %s (id_customer, date, value, note) values(?,?,?,?)", $tblCollect);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblCollect);
+		$findByStmt = sprintf("select * from %s WHERE id_customer =? order by date DESC", $tblCollect);						
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
 							WHERE id_customer =:id_customer
 							ORDER BY date desc
 							LIMIT :start,:max
-				", $tblPaid);
+				", $tblCollect);
 				
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -33,9 +33,9 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
 	
-    function getCollection( array $raw ) {return new PaidCustomerCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new CollectCustomerCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\PaidCustomer( 
+        $obj = new \MVC\Domain\CollectCustomer( 
 			$array['id'],			
 			$array['id_customer'],
 			$array['date'],
@@ -45,7 +45,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
         return $obj;
     }
 
-    protected function targetClass() {return "PaidCustomer";}
+    protected function targetClass() {return "CollectCustomer";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(						
@@ -79,7 +79,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );
-        return new PaidCustomerCollection( $this->findByStmt->fetchAll(), $this );
+        return new CollectCustomerCollection( $this->findByStmt->fetchAll(), $this );
     }
 					
 	function findByPage( $values ) {		
@@ -87,7 +87,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new PaidCustomerCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CollectCustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>

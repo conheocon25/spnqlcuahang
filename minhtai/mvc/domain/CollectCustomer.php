@@ -2,10 +2,10 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class PaidCustomer extends Object{
+class CollectCustomer extends Object{
 
     private $Id;	
-	private $IdCustomer;
+	private $IdTracking;
 	private $Date;
     private $Value;
 	private $Note;
@@ -34,7 +34,7 @@ class PaidCustomer extends Object{
     function getIdCustomer( ) {return $this->IdCustomer;}
 	function getCustomer( ) {
 		$mCustomer 		= new \MVC\Mapper\Customer();
-		$Customer 		= $mCT->find( $this->getIdCustomer() );
+		$Customer 		= $mCustomer->find( $this->getIdCustomer() );
 		return $Customer;
 	}
 	
@@ -51,7 +51,7 @@ class PaidCustomer extends Object{
 	
 	function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),	
+			'Id' 			=> $this->getId(),			
 			'IdCustomer'	=> $this->getIdCustomer(),
 			'Date'			=> $this->getDate(),
 			'Value'			=> $this->getValue(),			

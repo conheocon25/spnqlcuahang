@@ -17,13 +17,17 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mUnit 			= new \MVC\Mapper\Unit();
+			$mSupplier 		= new \MVC\Mapper\Supplier();
+			$mResource 		= new \MVC\Mapper\Resource();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();
-			$UnitAll = $mUnit->findAll();
+			//-------------------------------------------------------------
+			
+			$SupplierAll 	= $mSupplier->findAll();
+			$UnitAll 		= $mUnit->findAll();
 			
 			$Supplier = $mSupplier->find($IdSupplier);			
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
@@ -32,13 +36,14 @@
 				array("NHÀ CUNG CẤP", "/setting/supplier")
 			);
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");			
-			$ResourceAll1 = $mResource->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Supplier->getResourceAll()->count(), $Config->getValue(), $Supplier->getURLResource() );
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");			
+			$ResourceAll1 	= $mResource->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation( $Supplier->getResourceAll()->count(), $Config->getValue(), $Supplier->getURLResource() );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
+			//-------------------------------------------------------------	
+			
 			$request->setProperty('Title', $Title);
 			$request->setProperty('ActiveAdmin', 'Resource');
 			$request->setProperty('Page', $Page);

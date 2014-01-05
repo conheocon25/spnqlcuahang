@@ -339,6 +339,17 @@ class Customer extends Object{
 		$CLAll 	= $mCL->findBy(array( $this->getId() ));
 		return $CLAll;
 	}
+	function getCollectAll(){
+		$mCC 	= new \MVC\Mapper\CollectCustomer();
+		$CCAll 	= $mCC->findBy(array( $this->getId() ));
+		return $CCAll;
+	}
+	
+	function getPaidAll(){
+		$mCP 	= new \MVC\Mapper\PaidCustomer();
+		$CPAll 	= $mCP->findBy(array( $this->getId() ));
+		return $CPAll;
+	}
 	/*--------------------------------------------------------------------*/
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
@@ -346,7 +357,9 @@ class Customer extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING.CUSTOMER
 	//-------------------------------------------------------------------------------
-		
+	function getURLCollect(){return "/money/collect/customer/".$this->getId();}	
+	function getURLPaid(){return "/money/paid/customer/".$this->getId();}
+	
 	/*--------------------------------------------------------------------*/
 	/*DEFINE SETTING.CUSTOMER											  */
 	/*--------------------------------------------------------------------*/
