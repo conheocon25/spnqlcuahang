@@ -7,9 +7,9 @@ class OrderExportDetailExtra extends Mapper implements \MVC\Domain\OrderExportDe
     function __construct() {
         parent::__construct();
 		
-		$tblResource = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."resource";
-		$tblOrderExportDetail = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_export_detail";
-		$tblOrderExportDetailExtra = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_export_detail_extra";
+		$tblResource = "vendaf_mta_resource";
+		$tblOrderExportDetail = "vendaf_mta_order_export_detail";
+		$tblOrderExportDetailExtra = "vendaf_mta_order_export_detail_extra";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetailExtra);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetailExtra);
@@ -106,36 +106,8 @@ class OrderExportDetailExtra extends Mapper implements \MVC\Domain\OrderExportDe
     }
 	
 	//-------------------------------------------------------
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
-	
-	function create( $prefix ){
-		$tblOrderExportDetailExtra = $prefix."order_export_detail_extra";
-		$tblOrderImport = $prefix."order_import";
-		$tblResource = $prefix."resource";
-		$createStmt = sprintf("
-			CREATE TABLE IF NOT EXISTS %s (
-		", $tblOrderExportDetailExtra, $tblOrderExportDetailExtra, $tblOrderExportDetailExtra, 
-			$tblOrderExportDetailExtra."_1", $tblOrderImport,
-			$tblOrderExportDetailExtra."_2", $tblResource
-		);
-		$this->createStmt = self::$PDO->prepare($createStmt);
-        $this->createStmt->execute( null );
-		$this->createStmt->closeCursor();
-    }
-	
-	function drop( $prefix ){
-		$tblOID = $prefix."order_export_detail_extra";
-		$dropStmt = sprintf("DROP TABLE %s", $tblOID);
-		$this->dropStmt = self::$PDO->prepare($dropStmt);
-        $this->dropStmt->execute( null );
-		$this->dropStmt->closeCursor();
-    }
-	
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
+			
 }
 ?>

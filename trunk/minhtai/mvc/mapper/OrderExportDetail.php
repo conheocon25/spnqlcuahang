@@ -7,8 +7,8 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."resource";
-		$tblOrderExportDetail = $tblCategory = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_export_detail";
+		$tblResource 			= "vendaf_mta_resource";
+		$tblOrderExportDetail 	= "vendaf_mta_order_export_detail";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetail);
@@ -27,9 +27,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new OrderExportDetailCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new OrderExportDetailCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\OrderExportDetail( 
@@ -42,10 +40,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "OrderExportDetail";
-    }
-
+    protected function targetClass() {return "OrderExportDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdOrder(), 
@@ -91,33 +86,8 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
         return new OrderExportDetailCollection( $this->findByStmt->fetchAll(), $this );
     }
 	//-------------------------------------------------------
-    function selectStmt() {
-        return $this->selectStmt;
-    }
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
-	function create( $prefix ){
-		$tblOrderExportDetail = $prefix."order_export_detail";
-		$tblOrderImport = $prefix."order_import";
-		$tblResource = $prefix."resource";
-		$createStmt = sprintf("
-			CREATE TABLE IF NOT EXISTS %s (
-		", $tblOrderExportDetail, $tblOrderExportDetail, $tblOrderExportDetail, 
-			$tblOrderExportDetail."_1", $tblOrderImport,
-			$tblOrderExportDetail."_2", $tblResource
-		);
-		$this->createStmt = self::$PDO->prepare($createStmt);
-        $this->createStmt->execute( null );
-		$this->createStmt->closeCursor();
-    }
-	function drop( $prefix ){
-		$tblOID = $prefix."order_export_detail";
-		$dropStmt = sprintf("DROP TABLE %s", $tblOID);
-		$this->dropStmt = self::$PDO->prepare($dropStmt);
-        $this->dropStmt->execute( null );
-		$this->dropStmt->closeCursor();
-    }
 }
 ?>

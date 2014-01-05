@@ -142,32 +142,8 @@ class Customer extends Object{
 	}
 	
 	//Tính theo từng đơn hàng
-	function getOldDebt1(){
-		$Session = \MVC\Base\SessionRegistry::instance();
-		$Date = $Session->getOrderExportDate();
-							
-		$mOrder = new \MVC\Mapper\OrderExport();
-		$mPaid = new \MVC\Mapper\PaidCustomer();
-		
-		$NDate = new \MVC\Library\Date();
-		$arr = $NDate->rangeOldDebt($Date);
-				
-		//(1) Nhập hàng trước đó
-		$Orders = $mOrder->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
-		$SOrders = 0;
-		while($Orders->valid()){
-			$SOrders += $Orders->current()->getValue();
-			$Orders->next();
-		}
-				
-		//(2) Trả tiền
-		$Paids = $mPaid->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
-		$SPaids = 0;
-		while($Paids->valid()){
-			$SPaids += $Paids->current()->getValue();
-			$Paids->next();
-		}
-		return $this->getDebt() + $SOrders - $SPaids;
+	function getOldDebt1(){		
+		return 0;
 	}
 	function getOldDebt1Print(){
 		$Value = $this->getOldDebt1();
@@ -234,25 +210,11 @@ class Customer extends Object{
 	}
 	
 	//Tính sau đơn hàng gần cuối
-	function getPaidsTracking1(){
-		if (!isset($this->PaidsTracking1)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$Date = $Session->getOrderExportDate();
-			
-			$mPaid = new \MVC\Mapper\PaidCustomer();
-			$this->PaidsTracking1 = $mPaid->findByTracking1( array($this->getId(), $Date, $Date) );
-		}
-		return $this->PaidsTracking1;
+	function getPaidsTracking1(){		
+		return null;
 	}
-	function getPaidsTrackingValue1(){
-		$Paids = $this->getPaidsTracking1();
-		$Sum = 0;
-		$Paids->rewind();
-		while ($Paids->valid()){
-			$Sum += $Paids->current()->getValue();
-			$Paids->next();
-		}
-		return $Sum;
+	function getPaidsTrackingValue1(){		
+		return 0;
 	}
 	function getPaidsTrackingValue1Print(){
 		$Value = $this->getPaidsTrackingValue1();
@@ -262,7 +224,7 @@ class Customer extends Object{
 	
 				
 	//Lấy về danh sách các đơn hàng
-	function getOrders(){
+	function getOrderAll(){
 		$mOrder = new \MVC\Mapper\OrderExport();
 		$Orders = $mOrder->findBy(array($this->getId()));		
 		return $Orders;
@@ -308,25 +270,12 @@ class Customer extends Object{
 	}
 	
 	//Lấy đơn hàng cuối
-	function getOrdersTracking1(){		
-		$Session = \MVC\Base\SessionRegistry::instance();
-		$Date = $Session->getOrderExportDate();
-		
-		$mOrder = new \MVC\Mapper\OrderExport();
-		$Orders = $mOrder->findByTracking1( array($this->getId(), $Date, $Date) );
-		
-		return $Orders;
+	function getOrdersTracking1(){						
+		return null;
 	}
 	
-	function getOrdersTrackingValue1(){
-		$Orders = $this->getOrdersTracking1();
-		$Sum = 0;
-		$Orders->rewind();
-		while ($Orders->valid()){
-			$Sum += $Orders->current()->getValue();
-			$Orders->next();
-		}
-		return $Sum;
+	function getOrdersTrackingValue1(){		
+		return 0;
 	}
 	function getOrdersTrackingValue1Print(){
 		$Value = $this->getOrdersTrackingValue1();
@@ -359,6 +308,7 @@ class Customer extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLCollect(){return "/money/collect/customer/".$this->getId();}	
 	function getURLPaid(){return "/money/paid/customer/".$this->getId();}
+	function getURLExport(){return "/export/".$this->getId();}
 	
 	/*--------------------------------------------------------------------*/
 	/*DEFINE SETTING.CUSTOMER											  */

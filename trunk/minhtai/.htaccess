@@ -26,26 +26,16 @@ RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/upd/exe$				?cmd=Sellin
 RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/del/load$				?cmd=SellingCustomerDelLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
 RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/del/exe$				?cmd=SellingCustomerDelExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
 
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)$									?cmd=SellingCustomerOrder&IdApp=$1&IdCustomer=$2 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/page/([a-z0-9]+)$					?cmd=SellingCustomerOrderDetail&IdApp=$1&IdCustomer=$2&Page=$3 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/page/([a-z0-9]+)/([a-z0-9]+)$		?cmd=SellingCustomerOrderDetail&IdApp=$1&IdCustomer=$2&Page=$3&IdOrderExport=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/print$					?cmd=SellingCustomerOrderPrint&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/ins/load$				?cmd=SellingCustomerOrderInsLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/ins/exe$				?cmd=SellingCustomerOrderInsExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/load$	?cmd=SellingCustomerOrderUpdLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/exe$	?cmd=SellingCustomerOrderUpdExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/load$	?cmd=SellingCustomerOrderDelLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/exe$	?cmd=SellingCustomerOrderDelExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/ext/upd/load$	?cmd=SellingCustomerOrderExtUpdLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/ext/upd/exe$	?cmd=SellingCustomerOrderExtUpdExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/call/load$ 					?cmd=SellingCustomerOrderCallLoad&IdApp=$1&IdCustomer=$2&IdOrderExport=$3 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/call/exe/([a-z0-9]+)$			?cmd=SellingCustomerOrderCallExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/call/exe/([a-z0-9]+)/plus$		?cmd=SellingCustomerOrderCallExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4&Delta=1 [L]
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/([a-z0-9]+)/call/exe/([a-z0-9]+)/minus$	?cmd=SellingCustomerOrderCallExe&IdApp=$1&IdCustomer=$2&IdOrderExport=$3&IdResource=$4&Delta=-1 [L]
-
-RewriteRule ^([a-z0-9]+)/selling/([a-z0-9]+)/print/order/all$					?cmd=SellingCustomerOrderAllPrint&IdApp=$1&IdCustomer=$2 [L]
+#---------------------------------------------------------------------------------------------------------------------------
+# EXPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^export$ 								?cmd=Export [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
+RewriteRule ^export/([0-9]+)/page/([0-9]+)$ 		?cmd=ExportCustomer&IdCustomer=$1&Page=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)$				?cmd=ExportCustomerOrder&IdCustomer=$1&IdOrder=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)/print$		?cmd=ExportCustomerOrderPrint&IdCustomer=$1&IdOrder=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ExportCustomerOrderExe&IdCustomer=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
@@ -76,19 +66,6 @@ RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack
 RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/log/([0-9_-]+)$ 						?cmd=ReportDailyLog&Date=$1 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# REPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^([a-z0-9]+)/report$ 												?cmd=Report&IdApp=$1 [L]
-RewriteRule ^([a-z0-9]+)/report/selling/([a-z0-9]+)								?cmd=ReportSellingDetail&IdApp=$1&TypeReport=$2 [L]
-RewriteRule ^([a-z0-9]+)/report/selling/employee/([a-z0-9]+)$ 					?cmd=ReportSellingEmployee&IdApp=$1 [L]
-RewriteRule ^([a-z0-9]+)/report/supplier/([a-z0-9]+)							?cmd=ReportSupplierDetail&IdApp=$1&TypeReport=$2 [L]
-RewriteRule ^([a-z0-9]+)/report/employee/([a-z0-9]+)$ 							?cmd=ReportEmployeeDetail&IdApp=$1&TypeReport=$2 [L]
-RewriteRule ^([a-z0-9]+)/report/other/([a-z0-9]+)$ 								?cmd=ReportOtherDetail&IdApp=$1&TypeReport=$2 [L]
-RewriteRule ^([a-z0-9]+)/report/store$ 											?cmd=ReportStoreDetail&IdApp=$1 [L]
-RewriteRule ^([a-z0-9]+)/report/store/([a-z0-9]+)$ 								?cmd=ReportStoreResourceDetail&IdApp=$1&IdStore=$2 [L]
-RewriteRule ^([a-z0-9]+)/report/store/([a-z0-9]+)/print$						?cmd=ReportStoreDetailPrint&IdApp=$1&IdStore=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY

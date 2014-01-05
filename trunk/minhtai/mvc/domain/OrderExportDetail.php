@@ -60,13 +60,8 @@ class OrderExportDetail extends Object{
         return $this->Resource;
     }
 		
-	function getCount( ) {
-        return $this->Count;
-    }
-    function setCount( $Count ) {
-        $this->Count = $Count;
-        $this->markDirty();
-    }
+	function getCount( ) {return $this->Count;}
+    function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}
 	function getCountPrint( ) {
 		if (!isset($this->Count)){
 			return 0;
@@ -74,25 +69,12 @@ class OrderExportDetail extends Object{
         return $this->Count;
     }
 
-	function getPrice( ) {
-        return $this->Price;
-    }
-	function setPrice( $Price ) {
-        $this->Price = $Price;
-        $this->markDirty();
-    }
-	function getPricePrint( ) {
-		$N = new \MVC\Library\Number($this->Price);
-        return $N->formatCurrency()." đ";
-    }
+	function getPrice( ) {return $this->Price;}
+	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
+	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency()." đ";}
 
-	function getValue( ) {
-        return $this->Count*$this->Price;
-    }
-	function getValuePrint( ) {
-		$N = new \MVC\Library\Number($this->getValue());
-        return $N->formatCurrency()." đ";
-    }
+	function getValue( ) {return $this->Count*$this->Price;}
+	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
 	
 	function getExtra(){
 		$mOEDE = new \MVC\Mapper\OrderExportDetailExtra();
@@ -106,35 +88,9 @@ class OrderExportDetail extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){
-		$Order = $this->getOrder();
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/upd/load";
-	}
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/upd/exe";
-	}
 	
-	function getURLDelLoad(){
-		$Order = $this->getOrder();
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/del/load";
-	}
-	function getURLDelExe(){
-		$Order = $this->getOrder();
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/del/exe";
-	}
 	//---------------------------------------------------------
-    static function findAll() {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->findAll();
-    }
-    static function find( $Id ) {
-        $finder = self::getFinder( __CLASS__ );
-        return $finder->find( $Id );
-    }
-	
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ );return $finder->find( $Id );}	
 }
 ?>
