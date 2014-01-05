@@ -65,8 +65,10 @@
 					<h3>CÁC ĐƠN HÀNG</h3>
 						<div align="center" data-role="header" data-theme="d" >
 							<div data-role="navbar" data-theme="f" >
+								<b><a data-theme="b" data-ajax="false" target="blank" tal:attributes="href Customer/getURLPrintOrderAll">All</a></b>
+								
 								<b tal:repeat="Page Pages/getPages">								
-									<a tal:attributes="data-theme php:Page->getId()==CurrentPage?'a':'f';href Page/getURL;" tal:content="Page/getName"/>								
+									<a tal:attributes="data-theme php:Page->getId()==CurrentPage?'a':'f';href Page/getURL;" tal:content="Page/getName"/>
 								</b>
 							</div>					
 						</div>					

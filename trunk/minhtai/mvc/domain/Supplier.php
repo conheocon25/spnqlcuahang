@@ -4,80 +4,69 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Supplier extends Object{
 
-    private $id;
-	private $name;
-	private $phone;
-    private $address;
-	private $note;
-	private $debt;
-	
-	private $paids;
-	private $OrderTrackings;
-	private $PaidTrackings;
-			
+    private $Id;
+	private $Name;
+	private $Phone;
+    private $Address;
+	private $Note;
+	private $Debt;
+					
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$id=null, 
-		$name=null, 
-		$phone=null, 
-		$address=null, 
-		$note=null,
-		$debt=null
+		$Id=null, 
+		$Name=null, 
+		$Phone=null, 
+		$Address=null, 
+		$Note=null,
+		$Debt=null
 	){
-        $this->id = $id;
-		$this->name = $name;
-		$this->phone = $phone;
-		$this->address = $address;
-		$this->note = $note;
-		$this->debt = $debt;
+        $this->Id = $Id;
+		$this->Name = $Name;
+		$this->Phone = $Phone;
+		$this->Address = $Address;
+		$this->Note = $Note;
+		$this->Debt = $Debt;
 		
-        parent::__construct( $id );
+        parent::__construct( $Id );
     }
-    function getId( ) {
-        return $this->id;
-    }	
-	function getIdPrint( ) {
-        return "s".$this->id;
-    }	
+    function getId( ) {return $this->Id;}	
+		
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
+    function getName( ) {return $this->Name;}
 	
-    function setName( $name ) {
-        $this->name = $name;
-        $this->markDirty();
-    }
-    function getName( ) {
-        return $this->name;
-    }
-	function getPhone( ) {
-        return $this->phone;
-    }
-    function setPhone( $phone ) {
-        $this->phone = $phone;
-        $this->markDirty();
-    }
-	function setAddress( $address ) {
-        $this->address = $address;
-        $this->markDirty();
-    }
-    function getAddress( ) {
-        return $this->address;
-    }
+	function getPhone( ) {return $this->Phone;}
+    function setPhone( $Phone ) {$this->Phone = $Phone;$this->markDirty();}
 	
-	function setNote( $Note ) {
-        $this->note = $Note;
-        $this->markDirty();
-    }
-	function getNote( ) {
-        return $this->note;
-    }
+	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
+    function getAddress( ) {return $this->Address;}
 	
-	function setDebt( $Debt ) {
-        $this->debt = $Debt;
-        $this->markDirty();
-    }
-	function getDebt( ){
-        return $this->debt;
+	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
+	function getNote( ) {return $this->Note;}
+	
+	function setDebt( $Debt ) {$this->Debt = $Debt;$this->markDirty();}
+	function getDebt( ){return $this->Debt;}
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'Name'			=> $this->getName(),
+			'Phone'			=> $this->getPhone(),
+			'Address'		=> $this->getAddress(),
+			'Note'			=> $this->getNote(),
+			'Debt'			=> $this->getDebt()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){
+        $this->Id 		= $Data[0];
+		$this->Name 	= $Data[1];
+		$this->Phone 	= $Data[2];
+		$this->Address 	= $Data[3];
+		$this->Note 	= $Data[4];
+		$this->Debt 	= $Data[5];
     }
 	
 	//--------------------------------------------------------	
@@ -88,7 +77,7 @@ class Supplier extends Object{
 		$DateStart = $Session->getReportSupplierDateStart();
 							
 		$mOrder = new \MVC\Mapper\OrderImport();
-		$mSPaid = new \MVC\Mapper\PaidSupplier();
+		$mSPaId = new \MVC\Mapper\PaIdSupplier();
 		
 		$NDate = new \MVC\Library\Date();
 		$arr = $NDate->rangeOldDebt($DateStart);
@@ -96,20 +85,20 @@ class Supplier extends Object{
 		//(1) Nhập hàng trước đó
 		$Orders = $mOrder->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
 		$SOrders = 0;
-		while($Orders->valid()){
+		while($Orders->valId()){
 			$SOrders += $Orders->current()->getValue();
 			$Orders->next();
 		}
 				
 		//(2) Trả tiền
-		$Paids = $mSPaid->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
-		$SPaids = 0;
-		while($Paids->valid()){
-			$SPaids += $Paids->current()->getValue();
-			$Paids->next();
+		$PaIds = $mSPaId->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
+		$SPaIds = 0;
+		while($PaIds->valId()){
+			$SPaIds += $PaIds->current()->getValue();
+			$PaIds->next();
 		}
 				
-		return $this->getDebt() + $SOrders - $SPaids;
+		return $this->getDebt() + $SOrders - $SPaIds;
 	}
 	function getOldDebtPrint(){
 		$Value = $this->getOldDebt();
@@ -117,7 +106,7 @@ class Supplier extends Object{
 		return $N->formatCurrency()." đ";
 	}
 	function getNewDebt( ){
-		$Value = $this->getOldDebt() + $this->getOrdersTrackingValue() - $this->getPaidsTrackingValue(); 
+		$Value = $this->getOldDebt() + $this->getOrdersTrackingValue() - $this->getPaIdsTrackingValue(); 
 		return $Value;
 	}
 	function getNewDebtPrint(){
@@ -129,43 +118,42 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	
 	//Lấy về danh sách trả tiền
-	function getPaidsTop10(){		
-		$mSP = new \MVC\Mapper\PaidSupplier();
-		$paids = $mSP->findByTop10(array($this->getId()));
-		return $paids;
+	function getPaIdsTop10(){		
+		$mSP = new \MVC\Mapper\PaIdSupplier();
+		$paIds = $mSP->findByTop10(array($this->getId()));
+		return $paIds;
 	}
-	function getPaids(){
-		if (!isset($this->paids)){
-			$mSP = new \MVC\Mapper\PaidSupplier();
-			$this->paids = $mSP->findBy(array($this->getId()));
+	function getPaIds(){
+		if (!isset($this->paIds)){
+			$mSP = new \MVC\Mapper\PaIdSupplier();
+			$this->paIds = $mSP->findBy(array($this->getId()));
 		}
-		return $this->paids;
+		return $this->paIds;
 	}
-	function getPaidsTracking(){
-		if (!isset($this->PaidsTracking)){
+	function getPaIdsTracking(){
+		if (!isset($this->PaIdsTracking)){
 			$Session = \MVC\Base\SessionRegistry::instance();
 			$DateStart = $Session->getReportSupplierDateStart();
 			$DateEnd = $Session->getReportSupplierDateEnd();
 
-			$mPaid = new \MVC\Mapper\PaidSupplier();
-			$this->PaidsTracking = $mPaid->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
+			$mPaId = new \MVC\Mapper\PaIdSupplier();
+			$this->PaIdsTracking = $mPaId->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
 		}
-		return $this->PaidsTracking;
+		return $this->PaIdsTracking;
 	}
-	function getPaidsTrackingValue(){
-		$Paids = $this->getPaidsTracking();
+	function getPaIdsTrackingValue(){
+		$PaIds = $this->getPaIdsTracking();
 		$Sum = 0;
-		$Paids->rewind();
-		while ($Paids->valid()){
-			$Sum += $Paids->current()->getValue();
-			$Paids->next();
+		$PaIds->rewind();
+		while ($PaIds->valId()){
+			$Sum += $PaIds->current()->getValue();
+			$PaIds->next();
 		}
 		return $Sum;
 	}
-	function getPaidsTrackingValuePrint(){
-		$Value = $this->getPaidsTrackingValue();
+	function getPaIdsTrackingValuePrint(){
+		$Value = $this->getPaIdsTrackingValue();
 		$N = new \MVC\Library\Number($Value);
 		return $N->formatCurrency()." đ";
 	}
@@ -199,7 +187,7 @@ class Supplier extends Object{
 		$Orders = $this->getOrdersTracking();
 		$Sum = 0;
 		$Orders->rewind();
-		while ($Orders->valid()){
+		while ($Orders->valId()){
 			$Sum += $Orders->current()->getValue();
 			$Orders->next();
 		}
@@ -212,111 +200,18 @@ class Supplier extends Object{
 	}
 	
 	//Lấy về danh sách các tài nguyên nhà cung cấp có
-	function getResources() {
+	function getResourceAll() {
 		$mResource = new \MVC\Mapper\Resource();
 		$Resources = $mResource->findBySupplier(array($this->getId()));
 		return $Resources;
-	}	
-	function getStoreInits(){
-		$Session = \MVC\Base\SessionRegistry::instance();
-		$IdStore = $Session->getCurrentStore();
-		$IdSupplier = $this->getId();
-		
-		$mSD = new \MVC\Mapper\StoreDetail();
-		$SDs = $mSD->findBySupplier(array($IdStore, $IdSupplier, $IdStore));
-		
-		return $SDs;
-	}
-	
+	}			
 	//-------------------------------------------------------------------------------
-	//DEFINE IMPORT.SUPPLIER
+	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLCall(){		
-		return "#".$this->getIdPrint();
-	}
+	function getURLResource(){return "/setting/supplier/".$this->getId();}
 	
-	function getURLImport(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/import#".$this->getIdPrint();
-	}
-	
-	function getURLImportPage(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/import/".$this->getId();
-	}
-	
-	function getURLImportInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/import/".$this->getId()."/ins/load";
-	}
-	
-	function getURLImportInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/import/".$this->getId()."/ins/exe";
-	}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL SETTING.SUPPLIER
-	//-------------------------------------------------------------------------------	
-	function getURL(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/resource#".$this->getId();
-	}
-	
-	
-	
-	function getURLUpdLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/upd/load";						
-	}
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/upd/exe";			
-	}
-	
-	function getURLDelLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/del/load";						
-	}
-	function getURLDelExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/del/exe";
-	}
-	
-	function getURLResource(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier#".$this->getIdPrint();
-	}
-	
-	function getURLResourceInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/ins/load";
-	}
-	function getURLResourceInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/supplier/".$this->getId()."/ins/exe";
-	}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.SUPPLIER
-	//-------------------------------------------------------------------------------	
-	function getURLPaid(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/supplier#".$this->getIdPrint();
-	}
-	function getURLPaidInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/supplier/".$this->getId()."/ins/load";
-	}
-	function getURLPaidInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/supplier/".$this->getId()."/ins/exe";
-	}
-							
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
-	
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 }
-
 ?>

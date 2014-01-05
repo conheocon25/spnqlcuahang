@@ -9,8 +9,7 @@
 	<div tal:attributes="id Customer/getIdPrint" data-role="page" class="type-interior" tal:repeat="Customer Customers">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1 tal:content="Title" />
-			<a tal:condition="php:IdFillter==1?true:false" tal:attributes="href User/getApp/getURLReportSelling1" data-icon="back" data-ajax="false">LUI</a>
-			<a tal:condition="php:IdFillter==2?true:false" tal:attributes="href User/getApp/getURLReportSelling2" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLReportSelling" data-icon="back" data-ajax="false">LUI</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
 		<div data-role="content">
@@ -75,8 +74,7 @@
 	<div id="general" data-role="page" class="type-interior">
 		<div data-role="header" data-position="fixed" data-theme="f">
 			<h1 tal:content="Title" />
-			<a tal:condition="php:IdFillter==1?true:false" tal:attributes="href User/getApp/getURLReportSelling1" data-icon="back" data-ajax="false">LUI</a>
-			<a tal:condition="php:IdFillter==2?true:false" tal:attributes="href User/getApp/getURLReportSelling2" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLReportSelling" data-icon="back" data-ajax="false">LUI</a>
 			<a href="/signout/load" data-icon="delete" data-transition="fade">THOÁT</a>
 		</div>
 		<div data-role="content">

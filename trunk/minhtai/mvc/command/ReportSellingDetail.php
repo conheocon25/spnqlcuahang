@@ -14,7 +14,7 @@
 			$TypeReport = $request->getProperty('TypeReport');			
 			$DateStart = $request->getProperty("DateStart_Selling");
 			$DateEnd = $request->getProperty("DateEnd_Selling");
-			$IdFillter = $request->getProperty('IdFillter');	
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -41,7 +41,7 @@
 			$Session->setReportSellingDateEnd($arrType[$TypeReport][1]);
 			
 			$Customers = $mCustomer->findAll();
-			$Customers1 = $mCustomer->findByType(array($IdFillter));
+			$Customers1 = $mCustomer->findAll();
 
 			$Sum = 0;
 			while($Customers->valid()){
@@ -66,7 +66,6 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------				
 			$request->setProperty('Title', $Title);
-			$request->setProperty('IdFillter', $IdFillter);
 			$request->setProperty("Sum", $NSum->formatCurrency()." đ" );
 			$request->setProperty("SumStr", $NSum->readDigit()." đồng");
 									

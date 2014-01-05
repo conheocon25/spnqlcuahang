@@ -15,7 +15,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		$updateStmt = sprintf("update %s set id_customer=?, id_store=?, date=?, note=? where id=?", $tblOrderExport);
 		$insertStmt = sprintf("insert into %s ( id_customer, id_store, date, note) values( ?, ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
-		$findByStmt = sprintf("select * from %s where id_customer=? order by date DESC", $tblOrderExport);
+		$findByStmt = sprintf("select * from %s where id_customer=? order by date", $tblOrderExport);
 		$findByTop10Stmt = sprintf("
 			select * from %s where id_customer=? order by date DESC limit 30
 		", $tblOrderExport);

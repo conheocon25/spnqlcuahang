@@ -1,9 +1,8 @@
 <?php
 namespace MVC\Domain;
 
-interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
-interface UserAppCollection extends \Iterator {function add( Object $user_app );}
+interface ConfigCollection extends \Iterator {function add( Object $Config );}
 
 interface CategoryCollection extends \Iterator {function add( Object $category );	}
 interface SupplierCollection extends \Iterator {function add( Object $supplier );	}
@@ -20,12 +19,18 @@ interface OrderExportDetailExtraCollection extends \Iterator {function add( Obje
 
 interface OrderImportCollection extends \Iterator {function add( Object $OrderImport );	}
 interface OrderImportDetailCollection extends \Iterator {function add( Object $OrderImportDetail );	}
+
 interface CustomerCollection extends \Iterator {function add( Object $Customer );}
+interface CustomerLogCollection extends \Iterator {function add( Object $CustomerLog );}
 
 interface EmployeeCollection extends \Iterator {function add( Object $Employee );}
 
 interface UnitCollection extends \Iterator {function add( Object $Unit );}
+
 interface TermCollection extends \Iterator {function add( Object $Term );}
+interface TermPaidCollection extends \Iterator {function add( Object $TermPaid );}
+interface TermCollectCollection extends \Iterator {function add( Object $TermCollect );}
+
 interface StoreCollection extends \Iterator {function add( Object $Store);}
 interface PageCollection extends \Iterator {function add( Object $Page);}
 interface StoreDetailCollection extends \Iterator {function add( Object $StoreDetail);}

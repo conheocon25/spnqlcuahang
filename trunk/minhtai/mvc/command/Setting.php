@@ -14,39 +14,23 @@
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mCustomer = new \MVC\Mapper\Customer();
-			$mStore = new \MVC\Mapper\Store();
-			$mEmployee = new \MVC\Mapper\Employee();
-			$mCategory = new \MVC\Mapper\Category();
-			$mUnit = new \MVC\Mapper\Unit();
-			$mTerm = new \MVC\Mapper\Term();
-					
+			//-------------------------------------------------------------
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Title = "MODULE THIẾT LẬP";
-			$Suppliers = $mSupplier->findAll();
-			$Customers = $mCustomer->findAll();
-			$Stores = $mStore->findAll();
-			$Employees = $mEmployee->findAll();
-			$Categories = $mCategory->findAll();
-			$Units = $mUnit->findAll();
-			$Terms = $mTerm->findAll();
-			
+			$Title = "THIẾT LẬP";			
+			$Navigation = array(
+				
+			);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setObject('Suppliers', $Suppliers);
-			$request->setObject('Customers', $Customers);
-			$request->setObject('Stores', $Stores);
-			$request->setObject('Employees', $Employees);
-			$request->setObject('Categories', $Categories);
-			$request->setObject('Units', $Units);
-			$request->setObject('Terms', $Terms);
-			
+			$request->setProperty('Title'		, $Title);			
+			$request->setProperty('ActiveAdmin'	, 'Setting');
+			$request->setObject('Navigation'	, $Navigation);
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

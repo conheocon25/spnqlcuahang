@@ -14,7 +14,7 @@
 			<a tal:attributes="href User/getApp/getURLSettingCustomer" data-ajax="false" data-icon="gear" data-transition="none">THIẾT LẬP</a>
 		</div>
 		<div data-role="content">
-			<div class="content-primary">				
+			<div class="content-primary">
 				<ul data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true">
 					<li>
 						<a data-ajax="false" tal:attributes="href OE/getURLUpdLoad">
@@ -62,8 +62,9 @@
 			</div><!--/content-primary -->
 			<div class="content-secondary">
 				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
-					<h3>CÁC ĐƠN HÀNG</h3>
-					<div>						
+					<h3>CÁC ĐƠN HÀNG1</h3>
+					<div>
+						<span><a data-theme="b" data-ajax="false" target="blank" tal:attributes="href Customer/getURLPrintOrderAll">All</a></span>
 						<span tal:repeat="P Pages/getPages">
 							<a data-theme="b" data-ajax="false" tal:attributes="href P/getURL;class php:Page==P->getId()?'curent':'?'" tal:content="P/getName" />
 						</span>

@@ -1,0 +1,58 @@
+<style type="text/css">
+	.hor-minimalist-a{	background: #fff;margin: 45px;border-collapse: collapse;text-align: left;}
+	.hor-minimalist-a th{ font-weight: normal; border: 1px solid #000; }
+	.hor-minimalist-a td{ padding: 8px; border-right: 1px solid #000; border-left: 1px solid #000; }
+</style>
+
+<font size="10">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>
+			<td width="33%" align="center">ĐẠI LÝ THỨC ĂN GIA SÚC MINH TÀI</td>
+			<td width="67%" rowspan="2" align="center">
+				<font size="24"><b>THỐNG KÊ BÁN HÀNG</b></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="33%" align="center">170/10 Phạm Hùng - P9 - TPVL</td>			
+		</tr>
+		<tr>
+			<td width="33%" align="center">ĐT: 070.3824169 Fax: 3822748</td>
+			<td width="32%" align="right"><font size="12">KHÁCH HÀNG:</font></td>
+			<td width="35%" align="left"><font size="12"><span tal:content="Customer/getPrefix"/> <span tal:content="Customer/getName"/></font></td>
+		</tr>
+		<tr>			
+			<td width="33%" align="center">DĐ:(0932) 92 62 44</td>
+			<td width="67%" colspan="2" align="center"><font size="12">ĐC:<span tal:content="Customer/getAddress"/> - ĐT: <span tal:content="Customer/getPhone"/></font></td>
+		</tr>
+	</table>
+</font>
+<h5 />
+<font size="12pt">
+	<table width="100%" cellpadding="2" cellspacing="0" border="1">
+		<thead>
+			<tr>
+				<th width="5%" align='center'><B>STT</B></th>
+				<th width="15%" align='left'><B>NGÀY</B></th>
+				<th width="20%" align='left'><B>DIỄN GIẢI</B></th>
+				<th width="20%" align='right'><B>GIÁ TRỊ</B></th>				
+				<th width="20%" align='right'><B>TRẢ TIỀN</B></th>
+				<th width="20%" align='right'><B>NỢ MỚI</B></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>				
+				<td width="80%" align='right'>DƯ NỢ TRƯỚC</td>
+				<td width="20%" align='right'><span tal:content="Customer/getDebtPrint"/></td>
+			</tr>
+			<tr tal:repeat="CL Customer/getLogAll">
+				<td width="5%" align='center' tal:content="repeat/CL/number" />
+				<td width="15%" align='left' tal:content="CL/getOrder/getDatePrint" />
+				<td width="20%" align='left' tal:content="CL/getOrder/getNote" />
+				<td width="20%" align='right' tal:content="CL/getOrder/getValuePrint" />
+				<td width="20%" align='right' tal:content="CL/getPaidValuePrint" />
+				<td width="20%" align='right' tal:content="CL/getValuePrint" />
+			</tr>
+		</tbody>
+	</table>	
+	<BR/>
+</font>

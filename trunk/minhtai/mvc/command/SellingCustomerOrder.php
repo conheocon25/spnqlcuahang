@@ -6,11 +6,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
-			$Session = \MVC\Base\SessionRegistry::instance();			
+			$Session = \MVC\Base\SessionRegistry::instance();
+			
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdFillter = $request->getProperty("IdFillter");
 			$IdCustomer = $request->getProperty("IdCustomer");
 			$PageCurrent = $request->getProperty('Page');
 			

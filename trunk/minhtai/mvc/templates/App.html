@@ -1,37 +1,32 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>
-	<div data-role="page" class="type-interior">
-		<div data-role="header" data-position="fixed" data-theme="f">
-			<h1 tal:content="Title" />			
-			<a href="/signout/load" data-icon="delete">THOÁT</a>
-		</div>
-		<div data-role="content">
-			<div class="content-primary">				
-				<div data-role="collapsible" data-inset="true" data-collapsed="false" data-theme="b" data-content-theme="d">
-					<h3>CÁC MODULE</h3>
-					<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d">
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSelling1">BÁN HÀNG - THUỐC</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSelling2">BÁN HÀNG - THỨC ĂN</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLImport">NHẬP HÀNG</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLPaid">CHI TRẢ</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReport1">BÁO CÁO - ĐƠN HÀNG THUỐC</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLReport2">BÁO CÁO - ĐƠN HÀNG THỨC ĂN</a></li>
-						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSetting">THIẾT LẬP</a></li>
-					</ul>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="container-fluid">				
+				<div class="row">
+					<div class="col-12">
+						
+					</div>
 				</div>
-			</div><!--/content-primary -->
-			<div class="content-secondary">
-				
 			</div>
-		</div><!-- /content -->
-		<div data-role="footer" class="footer-docs" data-theme="c">
-			<p>&copy; 2012 SPN Co, Ltd.</p>
 		</div>
-	</div><!-- /page -->
-</body>
+
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.dashboard.js"></script>
+	</body>
 </html>
