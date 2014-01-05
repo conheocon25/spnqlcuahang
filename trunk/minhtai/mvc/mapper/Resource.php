@@ -26,7 +26,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 		$countExportStmt = sprintf("SELECT sum(ODD.count)  as count 
 					FROM vendaf_mta_order_export as OD, vendaf_mta_order_export_detail as ODD  
 					WHERE OD.id = ODD.id_order and OD.id_store=? and ODD.id_resource=?");
-					
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name", $tblResource);			
 						
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -35,6 +35,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->findByNameStmt 	= self::$PDO->prepare($findByNameStmt);
 		$this->countImportStmt 	= self::$PDO->prepare($countImportStmt);
 		$this->countExportStmt 	= self::$PDO->prepare($countExportStmt);		
 		
@@ -98,7 +99,13 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
-        return new SupplierCollection( $this->findBySupplierStmt->fetchAll(), $this );
+        return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
+    }
+	
+	function findByName( $values ) {		
+		$this->findByNameStmt->bindValue(':name', $values[0]."%", \PDO::PARAM_STR);
+		$this->findByNameStmt->execute();
+        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
     }
 			
 	function countImport( $values ) {	

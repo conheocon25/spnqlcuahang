@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ImportSupplierOrderExe extends Command{
+	class ExportCustomerOrderExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,49 +11,48 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty("IdSupplier");
-			$IdOrder = $request->getProperty("IdOrder");
-			$IdResource = $request->getProperty("IdResource");
-			$Count = $request->getProperty("Count");
-			$Price = $request->getProperty("Price");
+			$IdCustomer 	= $request->getProperty("IdCustomer");
+			$IdOrder 		= $request->getProperty("IdOrder");
+			$IdResource 	= $request->getProperty("IdResource");
+			$Count 			= $request->getProperty("Count");
+			$Price 			= $request->getProperty("Price");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-						
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mOI = new \MVC\Mapper\OrderImport();
-			$mOID = new \MVC\Mapper\OrderImportDetail();
-			$mResource = new \MVC\Mapper\Resource();
-						
+			//-------------------------------------------------------------						
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mResource 	= new \MVC\Mapper\Resource();
+			$mOE 		= new \MVC\Mapper\OrderExport();
+			$mOED 		= new \MVC\Mapper\OrderExportDetail();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Supplier = $mSupplier->find($IdSupplier);
-			$OI = $mOI->find($IdOrder);
-			$Resource = $mResource->find($IdResource);
+			$Customer 	= $mCustomer->find($IdCustomer);
+			$OE 		= $mOE->find($IdOrder);
+			$Resource 	= $mResource->find($IdResource);
 			
 			//Kiểm tra xem record có tồn tại chưa
-			$IdOID = $mOID->exist(array($IdOrder, $IdResource));
+			$IdOED = $mOED->exist(array($IdOrder, $IdResource));
 			
-			if ($IdOID>0){
+			if ($IdOED>0){
 				if ($Count==0){
-					$mOID->delete(array($IdOID));
+					$mOED->delete(array($IdOED));
 				}else{
-					$OID = $mOID->find($IdOID);
+					$OID = $mOED->find($IdOED);
 					$OID->setPrice($Price);
 					$OID->setCount($Count);
-					$mOID->update($OID);
+					$mOED->update($OID);
 				}
 			}else{
-				$OID = new \MVC\Domain\OrderImportDetail(
+				$OED = new \MVC\Domain\OrderExportDetail(
 					null,
 					$IdOrder,
 					$IdResource,
 					$Count,
 					$Price
 				);
-				$mOID->insert($OID);
+				$mOED->insert($OED);
 			}			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

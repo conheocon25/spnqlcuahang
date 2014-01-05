@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<body>
+		<div class="widget-box">										
+			<div class="widget-content nopadding size-12">
+				<ul class="activity-list">
+					<li tal:repeat="Resource ResourceAll">
+						<a class="course-item">
+							<strong class="Resource" tal:content="php: Resource->getName() . ' / ' . Resource->getUnit()->getName() . ' / '. Resource->getPrice1Print()" tal:attributes="alt Resource/getId;data-delta 'plus' "/>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			//-----------------------------------------------------------------------------------
+			//click gọi món
+			//-----------------------------------------------------------------------------------
+			$('.Resource').click(function(e){
+				var IdResource 	= $(this).attr('alt');
+				var Delta 		= $(this).attr('data-delta');				
+				alert("co" + IdResource);
+				/*				
+				var IdTable 	= $("#CurrentTable").attr('alt');
+				URL = "/selling/call/table/"+IdTable+"/"+IdResource+"/"+Delta;
+				e.stopImmediatePropagation();
+				$.ajax({
+					type: "POST", 
+					async: false,
+					url: URL,
+					dataType: 'json',
+					success: function(data){
+						var TableActive = "#" + $("#TableActive").attr('alt');
+						$("#Session").load("/selling/load/table/"+IdTable);												
+					}
+				});
+				*/
+			});
+		</script>
+	</body>
+</html>
