@@ -71,21 +71,10 @@
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>		
-		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
-		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
-		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
-		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
-		
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderDetail"><view>ImportSupplierOrderDetail</view></command>
-		<command name="ImportSupplierOrderInsLoad"><view>ImportSupplierOrderInsLoad</view></command>
-		<command name="ImportSupplierOrderInsExe"><view>ImportSupplierOrderInsExe</view><status value="CMD_OK"><forward>ImportSupplierOrderDetail</forward></status></command>
-		<command name="ImportSupplierOrderUpdLoad"><view>ImportSupplierOrderUpdLoad</view></command>
-		<command name="ImportSupplierOrderUpdExe"><view>ImportSupplierOrderUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrderDetail</forward></status></command>
-		<command name="ImportSupplierOrderDelLoad"><view>ImportSupplierOrderDelLoad</view></command>
-		<command name="ImportSupplierOrderDelExe"><view>ImportSupplierOrderDelExe</view><status value="CMD_OK"><forward>ImportSupplierOrderDetail</forward></status></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
 																		
 		<!-- ============================================================================== -->
 		<!-- REPORT				 															-->

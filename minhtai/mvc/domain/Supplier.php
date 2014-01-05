@@ -160,11 +160,12 @@ class Supplier extends Object{
 	
 			
 	//Lấy về danh sách các đơn hàng
-	function getOrders(){
-		$mOrderImport = new \MVC\Mapper\OrderImport();
-		$Orders = $mOrderImport->findBy(array($this->getId()));
-		return $Orders;
+	function getOrderAll(){
+		$mOrderImport 	= new \MVC\Mapper\OrderImport();
+		$OrderAll 		= $mOrderImport->findBy(array($this->getId()));
+		return $OrderAll;
 	}
+	
 	function getOrdersTop10(){
 		$mOrderImport = new \MVC\Mapper\OrderImport();
 		$Orders = $mOrderImport->findByTop10(array($this->getId()));
@@ -209,6 +210,7 @@ class Supplier extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLResource(){return "/setting/supplier/".$this->getId();}
+	function getURLImport(){return "/import/".$this->getId();}	
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

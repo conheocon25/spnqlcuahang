@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ImportSupplierOrder extends Command{
+	class ImportSupplierOrder extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -9,39 +9,42 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
+			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty("IdSupplier");
-			$PageCurrent = $request->getProperty('Page');
+			$IdSupplier 	= $request->getProperty('IdSupplier');
+			$IdOrder 		= $request->getProperty('IdOrder');
 			
-			if (!isset($PageCurrent)) $PageCurrent = 1;			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mOI = new \MVC\Mapper\OrderImport();
+			$mOrderImport 	= new \MVC\Mapper\OrderImport();
+			$mSupplier 		= new \MVC\Mapper\Supplier();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Supplier = $mSupplier->find($IdSupplier);
+			$Supplier 	= $mSupplier->find($IdSupplier);
+			$Order 		= $mOrderImport->find($IdOrder);
 			
-			//$OIs = $mOI->findByTop10(array($IdSupplier));
-			//$OIs1 = $mOI->findByTop10(array($IdSupplier));
-			
-			$OIs = $mOI->findByPage(array($IdSupplier, $PageCurrent, 15));	
-		
-			$PN = new \MVC\Domain\PageNavigation($Supplier->getOrders()->count(), 15, $Supplier->getURLImportPage());
-			
-			$Session->setCurrentImportPage($PageCurrent);						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
+			$Title = $Order->getDatePrint();
+			$Navigation = array(
+				array("NHẬP HÀNG", "/import"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())
+			);
+			
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------
+			$request->setProperty('Title', $Title);			
+			$request->setObject('Navigation', $Navigation);
+									
+			$request->setObject('Order', $Order);
 			$request->setObject('Supplier', $Supplier);
-			$request->setObject('OIs', $OIs);
-			$request->setObject('OIs1', $OIs);			
-			$request->setObject("Pages", $PN);
+			
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
