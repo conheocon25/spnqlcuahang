@@ -2,19 +2,19 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
+class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblPaid = "vendaf_mta_paid_supplier";
+		$tblPaid = "vendaf_mta_paid_general";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaid);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);
-		$updateStmt = sprintf("update %s set id_supplier=?, date=?, value=?, note=? where id=?", $tblPaid);
-		$insertStmt = sprintf("insert into %s (id_supplier, date, value, note) values(?,?,?,?)", $tblPaid);
+		$updateStmt = sprintf("update %s set id_term=?, date=?, value=?, note=? where id=?", $tblPaid);
+		$insertStmt = sprintf("insert into %s (id_term, date, value, note) values(?,?,?,?)", $tblPaid);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
-		$findByStmt = sprintf("select * from %s where id_supplier=? order by date DESC", $tblPaid);
+		$findByStmt = sprintf("select * from %s where id_term=? order by date DESC", $tblPaid);
 		$findByTrackingStmt = sprintf(
 					"select * from %s
 					where
@@ -27,7 +27,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
 		$findByTracking1Stmt = sprintf(
 					"select * from %s
 					where
-						id_supplier=? AND date >= ? AND date <= ?
+						id_term=? AND date >= ? AND date <= ?
 					order by
 						date DESC
 					"
@@ -35,7 +35,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE id_supplier=:id_supplier
+							WHERE id_term=:id_term
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblPaid);
@@ -48,15 +48,17 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
 		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		$this->findByStmt = self::$PDO->prepare($findByStmt);		
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
-	
-    function getCollection( array $raw ) {return new PaidSupplierCollection( $raw, $this );}
+    function getCollection( array $raw ) {
+        return new PaidGeneralCollection( $raw, $this );
+    }
+
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\PaidSupplier( 
+        $obj = new \MVC\Domain\PaidGeneral( 
 			$array['id'],
-			$array['id_supplier'],
+			$array['id_term'],
 			$array['date'],
 			$array['value'],
 			$array['note']
@@ -64,11 +66,13 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
         return $obj;
     }
 
-    protected function targetClass() {return "PaidSupplier";}
+    protected function targetClass() {        
+		return "Paid";
+    }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(			
-			$object->getIdSupplier(),
+			$object->getIdTerm(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote()
@@ -80,7 +84,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdSupplier(),
+			$object->getIdTerm(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote(),
@@ -93,30 +97,35 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder{
         return $this->deleteStmt->execute( $values );
     }
 
-    function selectStmt() {return $this->selectStmt;}    
-	function selectAllStmt() {return $this->selectAllStmt;}
+    function selectStmt() {
+        return $this->selectStmt;
+    }
+    
+	function selectAllStmt() {
+        return $this->selectAllStmt;
+    }
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );
-        return new PaidSupplierCollection( $this->findByStmt->fetchAll(), $this );
+        return new PaidGeneralCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
 	function findByTracking($values ) {	
         $this->findByTrackingStmt->execute( $values );
-        return new PaidSupplierCollection( $this->findByTrackingStmt->fetchAll(), $this );
+        return new PaidGeneralCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
 	
 	function findByTracking1($values ) {
         $this->findByTracking1Stmt->execute( $values );
-        return new PaidSupplierCollection( $this->findByTracking1Stmt->fetchAll(), $this );
+        return new PaidGeneralCollection( $this->findByTracking1Stmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {		
-		$this->findByPageStmt->bindValue(':id_supplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':id_term', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new PaidSupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new PaidGeneralCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 }

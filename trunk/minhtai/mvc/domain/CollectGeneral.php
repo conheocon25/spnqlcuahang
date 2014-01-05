@@ -2,10 +2,10 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class PaidCustomer extends Object{
+class CollectGeneral extends Object{
 
-    private $Id;	
-	private $IdCustomer;
+    private $Id;
+	private $IdTerm;
 	private $Date;
     private $Value;
 	private $Note;
@@ -14,32 +14,32 @@ class PaidCustomer extends Object{
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
     function __construct(
-		$Id=null,		
-		$IdCustomer=null,
+		$Id=null,
+		$IdTerm=null,
 		$Date=null,
 		$Value=0,
 		$Note=null
 	) {
-        $this->Id 			= $Id;		
-		$this->IdCustomer 	= $IdCustomer;
-		$this->Date 		= $Date;
-		$this->Value 		= $Value;
-		$this->Note 		= $Note;
+        $this->Id = $Id;
+		$this->IdTerm = $IdTerm;
+		$this->Date = $Date;
+		$this->Value = $Value;
+		$this->Note = $Note;
         parent::__construct( $Id );
     }
     function setId( $Id ) {$this->Id = $Id;$this->markDirty();}
     function getId( ) {return $this->Id;}
 	
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
-    function getIdCustomer( ) {return $this->IdCustomer;}
-	function getCustomer( ) {
-		$mCustomer 		= new \MVC\Mapper\Customer();
-		$Customer 		= $mCT->find( $this->getIdCustomer() );
-		return $Customer;
-	}
-	
+	function setIdTerm( $IdTerm ) {$this->IdTerm = $IdTerm;$this->markDirty();}
+    function getIdTerm( ) {return $this->IdTerm;}
+	function getTerm( ) {$mTerm = new \MVC\Mapper\TermCollect();$Term = $mTerm->find($this->IdTerm);return $Term;}
+    
 	function setValue( $Value ) {$this->Value = $Value;$this->markDirty();}	
-	function getValue( ) {if (!isset($this->Value))return 0;return $this->Value;}
+	function getValue( ) {
+		if (!isset($this->Value))
+			return 0;
+        return $this->Value;
+    }
 	function getValuePrint( ){$num = number_format($this->Value, 0, ',', '.');return $num." đ";}
 	
 	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
@@ -47,26 +47,26 @@ class PaidCustomer extends Object{
 	function getDatePrint( ) { $date = new \DateTime($this->Date);return $date->format('d/m/Y');}
 	   
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
-	function getNote( ) {return $this->Note;}	
+	function getNote( ) {		return $this->Note;}	
 	
-	function toJSON(){
+	public function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),	
-			'IdCustomer'	=> $this->getIdCustomer(),
-			'Date'			=> $this->getDate(),
-			'Value'			=> $this->getValue(),			
-			'Note'			=> $this->getNote()
+			'Id' 			=> $this->getId(),
+			'IdTerm'		=> $this->getIdTerm(),
+		 	'Date'			=> $this->getDate(),
+		 	'Value'			=> $this->getValue(),
+		 	'Note'			=> $this->getNote()
 		);
 		return json_encode($json);
 	}
-			
+	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];		
-		$this->IdCustomer 	= $Data[1];
-		$this->Date 		= $Data[2];
-		$this->Value 		= $Data[3];
-		$this->Note 		= $Data[4];
-    }
+        $this->Id 		= $Data[0];
+		$this->IdTerm 	= $Data[1];
+		$this->Date 	= $Data[2];
+		$this->Value 	= $Data[3];
+		$this->Note 	= $Data[4];
+    }	
 	
 	/*--------------------------------------------------------------------*/
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

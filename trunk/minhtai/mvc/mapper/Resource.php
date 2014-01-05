@@ -17,6 +17,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 							values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where id_supplier=?", $tblResource);
+		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_supplier=:id_supplier ORDER BY name LIMIT :start,:max", $tblResource);
+		
 		$countImportStmt = sprintf("
 					SELECT sum(ODD.count)  as count 
 					FROM vendaf_mta_order_import as OD, vendaf_mta_order_import_detail as ODD  
@@ -25,43 +27,16 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 					FROM vendaf_mta_order_export as OD, vendaf_mta_order_export_detail as ODD  
 					WHERE OD.id = ODD.id_order and OD.id_store=? and ODD.id_resource=?");
 					
-		$ReportStoreStmt = sprintf("
-				SELECT DISTINCT IE.id as id, 
-						(select S.name from vendaf_mta_supplier S,vendaf_mta_resource R where R.id = IE.id and S.id=R.id_supplier) as id_supplier, 
-						(select name from vendaf_mta_resource where id = IE.id) as name,
-						sum(IE.countIx) as id_category,
-						sum(IE.countEx) as id_unit,
-						(SELECT count FROM	vendaf_mta_store_detail	WHERE id_store = ? AND id_resource = IE.id) as size,
-						sum(IE.priceIx) as price1,
-						sum(IE.priceEx) as price2,
-						'' as note
-				FROM 
-				(
-					(
-					SELECT ODED.id_resource id, 0 countIx, 0 priceIx, sum(ODED.count) countEx, sum(ODED.price) priceEx
-					FROM vendaf_mta_order_export as ODE, vendaf_mta_order_export_detail as ODED		
-					WHERE ODE.id_store = ? And ODE.id = ODED.id_order
-					GROUP BY ODED.id_resource
-					) UNION ALL
-					(
-					SELECT ODID.id_resource id, sum(ODID.count) countIx, sum(ODID.price) priceIx, 0 countEx, 0 priceEx
-					FROM vendaf_mta_order_import as OIE, vendaf_mta_order_import_detail as ODID		
-					WHERE OIE.id_store = ? And OIE.id = ODID.id_order
-					GROUP BY ODID.id_resource
-					) 
-				) As IE
-				GROUP BY IE.id
-				");
-				
+						
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
-		$this->countImportStmt = self::$PDO->prepare($countImportStmt);
-		$this->countExportStmt = self::$PDO->prepare($countExportStmt);
-		$this->ReportStoreStmt = self::$PDO->prepare($ReportStoreStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->countImportStmt 	= self::$PDO->prepare($countImportStmt);
+		$this->countExportStmt 	= self::$PDO->prepare($countExportStmt);		
 		
     } 
     function getCollection( array $raw ) {
@@ -125,12 +100,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
         $this->findBySupplierStmt->execute( $values );
         return new SupplierCollection( $this->findBySupplierStmt->fetchAll(), $this );
     }
-	
-	function findByStore( $values) {
-        $this->ReportStoreStmt->execute( $values );
-        return new SupplierCollection( $this->ReportStoreStmt->fetchAll(), $this );
-    }
-	
+			
 	function countImport( $values ) {	
         $this->countImportStmt->execute( $values );
 		$result = $this->countImportStmt->fetchAll();
@@ -154,5 +124,12 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
+	function findByPage( $values ) {		
+		$this->findByPageStmt->bindValue(':id_supplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
+		$this->findByPageStmt->execute();
+        return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
 }
 ?>
