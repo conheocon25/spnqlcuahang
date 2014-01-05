@@ -16,19 +16,18 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-																		
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$User = $Session->getCurrentUser();						
-			$App = $User->getApp();
-			$Title = "HỆ THỐNG QUẢN LÝ ".mb_strtoupper($App->getName(),'UTF8');
-			
+			$Title = "";			
+			$Navigation = array();
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty("Title", $Title);
-			$request->setObject("App", $App);
+			//-------------------------------------------------------------
+			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', '');
 		}
 	}
 ?>

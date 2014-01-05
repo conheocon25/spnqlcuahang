@@ -19,9 +19,9 @@
 			session_start();
 		}
 		
- 		static function instance() { 
+ 		static function instance(){
 			if ( ! isset(self::$instance) ) { self::$instance = new self(); } 
-				return self::$instance;          
+				return self::$instance;
 		} 
  
 		protected function get( $key ) { 
@@ -36,100 +36,41 @@
 												
 		//Quản lí User
 		function setCurrentUser( \MVC\Domain\User $user ) {
-			return self::instance()->set('minhtai_current_user', $user);
+			return self::instance()->set('cafe_current_user', $user);
 		}
 		function getCurrentUser() {
-			return self::instance()->get('minhtai_current_user');
+			return self::instance()->get('cafe_current_user');
 		}
 		
-		//Quản lí CurrentStore
-		function setCurrentStore( $Store ){
-			self::instance()->set('minhtai_current_store', $Store); 
-		}
-		function getCurrentStore( ){
-			return self::instance()->get('minhtai_current_store');
+		function setCurrentTheme( $theme ) {
+			return self::instance()->set('cafe_current_theme', $theme);
 		}
 		
-		//Quản lí OrderExportDate
-		function setOrderExportDate( $Date ) { 
-			self::instance()->set('minhtai_order_export_date', $Date); 
-		}
-		function getOrderExportDate( ){
-			return self::instance()->get('minhtai_order_export_date');
-		}
-		
-		//Quản lí ReportSellingDate
-		function setReportSellingDateStart( $DateStart ) { 
-			self::instance()->set('minhtai_report_selling_date_start', $DateStart); 
-		}
-		function getReportSellingDateStart( ){
-			return self::instance()->get('minhtai_report_selling_date_start');
+		function getCurrentTheme(){
+			$Theme = self::instance()->get('cafe_current_theme');
+			if (!isset($Theme)){
+				$mConfig = new \MVC\Mapper\Config();
+				$Config = $mConfig->findByName("THEME");
+				if (!isset($Config))
+					return "grey";
+				else
+					return $Config->getValue();
+			}
+				
+			return self::instance()->get('cafe_current_theme');
 		}
 		
-		function setReportSellingDateEnd( $DateEnd ) { 
-			self::instance()->set('minhtai_report_selling_date_end', $DateEnd); 
+		function setCurrentIdUser( $Iduser ) {
+			return self::instance()->set('cafe_current_Iduser', $Iduser);
 		}
-		function getReportSellingDateEnd( ){
-			return self::instance()->get('minhtai_report_selling_date_end');
-		}
-		
-		//Quản lí ReportSupplierDate
-		function setReportSupplierDateStart( $DateStart ) { 
-			self::instance()->set('minhtai_report_supplier_date_start', $DateStart); 
-		}
-		function getReportSupplierDateStart( ){
-			return self::instance()->get('minhtai_report_supplier_date_start');
+		function getCurrentIdUser() {
+			return self::instance()->get('cafe_current_Iduser');
 		}
 		
-		function setReportSupplierDateEnd( $DateEnd ) { 
-			self::instance()->set('minhtai_report_supplier_date_end', $DateEnd); 
-		}
-		function getReportSupplierDateEnd( ){
-			return self::instance()->get('minhtai_report_supplier_date_end');
-		}
-		
-		//Quản lí ReportEmployeeDate
-		function setReportEmployeeDateStart( $DateStart ) { 
-			self::instance()->set('minhtai_report_employee_date_start', $DateStart); 
-		}
-		function getReportEmployeeDateStart( ){
-			return self::instance()->get('minhtai_report_employee_date_start');
-		}
-		
-		function setReportEmployeeDateEnd( $DateEnd ) { 
-			self::instance()->set('minhtai_report_employee_date_end', $DateEnd); 
-		}
-		function getReportEmployeeDateEnd( ){
-			return self::instance()->get('minhtai_report_employee_date_end');
-		}
-		
-		//Quản lí ReportOtherDate
-		function setReportOtherDateStart( $DateStart ) { 
-			self::instance()->set('minhtai_report_other_date_start', $DateStart); 
-		}
-		function getReportOtherDateStart( ){
-			return self::instance()->get('minhtai_report_other_date_start');
-		}
-		
-		function setReportOtherDateEnd( $DateEnd ) { 
-			self::instance()->set('minhtai_report_other_date_end', $DateEnd); 
-		}
-		function getReportOtherDateEnd( ){
-			return self::instance()->get('minhtai_report_other_date_end');
-		}
-		
-		function setCurrentPage( $CurrentPage ) { 
-			self::instance()->set('minhtai_CurrentPage', $CurrentPage); 
-		}
-		function getCurrentPage( ){
-			return self::instance()->get('minhtai_CurrentPage');
-		}
-		
-		function setCurrentImportPage( $CurrentImportPage ) { 
-			self::instance()->set('minhtai_CurrentImportPage', $CurrentImportPage); 
-		}
-		function getCurrentImportPage( ){
-			return self::instance()->get('minhtai_CurrentImportPage');
+		function setCurrentAction( $Action ) {return self::instance()->set('cafe_current_action', $Action);}		
+		function getCurrentAction() {
+			$result = self::instance()->get('cafe_current_action');			
+			return $result;
 		}
 	}
 	/*--------------------------------------------------------------------------------*/
@@ -203,14 +144,7 @@
 			file_put_contents( $path, serialize( $val ) );
 			$this->mtimes[$key]=time();
 		}
-		
-		static function setInfo( $info ) {
-			return self::instance()->set('info', $info);
-		}
-		static function getInfo() {
-			return self::instance()->get('info');
-		}
-						
+								
 		//---------------------------------------------------------------------
 		// Thông tin App của hệ thống
 		//---------------------------------------------------------------------

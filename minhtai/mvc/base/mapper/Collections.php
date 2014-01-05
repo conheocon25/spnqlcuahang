@@ -3,9 +3,8 @@ namespace MVC\Mapper;
 require_once( "mvc/base/domain/Collections.php");
 require_once( "mvc/base/mapper/Collection.php");
 
-class AppCollection extends Collection implements \MVC\Domain\AppCollection {function targetClass( ) {return "\MVC\Domain\App";}}
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
-class UserAppCollection extends Collection implements \MVC\Domain\UserAppCollection {function targetClass( ) {return "\MVC\Domain\UserApp";}}
+class ConfigCollection extends Collection implements \MVC\Domain\ConfigCollection {function targetClass( ) {return "\MVC\Domain\Config";}}
 
 class CategoryCollection extends Collection implements \MVC\Domain\CategoryCollection {function targetClass( ) {return "\MVC\Domain\Category";}}	
 class SupplierCollection extends Collection implements \MVC\Domain\SupplierCollection {function targetClass( ) {return "\MVC\Domain\Supplier";}}
@@ -25,10 +24,16 @@ class OrderImportCollection extends Collection implements \MVC\Domain\OrderImpor
 class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}
 
 class CustomerCollection extends Collection implements \MVC\Domain\CustomerCollection {function targetClass( ) {return "\MVC\Domain\Customer";}}
+class CustomerLogCollection extends Collection implements \MVC\Domain\CustomerLogCollection {function targetClass( ) {return "\MVC\Domain\CustomerLog";}}
+
 class EmployeeCollection extends Collection implements \MVC\Domain\EmployeeCollection{function targetClass( ) {return "\MVC\Domain\Employee";}}
 
 class UnitCollection extends Collection implements \MVC\Domain\UnitCollection{function targetClass(){return "\MVC\Domain\Unit";}}
+
 class TermCollection extends Collection implements \MVC\Domain\TermCollection{function targetClass(){return "\MVC\Domain\Term";}}
+class TermPaidCollection extends Collection implements \MVC\Domain\TermPaidCollection{function targetClass(){return "\MVC\Domain\TermPaid";}}
+class TermCollectCollection extends Collection implements \MVC\Domain\TermCollectCollection{function targetClass(){return "\MVC\Domain\TermCollect";}}
+
 class StoreCollection extends Collection implements \MVC\Domain\StoreCollection{function targetClass(){return "\MVC\Domain\Store";}}
 class PageCollection extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}
 class StoreDetailCollection extends Collection implements \MVC\Domain\StoreDetailCollection{function targetClass(){return "\MVC\Domain\StoreDetail";}}

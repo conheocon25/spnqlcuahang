@@ -11,22 +11,23 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdFillter = $request->getProperty('IdFillter');							
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomer = new \MVC\Mapper\Customer();			
+			$mCustomer = new \MVC\Mapper\Customer();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Customers = $mCustomer->findAll();			
-			$CustomerTypes = $mCustomer->findByType(array($IdFillter));			
-			//print_r($Customers);
+			$Customers = $mCustomer->findAll();
+			$Customers1 = $mCustomer->findAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setObject("Customers", $Customers);
-			$request->setObject("Customers1", $CustomerTypes);		
+			$request->setObject("Customers1", $Customers1);
 			
 		}
 	}

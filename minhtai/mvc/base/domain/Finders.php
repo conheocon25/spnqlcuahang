@@ -10,31 +10,37 @@ interface Finder {
     //function delete();
 }
 
-interface AppFinder  extends Finder {}
-interface UserFinder  extends Finder {}
-interface UserAppFinder  extends Finder {}
+interface UserFinder  			extends Finder {}
+interface ConfigFinder  		extends Finder {}
 
-interface CategoryFinder  extends Finder {}
-interface SupplierFinder extends Finder {}
+interface CategoryFinder  		extends Finder {}
+interface SupplierFinder 		extends Finder {}
 
-interface PaidCustomerFinder extends Finder {}
-interface PaidSupplierFinder extends Finder {}
-interface PaidEmployeeFinder extends Finder {}
-interface PaidOtherFinder extends Finder {}
+interface PaidCustomerFinder 	extends Finder {}
+interface PaidSupplierFinder 	extends Finder {}
+interface PaidEmployeeFinder 	extends Finder {}
+interface PaidOtherFinder 		extends Finder {}
 
-interface ResourceFinder extends Finder {}
-interface OrderExportFinder extends Finder {}
+interface ResourceFinder 		extends Finder {}
+interface OrderExportFinder 	extends Finder {}
 interface OrderExportDetailFinder extends Finder {}
 interface OrderExportDetailExtraFinder extends Finder {}
-interface OrderImportFinder extends Finder {}
+interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
-interface CustomerFinder extends Finder {}
-interface EmployeeFinder extends Finder {}
 
-interface UnitFinder extends Finder {}
-interface TermFinder extends Finder {}
-interface StoreFinder extends Finder {}
-interface PageFinder extends Finder {}
-interface StoreDetailFinder extends Finder {}
+interface CustomerFinder 		extends Finder {}
+interface CustomerLogFinder 	extends Finder {}
+
+interface EmployeeFinder 		extends Finder {}
+
+interface UnitFinder 			extends Finder {}
+
+interface TermFinder 			extends Finder {}
+interface TermPaidFinder 		extends Finder {}
+interface TermCollectFinder 	extends Finder {}
+
+interface StoreFinder 			extends Finder {}
+interface PageFinder 			extends Finder {}
+interface StoreDetailFinder 	extends Finder {}
 
 ?>

@@ -12,15 +12,7 @@ class Customer extends Object{
     private $Address;
 	private $Phone;
 	private $Note;
-	private $Type;
-			
-	private $Orders;	
-	private $OrderTrackings;
-	private $OrderTrackings1;	         
-	
-	private $Paids;
-	private $PaidTrackings;
-				
+						
 	//-------------------------------------------------------------------------
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
@@ -33,126 +25,77 @@ class Customer extends Object{
 		$Phone=null, 
 		$Address=null, 
 		$Note=null, 
-		$Debt=null,
-		$Type=null ) 
+		$Debt=null ) 
 	{
-        $this->Id = $Id;
-		$this->IdCard = $IdCard;
-		$this->Prefix = $Prefix;
-		$this->Name = $Name;
-		$this->Alias = $Alias;
-		$this->Address = $Address;
-		$this->Phone = $Phone;
-		$this->Note = $Note;
-		$this->Debt = $Debt;
-		$this->Type = $Type;
+        $this->Id 		= $Id;
+		$this->IdCard 	= $IdCard;
+		$this->Prefix 	= $Prefix;
+		$this->Name 	= $Name;
+		$this->Alias 	= $Alias;
+		$this->Address 	= $Address;
+		$this->Phone 	= $Phone;
+		$this->Note 	= $Note;
+		$this->Debt 	= $Debt;
         parent::__construct( $Id );
     }
-	function getId(){
-		return $this->Id;
-	}
-	function getIdPrint(){
-		return "c".$this->Id;
-	}
+	function getId(){return $this->Id;}
 	
-    function setPrefix( $Prefix ) {
-        $this->Prefix = $Prefix;
-        $this->markDirty();
-    }
-    function getPrefix( ) {
-        return $this->Prefix;
-    }
+    function setPrefix( $Prefix ) {$this->Prefix = $Prefix;$this->markDirty();}
+    function getPrefix( ) {return $this->Prefix;}
 	
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }
-    function getName( ) {
-        return $this->Name;
-    }
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
+    function getName( ) {return $this->Name;}
 	
-    function getNamePrefix( ) {
-        return $this->Prefix ." ". $this->Name;
-    }
-	function setAddress( $Address_s ) {
-        $this->Address = $Address_s;
-        $this->markDirty();
-    }
-	function getAddress( ) {
-        return $this->Address;
-    }
+    function getNamePrefix( ) {return $this->Prefix ." ". $this->Name;}
+	function setAddress( $Address_s ) {$this->Address = $Address_s;$this->markDirty();}
+	function getAddress( ) {return $this->Address;}
 	
-	function setPhone( $Phone_s ) {
-        $this->Phone = $Phone_s;
-        $this->markDirty();
-    }
-	function getPhone( ) {
-        return $this->Phone;
-    }
+	function setPhone( $Phone_s ) {$this->Phone = $Phone_s;$this->markDirty();}
+	function getPhone( ) {return $this->Phone;}
+	function setNote( $Note_s ) {$this->Note = $Note_s;$this->markDirty();}
+	function getNote( ) {return $this->Note;}
 	
-	function setNote( $Note_s ) {
-        $this->Note = $Note_s;
-        $this->markDirty();
-    }
-	function getNote( ) {
-        return $this->Note;
-    }
+	function setIdCard( $IdCard_s ) {$this->IdCard = $IdCard_s;$this->markDirty();}
+	function getIdCard( ) {return $this->IdCard;}
 	
-	function setType( $Type ) {
-        $this->Type = $Type;
-        $this->markDirty();
-    }
-	function getType( ) {
-        return $this->Type;
-    }
+	function setAlias( $Alias ) {$this->Alias = $Alias;$this->markDirty();}
+	function getAlias( ) {return $this->Alias;}
 	
-	function getTypePrint( ) {
-		if ($this->Type == 1) {
-			return "Đơn Hàng Thuốc";
-		} else return "Đơn Hàng Thức Ăn";
-    }
-	
-	function setIdCard( $IdCard_s ) {
-        $this->IdCard = $IdCard_s;
-        $this->markDirty();
-    }
-	function getIdCard( ) {
-        return $this->IdCard;
-    }
-	
-	function setAlias( $Alias ) {
-        $this->Alias = $Alias;
-        $this->markDirty();
-    }
-	function getAlias( ) {
-        return $this->Alias;
-    }
-	
-	function setDebt( $Debt ) {
-        $this->Debt= $Debt;
-        $this->markDirty();
-    }
-	function getDebt( ) {
-        return $this->Debt;
-    }
-	function getDebtPrint( ) {        
+	function setDebt( $Debt ) {$this->Debt= $Debt;$this->markDirty();}
+	function getDebt( ) {return $this->Debt;}
+	function getDebtPrint( ) {
 		$num = number_format($this->Debt, 0, ',', '.');
 		return $num;
     }
-	function getPicture(){
-		return "data/images/app/customer.png";		
+	function getPicture(){return "data/images/app/customer.png";		}
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdCard'		=> $this->getIdCard(),
+			'Prefix'		=> $this->getPrefix(),
+			'Name'			=> $this->getName(),
+			'Alias'			=> $this->getAlias(),
+			'Address'		=> $this->getAddress(),			
+			'Phone'			=> $this->getPhone(),						
+			'Note'			=> $this->getNote(),
+			'Debt'			=> $this->getDebt()
+		);						
+		return json_encode($json);
 	}
 	
-	function isCustomerFoodFish(){
-		if ( ($this->getType() == 0) || ($this->getType() == 2)) {
-			return true;
-		} else return false;		
-	}
-	function isCustomerMedicalFish(){
-		if ( ($this->getType() == 1) || ($this->getType() == 2)) {
-			return true;
-		} else return false;		
-	}
+	function setArray( $Data ){
+		$this->Id 		= $Data[0];
+		$this->IdCard	= $Data[1];
+		$this->Prefix	= $Data[2];
+		$this->Name 	= $Data[3];
+		$this->Alias 	= $Data[4];
+		$this->Address	= $Data[5];
+		$this->Phone	= $Data[6];
+		$this->Note		= $Data[7];		
+		$this->Debt		= $Data[8];
+    }
+	
 	//--------------------------------------------------------	
 	//TÍNH CÔNG NỢ
 	//--------------------------------------------------------	
@@ -260,6 +203,7 @@ class Customer extends Object{
 		}
 		return $this->Paids;
 	}
+		
 	
 	//Tính theo khoảng
 	function getPaidsTracking(){
@@ -390,74 +334,22 @@ class Customer extends Object{
 		return $N->formatCurrency()." đ";
 	}
     	
+	function getLogAll(){
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CLAll 	= $mCL->findBy(array( $this->getId() ));
+		return $CLAll;
+	}
 	/*--------------------------------------------------------------------*/
-    static function findAll() {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->findAll();
-    }
-    static function find( $Id ) {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->find( $Id );
-    }
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING.CUSTOMER
 	//-------------------------------------------------------------------------------
-	function getURLSelling(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getType()."/selling#".$this->getIdPrint();
-	}
-	
-	function getURLSellingPage(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getType()."/selling/".$this->getId();
-	}
-	
-	function getURLSellingInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getType()."/selling/".$this->getId()."/ins/load";
-	}
-	
-	function getURLSellingInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getType()."/selling/".$this->getId()."/ins/exe";
-	}
-	
+		
 	/*--------------------------------------------------------------------*/
 	/*DEFINE SETTING.CUSTOMER											  */
-	/*--------------------------------------------------------------------*/		
-	function getURLUpdLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/customer/".$this->getId()."/upd/load";						
-	}
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/customer/".$this->getId()."/upd/exe";			
-	}
-	
-	function getURLDelLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/customer/".$this->getId()."/del/load";						
-	}
-	function getURLDelExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/customer/".$this->getId()."/del/exe";
-	}
 	/*--------------------------------------------------------------------*/
-	/*DEFINE PAID.CUSTOMER									  	  		  */
-	/*--------------------------------------------------------------------*/
-	function getURLPaid(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/customer#".$this->getIdPrint();
-	}
-	function getURLPaidInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/customer/".$this->getId()."/ins/load";
-	}
-	function getURLPaidInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/customer/".$this->getId()."/ins/exe";
-	}
-	
+			
 }
 ?>

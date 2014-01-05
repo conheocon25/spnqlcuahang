@@ -180,42 +180,42 @@ class OrderExport extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLPrint(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/print";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/print";
 	}
 	
 	function getURLUpdLoad(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/upd/load";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/upd/load";
 	}
 	function getURLUpdExe(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/upd/exe";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/upd/exe";
 	}
 	
 	function getURLDelLoad(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/del/load";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/del/load";
 	}
 	function getURLDelExe(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/del/exe";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/del/exe";
 	}
 	
 	function getURLDetail(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
 		$CurrentPage = @\MVC\Base\SessionRegistry::getCurrentPage();
 		if (!isset($CurrentPage)) $CurrentPage = 1;	
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/page/". $CurrentPage ."/".$this->getId();
+		return "/".$App."/selling/".$this->getIdCustomer()."/page/". $CurrentPage ."/".$this->getId();
 	}
 	
 	function getURLCallLoad(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/call/load";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/call/load";
 	}
 	
 	function getURLCallExe(){
 		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/".$this->getCustomer()->getType()."/selling/".$this->getIdCustomer()."/".$this->getId()."/call/exe";
+		return "/".$App."/selling/".$this->getIdCustomer()."/".$this->getId()."/call/exe";
 	}
 	
 	//---------------------------------------------------------

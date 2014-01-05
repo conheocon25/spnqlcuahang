@@ -6,9 +6,9 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 
     function __construct() {
         parent::__construct();
-		$tblResource = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."resource";
-		$tblOID = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_import_detail";
-		$tblOED = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_export_detail";
+		$tblResource 	= "vendaf_mta_resource";
+		$tblOID 		= "vendaf_mta_order_import_detail";
+		$tblOED 		= "vendaf_mta_order_export_detail";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
@@ -151,12 +151,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder{
 		}
     }
 	
-    function selectStmt() {
-        return $this->selectStmt;
-    }	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
 }
 ?>

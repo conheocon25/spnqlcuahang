@@ -3,7 +3,6 @@ Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Category extends Object{
-
     private $Id;
 	private $Name;
 	private $Picture;
@@ -17,84 +16,47 @@ class Category extends Object{
 		$this->Picture = $Picture;
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }	
-	function getIdPrint(){
-        return "c" . $this->getId();
-    }	
+    function getId() {return $this->Id;}	
+    function getIdString() {return 'Category'.$this->Id;}	
+			
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 	
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }
-   
-	function getName( ) {
-        return $this->Name;
-    }
+	function setPicture( $Picture ) {$this->Picture = $Picture;$this->markDirty();}   
+	function getPicture( ) {return $this->Picture;}
 	
-	function setPicture( $Picture ) {
-        $this->Picture = $Picture;
-        $this->markDirty();
-    }
-   
-	function getPicture( ) {
-        return $this->Picture;
-    }
+	public function toJSON(){
+		$json = array(
+			'Id' 		=> $this->getId(),
+			'Name' 		=> $this->getName(),			
+			'Picture' 	=> $this->getPicture()
+		);
+		return json_encode($json);
+	}
 	
+	function setArray( $Data ){
+        $this->Id = $Data[0];	
+		$this->Name = $Data[1];
+		$this->Picture = "";
+    }
+
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getCourses(){
+	function getCourseAll(){
 		$mCourse = new \MVC\Mapper\Course();
-		$Courses = $mCourse->findByCategory(array($this->getId()));
-		return $Courses;
+		$CourseAll = $mCourse->findByCategory(array($this->getId()));
+		return $CourseAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/upd/exe";			
-	}
+	//-------------------------------------------------------------------------------						
+	function getURLCourse(){return "/setting/category/".$this->getId();}
 	
-	function getURLDelLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/del/load";						
-	}
-	function getURLDelExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/del/exe";
-	}
-					
-	function getURLCourse(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category#c".$this->getId();
-	}
-	
-	function getURLCourseInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/ins/load";
-	}
-	function getURLCourseInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/category/".$this->getId()."/ins/exe";
-	}
-		
 	//--------------------------------------------------------------------------
-    static function findAll() {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->findAll();
-    }
-    static function find( $Id ) {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->find( $Id );
-    }	
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
+	
 }
-
 ?>

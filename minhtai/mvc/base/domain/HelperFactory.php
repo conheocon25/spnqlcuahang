@@ -1,10 +1,9 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
-	require_once( "mvc/mapper/App.php" );
-	require_once( "mvc/mapper/User.php" );
-	require_once( "mvc/mapper/UserApp.php" );
-		
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
+	require_once( "mvc/mapper/User.php" );	
+	require_once( "mvc/mapper/Config.php" );
+	
 	require_once( "mvc/mapper/Category.php" );
 	require_once( "mvc/mapper/Supplier.php" );	
 	
@@ -20,11 +19,18 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/OrderImport.php" );
 	require_once( "mvc/mapper/OrderImportDetail.php");
+	
 	require_once( "mvc/mapper/Customer.php" );
+	require_once( "mvc/mapper/CustomerLog.php" );
+	
 	require_once( "mvc/mapper/Employee.php" );
 	
 	require_once( "mvc/mapper/Unit.php");
-	require_once( "mvc/mapper/Term.php");			
+	
+	require_once( "mvc/mapper/Term.php");
+	require_once( "mvc/mapper/TermPaid.php");
+	require_once( "mvc/mapper/TermCollect.php");
+	
 	require_once( "mvc/mapper/Store.php");
 	require_once( "mvc/mapper/StoreDetail.php");
 	
@@ -47,6 +53,15 @@ class HelperFactory {
             return new $collection();
         }
         throw new \MVC\Base\AppException( "Không biết: $collection" );
+    }
+	
+	static function getModel( $model ) {
+        $model = preg_replace( "/^.*_/", "", $model );
+        $model = "\\MVC\\Domain\\{$model}";
+        if ( class_exists( $model ) ) {
+            return new $model();
+        }
+        throw new \MVC\Base\AppException( "Không biết: $model" );
     }
 }
 ?>

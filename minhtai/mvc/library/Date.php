@@ -4,6 +4,7 @@ class Date{
 	private $Value;
 	
 	function __construct( $Value=null){
+		date_default_timezone_set('Asia/Jakarta');
 		$this->Value = $Value;        
     }
 	
@@ -12,17 +13,23 @@ class Date{
 	}
 	
 	function getDateTimeFormat(){
-		return date('d/m/Y H:i:s',strtotime($this->Value));
+		return date('d/m/y H:i:s',strtotime($this->Value));
 	}
 	
 	function getTimeFormat(){
 		return date('H:i:s',strtotime($this->Value));
 	}
 	
-	function getCurrentDateTime(){
+	function getCurrentDateTime(){		
 		$Today = \getdate();
         $d = $Today['year']."-".$Today['mon']."-".$Today['mday']." ".$Today['hours'].":".$Today['minutes'].":".$Today['seconds'];
 		return $d;
+	}
+	function getCurrentDateVN(){	
+		//date_default_timezone_set('Asia/Jakarta');
+		$now = getdate();		
+		$currentDate = $now["mday"] . "/" . $now["mon"] . "/" . $now["year"];       
+		return $currentDate;
 	}
 	
 	//Buổi sáng là từ 6h sáng đến trước 12h trưa

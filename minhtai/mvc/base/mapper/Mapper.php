@@ -1,12 +1,12 @@
 <?php
 namespace MVC\Mapper;
-//use MVC\Library\Encrypted;
+use MVC\Library\Encrypted;
 require_once("mvc/base/Registry.php");
 require_once("mvc/base/Exceptions.php");
 require_once("mvc/base/domain/Finders.php");
 require_once("mvc/domain.php" );
 date_default_timezone_set('Asia/Ho_Chi_Minh');		
-error_reporting ('E_ALL & ~E_NOTICE');
+error_reporting ('E_ALL & ~E_STRICT');
 
 //Default Value: E_ALL & ~E_NOTICE
 //Development Value: E_ALL | E_STRICT
@@ -19,9 +19,10 @@ abstract class Mapper implements \MVC\Domain\Finder {
         if ( ! isset(self::$PDO) ) { 
             
 			$dsn = "mysql:host=localhost;";
-			$dbname = "dbname=minhtai";
-			$user = "spngroup_userdb";
+			$dbname = "dbname=mta";
+			$user = "qlquanan_userdb";
 			$pass = "admin068198";
+						
             if ( is_null( $dsn ) ) {
                 throw new \MVC\Base\AppException( "No DSN" );
             }

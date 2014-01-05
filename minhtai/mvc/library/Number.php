@@ -179,29 +179,7 @@ class Number {
 			$number = intval($number/1000);			
 			$index += 1;
 		}
-		return $s;
-	}
-	
-	public function readDigit1()
-	{		
-		$arr = array("", "ngàn", "triệu", "tỉ");
-		$ntemp = 0;
-		$s = "";
-		$index = 0;
-		
-		$number = $this->Value;
-		while($number > 0)
-		{
-			$ntemp = intval(fmod($number,1000));
-			$s1 = $ntemp;
-			
-			if ($s1!=""){
-				$s = $s1." ".$arr[$index]." ".$s;
-			}
-			$number = intval($number/1000);			
-			$index += 1;
-		}
-		return $s;
+		return trim($s);
 	}
 	/*
 	---------------------------------------------------------------
