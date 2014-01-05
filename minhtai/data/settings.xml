@@ -25,23 +25,20 @@
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->
-		<command name="Selling"><view>Selling</view></command>
-		<command name="Import"><view>Import</view></command>
-		<command name="Paid"><view>Paid</view></command>
-		<command name="Report"><view>Report</view></command>
-												
+		<command name="Selling"><view>Selling</view></command>				
+														
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
-		<command name="Money"><view>Money</view></command>
-		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
-		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
-		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-		<command name="MoneyPaidSupplier"><view>MoneyPaidSupplier</view></command>
-		<command name="MoneyPaidCustomer"><view>MoneyPaidCustomer</view></command>
+		<command name="Money">						<view>Money</view></command>
+		<command name="MoneyCollectGeneral">		<view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectCustomer">		<view>MoneyCollectCustomer</view></command>
+		<command name="MoneyPaidGeneral">			<view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidSupplier">			<view>MoneyPaidSupplier</view></command>
+		<command name="MoneyPaidCustomer">			<view>MoneyPaidCustomer</view></command>
 				
 		<!-- ============================================================================== -->
-		<!-- SELLING				 															-->
+		<!-- SELLING				 														-->
 		<!-- ============================================================================== -->
 		<command name="SellingCustomerInsLoad"><view>SellingCustomerInsLoad</view></command>		
 		<command name="SellingCustomerInsExe"><view>SellingCustomerInsExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
@@ -69,23 +66,32 @@
 		<command name="SellingCustomerOrderExtUpdExe"><view>SellingCustomerOrderExtUpdExe</view><status value="CMD_OK"><forward>SellingCustomerOrderDetail</forward></status></command>
 		
 		<!-- ============================================================================== -->
+		<!-- EXPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Export">						<view>Export</view></command>
+		<command name="ExportCustomer">				<view>ExportCustomer</view></command>
+		<command name="ExportCustomerOrder">		<view>ExportCustomerOrder</view></command>
+		<command name="ExportCustomerOrderPrint">	<view>ExportCustomerOrderPrint</view></command>
+		
+		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="Import"><view>Import</view></command>
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="Import">						<view>Import</view></command>
+		<command name="ImportSupplier">				<view>ImportSupplier</view></command>
+		<command name="ImportSupplierOrder">		<view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint">	<view>ImportSupplierOrderPrint</view></command>
 																		
 		<!-- ============================================================================== -->
 		<!-- REPORT				 															-->
 		<!-- ============================================================================== -->		
-		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>		
-		<command name="ReportSupplierDetail"><view>ReportSupplierDetail</view></command>		
-		<command name="ReportEmployeeDetail"><view>ReportEmployeeDetail</view></command>		
-		<command name="ReportOtherDetail"><view>ReportOtherDetail</view></command>
-		<command name="ReportStoreDetail"><view>ReportStoreDetail</view></command>
-		<command name="ReportStoreResourceDetail"><view>ReportStoreResourceDetail</view></command>
-		<command name="ReportStoreDetailPrint"><view>ReportStoreDetailPrint</view></command>
+		<command name="Report">						<view>Report</view></command>
+		<command name="ReportSellingDetail">		<view>ReportSellingDetail</view></command>
+		<command name="ReportSupplierDetail">		<view>ReportSupplierDetail</view></command>
+		<command name="ReportEmployeeDetail">		<view>ReportEmployeeDetail</view></command>		
+		<command name="ReportOtherDetail">			<view>ReportOtherDetail</view></command>
+		<command name="ReportStoreDetail">			<view>ReportStoreDetail</view></command>
+		<command name="ReportStoreResourceDetail">	<view>ReportStoreResourceDetail</view></command>
+		<command name="ReportStoreDetailPrint">		<view>ReportStoreDetailPrint</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

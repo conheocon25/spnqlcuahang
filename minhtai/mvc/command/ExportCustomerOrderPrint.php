@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingCustomerUpdLoad extends Command{
+	class ExportCustomerOrderPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,28 +10,29 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdOrderExport = $request->getProperty("IdOrderExport");
-			
+			//-------------------------------------------------------------
+			$IdCustomer 	= $request->getProperty("IdCustomer");
+			$IdOrder 		= $request->getProperty("IdOrder");
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mStore = new \MVC\Mapper\Store();
-			$mOE = new \MVC\Mapper\OrderExport();
-			
+			//-------------------------------------------------------------						
+			$mOE 		= new \MVC\Mapper\OrderExport();
+			$mCustomer 	= new \MVC\Mapper\Customer();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Stores = $mStore->findAll();
-			$OE = $mOE->find($IdOrderExport);
-			$Title = "CẬP NHẬT ĐƠN HÀNG";
-						
+			//-------------------------------------------------------------						
+			$OE = $mOE->find($IdOrder);
+			$Customer = $mCustomer->find($IdCustomer);
+			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
+
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title', $Title);			
-			$request->setObject('OrderExport', $OE);
-			$request->setObject('Stores', $Stores);
+			$request->setProperty('DateCurrent', $DateCurrent);
+			$request->setObject('OE', $OE);
+			$request->setObject('Customer', $Customer );
 		}
 	}
 ?>

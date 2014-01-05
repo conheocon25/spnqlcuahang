@@ -10,9 +10,9 @@
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div id="sidebar">
 			<ul style="display: block;">
-				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
-					<a tal:attributes="href Supplier1/getURLImport">
-						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Supplier1/getName"/>
+				<li tal:repeat="Customer1 CustomerAll" tal:attributes="class php:Customer1->getId()==Customer->getId()?'active':'disable'">
+					<a tal:attributes="href Customer1/getURLExport">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Customer1/getName"/>
 					</a>
 				</li>
 			</ul>			
@@ -21,7 +21,7 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="col-12">
+				<div id="IdCustomer" tal:attributes="alt Customer/getId" class="col-12">
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
@@ -191,7 +191,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/OrderImport/0";
+				var URL = "/object/del/OrderExport/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -218,7 +218,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/OrderImport/" + $(this).attr('alt');
+				var URL = "/object/del/OrderExport/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -233,12 +233,12 @@
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';				
-				Data[1] = $('#IdSupplier').attr('alt');
+				Data[1] = $('#IdCustomer').attr('alt');
 				Data[2] = $('#IdStore1').val();
 				Data[3] = $('#Date1').val();
 				Data[4] = $('#Note1').val();
 							
-				var URL = "/object/ins/OrderImport";
+				var URL = "/object/ins/OrderExport";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -254,7 +254,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/OrderImport/" + $(this).attr('data-id');
+				var url = "/object/load/OrderExport/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -271,12 +271,12 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#IdSupplier').attr('alt');
+				Data[1] = $('#IdCustomer').attr('alt');
 				Data[2] = $('#IdStore2').val();
 				Data[3] = $('#Date2').val();
 				Data[4] = $('#Note2').val();
 				
-				var URL = "/object/upd/OrderImport";
+				var URL = "/object/upd/OrderExport";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
