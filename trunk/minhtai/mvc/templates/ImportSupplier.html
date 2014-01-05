@@ -47,16 +47,12 @@
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
 										<td><div class="text-left" tal:content="Order/getNote"/></td>
 										<td>
-											<div class="text-right">
-												<!--
+											<div class="text-right">												
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
-												!-->
 											</div>
 										</td>
-										<td class="center">
-											<!--
-											<a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a>
-											!-->
+										<td class="center">											
+											<a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a>											
 										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
@@ -74,6 +70,16 @@
 									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI ĐƠN HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Kho</label>
+										<div class="controls">
+											<select name="IdStore1" id="IdStore1" style="width:80%;">
+												<option tal:repeat="Store StoreAll" tal:attributes="value Store/getId">
+													<span tal:content="Store/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
 									<div class="control-group">
 										<label class="control-label">Ngày</label>
 										<div class="controls">
@@ -104,6 +110,16 @@
 									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
 								</div>
 								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Kho</label>
+										<div class="controls">
+											<select name="IdStore2" id="IdStore2" style="width:80%;">
+												<option tal:repeat="Store StoreAll" tal:attributes="value Store/getId">
+													<span tal:content="Store/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
 									<div class="control-group">
 										<label class="control-label">Ngày</label>
 										<div class="controls">
@@ -113,7 +129,7 @@
 									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
-											<input id="Description2" name="Description2" type="text" class="form-control input-small"/>
+											<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -181,10 +197,11 @@
 			//Insert 1 ORDER
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';
+				Data[0] = 'null';				
 				Data[1] = $('#IdSupplier').attr('alt');
-				Data[2] = $('#Date1').val();				
-				Data[3] = $('#Description1').val();
+				Data[2] = $('#IdStore1').val();
+				Data[3] = $('#Date1').val();
+				Data[4] = $('#Note1').val();
 							
 				var URL = "/object/ins/OrderImport";
 				$.ajax({
@@ -206,9 +223,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Date2').attr('value', data.Date);
-					$('#Description2').attr('value', data.Description);
+					$('#URLUpdButton').attr('alt'	, data.Id);					
+					$('#IdStore2').select2('val'	, data.IdStore);
+					$('#Date2').attr('value'		, data.Date);
+					$('#Note2').attr('value'	, data.Note);
 				});
 			});
 			
@@ -219,8 +237,9 @@
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');				
 				Data[1] = $('#IdSupplier').attr('alt');
-				Data[2] = $('#Date2').val();				
-				Data[3] = $('#Description2').val();
+				Data[2] = $('#IdStore2').val();
+				Data[3] = $('#Date2').val();
+				Data[4] = $('#Note2').val();
 				
 				var URL = "/object/upd/OrderImport";
 				$.ajax({
