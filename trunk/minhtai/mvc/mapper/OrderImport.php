@@ -7,8 +7,8 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblOrderImport = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_import";
-		$tblOrderImportDetail = $tblCategory = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_import_detail";
+		$tblOrderImport 		= "vendaf_mta_order_import";
+		$tblOrderImportDetail 	= "vendaf_mta_order_import_detail";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImport);
@@ -161,12 +161,7 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
         $this->findByStmt->execute( $values );
         return new OrderImportCollection( $this->findByStmt->fetchAll(), $this );
     }
-	
-	function findByTop10(array $values) {
-        $this->findByTop10Stmt->execute( $values );
-        return new OrderImportCollection( $this->findByTop10Stmt->fetchAll(), $this );
-    }
-	
+			
 	function findByTracking(array $values){
         $this->findByTrackingStmt->execute( $values );
         return new OrderImportCollection( $this->findByTrackingStmt->fetchAll(), $this );
@@ -185,47 +180,9 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
         return new OrderExportCollection( $this->findByPageStmt->fetchAll(), $this );
     }			
 	//-------------------------------------------------------
-    function selectStmt() {
-        return $this->selectStmt;
-    }	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-	//-------------------------------------------------------
-	function create( $prefix ){
-		$tblSupplier = $prefix."supplier";
-		$tblOrderImport = $prefix."order_import";
-		$createStmt = sprintf("
-			CREATE TABLE IF NOT EXISTS %s (
-				`id` int(11) NOT NULL AUTO_INCREMENT,
-				`id_supplier` int(11) NOT NULL,
-				`date` date NOT NULL,
-				`description` varchar(50) NOT NULL,
-			  PRIMARY KEY (`id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
-			INSERT INTO %s (`id`, `id_supplier`, `date`, `description`) VALUES
-			(1, 1, '2012-04-07', 'có thử'),
-			(2, 1, '2012-04-01', 'có thử'),
-						
-			ALTER TABLE %s
-				ADD CONSTRAINT %s 
-				FOREIGN KEY (`id_supplier`) 
-				REFERENCES %s (`id`) 
-				ON DELETE CASCADE ON UPDATE CASCADE;
-		", $tblOrderImport, $tblOrderImport, $tblOrderImport, $tblOrderImport."_1", $tblSupplier);
-		$this->createStmt = self::$PDO->prepare($createStmt);
-        $this->createStmt->execute( null );
-		$this->createStmt->closeCursor();
-    }
-	function drop( $prefix ){
-		$tblOrderImport = $prefix."order_import";
-		$dropStmt = sprintf("
-			DROP TABLE %s", $tblOrderImport);
-		$this->dropStmt = self::$PDO->prepare($dropStmt);
-        $this->dropStmt->execute( null );
-		$this->dropStmt->closeCursor();
-    }
+	//-------------------------------------------------------	
 }
 ?>

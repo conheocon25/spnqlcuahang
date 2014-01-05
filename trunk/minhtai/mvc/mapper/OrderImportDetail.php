@@ -7,8 +7,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = $tblCategory = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."resource";
-		$tblOrderImportDetail = $tblCategory = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."order_import_detail";
+		$tblResource = "vendaf_mta_resource";
+		$tblOrderImportDetail = "vendaf_mta_order_import_detail";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
@@ -115,33 +115,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		}
     }
 	//-------------------------------------------------------
-    function selectStmt() {
-        return $this->selectStmt;
-    }
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
-	function create( $prefix ){
-		$tblOrderImportDetail = $prefix."order_import_detail";
-		$tblOrderImport = $prefix."order_import";
-		$tblResource = $prefix."resource";
-		$createStmt = sprintf("
-			CREATE TABLE IF NOT EXISTS %s (
-		", $tblOrderImportDetail, $tblOrderImportDetail, $tblOrderImportDetail, 
-			$tblOrderImportDetail."_1", $tblOrderImport,
-			$tblOrderImportDetail."_2", $tblResource
-		);
-		$this->createStmt = self::$PDO->prepare($createStmt);
-        $this->createStmt->execute( null );
-		$this->createStmt->closeCursor();
-    }
-	function drop( $prefix ){
-		$tblOID = $prefix."order_import_detail";
-		$dropStmt = sprintf("DROP TABLE %s", $tblOID);
-		$this->dropStmt = self::$PDO->prepare($dropStmt);
-        $this->dropStmt->execute( null );
-		$this->dropStmt->closeCursor();
-    }
 }
 ?>

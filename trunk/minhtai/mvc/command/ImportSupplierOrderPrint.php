@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ImportSupplierDelLoad extends Command{
+	class ImportSupplierOrderPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,26 +10,29 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdOrderImport = $request->getProperty("IdOrderImport");
-			
+			//-------------------------------------------------------------
+			$IdSupplier = $request->getProperty("IdSupplier");
+			$IdOrder = $request->getProperty("IdOrder");
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------						
 			$mOI = new \MVC\Mapper\OrderImport();
-			
+			$mSupplier = new \MVC\Mapper\Supplier();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$OI = $mOI->find($IdOrderImport);
-			$Title = "XÓA ĐƠN HÀNG ";			
-			
+			$OI = $mOI->find($IdOrder);
+			$Supplier = $mSupplier->find($IdSupplier);
+			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
+
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title', $Title);
-			$request->setObject('User', $User);
-			$request->setObject('OrderImport', $OI);
+			$request->setProperty('DateCurrent', $DateCurrent);
+			$request->setObject('OI', $OI);
+			$request->setObject('Supplier', $Supplier );
 		}
 	}
 ?>

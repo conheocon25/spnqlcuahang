@@ -1,24 +1,8 @@
 <?php
-/** 
- * PHP version 5.3
- *
- * LICENSE: Lưu hành nội bộ
- *
- * @category   Domain
- * @package    MVC\Domain
- * @author     Bùi Thanh Tuấn <tuanbuithanh@gmail.com> 
- * @copyright  2010-2012 SPN Group
- * @license    Bản quyền nhóm
- * @version    SVN: ?
- * @link       mvc/domain/employee.php
- * @see        Employee
- * @since      File available since Release 1.2.0
- * @deprecated File deprecated in Release 2.0.0
- */
 	namespace MVC\Domain;
 	require_once( "mvc/base/domain/DomainObject.php" );
+	
 	class Employee extends Object{
-
     private $Id;
 	private $Name;
     private $Gender;
@@ -133,55 +117,32 @@
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Name'			=> $this->getName(),
+			'Address'		=> $this->getAddress(),
+			'Phone'			=> $this->getPhone(),
+			'Gender'		=> $this->getGender()
+		);						
+		return json_encode($json);		
+	}
+	
+	function setArray( $Data ){				
+		$this->Id 		= $Data[0];
+		$this->Name 	= $Data[1];
+		$this->Gender 	= $Data[2];
+		$this->Phone 	= $Data[3];
+		$this->Address 	= $Data[4];
+    }
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getUrlEmployeeLoan() {
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/loan/".$this->getId();
-    }
-			
-	function getUrlEmployeePaids() {
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/salary";
-    }
 	
-	function getUrlEmployeePaid() {
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/salary/".$this->getId();
-    }
-	
-	function getURLUpdLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/".$this->getId()."/upd/exe";
-	}
-	
-	function getURLDelLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/".$this->getId()."/del/load";						
-	}
-	function getURLDelExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/setting/employee/".$this->getId()."/del/exe";
-	}
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLPaid(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/employee#".$this->getIdPrint();
-	}
-	function getURLPaidInsLoad(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/employee/".$this->getId()."/ins/load";
-	}
-	function getURLPaidInsExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/paid/employee/".$this->getId()."/ins/exe";
-	}
+	
 }
 ?>
