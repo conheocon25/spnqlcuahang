@@ -14,13 +14,18 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$updateStmt = sprintf("update %s set id_customer=?, date=?, value=?, note=? where id=?", $tblPaid);
 		$insertStmt = sprintf("insert into %s (id_customer, date, value, note) values(?,?,?,?)", $tblPaid);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
-		$findByStmt = sprintf("select * from %s WHERE id_customer =? order by date DESC", $tblPaid);						
+		$findByStmt = sprintf("select * from %s WHERE id_customer =? order by date DESC", $tblPaid);
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
 							WHERE id_customer =:id_customer
 							ORDER BY date desc
 							LIMIT :start,:max
+				", $tblPaid);
+		$findByDateStmt = sprintf("
+							SELECT * 
+							FROM %s 							 
+							WHERE id_customer =? AND `date`>=? AND `date`<=?
 				", $tblPaid);
 				
 		
@@ -31,6 +36,7 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByDateStmt = self::$PDO->prepare($findByDateStmt);
     } 
 	
     function getCollection( array $raw ) {return new PaidCustomerCollection( $raw, $this );}
@@ -88,6 +94,12 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder{
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
         return new PaidCustomerCollection( $this->findByPageStmt->fetchAll(), $this );
-    }	
+    }
+	
+	function findByDate($values ){
+        $this->findByDateStmt->execute( $values );
+        return new PaidCustomerCollection( $this->findByDateStmt->fetchAll(), $this );
+    }
+	
 }
 ?>

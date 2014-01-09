@@ -40,7 +40,7 @@ class Viewer {
 	function pdf(){				
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);		
-		$pdf->reFormat("A5", "P");		
+		$pdf->reFormat("A4", "P");		
 		$pdf->SetMargins(1, 1, 1);
 		$pdf->SetHeaderMargin(1);
 		$pdf->setPrintHeader(false);		
@@ -49,7 +49,7 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('freeserif', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');				
-		$Out = $pdf->Output("minhtaiA5.pdf", 'I');
+		$Out = $pdf->Output("minhtaiA4.pdf", 'I');
 		unset($Out);
 		
 		return $Out;

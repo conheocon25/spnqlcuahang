@@ -97,26 +97,28 @@ class OrderExportDetailExtra extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){
-		$Order = $this->getOrder();
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/ext/upd/load";
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdOrder'		=> $this->getIdOrder(),
+			'IdResource'	=> $this->getIdResource(),
+			'Count'			=> $this->getCount(),
+			'Price'			=> $this->getPrice()
+		);
+		return json_encode($json);		
 	}
 	
-	function getURLUpdExe(){
-		$App = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getAlias();
-		return "/".$App."/selling/".$Order->getCustomer()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/ext/upd/exe";
-	}
+	function setArray( $Data ){												
+		$this->Id			= $Data[0];
+		$this->IdOrder		= $Data[1];
+		$this->IdResource	= $Data[2];
+		$this->Count		= $Data[3];
+		$this->Price		= $Data[4];
+    }
 	
 	//---------------------------------------------------------
-    static function findAll() {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->findAll();
-    }
-    static function find( $Id ) {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->find( $Id );
-    }
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 	
 }
 
