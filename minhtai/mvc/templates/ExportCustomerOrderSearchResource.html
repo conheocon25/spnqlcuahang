@@ -6,7 +6,7 @@
 				<ul class="activity-list">
 					<li tal:repeat="Resource ResourceAll">
 						<a class="course-item">
-							<strong class="Resource" tal:content="php: Resource->getName() . ' / ' . Resource->getUnit()->getName() . ' / '. Resource->getPrice1Print()" tal:attributes="alt Resource/getId;data-delta 'plus' "/>
+							<strong class="Resource" tal:content="php: Resource->getName() . ' / ' . Resource->getUnit()->getName() . ' / '. Resource->getPrice2Print()" tal:attributes="alt Resource/getId;data-price Resource/getPrice2 "/>
 						</a>
 					</li>
 				</ul>
@@ -19,22 +19,22 @@
 			$('.Resource').click(function(e){
 				var IdResource 	= $(this).attr('alt');
 				var Delta 		= $(this).attr('data-delta');				
-				alert("co" + IdResource);
-				/*				
-				var IdTable 	= $("#CurrentTable").attr('alt');
-				URL = "/selling/call/table/"+IdTable+"/"+IdResource+"/"+Delta;
-				e.stopImmediatePropagation();
+												
+				var Data = [];
+				Data[0] = $('#IdCustomer').attr('alt');
+				Data[1] = $('#IdOrder').attr('alt');
+				Data[2] = IdResource;
+				Data[3] = 1;
+				Data[4] = $(this).attr('data-price');
+				
+				var URL = "/export/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4]+"/plus";
 				$.ajax({
-					type: "POST", 
-					async: false,
+					type: "POST",					
 					url: URL,
-					dataType: 'json',
-					success: function(data){
-						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/selling/load/table/"+IdTable);												
+					success: function(msg){
+						location.reload();
 					}
-				});
-				*/
+				});												
 			});
 		</script>
 	</body>

@@ -155,8 +155,9 @@ class OrderExport extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLDetail(){return 	"/export/".$this->getIdCustomer()."/".$this->getId();}
-	function getURLPrint(){return 	"/export/".$this->getIdCustomer()."/".$this->getId()."/print";}
+	function getURLDetail(){	return 	"/export/".$this->getIdCustomer()."/".$this->getId();}
+	function getURLPrint(){		return 	"/export/".$this->getIdCustomer()."/".$this->getId()."/print";}
+	function getURLDiscount(){	return 	"/export/".$this->getIdCustomer()."/".$this->getId()."/discount";}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

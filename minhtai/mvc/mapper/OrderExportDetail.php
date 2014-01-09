@@ -12,23 +12,22 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetail);
-		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderExportDetail);
+		$updateStmt = sprintf("update %s set id_order=?, id_resource=?,count=?, price=? where id=?", $tblOrderExportDetail);
 		$insertStmt = sprintf("insert into %s ( id_order, id_resource, count, price ) values( ?, ?, ?, ?)", $tblOrderExportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetail);		
 		$existStmt = sprintf("select id from %s where id_order=? and id_resource=?", $tblOrderExportDetail);
 		$findByStmt = sprintf("select * from %s where id_order=?", $tblOrderExportDetail);
 								
-        $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            		
-		$this->existStmt = self::$PDO->prepare($existStmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare( $selectAllStmt);
+        $this->selectStmt 		= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 		= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 		= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 		= self::$PDO->prepare( $deleteStmt );                            		
+		$this->existStmt 		= self::$PDO->prepare($existStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		
     } 
     function getCollection( array $raw ) {return new OrderExportDetailCollection( $raw, $this );}
-
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\OrderExportDetail( 
 			$array['id'],  
@@ -55,6 +54,8 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     
     protected function doUpdate(\MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdOrder(),
+			$object->getIdResource(),
 			$object->getCount(),
 			$object->getPrice(),
 			$object->getId()

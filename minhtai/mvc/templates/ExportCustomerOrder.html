@@ -13,10 +13,10 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-4">
+				<div class="col-3">
 					<div class="widget-box">
 						<div class="controls">
-							<input id="SearchName" type="text" placeholder="Nhập tìm mặt hàng" style="width:85%;"/>
+							<input id="SearchName" type="text" placeholder="Nhập tìm mặt hàng" style="width:80%;"/>
 							<a class="btn RemoveCourseSearch">
 								<i class="glyphicons-circle_remove" />
 							</a>							
@@ -24,9 +24,10 @@
 					</div>
 					<div id="ResourceF"/>
 				</div>
-				<div id="IdCustomer" tal:attributes="alt Customer/getId" class="col-8">
+				<div id="IdCustomer" tal:attributes="alt Customer/getId" class="col-9">
 					<div class="widget-box">
 						<div class="widget-content nopadding">
+							<h5>ĐƠN HÀNG</h5>
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
@@ -36,6 +37,7 @@
 										<th class="left" width="120">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
+										<th width="40" /><th width="40" />
 									</tr>
 								</thead>
 								<tbody>
@@ -46,13 +48,47 @@
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
+										<td><span class="discount 	glyphicons-download_alt" tal:attributes=" data-idresource Detail/getResource/getId; data-count Detail/getCount;" /></td>
+										<td><span class="extra glyphicons-circle_plus" tal:attributes=" data-id Detail/getId" /></td>
 									</tr>
 									<tr>
 										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
-										<td><div class="text-right" tal:content="Order/getValuePrint"/></td>
+										<td><div class="text-right" tal:content="Order/getValue1Print"/></td>
+										<td/>
+										<td/>
 									</tr>
-								</tbody>																
+								</tbody>
 							</table>
+							<h5>KHUYẾN MÃI</h5>
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">TÊN</th>
+										<th class="right" width="80">SỐ LƯỢNG</th>
+										<th class="left" width="120">ĐƠN VỊ</th>
+										<th class="right" width="120">ĐƠN GIÁ</th>
+										<th class="right" width="120">T.TIỀN</th>
+										<th width="40" />										
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Detail Order/getDetailAllExtra">
+										<td class="center"><div tal:content="repeat/Detail/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+										<td><div class="text-left" tal:content="Detail/getResource/getUnit/getName"/></td>
+										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
+										<td><span class="discount glyphicons-remove_2" tal:attributes="data-id Detail/getId" /></td>
+									</tr>
+									<tr>
+										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td><div class="text-right" tal:content="Order/getValue2Print"/></td>
+										<td/>
+									</tr>
+								</tbody>
+							</table>							
 						</div>
 					</div>
 										
@@ -60,10 +96,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT ĐƠN HÀNG</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT ĐƠN HÀNG</h3></div>
+								<form id="FormEdit" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="control-group">
 										<label class="control-label">Id</label>
 										<div class="controls">
@@ -89,10 +123,10 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -118,9 +152,45 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
+			//Exe DISCOUNT
+			//-----------------------------------------------------------------------------------
+			$('.discount').click(function(){
+				var Data = [];
+				Data[0] = $('#IdCustomer').attr('alt');
+				Data[1] = $('#IdOrder').attr('alt');
+				Data[2] = $(this).attr('data-idresource');
+				Data[3] = $(this).attr('data-count');
+				
+				var URL = "/export/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/discount";
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			
+			//-----------------------------------------------------------------------------------
+			//Exe DISCOUNT
+			//-----------------------------------------------------------------------------------
+			$('.extra').click(function(){								
+				var URL = "/export/detail/"+$(this).attr('data-id')+"/clone";
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
 			//Load 1 ORDER
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
+				$('#URLUpdButton').attr('alt', $(this).attr('data-id'));
 				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
 				$('#Name2').attr('value', $(this).attr('data-name'));
 				$('#Count2').attr('value', $(this).attr('data-count'));
@@ -130,23 +200,49 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 TABLE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#IdCustomer').attr('alt');
-				Data[1] = $('#IdOrder').attr('alt');
-				Data[2] = $('#IdResource2').val();
-				Data[3] = $('#Count2').val();
-				Data[4] = $('#Price2').val();
-				
-				var URL = "/export/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormEdit").validate({
+				rules:{
+					Price2:{
+						number:true,
+						min:0,
+						required:true
+					},
+					Count2:{						
+						number:true,
+						min:0,
+						required:true
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];					
+					Data[0] = $('#URLUpdButton').attr('alt');					
+					Data[1] = $('#IdOrder').attr('alt');
+					Data[2] = $('#IdResource2').val();
+					Data[3] = $('#Count2').val();
+					Data[4] = $('#Price2').val();
+										
+					var URL = "/object/upd/OrderExportDetail";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					
+					return false;
+				}
+			});						
 		/*]]>*/
 		</script>
 	</body>

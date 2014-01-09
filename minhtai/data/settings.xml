@@ -35,34 +35,6 @@
 		<command name="MoneyPaidGeneral">			<view>MoneyPaidGeneral</view></command>
 		<command name="MoneyPaidSupplier">			<view>MoneyPaidSupplier</view></command>
 		<command name="MoneyPaidCustomer">			<view>MoneyPaidCustomer</view></command>
-				
-		<!-- ============================================================================== -->
-		<!-- SELLING				 														-->
-		<!-- ============================================================================== -->
-		<command name="SellingCustomerInsLoad"><view>SellingCustomerInsLoad</view></command>		
-		<command name="SellingCustomerInsExe"><view>SellingCustomerInsExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
-		<command name="SellingCustomerUpdLoad"><view>SellingCustomerUpdLoad</view></command>
-		<command name="SellingCustomerUpdExe"><view>SellingCustomerUpdExe</view><status value="CMD_OK"><forward>SellingCustomerOrder</forward></status></command>
-		<command name="SellingCustomerDelLoad"><view>SellingCustomerDelLoad</view></command>
-		<command name="SellingCustomerDelExe"><view>SellingCustomerDelExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
-		
-		<command name="SellingCustomerOrder"><view>SellingCustomerOrder</view></command>
-		<command name="SellingCustomerOrderDetail"><view>SellingCustomerOrderDetail</view></command>
-		<command name="SellingCustomerOrderPrint"><view>SellingCustomerOrderPrint</view></command>
-		<command name="SellingCustomerOrderAllPrint"><view>SellingCustomerOrderAllPrint</view></command>
-		
-		<command name="SellingCustomerOrderCallLoad"><view>SellingCustomerOrderCallLoad</view></command>
-		<command name="SellingCustomerOrderCallExe"><status value="CMD_OK"><forward>SellingCustomerOrderCallLoad</forward></status><view>SellingCustomerOrderCallExe</view></command>
-		
-		<command name="SellingCustomerOrderInsLoad"><view>SellingCustomerOrderInsLoad</view></command>
-		<command name="SellingCustomerOrderInsExe"><view>SellingCustomerOrderInsExe</view><status value="CMD_OK"><forward>SellingCustomerOrderDetail</forward></status></command>
-		<command name="SellingCustomerOrderUpdLoad"><view>SellingCustomerOrderUpdLoad</view></command>
-		<command name="SellingCustomerOrderUpdExe"><view>SellingCustomerOrderUpdExe</view><status value="CMD_OK"><forward>SellingCustomerOrderDetail</forward></status></command>
-		<command name="SellingCustomerOrderDelLoad"><view>SellingCustomerOrderDelLoad</view></command>
-		<command name="SellingCustomerOrderDelExe"><view>SellingCustomerOrderDelExe</view><status value="CMD_OK"><forward>SellingCustomerOrderDetail</forward></status></command>
-		
-		<command name="SellingCustomerOrderExtUpdLoad"><view>SellingCustomerOrderExtUpdLoad</view></command>
-		<command name="SellingCustomerOrderExtUpdExe"><view>SellingCustomerOrderExtUpdExe</view><status value="CMD_OK"><forward>SellingCustomerOrderDetail</forward></status></command>
 		
 		<!-- ============================================================================== -->
 		<!-- EXPORT				 															-->
@@ -70,8 +42,11 @@
 		<command name="Export">						<view>Export</view></command>
 		<command name="ExportCustomer">				<view>ExportCustomer</view></command>
 		<command name="ExportCustomerOrder">		<view>ExportCustomerOrder</view></command>
+		<command name="ExportCustomerOrderExe">		<view>ExportCustomerOrderExe</view></command>
 		<command name="ExportCustomerOrderPrint">	<view>ExportCustomerOrderPrint</view></command>
+		<command name="ExportCustomerOrderDiscount"><view>ExportCustomerOrderDiscount</view></command>
 		<command name="ExportCustomerOrderSearchResource"><view>ExportCustomerOrderSearchResource</view></command>
+		<command name="ExportCustomerOrderDetailClone"><view>ExportCustomerOrderDetailClone</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
