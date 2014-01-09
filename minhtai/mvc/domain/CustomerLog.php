@@ -8,6 +8,7 @@ class CustomerLog extends Object{
 	private $IdOrder;
 	private $IdCustomer;
 	private $PaidValue;
+	private $DebtValue;
 	
 	//-------------------------------------------------------------------------
 	//Hàm khởi tạo và thiết lập các thuộc tính
@@ -16,16 +17,19 @@ class CustomerLog extends Object{
 		$Id=null, 
 		$IdOrder=null, 
 		$IdCustomer=null,
-		$PaidValue=null
+		$PaidValue=null,
+		$DebtValue=null
 	) 
 	{
-        $this->Id = $Id;
-		$this->IdOrder = $IdOrder;
-		$this->IdCustomer = $IdCustomer;
-		$this->PaidValue = $PaidValue;		
+        $this->Id 			= $Id;
+		$this->IdOrder 		= $IdOrder;
+		$this->IdCustomer 	= $IdCustomer;
+		$this->PaidValue 	= $PaidValue;		
+		$this->DebtValue 	= $DebtValue;
         parent::__construct( $Id );
     }
 	function getId(){return $this->Id;}	
+	function setId($Id){$this->Id = $Id;}
     
 	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
     function getIdCustomer( ) {return $this->IdCustomer;}
@@ -50,24 +54,25 @@ class CustomerLog extends Object{
 		return $OrderExport;
 	}
 	
-	function getOldDebt(){
-		$mCL = new \MVC\Mapper\CustomerLog();
-		$Pre = $mCL->findPre( array($this->getIdCustomer(), $this->getId()) );
-		if ($Pre->count()==0)
-			return $this->getCustomer()->getDebt();
-		return $Pre->current()->getValue();
+	function getOldDebtValue(){		
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CLPre 	= $mCL->findPre(array($this->getIdCustomer(), $this->getId()));
+		if ($CLPre->count()==0){
+			$Debt = $this->getCustomer()->getDebt();
+		}else{
+			$Debt = $CLPre->current()->getDebtValue();
+		}
+		return $Debt;
 	}
-	function getOldDebtPrint( ){
-		$num = number_format($this->getOldDebt(), 0, ',', '.');
+	function getOldDebtValuePrint( ){
+		$num = number_format($this->getOldDebtValue(), 0, ',', '.');
 		return $num;
     }
 	
-	function getValue( ) {
-		return $this->getOrder()->getValue() + $this->getOldDebt() - $this->getPaidValue();
-	}
-	
-	function getValuePrint( ){
-		$num = number_format($this->getValue(), 0, ',', '.');
+	function setDebtValue( $DebtValue ) {$this->DebtValue = $DebtValue;$this->markDirty();}
+	function getDebtValue( ) {return $this->DebtValue;}	
+	function getDebtValuePrint( ){
+		$num = number_format($this->getDebtValue(), 0, ',', '.');
 		return $num;
     }
 	

@@ -13,7 +13,7 @@ class OrderExportDetailExtra extends Mapper implements \MVC\Domain\OrderExportDe
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetailExtra);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetailExtra);
-		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderExportDetailExtra);
+		$updateStmt = sprintf("update %s set id_order=?, id_resource=?, count=?, price=? where id=?", $tblOrderExportDetailExtra);
 		$insertStmt = sprintf("insert into %s ( id_order, id_resource, count, price ) values( ?, ?, ?, ?)", $tblOrderExportDetailExtra);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetailExtra);		
 		$existStmt = sprintf("select id from %s where id_order=? and id_resource=?", $tblOrderExportDetailExtra);
@@ -59,7 +59,9 @@ class OrderExportDetailExtra extends Mapper implements \MVC\Domain\OrderExportDe
     }
     
     protected function doUpdate(\MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array(
+			$object->getIdOrder(), 
+			$object->getIdResource(), 
 			$object->getCount(),
 			$object->getPrice(),
 			$object->getId()

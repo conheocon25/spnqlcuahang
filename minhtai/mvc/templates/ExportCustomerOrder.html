@@ -37,7 +37,8 @@
 										<th class="left" width="120">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
-										<th width="40" /><th width="40" />
+										<th width="40" /><th width="40" /><th width="40" />
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -48,18 +49,18 @@
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
+										<td><span href="#DialogDel" data-toggle="modal" class="remove-item glyphicons-remove_2" tal:attributes="data-id Detail/getId" /></td>
 										<td><span class="discount 	glyphicons-download_alt" tal:attributes=" data-idresource Detail/getResource/getId; data-count Detail/getCount;" /></td>
 										<td><span class="extra glyphicons-circle_plus" tal:attributes=" data-id Detail/getId" /></td>
 									</tr>
 									<tr>
-										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td colspan="5"></td>
 										<td><div class="text-right" tal:content="Order/getValue1Print"/></td>
-										<td/>
-										<td/>
+										<td/><td/><td/>
 									</tr>
 								</tbody>
 							</table>
-							<h5>KHUYẾN MÃI</h5>
+							<h5>GIẢM GIÁ</h5>
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
@@ -69,29 +70,104 @@
 										<th class="left" width="120">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
-										<th width="40" />										
+										<th width="40" /><th width="40" /><th width="40" />
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Detail Order/getDetailAllExtra">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><a class="update-discount-item" href="#DialogDiscountEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
-										<td><span class="discount glyphicons-remove_2" tal:attributes="data-id Detail/getId" /></td>
+										<td><span href="#DialogDel" data-toggle="modal" class="discount remove-discount-item glyphicons-remove_2 text-center" tal:attributes="data-id Detail/getId" /></td>
+										<td/><td/>
 									</tr>
 									<tr>
-										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td colspan="5"></td>
 										<td><div class="text-right" tal:content="Order/getValue2Print"/></td>
-										<td/>
+										<td/><td/><td/>
 									</tr>
 								</tbody>
-							</table>							
+							</table>
+							<h5>TRẢ TRƯỚC</h5>
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">NGÀY</th>										
+										<th class="left">DIỄN GIẢI</th>										
+										<th class="right" width="120">T.TIỀN</th>
+										<th width="40" /><th width="40" /><th width="40" />
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Paid PCAll">
+										<td class="center"><div tal:content="repeat/Paid/number"/></td>
+										<td><a class="update-paid-item" href="#DialogPaidEdit" data-toggle="modal" tal:attributes="data-id Paid/getId; data-date Paid/getDate; data-note Paid/getNote; data-value Paid/getValue" tal:content="Paid/getDatePrint"/></td>
+										<td><div class="text-left" tal:content="Paid/getNote"/></td>
+										<td><div class="text-right" tal:content="Paid/getValuePrint"/></td>
+										<td/><td/><td/>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td><div class="text-right" tal:content="php:SPaid->formatCurrency() . ' đ'"/></td>
+										<td/><td/><td/>
+									</tr>
+								</tbody>
+							</table>
+							<h5>TỔNG CỘNG</h5>
+							<table width="100%">
+								<tr>
+									<td><div class="text-right">NỢ CŨ</div></td>
+									<td><div class="text-right" tal:content="CL/getOldDebtValuePrint"/></td>
+									<td width="120"/>
+								</tr>
+								<tr>
+									<td><div class="text-right">TRẢ TRONG KÌ</div></td>
+									<td><div class="text-right" tal:content="CL/getPaidValuePrint"/></td>
+									<td width="120"/>
+								</tr>
+								<tr>
+									<td><div class="text-right">ĐƠN HÀNG</div></td>
+									<td><div class="text-right" tal:content="Order/getValue1Print"/></td>
+									<td width="120"/>
+								</tr>																
+								<tr>
+									<td><div class="text-right">GIẢM GIÁ</div></td>
+									<td><div class="text-right" tal:content="Order/getValue2Print"/></td>
+									<td width="120"/>
+								</tr>																
+								<tr>
+									<td><div class="text-right">NỢ MỚI</div></td>
+									<td>										
+										<a title="In phiếu" data-toggle="modal" class="OrderPreview text-right" href="#DialogPreview" tal:attributes="alt Order/getURLPrint"><div  tal:content="CL/getDebtValuePrint"/></a>
+									</td>
+									<td width="120"/>
+								</tr>																
+							</table>
 						</div>
 					</div>
-										
+					
+					<!-- DIALOG PREVIEW	-->
+					<div id="DialogPreview" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3>
+								</div>								
+								<form class="form">
+									<div class="form-group">
+										<div id="DocPreview" width="640px" height="480px"/>
+									</div>
+									<div class="modal-footer">									
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
@@ -130,15 +206,57 @@
 							</div>
 						</div>
 					</div>
-					<!-- END UPDATE DIALOG  -->					
+					<!-- END UPDATE DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogDiscountEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT CHIẾT KHẤU</h3></div>
+								<form id="FormDiscountEdit" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="control-group">
+										<label class="control-label">Id</label>
+										<div class="controls">
+											<input readonly="true" id="IdResource3" name="IdResource3" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input readonly="true" id="Name3" name="Name3" type="text" class="form-control input-small"/>
+										</div>
+									</div>									
+									<div class="control-group">
+										<label class="control-label">Số lượng</label>
+										<div class="controls">
+											<input id="Count3" name="Count3" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Đơn giá</label>
+										<div class="controls">
+											<input id="Price3" name="Price3" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdDiscountButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
 				</div>
 			</div>
 		</div>
+		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 		<div id="IdOrder" tal:attributes="alt Order/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			
 			//---------------------------------------------------------------------------
 			//Xử lí search tên			
 			$('#SearchName').keyup(function(e){
@@ -151,6 +269,24 @@
 				$("#ResourceF").html("");
 			});
 			
+			//-----------------------------------------------------------------------------------
+			//PRINT ORDER
+			$(".OrderPreview").click(function(){
+				URL = $(this).attr('alt');
+				var mPDF = new PDFObject({ 		
+					url: URL,				
+					height: "500px",
+					pdfOpenParams:{
+						view: 'Fit', 
+						toolbar: '1', 
+						statusbar: '1', 
+						messages: '1',
+						navpanes: '1' 
+					}				
+				}).embed("DocPreview");												
+				$("#DocPreview").show().printElement();	
+			});
+					
 			//-----------------------------------------------------------------------------------
 			//Exe DISCOUNT
 			//-----------------------------------------------------------------------------------
@@ -242,7 +378,98 @@
 					
 					return false;
 				}
-			});						
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//update DISCOUNT
+			//-----------------------------------------------------------------------------------
+			$('.update-discount-item').click(function(){
+				$('#URLUpdDiscountButton').attr('alt', $(this).attr('data-id'));
+				$('#IdResource3').attr('value', $(this).attr('data-idresource'));
+				$('#Name3').attr('value', $(this).attr('data-name'));
+				$('#Count3').attr('value', $(this).attr('data-count'));
+				$('#Price3').attr('value', $(this).attr('data-price'));
+			});
+			
+			$("#FormDiscountEdit").validate({
+				rules:{
+					Price3:{
+						number:true,
+						min:0,
+						required:true
+					},
+					Count3:{						
+						number:true,
+						min:0,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];					
+					Data[0] = $('#URLUpdDiscountButton').attr('alt');					
+					Data[1] = $('#IdOrder').attr('alt');
+					Data[2] = $('#IdResource3').val();
+					Data[3] = $('#Count3').val();
+					Data[4] = $('#Price3').val();
+										
+					var URL = "/object/upd/OrderExportDetailExtra";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					
+					return false;
+				}
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 OrderExportDetailExtra			
+			//-----------------------------------------------------------------------------------
+			$('.remove-discount-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){
+				var URL = "/object/del/OrderExportDetailExtra/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 OrderExportDetail			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){
+				var URL = "/object/del/OrderExportDetail/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
 		/*]]>*/
 		</script>
 	</body>

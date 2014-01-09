@@ -6,25 +6,27 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
     function __construct() {
         parent::__construct();
 		
-		$tblCustomerLog = @\MVC\Base\SessionRegistry::getCurrentUser()->getApp()->getPrefix()."customer_log";
+		$tblCustomerLog = "vendaf_mta_customer_log";
 	
-		$selectAllStmt = sprintf("select * from %s", $tblCustomerLog);
-		$selectStmt = sprintf("select * from %s where id=?", $tblCustomerLog);
-		$updateStmt = sprintf("update %s SET id_order=?, id_customer=?, paid_value=?  where id=?", $tblCustomerLog);
-		$insertStmt = sprintf("INSERT into %s ( id_order, id_customer, paid_value ) values( ?, ?, ?)", $tblCustomerLog);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblCustomerLog);		
-		$deleteByStmt = sprintf("delete from %s where id_customer=?", $tblCustomerLog);
-		$findByStmt = sprintf("SELECT * from %s where id_customer=?", $tblCustomerLog);
+		$selectAllStmt 	= sprintf("select * from %s", $tblCustomerLog);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblCustomerLog);
+		$updateStmt 	= sprintf("update %s SET id_order=?, id_customer=?, paid_value=?, debt_value=?  where id=?", $tblCustomerLog);
+		$insertStmt 	= sprintf("INSERT into %s ( id_order, id_customer, paid_value, debt_value ) values( ?, ?, ?, ?)", $tblCustomerLog);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCustomerLog);		
+		$deleteByStmt 	= sprintf("delete from %s where id_customer=?", $tblCustomerLog);
+		$findByStmt 	= sprintf("SELECT * from %s where id_customer=?", $tblCustomerLog);
 		$findPreStmt 	= sprintf("select *  from %s where id_customer=? AND id<? ORDER BY id DESC", $tblCustomerLog);
+		$existStmt 		= sprintf("select id from %s where id_customer=? and id_order=?", $tblCustomerLog);
 		
-		$this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-		$this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->deleteByStmt = self::$PDO->prepare($deleteByStmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
-		$this->findPreStmt = self::$PDO->prepare($findPreStmt);
+		$this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
+		$this->selectStmt 		= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->deleteByStmt 	= self::$PDO->prepare($deleteByStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findPreStmt 		= self::$PDO->prepare($findPreStmt);
+		$this->existStmt 		= self::$PDO->prepare($existStmt);
     } 
     function getCollection( array $raw ) {return new CustomerLogCollection( $raw, $this );}
 
@@ -33,7 +35,8 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
 			$array['id'],
 			$array['id_order'],
 			$array['id_customer'],
-			$array['paid_value']				
+			$array['paid_value'],
+			$array['debt_value']
 		);
         return $obj;
     }
@@ -43,7 +46,8 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
         $values = array(
 			$object->getIdOrder(),
 			$object->getIdCustomer(),
-			$object->getPaidValue()
+			$object->getPaidValue(),
+			$object->getDebtValue()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -55,6 +59,7 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
 			$object->getIdOrder(),
 			$object->getIdCustomer(),
 			$object->getPaidValue(),
+			$object->getDebtValue(),
 			$object->getId()
 		); 
         $this->updateStmt->execute( $values );
@@ -62,9 +67,7 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
 	function doDelete( array $values ) {$this->deleteStmt->execute( $values );}	
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
-	function deleteBy($values ) {
-        $this->deleteByStmt->execute( $values );        
-    }
+	function deleteBy($values ) {$this->deleteByStmt->execute( $values );        }
 	
 	function findBy($values ) {	
         $this->findByStmt->execute( $values );
@@ -73,6 +76,16 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder{
 	function findPre(array $values) {
 		$this->findPreStmt->execute( $values );
         return new CustomerLogCollection( $this->findPreStmt->fetchAll(), $this );
-    }		
+    }
+	
+	function exist($values) {
+		$this->existStmt->execute($values);
+		$result = $this->existStmt->fetchAll();
+		if($result != null) {
+			return $result[0][0];
+		} else {
+			return -1;			
+		}
+    }
 }
 ?>
