@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ExportCustomerOrderExe extends Command{
+	class ExportCustomerOrderDiscount extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -15,15 +15,14 @@
 			$IdOrder 		= $request->getProperty("IdOrder");
 			$IdResource 	= $request->getProperty("IdResource");
 			$Count 			= $request->getProperty("Count");
-			$Price 			= $request->getProperty("Price");
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mCustomer 	= new \MVC\Mapper\Customer();
 			$mResource 	= new \MVC\Mapper\Resource();
 			$mOE 		= new \MVC\Mapper\OrderExport();
-			$mOED 		= new \MVC\Mapper\OrderExportDetail();
+			$mOEDX 		= new \MVC\Mapper\OrderExportDetailExtra();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -33,26 +32,26 @@
 			$Resource 	= $mResource->find($IdResource);
 			
 			//Kiểm tra xem record có tồn tại chưa
-			$IdOED = $mOED->exist(array($IdOrder, $IdResource));
+			$IdOED = $mOEDX->exist(array($IdOrder, $IdResource));
 			
 			if ($IdOED>0){
 				if ($Count==0){
-					$mOED->delete(array($IdOED));
+					$mOEDX->delete(array($IdOED));
 				}else{
-					$OID = $mOED->find($IdOED);
+					$OID = $mOEDX->find($IdOED);
 					$OID->setPrice($Price);
 					$OID->setCount($Count);
-					$mOED->update($OID);
+					$mOEDX->update($OID);
 				}
 			}else{
-				$OED = new \MVC\Domain\OrderExportDetail(
+				$OED = new \MVC\Domain\OrderExportDetailExtra(
 					null,
 					$IdOrder,
 					$IdResource,
 					$Count,
-					$Price
+					0
 				);
-				$mOED->insert($OED);
+				$mOEDX->insert($OED);
 			}			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

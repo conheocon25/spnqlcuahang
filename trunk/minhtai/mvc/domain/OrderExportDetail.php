@@ -88,6 +88,24 @@ class OrderExportDetail extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdOrder'		=> $this->getIdOrder(),
+			'IdResource'	=> $this->getIdResource(),
+			'Count'			=> $this->getCount(),
+			'Price'			=> $this->getPrice()
+		);
+		return json_encode($json);		
+	}
+	
+	function setArray( $Data ){												
+		$this->Id			= $Data[0];
+		$this->IdOrder		= $Data[1];
+		$this->IdResource	= $Data[2];
+		$this->Count		= $Data[3];
+		$this->Price		= $Data[4];
+    }
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

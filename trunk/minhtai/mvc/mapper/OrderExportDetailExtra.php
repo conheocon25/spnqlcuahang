@@ -17,21 +17,8 @@ class OrderExportDetailExtra extends Mapper implements \MVC\Domain\OrderExportDe
 		$insertStmt = sprintf("insert into %s ( id_order, id_resource, count, price ) values( ?, ?, ?, ?)", $tblOrderExportDetailExtra);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetailExtra);		
 		$existStmt = sprintf("select id from %s where id_order=? and id_resource=?", $tblOrderExportDetailExtra);
-		$findByStmt = sprintf("			
-			select
-				ifnull(OEDE.id, 0) as id,
-				OED.id_order as id_order,
-				OED.id_resource as id_resource,
-				ifnull(OEDE.count, 0) as count,
-				ifnull(OEDE.price, 0) as price
-			from
-				%s OED left join
-				%s OEDE on
-				OED.id_order = OEDE.id_order AND OED.id_resource = OEDE.id_resource
-			where 
-				OED.id_order=?
-		", $tblOrderExportDetail, $tblOrderExportDetailExtra);
-								
+		$findByStmt = sprintf("select * from %s where id_order=?", $tblOrderExportDetailExtra);
+										
         $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);
         $this->selectStmt = self::$PDO->prepare( $selectStmt );
         $this->updateStmt = self::$PDO->prepare( $updateStmt );
