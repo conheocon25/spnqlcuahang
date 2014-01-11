@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="container-fluid">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">								
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>										
+											<th width="5%"><B>#ID</B></th>
+											<th width="15%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="20%"><div class="text-left">KHÁCH HÀNG</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="25%"><div class="text-right">GIÁ TRỊ</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Order OrderAll">
+											<td align="center"><span tal:content="Order/getId"/></td>
+											<td align="left"><span tal:content="Order/getDatePrint"/></td>
+											<td align="left"><span tal:content="Order/getCustomer/getName"/></td>
+											<td align="left"><span tal:content="Order/getNote"/></td>
+											<td align="right">																								
+												<a title="In phiếu" data-toggle="modal" class="OrderPreview" href="#DialogPreview" tal:attributes="alt Order/getURLPrint"><span tal:content="Order/getValuePrint"/></a>
+											</td>											
+										</tr>
+										<tr>
+											<td align="right" colspan="4">TỔNG CỘNG</td>
+											<td align="right"><B tal:content="php: NTotal->formatCurrency() . ' đ'"/></td>
+										</tr>
+									</tbody>
+								</table>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<!-- DIALOG PREVIEW	-->
+		<div id="DialogPreview" class="modal fade">
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3></div>
+					<form class="form">
+						<div class="form-group"><div id="DocPreview" /></div>
+						<div class="modal-footer">									
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$(".OrderPreview").click(function(){
+				URL = $(this).attr('alt');
+				var mPDF = new PDFObject({ 		
+					url: URL,				
+					height: "500px",
+					pdfOpenParams:{
+						view: 'Fit', 
+						toolbar: '1', 
+						statusbar: '1', 
+						messages: '1',
+						navpanes: '1' 
+					}				
+				}).embed("DocPreview");												
+				$("#DocPreview").show().printElement();	
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>
