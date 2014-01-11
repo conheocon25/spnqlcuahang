@@ -57,16 +57,22 @@
 		<command name="ImportSupplierOrderPrint">	<view>ImportSupplierOrderPrint</view></command>
 																		
 		<!-- ============================================================================== -->
-		<!-- REPORT				 															-->
-		<!-- ============================================================================== -->		
-		<command name="Report">						<view>Report</view></command>
-		<command name="ReportSellingDetail">		<view>ReportSellingDetail</view></command>
-		<command name="ReportSupplierDetail">		<view>ReportSupplierDetail</view></command>
-		<command name="ReportEmployeeDetail">		<view>ReportEmployeeDetail</view></command>		
-		<command name="ReportOtherDetail">			<view>ReportOtherDetail</view></command>
-		<command name="ReportStoreDetail">			<view>ReportStoreDetail</view></command>
-		<command name="ReportStoreResourceDetail">	<view>ReportStoreResourceDetail</view></command>
-		<command name="ReportStoreDetailPrint">		<view>ReportStoreDetailPrint</view></command>
+		<!-- REPORT.DETAIL			 														-->
+		<!-- ============================================================================== -->
+		<command name="Report">				<view>Report</view>				</command>
+		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
+		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
+		
+		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
+		<command name="ReportDailySelling">	<view>ReportDailySelling</view>	</command>
+		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
+		<command name="ReportDailyStore">	<view>ReportDailyStore</view>	</command>
+		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
+		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
+		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
+		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>
+		<command name="ReportDailyLog">		<view>ReportDailyLog</view>	</command>
+		<command name="ReportDailyCustomerDetail"><view>ReportDailyCustomerDetail</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
