@@ -75,6 +75,10 @@ class CustomerLog extends Object{
 		$num = number_format($this->getDebtValue(), 0, ',', '.');
 		return $num;
     }
+	function getDebtValueStrPrint( ){
+		$num = new \MVC\Library\Number($this->getDebtValue());
+		return $num->readDigit();
+    }
 	
 }
 ?>
