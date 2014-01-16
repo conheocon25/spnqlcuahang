@@ -112,7 +112,11 @@
 									</tr>
 									<tr>
 										<td colspan="3"></td>
-										<td><div class="text-right" tal:content="php:SPaid->formatCurrency() . ' đ'"/></td>
+										<td>
+											<a tal:attributes="href Customer/getURLPaid">
+												<div class="text-right" tal:content="php:SPaid->formatCurrency() . ' đ'"/>
+											</a>
+										</td>
 										<td/><td/><td/>
 									</tr>
 								</tbody>
@@ -121,12 +125,12 @@
 							<table width="100%">
 								<tr>
 									<td><div class="text-right">NỢ CŨ</div></td>
-									<td><div class="text-right" tal:content="CL/getOldDebtValuePrint"/></td>
+									<td><div class="text-right" tal:content="php:CL->getOldDebtValuePrint() . ' đ'"/></td>
 									<td width="120"/>
 								</tr>
 								<tr>
 									<td><div class="text-right">TRẢ TRONG KÌ</div></td>
-									<td><div class="text-right" tal:content="CL/getPaidValuePrint"/></td>
+									<td><div class="text-right" tal:content="php:CL->getPaidValuePrint() . ' đ'"/></td>
 									<td width="120"/>
 								</tr>
 								<tr>
@@ -142,7 +146,7 @@
 								<tr>
 									<td><div class="text-right">NỢ MỚI</div></td>
 									<td>										
-										<a title="In phiếu" data-toggle="modal" class="OrderPreview text-right" href="#DialogPreview" tal:attributes="alt Order/getURLPrint"><div  tal:content="CL/getDebtValuePrint"/></a>
+										<a title="In phiếu" data-toggle="modal" class="OrderPreview text-right" href="#DialogPreview" tal:attributes="alt Order/getURLPrint"><div  tal:content="php:CL->getDebtValuePrint() . ' đ'"/></a>
 									</td>
 									<td width="120"/>
 								</tr>																
@@ -152,7 +156,7 @@
 					
 					<!-- DIALOG PREVIEW	-->
 					<div id="DialogPreview" class="modal fade">
-						<div class="modal-dialog">
+						<div class="modal-dialog full-screen">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3>

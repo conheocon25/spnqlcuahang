@@ -19,12 +19,17 @@
 			//-------------------------------------------------------------						
 			$mOE 		= new \MVC\Mapper\OrderExport();
 			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mCL 		= new \MVC\Mapper\CustomerLog();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$OE = $mOE->find($IdOrder);
 			$Customer = $mCustomer->find($IdCustomer);
+			
+			$IdCL 	= $mCL->exist(array($IdCustomer, $IdOrder));
+			$CL 	= $mCL->find($IdCL);
+						
 			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 
 			//-------------------------------------------------------------
@@ -32,6 +37,7 @@
 			//-------------------------------------------------------------			
 			$request->setProperty('DateCurrent', $DateCurrent);
 			$request->setObject('OE', $OE);
+			$request->setObject('CL', $CL);
 			$request->setObject('Customer', $Customer );
 		}
 	}

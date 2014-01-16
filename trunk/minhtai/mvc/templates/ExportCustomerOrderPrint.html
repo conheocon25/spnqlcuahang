@@ -73,46 +73,32 @@
 	<table width="100%" cellpadding="2" cellspacing="0" border="0">
 		<tr>
 			<td width="80%" align='right'>NỢ CŨ:</td>
-			<td width="20%" align='right'>
-				<span tal:content="Customer/getOldDebt1Print" />
-			</td>
+			<td width="20%" align='right'><span tal:content="CL/getOldDebtValuePrint" /> đ</td>
 		</tr>
 		<tr>
 			<td width="80%" align='right'>TIỀN HÀNG:</td>
-			<td width="20%" align='right'>
-				+<span tal:content="OE/getValue1Print" />
-			</td>
+			<td width="20%" align='right'>+<span tal:content="OE/getValue1Print" /></td>
 		</tr>
 		<tr>
-				<td width="80%" align='right'>KHUYẾN MÃI:</td>
-				<td width="20%" align='right'>
-					-<span tal:content="OE/getValue2Print" />
-				</td>
+			<td width="80%" align='right'>KHUYẾN MÃI:</td>
+			<td width="20%" align='right'>-<span tal:content="OE/getValue2Print" /></td>
 		</tr>
 		<tr>
 			<td width="80%" align='right'>TRẢ TRƯỚC:</td>
-			<td align='right' width="20%">
-				<span tal:content="Customer/getPaidsTrackingValue1Print"/>
-			</td>
-		</tr>		
+			<td align='right' width="20%"><span tal:content="CL/getPaidValuePrint"/> đ</td>
+		</tr>
 		<tr>
-			<td width="80%" align='right'>
-				____________________
-			</td>
-			<td width="20%" align='left'>							
-				_____________
-			</td>
+			<td width="80%" align='right'>____________________</td>
+			<td width="20%" align='left'>____________________</td>
 		</tr>
 		<tr>
 			<td align='right'><B>NỢ MỚI:</B></td>
-			<td align='right'>
-				<font size="14px">
-					<B tal:content="Customer/getNewDebt1Print"/>
-				</font>
-			</td>
+			<td align='right'><font size="14px"><B tal:content="CL/getDebtValuePrint"/> đ</font></td>
+		</tr>
+		<tr>			
+			<td width="100%" align='right'><font size="14px">(<B tal:content="CL/getDebtValueStrPrint"/> <B>đồng</B>)</font></td>
 		</tr>
 	</table>
-	<div align='right'><font size="14">(<span tal:content="Customer/getNewDebt1StrPrint"/> đồng)</font></div>
 	<BR/>
 	<table width="100%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
@@ -121,15 +107,9 @@
 			<td width="45%" align="center"><span tal:content="OE/getDatePrint1"/></td>
 		</tr>
 		<tr>
-			<td align="center">
-				Người lập phiếu
-			</td>
-			<td align="center">
-				Người nhận hàng
-			</td>
-			<td align="center">
-				Đại lý thức ăn gia súc Minh Tài
-			</td>
-		</tr>		
+			<td align="center">Người lập phiếu</td>
+			<td align="center">Người nhận hàng</td>
+			<td align="center">Đại lý thức ăn gia súc Minh Tài</td>
+		</tr>
 	</table>
 </font>
