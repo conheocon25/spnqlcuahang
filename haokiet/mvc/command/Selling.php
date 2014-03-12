@@ -15,15 +15,35 @@
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			//-------------------------------------------------------------			
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mCL 		= new \MVC\Mapper\CustomerLog();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$Domain 		= $mDomain->find($IdDomain);
-			$DomainAll 		= $mDomain->findAll();
+			//-------------------------------------------------------------
+			//Phát sinh dữ liệu CustomerLog cho ngày hiện tại
 			$CustomerAll 	= $mCustomer->findAll();
+			
+			$CLAll = $mCL->findByDate(array(\date('Y-m-d')));
+			if ($CLAll->count()==0){
+				while ($CustomerAll->valid()){
+					$Customer = $CustomerAll->current();
+					$CL = new \MVC\Domain\CustomerLog(
+						null,
+						$Customer->getId(),
+						\date('Y-m-d'),
+						0,0,0,0,0
+					);
+					$mCL->insert($CL);
+					$CustomerAll->next();
+				}
+			}
+						
+			$Domain 		= $mDomain->find($IdDomain);
+			$DomainAll 		= $mDomain->findAll();			
 			if (!isset($Domain)){
 				$Domain = $DomainAll->current();
 				$IdDomain = $Domain->getId();
