@@ -21,8 +21,7 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$UnitAll = $mUnit->findAll();						
+			//-------------------------------------------------------------									
 			$SupplierAll = $mSupplier->findAll();
 						
 			$Supplier = $mSupplier->find($IdSupplier);			
@@ -50,8 +49,7 @@
 			$request->setObject('Supplier'		, $Supplier);
 			$request->setObject('PN'			, $PN);
 			$request->setObject('ConfigName'	, $ConfigName);
-						
-			$request->setObject('UnitAll'		, $UnitAll);									
+			
 			$request->setObject('SupplierAll'	, $SupplierAll);
 			
 			return self::statuses('CMD_DEFAULT');
