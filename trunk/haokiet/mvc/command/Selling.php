@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingCustomer extends Command {
+	class Selling extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -12,8 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdDomain 	= $request->getProperty('IdDomain');
-			$Page 		= $request->getProperty('Page');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
@@ -25,34 +24,28 @@
 			$Domain 		= $mDomain->find($IdDomain);
 			$DomainAll 		= $mDomain->findAll();
 			$CustomerAll 	= $mCustomer->findAll();
-						
-			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
-			$Navigation = array(				
-				array("THIẾT LẬP", 	"/setting"),
-				array("KHU VỰC", 	"/setting/domain")
-			);
+			if (!isset($Domain)){
+				$Domain = $DomainAll->current();
+				$IdDomain = $Domain->getId();
+			}
+			
+			$Title = "BÁN HÀNG > " . mb_strtoupper($Domain->getName(), 'UTF8');
+			$Navigation = array();
 			
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");
-			
-			$CustomerAll1 	= $mCustomer->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/setting/customer" );
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Customer');
-			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);
+			$request->setProperty('Title'		, $Title);									
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Domain'		, $Domain);
 			$request->setObject('DomainAll'		, $DomainAll);
-			$request->setObject('CustomerAll1'	, $CustomerAll1);
-															
+																		
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
