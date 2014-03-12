@@ -11,7 +11,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$IdDomain 	= $request->getProperty('IdDomain');
+			$Page 		= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,7 +22,9 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CustomerAll = $mCustomer->findAll();
+			$Domain 		= $mDomain->find($IdDomain);
+			$DomainAll 		= $mDomain->findAll();
+			$CustomerAll 	= $mCustomer->findAll();
 						
 			$Title = "KHÁCH HÀNG";
 			$Navigation = array(				
@@ -45,6 +48,8 @@
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('Domain'		, $Domain);
+			$request->setObject('DomainAll'		, $DomainAll);
 			$request->setObject('CustomerAll1'	, $CustomerAll1);
 															
 			return self::statuses('CMD_DEFAULT');
