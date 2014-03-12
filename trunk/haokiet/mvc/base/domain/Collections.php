@@ -19,6 +19,7 @@ interface ResourceCollection 		extends \Iterator {function add( Object $resource
 interface OrderImportCollection 	extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection extends \Iterator {function add( Object $orderimportdetail );	}
 interface CustomerCollection 		extends \Iterator {function add( Object $Customer );}
+interface CustomerLogCollection 	extends \Iterator {function add( Object $CustomerLog );}
 
 interface EmployeeCollection 		extends \Iterator {function add( Object $Employee );}
 interface ConfigCollection 			extends \Iterator {function add( Object $Config );}
