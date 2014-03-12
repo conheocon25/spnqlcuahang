@@ -7,7 +7,15 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="sidebar">			
+			<ul style="display: block;">
+				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
+					<a tal:attributes="href Domain1/getURLCustomer">
+						<i class="glyphicons-fast_food" /><span tal:content="Domain1/getName"/>							
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -27,20 +35,18 @@
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="200" class="left">TÊN</th>
 										<th width="120" class="left">CMND</th>
-										<th width="120" class="left">ĐIỆN THOẠI</th>
-										<th width="120" class="left">GIẢM GIÁ</th>
+										<th width="120" class="left">ĐIỆN THOẠI</th>										
 										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer CustomerAll1">
+									<tr tal:repeat="Customer Domain/getCustomerAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
 										<td><span tal:content="Customer/getCard"/></td>
-										<td><span tal:content="Customer/getPhone"/></td>
-										<td><span tal:content="Customer/getDiscount"/></td>
+										<td><span tal:content="Customer/getPhone"/></td>										
 										<td><span tal:content="Customer/getAddress"/></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
@@ -56,8 +62,7 @@
 								</tbody>
 							</table>							
 						</div>
-					</div>					
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					</div>
 
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
