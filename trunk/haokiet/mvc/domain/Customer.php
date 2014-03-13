@@ -86,12 +86,21 @@ class Customer extends Object{
 		$this->Discount	= $Data[7];
 		$this->IdDomain	= $Data[8];
     }
-	
-	
+		
 	function getCollectAll(){
 		$mCC = new \MVC\Mapper\CollectCustomer();
 		$CollectAll = $mCC->findBy(array($this->getId()));
 		return $CollectAll;
+	}
+	function getLogActive(){
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CL 	= $mCL->findActive(array(\date('Y-m-d'), $this->getId()));
+		return $CL;
+	}
+	function getLogAll(){
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CLAll = $mCL->findByCustomer(array($this->getId()));
+		return $CLAll;
 	}
 	
 	//=================================================================================
