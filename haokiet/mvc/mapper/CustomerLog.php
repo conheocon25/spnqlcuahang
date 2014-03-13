@@ -8,13 +8,13 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare("select * from haokiet_customer_log");
         $this->selectStmt = self::$PDO->prepare("select * from haokiet_customer_log where id=?");
-        $this->updateStmt = self::$PDO->prepare("update haokiet_customer_log set id_CustomerLog=?, datetime=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=? where id=?");
+        $this->updateStmt = self::$PDO->prepare("update haokiet_customer_log set id_customer=?, datetime=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=? where id=?");
         $this->insertStmt = self::$PDO->prepare("insert into haokiet_customer_log (id_customer, `datetime`, ticket1, ticket2, paid1, paid2, debt) values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer_log where id=?");		
 		
-		$this->findByCustomerStmt = self::$PDO->prepare("select * from haokiet_customer_log where id_CustomerLog=?");
-		$this->findByDateStmt = self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=?");
-		 
+		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=?");
+		$this->findByDateStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=?");
+		$this->findActiveStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=? AND id_customer=?");
     } 
     function getCollection( array $raw ) {return new CustomerLogCollection( $raw, $this );}
 
@@ -49,7 +49,7 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCustomerLog(),
+			$object->getIdCustomer(),
 			$object->getDateTime(),	
 			$object->getTicket1(),	
 			$object->getTicket2(),	
@@ -73,6 +73,16 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 		$this->findByDateStmt->execute($values);
         return new CustomerLogCollection( $this->findByDateStmt->fetchAll(), $this );
     }
-		
+	
+	function findActive( $values ){		
+        $this->findActiveStmt->execute( $values );
+        $array = $this->findActiveStmt->fetch();
+        $this->findActiveStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
+    }
+    			
 }
 ?>

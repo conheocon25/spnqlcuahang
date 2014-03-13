@@ -35,8 +35,19 @@ class CustomerLog extends Object{
 	function getTicket2(){return $this->Ticket2;}	
     function setTicket2( $Ticket2 ) {$this->Ticket2 = $Ticket2;$this->markDirty();}
 	
+	function getTicketD(){return 	$this->Ticket1 - $this->Ticket2;}
+	function getTicketValue(){return 	$this->getTicketD()*9000; }
+	function getTicketValuePrint(){
+		$N = new \MVC\Library\Number($this->getTicketValue());
+		return 	$N->formatCurrency();
+	}
+	
 	function getPaid1(){return $this->Paid1;}	
     function setPaid1( $Paid1 ) {$this->Paid1 = $Paid1;$this->markDirty();}
+	function getPaid1Print(){
+		$N = new \MVC\Library\Number($this->getPaid1());
+		return 	$N->formatCurrency();
+	}
 	
 	function getIdCustomer(){return $this->IdCustomer;}	
     function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
@@ -46,9 +57,17 @@ class CustomerLog extends Object{
 			
     function setPaid2( $Paid2 ) {$this->Paid2 = $Paid2;$this->markDirty();}
 	function getPaid2(){return $this->Paid2;}
-		
+	function getPaid2Print(){
+		$N = new \MVC\Library\Number($this->getPaid2());
+		return 	$N->formatCurrency();
+	}
+	
 	function setDebt( $Debt ) {$this->Debt = $Debt;$this->markDirty();}
 	function getDebt(){return $this->Debt;}
+	function getDebtPrint(){
+		$N = new \MVC\Library\Number($this->getDebt());
+		return 	$N->formatCurrency();
+	}
 	
 	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
 	function getIdDomain(){return $this->IdDomain;}
@@ -62,9 +81,9 @@ class CustomerLog extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCustomer'	=> $this->getIdCustomer(),
-			'Ticket1'		=> $this->getTicket1(),
-			'Ticket2'		=> $this->getTicket2(),
 			'DateTime'		=> $this->getDateTime(),
+			'Ticket1'		=> $this->getTicket1(),
+			'Ticket2'		=> $this->getTicket2(),			
 			'Paid1'			=> $this->getPaid1(),
 			'Paid2'			=> $this->getPaid2(),
 			'Debt'			=> $this->getDebt()			
@@ -75,12 +94,12 @@ class CustomerLog extends Object{
 	function setArray( $Data ){
 		$this->Id 			= $Data[0];
 		$this->IdCustomer 	= $Data[1];
-		$this->Ticket1		= $Data[2];
-		$this->Ticket2		= $Data[3];
-		$this->DateTime		= $Data[4];
+		$this->DateTime		= $Data[2];
+		$this->Ticket1		= $Data[3];
+		$this->Ticket2		= $Data[4];		
 		$this->Paid1		= $Data[5];
 		$this->Paid2		= $Data[6];
-		$this->Debt			= $Data[7];		
+		$this->Debt			= $Data[7];
     }
 	
 	//=================================================================================	
