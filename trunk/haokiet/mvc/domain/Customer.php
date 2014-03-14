@@ -103,8 +103,8 @@ class Customer extends Object{
 		return $CLAll;
 	}
 	
-	//=================================================================================
-	function getURLCollect(){return "/money/collect/customer/".$this->getId();}
+	//=================================================================================	
+	function getURLSelling(){return "/selling/".$this->getIdDomain()."/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

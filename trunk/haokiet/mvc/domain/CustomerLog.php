@@ -54,6 +54,10 @@ class CustomerLog extends Object{
 
 	function getDateTime(){return $this->DateTime;}
     function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}
+	function getDateTimePrint( ){
+		$Date = new \MVC\Library\Date($this->DateTime); 
+		return $Date->getDateFormat();		
+	}
 			
     function setPaid2( $Paid2 ) {$this->Paid2 = $Paid2;$this->markDirty();}
 	function getPaid2(){return $this->Paid2;}

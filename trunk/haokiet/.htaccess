@@ -19,7 +19,7 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^app$ 												?cmd=App [L]
+RewriteRule ^app$ 													?cmd=App [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY
@@ -105,5 +105,6 @@ RewriteRule ^setting/termcollect/page/([0-9]+)$ 					?cmd=SettingTermCollect&Pag
 RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
 RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
 
-RewriteRule ^selling$ 										?cmd=Selling [L]
-RewriteRule ^selling/([0-9]+)$ 								?cmd=Selling&IdDomain=$1 [L]
+RewriteRule ^selling$ 												?cmd=Selling [L]
+RewriteRule ^selling/([0-9]+)$ 										?cmd=Selling&IdDomain=$1 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingCustomer&IdDomain=$1&IdCustomer=$2 [L]
