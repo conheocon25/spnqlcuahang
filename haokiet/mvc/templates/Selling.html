@@ -20,15 +20,7 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<a tal:attributes="href Domain/getURLSellingPrintTemplate" target="blank" class="btn btn-primary btn-ins">
-						<i class="glyphicons-print"/>  In mẫu
-					</a>
-					<!--
-					<a tal:attributes="href Domain/getURLSellingPrintReport" target="blank" class="btn btn-primary btn-ins">
-						<i class="glyphicons-print"/>  In báo cáo
-					</a>
-					!-->
+				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
@@ -40,8 +32,8 @@
 										<th><div class="text-right">VÉ TRẢ</div></th>
 										<th><div class="text-right">VÉ BÁN</div></th>
 										<th width="10" />
-										<th><div class="text-right">NỢ TIỀN VÉ </div></th>
-										<th><div class="text-right">NỢ TIỀN ỨNG</div></th>
+										<th><div class="text-right">NỢ T.VÉ </div></th>
+										<th><div class="text-right">NỢ T.ỨNG</div></th>
 										<th width="10" />
 										<th><div class="text-right">TỔNG NỢ</div></th>										
 										<th width="80">XEM</th>
@@ -80,7 +72,10 @@
 								</tbody>
 							</table>							
 						</div>
-					</div>					
+					</div>
+					<a tal:attributes="href Domain/getURLSellingPrintTemplate" target="blank" class="btn btn-primary btn-ins">
+						<i class="glyphicons-print"/>  In mẫu
+					</a>
 				</div>
 			</div>
 		</div>
@@ -116,7 +111,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Tiền vé</label>
+							<label class="control-label">Trả tiền vé</label>
 							<div class="controls">
 								<input id="Paid12" name="Paid12" type="text" class="form-control input-small" />
 							</div>
@@ -128,7 +123,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Ứng tiền sài</label>
+							<label class="control-label">Ứng tiền</label>
 							<div class="controls">
 								<input id="Debt2" name="Debt2" type="text" class="form-control input-small" />
 							</div>

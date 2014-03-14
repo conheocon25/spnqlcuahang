@@ -6,11 +6,13 @@ class TrackingDaily extends Object{
     private $Id;
 	private $IdTracking;
 	private $Date;
-	private $Selling;
-	private $Import;
-	private $Store;
-	private $Paid;
-	private $Collect;
+	private $Ticket1;
+    private $Ticket2;
+    private $Paid1;
+    private $Paid2;
+	private $Debt;
+	private $Paid1Remain;
+    private $Paid2Remain;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -19,21 +21,25 @@ class TrackingDaily extends Object{
 		$Id			= null,
 		$IdTracking	= null, 
 		$Date		= null, 
-		$Selling	= null, 
-		$Import		= null, 
-		$Store		= null,
-		$Paid		= null,
-		$Collect	= null
+		$Ticket1	= null, 
+		$Ticket2	= null, 
+		$Paid1		= null,
+		$Paid2		= null,
+		$Debt		= null,
+		$Paid1Remain= null,
+		$Paid2Remain= null
 	) {
         $this->Id 			= $Id;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
-		$this->Selling 		= $Selling;
-		$this->Import 		= $Import;
-		$this->Store 		= $Store;
-		$this->Paid 		= $Paid;
-		$this->Collect 		= $Collect;
-		
+		$this->Ticket1 		= $Ticket1;
+		$this->Ticket2 		= $Ticket2;
+		$this->Paid1 		= $Paid1;
+		$this->Paid2 		= $Paid2;
+		$this->Debt 		= $Debt;
+		$this->Paid1Remain	= $Paid1Remain;
+		$this->Paid2Remain	= $Paid2Remain;
+			
         parent::__construct( $Id );
     }
 
@@ -42,95 +48,68 @@ class TrackingDaily extends Object{
     function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}   
 	function getIdTracking( ) {return $this->IdTracking;}
 	
-	function setIdResource( $IdResource ) {$this->IdResource = $IdResource;$this->markDirty();}   
-	function getIdResource( ) {return $this->IdResource;}
-	function getResource(){ $mResource = new \MVC\Mapper\Resource(); $Resource = $mResource->find( $this->getIdResource() ); return $Resource;}
-	
 	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}   
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
 	
-	function setSelling( $Selling ) {$this->Selling = $Selling;$this->markDirty();}   
-	function getSelling( ) {return $this->Selling;}
-	function getSellingPrint( ){$N = new \MVC\Library\Number($this->Selling);return $N->formatCurrency();}
+	function setTicket1( $Ticket1 ) {$this->Ticket1 = $Ticket1;$this->markDirty();}   
+	function getTicket1( ) {return $this->Ticket1;}
+	function getTicket1Print( ){$N = new \MVC\Library\Number($this->Ticket1);return $N->formatCurrency();}
 	
-	function setImport( $Import ) {$this->Import = $Import;$this->markDirty();}   
-	function getImport( ) {return $this->Import;}
-	function getImportPrint( ) {$N = new \MVC\Library\Number($this->Import);return $N->formatCurrency();}
-			
-	function setStore( $Store ) {$this->Store = $Store;$this->markDirty();}   
-	function getStore( ) {return $this->Store;}
-	function getStorePrint( ) {$N = new \MVC\Library\Number($this->Store);return $N->formatCurrency();}
+	function setTicket2( $Ticket2 ) {$this->Ticket2 = $Ticket2;$this->markDirty();}   
+	function getTicket2( ) {return $this->Ticket2;}
+	function getTicket2Print( ){$N = new \MVC\Library\Number($this->Ticket2);return $N->formatCurrency();}
 	
-	function setPaid( $Paid ) {$this->Paid = $Paid; $this->markDirty();}   
-	function getPaid( ) {return $this->Paid;}
-	function getPaidPrint( ) {$N = new \MVC\Library\Number($this->Paid);return $N->formatCurrency();}
-	
-	function setCollect( $Collect ) {$this->Collect = $Collect; $this->markDirty();}   
-	function getCollect( ) {return $this->Collect;}
-	function getCollectPrint( ) {$N = new \MVC\Library\Number($this->Collect);return $N->formatCurrency();}
-	
-	function getValue(){
-		$mTD 		= new \MVC\Mapper\TrackingDaily();
-		$TDPreAll 	= $mTD->findByPre(array($this->getIdTracking(), $this->getDate()));
-		if ($TDPreAll->count()==0){
-			$OldValue 	= 0;
-			$NewValue  	= 
-							$OldValue + 
-							$this->getSelling() + 
-							$this->getCollect() + 
-							$this->getStore() - 
-							$this->getImport() - 
-							$this->getPaid();
-		}
-		else{
-			$OldValue 	= $TDPreAll->current()->getValue();
-			$NewValue  	= 
-							$OldValue + 
-							$this->getSelling() + 
-							$this->getCollect() + 
-							($this->getStore() - $TDPreAll->current()->getStore()) - 
-							$this->getImport() - 
-							$this->getPaid();
-		}			
-		return $NewValue ;
+	function getTicketD(){return $this->Ticket1 - $this->Ticket2;}
+	function getTicketDPrint(){
+		$N = new \MVC\Library\Number($this->getTicketD());
+		return 	$N->formatCurrency();
 	}
-	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency();}
-		
+	
+	function getTicketValue(){return 	$this->getTicketD()*9000; }
+	function getTicketValuePrint(){
+		$N = new \MVC\Library\Number($this->getTicketValue());
+		return 	$N->formatCurrency();
+	}
+	
+	function setPaid1( $Paid1 ) {$this->Paid1 = $Paid1; $this->markDirty();}   
+	function getPaid1( ) {return $this->Paid1;}
+	function getPaid1Print( ) {$N = new \MVC\Library\Number($this->Paid1);return $N->formatCurrency();}
+	
+	function setPaid2( $Paid2 ) {$this->Paid2 = $Paid2; $this->markDirty();}   
+	function getPaid2( ) {return $this->Paid2;}
+	function getPaid2Print( ) {$N = new \MVC\Library\Number($this->Paid2);return $N->formatCurrency();}
+	
+	function setDebt( $Debt ) {$this->Debt = $Debt; $this->markDirty();}
+	function getDebt( ) {return $this->Debt;}
+	function getDebtPrint( ) {$N = new \MVC\Library\Number($this->Debt);return $N->formatCurrency();}
+	
+	function setPaid1Remain( $Paid1Remain ) {$this->Paid1Remain = $Paid1Remain; $this->markDirty();}   
+	function getPaid1Remain( ) {return $this->Paid1Remain;}
+	function getPaid1RemainPrint( ) {$N = new \MVC\Library\Number($this->Paid1Remain);return $N->formatCurrency();}
+	
+	function setPaid2Remain( $Paid2Remain ) {$this->Paid2Remain = $Paid2Remain; $this->markDirty();}   
+	function getPaid2Remain( ) {return $this->Paid2Remain;}
+	function getPaid2RemainPrint( ) {$N = new \MVC\Library\Number($this->Paid2Remain);return $N->formatCurrency();}
+	
+	function getValue(){return $this->Paid1Remain + $this->Paid2Remain;}
+	function getValuePrint(){
+		$N = new \MVC\Library\Number($this->getValue());
+		return 	$N->formatCurrency();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getImportCount($IdResource){
-		$mOD = new \MVC\Mapper\OrderImportDetail();
-		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
-		return $Count;
-	}
-	function getExportCount($IdCourse){
-		$mSD = new \MVC\Mapper\SessionDetail();
-		$Count = $mSD->trackByCount( array($IdCourse, $this->getDate(), $this->getDate()) );
-		return $Count;
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLReport()			{return "/report/".$this->getIdTracking()."/".$this->getId();}
 	function getURLReportSelling()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
-	function getURLReportSellingPrint()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/print";}
-	
-	function getURLReportImport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
-	function getURLReportStore()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/store";}
-	function getURLReportPaid()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/paid";}
-	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}
-	function getURLReportCourse()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/course";}
-	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";}
-	function getURLReportLog()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/log";}
-	
-	function getURLReportCustomerDetail($IdCustomer){
-		return "/report/".$this->getIdTracking()."/".$this->getId()."/customer/".$IdCustomer;
-	}
-	
+	function getURLReportSellingExe()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/exe";}
+			
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
