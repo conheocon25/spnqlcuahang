@@ -107,4 +107,6 @@ RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
 
 RewriteRule ^selling$ 												?cmd=Selling [L]
 RewriteRule ^selling/([0-9]+)$ 										?cmd=Selling&IdDomain=$1 [L]
+RewriteRule ^selling/([0-9]+)/print/template$ 						?cmd=SellingPrintTemplate&IdDomain=$1 [L]
+RewriteRule ^selling/([0-9]+)/print/report$ 						?cmd=SellingPrintReport&IdDomain=$1 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingCustomer&IdDomain=$1&IdCustomer=$2 [L]

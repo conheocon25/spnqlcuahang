@@ -30,12 +30,24 @@ class CustomerLog extends Object{
 		
 	function getTicket1(){return $this->Ticket1;}	
     function setTicket1( $Ticket1 ) {$this->Ticket1 = $Ticket1;$this->markDirty();}
-	function getTicket1Print(){if ($this->Ticket1==1)return "VIP"; return "Thường";}
+	function getTicket1Print(){
+		$N = new \MVC\Library\Number($this->getTicket1());
+		return 	$N->formatCurrency();
+	}
 	
 	function getTicket2(){return $this->Ticket2;}	
     function setTicket2( $Ticket2 ) {$this->Ticket2 = $Ticket2;$this->markDirty();}
+	function getTicket2Print(){
+		$N = new \MVC\Library\Number($this->getTicket2());
+		return 	$N->formatCurrency();
+	}
 	
-	function getTicketD(){return 	$this->Ticket1 - $this->Ticket2;}
+	function getTicketD(){return 		$this->Ticket1 - $this->Ticket2;}
+	function getTicketDPrint(){
+		$N = new \MVC\Library\Number($this->getTicketD());
+		return 	$N->formatCurrency();
+	}
+	
 	function getTicketValue(){return 	$this->getTicketD()*9000; }
 	function getTicketValuePrint(){
 		$N = new \MVC\Library\Number($this->getTicketValue());
@@ -48,6 +60,13 @@ class CustomerLog extends Object{
 		$N = new \MVC\Library\Number($this->getPaid1());
 		return 	$N->formatCurrency();
 	}
+	
+	function getPaid1Remain(){return $this->getTicketValue() - $this->Paid1;}
+	function getPaid1RemainPrint(){
+		$N = new \MVC\Library\Number($this->getPaid1Remain());
+		return 	$N->formatCurrency();
+	}
+	
 	
 	function getIdCustomer(){return $this->IdCustomer;}	
     function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
@@ -73,6 +92,12 @@ class CustomerLog extends Object{
 		return 	$N->formatCurrency();
 	}
 	
+	function getPaid2Remain(){return $this->Debt - $this->Paid2;}
+	function getPaid2RemainPrint(){
+		$N = new \MVC\Library\Number($this->getPaid2Remain());
+		return 	$N->formatCurrency();
+	}
+		
 	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
 	function getIdDomain(){return $this->IdDomain;}
 	function getDomain(){

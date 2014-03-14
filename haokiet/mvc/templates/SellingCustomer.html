@@ -24,17 +24,34 @@
 								<thead>
 									<tr>										
 										<th class="left">NGÀY</th>
-										<th><div class="text-right">VÉ NHẬN</div></th>
-										<th><div class="text-right">VÉ BÁN</div></th>
-										<th><div class="text-right">VÉ TRẢ</div></th>
-										<th><div class="text-right">T.TIỀN</div></th>
+										<th width="80"><div class="text-right">VÉ NHẬN</div></th>
+										<th width="80"><div class="text-right">VÉ TRẢ</div></th>
+										<th width="80"><div class="text-right">VÉ BÁN</div></th>
+										<th width="120"><div class="text-right">TIỀN VÉ THỰC</div></th>
 										<th width="10" />
-										<th><div class="text-right">T.TRẢ</div></th>
-										<th><div class="text-right">T.GÓP</div></th>
-										<th><div class="text-right">ỨNG SÀI</div></th>																			
+										<th width="120"><div class="text-right">TRẢ TIỀN VÉ</div></th>
+										<th width="120"><div class="text-right">NỢ TIỀN VÉ</div></th>
+										<th width="10" />
+										<th><div class="text-right">TIỀN GÓP</div></th>
+										<th><div class="text-right">ỨNG TIỀN</div></th>
+										<th><div class="text-right">NỢ TIỀN ỨNG</div></th>
 									</tr>
 								</thead>
 								<tbody>
+									<tr>
+										<td><B>T.CỘNG</B></td>
+										<td><B><div class="text-right"  tal:content="STicket1"/></B></td>
+										<td><B><div class="text-right"  tal:content="STicket2"/></B></td>
+										<td><B><div class="text-right"  tal:content="STicketD"/></B></td>
+										<td><B><div class="text-right"  tal:content="STicketValue"/></B></td>
+										<td></td>
+										<td><B><div class="text-right"  tal:content="SPaid1"/></B></td>
+										<td><B><div class="text-right"  tal:content="SPaid1Remain" style="color:red;"/></B></td>
+										<td></td>
+										<td><B><div class="text-right"  tal:content="SPaid2"/></B></td>
+										<td><B><div class="text-right"  tal:content="SDebt"/></B></td>
+										<td><B><div class="text-right"  tal:content="SPaid2Remain" style="color:red;"/></B></td>
+									</tr>
 									<tr tal:repeat="Log Customer/getLogAll">										
 										<td>
 											<a  class="update-item" href="#DialogEdit" data-toggle="modal"
@@ -55,8 +72,15 @@
 										<td><div class="text-right"  tal:content="Log/getTicketValuePrint"/></td>
 										<td></td>
 										<td><div class="text-right"  tal:content="Log/getPaid1Print"/></td>
+										<td>
+											<div class="text-right"  tal:content="Log/getPaid1RemainPrint" style="color:red;"/>
+										</td>
+										<td></td>
 										<td><div class="text-right"  tal:content="Log/getPaid2Print"/></td>
 										<td><div class="text-right"  tal:content="Log/getDebtPrint"/></td>										
+										<td>
+											<div class="text-right"  tal:content="Log/getPaid2RemainPrint" style="color:red;"/>
+										</td>
 									</tr>
 								</tbody>
 							</table>							
@@ -79,7 +103,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Vé giao</label>
+							<label class="control-label">Vé nhận</label>
 							<div class="controls">
 								<input id="Ticket11" name="Ticket11" type="text" class="form-control input-small" />
 							</div>
@@ -136,7 +160,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Vé giao</label>
+							<label class="control-label">Vé nhận</label>
 							<div class="controls">
 								<input id="Ticket12" name="Ticket12" type="text" class="form-control input-small" />
 							</div>

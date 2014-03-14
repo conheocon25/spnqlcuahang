@@ -14,7 +14,7 @@ class Customer extends Object{
 	private $Discount;
 	private $IdDomain;
 	
-	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
+	/*Hàm khởi tạo và thiet lap các thuoc tính*/
     function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null, $IdDomain=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
@@ -40,7 +40,7 @@ class Customer extends Object{
 	function getNote(){return $this->Note;}	
     function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
-	function getName(){return $this->Name;}	
+	function getName(){return \trim($this->Name);}
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
 	function getPhone(){return $this->Phone;}

@@ -26,57 +26,26 @@
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">								
-								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
+								<table class="table table-bordered table-striped table-hover">
 									<thead>
-										<tr>										
-											<th width="32"></th>
+										<tr>																					
 											<th><div class="text-left">NGÀY</div></th>											
 											<th width="90"><div class="text-right">BÁN HÀNG</div></th>
-											<th width="90"><div class="text-right">NHẬP HÀNG</div></th>
-											<th width="90"><div class="text-right">KHO HÀNG</div></th>
+											<th width="90"><div class="text-right">NHẬP HÀNG</div></th>											
 											<th width="90"><div class="text-right">TIỀN CHI</div></th>
 											<th width="90"><div class="text-right">TIỀN THU</div></th>
-											<th width="90"><div class="text-right">QUỸ</div></th>											
-											<th width="90"><div class="text-center">TK.MÓN</div></th>
-											<th width="90"><div class="text-center">TK.KHÁCH</div></th>
+											<th width="90"><div class="text-right">QUỸ</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="TD Tracking/getDailyAll">
-											<td><a tal:attributes="href TD/getURLReportLog"><i class="glyphicons-edit"/></a></td>
-											<td><div class="TDExe" tal:attributes="alt TD/getURLReport"><span tal:content="TD/getDatePrint"/></div></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportImport"><span tal:content="TD/getImportPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportStore"><span tal:content="TD/getStorePrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>
-											<td align="right"><b tal:content="TD/getValuePrint"/></td>
-											<td align="center"><a tal:attributes="href TD/getURLReportCourse">Xem</a></td>
-											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
-										</tr>
-										<tr>
-											<td colspan="2" align="right"><B>TỔNG KẾT</B></td>
-											<td align="right">																								
-												<a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a>
-											</td>
-											<td align="right">
-												<a class="ViewImportChart" href="#DialogImportChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueImport/formatCurrency"/></a>
-											</td>
-											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>
-											<td align="right">
-												<a class="ViewPaidChart" href="#DialogPaidChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValuePaid/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewCollectChart" href="#DialogCollectChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueCollect/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewValueChart" href="#DialogValueChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueNew/formatCurrency"/></a>
-											</td>
-											<td align="center">
-												<a tal:attributes="href Tracking/getURLReportCourse">Xem</a>
-											</td>
-											<td align="center" />
-										</tr>
+										<tr tal:repeat="TD Tracking/getDailyAll">											
+											<td><div class="TDExe" 	tal:attributes="alt TD/getURLReport"><span 			tal:content="TD/getDatePrint"	/></div></td>
+											<td align="right"><a 	tal:attributes="href TD/getURLReportSelling"><span 	tal:content="TD/getSellingPrint"/></a></td>
+											<td align="right"><a 	tal:attributes="href TD/getURLReportImport"><span 	tal:content="TD/getImportPrint"	/></a></td>											
+											<td align="right"><a 	tal:attributes="href TD/getURLReportPaid"><span 	tal:content="TD/getPaidPrint"	/></a></td>
+											<td align="right"><a 	tal:attributes="href TD/getURLReportCollect"><span 	tal:content="TD/getCollectPrint"/></a></td>
+											<td align="right"><b 	tal:content="TD/getValuePrint"/></td>
+										</tr>										
 									</tbody>
 								</table>								
 							</div>
