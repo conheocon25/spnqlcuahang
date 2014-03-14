@@ -10,7 +10,7 @@
 		</tr>
 		<tr>			
 			<td width="50%" align="left" tal:content="ConfigPhone/getValue"/>
-			<td width="50%" align="right">NGÀY:<span tal:content="Date"/></td>
+			<td width="50%" align="right">NGÀY:<span tal:content="TD/getDatePrint"/></td>
 		</tr>
 	</table>
 	<BR/>
@@ -35,39 +35,39 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr tal:repeat="Customer CustomerAll">
-			<td width="3%" 	align="center" 	tal:content="repeat/Customer/number" />
-			<td width="15%" align="left" 	tal:content="Customer/getName"/>
-			<td width="6%" 	align="right" 	tal:content="Customer/getLogActive/getTicket1Print"/>
-			<td width="6%"	align="right"	tal:content="Customer/getLogActive/getTicket2Print"/>			
-			<td width="6%" 	align="right"	tal:content="Customer/getLogActive/getTicketDPrint"/>
+		<tr tal:repeat="CL CLAll">
+			<td width="3%" 	align="center" 	tal:content="repeat/CL/number" />
+			<td width="15%" align="left" 	tal:content="CL/getCustomer/getName"/>
+			<td width="6%" 	align="right" 	tal:content="CL/getTicket1Print"/>
+			<td width="6%"	align="right"	tal:content="CL/getTicket2Print"/>			
+			<td width="6%" 	align="right"	tal:content="CL/getTicketDPrint"/>
 			<td width="1%"/>
-			<td width="8%"	align="right"	tal:content="Customer/getLogActive/getTicketValuePrint"/>
-			<td width="8%" 	align="right"	tal:content="Customer/getLogActive/getPaid1Print"/>
-			<td width="8%" 	align="right"><B tal:content="Customer/getLogActive/getPaid1RemainPrint"/></td>
+			<td width="8%"	align="right"	tal:content="CL/getTicketValuePrint"/>
+			<td width="8%" 	align="right"	tal:content="CL/getPaid1Print"/>
+			<td width="8%" 	align="right"><B tal:content="CL/getPaid1RemainPrint"/></td>
 			<td width="1%"/>
-			<td width="8%"	align="right"	tal:content="Customer/getLogActive/getPaid2Print"/>
-			<td width="8%"	align="right"	tal:content="Customer/getLogActive/getDebtPrint"/>
-			<td width="8%" 	align="right"><B tal:content="Customer/getLogActive/getPaid2RemainPrint"/></td>
+			<td width="8%"	align="right"	tal:content="CL/getPaid2Print"/>
+			<td width="8%"	align="right"	tal:content="CL/getDebtPrint"/>
+			<td width="8%" 	align="right"><B tal:content="CL/getPaid2RemainPrint"/></td>
 			<td width="1%"/>
-			<td width="13%" align="right"><B tal:content="Customer/getLogActive/getPaid2RemainPrint"/></td>
+			<td width="13%" align="right"><B tal:content="CL/getValuePrint"/></td>
 		</tr>
 		<tr>
 			<td width="3%" 	align="center" 	/>
 			<td width="15%" align="left" ><B>TỔNG KẾT</B></td>
-			<td width="6%" 	align="right" 	/>
-			<td width="6%"	align="right"	/>			
-			<td width="6%" 	align="right"	/>
+			<td width="6%" 	align="right" 	tal:content="STicket1"/>
+			<td width="6%"	align="right"	tal:content="STicket2"/>			
+			<td width="6%" 	align="right"	tal:content="STicketD"/>
 			<td width="1%"/>
-			<td width="8%"	align="right"	/>
-			<td width="8%" 	align="right"	/>
-			<td width="8%" 	align="right"><B /></td>
+			<td width="8%"	align="right"	tal:content="STicketValue"/>
+			<td width="8%" 	align="right"	tal:content="SPaid1"/>
+			<td width="8%" 	align="right"><B tal:content="SPaid1Remain"/></td>
 			<td width="1%"/>
-			<td width="8%"	align="right"	/>
-			<td width="8%"	align="right"	/>
-			<td width="8%" 	align="right"><B /></td>
+			<td width="8%"	align="right"	tal:content="SPaid2"/>
+			<td width="8%"	align="right"	tal:content="SDebt"/>
+			<td width="8%" 	align="right"><B tal:content="SPaid2Remain"/></td>
 			<td width="1%"/>
-			<td width="13%" align="right"><B /></td>
+			<td width="13%" align="right"><B tal:content="SValue"/></td>
 		</tr>
 		</tbody>
 	</table>
@@ -77,6 +77,6 @@
 			<td width="35%" align="center">NGƯỜI QUẢN LÝ</td>
 			<td width="30%" align="center" />
 			<td width="35%" align="center">CHỦ ĐẠI LÝ</td>
-		</tr>		
+		</tr>
 	</table>	
 </body>

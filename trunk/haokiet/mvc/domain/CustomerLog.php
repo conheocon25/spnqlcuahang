@@ -11,9 +11,11 @@ class CustomerLog extends Object{
     private $Paid1;
     private $Paid2;
 	private $Debt;
+	private $Paid1Remain;
+    private $Paid2Remain;
 		
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdCustomer=null, $DateTime=null, $Ticket1=null, $Ticket2=null, $Paid1=null, $Paid2=null, $Debt=null) {
+    function __construct( $Id=null, $IdCustomer=null, $DateTime=null, $Ticket1=null, $Ticket2=null, $Paid1=null, $Paid2=null, $Debt=null, $Paid1Remain=null, $Paid2Remain=null) {
         $this->Id = $Id;
 		$this->IdCustomer 	= $IdCustomer;
 		$this->DateTime 	= $DateTime;		
@@ -22,6 +24,8 @@ class CustomerLog extends Object{
 		$this->Paid1 		= $Paid1;
 		$this->Paid2 		= $Paid2;
 		$this->Debt 		= $Debt;
+		$this->Paid1Remain	= $Paid1Remain;
+		$this->Paid2Remain	= $Paid2Remain;
 		
         parent::__construct( $Id );
     }
@@ -61,15 +65,20 @@ class CustomerLog extends Object{
 		return 	$N->formatCurrency();
 	}
 	
-	function getPaid1Remain(){return $this->getTicketValue() - $this->Paid1;}
+	function setPaid1Remain($Paid1Remain){ $this->Paid1Remain = $Paid1Remain;$this->markDirty();}
+	function getPaid1Remain(){return $this->Paid1Remain;}
 	function getPaid1RemainPrint(){
 		$N = new \MVC\Library\Number($this->getPaid1Remain());
 		return 	$N->formatCurrency();
 	}
-	
-	
-	function getIdCustomer(){return $this->IdCustomer;}	
+			
     function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
+	function getIdCustomer(){return $this->IdCustomer;}	
+	function getCustomer(){
+		$mCustomer = new \MVC\Mapper\Customer();
+		$Customer = $mCustomer->find($this->IdCustomer);
+		return $Customer;
+	}
 
 	function getDateTime(){return $this->DateTime;}
     function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}
@@ -92,12 +101,19 @@ class CustomerLog extends Object{
 		return 	$N->formatCurrency();
 	}
 	
-	function getPaid2Remain(){return $this->Debt - $this->Paid2;}
+	function setPaid2Remain($Paid2Remain){ $this->Paid2Remain = $Paid2Remain;$this->markDirty();}
+	function getPaid2Remain(){return $this->Paid2Remain;}
 	function getPaid2RemainPrint(){
 		$N = new \MVC\Library\Number($this->getPaid2Remain());
 		return 	$N->formatCurrency();
 	}
-		
+	
+	function getValue(){return $this->Paid1Remain + $this->Paid2Remain;}
+	function getValuePrint(){
+		$N = new \MVC\Library\Number($this->getValue());
+		return 	$N->formatCurrency();
+	}
+	
 	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
 	function getIdDomain(){return $this->IdDomain;}
 	function getDomain(){
@@ -115,7 +131,9 @@ class CustomerLog extends Object{
 			'Ticket2'		=> $this->getTicket2(),			
 			'Paid1'			=> $this->getPaid1(),
 			'Paid2'			=> $this->getPaid2(),
-			'Debt'			=> $this->getDebt()			
+			'Debt'			=> $this->getDebt(),
+			'Paid1Remain'	=> $this->getPaid1Remain(),
+			'Paid2Remain'	=> $this->getPaid2Remain(),
 		);
 		return json_encode($json);
 	}
@@ -129,6 +147,19 @@ class CustomerLog extends Object{
 		$this->Paid1		= $Data[5];
 		$this->Paid2		= $Data[6];
 		$this->Debt			= $Data[7];
+		
+		//Tính tự động 2 tham số này Paid1Remain / Paid2Remain		
+		//Tìm CL trước đó 1 ngày để cập nhật những công nợ cũ
+		$mCL = new \MVC\Mapper\CustomerLog();
+		$CLPre = $mCL->findPre(array($this->DateTime, $this->IdCustomer));
+				
+		if (isset($CLPre)){
+			$this->Paid1Remain	= $CLPre->getPaid1Remain() + $this->getTicketValue() - $this->getPaid1();
+			$this->Paid2Remain	= $CLPre->getPaid2Remain() + $this->getDebt() - $this->getPaid2();			
+		}else{
+			$this->Paid1Remain	= $this->getTicketValue() - $this->getPaid1();
+			$this->Paid2Remain	= $this->getDebt() - $this->getPaid2();			
+		}
     }
 	
 	//=================================================================================	

@@ -1,11 +1,11 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDailySelling extends Command {
+	class ReportDailySellingPrint extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
@@ -27,17 +27,15 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$ConfigName = $mConfig->findByName("NAME");
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigPhone 	= $mConfig->findByName("PHONE");
+			$ConfigAddress 	= $mConfig->findByName("ADDRESS");
+			
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
-			$DomainAll	= $mDomain->findAll();
-			
+						
 			$Domain = $mDomain->find($IdDomain);
-			if (!isset($IdDomain)){
-				$Domain = $DomainAll->current();
-				$IdDomain = $Domain->getId();
-			}
-			
+						
 			$CLAll = $mCL->findByDate1(array($IdDomain, $TD->getDate()));
 			$STicket1 		= 0;
 			$STicket2 		= 0;
@@ -75,19 +73,10 @@
 			$NSPaid2Remain 	= new \MVC\Library\Number($SPaid2Remain);
 			$NSDebt 		= new \MVC\Library\Number($SDebt);
 			$NSValue 		= new \MVC\Library\Number($SValue);
-			
-			$Title = $TD->getDatePrint();
-			$Navigation = array(				
-				array("BÁO CÁO", "/report"),
-				array($Tracking->getName(), $Tracking->getURLView() )
-			);
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);
-			$request->setObject('Navigation'	, $Navigation);
-			
 			$request->setProperty('STicket1'	, $NSTicket1->formatCurrency());
 			$request->setProperty('STicket2'	, $NSTicket2->formatCurrency());
 			$request->setProperty('STicketD'	, $NSTicketD->formatCurrency());
@@ -102,9 +91,10 @@
 			$request->setObject('CLAll'			, $CLAll);
 			$request->setObject('TD'			, $TD);
 			$request->setObject('Domain'		, $Domain);
-			$request->setObject('DomainAll'		, $DomainAll);
-			
+						
 			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('ConfigAddress'	, $ConfigAddress);
+			$request->setObject('ConfigPhone'	, $ConfigPhone);
 		}
 	}
 ?>
