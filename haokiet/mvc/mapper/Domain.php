@@ -8,7 +8,7 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
 		
 		$tblDomain = "haokiet_domain";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblDomain);
+		$selectAllStmt = sprintf("select * from %s order by name", $tblDomain);
 		$selectStmt = sprintf("select * from %s where id=?", $tblDomain);
 		$updateStmt = sprintf("update %s set name=? where id=?", $tblDomain);
 		$insertStmt = sprintf("insert into %s ( name) values(?)", $tblDomain);

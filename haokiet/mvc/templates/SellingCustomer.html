@@ -8,26 +8,22 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div id="sidebar">			
-			<ul style="display: block;">
-				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
-					<a tal:attributes="href Domain1/getURLSelling">
-						<i class="glyphicons-group" /><span tal:content="Domain1/getName"/>							
-					</a>
-				</li>
-			</ul>
+			
 		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">					
-					<div class="widget-box">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<div class="widget-box">						
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
-									<tr>
-										<th width="32">STT</th>
-										<th class="left">TÊN</th>
+									<tr>										
+										<th class="left">NGÀY</th>
 										<th><div class="text-right">VÉ NHẬN</div></th>
 										<th><div class="text-right">VÉ BÁN</div></th>
 										<th><div class="text-right">VÉ TRẢ</div></th>
@@ -35,41 +31,32 @@
 										<th width="10" />
 										<th><div class="text-right">T.TRẢ</div></th>
 										<th><div class="text-right">T.GÓP</div></th>
-										<th><div class="text-right">ỨNG SÀI</div></th>
-										<th width="10" />
-										<th width="80">XEM</th>
+										<th><div class="text-right">ỨNG SÀI</div></th>																			
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer Domain/getCustomerAll">
-										<td class="center"><span tal:content="repeat/Customer/number"/></td>
+									<tr tal:repeat="Log Customer/getLogAll">										
 										<td>
-											<a tal:condition="Customer/getLogActive" class="update-item" href="#DialogEdit" data-toggle="modal"
-												tal:attributes="id 			Customer/getLogActive/getId;
+											<a  class="update-item" href="#DialogEdit" data-toggle="modal"
+												tal:attributes="id 			Log/getId;
 																name		Customer/getName;
-																idcustomer	Customer/getLogActive/getIdCustomer;
-																datetime 	Customer/getLogActive/getDateTime;
-																ticket1 	Customer/getLogActive/getTicket1;
-																ticket2 	Customer/getLogActive/getTicket2;
-																paid1 		Customer/getLogActive/getPaid1;
-																paid2 		Customer/getLogActive/getPaid2;
-																debt 		Customer/getLogActive/getDebt;
-												" tal:content="Customer/getName"/>
+																idcustomer	Log/getIdCustomer;
+																datetime 	Log/getDateTime;
+																ticket1 	Log/getTicket1;
+																ticket2 	Log/getTicket2;
+																paid1 		Log/getPaid1;
+																paid2 		Log/getPaid2;
+																debt 		Log/getDebt;
+												" tal:content="Log/getDateTimePrint"/>
 										</td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicket1"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicket2"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicket2"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicketValuePrint"/></td>
+										<td><div class="text-right"  tal:content="Log/getTicket1"/></td>
+										<td><div class="text-right"  tal:content="Log/getTicket2"/></td>
+										<td><div class="text-right"  tal:content="Log/getTicketD"/></td>
+										<td><div class="text-right"  tal:content="Log/getTicketValuePrint"/></td>
 										<td></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid1Print"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid2Print"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getDebtPrint"/></td>
-										<td></td>
-										<td class="center">
-											<a tal:attributes="href Customer/getURLSelling">
-												Sổ (<span tal:content="Customer/getLogAll/count"/>)
-											</a>
-										</td>										
+										<td><div class="text-right"  tal:content="Log/getPaid1Print"/></td>
+										<td><div class="text-right"  tal:content="Log/getPaid2Print"/></td>
+										<td><div class="text-right"  tal:content="Log/getDebtPrint"/></td>										
 									</tr>
 								</tbody>
 							</table>							
@@ -80,11 +67,61 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div id="DialogIns" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM GIAO DỊCH</h3></div>
+					<form id="FormInsert" action="#" class="form-horizontal" novalidate="novalidate">						
+						<div class="form-group">
+							<label class="control-label">Ngày</label>
+							<div class="controls">
+								<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small" readonly="true" data-date-format="yyyy-mm-dd"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Vé giao</label>
+							<div class="controls">
+								<input id="Ticket11" name="Ticket11" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Vé trả</label>
+							<div class="controls">
+								<input id="Ticket21" name="Ticket21" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tiền vé</label>
+							<div class="controls">
+								<input id="Paid11" name="Paid11" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Tiền góp</label>
+							<div class="controls">
+								<input id="Paid21" name="Paid21" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Ứng tiền sài</label>
+							<div class="controls">
+								<input id="Debt1" name="Debt1" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+						<div id="IdCustomer1" tal:attributes="alt Customer/getId"/>
+					</form>
+				</div>
+			</div>
+		</div>
 		<!-- UPDATE DIALOG  -->
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT BÁN HÀNG</h3></div>
+					<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT GIAO DỊCH</h3></div>
 					<form id="FormUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="form-group">
 							<label class="control-label">Tên</label>
@@ -95,7 +132,7 @@
 						<div class="form-group">
 							<label class="control-label">Ngày</label>
 							<div class="controls">
-								<input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" readonly="true"/>
+								<input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" readonly="true" data-date-format="yyyy-mm-dd"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -131,8 +168,8 @@
 						<div class="modal-footer">
 							<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-						</div>
-						<div id="IdCustomer2" />
+						</div>						
+						<div id="IdCustomer2" tal:attributes="alt Customer/getId"/>
 					</form>
 				</div>
 			</div>
@@ -140,6 +177,10 @@
 		<!-- END UPDATE DIALOG  -->
 		<script type="text/javascript">
 		/*<![CDATA[*/
+		
+			$('#DateTime1').datepicker({language:'vi'});
+			$('#DateTime2').datepicker({language:'vi'});
+			
 			//-----------------------------------------------------------------------------------
 			//Load 1 CUSTOMER LOG
 			//-----------------------------------------------------------------------------------
@@ -161,7 +202,8 @@
 			$("#FormUpdate").validate({
 				rules:{
 					Tick12:{
-						number:true,
+						number: true,
+						required:true,
 						min:0
 					},
 					Tick22:{
@@ -202,9 +244,7 @@
 						type: "POST",
 						data: {Data:Data},
 						url: URL,
-						success: function(msg){
-							location.reload();
-						}
+						success: function(msg){location.reload();}
 					});		
 					return false;
 				}
@@ -215,6 +255,66 @@
 					0500
 				);
 			});
+			
+			//Chèn mới giao dịch
+			$("#FormInsert").validate({
+				rules:{
+					Tick11:{
+						number:true,
+						min:0
+					},
+					Tick21:{
+						number:true,
+						min:0
+					},
+					Paid11:{
+						number:true,
+						min:0
+					},
+					Paid21:{
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = "null";
+					Data[1] = $('#IdCustomer1').attr('alt');
+					Data[2] = $('#DateTime1').val();
+					Data[3] = $('#Ticket11').val();
+					Data[4] = $('#Ticket21').val();
+					Data[5] = $('#Paid11').val();
+					Data[6] = $('#Paid21').val();
+					Data[7] = $('#Debt1').val();
+																												
+					var URL = "/object/ins/CustomerLog";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});		
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Ticket11').first().focus()},
+					0500
+				);
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

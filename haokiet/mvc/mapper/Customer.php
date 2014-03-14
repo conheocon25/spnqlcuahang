@@ -14,10 +14,10 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 							values( ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer where id=?");		
 		$this->findByCardStmt = self::$PDO->prepare("select * from haokiet_customer where card=?");
-		$this->findByDomainStmt = self::$PDO->prepare("select * from haokiet_customer where id_domain=?");
+		$this->findByDomainStmt = self::$PDO->prepare("select * from haokiet_customer where id_domain=? ORDER BY name");
 				
 		$tblCustomer = "haokiet_customer";
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
+		$findByPageStmt = sprintf("SELECT * FROM %s ORDER BY name LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		 
     } 

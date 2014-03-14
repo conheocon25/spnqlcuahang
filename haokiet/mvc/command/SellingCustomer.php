@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class Selling extends Command {
+	class SellingCustomer extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -12,7 +12,8 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdDomain 	= $request->getProperty('IdDomain');
-						
+			$IdCustomer = $request->getProperty('IdCustomer');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -23,34 +24,15 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			//Phát sinh dữ liệu CustomerLog cho ngày hiện tại
-			$CustomerAll 	= $mCustomer->findAll();
-			
-			$CLAll = $mCL->findByDate(array(\date('Y-m-d')));
-			if ($CLAll->count()==0){
-				while ($CustomerAll->valid()){
-					$Customer = $CustomerAll->current();
-					$CL = new \MVC\Domain\CustomerLog(
-						null,
-						$Customer->getId(),
-						\date('Y-m-d'),
-						0,0,0,0,0
-					);
-					$mCL->insert($CL);
-					$CustomerAll->next();
-				}
-			}
+			//-------------------------------------------------------------			
+			$Domain 	= $mDomain->find($IdDomain);
+			$Customer 	= $mCustomer->find($IdCustomer);
+											
 						
-			$Domain 		= $mDomain->find($IdDomain);
-			$DomainAll 		= $mDomain->findAll();			
-			if (!isset($Domain)){
-				$Domain = $DomainAll->current();
-				$IdDomain = $Domain->getId();
-			}
-			
-			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
-			$Navigation = array();
+			$Title = mb_strtoupper($Customer->getName(), 'UTF8');
+			$Navigation = array(
+				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling())
+			);
 			
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
@@ -64,8 +46,8 @@
 			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Domain'		, $Domain);
-			$request->setObject('DomainAll'		, $DomainAll);
-																		
+			$request->setObject('Customer'		, $Customer);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

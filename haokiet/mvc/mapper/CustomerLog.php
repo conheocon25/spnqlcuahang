@@ -12,7 +12,7 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         $this->insertStmt = self::$PDO->prepare("insert into haokiet_customer_log (id_customer, `datetime`, ticket1, ticket2, paid1, paid2, debt) values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer_log where id=?");		
 		
-		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=?");
+		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=? order by datetime desc");
 		$this->findByDateStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=?");
 		$this->findActiveStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=? AND id_customer=?");
     } 
