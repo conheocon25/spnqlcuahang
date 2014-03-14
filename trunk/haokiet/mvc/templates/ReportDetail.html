@@ -29,20 +29,36 @@
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>																					
-											<th><div class="text-left">NGÀY</div></th>											
-											<th width="120"><div class="text-right">BÁN HÀNG</div></th>
-											<th width="120"><div class="text-right"></div></th>
-											<th width="90"><div class="text-right">NHẬP HÀNG</div></th>
+											<th><div class="text-left">NGÀY</div></th>
+											<th width="70"><div class="text-right">VÉ NHẬN</div></th>
+											<th width="70"><div class="text-right">VÉ TRẢ</div></th>
+											<th width="70"><div class="text-right">VÉ BÁN</div></th>
+											<th width="100"><div class="text-right">T.BÁN VÉ</div></th>
+											<th width="100"><div class="text-right">THU T.BÁN</div></th>
+											<th width="100"><div class="text-right">NỢ T.VÉ</div></th>
+											<th width="100"><div class="text-right">THU T.GÓP</div></th>
+											<th width="100"><div class="text-right">CHO ỨNG</div></th>
+											<th width="100"><div class="text-right">NỢ T.ỨNG</div></th>											
+											<th width="100"><div class="text-right">TỔNG NỢ</div></th>
+											<th><div class="text-right"></div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">
-											<td><span tal:content="TD/getDatePrint"	/></td>
-											<td align="right"><a 	tal:attributes="href TD/getURLReportSelling">Xem chi tiết</a></td>
+											<td><a 	tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getDateShortPrint"/></a></td>
+											<td align="right"><span tal:content="TD/getTicket1Print"/></td>
+											<td align="right"><span tal:content="TD/getTicket2Print"/></td>
+											<td align="right"><span tal:content="TD/getTicketDPrint"/></td>
+											<td align="right"><span tal:content="TD/getTicketValuePrint"/></td>
+											<td align="right"><span tal:content="TD/getPaid1Print"/></td>
+											<td align="right"><span tal:content="TD/getPaid1RemainPrint"/></td>
+											<td align="right"><span tal:content="TD/getPaid2Print"/></td>
+											<td align="right"><span tal:content="TD/getDebtPrint"/></td>
+											<td align="right"><span tal:content="TD/getPaid2RemainPrint"/></td>
+											<td align="right"><span tal:content="TD/getValuePrint"/></td>
 											<td>
-												<a tal:attributes="href TD/getURLReportSellingPrint" target="blank"><i class="glyphicons-print"/> tổng hợp</a>
+												<a class="TDExe" tal:attributes="alt TD/getURLReportSellingExe"><i class="glyphicons-circle_ok"/></a>
 											</td>
-											<td align="right"><a 	tal:attributes="href TD/getURLReportImport"><span 	tal:content="TD/getImportPrint"	/></a></td>
 										</tr>										
 									</tbody>
 								</table>								
@@ -86,37 +102,15 @@
 				</div>
 			</div>
 		</div>
-		<div id="DialogImportChart" class="modal fade">
-			<div class="modal-dialog full-screen">
-				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>BIỂU ĐỒ NHẬP HÀNG</h3></div>
-					<div class="form-horizontal" >
-						<div class="modal-body"><div class="ImportChart" style="width:100%;height:400px;"/></div>
-						<div class="modal-footer"><button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="DialogValueChart" class="modal fade">
-			<div class="modal-dialog full-screen">
-				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>BIỂU ĐỒ QUỸ TIỀN</h3></div>
-					<div class="form-horizontal" >
-						<div class="modal-body"><div class="ValueChart" style="width:100%;height:400px;"/></div>
-						<div class="modal-footer"><button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
+						
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
 			//EXE DAILY			
-			//-----------------------------------------------------------------------------------						
+			//-----------------------------------------------------------------------------------
 			$('.TDExe').click(function(){
-				var URL = $(this).attr('alt');				
+				var URL = $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -153,95 +147,7 @@
 					series: {bars: {show: true, barWidth: 0.2, align: "center"}},
 					xaxis: {mode: "categories", tickLength: 0}
 				});				
-			});
-			
-			$(".ViewPaidChart").click(function(){
-				var id = $(this).attr("data-id");
-				
-				var URL = "/report/"+id+"/paid/chart";
-				var data = [];
-				
-				$("#DialogPaidChart").modal('hide');
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					async:false,
-					dataType: "json",
-					success: function(D){
-						data = D.data;						
-					}	
-				});								
-				$.plot(".PaidChart", [ data ], {
-					series: {bars: {show: true,barWidth: 0.2,align: "center"}},
-					xaxis: {mode: "categories",tickLength: 0}
-				});				
-			});
-			
-			$(".ViewCollectChart").click(function(){
-				var id = $(this).attr("data-id");
-				
-				var URL = "/report/"+id+"/collect/chart";
-				var data = [];
-				
-				$("#DialogCollectChart").modal('hide');
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					async:false,
-					dataType: "json",
-					success: function(D){
-						data = D.data;						
-					}	
-				});								
-				$.plot(".CollectChart", [ data ], {
-					series: {bars: {show: true,barWidth: 0.2,align: "center"}},
-					xaxis: {mode: "categories",tickLength: 0}
-				});				
-			});
-			
-			$(".ViewImportChart").click(function(){
-				var id = $(this).attr("data-id");
-				
-				var URL = "/report/"+id+"/import/chart";
-				var data = [];
-				
-				$("#DialogImportChart").modal('hide');
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					async:false,
-					dataType: "json",
-					success: function(D){
-						data = D.data;						
-					}	
-				});								
-				$.plot(".ImportChart", [ data ], {
-					series: {bars: {show: true,barWidth: 0.2,align: "center"}},
-					xaxis: {mode: "categories",tickLength: 0}
-				});				
-			});
-			
-			$(".ViewValueChart").click(function(){
-				var id = $(this).attr("data-id");
-				
-				var URL = "/report/"+id+"/value/chart";
-				var data = [];
-				
-				$("#DialogValueChart").modal('hide');
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					async:false,
-					dataType: "json",
-					success: function(D){
-						data = D.data;						
-					}	
-				});								
-				$.plot(".ValueChart", [ data ], {
-					series: {bars: {show: true,barWidth: 0.2,align: "center"}},
-					xaxis: {mode: "categories",tickLength: 0}
-				});				
-			});
+			});												
 		/*]]>*/
 		</script>
 	</body>

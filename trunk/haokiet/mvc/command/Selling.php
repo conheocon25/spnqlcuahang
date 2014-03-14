@@ -35,7 +35,7 @@
 						null,
 						$Customer->getId(),
 						\date('Y-m-d'),
-						0,0,0,0,0
+						0,0,0,0,0,0,0
 					);
 					$mCL->insert($CL);
 					$CustomerAll->next();

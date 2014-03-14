@@ -10,8 +10,8 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, selling=?, import=?, store=?, paid=?, collect=? where id=?", $tblTrackingDaily);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, selling, import, store, paid, collect) values(?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?", $tblTrackingDaily);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
@@ -33,11 +33,13 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$array['id'],
 			$array['id_tracking'],
 			$array['date'],
-			$array['selling'],
-			$array['import'],
-			$array['store'],
-			$array['paid'],
-			$array['collect']
+			$array['ticket1'],
+			$array['ticket2'],
+			$array['paid1'],
+			$array['paid2'],
+			$array['debt'],
+			$array['paid1_remain'],
+			$array['paid2_remain']
 		);
 	    return $obj;
     }
@@ -46,11 +48,13 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
-			$object->getSelling(),
-			$object->getImport(),
-			$object->getStore(),
-			$object->getPaid(),
-			$object->getCollect()
+			$object->getTicket1(),
+			$object->getTicket2(),
+			$object->getPaid1(),
+			$object->getPaid2(),
+			$object->getDebt(),
+			$object->getPaid1Remain(),
+			$object->getPaid2Remain()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -61,11 +65,13 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
-			$object->getSelling(),
-			$object->getImport(),
-			$object->getStore(),
-			$object->getPaid(),
-			$object->getCollect(),
+			$object->getTicket1(),
+			$object->getTicket2(),
+			$object->getPaid1(),
+			$object->getPaid2(),
+			$object->getDebt(),
+			$object->getPaid1Remain(),
+			$object->getPaid2Remain(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

@@ -44,7 +44,7 @@
 		<command name="ReportDaily">				<view>ReportDaily</view>				</command>
 		<command name="ReportDailySelling">			<view>ReportDailySelling</view>			</command>
 		<command name="ReportDailySellingPrint">	<view>ReportDailySellingPrint</view>	</command>
-		<command name="ReportDailySellingPrint1">	<view>ReportDailySellingPrint1</view>	</command>
+		<command name="ReportDailySellingExe">		<view>ReportDailySellingExe</view>		</command>
 		
 		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
 		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
