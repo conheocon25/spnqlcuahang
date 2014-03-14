@@ -78,8 +78,7 @@
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		
 		<!-- UPDATE DIALOG  -->
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
@@ -138,6 +137,9 @@
 			</div>
 		</div>
 		<!-- END UPDATE DIALOG  -->
+		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
@@ -160,11 +162,11 @@
 			//-----------------------------------------------------------------------------------
 			$("#FormUpdate").validate({
 				rules:{
-					Tick12:{
+					Ticket12:{
 						number:true,
 						min:0
 					},
-					Tick22:{
+					Ticket22:{
 						number:true,
 						min:0
 					},
@@ -209,6 +211,7 @@
 					return false;
 				}
 			});
+
 			$("#DialogEdit").on('show.bs.modal', function(event){
 				window.setTimeout(
 					function(){$(event.currentTarget).find('input#Ticket12').first().focus()},
