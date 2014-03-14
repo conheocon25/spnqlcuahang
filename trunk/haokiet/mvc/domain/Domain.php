@@ -48,8 +48,10 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLCustomer(){	return "/setting/domain/".$this->getId();}			
-	function getURLSelling(){	return "/selling/".$this->getId();}			
+	function getURLCustomer(){	return "/setting/domain/".$this->getId();}
+	function getURLSelling(){	return "/selling/".$this->getId();}
+	function getURLSellingPrintTemplate(){	return "/selling/".$this->getId()."/print/template";}
+	function getURLSellingPrintReport(){	return "/selling/".$this->getId()."/print/report";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
