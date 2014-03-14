@@ -8,13 +8,33 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare("select * from haokiet_customer_log");
         $this->selectStmt = self::$PDO->prepare("select * from haokiet_customer_log where id=?");
-        $this->updateStmt = self::$PDO->prepare("update haokiet_customer_log set id_customer=?, datetime=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=? where id=?");
-        $this->insertStmt = self::$PDO->prepare("insert into haokiet_customer_log (id_customer, `datetime`, ticket1, ticket2, paid1, paid2, debt) values( ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt = self::$PDO->prepare("update haokiet_customer_log set id_customer=?, datetime=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?");
+        $this->insertStmt = self::$PDO->prepare("insert into haokiet_customer_log (id_customer, `datetime`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer_log where id=?");		
 		
 		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=? order by datetime desc");
-		$this->findByDateStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=?");
+		$this->findByDateStmt 		= self::$PDO->prepare("			
+			select * 
+			from 				
+				haokiet_customer_log 	CL				
+			where
+			date(`datetime`)=?
+		");
+		
+		$this->findByDate1Stmt 		= self::$PDO->prepare("			
+			select * 
+			from 
+				haokiet_customer 		CU 
+					inner join
+				haokiet_customer_log 	CL
+					on
+				CU.id = CL.id_customer
+			where 
+			CU.id_domain=? AND date(`datetime`)=?
+			order by name
+		");
 		$this->findActiveStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=? AND id_customer=?");
+		$this->findPreStmt 			= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`) < date(?) AND id_customer=? ORDER BY `datetime` DESC LIMIT 1");
     } 
     function getCollection( array $raw ) {return new CustomerLogCollection( $raw, $this );}
 
@@ -27,7 +47,9 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 			$array['ticket2'],
 			$array['paid1'],
 			$array['paid2'],
-			$array['debt']			
+			$array['debt'],
+			$array['paid1_remain'],
+			$array['paid2_remain']
 		);					
         return $obj;
     }	
@@ -40,7 +62,9 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 			$object->getTicket2(),	
 			$object->getPaid1(),	
 			$object->getPaid2(),
-			$object->getDebt()
+			$object->getDebt(),
+			$object->getPaid1Remain(),	
+			$object->getPaid2Remain()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -56,6 +80,8 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 			$object->getPaid1(),	
 			$object->getPaid2(),
 			$object->getDebt(),
+			$object->getPaid1Remain(),
+			$object->getPaid2Remain(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -69,6 +95,11 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 		$this->findByCustomerStmt->execute($values);
         return new CustomerLogCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
+	function findByDate1( $values ) {
+		$this->findByDate1Stmt->execute($values);
+        return new CustomerLogCollection( $this->findByDate1Stmt->fetchAll(), $this );
+    }
+	
 	function findByDate( $values ) {
 		$this->findByDateStmt->execute($values);
         return new CustomerLogCollection( $this->findByDateStmt->fetchAll(), $this );
@@ -83,6 +114,16 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         $object = $this->doCreateObject( $array );
         return $object;
     }
-    			
+    
+	function findPre( $values ){		
+        $this->findPreStmt->execute( $values );
+        $array = $this->findPreStmt->fetch();
+        $this->findPreStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
+    }	
+	
 }
 ?>

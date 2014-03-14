@@ -24,9 +24,11 @@
 					<a tal:attributes="href Domain/getURLSellingPrintTemplate" target="blank" class="btn btn-primary btn-ins">
 						<i class="glyphicons-print"/>  In mẫu
 					</a>
+					<!--
 					<a tal:attributes="href Domain/getURLSellingPrintReport" target="blank" class="btn btn-primary btn-ins">
 						<i class="glyphicons-print"/>  In báo cáo
 					</a>
+					!-->
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
@@ -37,12 +39,11 @@
 										<th><div class="text-right">VÉ NHẬN</div></th>
 										<th><div class="text-right">VÉ TRẢ</div></th>
 										<th><div class="text-right">VÉ BÁN</div></th>
-										<th><div class="text-right">TIỀN VÉ THỰC</div></th>
-										<th><div class="text-right">TIỀN VÉ TRẢ</div></th>
-										<th width="10" />										
-										<th><div class="text-right">TIỀN GÓP</div></th>
-										<th><div class="text-right">TIỀN ỨNG</div></th>
 										<th width="10" />
+										<th><div class="text-right">NỢ TIỀN VÉ </div></th>
+										<th><div class="text-right">NỢ TIỀN ỨNG</div></th>
+										<th width="10" />
+										<th><div class="text-right">TỔNG NỢ</div></th>										
 										<th width="80">XEM</th>
 									</tr>
 								</thead>
@@ -64,13 +65,12 @@
 										</td>
 										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicket1"/></td>
 										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicket2"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicketD"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicketValuePrint"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid1Print"/></td>
+										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getTicketD"/></td>										
 										<td />
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid2Print"/></td>
-										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getDebtPrint"/></td>
-										<td></td>
+										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid1RemainPrint" style="color:blue;"/></td>
+										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getPaid2RemainPrint" style="color:blue;"/></td>
+										<td />
+										<td><div class="text-right" tal:condition="Customer/getLogActive" tal:content="Customer/getLogActive/getValuePrint" style="color:red;"/></td>
 										<td class="center">
 											<a tal:attributes="href Customer/getURLSelling">
 												Sổ (<span tal:content="Customer/getLogAll/count"/>)

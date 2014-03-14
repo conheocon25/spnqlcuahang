@@ -54,7 +54,7 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("a4_ba_duc.pdf", 'I');
+		$Out = $pdf->Output("a4_hao_kiet.pdf", 'I');
 		unset($pdf);
 		
 		return $Out;
@@ -80,36 +80,11 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);							
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('phieu_quan_cafe_mien_tay_2_lien.pdf', 'I');
+		$Out = $pdf->Output('phieu_hao_kiet.pdf', 'I');
 		unset($Out);
 		return $Out;
 	}
-	
-	function pdfReceipt2(){		
-		$html = $this->html();		
-		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$width 	= 73; //76 mm 
-		$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
-		$pdf->addFormat("custom", $width, $height);  
-		$pdf->reFormat("custom", 'P');
 		
-		// set default header data		
-		$pdf->setHeaderFont(Array('arial', '', '10'));
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 1, 1);
-		
-		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
-				
-		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 8);							
-		$pdf->writeHTML($html, true, false, true, false, '');
-		$pdf->AddPage();
-		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('phieu_quan_cafe_mien_tay_2_lien.pdf', 'I');
-		unset($Out);
-		return $Out;
-	}
 		
 }
 ?>
