@@ -37,6 +37,8 @@
 		
 		<command name="Result">						<view>Result</view>						</command>
 		<command name="ResultDetail">				<view>ResultDetail</view>				</command>
+		<command name="ResultDetailView">			<view>ResultDetailView</view>			</command>
+		<command name="ResultDetailPrint">			<view>ResultDetailPrint</view>			</command>
 		
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
