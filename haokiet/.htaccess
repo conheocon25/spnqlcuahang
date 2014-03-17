@@ -48,6 +48,8 @@ RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmploy
 RewriteRule ^result$ 								?cmd=Result [L]
 RewriteRule ^result/([0-9]+)$ 						?cmd=Result&IdTrack=$1 [L]
 RewriteRule ^result/([0-9]+)/([0-9]+)$ 				?cmd=ResultDetail&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^result/([0-9]+)/([0-9]+)/view$ 		?cmd=ResultDetailView&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^result/([0-9]+)/([0-9]+)/print$ 		?cmd=ResultDetailPrint&IdTrack=$1&IdTD=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT

@@ -52,6 +52,18 @@ class TrackingDaily extends Object{
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
+	function getDayName(){
+		$Arr = array(
+			"Sunday"	=>"CN",
+			"Monday"	=>"T.Hai",
+			"Tuesday"	=>"T.Ba",
+			"Wednesday"	=>"T.Tư",
+			"Thursday"	=>"T.Năm",
+			"Friday"	=>"T.Sáu",
+			"Saturday"	=>"T.Bảy"
+		);
+		return $Arr[\date('l', strtotime( $this->Date))];
+	}
 	
 	function setTicket1( $Ticket1 ) {$this->Ticket1 = $Ticket1;$this->markDirty();}   
 	function getTicket1( ) {return $this->Ticket1;}
