@@ -15,6 +15,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
+		$findByNowStmt 				= sprintf("select *  from %s where `date`=now()", $tblTrackingDaily);
 		$findByPreStmt 				= sprintf("select *  from %s where id_tracking=? AND `date`<? ORDER BY `date` DESC", $tblTrackingDaily);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
@@ -86,6 +87,11 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$this->findByStmt->execute( $values );
         return new TrackingDailyCollection( $this->findByStmt->fetchAll(), $this );
     }
+	function findByNow(array $values) {
+		$this->findByNowStmt->execute( $values );
+        return new TrackingDailyCollection( $this->findByNowStmt->fetchAll(), $this );
+    }
+	
 	function findByPre(array $values) {
 		$this->findByPreStmt->execute( $values );
         return new TrackingDailyCollection( $this->findByPreStmt->fetchAll(), $this );

@@ -99,11 +99,9 @@ class Tracking extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/report/".$this->getId();}
-	function getURLReportCourse()	{return "/report/".$this->getId()."/course";}
-	
-	function getURLGeneral()		{return "/report/general/".$this->getId();}
-		
+	function getURLView()			{return "/report/".$this->getId();}
+	function getURLResult()			{return "/result/".$this->getId();}
+				
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

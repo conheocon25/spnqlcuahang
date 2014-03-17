@@ -35,6 +35,9 @@
 			<status value="CMD_OK"><forward>SignoutExe</forward></status>
 		</command>
 		
+		<command name="Result">						<view>Result</view>						</command>
+		<command name="ResultDetail">				<view>ResultDetail</view>				</command>
+		
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
