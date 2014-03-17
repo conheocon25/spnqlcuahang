@@ -124,6 +124,9 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-usd" />BÁN HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Result'?'active':'disable'">
+				<a tal:attributes="href '/result'"><i class="glyphicons-book" />KẾT QUẢ</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>

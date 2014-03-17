@@ -102,14 +102,21 @@ class TrackingDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-		
+	function getLotoAll(){
+		$mLoto = new \MVC\Mapper\Loto();
+		$LotoAll = 	$mLoto->findBy(array($this->getId()));
+		return $LotoAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLReport()			{return "/report/".$this->getIdTracking()."/".$this->getId();}
-	function getURLReportSelling()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
+	function getURLReport()				{return "/report/".$this->getIdTracking()."/".$this->getId();}
+	function getURLReportSelling()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
 	function getURLReportSellingExe()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/exe";}
-			
+	function getURLResult()				{return "/result/".$this->getIdTracking()."/".$this->getId();}
+	function getURLResultView()			{return "/result/".$this->getIdTracking()."/".$this->getId()."/view";}
+	function getURLResultPrint()		{return "/result/".$this->getIdTracking()."/".$this->getId()."/print";}
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
