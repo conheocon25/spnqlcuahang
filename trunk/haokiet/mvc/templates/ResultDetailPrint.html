@@ -3,116 +3,125 @@
 		<tbody>
 			<tr>
 				<td width="48%" align="center">
-					<h2>XỔ SỐ KIẾN THIẾT MIỀN NAM</h2>
+					<h2 tal:content="ConfigName/getValue"/>
 				</td>
-				<td width="2.5%"></td>
+				<td width="2.5%" />
 				<td width="48%" align="center">
-					<h2>XỔ SỐ KIẾN THIẾT MIỀN NAM</h2>
+					<h2 tal:content="ConfigName/getValue"/>
 				</td>
-				<td width="1%"></td>
-			</tr>
+				<td width="1%" />
+			</tr>			
 			<tr>
-				<td width="48%" align="center">
-					<i>Ngày <span tal:content="TD/getDatePrint"/></i>
-				</td>
-				<td width="2.5%"></td>
-				<td width="48%" align="center">
-					<i>Ngày <span tal:content="TD/getDatePrint"/></i>
-				</td>
-				<td width="1%"></td>
-			</tr>
-			<tr>
-				<td width="48%">
-	
-					<table border="1" cellpadding="3.45" cellspacing="0" valign="middle">
+				<td width="48%">	
+					<table border="1" cellpadding="0.5" cellspacing="0" valign="middle">
 						<tbody>
-							<tr align="center">
+							<tr align="right">
 								<td><b tal:content="TD/getDayName"/></td>
-								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getLocation"/></td>
+								<td tal:repeat="Loto LotoAll">
+									<b tal:content="Loto/getLocation"/>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td tal:content="TD/getDatePrint"/>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tám</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG81"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="20pt"><B tal:content="Loto/getG81"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">								
 								<td>Giải Bảy</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG71"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="16pt"><B tal:content="Loto/getG71"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Sáu</td>
-								<td tal:repeat="Loto LotoAll">
-									<span tal:content="Loto/getG61"/>
-									<span tal:content="Loto/getG62"/>
-									<span tal:content="Loto/getG63"/>
+								<td tal:repeat="Loto LotoAll" align="right">
+									<font size="16pt">										
+										<B tal:content="Loto/getG61"/>
+										<B tal:content="Loto/getG62"/>
+										<B tal:content="Loto/getG63"/>
+									</font>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">								
 								<td>Giải Năm</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG51"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="16pt"><B tal:content="Loto/getG51"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tư</td>
-								<td tal:repeat="Loto LotoAll">
-									<span tal:content="Loto/getG41"/>
-									<span tal:content="Loto/getG42"/>
-									<span tal:content="Loto/getG43"/>
-									<span tal:content="Loto/getG44"/>
-									<span tal:content="Loto/getG45"/>
-									<span tal:content="Loto/getG46"/>
-									<span tal:content="Loto/getG47"/>
+								<td tal:repeat="Loto LotoAll" align="right">
+									<font size="16pt">
+										<B tal:content="Loto/getG41"/>
+										<B tal:content="Loto/getG42"/>
+										<B tal:content="Loto/getG43"/>
+										<B tal:content="Loto/getG44"/>
+										<B tal:content="Loto/getG45"/>
+										<B tal:content="Loto/getG46"/>
+										<B tal:content="Loto/getG47"/>
+									</font>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Ba</td>
-								<td tal:repeat="Loto LotoAll">
-									<span tal:content="Loto/getG31"/>
-									<span tal:content="Loto/getG32"/>
+								<td tal:repeat="Loto LotoAll" align="right">
+									<font size="16pt">
+										<B tal:content="Loto/getG31"/>
+										<B tal:content="Loto/getG32"/>
+									</font>
 								</td>
 							</tr>
-							<tr align="center">
-								<td>Giải Nhì</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG21"/>
+							<tr align="right">
+								<td>Giải Nhì</td>								
+								<td tal:repeat="Loto LotoAll">
+									<font size="16pt"><B tal:content="Loto/getG21"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhất</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG11"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="16pt"><B tal:content="Loto/getG11"/></font>
+								</td>
 							</tr>
-							<tr align="center">
-								<td><b>Giải Đặc biệt</b></td>
-								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
+							<tr align="right">
+								<td><b>ĐẶC BIỆT</b></td>
+								<td tal:repeat="Loto LotoAll">
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
+								</td>
 							</tr>
 						</tbody>
-					</table>
-					
-				</td>
-				
-				<td width="2.5%"></td>
-				
-				<td width="48%">
-	
+					</table>					
+				</td>				
+				<td width="2.5%" />				
+				<td width="48%">	
 					<table border="1" cellpadding="3.45" cellspacing="0" valign="middle">
 						<tbody>
-							<tr align="center">
+							<tr align="right">
 								<td><b tal:content="TD/getDayName"/></td>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getLocation"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td tal:content="TD/getDatePrint"/>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tám</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG81"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="20pt"><B tal:content="Loto/getG81"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">								
 								<td>Giải Bảy</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG71"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="17pt"><B tal:content="Loto/getG71"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG61"/>
@@ -120,11 +129,11 @@
 									<span tal:content="Loto/getG63"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Năm</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG51"/>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG41"/>
@@ -136,24 +145,26 @@
 									<span tal:content="Loto/getG47"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Ba</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG31"/>
 									<span tal:content="Loto/getG32"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhì</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG21"/>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG11"/>
 							</tr>
-							<tr align="center">
-								<td><b>Giải Đặc biệt</b></td>
-								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
+							<tr align="right">
+								<td><b>ĐẶC BIỆT</b></td>
+								<td tal:repeat="Loto LotoAll">
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -166,46 +177,39 @@
 			</tr>
 			<tr>
 				<td width="48%" align="center">
-					<h2>XỔ SỐ KIẾN THIẾT MIỀN NAM</h2>
+					<h2 tal:content="ConfigName/getValue"/>
 				</td>
 				<td width="2.5%"></td>
 				<td width="48%" align="center">
-					<h2>XỔ SỐ KIẾN THIẾT MIỀN NAM</h2>
+					<h2 tal:content="ConfigName/getValue"/>
 				</td>
 				<td width="1%"></td>
-			</tr>
+			</tr>			
 			<tr>
-				<td width="48%" align="center">
-					<i>Ngày <span tal:content="TD/getDatePrint"/></i>
-				</td>
-				<td width="2.5%"></td>
-				<td width="48%" align="center">
-					<i>Ngày <span tal:content="TD/getDatePrint"/></i>
-				</td>
-				<td width="1%"></td>
-			</tr>
-			<tr>
-				<td width="48%">
-	
+				<td width="48%">	
 					<table border="1" cellpadding="3.45" cellspacing="0" valign="middle">
 						<tbody>
-							<tr align="center">
+							<tr align="right">
 								<td><b tal:content="TD/getDayName"/></td>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getLocation"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td tal:content="TD/getDatePrint"/>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tám</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG81"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="20pt"><B tal:content="Loto/getG81"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">								
 								<td>Giải Bảy</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG71"/>
+								<td tal:repeat="Loto LotoAll">
+									<font size="17pt"><B tal:content="Loto/getG71"/></font>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG61"/>
@@ -213,11 +217,11 @@
 									<span tal:content="Loto/getG63"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Năm</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG51"/>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG41"/>
@@ -229,65 +233,69 @@
 									<span tal:content="Loto/getG47"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Ba</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG31"/>
 									<span tal:content="Loto/getG32"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhì</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG21"/>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG11"/>
 							</tr>
-							<tr align="center">
-								<td><b>Giải Đặc biệt</b></td>
-								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
+							<tr align="right">
+								<td><b>ĐẶC BIỆT</b></td>
+								<td tal:repeat="Loto LotoAll">
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
+								</td>
 							</tr>
 						</tbody>
-					</table>
-					
-				</td>
-				
-				<td width="2.5%"></td>
-				
-				<td width="48%">
-	
+					</table>					
+				</td>				
+				<td width="2.5%" />
+				<td width="48%">	
 					<table border="1" cellpadding="3.45" cellspacing="0" valign="middle">
 						<tbody>
-							<tr align="center">
+							<tr align="right">
 								<td><b tal:content="TD/getDayName"/></td>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getLocation"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td tal:content="TD/getDatePrint"/>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tám</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG81"/>
-							</tr>
-							<tr align="center">
-								<td>Giải Bảy</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG71"/>
-							</tr>
-							<tr align="center">
-								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
+									<font size="20pt"><B tal:content="Loto/getG81"/></font>
+								</td>
+							</tr>
+							<tr align="right">								
+								<td>Giải Bảy</td>
+								<td tal:repeat="Loto LotoAll">
+									<font size="17pt"><B tal:content="Loto/getG71"/></font>
+								</td>
+							</tr>
+							<tr align="right">
+								<td>Giải Sáu</td>
+								<td tal:repeat="Loto LotoAll" align="right">
 									<span tal:content="Loto/getG61"/>
 									<span tal:content="Loto/getG62"/>
 									<span tal:content="Loto/getG63"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Năm</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG51"/>
+								<td tal:repeat="Loto LotoAll" align="right">
+									<span tal:content="Loto/getG51"/>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<span tal:content="Loto/getG41"/>
@@ -299,24 +307,28 @@
 									<span tal:content="Loto/getG47"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Ba</td>
-								<td tal:repeat="Loto LotoAll">
+								<td tal:repeat="Loto LotoAll" align="right">
 									<span tal:content="Loto/getG31"/>
 									<span tal:content="Loto/getG32"/>
 								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhì</td>
-								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG21"/>
+								<td tal:repeat="Loto LotoAll" align="right">
+									<span tal:content="Loto/getG21"/>
+								</td>
 							</tr>
-							<tr align="center">
+							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll" tal:content="Loto/getG11"/>
 							</tr>
-							<tr align="center">
-								<td><b>Giải Đặc biệt</b></td>
-								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
+							<tr align="right">
+								<td><b>ĐẶC BIỆT</b></td>
+								<td tal:repeat="Loto LotoAll">
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
+								</td>
 							</tr>
 						</tbody>
 					</table>

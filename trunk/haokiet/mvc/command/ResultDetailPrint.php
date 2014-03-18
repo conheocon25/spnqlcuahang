@@ -25,14 +25,14 @@
 			//-------------------------------------------------------------			
 			$TD 		= $mTD->find($IdTD);
 			$LotoAll	= $TD->getLotoAll();
-			$Loto		= $LotoAll->current();
+			$ConfigName = $mConfig->findByName("NAME");			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
 			$request->setObject('TD'			, $TD);
 			$request->setObject('LotoAll'		, $LotoAll);			
-			$request->setObject('Loto'			, $Loto);
+			$request->setProperty('ConfigName'	, $ConfigName);
 						
 		}
 	}
