@@ -8,7 +8,7 @@
 			src: url('/data/font.ttf') format('truetype');
 		}
 		* { margin:0; padding:0; }
-		body { font-family: "CustomFont"; font-size: 30px; }
+		body { font-family: "CustomFont"; font-size: 18px; }
 		.datagrid { margin: 20px; }
 		.datagrid table { border-collapse: collapse; text-align: left; width: 100%; font-size: 30px; }
 		.datagrid { background: #fff; overflow: hidden; border: 1px solid #991821; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
@@ -21,12 +21,7 @@
 		.datagrid table tbody tr:last-child td { border-bottom: none; }
 		.center { text-align: center; }
 		.alt { background-color: #FCDEE0; }
-	</style>
-	
-	<center>
-		<br/><h3 tal:content="ConfigName/getValue"/>
-	</center>
-	
+	</style>		
 	<div class="datagrid">
 		
 		<table>
@@ -95,9 +90,11 @@
 					<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
 				</tr>
 			</tbody>
-		</table>
-		
+		</table>		
 	</div>
+	<center>		
+		<MARQUEE SCROLLDELAY="200"><h3 tal:content="SMarquee"/></MARQUEE>
+	</center>
 	<center>
 		<a onclick="window.history.back()" href="JavaScript:;">Trở Lại</a>
 	</center>

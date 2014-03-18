@@ -1,3 +1,10 @@
+<style>
+	@font-face {
+		font-family: "CustomFont";
+		src: url('/data/font.ttf') format('truetype');
+	}
+	.number8 { font-family: "CustomFont"; font-size: 30px; }
+</style>
 <body>
 	<table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:1.1em;">
 		<tbody>
@@ -16,82 +23,82 @@
 					<table border="1" cellpadding="0.5" cellspacing="0" valign="middle">
 						<tbody>
 							<tr align="right">
-								<td><b tal:content="TD/getDayName"/></td>
+								<td width="60"><b tal:content="TD/getDayName"/></td>
 								<td tal:repeat="Loto LotoAll">
 									<b tal:content="Loto/getLocation"/>
 								</td>
 							</tr>
 							<tr align="right">
-								<td tal:content="TD/getDatePrint"/>
+								<td tal:content="TD/getDateShortPrint"/>
 								<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
 							</tr>
 							<tr align="right">
-								<td>Giải Tám</td>
+								<td>Giải 8</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG81"/></font>
+									<B class="number8" tal:content="Loto/getG81"/>
 								</td>
 							</tr>
 							<tr align="right">								
-								<td>Giải Bảy</td>
+								<td>Giải 7</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG71"/></font>
+									<font size="15pt"><B tal:content="Loto/getG71"/></font>
 								</td>
 							</tr>
 							<tr align="right">
-								<td>Giải Sáu</td>
+								<td>Giải 6</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG61"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG62"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG63"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG61"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG62"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG63"/></font></td></tr>
 									</table>																		
 								</td>
 							</tr>
 							<tr align="right">								
-								<td>Giải Năm</td>
+								<td>Giải 5</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG51"/></font>
+									<font size="15pt"><B tal:content="Loto/getG51"/></font>
 								</td>
 							</tr>
 							<tr align="right">
-								<td>Giải Tư</td>
+								<td>Giải 4</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG41"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG42"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG43"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG44"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG45"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG46"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG47"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG41"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG42"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG43"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG44"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG45"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG46"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG47"/></font></td></tr>
 									</table>
 								</td>
 							</tr>
 							<tr align="right">
-								<td>Giải Ba</td>
+								<td>Giải 3</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG31"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG32"/></font></td></tr>										
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG31"/></font></td></tr>
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG32"/></font></td></tr>										
 									</table>
 								</td>
 							</tr>
 							<tr align="right">
-								<td>Giải Nhì</td>								
+								<td>Giải 2</td>								
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG21"/></font>
+									<font size="16pt"><B tal:content="Loto/getG21"/></font>
 								</td>
 							</tr>
 							<tr align="right">
-								<td>Giải Nhất</td>
+								<td>Giải 1</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG11"/></font>
+									<font size="16pt"><B tal:content="Loto/getG11"/></font>
 								</td>
 							</tr>
 							<tr align="right">
-								<td><b>ĐẶC BIỆT</b></td>
+								<td><b>ĐB</b></td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG00"/></font>
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
 								</td>
 							</tr>
 						</tbody>
@@ -114,42 +121,42 @@
 							<tr align="right">
 								<td>Giải Tám</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG81"/></font>
+									<font size="18pt"><B tal:content="Loto/getG81"/></font>
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Bảy</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG71"/></font>
+									<font size="15pt"><B tal:content="Loto/getG71"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG61"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG62"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG63"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG61"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG62"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG63"/></font></td></tr>
 									</table>																		
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Năm</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG51"/></font>
+									<font size="15pt"><B tal:content="Loto/getG51"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG41"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG42"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG43"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG44"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG45"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG46"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG47"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG41"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG42"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG43"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG44"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG45"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG46"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG47"/></font></td></tr>
 									</table>
 								</td>
 							</tr>
@@ -157,27 +164,27 @@
 								<td>Giải Ba</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG31"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG32"/></font></td></tr>										
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG31"/></font></td></tr>
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG32"/></font></td></tr>										
 									</table>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhì</td>								
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG21"/></font>
+									<font size="16pt"><B tal:content="Loto/getG21"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG11"/></font>
+									<font size="16pt"><B tal:content="Loto/getG11"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td><b>ĐẶC BIỆT</b></td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG00"/></font>
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
 								</td>
 							</tr>
 						</tbody>
@@ -213,42 +220,42 @@
 							<tr align="right">
 								<td>Giải Tám</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG81"/></font>
+									<font size="18pt"><B tal:content="Loto/getG81"/></font>
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Bảy</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG71"/></font>
+									<font size="15pt"><B tal:content="Loto/getG71"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG61"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG62"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG63"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG61"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG62"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG63"/></font></td></tr>
 									</table>																		
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Năm</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG51"/></font>
+									<font size="15pt"><B tal:content="Loto/getG51"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG41"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG42"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG43"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG44"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG45"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG46"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG47"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG41"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG42"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG43"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG44"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG45"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG46"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG47"/></font></td></tr>
 									</table>
 								</td>
 							</tr>
@@ -256,27 +263,27 @@
 								<td>Giải Ba</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG31"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG32"/></font></td></tr>										
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG31"/></font></td></tr>
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG32"/></font></td></tr>										
 									</table>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhì</td>								
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG21"/></font>
+									<font size="16pt"><B tal:content="Loto/getG21"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG11"/></font>
+									<font size="16pt"><B tal:content="Loto/getG11"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td><b>ĐẶC BIỆT</b></td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG00"/></font>
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
 								</td>
 							</tr>
 						</tbody>
@@ -299,42 +306,42 @@
 							<tr align="right">
 								<td>Giải Tám</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG81"/></font>
+									<font size="18pt"><B tal:content="Loto/getG81"/></font>
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Bảy</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG71"/></font>
+									<font size="15pt"><B tal:content="Loto/getG71"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Sáu</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG61"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG62"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG63"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG61"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG62"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG63"/></font></td></tr>
 									</table>																		
 								</td>
 							</tr>
 							<tr align="right">								
 								<td>Giải Năm</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG51"/></font>
+									<font size="15pt"><B tal:content="Loto/getG51"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Tư</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG41"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG42"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG43"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG44"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG45"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG46"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG47"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG41"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG42"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG43"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG44"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG45"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG46"/></font></td></tr>
+										<tr><td align="right"><font size="15pt"><B tal:content="Loto/getG47"/></font></td></tr>
 									</table>
 								</td>
 							</tr>
@@ -342,27 +349,27 @@
 								<td>Giải Ba</td>
 								<td tal:repeat="Loto LotoAll">
 									<table border="0" cellpadding="0" cellspacing="0" width="100%">
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG31"/></font></td></tr>
-										<tr><td align="right"><font size="14pt"><B tal:content="Loto/getG32"/></font></td></tr>										
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG31"/></font></td></tr>
+										<tr><td align="right"><font size="16pt"><B tal:content="Loto/getG32"/></font></td></tr>
 									</table>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhì</td>								
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG21"/></font>
+									<font size="16pt"><B tal:content="Loto/getG21"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td>Giải Nhất</td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="14pt"><B tal:content="Loto/getG11"/></font>
+									<font size="16pt"><B tal:content="Loto/getG11"/></font>
 								</td>
 							</tr>
 							<tr align="right">
 								<td><b>ĐẶC BIỆT</b></td>
 								<td tal:repeat="Loto LotoAll">
-									<font size="17pt"><B tal:content="Loto/getG00"/></font>
+									<font size="18pt"><B tal:content="Loto/getG00"/></font>
 								</td>
 							</tr>
 						</tbody>
@@ -371,5 +378,5 @@
 				<td width="1%" />
 			</tr>
 		</tbody>
-	</table>
+	</table>	
 </body>

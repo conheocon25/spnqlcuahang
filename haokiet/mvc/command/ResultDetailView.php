@@ -26,12 +26,19 @@
 			$TD 		= $mTD->find($IdTD);
 			$LotoAll	= $TD->getLotoAll();
 			$ConfigName = $mConfig->findByName("NAME");
+			$SMarquee 	= "";
+			while ($LotoAll->valid()){
+				$Loto = $LotoAll->current();
+				$SMarquee .= $ConfigName->getValue(). " KẾT QUẢ XỔ SỐ NGÀY ".$TD->getDatePrint(). $Loto->toString()." - ";
+				$LotoAll->next();
+			}
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
 			$request->setObject('TD'			, $TD);
 			$request->setProperty('ConfigName'	, $ConfigName);
+			$request->setProperty('SMarquee'	, $SMarquee);
 			$request->setObject('LotoAll'		, $LotoAll);											
 		}
 	}
