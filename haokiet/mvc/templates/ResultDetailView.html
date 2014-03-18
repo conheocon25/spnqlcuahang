@@ -1,7 +1,11 @@
-<body>		
+<head>
+	<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+	<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+</head>
+<body>
 	<style>
 		* { margin:0; padding:0; }
-		body { font-family: Segoe UI; font-size: 18px; }
+		body { font-family: Segoe UI; font-size: 20px; }
 		.datagrid { margin: 20px; }
 		.datagrid table { border-collapse: collapse; text-align: left; width: 100%; }
 		.datagrid { background: #fff; overflow: hidden; border: 1px solid #991821; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
@@ -19,8 +23,10 @@
 		<table>
 			<thead class="center">
 				<tr>
-					<th width="100" tal:content="TD/getDayName"/>
-					<th tal:repeat="Loto LotoAll" tal:content="Loto/getLocation"/>
+					<th width="100"><div tal:content="TD/getDayName" class="text-center"/></th>
+					<th tal:repeat="Loto LotoAll">
+						<div tal:content="Loto/getLocation" class="text-center"/>
+					</th>
 				</tr>
 			</thead>
 			<tbody class="center">
