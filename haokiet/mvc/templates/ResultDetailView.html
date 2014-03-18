@@ -1,13 +1,12 @@
 <head>
 	<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-	<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 </head>
 <body>
 	<style>
 		* { margin:0; padding:0; }
-		body { font-family: tahoma UI; font-size: 30px !important ; }
+		body { font-family: Arial; font-size: 30px; }
 		.datagrid { margin: 20px; }
-		.datagrid table { border-collapse: collapse; text-align: left; width: 100%; }
+		.datagrid table { border-collapse: collapse; text-align: left; width: 100%; font-size: 30px; }
 		.datagrid { background: #fff; overflow: hidden; border: 1px solid #991821; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 		.datagrid table td, .datagrid table th { padding: 3px 10px; }
 		.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');background-color:#991821; color:#FFFFFF; font-weight: bold; }
@@ -19,8 +18,13 @@
 		.center { text-align: center; }
 		.alt { background-color: #FCDEE0; }
 	</style>
+	
+	<center>
+		<br/><h3 tal:content="ConfigName/getValue"/>
+	</center>
+	
 	<div class="datagrid">
-		<h3 tal:content="ConfigName/getValue"/>
+		
 		<table>
 			<thead class="center">
 				<tr>
