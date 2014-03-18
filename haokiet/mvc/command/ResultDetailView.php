@@ -31,7 +31,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
 			$request->setObject('TD'			, $TD);
-			$request->setProperty('Name'		, $ConfigName);
+			$request->setProperty('ConfigName'	, $ConfigName);
 			$request->setObject('LotoAll'		, $LotoAll);											
 		}
 	}
