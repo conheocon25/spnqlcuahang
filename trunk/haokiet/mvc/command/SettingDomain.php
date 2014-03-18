@@ -31,6 +31,13 @@
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 			
+			$SCustomer = 0;
+			while ($DomainAll->valid()){
+				$Domain = $DomainAll->current();
+				$SCustomer += $Domain->getCustomerAll()->count();
+				$DomainAll->next();
+			}
+			
 			$DomainAll1 = $mDomain->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($DomainAll->count(), $Config->getValue(), "/setting/domain" );
 			
@@ -40,6 +47,7 @@
 			$request->setProperty('Title'		, $Title);
 			$request->setProperty('ActiveAdmin'	, 'Domain');
 			$request->setProperty('Page'		, $Page);
+			$request->setProperty('SCustomer'	, $SCustomer);
 			$request->setObject('PN'			, $PN);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('DomainAll1'	, $DomainAll1);

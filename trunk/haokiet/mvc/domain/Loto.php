@@ -150,6 +150,22 @@ class Loto extends Object{
 	function setG00($G00) 	{$this->G00 = $G00; $this->markDirty();}
 	function getG00() 		{return $this->G00;}
 	
+	function toString(){
+		$S = " ĐÀI ";
+		$S .= $this->Location." ";
+		$S .= "LOẠI ".$this->Name." ";
+		$S .= "Giải 8: ".$this->G81." ";
+		$S .= "Giải 7: ".$this->G71." ";
+		$S .= "Giải 6: ".$this->G61."-".$this->G62."-".$this->G63." ";
+		$S .= "Giải 5: ".$this->G51." ";
+		$S .= "Giải 4: ".$this->G41."-".$this->G42."-".$this->G43."-".$this->G44."-".$this->G45."-".$this->G46."-".$this->G47." ";
+		$S .= "Giải 3: ".$this->G31."-".$this->G32." ";
+		$S .= "Giải 2: ".$this->G21." ";
+		$S .= "Giải 1: ".$this->G11." ";
+		$S .= "ĐẶC BIỆT: ".$this->G00." ";		
+		return $S;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
