@@ -43,11 +43,10 @@ class Viewer {
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		
 		$pdf->reFormat("A4", $O);
-
-		$pdf->setHeaderFont(Array('arial', '', '12'));
+		
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 2, 1);		
+		$pdf->SetMargins(0, 0, 0, true);
 		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		
