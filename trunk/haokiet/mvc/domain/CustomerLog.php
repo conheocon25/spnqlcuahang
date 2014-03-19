@@ -147,7 +147,9 @@ class CustomerLog extends Object{
 		$this->Paid1		= $Data[5];
 		$this->Paid2		= $Data[6];
 		$this->Debt			= $Data[7];
-		
+		$this->autoUpdate();
+    }
+	function autoUpdate(){
 		//Tính tự động 2 tham số này Paid1Remain / Paid2Remain		
 		//Tìm CL trước đó 1 ngày để cập nhật những công nợ cũ
 		$mCL = new \MVC\Mapper\CustomerLog();
@@ -160,7 +162,7 @@ class CustomerLog extends Object{
 			$this->Paid1Remain	= $this->getTicketValue() - $this->getPaid1();
 			$this->Paid2Remain	= $this->getDebt() - $this->getPaid2();			
 		}
-    }
+	}
 	
 	//=================================================================================	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
