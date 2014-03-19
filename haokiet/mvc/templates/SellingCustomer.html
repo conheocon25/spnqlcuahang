@@ -14,32 +14,30 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-plus"/> Thêm mới
-					</a>
+				<div class="col-12">					
 					<div class="widget-box">						
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check">
+							<table id="Customer" class="table table-bordered table-striped table-hover with-check">
 								<thead>
-									<tr>										
+									<tr>
+										<th width="5" class="left" />
 										<th class="left">NGÀY</th>
 										<th width="80"><div class="text-right">VÉ NHẬN</div></th>
 										<th width="80"><div class="text-right">VÉ TRẢ</div></th>
 										<th width="80"><div class="text-right">VÉ BÁN</div></th>
-										<th width="110"><div class="text-right">TIỀN VÉ THỰC</div></th>
-										<th width="10" />
 										<th width="110"><div class="text-right">TRẢ TIỀN VÉ</div></th>
-										<th width="110"><div class="text-right">NỢ TIỀN VÉ</div></th>
+										<th width="110"><div class="text-right">NỢ TIỀN VÉ</div></th>																		
 										<th width="10" />
-										<th><div class="text-right">TIỀN GÓP</div></th>
-										<th><div class="text-right">ỨNG TIỀN</div></th>
+										<th width="110"><div class="text-right">TIỀN GÓP</div></th>
+										<th width="110"><div class="text-right">ỨNG TIỀN</div></th>
 										<th><div class="text-right">NỢ TIỀN ỨNG</div></th>
+										<th width="10" />
 										<th><div class="text-right">TIỀN NỢ</div></th>
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Log Customer/getLogAll">
+									<tr tal:repeat="Log Customer/getLogAll" tal:attributes="id Log/getId">
+										<td />
 										<td>
 											<a  class="update-item" href="#DialogEdit" data-toggle="modal"
 												tal:attributes="id 			Log/getId;
@@ -53,17 +51,16 @@
 																debt 		Log/getDebt;
 												" tal:content="Log/getDateTimePrint"/>
 										</td>
-										<td><div class="text-right"  tal:content="Log/getTicket1"/></td>
-										<td><div class="text-right"  tal:content="Log/getTicket2"/></td>
-										<td><div class="text-right"  tal:content="Log/getTicketD"/></td>
-										<td><div class="text-right"  tal:content="Log/getTicketValuePrint"/></td>
+										<td class="Ticket1" tal:content="Log/getTicket1" align="right"/>
+										<td class="Ticket2" tal:content="Log/getTicket2" align="right"/>
+										<td><div class="text-right"  tal:content="Log/getTicketD"/></td>										
+										<td class="Paid1" tal:content="Log/getPaid1" align="right"/>
+										<td><B><div class="text-right"  tal:content="Log/getPaid1RemainPrint" style="color:blue;"/></B></td>										
 										<td />
-										<td><div class="text-right"  tal:content="Log/getPaid1Print"/></td>
-										<td><B><div class="text-right"  tal:content="Log/getPaid1RemainPrint" style="color:blue;"/></B></td>
-										<td />
-										<td><div class="text-right"  tal:content="Log/getPaid2Print"/></td>
-										<td><div class="text-right"  tal:content="Log/getDebtPrint"/></td>										
+										<td class="Paid2" tal:content="Log/getPaid2" 	align="right"/>
+										<td class="Debt" tal:content="Log/getDebt" 		align="right"/>
 										<td><B><div class="text-right"  tal:content="Log/getPaid2RemainPrint" style="color:blue;"/></B></td>
+										<td />
 										<td><B><div class="text-right"  tal:content="Log/getValuePrint" style="color:red;"/></B></td>
 									</tr>
 								</tbody>
@@ -185,7 +182,80 @@
 		<!-- END UPDATE DIALOG  -->
 		<script type="text/javascript">
 		/*<![CDATA[*/
-		
+			var oTable = $('#Customer').dataTable({
+				"bFilter": false,
+				"bPaginate": false,
+				"bSort": false,
+				"bAutoWidth": false,
+				"bInfo": false
+			});
+			
+			oTable.$('.Ticket1').editable( 
+				'/selling/saving', {				
+				"submitdata": function ( value, settings ){					
+					return {
+						"row_id": this.parentNode.getAttribute('id'),
+						"column": oTable.fnGetPosition( this )[2]
+					};					
+				},
+				"height": "100%",
+				"width": "100%"
+			});
+			
+			oTable.$('.Ticket2').editable( 
+				'/selling/saving', {				
+				"submitdata": function ( value, settings ){					
+					return {
+						"row_id": this.parentNode.getAttribute('id'),
+						"column": oTable.fnGetPosition( this )[2]
+					};					
+				},
+				"height": "100%",
+				"width": "100%"
+			});
+			
+			oTable.$('.Paid1').editable( 
+				'/selling/saving', {				
+				"submitdata": function ( value, settings ){					
+					return {
+						"row_id": this.parentNode.getAttribute('id'),
+						"column": oTable.fnGetPosition( this )[2]
+					};					
+				},
+				"height": "100%",
+				"width": "100%"
+			});
+			
+			oTable.$('.Paid2').editable( 
+				'/selling/saving', {				
+				"submitdata": function ( value, settings ){					
+					return {
+						"row_id": this.parentNode.getAttribute('id'),
+						"column": oTable.fnGetPosition( this )[2]
+					};					
+				},
+				"height": "100%",
+				"width": "100%"
+			});
+			
+			oTable.$('.Debt').editable( 
+				'/selling/saving', {				
+				"submitdata": function ( value, settings ){					
+					return {
+						"row_id": this.parentNode.getAttribute('id'),
+						"column": oTable.fnGetPosition( this )[2]
+					};					
+				},
+				"height": "100%",
+				"width": "100%"
+			});
+			
+			$('.Ticket1').keyup(function(e) {if (e.which == 13) {location.reload();}});			
+			$('.Ticket2').keyup(function(e) {if (e.which == 13) {location.reload();}});			
+			$('.Paid1').keyup(function(e) {if (e.which == 13) {location.reload();}});
+			$('.Paid2').keyup(function(e) {if (e.which == 13) {location.reload();}});
+			$('.Debt').keyup(function(e) {if (e.which == 13) {location.reload();}});
+			
 			$('#DateTime1').datepicker({language:'vi'});
 			$('#DateTime2').datepicker({language:'vi'});
 			
