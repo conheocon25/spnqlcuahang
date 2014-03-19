@@ -29,6 +29,22 @@
 				$CL->setTicket1($Value);
 				$CL->autoUpdate();
 				$mCL->update($CL);
+			}else if ($Column==3){
+				$CL->setTicket2($Value);
+				$CL->autoUpdate();
+				$mCL->update($CL);
+			}else if ($Column==5){
+				$CL->setPaid1($Value);
+				$CL->autoUpdate();
+				$mCL->update($CL);
+			}else if ($Column==8){
+				$CL->setPaid2($Value);
+				$CL->autoUpdate();
+				$mCL->update($CL);
+			}else if ($Column==9){
+				$CL->setDebt($Value);
+				$CL->autoUpdate();
+				$mCL->update($CL);
 			}
 						
 			//-------------------------------------------------------------
