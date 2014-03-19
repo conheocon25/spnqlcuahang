@@ -12,7 +12,9 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdDomain 	= $request->getProperty('IdDomain');
-						
+			$doAction 	= $request->getProperty('doAction');
+			$Date 		= $Session->getCurrentDate();
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -24,24 +26,6 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			//Phát sinh dữ liệu CustomerLog cho ngày hiện tại
-			$CustomerAll 	= $mCustomer->findAll();
-			
-			$CLAll = $mCL->findByDate(array(\date('Y-m-d')));
-			if ($CLAll->count()==0){
-				while ($CustomerAll->valid()){
-					$Customer = $CustomerAll->current();
-					$CL = new \MVC\Domain\CustomerLog(
-						null,
-						$Customer->getId(),
-						\date('Y-m-d'),
-						0,0,0,0,0,0,0
-					);
-					$mCL->insert($CL);
-					$CustomerAll->next();
-				}
-			}
-						
 			$Domain 		= $mDomain->find($IdDomain);
 			$DomainAll 		= $mDomain->findAll();			
 			if (!isset($Domain)){
@@ -49,21 +33,51 @@
 				$IdDomain = $Domain->getId();
 			}
 			
-			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
-			$Navigation = array();
+			if (!isset($Date)){
+				$Date = \date('Y-m-d');
+			}else{
+				
+				if ($doAction=="next"){
+					$Date = date('Y-m-d', strtotime($Date . ' + 1 day'));
+				}else if ($doAction=="back"){
+					$Date = date('Y-m-d', strtotime($Date . ' - 1 day'));
+				}
+				
+			}
+			$Session->setCurrentDate($Date);
 			
-			if (!isset($Page)) $Page=1;
-			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			//Phát sinh dữ liệu CustomerLog cho ngày hiện tại
+			$CustomerAll 	= $mCustomer->findAll();
+			
+			$CLAll = $mCL->findByDate1(array($IdDomain, $Date));
+			if ($CLAll->count()==0){
+				while ($CustomerAll->valid()){
+					$Customer = $CustomerAll->current();
+					$CL = new \MVC\Domain\CustomerLog(
+						null,
+						$Customer->getId(),
+						$Date,
+						0,0,0,0,0,0,0
+					);
+					$mCL->insert($CL);
+					$CustomerAll->next();
+				}
+			}
+						
+			$Title = mb_strtoupper($Domain->getName(), 'UTF8')." > ".date('d/m/Y', strtotime($Date));
+			$Navigation = array();
 			$ConfigName		= $mConfig->findByName("NAME");
-									
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);									
+			$request->setProperty('Title'		, $Title);
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setProperty('Date'		, $Date);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Domain'		, $Domain);
+			$request->setObject('CLAll'			, $CLAll);
 			$request->setObject('DomainAll'		, $DomainAll);
 																		
 			return self::statuses('CMD_DEFAULT');

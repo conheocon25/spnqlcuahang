@@ -14,8 +14,11 @@
 						<i class="glyphicons-group" /><span tal:content="Domain1/getName"/>							
 					</a>
 				</li>
+				<li/>
+				<li><a tal:attributes="href Domain/getURLSellingNext">TỚI</a></li>
+				<li><a tal:attributes="href Domain/getURLSellingBack">LUI</a></li>
 			</ul>
-		</div>
+		</div>		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -42,34 +45,34 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer Domain/getCustomerAll" tal:attributes="id Customer/getLogActive/getId">
-										<td class="center"><span tal:content="repeat/Customer/number"/></td>
+									<tr tal:repeat="CL CLAll" tal:attributes="id CL/getId">
+										<td class="center"><span tal:content="repeat/CL/number"/></td>
 										<td>
-											<a tal:condition="Customer/getLogActive" class="update-item" href="#DialogEdit" data-toggle="modal"
-												tal:attributes="id 			Customer/getLogActive/getId;
-																name		Customer/getName;
-																idcustomer	Customer/getLogActive/getIdCustomer;
-																datetime 	Customer/getLogActive/getDateTime;
-																ticket1 	Customer/getLogActive/getTicket1;
-																ticket2 	Customer/getLogActive/getTicket2;
-																paid1 		Customer/getLogActive/getPaid1;
-																paid2 		Customer/getLogActive/getPaid2;
-																debt 		Customer/getLogActive/getDebt;
-												" tal:content="Customer/getName"/>
+											<a class="update-item" href="#DialogEdit" data-toggle="modal"
+												tal:attributes="id 			CL/getId;
+																name		CL/getCustomer/getName;
+																idcustomer	CL/getIdCustomer;
+																datetime 	CL/getDateTime;
+																ticket1 	CL/getTicket1;
+																ticket2 	CL/getTicket2;
+																paid1 		CL/getPaid1;
+																paid2 		CL/getPaid2;
+																debt 		CL/getDebt;
+												" tal:content="CL/getCustomer/getName"/>
 										</td>
-										<td class="Ticket1" align="right" tal:content="Customer/getLogActive/getTicket1"/>
-										<td class="Ticket2" align="right" tal:content="Customer/getLogActive/getTicket2"/>
-										<td><div class="text-right" tal:content="Customer/getLogActive/getTicketD" style="color:blue;"/></td>
-										<td class="Paid1" align="right" tal:content="Customer/getLogActive/getPaid1"/>
-										<td><div class="text-right" tal:content="Customer/getLogActive/getPaid1RemainPrint" style="color:blue;"/></td>
+										<td class="Ticket1" align="right" tal:content="CL/getTicket1"/>
+										<td class="Ticket2" align="right" tal:content="CL/getTicket2"/>
+										<td><div class="text-right" tal:content="CL/getTicketD" style="color:blue;"/></td>
+										<td class="Paid1" align="right" tal:content="CL/getPaid1"/>
+										<td><div class="text-right" tal:content="CL/getPaid1RemainPrint" style="color:blue;"/></td>
 										<td />
-										<td class="Paid2" align="right" tal:content="Customer/getLogActive/getPaid2"/>
-										<td><div class="text-right" tal:content="Customer/getLogActive/getPaid2RemainPrint" style="color:blue;"/></td>
+										<td class="Paid2" align="right" tal:content="CL/getPaid2"/>
+										<td><div class="text-right" tal:content="CL/getPaid2RemainPrint" style="color:blue;"/></td>
 										<td />
-										<td><div class="text-right" tal:content="Customer/getLogActive/getValuePrint" style="color:red;"/></td>
+										<td><div class="text-right" tal:content="CL/getValuePrint" style="color:red;"/></td>
 										<td class="center">
-											<a tal:attributes="href Customer/getURLSelling">
-												Sổ (<span tal:content="Customer/getLogAll/count"/>)
+											<a tal:attributes="href CL/getCustomer/getURLSelling">
+												Sổ (<span tal:content="CL/getCustomer/getLogAll/count"/>)
 											</a>
 										</td>										
 									</tr>
@@ -142,7 +145,7 @@
 			</div>
 		</div>
 		<!-- END UPDATE DIALOG  -->
-		
+		<div id="DomainURL" tal:attributes="alt Domain/getURLSelling"/>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -204,10 +207,22 @@
 				"width": "100%"
 			});
 			
-			$('.Ticket1').keyup(function(e) {if (e.which == 13) {location.reload();}});			
-			$('.Ticket2').keyup(function(e) {if (e.which == 13) {location.reload();}});			
-			$('.Paid1').keyup(function(e) {if (e.which == 13) {location.reload();}});
-			$('.Paid2').keyup(function(e) {if (e.which == 13) {location.reload();}});
+			$('.Ticket1').keyup(function(e) {if (e.which == 13) {					
+				var url = $("#DomainURL").attr('alt');				
+				$(location).attr('href', url);
+			}});			
+			$('.Ticket2').keyup(function(e) {if (e.which == 13) {
+				var url = $("#DomainURL").attr('alt');				
+				$(location).attr('href', url);
+			}});			
+			$('.Paid1').keyup(function(e) {if (e.which == 13) {
+				var url = $("#DomainURL").attr('alt');				
+				$(location).attr('href', url);
+			}});			
+			$('.Paid2').keyup(function(e) {if (e.which == 13) {
+				var url = $("#DomainURL").attr('alt');				
+				$(location).attr('href', url);
+			}});			
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 CUSTOMER LOG
