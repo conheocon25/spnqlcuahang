@@ -59,6 +59,7 @@
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->
 		<command name="Selling">				<view>Selling				</view></command>
+		<command name="SellingSaving">			<view>SellingSaving			</view></command>
 		<command name="SellingCustomer">		<view>SellingCustomer		</view></command>
 		<command name="SellingPrintTemplate">	<view>SellingPrintTemplate	</view></command>
 						
