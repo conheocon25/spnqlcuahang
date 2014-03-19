@@ -50,6 +50,9 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLCustomer(){	return "/setting/domain/".$this->getId();}
 	function getURLSelling(){	return "/selling/".$this->getId();}
+	function getURLSellingNext(){	return "/selling/".$this->getId()."/next";}
+	function getURLSellingBack(){	return "/selling/".$this->getId()."/back";}
+	
 	function getURLDailyReport($TD){
 		return $TD->getURLReportSelling()."/".$this->getId();
 	}
