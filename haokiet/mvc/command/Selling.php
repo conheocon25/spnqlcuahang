@@ -62,6 +62,7 @@
 					$mCL->insert($CL);
 					$CustomerAll->next();
 				}
+				$CLAll = $mCL->findByDate1(array($IdDomain, $Date));
 			}
 						
 			$Title = mb_strtoupper($Domain->getName(), 'UTF8')." > ".date('d/m/Y', strtotime($Date));
