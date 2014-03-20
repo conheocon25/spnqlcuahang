@@ -19,8 +19,10 @@
 				<li><a tal:attributes="href Domain/getURLSellingBack">LUI</a></li>
 			</ul>
 		</div>		
-		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+		<div id="content">			
+			<div id="content-header">
+				<h1 tal:content="Title"/>
+			</div>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">					
