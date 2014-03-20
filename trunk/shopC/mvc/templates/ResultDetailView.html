@@ -1,0 +1,101 @@
+<head>
+	<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+</head>
+<body>
+	<style>
+		@font-face {
+			font-family: "CustomFont";
+			src: url('/data/font.ttf') format('truetype');
+		}
+		* { margin:0; padding:0; }
+		body { font-family: "CustomFont"; font-size: 18px; }
+		.datagrid { margin: 20px; }
+		.datagrid table { border-collapse: collapse; text-align: left; width: 100%; font-size: 30px; }
+		.datagrid { background: #fff; overflow: hidden; border: 1px solid #991821; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+		.datagrid table td, .datagrid table th { padding: 3px 10px; }
+		.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');background-color:#991821; color:#FFFFFF; font-weight: bold; }
+		.datagrid table thead th { text-transform: uppercase; }
+		.datagrid table thead th:first-child { border: none; }
+		.datagrid table tbody td { color: #80141C; border-left: 1px solid #90171F; border-bottom: 1px solid #90171F; font-weight: normal; }
+		.datagrid table tbody td:first-child { border-left: none; }
+		.datagrid table tbody tr:last-child td { border-bottom: none; }
+		.center { text-align: center; }
+		.alt { background-color: #FCDEE0; }
+	</style>		
+	<div class="datagrid">
+		
+		<table>
+			<thead class="center">
+				<tr>
+					<th width="100"><div tal:content="TD/getDayName" class="text-center"/></th>
+					<th tal:repeat="Loto LotoAll">
+						<div tal:content="Loto/getLocation" class="text-center"/>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="center">
+				<tr class="alt">
+					<td tal:content="TD/getDatePrint"/>
+					<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getName"/></td>
+				</tr>
+				<tr>
+					<td>Giải Tám</td>
+					<td tal:repeat="Loto LotoAll" tal:content="Loto/getG81"/>
+				</tr>
+				<tr class="alt">
+					<td>Giải Bảy</td>
+					<td tal:repeat="Loto LotoAll" tal:content="Loto/getG71"/>
+				</tr>
+				<tr>
+					<td>Giải Sáu</td>
+					<td tal:repeat="Loto LotoAll">
+						<p tal:content="Loto/getG61"/>
+						<p tal:content="Loto/getG62"/>
+						<p tal:content="Loto/getG63"/>
+					</td>
+				</tr>
+				<tr class="alt">
+					<td>Giải Năm</td>
+					<td tal:repeat="Loto LotoAll" tal:content="Loto/getG51"/>
+				</tr>
+				<tr>
+					<td>Giải Tư</td>
+					<td tal:repeat="Loto LotoAll">
+						<p tal:content="Loto/getG41"/>
+						<p tal:content="Loto/getG42"/>
+						<p tal:content="Loto/getG43"/>
+						<p tal:content="Loto/getG44"/>
+						<p tal:content="Loto/getG45"/>
+						<p tal:content="Loto/getG46"/>
+						<p tal:content="Loto/getG47"/>
+					</td>
+				</tr>
+				<tr class="alt">
+					<td>Giải Ba</td>
+					<td tal:repeat="Loto LotoAll">
+						<p tal:content="Loto/getG31"/>
+						<p tal:content="Loto/getG32"/>
+					</td>
+				</tr>
+				<tr>
+					<td>Giải Nhì</td>
+					<td tal:repeat="Loto LotoAll" tal:content="Loto/getG21"/>
+				</tr>
+				<tr class="alt">
+					<td>Giải Nhất</td>
+					<td tal:repeat="Loto LotoAll" tal:content="Loto/getG11"/>
+				</tr>
+				<tr>
+					<td><b>Giải Đặc biệt</b></td>
+					<td tal:repeat="Loto LotoAll"><b tal:content="Loto/getG00"/></td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>
+	<center>		
+		<MARQUEE SCROLLDELAY="200"><h3 tal:content="SMarquee"/></MARQUEE>
+	</center>
+	<center>
+		<a onclick="window.history.back()" href="JavaScript:;">Trở Lại</a>
+	</center>
+</body>
