@@ -1,7 +1,7 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class Category extends Mapper implements \MVC\Category\CategoryFinder {
+class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 
     function __construct() {
         parent::__construct();
@@ -28,7 +28,7 @@ class Category extends Mapper implements \MVC\Category\CategoryFinder {
     }
 
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Category\Category( 
+        $obj = new \MVC\Domain\Category( 
 			$array['id'],
 			$array['name'],
 			$array['order']
@@ -37,7 +37,7 @@ class Category extends Mapper implements \MVC\Category\CategoryFinder {
     }
 	
     protected function targetClass() {  return "Category";}
-    protected function doInsert( \MVC\Category\Object $object ) {
+    protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),
 			$object->getOrder()
@@ -47,7 +47,7 @@ class Category extends Mapper implements \MVC\Category\CategoryFinder {
         $object->setId( $id );
     }
     
-    protected function doUpdate( \MVC\Category\Object $object ) {
+    protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
