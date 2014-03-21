@@ -4,6 +4,8 @@ RewriteEngine on
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^home$ 					?cmd=Home [L]
+
 RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
 RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
