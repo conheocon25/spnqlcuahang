@@ -1,5 +1,5 @@
 <?php 
-namespace MVC\Domain;
+Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Category extends Object{
