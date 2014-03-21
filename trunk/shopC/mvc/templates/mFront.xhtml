@@ -54,8 +54,8 @@
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Tài khoản <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Đăng ký</a></li>
-								<li><a href="#">Đăng nhập</a></li>
+								<li><a href="/dang-ki">Đăng ký</a></li>
+								<li><a href="/dang-nhap">Đăng nhập</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -74,10 +74,10 @@
 		</div>
 		<div class="span6 account">
 			<ul>
-				<li id="your-account"><h4><a href="#">Guest</a></h4>
-					<p>Welcome, <a href="#">log in</a></p>
+				<li id="your-account"><h4><a href="#">KHÁCH</a></h4>
+					<p>Chào mừng, <a href="/dang-nhap">đăng nhập</a></p>
 				</li>
-				<li><h4><a href="#">Giỏ hàng</a></h4>
+				<li><h4><a href="/gio-hang">Giỏ hàng</a></h4>
 					<p><strong>1 Sản phẩm</strong></p>
 				</li>
 			</ul>
@@ -91,41 +91,19 @@
 		<div class="span12 nav-menus">
 			<ul class="nav nav-pills">
 				<li class="active"><a href="index.html">Trang chủ</a></li>
-				<li><a href="#">Giới thiệu</a></li>
-				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle">Trang phục nam <b class="caret"></b></a>
-					<ul class="dropdown-menu" id="menu1">
-						<li>
-							<a href="#" class="clearfix"><span class="pull-left">Sơ mi</span> <i class="icon-chevron-right pull-right"></i></a>
-							<ul class="dropdown-menu sub-menu">
-								<li><a href="#">Tay ngắn</a></li>
-								<li><a href="#">Tay dài</a></li>
-								<li><a href="#">Hàn quốc</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Áo thun</a></li>
-						<li><a href="#">Áo khoát</a></li>
-						<li><a href="#">Quần Short</a></li>
-						<li><a href="#">Quần Jeans</a></li>
-						<li><a href="#">Thắt lưng</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle">Trang phục nữ <b class="caret"></b></a>
-					<ul class="dropdown-menu" id="menu1">
-						<li><a href="#">Sơ mi</a></li>
-						<li><a href="#">Áo thun</a></li>
-						<li><a href="#">Áo khoát</a></li>
-						<li><a href="#">Đầm - Váy</a></li>
-						<li><a href="#">Quần Jeans</a></li>
-						<li><a href="#">Quần Short</a></li>
-						<li><a href="#">Thắt lưng</a></li>
-						<li><a href="#">Túi xách</a></li>
-						<li><a href="#">Phụ kiện</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Khuyết mãi</a></li>
-				<li><a href="#">Liên hệ</a></li>
+				<li><a href="/gioi-thieu">Giới thiệu</a></li>
+				<li class="dropdown" tal:repeat="Category CategoryAll">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+						<span tal:content="Category/getName"/> <b class="caret"></b>
+						<ul class="dropdown-menu" id="menu1">							
+							<li tal:repeat="Category1 Category/getCategoryAll">
+								<a href="#" tal:content="Category1/getName"/>
+							</li>
+						</ul>
+					</a>
+				</li>				
+				<li><a href="/khuyen-mai">Khuyết mãi</a></li>
+				<li><a href="/lien-he">Liên hệ</a></li>
 			</ul>
 		</div>
 	</div>
