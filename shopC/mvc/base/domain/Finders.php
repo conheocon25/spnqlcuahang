@@ -12,6 +12,7 @@ interface Finder {
 
 interface UserFinder  			extends Finder {}
 interface CategoryFinder  		extends Finder {}
+interface Category1Finder  		extends Finder {}
 interface SupplierFinder 		extends Finder {}
 interface ResourceFinder 		extends Finder {}
 interface OrderImportFinder 	extends Finder {}

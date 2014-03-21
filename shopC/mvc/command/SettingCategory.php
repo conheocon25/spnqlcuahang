@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingDomain extends Command {
+	class SettingCategory extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,41 +16,34 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$DomainAll = $mDomain->findAll();			
+			$CategoryAll = $mCategory->findAll();			
 						
-			$Title = "KHU VỰC";
+			$Title = "DANH MỤC";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
-			
-			$SCustomer = 0;
-			while ($DomainAll->valid()){
-				$Domain = $DomainAll->current();
-				$SCustomer += $Domain->getCustomerAll()->count();
-				$DomainAll->next();
-			}
-			
-			$DomainAll1 = $mDomain->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($DomainAll->count(), $Config->getValue(), "/setting/domain" );
+						
+			$CategoryAll1 = $mCategory->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($CategoryAll->count(), $Config->getValue(), "/setting/category" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Domain');
-			$request->setProperty('Page'		, $Page);
-			$request->setProperty('SCustomer'	, $SCustomer);
+			$request->setProperty('ActiveAdmin'	, 'Category');
+			$request->setProperty('Page'		, $Page);			
 			$request->setObject('PN'			, $PN);
 			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('DomainAll1'	, $DomainAll1);
+			$request->setObject('CategoryAll1'	, $CategoryAll1);
 			$request->setObject('ConfigName'	, $ConfigName);
 															
 			return self::statuses('CMD_DEFAULT');

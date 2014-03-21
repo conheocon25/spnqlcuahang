@@ -2,26 +2,36 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Category extends Object{
+class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
+	private $IdCategory;
 	private $Name;
 	private $Order;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null) {
-		$this->Id 		= $Id;
-		$this->Name 	= $Name;
-		$this->Order 	= $Order;
+	function __construct($Id=null, $IdCategory=null, $Name=null, $Order=null) {
+		$this->Id 			= $Id;
+		$this->IdCategory 	= $IdCategory;
+		$this->Name 		= $Name;
+		$this->Order 		= $Order;
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
-		
+
+	function setIdCategory($IdCategory) {$this->IdCategory = $IdCategory;$this->markDirty();}
+	function getIdCategory() 			{return $this->IdCategory;}
+	function getCategory(){
+		$mCategory = new \MVC\Mapper\Category();
+		$Category = $mCategory->find($this->IdCategory);
+		return $Category;
+	}
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
@@ -31,6 +41,7 @@ class Category extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdCategory' 	=> $this->getIdCategory(),
 			'Name'			=> $this->getName(),
 			'Order'			=> $this->getOrder()
 		);
@@ -38,25 +49,21 @@ class Category extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Order	= $Data[2];
+        $this->Id 			= $Data[0];
+		$this->IdCategory 	= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->Order		= $Data[3];
     }
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getCategoryAll(){
-		$mCategory1 	= new \MVC\Mapper\Category1();
-		$CategoryAll 	= $mCategory1->findBy(array($this->getId()));
-		return $CategoryAll;
-	}
-	
+						
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){
-		return "/setting/category/".$this->getId();
+	function getURLSettting(){
+		return "/setting/Category1/".$this->getId();
 	}
 	
 	//-------------------------------------------------------------------------------
