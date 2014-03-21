@@ -16,18 +16,21 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig = new \MVC\Mapper\Config();
+			$mCategory = new \MVC\Mapper\Category();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
 			$ConfigName = $mConfig->findByName("NAME");
+			$CategoryAll = $mCategory->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", $Title);			
-			$request->setObject("ConfigName", $ConfigName);
+			$request->setProperty("Title", 		$Title);			
+			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("CategoryAll", 	$CategoryAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
