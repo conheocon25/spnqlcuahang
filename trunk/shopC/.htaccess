@@ -24,36 +24,6 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^app$ 													?cmd=App [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# MONEY
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^money$ 												?cmd=Money [L]
-
-RewriteRule ^money/collect/general$ 								?cmd=MoneyCollectGeneral [L]
-RewriteRule ^money/collect/general/([0-9]+)$ 						?cmd=MoneyCollectGeneral&IdTerm=$1 [L]
-RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectGeneral&IdTerm=$1&Page=$2 [L]
-
-RewriteRule ^money/collect/customer$ 								?cmd=MoneyCollectCustomer [L]
-RewriteRule ^money/collect/customer/([0-9]+)$ 						?cmd=MoneyCollectCustomer&IdCustomer=$1 [L]
-RewriteRule ^money/collect/customer/([0-9]+)/page/([0-9]+)$ 		?cmd=MoneyCollectCustomer&IdCustomer=$1&Page=$2 [L]
-
-RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
-RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
-RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
-
-RewriteRule ^money/paid/employee$ 									?cmd=MoneyPaidEmployee [L]
-RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmployee=$1 [L]
-RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# RESULT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^result$ 								?cmd=Result [L]
-RewriteRule ^result/([0-9]+)$ 						?cmd=Result&IdTrack=$1 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)$ 				?cmd=ResultDetail&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)/view$ 		?cmd=ResultDetailView&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)/print$ 		?cmd=ResultDetailPrint&IdTrack=$1&IdTD=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^import$ 								?cmd=Import [L]
@@ -87,10 +57,11 @@ RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTra
 RewriteRule ^setting$ 												?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 							?cmd=SettingThemeChangeExe&Theme=$1 [L]
 
-RewriteRule ^setting/domain$ 										?cmd=SettingDomain [L]
-RewriteRule ^setting/domain/page/([0-9]+)$ 							?cmd=SettingDomain&Page=$1 [L]
-RewriteRule ^setting/domain/([0-9]+)$ 								?cmd=SettingCustomer&IdDomain=$1 [L]
-RewriteRule ^setting/domain/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCustomer&IdDomain=$1&Page=$2 [L]
+RewriteRule ^setting/category$ 										?cmd=SettingCategory [L]
+RewriteRule ^setting/category/page/([0-9]+)$ 						?cmd=SettingCategory&Page=$1 [L]
+RewriteRule ^setting/category/([0-9]+)$ 							?cmd=SettingCategory1&IdCategory=$1 [L]
+RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCategory1&IdCategory=$1&Page=$2 [L]
+
 RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]
 RewriteRule ^setting/supplier$ 										?cmd=SettingSupplier [L]
@@ -99,10 +70,7 @@ RewriteRule ^setting/supplier/([0-9]+)$ 							?cmd=SettingSupplierResource&IdSu
 RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
 RewriteRule ^setting/employee$ 										?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/page/([0-9]+)$ 						?cmd=SettingEmployee&Page=$1 [L]
-RewriteRule ^setting/termpaid$ 										?cmd=SettingTermPaid [L]
-RewriteRule ^setting/termpaid/page/([0-9]+)$ 						?cmd=SettingTermPaid&Page=$1 [L]
-RewriteRule ^setting/termcollect$ 									?cmd=SettingTermCollect [L]
-RewriteRule ^setting/termcollect/page/([0-9]+)$ 					?cmd=SettingTermCollect&Page=$1 [L]
+
 RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
 RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
 
