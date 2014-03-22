@@ -8,7 +8,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		
 		$tblCategory = "shopc_category";
 						
-		$selectAllStmt = sprintf("select * from %s order by name", $tblCategory);
+		$selectAllStmt = sprintf("select * from %s order by `order`", $tblCategory);
 		$selectStmt = sprintf("select * from %s where id=?", $tblCategory);
 		$updateStmt = sprintf("update %s set name=?, `order`=? where id=?", $tblCategory);
 		$insertStmt = sprintf("insert into %s ( name, `order`) values(?, ?)", $tblCategory);

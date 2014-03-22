@@ -4,10 +4,14 @@ RewriteEngine on
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^home$ 					?cmd=Home [L]
+RewriteRule ^home$ 					?cmd=Home 			[L]
+RewriteRule ^gioi-thieu$ 			?cmd=Introduction 	[L]
+RewriteRule ^chinh-sach$ 			?cmd=Policy 		[L]
+RewriteRule ^faq$ 					?cmd=FAQ 			[L]
+RewriteRule ^lien-he$ 				?cmd=Contact 		[L]
 
-RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
-RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
+RewriteRule ^dang-nhap$ 			?cmd=SigninLoad [L]
+RewriteRule ^dang-nhap/exe$ 		?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
 RewriteRule ^change/pass/load$ 		?cmd=ChangePassLoad [L]
