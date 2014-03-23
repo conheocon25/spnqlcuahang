@@ -1,0 +1,88 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="Introduction" type="public"><view>Introduction</view></command>
+		<command name="Policy" type="public"><view>Policy</view></command>
+		<command name="Contact" type="public"><view>Contact</view></command>
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
+		<command name="App"><view>App</view></command>		
+		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->		
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+		
+		<command name="SearchCustomer"><view>SearchCustomer</view></command>
+		<!-- ============================================================================== -->
+		<!-- GLOBAL			 																-->
+		<!-- ============================================================================== -->											
+		<command name="ChangePassLoad"><view>ChangePassLoad</view></command>
+		<command name="ChangePassExe">
+			<view>ChangePassExe</view>
+			<status value="CMD_OK"><forward>SignoutExe</forward></status>
+		</command>
+						
+		<!-- ============================================================================== -->
+		<!-- REPORT.DETAIL			 														-->
+		<!-- ============================================================================== -->
+		<command name="Report">						<view>Report</view>						</command>
+		<command name="ReportDetail">				<view>ReportDetail</view>				</command>
+								
+		<command name="ReportDaily">				<view>ReportDaily</view>				</command>
+		<command name="ReportDailySelling">			<view>ReportDailySelling</view>			</command>
+		<command name="ReportDailySellingPrint">	<view>ReportDailySellingPrint</view>	</command>
+		<command name="ReportDailySellingExe">		<view>ReportDailySellingExe</view>		</command>
+		
+		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
+		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
+		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
+						
+		<!-- ============================================================================== -->
+		<!-- SELLING.DOMAIN		 															-->
+		<!-- ============================================================================== -->
+		<command name="Selling">				<view>Selling				</view></command>
+		<command name="SellingSaving">			<view>SellingSaving			</view></command>
+		<command name="SellingCustomer">		<view>SellingCustomer		</view></command>
+		<command name="SellingPrintTemplate">	<view>SellingPrintTemplate	</view></command>
+									
+		<!-- ============================================================================== -->
+		<!-- SETTING	 																	-->
+		<!-- ============================================================================== -->
+		<command name="Setting">				<view>Setting				</view></command>
+		<command name="SettingCategory">		<view>SettingCategory		</view></command>		
+		<command name="SettingCategory1">		<view>SettingCategory1		</view></command>		
+		
+		<command name="SettingCustomer">		<view>SettingCustomer		</view></command>		
+		<command name="SettingEmployee">		<view>SettingEmployee		</view></command>		
+		<command name="SettingUser">			<view>SettingUser			</view></command>		
+		<command name="SettingUnit">			<view>SettingUnit			</view></command>
+		<command name="SettingConfig">			<view>SettingConfig			</view></command>				
+		<command name="SettingSupplier">		<view>SettingSupplier		</view></command>
+		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+																	
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+				
+	</control>
+</options>

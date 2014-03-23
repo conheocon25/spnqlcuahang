@@ -1,0 +1,122 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeMETA">
+		<title tal:content="string:Hệ thống quản lý cửa hàng quần áo"/>
+		<base href="http://shopc.quanly-cuahang.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Hệ thống quản lý cửa hàng quần áo"/>
+		<meta name="description" content="Hệ thống quản lý cửa hàng quần áo"/>
+		<meta name="page-topic" content="Hệ thống quản lý cửa hàng quần áo"/>
+		<meta name="Abstract" content="Hệ thống quản lý cửa hàng quần áo"/>
+		<meta name="classification" content="Hệ thống quản lý cửa hàng quần áo"/>
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeCSS">	
+		<link href="/mvc/templates/front/css/bootstrap.css" rel="stylesheet"/>
+		<link href="/mvc/templates/front/css/style.css" rel="stylesheet"/>
+		<link href="/mvc/templates/front/css/bootstrap-responsive.css" rel="stylesheet"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeJS">						
+		<script src="/mvc/templates/front/js/jquery-1.7.2.min.js"></script>
+		<script src="/mvc/templates/front/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/front/js/script.js"></script>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Header" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Tài khoản <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/dang-ki">Đăng ký</a></li>
+								<li><a href="/dang-nhap">Đăng nhập</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- PAGE TITLE																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="PageTitle" class="row-fluid">
+		<div class="span6 logo">
+			<h1><a href="#">CShop</a></h1>
+			<p>Thời trang - Sành điệu</p>
+		</div>
+		<div class="span6 account">
+			<ul>
+				<li id="your-account"><h4><a href="#">KHÁCH</a></h4>
+					<p>Chào mừng, <a href="/dang-nhap">đăng nhập</a></p>
+				</li>
+				<li><h4><a href="/gio-hang">Giỏ hàng</a></h4>
+					<p><strong>1 Sản phẩm</strong></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- MENU																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Menu" class="row-fluid">
+		<div class="span12 nav-menus">
+			<ul class="nav nav-pills">
+				<li class="active"><a href="index.html">Trang chủ</a></li>
+				<li><a href="/gioi-thieu">Giới thiệu</a></li>
+				<li class="dropdown" tal:repeat="Category CategoryAll">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+						<span tal:content="Category/getName"/> <b class="caret"></b>
+						<ul class="dropdown-menu" id="menu1">							
+							<li tal:repeat="Category1 Category/getCategoryAll">
+								<a href="#" tal:content="Category1/getName"/>
+							</li>
+						</ul>
+					</a>
+				</li>				
+				<li><a href="/khuyen-mai">Khuyết mãi</a></li>
+				<li><a href="/lien-he">Liên hệ</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- ======================================================================== -->
+	<!-- FOOTER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Footer">
+		<hr/>
+		<footer>
+			<p>&copy; CShop - Bản quyền 2014</p>
+		</footer>
+	</div>
+	
+</body>
+</html>
