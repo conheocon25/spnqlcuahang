@@ -208,15 +208,7 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------	
 	function getURLResource(){return "/setting/supplier/".$this->getId();}
 		
-	function getURLUpdLoad(){return "/setting/supplier/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/supplier/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/supplier/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/supplier/".$this->getId()."/del/exe";}
-			
-	function getURLResourceInsLoad(){return "/setting/supplier/".$this->getId()."/ins/load";}
-	function getURLResourceInsExe(){return "/setting/supplier/".$this->getId()."/ins/exe";}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER
 	//-------------------------------------------------------------------------------	
