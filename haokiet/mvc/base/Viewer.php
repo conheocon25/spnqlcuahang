@@ -46,7 +46,7 @@ class Viewer {
 		
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(0.2, 0.2, 0.2, true);
+		$pdf->SetMargins(0.5, 0.5, 0.5, true);
 		//$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 		$pdf->SetAutoPageBreak(TRUE, 0);
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);

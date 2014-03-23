@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">				
+				<div class="container-fluid">					
+					<div class="col-12">
+						<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+						</a>
+						<div class="widget-box">							
+							<div class="widget-content nopadding">								
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>																					
+											<th><div class="text-left">ĐÀI</div></th>
+											<th><div class="text-left">LOẠI VÉ</div></th>
+											<th width="90"><div class="text-right">ĐẶC BIỆT</div></th>
+											<th width="90"><div class="text-right">GIẢI NHẤT</div></th>
+											<th width="90"><div class="text-right">GIẢI NHÌ</div></th>
+											<th width="80"><div class="text-right">GIẢI TÁM</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Loto TD/getLotoAll">
+											<td>												
+												<a class="update-item" 
+														href="#DialogEdit" data-toggle="modal" 
+														tal:attributes="
+															id 		Loto/getId;
+															id_td 	Loto/getIdTD;
+															name 	Loto/getName;
+															location 	Loto/getLocation;
+															g81 	Loto/getG81;
+															g71 	Loto/getG71;
+															g61 	Loto/getG61;
+															g62 	Loto/getG62;
+															g63 	Loto/getG63;
+															g51 	Loto/getG51;
+															g41 	Loto/getG41;
+															g42 	Loto/getG42;
+															g43		Loto/getG43;
+															g44		Loto/getG44;
+															g45		Loto/getG45;
+															g46		Loto/getG46;
+															g47		Loto/getG47;
+															g31		Loto/getG31;
+															g32		Loto/getG32;
+															g21		Loto/getG21;
+															g11		Loto/getG11;
+															g00		Loto/getG00;
+														" 
+														tal:content="Loto/getLocation"/>
+											</td>											
+											<td><span tal:content="Loto/getName"/></td>
+											<td align="right"><span tal:content="Loto/getG00"/></td>
+											<td align="right"><span tal:content="Loto/getG11"/></td>
+											<td align="right"><span tal:content="Loto/getG21"/></td>
+											<td align="right"><span tal:content="Loto/getG81"/></td>
+										</tr>										
+									</tbody>
+								</table>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- INSERT DIALOG  -->
+		<div id="DialogIns" class="modal fade">
+			<div class="modal-dialog full-screen ">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI KẾT QUẢ ĐÀI</h3></div>
+					<form id="FormLotoInsert" action="#" class="form-inline" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">								
+								<div class="controls">
+									<input id="Name1" name="Name1" type="text" class="input-small span6" placeholder="tên lô"/>
+									<select name="Location1" id="Location1" class="span6">
+										<option value="An Giang">An Giang</option>
+										<option value="Bạc Liêu">Bạc Liêu</option>
+										<option value="Bến Tre">Bến Tre</option>
+										<option value="Bình Dương">Bình Dương</option>
+										<option value="Bình Phước">Bình Phước</option>
+										<option value="Bình Thuận">Bình Thuận</option>
+										<option value="Cà Mau">Cà Mau</option>
+										<option value="Cần Thơ">Cần Thơ</option>
+										<option value="Đà Lạt">Đà Lạt</option>
+										<option value="Đồng Nai">Đồng Nai</option>
+										<option value="Đồng Tháp">Đồng Tháp</option>
+										<option value="Hậu Giang">Hậu Giang</option>
+										<option value="Kiên Giang">Kiên Giang</option>
+										<option value="Long An">Long An</option>
+										<option value="Sóc Trăng">Sóc Trăng</option>
+										<option value="Tây Ninh">Tây Ninh</option>
+										<option value="Tiền Giang">Tiền Giang</option>
+										<option value="TP. HCM">TP. HCM</option>
+										<option value="Trà Vinh">Trà Vinh</option>
+										<option value="Vĩnh Long">Vĩnh Long</option>
+										<option value="Vũng Tàu">Vũng Tàu</option>
+									</select>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G81_1" name="G81_1" type="text" class="input-small span4" placeholder="Giải tám"/>
+									<input id="G71_1" name="G71_1" type="text" class="input-small span4" placeholder="Giải bảy"/>
+								</div>
+							</div>							
+							<div class="form-group">
+								<div class="controls">
+									<input id="G61_1" name="G61_1" type="text" class="input-small span4" placeholder="Giải sáu (1)"/>
+									<input id="G62_1" name="G62_1" type="text" class="input-small span4" placeholder="Giải sáu (2)"/>									
+									<input id="G63_1" name="G63_1" type="text" class="input-small span4" placeholder="Giải sáu (3)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G51_1" name="G51_1" type="text" class="input-small span4" placeholder="Giải năm"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G41_1" name="G41_1" type="text" class="input-small span4" placeholder="Giải tư (1)"/>
+									<input id="G42_1" name="G42_1" type="text" class="input-small span4" placeholder="Giải tư (2)"/>
+									<input id="G43_1" name="G43_1" type="text" class="input-small span4" placeholder="Giải tư (3)"/>
+									<input id="G44_1" name="G44_1" type="text" class="input-small span4" placeholder="Giải tư (4)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G45_1" name="G45_1" type="text" class="input-small span4" placeholder="Giải tư (5)"/>
+									<input id="G46_1" name="G46_1" type="text" class="input-small span4" placeholder="Giải tư (6)"/>
+									<input id="G47_1" name="G47_1" type="text" class="input-small span4" placeholder="Giải tư (7)"/>									
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G31_1" name="G31_1" type="text" class="input-small span4" placeholder="Giải ba (1)"/>
+									<input id="G32_1" name="G32_1" type="text" class="input-small span4" placeholder="Giải ba (2)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G21_1" name="G21_1" type="text" class="input-small span4" placeholder="Giải nhì"/>
+									<input id="G11_1" name="G11_1" type="text" class="input-small span4" placeholder="Giải nhất"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G00_1" name="G00_1" type="text" class="input-small span4" placeholder="Giải đặc biệt"/>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>									
+		<!-- END INSERT DIALOG  -->
+		<!-- UPDATE DIALOG  -->
+		<div id="DialogEdit" class="modal fade">
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT KẾT QUẢ ĐÀI</h3></div>
+					<form id="FormLotoUpdate" action="#" class="form-inline" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">								
+								<div class="controls">
+									<input id="Name2" name="Name2" type="text" class="input-small span6" placeholder="tên lô"/>
+									<select name="Location1" id="Location2" class="span4">
+										<option value="An Giang">An Giang</option>
+										<option value="Bạc Liêu">Bạc Liêu</option>
+										<option value="Bến Tre">Bến Tre</option>
+										<option value="Bình Dương">Bình Dương</option>
+										<option value="Bình Phước">Bình Phước</option>
+										<option value="Bình Thuận">Bình Thuận</option>
+										<option value="Cà Mau">Cà Mau</option>
+										<option value="Cần Thơ">Cần Thơ</option>
+										<option value="Đà Lạt">Đà Lạt</option>
+										<option value="Đồng Nai">Đồng Nai</option>
+										<option value="Đồng Tháp">Đồng Tháp</option>
+										<option value="Hậu Giang">Hậu Giang</option>
+										<option value="Kiên Giang">Kiên Giang</option>
+										<option value="Long An">Long An</option>
+										<option value="Sóc Trăng">Sóc Trăng</option>
+										<option value="Tây Ninh">Tây Ninh</option>
+										<option value="Tiền Giang">Tiền Giang</option>
+										<option value="TP. HCM">TP. HCM</option>
+										<option value="Trà Vinh">Trà Vinh</option>
+										<option value="Vĩnh Long">Vĩnh Long</option>
+										<option value="Vũng Tàu">Vũng Tàu</option>
+									</select>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G81_2" name="G81_2" type="text" class="input-small span4" placeholder="Giải tám"/>
+									<input id="G71_2" name="G71_2" type="text" class="input-small span4" placeholder="Giải bảy"/>
+								</div>
+							</div>							
+							<div class="form-group">
+								<div class="controls">
+									<input id="G61_2" name="G61_2" type="text" class="input-small span4" placeholder="Giải sáu (1)"/>
+									<input id="G62_2" name="G62_2" type="text" class="input-small span4" placeholder="Giải sáu (2)"/>									
+									<input id="G63_2" name="G63_2" type="text" class="input-small span4" placeholder="Giải sáu (3)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G51_2" name="G51_2" type="text" class="input-small span4" placeholder="Giải năm"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G41_2" name="G41_2" type="text" class="input-small span4" placeholder="Giải tư (1)"/>
+									<input id="G42_2" name="G42_2" type="text" class="input-small span4" placeholder="Giải tư (2)"/>
+									<input id="G43_2" name="G43_2" type="text" class="input-small span4" placeholder="Giải tư (3)"/>
+									<input id="G44_2" name="G44_2" type="text" class="input-small span4" placeholder="Giải tư (4)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G45_2" name="G45_2" type="text" class="input-small span4" placeholder="Giải tư (5)"/>
+									<input id="G46_2" name="G46_2" type="text" class="input-small span4" placeholder="Giải tư (6)"/>
+									<input id="G47_2" name="G47_2" type="text" class="input-small span4" placeholder="Giải tư (7)"/>									
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G31_2" name="G31_2" type="text" class="input-small span4" placeholder="Giải ba (1)"/>
+									<input id="G32_2" name="G32_2" type="text" class="input-small span4" placeholder="Giải ba (2)"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G21_2" name="G21_2" type="text" class="input-small span4" placeholder="Giải nhì"/>
+									<input id="G11_2" name="G11_2" type="text" class="input-small span4" placeholder="Giải nhất"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="controls">
+									<input id="G00_2" name="G00_2" type="text" class="input-small span4" placeholder="Giải đặc biệt"/>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div id="CurrentTD" tal:attributes="alt TD/getId" />
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//-----------------------------------------------------------------------------------
+			//Insert 1 UNIT			
+			$("#FormLotoInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] 	= 'null';
+					Data[1] 	= $('#CurrentTD').attr('alt');
+					Data[2] 	= $('#Name1').val();
+					Data[3] 	= $('#Location1').val();
+					Data[4] 	= $('#G81_1').val();
+					Data[5] 	= $('#G71_1').val();
+					Data[6] 	= $('#G61_1').val();
+					Data[7] 	= $('#G62_1').val();
+					Data[8] 	= $('#G63_1').val();
+					Data[9] 	= $('#G51_1').val();
+					Data[10] 	= $('#G41_1').val();
+					Data[11] 	= $('#G42_1').val();
+					Data[12] 	= $('#G43_1').val();
+					Data[13] 	= $('#G44_1').val();
+					Data[14] 	= $('#G45_1').val();
+					Data[15] 	= $('#G46_1').val();
+					Data[16] 	= $('#G47_1').val();
+					Data[17] 	= $('#G31_1').val();
+					Data[18] 	= $('#G32_1').val();
+					Data[19] 	= $('#G21_1').val();
+					Data[20] 	= $('#G11_1').val();
+					Data[21] 	= $('#G00_1').val();
+					
+					var URL = "/object/ins/Loto";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 UNIT
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){								
+				$('#URLUpdButton').attr('alt', 	$(this).attr('id'));
+				$('#Name2').attr('value', 		$(this).attr('name'));
+				$('#Location2').select2('val', 	$(this).attr('location'));
+				$('#G81_2').attr('value', 		$(this).attr('g81'));
+				$('#G71_2').attr('value', 		$(this).attr('g71'));
+				$('#G61_2').attr('value', 		$(this).attr('g61'));
+				$('#G62_2').attr('value', 		$(this).attr('g62'));
+				$('#G63_2').attr('value', 		$(this).attr('g63'));
+				$('#G51_2').attr('value', 		$(this).attr('g51'));
+				$('#G41_2').attr('value', 		$(this).attr('g41'));
+				$('#G42_2').attr('value', 		$(this).attr('g42'));
+				$('#G43_2').attr('value', 		$(this).attr('g43'));
+				$('#G44_2').attr('value', 		$(this).attr('g44'));
+				$('#G45_2').attr('value', 		$(this).attr('g45'));
+				$('#G46_2').attr('value', 		$(this).attr('g46'));
+				$('#G47_2').attr('value', 		$(this).attr('g47'));
+				$('#G31_2').attr('value', 		$(this).attr('g31'));
+				$('#G32_2').attr('value', 		$(this).attr('g32'));
+				$('#G21_2').attr('value', 		$(this).attr('g21'));
+				$('#G11_2').attr('value', 		$(this).attr('g11'));
+				$('#G00_2').attr('value', 		$(this).attr('g00'));
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 UNIT
+			//-----------------------------------------------------------------------------------			
+			$("#FormLotoUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');					
+					Data[1] = $('#CurrentTD').attr('alt');
+					Data[2] = $('#Name2').val();
+					Data[3] 	= $('#Location2').val();
+					Data[4] 	= $('#G81_2').val();
+					Data[5] 	= $('#G71_2').val();
+					Data[6] 	= $('#G61_2').val();
+					Data[7] 	= $('#G62_2').val();
+					Data[8] 	= $('#G63_2').val();
+					Data[9] 	= $('#G51_2').val();
+					Data[10] 	= $('#G41_2').val();
+					Data[11] 	= $('#G42_2').val();
+					Data[12] 	= $('#G43_2').val();
+					Data[13] 	= $('#G44_2').val();
+					Data[14] 	= $('#G45_2').val();
+					Data[15] 	= $('#G46_2').val();
+					Data[16] 	= $('#G47_2').val();
+					Data[17] 	= $('#G31_2').val();
+					Data[18] 	= $('#G32_2').val();
+					Data[19] 	= $('#G21_2').val();
+					Data[20] 	= $('#G11_2').val();
+					Data[21] 	= $('#G00_2').val();
+																		
+					var URL = "/object/upd/Loto";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>	
+	</body>
+</html>
