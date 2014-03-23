@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingUser extends Command {
+	class SettingResourceImage extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,43 +10,42 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			//-------------------------------------------------------------			
+			$IdSupplier = $request->getProperty('IdSupplier');
+			$IdResource = $request->getProperty('IdResource');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mUser 		= new \MVC\Mapper\User();
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mResource 	= new \MVC\Mapper\Resource();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$UserAll = $mUser->findAll();
-						
-			$Title = "NGƯỜI DÙNG";
+			//-------------------------------------------------------------																		
+			$Supplier = $mSupplier->find($IdSupplier);
+			$Resource = $mResource->find($IdResource);
+			
+			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", "/setting"),
+				array("NHÀ CUNG CẤP", "/setting/supplier"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
 			);
 			
-			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
-			$ConfigName	= $mConfig->findByName("NAME");
-			
-			$UserAll1 = $mUser->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($UserAll->count(), $Config->getValue(), "/setting/user" );
-			
+			$ConfigName = $mConfig->findByName("NAME");
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'User');
-			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);
+			$request->setProperty('Title'		, $Title);						
 			$request->setObject('Navigation'	, $Navigation);
-			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('UserAll1'		, $UserAll1);
+			
+			$request->setObject('Resource'		, $Resource);
+			$request->setObject('Supplier'		, $Supplier);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

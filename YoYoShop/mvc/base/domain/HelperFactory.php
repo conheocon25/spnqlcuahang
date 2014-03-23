@@ -1,20 +1,21 @@
 <?php
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
-	require_once( "mvc/mapper/User.php" );	
-	require_once( "mvc/mapper/Category.php" );
-	require_once( "mvc/mapper/Category1.php" );
-	require_once( "mvc/mapper/Supplier.php" );				
-	require_once( "mvc/mapper/Resource.php" );
-	require_once( "mvc/mapper/OrderImport.php" );
+	require_once( "mvc/mapper/User.php" 			);	
+	require_once( "mvc/mapper/Category.php" 		);
+	require_once( "mvc/mapper/Category1.php" 		);
+	require_once( "mvc/mapper/Supplier.php" 		);
+	require_once( "mvc/mapper/Resource.php" 		);
+	require_once( "mvc/mapper/Image.php" 			);
+	require_once( "mvc/mapper/OrderImport.php" 		);
 	require_once( "mvc/mapper/OrderImportDetail.php");
-	require_once( "mvc/mapper/Customer.php" );
-	require_once( "mvc/mapper/CustomerLog.php" );
-	require_once( "mvc/mapper/Employee.php" );	
-	require_once( "mvc/mapper/Config.php");	
-	require_once( "mvc/mapper/Tracking.php");	
-	require_once( "mvc/mapper/TrackingDaily.php");		
-	require_once( "mvc/mapper/Guest.php");	
+	require_once( "mvc/mapper/Customer.php" 		);
+	require_once( "mvc/mapper/CustomerLog.php" 		);
+	require_once( "mvc/mapper/Employee.php" 		);	
+	require_once( "mvc/mapper/Config.php"			);	
+	require_once( "mvc/mapper/Tracking.php"			);	
+	require_once( "mvc/mapper/TrackingDaily.php"	);
+	require_once( "mvc/mapper/Guest.php"			);
 }
 
 class HelperFactory {

@@ -74,7 +74,9 @@
 		<command name="SettingUnit">			<view>SettingUnit			</view></command>
 		<command name="SettingConfig">			<view>SettingConfig			</view></command>				
 		<command name="SettingSupplier">		<view>SettingSupplier		</view></command>
+		
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		<command name="SettingResourceImage">	<view>SettingResourceImage</view></command>
 																	
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->

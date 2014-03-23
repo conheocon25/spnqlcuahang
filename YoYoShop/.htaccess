@@ -68,10 +68,13 @@ RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCategory1&
 
 RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]
+
 RewriteRule ^setting/supplier$ 										?cmd=SettingSupplier [L]
 RewriteRule ^setting/supplier/page/([0-9]+)$ 						?cmd=SettingSupplier&Page=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)$ 							?cmd=SettingSupplierResource&IdSupplier=$1 [L]
 RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/image$ 				?cmd=SettingResourceImage&IdSupplier=$1&&IdResource=$2 [L]
+
 RewriteRule ^setting/employee$ 										?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/page/([0-9]+)$ 						?cmd=SettingEmployee&Page=$1 [L]
 
