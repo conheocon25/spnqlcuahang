@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Category extends Command {
+	class Dealer extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,32 +11,27 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory1 	= 	$request->getProperty('KCategory1');
-			$KCategory2 	= 	$request->getProperty('KCategory2');
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mCategory1	= new \MVC\Mapper\Category1();
-						
+			$mConfig = new \MVC\Mapper\Config();
+			$mCategory = new \MVC\Mapper\Category();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName 	= $mConfig->findByName("NAME");
-			$CategoryAll 	= $mCategory->findAll();
-			$Category 		= $mCategory1->findByKey($KCategory2);
+			$ConfigName = $mConfig->findByName("NAME");
+			$CategoryAll = $mCategory->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);			
-			$request->setProperty("Active", 	"Category");
+			$request->setProperty("Active", 	'Dealer');
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("Category", 	$Category);			
 			
 			return self::statuses('CMD_DEFAULT');
 		}

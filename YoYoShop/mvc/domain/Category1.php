@@ -10,15 +10,17 @@ class Category1 extends Object{
 	private $IdCategory;
 	private $Name;
 	private $Order;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $Name=null, $Order=null) {
+	function __construct($Id=null, $IdCategory=null, $Name=null, $Order=null, $Key=null){
 		$this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
 		$this->Name 		= $Name;
 		$this->Order 		= $Order;
+		$this->Key 			= $Key;
 		parent::__construct( $Id );
 	}
 		
@@ -38,12 +40,20 @@ class Category1 extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
+	function setKey($Key)	{$this->Key = $Key; $this->markDirty();}
+	function getKey() 		{return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
 			'Name'			=> $this->getName(),
-			'Order'			=> $this->getOrder()
+			'Order'			=> $this->getOrder(),
+			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
@@ -53,6 +63,7 @@ class Category1 extends Object{
 		$this->IdCategory 	= $Data[1];
 		$this->Name 		= $Data[2];
 		$this->Order		= $Data[3];
+		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
@@ -67,12 +78,10 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSettting(){
-		return "/setting/Category1/".$this->getId();
-	}
+	function getURLSettting(){return "/setting/Category1/".$this->getId();}
 		
 	function getURLView(){
-		return "/san-pham/".$this->getCategory()->getId()."/".$this->getId();
+		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
 	
