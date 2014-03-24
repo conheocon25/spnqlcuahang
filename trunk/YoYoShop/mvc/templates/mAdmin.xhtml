@@ -145,7 +145,12 @@
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">					
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
+				<a tal:attributes="href '/setting/post'" >
+					<i class="glyphicons-book" />BÀI VIẾT
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
 				<a tal:attributes="href '/setting/supplier'" >
 					<i class="glyphicons-truck" />NHÀ CUNG CẤP
