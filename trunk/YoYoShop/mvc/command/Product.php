@@ -11,9 +11,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory1 	= 	$request->getProperty('IdCategory1');
-			$IdCategory2 	= 	$request->getProperty('IdCategory2');
-			$IdResource 	= 	$request->getProperty('IdResource');
+			$KCategory1 	= 	$request->getProperty('KCategory1');
+			$KCategory2 	= 	$request->getProperty('KCategory2');
+			$KResource 		= 	$request->getProperty('KResource');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -29,12 +29,13 @@
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$CategoryAll 	= $mCategory->findAll();			
-			$Resource 		= $mResource->find($IdResource);
+			$Resource 		= $mResource->findByKey($KResource);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Active", 	"");
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Resource", 	$Resource);			

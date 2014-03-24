@@ -28,7 +28,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Title", 		$Title);
+			$request->setProperty("Active", 	'Contact');
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			

@@ -6,15 +6,16 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     function __construct() {
         parent::__construct();
 		
-		$tblCategory1 = "shopc_category1";
+		$tblCategory1 	= "shopc_category1";
 						
-		$selectAllStmt = sprintf("select * from %s order by name", $tblCategory1);
-		$selectStmt = sprintf("select * from %s where id=?", $tblCategory1);
-		$updateStmt = sprintf("update %s set id_category=?, name=?, `order`=? where id=?", $tblCategory1);
-		$insertStmt = sprintf("insert into %s ( id_category, name, `order`) values(?, ?, ?)", $tblCategory1);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblCategory1);
-		$findByStmt = sprintf("SELECT * FROM  %s WHERE id_category=?", $tblCategory1);
+		$selectAllStmt 	= sprintf("select * from %s order by name", $tblCategory1);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategory1);
+		$updateStmt 	= sprintf("update %s set id_category=?, name=?, `order`=?, `key`=? where id=?", $tblCategory1);
+		$insertStmt 	= sprintf("insert into %s ( id_category, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategory1);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory1);
+		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_category=?", $tblCategory1);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory1);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategory1);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -23,6 +24,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
 									
     } 
     function getCollection( array $raw ) {return new Category1Collection( $raw, $this );}
@@ -31,7 +33,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 			$array['id'],
 			$array['id_category'],
 			$array['name'],
-			$array['order']
+			$array['order'],
+			$array['key']
 		);
         return $obj;
     }
@@ -41,7 +44,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $values = array( 
 			$object->getIdCategory(),
 			$object->getName(),
-			$object->getOrder()
+			$object->getOrder(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -53,6 +57,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 			$object->getIdCategory(),
 			$object->getName(),
 			$object->getOrder(),
+			$object->getKey(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -72,6 +77,16 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new Category1Collection( $this->findByPageStmt->fetchAll(), $this );
+    }
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
     }
 	
 }

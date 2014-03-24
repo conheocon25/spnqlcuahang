@@ -4,13 +4,14 @@ RewriteEngine on
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^home$ 					?cmd=Home 			[L]
+RewriteRule ^trang-chu$ 			?cmd=Home 			[L]
 RewriteRule ^gioi-thieu$ 			?cmd=Introduction 	[L]
 RewriteRule ^chinh-sach$ 			?cmd=Policy 		[L]
 RewriteRule ^faq$ 					?cmd=FAQ 			[L]
 RewriteRule ^lien-he$ 				?cmd=Contact 		[L]
-RewriteRule ^san-pham/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ 	?cmd=Product&IdCategory1=$1&IdCategory2=$2&IdResource=$3 [L]
-RewriteRule ^san-pham/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ 					?cmd=Category&IdCategory1=$1&IdCategory2=$2 [L]
+RewriteRule ^khuyen-mai$ 			?cmd=Dealer 		[L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=Product&KCategory1=$1&KCategory2=$2&KResource=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=Category&KCategory1=$1&KCategory2=$2 [L]
 
 RewriteRule ^dang-nhap$ 			?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 		?cmd=SigninExe [L]

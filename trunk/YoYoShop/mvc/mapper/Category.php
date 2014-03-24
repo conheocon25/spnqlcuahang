@@ -8,11 +8,11 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		
 		$tblCategory = "shopc_category";
 						
-		$selectAllStmt = sprintf("select * from %s order by `order`", $tblCategory);
-		$selectStmt = sprintf("select * from %s where id=?", $tblCategory);
-		$updateStmt = sprintf("update %s set name=?, `order`=? where id=?", $tblCategory);
-		$insertStmt = sprintf("insert into %s ( name, `order`) values(?, ?)", $tblCategory);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblCategory);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategory);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategory);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategory);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -23,15 +23,13 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 									
     } 
-    function getCollection( array $raw ) {
-        return new CategoryCollection( $raw, $this );
-    }
-
+    function getCollection( array $raw ) {return new CategoryCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Category( 
 			$array['id'],
 			$array['name'],
-			$array['order']
+			$array['order'],
+			$array['key']
 		);
         return $obj;
     }
@@ -40,7 +38,8 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),
-			$object->getOrder()
+			$object->getOrder(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -51,15 +50,12 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
+			$object->getKey(),
 			$object->getId()
-		);		
+		);				
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	

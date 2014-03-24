@@ -90,8 +90,12 @@
 	<div metal:define-macro="Menu" class="row-fluid">
 		<div class="span12 nav-menus">
 			<ul class="nav nav-pills">
-				<li class="active"><a href="/home">Trang chủ</a></li>
-				<li><a href="/gioi-thieu">Giới thiệu</a></li>
+				<li tal:attributes="class php:Active=='Home'?'active':''">
+					<a href="/trang-chu">Trang chủ</a>
+				</li>
+				<li tal:attributes="class php:Active=='Introduction'?'active':''">
+					<a href="/gioi-thieu">Giới thiệu</a>
+				</li>
 				<li class="dropdown" tal:repeat="Category CategoryAll">
 					<a href="#" data-toggle="dropdown" class="dropdown-toggle">
 						<span tal:content="Category/getName"/> <b class="caret"></b>
@@ -102,8 +106,12 @@
 						</ul>
 					</a>
 				</li>				
-				<li><a href="/khuyen-mai">Khuyết mãi</a></li>
-				<li><a href="/lien-he">Liên hệ</a></li>
+				<li tal:attributes="class php:Active=='Dealer'?'active':''">
+					<a href="/khuyen-mai">Khuyến mãi</a>
+				</li>
+				<li tal:attributes="class php:Active=='Contact'?'active':''">
+					<a href="/lien-he">Liên hệ</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -114,7 +122,7 @@
 	<div metal:define-macro="Footer">
 		<hr/>
 		<footer>
-			<p>&copy; CShop - Bản quyền 2014</p>
+			<p>&copy; YoYoShop - Bản quyền 2009 - 2014</p>
 		</footer>
 	</div>
 	

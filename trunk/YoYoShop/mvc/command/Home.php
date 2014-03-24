@@ -33,6 +33,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Active", 	'Home');
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("ResourceAll1", $ResourceAll1);

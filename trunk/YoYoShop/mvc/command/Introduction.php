@@ -29,6 +29,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Active", 	'Introduction');
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			

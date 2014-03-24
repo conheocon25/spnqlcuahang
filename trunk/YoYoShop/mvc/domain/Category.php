@@ -7,16 +7,18 @@ class Category extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $Name;
+	private $Name;	
 	private $Order;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null) {
+	function __construct($Id=null, $Name=null, $Order=null, $Key=null) {
 		$this->Id 		= $Id;
 		$this->Name 	= $Name;
 		$this->Order 	= $Order;
+		$this->Key 		= $Key;
 		parent::__construct( $Id );
 	}
 		
@@ -28,19 +30,28 @@ class Category extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
+	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
+	function getKey() 		{return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'Name'			=> $this->getName(),
-			'Order'			=> $this->getOrder()
+			'Name'			=> $this->getName(),			
+			'Order'			=> $this->getOrder(),
+			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
+		$this->Name 	= $Data[1];		
 		$this->Order	= $Data[2];
+		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
@@ -55,9 +66,7 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){
-		return "/setting/category/".$this->getId();
-	}
+	function getURLSetting(){return "/setting/category/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

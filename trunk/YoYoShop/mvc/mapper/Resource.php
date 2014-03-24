@@ -22,7 +22,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 				type=?, 
 				style=?, 
 				canvas=?, 
-				note=? 
+				note=?,
+				`key`=? 
 			where id=?", $tblResource);
 			
 		$insertStmt = sprintf("insert into %s ( 
@@ -37,9 +38,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 					type, 
 					style, 
 					canvas, 
-					note
+					note,
+					`key`
 				) 
-				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
+				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=?", $tblResource);
@@ -50,16 +52,18 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							WHERE idsupplier=:idsupplier
 							LIMIT :start,:max
 				", $tblResource);
-				
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
-		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblResource);
+				
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
+		$this->findByCategoryStmt 	= self::$PDO->prepare($findByCategoryStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -76,7 +80,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$array['type'],	
 			$array['style'],	
 			$array['canvas'],	
-			$array['note']			
+			$array['note'],
+			$array['key']
 		);
         return $obj;
     }
@@ -95,7 +100,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$object->getType(),
 			$object->getStyle(),
 			$object->getCanvas(),
-			$object->getNote()
+			$object->getNote(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -116,6 +122,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$object->getStyle(),
 			$object->getCanvas(),
 			$object->getNote(),
+			$object->getKey(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -141,5 +148,16 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByPageStmt->execute();
         return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
+	
 }
 ?>

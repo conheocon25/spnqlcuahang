@@ -18,6 +18,7 @@ class Resource extends Object{
 	private $Style;
 	private $Canvas;
 	private $Note;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -35,7 +36,9 @@ class Resource extends Object{
 		$Type=null, 
 		$Style=null, 
 		$Canvas=null, 
-		$Note=null)
+		$Note=null,
+		$Key=null
+	)
 	{
         		
 		$this->Id			= $Id;
@@ -51,7 +54,8 @@ class Resource extends Object{
 		$this->Style		= $Style;
 		$this->Canvas		= $Canvas;
 		$this->Note			= $Note;
-	
+		$this->Key			= $Key;
+		
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -103,6 +107,14 @@ class Resource extends Object{
 	
 	function getNote( ) {return $this->Note;}
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty(); }
+	
+	function getKey( ) 		{return $this->Key;}
+	function setKey( $Key ) {$this->Key = $Key; $this->markDirty(); }
+	function reKey( ) {
+		$Id = time();
+		$Str = new \MVC\Library\String($this->Name." ".$Id);
+		$this->Key = $Str->converturl();
+	}
 		
 	function toJSON(){
 		$json = array(
@@ -118,7 +130,8 @@ class Resource extends Object{
 			'Type'			=> $this->getType(),
 			'Style'			=> $this->getStyle(),
 			'Canvas'		=> $this->getCanvas(),
-			'Note'			=> $this->getNote()
+			'Note'			=> $this->getNote(),
+			'Key'			=> $this->getKey()
 		);		
 		return json_encode($json);
 	}
@@ -138,6 +151,7 @@ class Resource extends Object{
 		$this->Style		= $Data[10];
 		$this->Canvas		= $Data[11];
 		$this->Note			= $Data[12];
+		$this->reKey();
     }
 	
 	function getImageAll(){
@@ -147,7 +161,7 @@ class Resource extends Object{
 	}
 	
 	function getURLView(){
-		return "/san-pham/".$this->getCategory()->getIdCategory()."/".$this->getIdCategory()."/".$this->getId();
+		return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
 	function getURLSettingImage(){
