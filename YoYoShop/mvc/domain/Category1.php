@@ -58,13 +58,23 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-						
+	function getResourceAll(){
+		$mResource = new \MVC\Mapper\Resource();
+		$ResourceAll = $mResource->findByCategory(array($this->getId()));	
+		return $ResourceAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLSettting(){
 		return "/setting/Category1/".$this->getId();
 	}
+		
+	function getURLView(){
+		return "/san-pham/".$this->getCategory()->getId()."/".$this->getId();
+	}
+	
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

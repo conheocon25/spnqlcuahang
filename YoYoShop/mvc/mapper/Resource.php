@@ -42,6 +42,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
+		$findByCategoryStmt = sprintf("select * from %s where idcategory=?", $tblResource);
+		
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
@@ -55,6 +57,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
+		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 
@@ -123,7 +126,12 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
-        return new SupplierCollection( $this->findBySupplierStmt->fetchAll(), $this );
+        return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
+    }
+	
+	function findByCategory(array $values) {
+        $this->findByCategoryStmt->execute( $values );
+        return new ResourceCollection( $this->findByCategoryStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ){

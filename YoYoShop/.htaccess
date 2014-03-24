@@ -10,6 +10,7 @@ RewriteRule ^chinh-sach$ 			?cmd=Policy 		[L]
 RewriteRule ^faq$ 					?cmd=FAQ 			[L]
 RewriteRule ^lien-he$ 				?cmd=Contact 		[L]
 RewriteRule ^san-pham/([A-Za-z0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ 	?cmd=Product&IdCategory1=$1&IdCategory2=$2&IdResource=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9]+)/([A-Za-z0-9]+)$ 					?cmd=Category&IdCategory1=$1&IdCategory2=$2 [L]
 
 RewriteRule ^dang-nhap$ 			?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 		?cmd=SigninExe [L]
