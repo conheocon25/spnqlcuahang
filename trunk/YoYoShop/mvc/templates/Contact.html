@@ -12,18 +12,73 @@
     <div class="container">
         <div metal:use-macro="mFront.xhtml/PageTitle"/>
         <div metal:use-macro="mFront.xhtml/Menu"/>
-           
-      <div class="row-fluid">
-        <div class="span12">
-            <div class="page-header">
-                <h1>Liên hệ</h1>
-            </div>
-        </div>
-      </div>      
-      <div class="row-fluid">
-        Form liên hệ
-      </div>
-            
+
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="row-fluid">
+					<div class="span12">
+						<h2>Contact Information</h2>
+						<address>
+							1-234-567-8900<br/>
+							Anytown, XX 12345<br/>
+							Lorem ipsum dolor sit amet.<br/>
+							info@mysite.com<br/>
+							1.555.555.5554<br/>
+							Indonesia<br/>
+							<abbr title="Phone">Mobile :</abbr> +628995001222<br/>
+						</address>
+						<h2>Customer Service</h2>
+						<address>
+							<strong>Robert Adams</strong><br/>
+							226-240-8240<br/>
+							<a href="mailto:#">robertadams@clotheshop.com</a>
+						</address>
+						<address>
+							<strong>Reyno</strong><br/>
+							226-907-8810<br/>
+							<a href="mailto:#">reyno@clotheshop.com</a>
+						</address>
+					</div>
+				</div>
+			</div>
+			<div class="span9">
+				<div class="row-fluid">
+					<ul class="breadcrumb">
+						<li><a href="#">Home</a> <span class="divider">/</span></li>
+						<li class="active">Contact</li>
+					</ul>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="page-header">
+							<h1>Contact Us <small>Subtext for header</small></h1>
+						</div>
+
+						<iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=vi&amp;geocode=&amp;q=V%C4%A9nh+Long,+Vi%E1%BB%87t+Nam&amp;aq=0&amp;oq=V%C4%A9nh+Long&amp;sll=37.0625,-95.677068&amp;sspn=37.683309,86.572266&amp;t=m&amp;ie=UTF8&amp;hq=&amp;hnear=V%C4%A9nh+Long,+Vi%E1%BB%87t+Nam&amp;z=13&amp;ll=10.244844,105.958865&amp;output=embed"></iframe>
+						<h2>Lorem ipsum</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis ligula vitae lectus tristique vitae aliquam sem mattis. 
+						Nam eget consequat dolor. Phasellus tincidunt feugiat nulla ut ornare. Nullam eu nisi sit amet enim accumsan faucibus et non velit. 
+						Nam nisl felis, vehicula id faucibus vel, iaculis eu arcu. Nunc dignissim interdum magna eu luctus. 
+						Morbi vitae ornare elit. Fusce tellus lacus, ultrices vel sollicitudin in, venenatis id ipsum. 
+						Sed aliquet, nunc sed pharetra laoreet, mi magna ullamcorper enim, id aliquet eros enim sit amet sapien. 
+						Aliquam vehicula lorem sed dui pulvinar mattis. Quisque convallis laoreet sagittis.</p>
+						
+						<form>
+							<label class="control-label">Your Name</label>
+							<input type="text" class="input-xxlarge" required="true"/>
+							<label class="control-label">Email Address</label>
+							<input type="text" class="input-xxlarge" required="true"/>
+							<label class="control-label">Subject</label>
+							<input type="text" class="input-xxlarge" required="true"/>
+							<label class="control-label">Message</label>
+							<textarea class="input-xxlarge" rows="5" style="resize: none;" required="true"></textarea><br/>
+							<input type="submit" name="submit" value="Submit" class="btn"/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	  
       <hr />      
       <div class="row-fluid footer">
         <div class="span3">
