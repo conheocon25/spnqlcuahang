@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Home extends Command {
+	class Product extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,23 +11,25 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdCategory1 	= 	$request->getProperty('IdCategory1');
+			$IdCategory2 	= 	$request->getProperty('IdCategory2');
+			$IdResource 	= 	$request->getProperty('IdResource');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
+			$mCategory1	= new \MVC\Mapper\Category1();
 			$mResource 	= new \MVC\Mapper\Resource();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$CategoryAll = $mCategory->findAll();
-			$ResourceAll1 = $mResource->findAll();
-			$ResourceAll2 = $mResource->findAll();
-			$ResourceAll3 = $mResource->findAll();
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$CategoryAll 	= $mCategory->findAll();			
+			$Resource 		= $mResource->find($IdResource);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -35,9 +37,7 @@
 			$request->setProperty("Title", 		$Title);			
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("ResourceAll1", $ResourceAll1);
-			$request->setObject("ResourceAll2", $ResourceAll2);
-			$request->setObject("ResourceAll3", $ResourceAll3);
+			$request->setObject("Resource", 	$Resource);			
 			
 			return self::statuses('CMD_DEFAULT');
 		}
