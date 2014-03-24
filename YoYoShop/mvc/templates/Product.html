@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+	<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+  </head>
+
+  <body>
+	<div metal:use-macro="mFront.xhtml/Header"/>
+    
+
+    <div class="container">
+        <div metal:use-macro="mFront.xhtml/PageTitle"/>
+        <div metal:use-macro="mFront.xhtml/Menu"/>
+           
+            
+            
+      <div class="row-fluid">
+        <ul class="thumbnails">
+			<li class="span3">
+              <div class="thumbnail">
+                <a tal:attributes="href Resource/getURLView">
+					<img alt="" tal:attributes="src Resource/getImageAll/current/getURL"/>
+				</a>
+                <div class="caption">
+                  <h5 	tal:content="Resource/getName"/>
+                  <p 	tal:content="Resource/getPrice2Print"/>
+                  <p>Có sẵn</p>
+                </div>
+              </div>
+            </li>
+        </ul>
+      </div>
+                  
+      <hr />
+      
+      <div class="row-fluid footer">
+        <div class="span3">
+            <h3>Thông tin</h3>
+            <ul>
+                <li><a href="/doi-tac">Đối tác</a></li>
+                <li><a href="/phan-phoi">Phân phối</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="/chinh-sach">Chính sách điều khoản</a></li>
+            </ul>
+        </div>
+        <div class="span3">
+            <h3>Nhận báo sản phẩm</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li><br />
+                <li>
+                    <div class="control-group">
+                        <div class="controls">
+                          <div class="input-prepend input-append">
+                            <span class="add-on"><i class="icon-envelope"></i></span><input type="text" size="16" id="appendedPrependedInput" class="span6" placeholder="Nhập email bạn"/><input type="submit" name="submit" value="Gửi" class="btn" />
+                          </div>
+                        </div>
+                    </div>
+                </li>
+                
+            </ul>
+            <p></p>
+        </div>
+        <div class="span3">
+            <h3>Các chi nhánh</h3>
+            <ul>
+                <li><a href="#">Chi nhánh 1</a></li>
+                <li><a href="#">Chi nhánh 2</a></li>
+                <li><a href="#">Chi nhánh 3</a></li>
+                <li><a href="#">Chi nhánh 4</a></li>
+            </ul>
+        </div>
+        <div class="span3">
+            <h3>Các kho hàng</h3>
+            <ul>
+                <li><a href="#">TP HCM</a></li>
+                <li><a href="#">Đồng Nai</a></li>
+                <li><a href="#">Vũng Tàu</a></li>                
+            </ul>
+        </div>
+      </div>
+
+     <div metal:use-macro="mFront.xhtml/Footer"/>
+
+    </div> <!-- /container -->
+	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+  </body>
+</html>

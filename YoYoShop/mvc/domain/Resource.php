@@ -146,6 +146,10 @@ class Resource extends Object{
 		return $ImageAll;
 	}
 	
+	function getURLView(){
+		return "/san-pham/".$this->getCategory()->getIdCategory()."/".$this->getIdCategory()."/".$this->getId();
+	}
+	
 	function getURLSettingImage(){
 		return "/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
 	}
