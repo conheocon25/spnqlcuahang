@@ -97,7 +97,7 @@
 						<span tal:content="Category/getName"/> <b class="caret"></b>
 						<ul class="dropdown-menu" id="menu1">							
 							<li tal:repeat="Category1 Category/getCategoryAll">
-								<a href="#" tal:content="Category1/getName"/>
+								<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
 							</li>
 						</ul>
 					</a>
