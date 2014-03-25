@@ -15,23 +15,30 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig = new \MVC\Mapper\Config();
-			$mCategory = new \MVC\Mapper\Category();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mPost 		= new \MVC\Mapper\Post();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$CategoryAll = $mCategory->findAll();
+			$ConfigName 			= $mConfig->findByName("NAME");
+			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
+			$ConfigIntroduction 	= $mConfig->findByName("POST_INTRODUCTION");
+			$CategoryAll 			= $mCategory->findAll();
+			
+			$Post = $mPost->find($ConfigIntroduction->getValue());
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);			
-			$request->setProperty("Active", 	'Introduction');
-			$request->setObject("ConfigName", 	$ConfigName);
-			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setProperty("Title", 				$Title);			
+			$request->setProperty("Active", 			'Introduction');
+			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
+			$request->setObject("Post", 				$Post);
+			$request->setObject("CategoryAll", 			$CategoryAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

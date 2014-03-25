@@ -17,11 +17,13 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
+			$mPost 		= new \MVC\Mapper\Post();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
+			$PostAll 		= $mPost->findAll();
 						
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
@@ -65,18 +67,12 @@
 				$mConfig->insert($ConfigGuestVisit);
 			}
 			
-			$ConfigPrice1 	= $mConfig->findByName("PRICE1");
-			if ($ConfigPrice1==null){
-				$ConfigPrice1 = new \MVC\Domain\Config(null, 'PRICE1', 9000);
-				$mConfig->insert($ConfigPrice1);
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			if ($ConfigSlogan==null){
+				$ConfigSlogan = new \MVC\Domain\Config(null, 'SLOGAN', 'Khẩu hiệu của Shop');
+				$mConfig->insert($ConfigSlogan);
 			}
-			
-			$ConfigPrice2 = $mConfig->findByName("PRICE2");
-			if ($ConfigPrice2==null){
-				$ConfigPrice2 = new \MVC\Domain\Config(null, 'PRICE2', 8700);
-				$mConfig->insert($ConfigPrice2);
-			}
-									
+															
 			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
 			if ($ConfigReceiptVirtualDouble==null){
 				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
@@ -87,6 +83,24 @@
 			if ($ConfignMonthLog==null){
 				$ConfignMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
 				$mConfig->insert($ConfignMonthLog);
+			}
+			
+			$ConfigIntroduction = $mConfig->findByName("POST_INTRODUCTION");
+			if ($ConfigIntroduction==null){
+				$ConfigIntroduction = new \MVC\Domain\Config(null, 'POST_INTRODUCTION', 0);
+				$mConfig->insert($ConfigIntroduction);
+			}
+			
+			$ConfigFAQ = $mConfig->findByName("POST_FAQ");
+			if ($ConfigFAQ==null){
+				$ConfigFAQ = new \MVC\Domain\Config(null, 'POST_FAQ', 0);
+				$mConfig->insert($ConfigFAQ);
+			}
+			
+			$ConfigPolicy = $mConfig->findByName("POST_POLICY");
+			if ($ConfigPolicy==null){
+				$ConfigPolicy = new \MVC\Domain\Config(null, 'POST_POLICY', 0);
+				$mConfig->insert($ConfigPolicy);
 			}
 			
 			//-------------------------------------------------------------
@@ -101,10 +115,14 @@
 			$request->setObject('ConfigPhone', 				$ConfigPhone);
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
-			$request->setObject('ConfigPrice1', 			$ConfigPrice1);
-			$request->setObject('ConfigPrice2', 			$ConfigPrice2);
+			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
 			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
 			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
+			
+			$request->setObject('ConfigIntroduction', 		$ConfigIntroduction);
+			$request->setObject('ConfigPolicy', 			$ConfigPolicy);	
+			$request->setObject('ConfigFAQ', 				$ConfigFAQ);			
+			$request->setObject('PostAll', 					$PostAll);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

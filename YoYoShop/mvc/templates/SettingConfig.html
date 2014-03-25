@@ -18,7 +18,7 @@
 							<div class="form-horizontal">
 								<div class="modal-body">
 									<div class="form-group">
-										<label class="control-label">Tên quán</label>
+										<label class="control-label">Tên shop</label>
 										<div class="controls">
 											<input id="Name2" tal:attributes="value ConfigName/getValue;data-id ConfigName/getId" type="text" class="form-control input-small"/>
 										</div>
@@ -27,6 +27,12 @@
 										<label class="control-label">Địa chỉ</label>
 										<div class="controls">
 											<input id="Address2" tal:attributes="value ConfigAddress/getValue;data-id ConfigAddress/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Khẩu hiệu</label>
+										<div class="controls">
+											<input id="Slogan2" tal:attributes="value ConfigSlogan/getValue;data-id ConfigSlogan/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -46,19 +52,7 @@
 										<div class="controls">
 											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Giá giao</label>
-										<div class="controls">
-											<input id="Price1" tal:attributes="value ConfigPrice1/getValue;data-id ConfigPrice1/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Giá nhập</label>
-										<div class="controls">
-											<input id="Price2" tal:attributes="value ConfigPrice2/getValue;data-id ConfigPrice2/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
+									</div>									
 									<div class="form-group">
 										<label class="control-label">Giả lặp phiếu 2 liên</label>
 										<div class="controls">											
@@ -75,6 +69,36 @@
 												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">1 tháng</option>
 												<option value="2" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='2'?'selected':''">2 tháng</option>
 												<option value="3" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='3'?'selected':''">3 tháng</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Trang giới thiệu</label>
+										<div class="controls">											
+											<select name="ConfigIntroduction2" id="ConfigIntroduction2" style="width:80%;" tal:attributes="data-id ConfigIntroduction/getId">
+												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigIntroduction->getValue()==Post->getId()?'selected':''">
+													<span tal:content="Post/getTitle" />
+												</option>												
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Trang FAQ</label>
+										<div class="controls">											
+											<select name="ConfigFAQ2" id="ConfigFAQ2" style="width:80%;" tal:attributes="data-id ConfigFAQ/getId">
+												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigFAQ->getValue()==Post->getId()?'selected':''">
+													<span tal:content="Post/getTitle" />
+												</option>												
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Trang Điều khoản</label>
+										<div class="controls">											
+											<select name="ConfigPolicy2" id="ConfigPolicy2" style="width:80%;" tal:attributes="data-id ConfigPolicy/getId">
+												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigPolicy->getValue()==Post->getId()?'selected':''">
+													<span tal:content="Post/getTitle" />
+												</option>												
 											</select>
 										</div>
 									</div>
@@ -173,10 +197,10 @@
 					success: function(msg){}
 				});
 				
-				//Cập nhật giá giao
-				Data7[0] = $('#Price1').attr('data-id');
-				Data7[1] = "PHONE";
-				Data7[2] = $('#Price1').val();
+				//Cập nhật KHẨU HIỆU
+				Data7[0] = $('#Slogan2').attr('data-id');
+				Data7[1] = "SLOGAN";
+				Data7[2] = $('#Slogan2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data7},
@@ -184,13 +208,35 @@
 					success: function(msg){}
 				});
 				
-				//Cập nhật giá giao
-				Data8[0] = $('#Price2').attr('data-id');
-				Data8[1] = "PHONE";
-				Data8[2] = $('#Price2').val();
+				//Cập nhật Bài viết giới thiệu
+				Data8[0] = $('#ConfigIntroduction2').attr('data-id');
+				Data8[1] = "POST_INTRODUCTION";
+				Data8[2] = $('#ConfigIntroduction2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data8},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật Bài 
+				Data9[0] = $('#ConfigFAQ2').attr('data-id');
+				Data9[1] = "POST_FAQ";
+				Data9[2] = $('#ConfigFAQ2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data9},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật Bài 
+				Data10[0] = $('#ConfigPolicy2').attr('data-id');
+				Data10[1] = "POST_POLICY";
+				Data10[2] = $('#ConfigPolicy2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data10},
 					url: URL,
 					success: function(msg){}
 				});

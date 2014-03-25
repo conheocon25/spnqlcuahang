@@ -22,14 +22,17 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$CategoryAll = $mCategory->findAll();
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			$CategoryAll 	= $mCategory->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Active", 	"");
 			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			
 			return self::statuses('CMD_DEFAULT');
