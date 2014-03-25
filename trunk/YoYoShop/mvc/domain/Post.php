@@ -73,10 +73,10 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){		return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLUpdLoad(){	return "/setting/post/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/post/".$this->getId()."/upd/exe";}		
-	function getURLDelLoad(){	return "/setting/post/".$this->getId()."/del/load";}	
-	function getURLDelExe(){	return "/setting/post/".$this->getId()."/del/exe";}
+	function getURLUpdLoad(){	return "admin/setting/post/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		
+	function getURLDelLoad(){	return "admin/setting/post/".$this->getId()."/del/load";}	
+	function getURLDelExe(){	return "admin/setting/post/".$this->getId()."/del/exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

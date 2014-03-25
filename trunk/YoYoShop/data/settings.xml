@@ -24,70 +24,61 @@
 		<command name="SigninLoad" 		type="public"><view>SigninLoad</view></command>
 		<command name="SigninExe" 		type="public">
 			<view>SigninExe</view>
-			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_OK"><forward>Admin</forward></status>
 			<status value="CMD_NO_AUTHOR"><forward>FHome</forward></status>
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
-		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>				
-		<command name="App"><view>App</view></command>		
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
+		<command name="Admin"><view>Admin</view></command>		
 		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
 								
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
-		<command name="Report">						<view>Report</view>						</command>
-		<command name="ReportDetail">				<view>ReportDetail</view>				</command>
+		<command name="AReport">					<view>AReport</view>						</command>
+		<command name="AReportDetail">				<view>AReportDetail</view>				</command>
 								
-		<command name="ReportDaily">				<view>ReportDaily</view>				</command>
-		<command name="ReportDailySelling">			<view>ReportDailySelling</view>			</command>
-		<command name="ReportDailySellingPrint">	<view>ReportDailySellingPrint</view>	</command>
-		<command name="ReportDailySellingExe">		<view>ReportDailySellingExe</view>		</command>
-		
-		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
-		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
-		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-						
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->
-		<command name="Selling">				<view>Selling				</view></command>
-		<command name="SellingSaving">			<view>SellingSaving			</view></command>
-		<command name="SellingCustomer">		<view>SellingCustomer		</view></command>
-		<command name="SellingPrintTemplate">	<view>SellingPrintTemplate	</view></command>
+		<command name="ASelling">				<view>ASelling				</view></command>
+		<command name="ASellingSaving">			<view>ASellingSaving			</view></command>
+		<command name="ASellingCustomer">		<view>ASellingCustomer		</view></command>
+		<command name="ASellingPrintTemplate">	<view>ASellingPrintTemplate	</view></command>
 									
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
-		<command name="Setting">				<view>Setting				</view></command>
+		<command name="ASetting">				<view>ASetting				</view></command>
 		
-		<command name="SettingPost">			<view>SettingPost			</view></command>
-		<command name="SettingPostInsLoad">		<view>SettingPostInsLoad	</view></command>
-		<command name="SettingPostInsExe">		<view>SettingPostInsExe		</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
-		<command name="SettingPostUpdLoad">		<view>SettingPostUpdLoad	</view></command>
-		<command name="SettingPostUpdExe">		<view>SettingPostUpdExe		</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
-		<command name="SettingPostDelLoad">		<view>SettingPostDelLoad	</view></command>
-		<command name="SettingPostDelExe">		<view>SettingPostDelExe		</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
+		<command name="ASettingPost">			<view>ASettingPost			</view></command>
+		<command name="ASettingPostInsLoad">	<view>ASettingPostInsLoad	</view></command>
+		<command name="ASettingPostInsExe">		<view>ASettingPostInsExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
+		<command name="ASettingPostUpdLoad">	<view>ASettingPostUpdLoad	</view></command>
+		<command name="ASettingPostUpdExe">		<view>ASettingPostUpdExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
+		<command name="ASettingPostDelLoad">	<view>ASettingPostDelLoad	</view></command>
+		<command name="ASettingPostDelExe">		<view>ASettingPostDelExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
 		
-		<command name="SettingCategory">		<view>SettingCategory		</view></command>		
-		<command name="SettingCategory1">		<view>SettingCategory1		</view></command>		
+		<command name="ASettingCategory">		<view>ASettingCategory		</view></command>		
+		<command name="ASettingCategory1">		<view>ASettingCategory1		</view></command>		
 		
-		<command name="SettingCustomer">		<view>SettingCustomer		</view></command>		
-		<command name="SettingEmployee">		<view>SettingEmployee		</view></command>		
-		<command name="SettingUser">			<view>SettingUser			</view></command>		
-		<command name="SettingUnit">			<view>SettingUnit			</view></command>
-		<command name="SettingConfig">			<view>SettingConfig			</view></command>				
-		<command name="SettingSupplier">		<view>SettingSupplier		</view></command>
+		<command name="ASettingCustomer">		<view>ASettingCustomer		</view></command>		
+		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		
+		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
+		<command name="ASettingUnit">			<view>ASettingUnit			</view></command>
+		<command name="ASettingConfig">			<view>ASettingConfig			</view></command>				
+		<command name="ASettingSupplier">		<view>ASettingSupplier		</view></command>
 		
-		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-		<command name="SettingResourceImage">	<view>SettingResourceImage</view></command>
+		<command name="ASettingSupplierResource"><view>ASettingSupplierResource</view></command>
+		<command name="ASettingResourceImage">	<view>ASettingResourceImage</view></command>
 																	
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="Import"><view>Import</view></command>
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="AImport"><view>AImport</view></command>
+		<command name="AImportSupplier"><view>AImportSupplier</view></command>
+		<command name="AImportSupplierOrder"><view>AImportSupplierOrder</view></command>
+		<command name="AImportSupplierOrderPrint"><view>AImportSupplierOrderPrint</view></command>
 				
 	</control>
 </options>
