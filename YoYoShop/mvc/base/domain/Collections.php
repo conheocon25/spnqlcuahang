@@ -18,4 +18,5 @@ interface TrackingDailyCollection 	extends \Iterator {function add( Object $Trac
 interface PageCollection 			extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 			extends \Iterator {function add( Object $Guest);		}
 interface PostCollection 			extends \Iterator {function add( Object $Post);			}
+interface PresentationCollection 	extends \Iterator {function add( Object $Presentation);	}
 ?>

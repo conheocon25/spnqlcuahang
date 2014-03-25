@@ -26,7 +26,7 @@
 						
 			$Title = "NHÀ CUNG CẤP";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", "/admin/setting")
 			);
 			
 			if (!isset($Page)) $Page=1;
