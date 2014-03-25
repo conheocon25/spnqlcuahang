@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Category extends Object{
+class Presentation extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
@@ -57,16 +57,16 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getCategoryAll(){
-		$mCategory1 	= new \MVC\Mapper\Category1();
-		$CategoryAll 	= $mCategory1->findBy(array($this->getId()));
-		return $CategoryAll;
+	function getSlideAll(){
+		$mSlide 	= new \MVC\Mapper\Slide();
+		$SlideAll 	= $mSlide->findBy(array($this->getId()));
+		return $SlideAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){return "/admin/setting/category/".$this->getId();}
+	function getURLSetting(){return "/admin/setting/presentation/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

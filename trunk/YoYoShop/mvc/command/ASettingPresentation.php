@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASettingResourceImage extends Command {
+	class ASettingPresentation extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,42 +10,34 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdSupplier = $request->getProperty('IdSupplier');
-			$IdResource = $request->getProperty('IdResource');
-			
+			//-------------------------------------------------------------
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSupplier 	= new \MVC\Mapper\Supplier();
-			$mResource 	= new \MVC\Mapper\Resource();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																		
-			$Supplier = $mSupplier->find($IdSupplier);
-			$Resource = $mResource->find($IdResource);
-			
-			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
+			//-------------------------------------------------------------						
+			$PresentationAll = $mPresentation->findAll();			
+						
+			$Title = "TRÌNH BÀY";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin/setting"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
-			);
-			
+				array("THIẾT LẬP", "/admin/setting")
+			);			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
-												
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);						
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Presentation');			
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('PresentationAll', $PresentationAll);
 			$request->setObject('ConfigName'	, $ConfigName);
-			
-			$request->setObject('Resource'		, $Resource);
-			$request->setObject('Supplier'		, $Supplier);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

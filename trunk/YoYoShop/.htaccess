@@ -60,6 +60,9 @@ RewriteRule ^admin/setting/post/([0-9]+)/upd/exe$ 						?cmd=ASettingPostUpdExe&
 RewriteRule ^admin/setting/post/([0-9]+)/del/load$ 						?cmd=ASettingPostDelLoad&IdPost=$1 	[L]
 RewriteRule ^admin/setting/post/([0-9]+)/del/exe$ 						?cmd=ASettingPostDelExe&IdPost=$1	[L]
 
+RewriteRule ^admin/setting/presentation$ 								?cmd=ASettingPresentation [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)$ 						?cmd=ASettingSlide&IdPresentation=$1 [L]
+
 RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
 RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]
 RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]

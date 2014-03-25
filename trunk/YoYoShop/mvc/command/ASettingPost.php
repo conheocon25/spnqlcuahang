@@ -25,7 +25,7 @@
 									
 			$Title = "BÀI VIẾT";
 			$Navigation = array(				
-				array("THIẾT LẬP", 	"/setting")				
+				array("THIẾT LẬP", 	"/admin/setting")				
 			);									
 			$ConfigName		= $mConfig->findByName("NAME");
 									

@@ -25,9 +25,10 @@
 			$CategoryAll 	= $mCategory->findAll();			
 			$Category 		= $mCategory->find($IdCategory);
 			
-			$Title = "DANH MỤC";
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", 	"/admin/setting"),
+				array("DANH MỤC", 	"/admin/setting")
 			);			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");

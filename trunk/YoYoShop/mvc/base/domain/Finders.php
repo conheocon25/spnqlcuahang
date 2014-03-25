@@ -26,5 +26,5 @@ interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}
 interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
-
+interface PresentationFinder 	extends Finder {}
 ?>

@@ -17,6 +17,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/TrackingDaily.php"	);
 	require_once( "mvc/mapper/Guest.php"			);
 	require_once( "mvc/mapper/Post.php"				);
+	require_once( "mvc/mapper/Presentation.php"		);
 }
 
 class HelperFactory {

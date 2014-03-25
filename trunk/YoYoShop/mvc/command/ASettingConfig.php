@@ -27,7 +27,7 @@
 						
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", "/admin/setting")
 			);
 			
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			

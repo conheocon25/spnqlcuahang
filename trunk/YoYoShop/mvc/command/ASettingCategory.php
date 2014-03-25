@@ -26,7 +26,7 @@
 						
 			$Title = "DANH MỤC";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", "/admin/setting")
 			);
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");

@@ -29,8 +29,8 @@
 			$Supplier = $mSupplier->find($IdSupplier);			
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/setting"),
-				array("NHÀ CUNG CẤP", "/setting/supplier")
+				array("THIẾT LẬP", "/admin/setting"),
+				array("NHÀ CUNG CẤP", "/admin/setting/supplier")
 			);
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");

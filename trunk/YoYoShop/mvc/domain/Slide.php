@@ -2,23 +2,25 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Category extends Object{
+class Slide extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $Name;	
+	private $Name;
 	private $Order;
-	private $Key;
+	private $Note;
+	private $URL;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $Key=null) {
+	function __construct($Id=null, $Name=null, $Note=null, $Order=null, $URL=null) {
 		$this->Id 		= $Id;
 		$this->Name 	= $Name;
 		$this->Order 	= $Order;
-		$this->Key 		= $Key;
+		$this->Note 	= $Note;
+		$this->URL 		= $URL;
 		parent::__construct( $Id );
 	}
 		
@@ -30,19 +32,19 @@ class Category extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
-	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
-	function getKey() 		{return $this->Key;}
-	function reKey( ) {
-		$Str = new \MVC\Library\String($this->Name);
-		$this->Key = $Str->converturl();
-	}
+	function setNote($Note)	{$this->Note = $Note;$this->markDirty();}
+	function getNote() 		{return $this->Note;}
 	
+	function setURL($URL)	{$this->URL = $URL;$this->markDirty();}
+	function getURL() 		{return $this->URL;}
+		
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
-			'Key'			=> $this->getKey()
+			'Note'			=> $this->getNote(),
+			'URL'			=> $this->getURL()
 		);
 		return json_encode($json);
 	}
@@ -51,23 +53,18 @@ class Category extends Object{
         $this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];		
 		$this->Order	= $Data[2];
-		$this->reKey();
+		$this->Note		= $Data[3];
+		$this->URL		= $Data[4];
     }
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getCategoryAll(){
-		$mCategory1 	= new \MVC\Mapper\Category1();
-		$CategoryAll 	= $mCategory1->findBy(array($this->getId()));
-		return $CategoryAll;
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){return "/admin/setting/category/".$this->getId();}
-	
+		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
