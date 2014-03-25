@@ -66,7 +66,7 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){return "/setting/category/".$this->getId();}
+	function getURLSetting(){return "admin/setting/category/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

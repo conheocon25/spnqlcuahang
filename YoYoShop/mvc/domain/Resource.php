@@ -165,7 +165,7 @@ class Resource extends Object{
 	}
 	
 	function getURLSettingImage(){
-		return "/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
+		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
 	}
 	
 	//-------------------------------------------------------------------------------

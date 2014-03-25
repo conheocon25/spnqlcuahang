@@ -199,22 +199,22 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
-	function getURLImport(){return "/import/".$this->getId();}	
-	function getURLImportInsLoad(){return "/import/".$this->getId()."/ins/load";}	
-	function getURLImportInsExe(){return "/import/".$this->getId()."/ins/exe";}
+	function getURLImport(){return "/admin/import/".$this->getId();}	
+	function getURLImportInsLoad(){return "/admin/import/".$this->getId()."/ins/load";}	
+	function getURLImportInsExe(){return "/admin/import/".$this->getId()."/ins/exe";}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLResource(){return "/setting/supplier/".$this->getId();}
+	function getURLResource(){return "/admin/setting/supplier/".$this->getId();}
 		
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLPaid(){return "/paid/supplier/".$this->getId();}
-	function getURLPaidInsLoad(){return "/paid/supplier/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/paid/supplier/".$this->getId()."/ins/exe";}
+	function getURLPaid(){return "/admin/paid/supplier/".$this->getId();}
+	function getURLPaidInsLoad(){return "/admin/paid/supplier/".$this->getId()."/ins/load";}
+	function getURLPaidInsExe(){return "/admin/paid/supplier/".$this->getId()."/ins/exe";}
 							
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

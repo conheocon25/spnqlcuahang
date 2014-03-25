@@ -124,19 +124,19 @@
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-usd" />BÁN HÀNG</a>
+				<a tal:attributes="href '/admin/selling'"><i class="glyphicons-usd" />BÁN HÀNG</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Result'?'active':'disable'">
-				<a tal:attributes="href '/result'"><i class="glyphicons-book" />KẾT QUẢ</a>
+				<a tal:attributes="href '/admin/dealer'"><i class="glyphicons-book" />KHUYẾN MÃI</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
+				<a tal:attributes="href '/admin/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+				<a tal:attributes="href '/admin/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
-				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
 		</ul>		
 	</div>
@@ -147,27 +147,27 @@
 	<div metal:define-macro="MenuSetting" id="sidebar">				
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/setting/post'" >
+				<a tal:attributes="href '/admin/setting/post'" >
 					<i class="glyphicons-book" />BÀI VIẾT
 				</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/setting/supplier'" >
+				<a tal:attributes="href '/admin/setting/supplier'" >
 					<i class="glyphicons-truck" />NHÀ CUNG CẤP
 				</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/setting/category'" >
+				<a tal:attributes="href '/admin/setting/category'" >
 					<i class="glyphicons-truck" />DANH MỤC
 				</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/setting/user'">
+				<a tal:attributes="href '/admin/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
 				</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/setting/config'">
+				<a tal:attributes="href '/admin/setting/config'">
 					<i class="glyphicons-cogwheel" />CẤU HÌNH
 				</a>
 			</li>
@@ -195,25 +195,6 @@
 		<a href="/setting/theme/red" alt="#red" style="background-color:#673232;cursor:pointer;"></a>
 		<a href="/setting/theme/red-green" alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- REPORT HEADER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="ReportHeader">
-		<table width="100%" border="0" cellpadding="2" >
-			<tr>			
-				<td width="50%" align="left"><B>ĐẠI LÝ VÉ SỐ</B></td>
-				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
-			</tr>
-			<tr>
-				<td width="50%" align="left">Nha Mân Châu Thành Đồng Tháp</td>				
-				<td width="50%" align="right">Lưu hành nội bộ</td>
-			</tr>
-			<tr>
-				<td width="50%" align="left">0919 153 189</td>
-				<td width="50%" align="left" />
-			</tr>
-		</table>
-	</div>	
+
 </body>
 </html>

@@ -26,78 +26,68 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^app$ 													?cmd=App [L]
+RewriteRule ^admin$ 												?cmd=Admin [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^import$ 								?cmd=Import [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^admin/import$ 										?cmd=AImport [L]
+RewriteRule ^admin/import/([0-9]+)$ 							?cmd=AImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^admin/import/([0-9]+)$ 							?cmd=AImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^admin/import/([0-9]+)/page/([0-9]+)$ 				?cmd=AImportSupplier&IdSupplier=$1&Page=$2 [L]
 
-RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)$					?cmd=AImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)/print$				?cmd=AImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=AImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^report$ 										?cmd=Report [L]
-RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
-
-RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/([0-9]+)$ 	?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2&IdDomain=$3 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/exe$ 			?cmd=ReportDailySellingExe&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/([0-9]+)/print$ 	?cmd=ReportDailySellingPrint&IdTrack=$1&IdTD=$2&IdDomain=$3 [L]
-
-RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^admin/report$ 										?cmd=AReport [L]
+RewriteRule ^admin/report/([0-9]+)$ 							?cmd=AReportDetail&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting$ 												?cmd=Setting [L]
-RewriteRule ^setting/theme/([a-z0-9_-]+)$ 							?cmd=SettingThemeChangeExe&Theme=$1 [L]
+RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeExe&Theme=$1 [L]
 
-RewriteRule ^setting/post$ 											?cmd=SettingPost [L]
-RewriteRule ^setting/post/ins/load$ 								?cmd=SettingPostInsLoad [L]
-RewriteRule ^setting/post/ins/exe$ 									?cmd=SettingPostInsExe 	[L]
-RewriteRule ^setting/post/([0-9]+)/upd/load$ 						?cmd=SettingPostUpdLoad&IdPost=$1 	[L]
-RewriteRule ^setting/post/([0-9]+)/upd/exe$ 						?cmd=SettingPostUpdExe&IdPost=$1	[L]
-RewriteRule ^setting/post/([0-9]+)/del/load$ 						?cmd=SettingPostDelLoad&IdPost=$1 	[L]
-RewriteRule ^setting/post/([0-9]+)/del/exe$ 						?cmd=SettingPostDelExe&IdPost=$1	[L]
+RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost [L]
+RewriteRule ^admin/setting/post/ins/load$ 								?cmd=ASettingPostInsLoad [L]
+RewriteRule ^admin/setting/post/ins/exe$ 								?cmd=ASettingPostInsExe 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/upd/load$ 						?cmd=ASettingPostUpdLoad&IdPost=$1 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/upd/exe$ 						?cmd=ASettingPostUpdExe&IdPost=$1	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/del/load$ 						?cmd=ASettingPostDelLoad&IdPost=$1 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/del/exe$ 						?cmd=ASettingPostDelExe&IdPost=$1	[L]
 
-RewriteRule ^setting/category$ 										?cmd=SettingCategory [L]
-RewriteRule ^setting/category/page/([0-9]+)$ 						?cmd=SettingCategory&Page=$1 [L]
-RewriteRule ^setting/category/([0-9]+)$ 							?cmd=SettingCategory1&IdCategory=$1 [L]
-RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCategory1&IdCategory=$1&Page=$2 [L]
+RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
+RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]
+RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]
+RewriteRule ^admin/setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCategory1&IdCategory=$1&Page=$2 [L]
 
-RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
-RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]
+RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
+RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
 
-RewriteRule ^setting/supplier$ 										?cmd=SettingSupplier [L]
-RewriteRule ^setting/supplier/page/([0-9]+)$ 						?cmd=SettingSupplier&Page=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)$ 							?cmd=SettingSupplierResource&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/image$ 				?cmd=SettingResourceImage&IdSupplier=$1&&IdResource=$2 [L]
+RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
+RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplierResource&IdSupplier=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplierResource&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingResourceImage&IdSupplier=$1&&IdResource=$2 [L]
 
-RewriteRule ^setting/employee$ 										?cmd=SettingEmployee [L]
-RewriteRule ^setting/employee/page/([0-9]+)$ 						?cmd=SettingEmployee&Page=$1 [L]
+RewriteRule ^admin/setting/employee$ 									?cmd=ASettingEmployee [L]
+RewriteRule ^admin/setting/employee/page/([0-9]+)$ 						?cmd=ASettingEmployee&Page=$1 [L]
 
-RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
-RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
+RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
+RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^selling$ 												?cmd=Selling [L]
-RewriteRule ^selling/saving$ 										?cmd=SellingSaving [L]
-RewriteRule ^selling/([0-9]+)$ 										?cmd=Selling&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/next$ 								?cmd=Selling&IdDomain=$1&doAction=next [L]
-RewriteRule ^selling/([0-9]+)/back$ 								?cmd=Selling&IdDomain=$1&doAction=back [L]
-RewriteRule ^selling/([0-9]+)/print/template$ 						?cmd=SellingPrintTemplate&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/print/report$ 						?cmd=SellingPrintReport&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingCustomer&IdDomain=$1&IdCustomer=$2 [L]
+RewriteRule ^admin/selling$ 											?cmd=ASelling [L]
+RewriteRule ^admin/selling/saving$ 										?cmd=ASellingSaving [L]
+RewriteRule ^admin/selling/([0-9]+)$ 									?cmd=ASelling&IdDomain=$1 [L]
+RewriteRule ^admin/selling/([0-9]+)/next$ 								?cmd=ASelling&IdDomain=$1&doAction=next [L]
+RewriteRule ^admin/selling/([0-9]+)/back$ 								?cmd=ASelling&IdDomain=$1&doAction=back [L]
+RewriteRule ^admin/selling/([0-9]+)/print/template$ 					?cmd=ASellingPrintTemplate&IdDomain=$1 [L]
+RewriteRule ^admin/selling/([0-9]+)/print/report$ 						?cmd=ASellingPrintReport&IdDomain=$1 [L]
+RewriteRule ^admin/selling/([0-9]+)/([0-9]+)$ 							?cmd=ASellingCustomer&IdDomain=$1&IdCustomer=$2 [L]
