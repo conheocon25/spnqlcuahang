@@ -21,20 +21,21 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$CategoryAll = $mCategory->findAll();
-			$ResourceAll1 = $mResource->findAll();
-			$ResourceAll2 = $mResource->findAll();
-			$ResourceAll3 = $mResource->findAll();
+			//-------------------------------------------------------------						
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			
+			$CategoryAll 	= $mCategory->findAll();
+			$ResourceAll1 	= $mResource->findAll();
+			$ResourceAll2 	= $mResource->findAll();
+			$ResourceAll3 	= $mResource->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);			
 			$request->setProperty("Active", 	'Home');
 			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("ResourceAll1", $ResourceAll1);
 			$request->setObject("ResourceAll2", $ResourceAll2);

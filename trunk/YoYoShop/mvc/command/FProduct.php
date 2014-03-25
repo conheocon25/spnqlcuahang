@@ -28,6 +28,7 @@
 			//-------------------------------------------------------------			
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$CategoryAll 	= $mCategory->findAll();			
 			$Resource 		= $mResource->findByKey($KResource);
 			
@@ -37,6 +38,7 @@
 			$request->setProperty("Title", 		$Title);			
 			$request->setProperty("Active", 	"");
 			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Resource", 	$Resource);			
 			

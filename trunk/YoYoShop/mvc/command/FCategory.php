@@ -26,6 +26,7 @@
 			//-------------------------------------------------------------			
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$CategoryAll 	= $mCategory->findAll();
 			$Category 		= $mCategory1->findByKey($KCategory2);
 			
@@ -35,6 +36,7 @@
 			$request->setProperty("Title", 		$Title);			
 			$request->setProperty("Active", 	"Category");
 			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category", 	$Category);			
 			

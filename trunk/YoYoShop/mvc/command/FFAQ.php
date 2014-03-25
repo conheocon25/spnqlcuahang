@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FContact extends Command {
+	class FFAQ extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,24 +15,28 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig = new \MVC\Mapper\Config();
-			$mCategory = new \MVC\Mapper\Category();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mPost 		= new \MVC\Mapper\Post();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$ConfigSlogan = $mConfig->findByName("SLOGAN");
-			$CategoryAll = $mCategory->findAll();
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			$ConfigFAQ 		= $mConfig->findByName("POST_FAQ");
+			$CategoryAll 	= $mCategory->findAll();
+			$Post			= $mPost->find($ConfigFAQ->getValue());
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);
-			$request->setProperty("Active", 	'Contact');
+			$request->setProperty("Active", 	"");
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);
+			$request->setObject("Post", 		$Post);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			
 			return self::statuses('CMD_DEFAULT');
