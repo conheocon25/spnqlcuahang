@@ -52,6 +52,7 @@
 		<command name="ASetting">				<view>ASetting				</view></command>
 		
 		<command name="ASettingPresentation">	<view>ASettingPresentation	</view></command>
+		<command name="ASettingSlide">			<view>ASettingSlide			</view></command>
 		
 		<command name="ASettingPost">			<view>ASettingPost			</view></command>
 		<command name="ASettingPostInsLoad">	<view>ASettingPostInsLoad	</view></command>

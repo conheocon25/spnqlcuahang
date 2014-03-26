@@ -8,7 +8,15 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Presentation1 PresentationAll" tal:attributes="class php:Presentation1->getId()==Presentation->getId()?'active':'disable'">
+					<a tal:attributes="href Presentation1/getURLSetting">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Presentation1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -27,18 +35,16 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
-										<th width="60" class="right">T.TỰ</th>
-										<th width="120"><div class="text-right">CHI TIẾT</div></th>										
+										<th width="60" class="right">T.TỰ</th>										
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Presentation PresentationAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Presentation/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Presentation" tal:attributes="data-id Presentation/getId" tal:content="Presentation/getName"/></td>
-										<td class="right"><span tal:content="Presentation/getOrder" /></td>
-										<td class="right"><a tal:attributes="href Presentation/getURLSetting"><span tal:content="Presentation/getSlideAll/count"/> Slide</a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Presentation/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Slide Presentation/getSlideAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Slide/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Slide/getId" tal:content="Slide/getName"/></td>
+										<td class="right"><span tal:content="Slide/getOrder" /></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Slide/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
 							</table>
@@ -48,8 +54,8 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI TRÌNH BÀY</h3></div>
-								<form id="FormPresentationInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI SLIDE</h3></div>
+								<form id="FormSlideInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
@@ -61,6 +67,18 @@
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">URL</label>
+											<div class="controls">
+												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -78,8 +96,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT TRÌNH BÀY</h3></div>
-								<form id="FormPresentationUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT SLIDE</h3></div>
+								<form id="FormSlideUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
@@ -91,6 +109,18 @@
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+											</div>
+										</div>										
+										<div class="control-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">URL</label>
+											<div class="controls">
+												<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -108,6 +138,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="PresentationCurrent" tal:attributes="alt Presentation/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -115,7 +146,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Presentation/0";
+				var URL = "/object/del/Slide/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -142,7 +173,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Presentation/" + $(this).attr('alt');
+				var URL = "/object/del/Slide/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -154,7 +185,7 @@
 		
 			//-----------------------------------------------------------------------------------
 			//Insert 1 Presentation			
-			$("#FormPresentationInsert").validate({
+			$("#FormSlideInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -172,11 +203,14 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';					
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Order1').val();
+					Data[0] = 'null';
+					Data[1] = $('#PresentationCurrent').attr('alt');
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Order1').val();
+					Data[4] = $('#Note1').val();
+					Data[5] = $('#URL1').val();
 					
-					var URL = "/object/ins/Presentation";
+					var URL = "/object/ins/Slide";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -200,20 +234,22 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Presentation/" + $(this).attr('data-id');
+				var url = "/object/load/Slide/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Order2').attr('value', data.Order);
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Order2').attr('value', 		data.Order);
+					$('#Note2').attr('value', 		data.Note);
+					$('#URL2').attr('value', 		data.URL);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 Presentation
 			//-----------------------------------------------------------------------------------
-			$("#FormPresentationUpdate").validate({
+			$("#FormSlideUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -232,10 +268,13 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');					
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Order2').val();
+					Data[1] = $('#PresentationCurrent').attr('alt');
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Order2').val();					
+					Data[4] = $('#Note2').val();
+					Data[5] = $('#URL2').val();
 																		
-					var URL = "/object/upd/Presentation";
+					var URL = "/object/upd/Slide";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},

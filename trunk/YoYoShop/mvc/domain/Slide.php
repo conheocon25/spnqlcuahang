@@ -7,6 +7,7 @@ class Slide extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
+	private $IdPresentation;
 	private $Name;
 	private $Order;
 	private $Note;
@@ -15,8 +16,9 @@ class Slide extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Note=null, $Order=null, $URL=null) {
+	function __construct($Id=null, $IdPresentation=null, $Name=null, $Order=null, $Note=null, $URL=null) {
 		$this->Id 		= $Id;
+		$this->IdPresentation = $IdPresentation;
 		$this->Name 	= $Name;
 		$this->Order 	= $Order;
 		$this->Note 	= $Note;
@@ -25,7 +27,15 @@ class Slide extends Object{
 	}
 		
 	function getId() {return $this->Id;}
-		
+	
+	function setIdPresentation($IdPresentation) {$this->IdPresentation = $IdPresentation;$this->markDirty();}
+	function getIdPresentation() 				{return $this->IdPresentation;}
+	function getPresentation(){
+		$mPresentation = new \MVC\Mapper\Presentation();
+		$Presentation = $mPresentation->find($IdPresentation);
+		return $Presentation;
+	}
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
@@ -41,6 +51,7 @@ class Slide extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdPresentation'=> $this->getIdPresentation(),
 			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
 			'Note'			=> $this->getNote(),
@@ -50,11 +61,12 @@ class Slide extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];		
-		$this->Order	= $Data[2];
-		$this->Note		= $Data[3];
-		$this->URL		= $Data[4];
+        $this->Id 				= $Data[0];
+		$this->IdPresentation 	= $Data[1];
+		$this->Name 			= $Data[2];		
+		$this->Order			= $Data[3];
+		$this->Note				= $Data[4];
+		$this->URL				= $Data[5];
     }
 	
 	//-------------------------------------------------------------------------------
@@ -68,7 +80,6 @@ class Slide extends Object{
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	//-------------------------------------------------------------------------------
-	
+	//-------------------------------------------------------------------------------	
 }
 ?>

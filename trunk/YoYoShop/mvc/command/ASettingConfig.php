@@ -16,14 +16,16 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mPost 		= new \MVC\Mapper\Post();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mPost 			= new \MVC\Mapper\Post();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
 			$PostAll 		= $mPost->findAll();
+			$PresentationAll= $mPresentation->findAll();
 						
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
@@ -103,6 +105,12 @@
 				$mConfig->insert($ConfigPolicy);
 			}
 			
+			$ConfigPHome = $mConfig->findByName("PRESENTATION_HOME");
+			if ($ConfigPHome==null){
+				$ConfigPHome = new \MVC\Domain\Config(null, 'PRESENTATION_HOME', 0);
+				$mConfig->insert($ConfigPHome);
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -121,8 +129,11 @@
 			
 			$request->setObject('ConfigIntroduction', 		$ConfigIntroduction);
 			$request->setObject('ConfigPolicy', 			$ConfigPolicy);	
-			$request->setObject('ConfigFAQ', 				$ConfigFAQ);			
+			$request->setObject('ConfigFAQ', 				$ConfigFAQ);
+			$request->setObject('ConfigPHome', 				$ConfigPHome);
+			
 			$request->setObject('PostAll', 					$PostAll);
+			$request->setObject('PresentationAll', 			$PresentationAll);
 												
 			return self::statuses('CMD_DEFAULT');
 		}
