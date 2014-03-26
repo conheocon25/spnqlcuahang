@@ -73,7 +73,17 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Trang giới thiệu</label>
+										<label class="control-label">Trang chủ - Presentation</label>
+										<div class="controls">											
+											<select name="ConfigPHome2" id="ConfigPHome2" style="width:80%;" tal:attributes="data-id ConfigPHome/getId">
+												<option tal:repeat="Presentation PresentationAll" tal:attributes="value ConfigPHome/getId; selected php:ConfigPHome->getValue()==Presentation->getId()?'selected':''">
+													<span tal:content="Presentation/getName" />
+												</option>												
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Trang giới thiệu - Post</label>
 										<div class="controls">											
 											<select name="ConfigIntroduction2" id="ConfigIntroduction2" style="width:80%;" tal:attributes="data-id ConfigIntroduction/getId">
 												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigIntroduction->getValue()==Post->getId()?'selected':''">
@@ -130,6 +140,7 @@
 				var Data8 = [];
 				var Data9 = [];
 				var Data10 = [];
+				var Data11 = [];
 				
 				Data1[0] = $('#RowPerPage2').attr('data-id');
 				Data1[1] = "ROW_PER_PAGE";
@@ -237,6 +248,17 @@
 				$.ajax({
 					type: "POST",
 					data: {Data:Data10},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật Trình bày
+				Data11[0] = $('#ConfigPHome2').attr('data-id');
+				Data11[1] = "PRESENTATION_HOME";
+				Data11[2] = $('#ConfigPHome2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data11},
 					url: URL,
 					success: function(msg){}
 				});
