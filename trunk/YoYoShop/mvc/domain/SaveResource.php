@@ -52,6 +52,14 @@ class SaveResource extends Object{
 		$this->Value = $Str->converturl();
 	}
 	
+	function getPriceSaving(){
+		return (100-$this->Discount)*$this->getResource()->getPrice2()/100;
+	}
+	function getPriceSavingPrint(){
+		$N = new \MVC\Library\Number($this->getPriceSaving());		
+		return $N->formatCurrency();
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),

@@ -48,13 +48,12 @@
 			<li class="span3" tal:repeat="SR Save/getSRAll">
               <div class="thumbnail sale-thumbnail">
                 <a tal:attributes="href SR/getResource/getURLView">
-					<div class="sale-tag">-10%</div>
+					<div class="sale-tag">-<span tal:content="SR/getDiscount"/>%</div>
 					<img alt="" tal:attributes="src SR/getResource/getImageAll/current/getURL"/>
 					<div class="caption">
 					  <h5 						tal:content="SR/getResource/getName"/>
 					  <p class="price-old" 		tal:content="SR/getResource/getPrice2Print"/>
-					  <p class="price-new"		tal:content="SR/getResource/getPrice2Print"/>
-					  <p 						tal:content="SR/getDiscount"/>
+					  <p class="price-new"		tal:content="SR/getPriceSavingPrint"/>
 					</div>
 				</a>
               </div>
