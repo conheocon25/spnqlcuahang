@@ -28,7 +28,8 @@
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$CategoryAll 	= $mCategory->findAll();
-			$Category 		= $mCategory1->findByKey($KCategory2);
+			$Category1 		= $mCategory->findByKey($KCategory1);
+			$Category2 		= $mCategory1->findByKey($KCategory2);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -38,7 +39,8 @@
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("Category", 	$Category);			
+			$request->setObject("Category1", 	$Category1);			
+			$request->setObject("Category2", 	$Category2);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -31,6 +31,7 @@
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$CategoryAll 	= $mCategory->findAll();			
 			$Resource 		= $mResource->findByKey($KResource);
+			$Category 		= $Resource->getCategory()->getCategory();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -38,8 +39,9 @@
 			$request->setProperty("Title", 		$Title);			
 			$request->setProperty("Active", 	"");
 			$request->setObject("ConfigName", 	$ConfigName);
-			$request->setObject("ConfigSlogan", $ConfigSlogan);
+			$request->setObject("ConfigSlogan", $ConfigSlogan);			
 			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setObject("Category", 	$Category);
 			$request->setObject("Resource", 	$Resource);			
 			
 			return self::statuses('CMD_DEFAULT');

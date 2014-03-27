@@ -33,16 +33,21 @@
 								<thead>
 									<tr>
 										<th width="32"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="200" class="left">TÊN</th>
-										<th class="right" width="120">GIÁ NHẬP</th>
-										<th class="right" width="120">GIÁ BÁN</th>										
-										<th width="40"><i class="glyphicons-edit"/></th>
-										<th width="40"><i class="glyphicons-bin"/></th>
+										<th width="90" class="left">DANH MỤC</th>
+										<th width="200" class="left">TÊN</th>										
+										<th class="right" width="60">GIÁ NHẬP</th>
+										<th class="right" width="60">GIÁ BÁN</th>										
+										<th width="32"><i class="glyphicons-edit"/></th>
+										<th width="32"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Resource ResourceAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Resource/getId"/></td>
+										<td class="left">
+											<span tal:content="Resource/getCategory/getCategory/getName"/> / 
+											<span tal:content="Resource/getCategory/getName"/>
+										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 												tal:attributes="id Resource/getId;
 																idcategory 	Resource/getIdCategory;
@@ -91,9 +96,14 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Danh mục</label>
+											<label class="control-label">Danh mục</label>											
 											<div class="controls">
-												<input id="IdCategory1" name="IdCategory1" type="text" class="form-control input-small"/>
+												<select name="IdCategory1" id="IdCategory1" style="width:80%;">
+													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
+														<span tal:content="Category1/getCategory/getName" /> / 
+														<span tal:content="Category1/getName" />
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -120,6 +130,7 @@
 												</select>
 											</div>											
 										</div>
+										<!--
 										<div class="form-group">
 											<label class="control-label">MadeBy</label>
 											<div class="controls">
@@ -144,6 +155,7 @@
 												<input id="Canvas1" name="Canvas1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										!-->
 										<div class="form-group">
 											<label class="control-label">Mô tả</label>
 											<div class="controls">
@@ -184,9 +196,15 @@
 										<div class="form-group">
 											<label class="control-label">Danh mục</label>
 											<div class="controls">
-												<input id="IdCategory2" name="IdCategory2" type="text" class="form-control input-small"/>
+												<select name="IdCategory2" id="IdCategory2" style="width:80%;">
+													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
+														<span tal:content="Category1/getCategory/getName" /> / 
+														<span tal:content="Category1/getName" />
+													</option>
+												</select>
 											</div>
 										</div>
+										
 										<div class="form-group">
 											<label class="control-label">Giá nhập</label>
 											<div class="controls">
@@ -211,6 +229,7 @@
 												</select>
 											</div>
 										</div>
+										<!--
 										<div class="form-group">
 											<label class="control-label">MadeBy</label>
 											<div class="controls">
@@ -235,6 +254,7 @@
 												<input id="Canvas2" name="Canvas2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										!-->
 										<div class="form-group">
 											<label class="control-label">Mô tả</label>
 											<div class="controls">
@@ -333,10 +353,10 @@
 					Data[5] = $('#Price11').val();
 					Data[6] = $('#Price21').val();										
 					Data[7] = $('#MadeIn1').val();										
-					Data[8] = $('#MadeBy1').val();										
-					Data[9] = $('#Type1').val();										
-					Data[10] = $('#Style1').val();										
-					Data[11] = $('#Canvas1').val();										
+					Data[8] = 0;//$('#MadeBy1').val();										
+					Data[9] = 0;//$('#Type1').val();										
+					Data[10] = 0;//$('#Style1').val();										
+					Data[11] = 0;//$('#Canvas1').val();										
 					Data[12] = $('#Note1').val();
 					var URL = "/object/ins/Resource";
 					$.ajax({
@@ -366,7 +386,7 @@
 				
 				$('#URLUpdButton').attr('alt', 	$(this).attr('id')	);
 				$('#Name2').attr('value', 		$(this).attr('name'));
-				$('#IdCategory2').attr('value', $(this).attr('idcategory'));
+				$('#IdCategory2').select2('val', $(this).attr('idcategory'));
 				$('#Code2').attr('value', 		$(this).attr('code'));
 				$('#Price12').attr('value', 	$(this).attr('price1'));
 				$('#Price22').attr('value', 	$(this).attr('price2'));				
@@ -412,10 +432,10 @@
 					Data[5] = $('#Price12').val();
 					Data[6] = $('#Price22').val();										
 					Data[7] = $('#MadeIn2').val();										
-					Data[8] = $('#MadeBy2').val();										
-					Data[9] = $('#Type2').val();										
-					Data[10] = $('#Style2').val();										
-					Data[11] = $('#Canvas2').val();										
+					Data[8] = 0;//$('#MadeBy2').val();
+					Data[9] = 0;//$('#Type2').val();
+					Data[10] = 0;//$('#Style2').val();
+					Data[11] = 0;//$('#Canvas2').val();
 					Data[12] = $('#Note2').val();
 									
 					var URL = "/object/upd/Resource";
