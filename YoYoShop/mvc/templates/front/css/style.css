@@ -300,3 +300,33 @@ a:hover.no-underline{
 .footer a:hover{
     color:#333;
 }
+
+.sale-thumbnail {
+	position: relative;
+}
+
+.sale-thumbnail a {
+	text-decoration: none;
+	color: #0474DD;
+}
+
+.sale-thumbnail .sale-tag {
+	position: absolute;
+	background: url('/mvc/templates/front/img/sale_tag.png') no-repeat center center transparent;
+	border-radius: 20px;
+	right: 5px;
+	top: 5px;
+	font-size: 18px;
+	padding: 20px 10px;
+	color: white;
+}
+
+.caption .price-old {
+	text-decoration: line-through;
+	font-size: 15px;
+}
+
+.caption .price-new {
+	color: red;
+	font-size: 20px;
+}
