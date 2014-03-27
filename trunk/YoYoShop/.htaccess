@@ -93,10 +93,5 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin/selling$ 											?cmd=ASelling [L]
-RewriteRule ^admin/selling/saving$ 										?cmd=ASellingSaving [L]
-RewriteRule ^admin/selling/([0-9]+)$ 									?cmd=ASelling&IdDomain=$1 [L]
-RewriteRule ^admin/selling/([0-9]+)/next$ 								?cmd=ASelling&IdDomain=$1&doAction=next [L]
-RewriteRule ^admin/selling/([0-9]+)/back$ 								?cmd=ASelling&IdDomain=$1&doAction=back [L]
-RewriteRule ^admin/selling/([0-9]+)/print/template$ 					?cmd=ASellingPrintTemplate&IdDomain=$1 [L]
-RewriteRule ^admin/selling/([0-9]+)/print/report$ 						?cmd=ASellingPrintReport&IdDomain=$1 [L]
-RewriteRule ^admin/selling/([0-9]+)/([0-9]+)$ 							?cmd=ASellingCustomer&IdDomain=$1&IdCustomer=$2 [L]
+RewriteRule ^admin/selling/categoryp/([0-9]+)/load$ 					?cmd=ASellingCategoryPLoad&IdCategoryP=$1 [L]
+RewriteRule ^admin/selling/categorys/([0-9]+)/load$ 					?cmd=ASellingCategorySLoad&IdCategoryS=$1 [L]
