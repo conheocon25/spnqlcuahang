@@ -11,8 +11,7 @@
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
-		<command name="FDealer" 		type="public"><view>FDealer</view></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
@@ -42,10 +41,9 @@
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->
 		<command name="ASelling">				<view>ASelling				</view></command>
-		<command name="ASellingSaving">			<view>ASellingSaving			</view></command>
-		<command name="ASellingCustomer">		<view>ASellingCustomer		</view></command>
-		<command name="ASellingPrintTemplate">	<view>ASellingPrintTemplate	</view></command>
-									
+		<command name="ASellingCategoryPLoad">	<view>ASellingCategoryPLoad	</view></command>
+		<command name="ASellingCategorySLoad">	<view>ASellingCategorySLoad	</view></command>
+											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
