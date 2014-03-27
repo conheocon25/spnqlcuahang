@@ -50,6 +50,11 @@
 				</a>
 
 				<div class="nav-collapse">
+					<div class="pull-left" style="padding:5px 0;">
+						<a href="/trang-chu">
+							<img src="/mvc/templates/front/img/logo.png" height="100%"/>
+						</a>
+					</div>
 					<ul class="nav pull-right">
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Tài khoản <b class="caret"></b></a>
@@ -97,14 +102,12 @@
 					<a href="/gioi-thieu">Giới thiệu</a>
 				</li>
 				<li class="dropdown" tal:repeat="Category CategoryAll">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						<span tal:content="Category/getName"/> <b class="caret"></b>
-						<ul class="dropdown-menu" id="menu1">							
-							<li tal:repeat="Category1 Category/getCategoryAll">
-								<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
-							</li>
-						</ul>
-					</a>
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> <span tal:content="Category/getName"/> <b class="caret"></b></a>
+					<ul class="dropdown-menu">							
+						<li tal:repeat="Category1 Category/getCategoryAll">
+							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
+						</li>
+					</ul>
 				</li>
 				<li tal:attributes="class php:Active=='Contact'?'active':''">
 					<a href="/lien-he">Liên hệ</a>
