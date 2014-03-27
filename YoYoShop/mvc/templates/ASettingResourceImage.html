@@ -25,7 +25,8 @@
 								<thead>
 									<tr>
 										<th width="32"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="200" class="left">TÊN</th>										
+										<th width="90" class="left">TÊN</th>
+										<th class="left">URL</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -41,6 +42,7 @@
 												" 
 												tal:content="Image/getName"/>
 										</td>
+										<td><span tal:content="Image/getURL"/></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Resource/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>

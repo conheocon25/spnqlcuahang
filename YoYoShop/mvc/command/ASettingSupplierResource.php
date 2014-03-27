@@ -19,6 +19,7 @@
 			//-------------------------------------------------------------
 			$mSupplier 	= new \MVC\Mapper\Supplier();
 			$mResource 	= new \MVC\Mapper\Resource();
+			$mCategory1	= new \MVC\Mapper\Category1();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -38,6 +39,7 @@
 			
 			$ResourceAll1 = $mResource->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Supplier->getResourceAll()->count(), $Config->getValue(), $Supplier->getURLResource() );
+			$CategoryAll1 = $mCategory1->findAll();			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -47,6 +49,7 @@
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('Navigation'	, $Navigation);
 			
+			$request->setObject('CategoryAll1'	, $CategoryAll1);
 			$request->setObject('ResourceAll1'	, $ResourceAll1);
 			$request->setObject('Supplier'		, $Supplier);
 			$request->setObject('PN'			, $PN);

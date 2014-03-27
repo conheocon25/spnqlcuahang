@@ -43,13 +43,14 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 				) 
 				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
-		$findByCategoryStmt = sprintf("select * from %s where idcategory=?", $tblResource);
+		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblResource);
+		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblResource);
 		
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
 							WHERE idsupplier=:idsupplier
+							ORDER BY idcategory, name
 							LIMIT :start,:max
 				", $tblResource);
 		

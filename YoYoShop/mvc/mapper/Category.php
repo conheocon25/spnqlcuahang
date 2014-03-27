@@ -14,6 +14,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategory);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -21,7 +22,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-									
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);							
     } 
     function getCollection( array $raw ) {return new CategoryCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -64,6 +65,16 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
-    }	
+    }
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
 }
 ?>
