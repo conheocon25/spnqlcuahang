@@ -82,6 +82,12 @@
 		<command name="AImportSupplier"><view>AImportSupplier</view></command>
 		<command name="AImportSupplierOrder"><view>AImportSupplierOrder</view></command>
 		<command name="AImportSupplierOrderPrint"><view>AImportSupplierOrderPrint</view></command>
-				
+		
+		<!-- ============================================================================== -->
+		<!-- SAVING				 															-->		
+		<!-- ============================================================================== -->
+		<command name="ASaving"><view>ASaving</view></command>
+		<command name="ASavingDetail"><view>ASavingDetail</view></command>
+		
 	</control>
 </options>

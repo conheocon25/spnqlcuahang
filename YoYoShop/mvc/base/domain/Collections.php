@@ -20,5 +20,7 @@ interface GuestCollection 			extends \Iterator {function add( Object $Guest);		}
 interface PostCollection 			extends \Iterator {function add( Object $Post);			}
 interface PresentationCollection 	extends \Iterator {function add( Object $Presentation);	}
 interface SlideCollection 			extends \Iterator {function add( Object $Slide);		}
+interface SaveCollection 			extends \Iterator {function add( Object $Save);			}
+interface SaveResourceCollection 	extends \Iterator {function add( Object $SaveResource);	}
 
 ?>

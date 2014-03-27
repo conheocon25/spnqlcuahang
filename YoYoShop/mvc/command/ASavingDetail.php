@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class AImport extends Command {
+	class ASavingDetail extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,34 +11,39 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-									
+			$IdSave = $request->getProperty('IdSave');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mSave 		= new \MVC\Mapper\Save();
 			$mConfig 	= new \MVC\Mapper\Config();
+			$mResource 	= new \MVC\Mapper\Resource();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
+			$ResourceAll= $mResource->findAll();
+			$SaveAll 	= $mSave->findAll();
+			$Save 		= $mSave->find($IdSave);
+			
+			$Title = mb_strtoupper($Save->getName(), 'UTF8');
+			$Navigation = array(
+				array("KHUYẾN MÃI", 	"/admin/saving")
+			);						
+			$ConfigName = $mConfig->findByName("NAME");
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title 		= "NHẬP HÀNG";
-			$Navigation = array();
-			$ConfigName	= $mConfig->findByName("NAME");
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Import');
-			$request->setObject('Navigation'	, $Navigation);
+			$request->setProperty('ActiveAdmin'	, 'Saving');
+			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('SupplierAll'	, $SupplierAll);			
-						
+			$request->setObject('ResourceAll'	, $ResourceAll);
+			$request->setObject('SaveAll'		, $SaveAll);
+			$request->setObject('Save'			, $Save);
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

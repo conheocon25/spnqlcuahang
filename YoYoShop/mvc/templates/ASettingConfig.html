@@ -76,7 +76,7 @@
 										<label class="control-label">Trang chủ - Presentation</label>
 										<div class="controls">											
 											<select name="ConfigPHome2" id="ConfigPHome2" style="width:80%;" tal:attributes="data-id ConfigPHome/getId">
-												<option tal:repeat="Presentation PresentationAll" tal:attributes="value ConfigPHome/getId; selected php:ConfigPHome->getValue()==Presentation->getId()?'selected':''">
+												<option tal:repeat="Presentation PresentationAll" tal:attributes="value Presentation/getId; selected php:ConfigPHome->getValue()==Presentation->getId()?'selected':''">
 													<span tal:content="Presentation/getName" />
 												</option>												
 											</select>
@@ -256,6 +256,7 @@
 				Data11[0] = $('#ConfigPHome2').attr('data-id');
 				Data11[1] = "PRESENTATION_HOME";
 				Data11[2] = $('#ConfigPHome2').val();
+				
 				$.ajax({
 					type: "POST",
 					data: {Data:Data11},

@@ -40,7 +40,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								(?) as idorder,
 								P.id as idresource,
 								ODI.count,
-								IFNULL(ODI.price, P.price) as price
+								IFNULL(ODI.price, P.price1) as price
 							FROM 
 							(
 								SELECT *

@@ -21,8 +21,7 @@
 									<tr>
 										<th width="40">STT</th>
 										<th class="left">TÊN</th>
-										<th class="right" width="80">SỐ LƯỢNG</th>
-										<th class="left" width="80">ĐƠN VỊ</th>
+										<th class="right" width="80">SỐ LƯỢNG</th>										
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
 									</tr>
@@ -31,13 +30,12 @@
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
-										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
-										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
+										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>										
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 									</tr>
 									<tr>
-										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td colspan="4"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
 										<td><div class="text-right" tal:content="Order/getValuePrint"/></td>
 									</tr>
 								</tbody>																
@@ -144,7 +142,7 @@
 					Data[3] = $('#Count2').val();
 					Data[4] = $('#Price2').val();
 					
-					var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+					var URL = "/admin/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
 					$.ajax({
 						type: "POST",					
 						url: URL,

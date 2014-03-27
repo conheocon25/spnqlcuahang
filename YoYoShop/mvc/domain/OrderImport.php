@@ -85,8 +85,8 @@ class OrderImport extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/import/".$this->getIdSupplier()."/".$this->getId()."/print";}	
-	function getURLDetail(){return "/import/".$this->getIdSupplier()."/".$this->getId();}
+	function getURLPrint(){return 	"/admin/import/".$this->getIdSupplier()."/".$this->getId()."/print";}	
+	function getURLDetail(){return 	"/admin/import/".$this->getIdSupplier()."/".$this->getId();}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
