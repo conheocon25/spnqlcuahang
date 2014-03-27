@@ -17,7 +17,9 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mOrderImport 	= new \MVC\Mapper\OrderImport();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,7 +32,7 @@
 			//-------------------------------------------------------------									
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation = array(
-				array("NHẬP HÀNG", "/import")				
+				array("NHẬP HÀNG", "/admin/import")				
 			);
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");

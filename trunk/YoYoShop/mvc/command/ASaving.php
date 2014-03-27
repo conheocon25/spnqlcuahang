@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class AImportSupplierOrder extends Command {
+	class ASaving extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,42 +11,31 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSupplier 	= $request->getProperty('IdSupplier');
-			$IdOrder 		= $request->getProperty('IdOrder');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mOrderImport 	= new \MVC\Mapper\OrderImport();
-			$mSupplier 		= new \MVC\Mapper\Supplier();
-			$mConfig 		= new \MVC\Mapper\Config();
+			$mSave 		= new \MVC\Mapper\Save();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$Supplier 	= $mSupplier->find($IdSupplier);
-			$Order 		= $mOrderImport->find($IdOrder);
-			$ConfigName	= $mConfig->findByName("NAME");
-			
+			//-------------------------------------------------------------						
+			$SaveAll = $mSave->findAll();			
+						
+			$Title = "KHUYẾN MÃI";
+			$Navigation = array();						
+			$ConfigName = $mConfig->findByName("NAME");
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = $Order->getDatePrint();
-			$Navigation = array(
-				array("NHẬP HÀNG", "/admin/import"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())
-			);
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);			
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Saving');
 			$request->setObject('Navigation'	, $Navigation);
-									
+			$request->setObject('SaveAll'		, $SaveAll);
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Order'			, $Order);
-			$request->setObject('Supplier'		, $Supplier);
-			
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
