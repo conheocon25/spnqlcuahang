@@ -71,9 +71,14 @@
 						</div>
 					</div>
 					<div class="span6 product-detail">
+						<h3>Đặt hàng trực tiếp</h3>
+						<h2>Mr. Tâm: <small>0909 123 456</small></h2>
+						<h2>Mrs. Quyên: <small>0909 09 09 09</small></h2>
+						<p></p>
+						<h3></h3>
 						<div class="fb-comments" 
 							data-href="http://yoyoshop.quanly-cuahang.com" 
-							data-width="600" 
+							data-width="" 
 							data-numposts="5" 
 							data-colorscheme="light">						
 						</div>
@@ -93,6 +98,9 @@
 		js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+	$(document).ready(function(){
+		$('.fb-comments').attr('data-width', $('.product-detail').width());
+	});
 	</script>
   </body>
 </html>

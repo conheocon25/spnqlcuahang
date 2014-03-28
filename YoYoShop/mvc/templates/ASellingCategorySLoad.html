@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 	<body>		
-		<div id="ResourceAll" class="col-3">
-			<div class="accordion widget-box" id="collapse-group">
-				<div class="accordion-group widget-box">
-					<div class="accordion-heading">
-						<div class="widget-title">
-							<a data-parent="#collapse-group" data-toggle="collapse">
-								<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="Category/getName"/>
-							</a>
-						</div>
-					</div>
-					<div class="collapse accordion-body">
-						<div class="widget-content nopadding size-12">
-							<ul class="activity-list">
-								<li tal:repeat="Resource Category/getResourceAll">
-									<a class="course-item">
-										<button class="Course pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button>
-										<strong tal:content="Resource/getName"/>
-										<button class="Course pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button>
-									</a>											
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+		<div id="ResourceAll" class="widget-box">
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr tal:repeat="Resource Category/getResourceAll">
+							<td class="taskDesc"><button class="Course pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button></td>
+							<td class="taskStatus"><strong tal:content="Resource/getName"/></td>
+							<td class="taskDesc"><button class="Course pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</body>
