@@ -19,6 +19,7 @@
 			$(".CategoryS").click(function(){
 				var IdCategory = $(this).attr('alt');				
 				$("#ResourceAll").load("/admin/selling/categorys/"+IdCategory+"/load");
+				$(this).toggleClass('active').siblings().removeClass('active');
 				//alert(IdCategory);							
 				//$("#SearchName").focus();
 			});

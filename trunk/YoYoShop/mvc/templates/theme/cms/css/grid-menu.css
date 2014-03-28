@@ -4,10 +4,11 @@
 	}
 	
 	.gallery-masonry .item {
-		width: 50px !important;
+		width: 150px !important;
 		cursor: pointer;
 		background-color: rgba(0, 0, 0, .7);
 		margin: 2px;
+		text-align: center;
 	}
 	
 	.gallery-masonry .item a { font-size: 12px; color: white; }
