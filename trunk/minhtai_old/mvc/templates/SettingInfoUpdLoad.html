@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingInfoUpdLoad.js"/>
+	</head>
+<body>
+	<div id="PageSettingInfoUpdLoad" data-role="page">
+		<div data-role="header" data-theme="d">
+			<h1 tal:content="Title"/>
+			<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="FormSettingInfoUpdLoad" tal:attributes="action App/getURLSettingInfoUpdExe" method="post" data-ajax="false" class="ui-body ui-body-a ui-corner-all">
+				<fieldset>
+					<div data-role="fieldcontain">
+						<label for="Name" class="text">Tên:</label>
+						<input class="required minlength:5" id="Name" name="Name" type="text" tal:attributes="value App/getName"/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Phone" class="text">Điện thoại:</label>
+						<input class="required minlength:10" id="Phone" name="Phone" type="text" tal:attributes="value App/getPhone"/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Address" class="text">Địa chỉ:</label>
+						<input class="required" id="Address" name="Address" type="text" tal:attributes="value App/getAddress"/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Email" class="text">Email:</label>
+						<input class="required email" id="Email" name="Email" type="text" tal:attributes="value App/getEmail"/>
+					</div>
+				</fieldset>
+				<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Lưu</button>
+			</form>
+		</div>	
+	</div>
+</body>
+</html>

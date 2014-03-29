@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingPondSession.js"/>
+	</head>
+<body>
+	<div id="main" data-role="page" class="type-interior" />
+	<div tal:attributes="id Pond/getIdPrint" data-role="page" class="session type-interior" tal:repeat="Pond Ponds">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a data-ajax="false" tal:attributes="href User/getApp/getURLSettingPond">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<ul data-role="listview" data-inset="true">
+					<li tal:repeat="Session Pond/getSessions">
+						<a data-ajax="false" tal:attributes="href Session/getURLUpdLoad">							
+							Bắt đầu <span tal:content="Session/getDateStartPrint"/>
+							kết thúc <span tal:content="Session/getDateEndPrint"/> <br/>
+							loại hình nuôi <span tal:content="Session/getTypePrint"/> <br/>
+							số lượng thả <span tal:content="Session/getCountStartPrint"/>
+						</a>
+						<a tal:attributes="href Session/getURLDelLoad" data-theme="c" data-icon="delete" />
+					</li>
+				</ul>
+				<a data-ajax="false" tal:attributes="href Pond/getURLSessionInsLoad" data-role="button" data-icon="plus" data-theme="b">THÊM LƯỢT NUÔI</a>
+			</div><!--/content-primary -->
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>CÁC AO NUÔI</h3>
+					<ul data-role="listview" data-theme="c">
+						<li tal:attributes="data-theme php: Pond1->getId()==Pond->getId() ? 'a' : 'c'" tal:repeat="Pond1 Ponds1">
+							<a data-transition="none" tal:attributes="href php:'#'.Pond1->getIdPrint()">
+								<span tal:content="repeat/Pond1/number" />. <span tal:content="Pond1/getName" />
+							</a>
+						</li>
+					</ul>
+					<a data-ajax="false" tal:attributes="href Pond/getURLUpdLoad" data-role="button" data-icon="gear" data-theme="b">CẬP NHẬT</a>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

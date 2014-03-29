@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/LogPondUpdLoad.js"/>
+	</head>
+<body>
+	<div id="PagePondLogUpdLoad" data-role="page">
+		<div data-role="header" data-theme="d">
+			<h1 tal:content="Title"/>
+			<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="FormLogPondUpdLoad" data-ajax="false" tal:attributes="action URL" method="post" class="ui-body ui-body-a ui-corner-all">
+				<fieldset>
+					<div data-role="fieldcontain">
+						<label for="Count" class="text">Số lượng hao hụt:</label>
+						<input name="Count" id="Count" tal:attributes="value Value" />
+					</div>
+				</fieldset>
+				<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Lưu</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

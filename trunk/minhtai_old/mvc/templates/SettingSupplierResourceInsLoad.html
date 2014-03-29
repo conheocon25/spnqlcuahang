@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingSupplierResourceInsLoad.js"/>
+	</head>
+<body>
+	<div id="PageSettingSupplierResourceInsLoad" data-role="page">
+		<div data-role="header" data-theme="d">
+			<h1 tal:content="Title"/>
+			<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="FormSettingSupplierResourceInsLoad" tal:attributes="action Supplier/getURLResourceInsExe" method="post" data-ajax="false" data-mini="true"  class="ui-body ui-body-a ui-corner-all">
+				<fieldset>
+					<div data-role="fieldcontain">
+						<label for="Name" class="text">Tên:</label>
+						<input class="required" id="Name" name="Name" type="text" />
+					</div>				
+					<div data-role="fieldcontain">
+						<label for="IdCategory" class="text">Danh mục:</label>
+						<select name="IdCategory" id="IdCategory">
+							<option tal:repeat="Category Categories" tal:attributes="value Category/getId">
+								<span tal:content="Category/getName" />
+							</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="IdUnit" class="text">Đơn vị:</label>
+						<select name="IdUnit" id="IdUnit">
+							<option tal:repeat="Unit Units" tal:attributes="value Unit/getId">
+								<span tal:content="Unit/getName" />
+							</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Size" class="text">Kích thước:</label>
+						<input class="required" id="Size" name="Size" type="text" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Price1" class="text">Giá nhập:</label>
+						<input class="required" id="Price1" name="Price1" type="text" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Price2" class="text">Giá xuất:</label>
+						<input class="required" id="Price2" name="Price2" type="text" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="Note" class="text">Mô tả:</label>
+						<input id="Note" name="Note" type="text" />
+					</div>				
+				</fieldset>
+				<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Lưu</button>
+			</form>
+		</div>	
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+	<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.validate.min.js"/>
+	<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.validate.messages_vi.js"/>
+	
+	<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.jqcrypt.pack.js"></script>
+	<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SigninLoad.js"/>
+</head>
+<body>
+	<div data-role="page" id="PageSignin">
+		<div data-role="header" data-theme="d">
+			<h1 tal:content="Title"/>
+			<a href="#" data-icon="back" data-rel="back" data-role="button">Lui</a>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="FormSignin" tal:attributes="action '/signin/exe'" method="post" class="ui-body ui-body-a ui-corner-all">
+				<fieldset>
+					<div data-role="fieldcontain">
+						<label for="Email" class="text">Email:</label>
+						<input id="Email" name="Email" type="text" class="email required" minlength="5"/>
+					</div>
+				</fieldset>	
+				<fieldset>	
+					<div data-role="fieldcontain">
+						<label for="Pass" class="text">Mật khẩu:</label>
+						<input id="Pass" name="Pass" type="Password" class="required" minlength="5"/>
+					</div>				
+				</fieldset>
+				<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Đăng nhập</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

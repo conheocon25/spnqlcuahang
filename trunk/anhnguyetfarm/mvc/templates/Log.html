@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Log.js"/>		
+	</head>
+<body>
+	<div id="main" data-role="page" class="type-interior"/>
+	
+	<!-- Pond -->
+	<div tal:attributes="id Pond/getIdPrint" data-role="page" class="log type-interior" tal:repeat="Pond Ponds">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="php:'NHẬT KÝ '.Pond->getName()"/>
+			<a tal:attributes="href User/getApp/getURLApp" data-icon="back">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSetting" data-ajax="false" data-icon="gear" data-transition="none">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true">
+					<li tal:repeat="Log Pond/getLogs">
+						<a data-ajax="false" tal:attributes="href Log/getURLUpdLoad">
+							<span tal:content="repeat/Log/number"/>. (<span tal:content="Log/getDatePrint"/>)
+							<span class="ui-li-aside" tal:content="Log/getCountPrint" />
+						</a>
+						<a tal:attributes="href Log/getURLDelLoad" data-theme="c" data-icon="delete" />
+					</li>					
+				</ul>
+				<a data-theme="b" data-ajax="false" tal:attributes="href Pond/getURLLogInsLoad" data-role="button" data-icon="plus">THÊM NHẬT KÝ</a>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>NHÀ CUNG CẤP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Pond1 Ponds1" tal:attributes="data-theme php:Pond->getId()==Pond1->getId() ? 'a' : 'c'">
+							<a data-transition="none" tal:attributes="href php:'#'.Pond1->getIdPrint()">
+								<span tal:content="repeat/Pond1/number"/>. <span tal:content="Pond1/getName"/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>	
+</body>
+</html>

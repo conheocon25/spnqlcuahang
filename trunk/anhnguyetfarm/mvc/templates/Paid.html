@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Paid.js"/>		
+	</head>
+<body>
+	<div id="paid" data-role="page" class="type-interior" />
+	<div id="pond" data-role="page" class="type-interior">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1>CHI CHO AO</h1>
+			<a tal:attributes="href User/getApp/getURLApp" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSettingPond" data-icon="gear" data-transition="none" data-ajax="false">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d" data-filter="true" data-filter-placeholder="Gõ tìm ao">
+					<li tal:repeat="Pond Ponds">
+						<a data-ajax="false" tal:attributes="href Pond/getURLPaid">
+							<span tal:content="repeat/Pond/number"/>. <span tal:content="Pond/getName"/>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>CHI TRẢ</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-transition="none" tal:attributes="href User/getApp/getURLPaidSupplier">1. NHÀ CUNG CẤP</a></li>
+						<li data-theme="a"><a data-transition="none" tal:attributes="href User/getApp/getURLPaidPond">2. AO NUÔI</a></li>
+					</ul>					
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+	
+	<div id="supplier" data-role="page" class="type-interior">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1>CHI TRẢ NHÀ CUNG CẤP</h1>			
+			<a tal:attributes="href User/getApp/getURLApp" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSettingSupplier" data-icon="gear" data-transition="none" data-ajax="false">THIẾT LẬP</a>			
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="d" data-filter="true" data-filter-placeholder="Gõ tìm nhà cung cấp">
+					<li tal:repeat="Supplier Suppliers">
+						<a data-ajax="false" tal:attributes="href Supplier/getURLPaid">
+							<span tal:content="repeat/Supplier/number"/>. <span tal:content="Supplier/getName"/>
+						</a>
+					</li>
+				</ul>			
+			</div>
+			<div class="content-secondary">				
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>CHI TRẢ</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li data-theme="a"><a data-transition="none" tal:attributes="href User/getApp/getURLPaidSupplier">1. NHÀ CUNG CẤP</a></li>
+						<li><a data-transition="none" tal:attributes="href User/getApp/getURLPaidPond">2. AO NUÔI</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>		
+</body>
+</html>

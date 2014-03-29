@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		
+	</head>
+<body>
+	
+	<div tal:attributes="id OrderExport/getIdPrint" data-role="page" class="order type-interior" >
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="php: 'ĐƠN HÀNG CỦA '.Customer->getName()"/>
+			<a tal:attributes="href Customer/getURLSelling" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSettingCustomer" data-ajax="false" data-icon="gear" data-transition="none">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true">
+					<li>
+						<a data-ajax="false" tal:attributes="href OrderExport/getURLUpdLoad">
+							<h3>XUẤT TỪ <span tal:content="OrderExport/getStore/getName"/></h3>
+							<span class="ui-li-aside" tal:content="OrderExport/getDatePrint"/>
+							<p><span tal:content="OrderExport/getNote"/></p>
+						</a>
+						<a data-theme="d" target="blank" tal:attributes="href OrderExport/getURLPrint" data-icon="gear" />
+					</li>
+					<li data-role="list-divider">
+						CHI TIẾT GỌI <span class="ui-li-aside" tal:content="OrderExport/getValue1Print" />
+					</li>
+					<li tal:repeat="Detail OrderExport/getDetails">
+						<a tal:attributes="href Detail/getURLUpdLoad">
+							<strong>
+								<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+								<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+							</strong>
+							<span class="ui-li-aside" tal:content="Detail/getValuePrint" />
+						</a>
+						<a data-theme="d" tal:attributes="href Detail/getURLDelLoad" data-icon="delete" />
+					</li>
+					<li data-role="list-divider">
+						ĐƯỢC KHUYẾN MÃI	<span class="ui-li-aside" tal:content="OrderExport/getValue2Print" />
+					</li>
+					<li tal:repeat="Detail OrderExport/getDetailExtras">
+						<a rel="external" tal:attributes="href Detail/getURLUpdLoad">
+							<strong>
+								<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+								<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+							</strong>
+							<span class="ui-li-aside" tal:content="Detail/getValuePrint" />
+						</a>
+						<a data-theme="d" href="#" data-icon="delete" />
+					</li>
+					<li data-role="list-divider">
+						<strong>TỔNG CỘNG:<span class="ui-li-aside" tal:content="OrderExport/getValuePrint"/>
+						<BR/>
+						( <span tal:content="OrderExport/getValueStrPrint"/> )
+						</strong>
+					</li>
+				</ul>				
+				<a data-theme="b" data-ajax="false" tal:attributes="href OrderExport/getURLCallLoad" data-role="button" data-icon="plus">GỌI THÊM</a>
+				
+			</div><!--/content-primary -->
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>CÁC ĐƠN HÀNG</h3>
+						<div align="center" data-role="header" data-theme="d" >
+							<div data-role="navbar" data-theme="f" >
+								<b tal:repeat="Page Pages/getPages">								
+									<a tal:attributes="data-theme php:Page->getId()==CurrentPage?'a':'f';href Page/getURL;" tal:content="Page/getName"/>								
+								</b>
+							</div>					
+						</div>					
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="OE1 OEs1" tal:attributes="data-theme php:OrderExport->getId()==OE1->getId()?'a':'c'">
+							<a data-transition="none" tal:attributes="href OE1/getURLDetail" tal:content="OE1/getDatePrint"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

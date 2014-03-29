@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	</head>
+<body>						
+	<div id="info" data-role="page" class="type-interior">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a href="#" data-icon="back" data-rel="back">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>			
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<p>Bạn thật sự muốn xóa vụ nuôi này !?</p>
+				<form data-ajax="false" tal:attributes="action PondSession/getURLDelExe" method="post" class="ui-body ui-body-b ui-corner-all">
+					<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Đồng ý</button>
+				</form>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>THIẾT LẬP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingInfo">THÔNG TIN</a></li>
+						<li data-theme="a"><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingPond">AO NUÔI</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingSupplier">NHÀ CUNG CẤP</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingStore">KHO HÀNG</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingCategory">DANH MỤC</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingUnit">ĐƠN VỊ TÍNH</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>	
+</body>
+</html>

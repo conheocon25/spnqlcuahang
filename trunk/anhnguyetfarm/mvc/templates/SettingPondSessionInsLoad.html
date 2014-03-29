@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingPondSessionInsLoad.js"/>
+	</head>
+<body>						
+	<div id="info" data-role="page" class="type-interior">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a href="#" data-icon="back" data-rel="back">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<form data-ajax="false" id="FormSettingPondSessionInsLoad" tal:attributes="action Pond/getURLSessionInsExe" method="post" class="ui-body ui-body-b ui-corner-all">
+					<fieldset>
+						<div data-role="fieldcontain">
+							<label for="Name" class="text">Chủ đầu tư:</label>
+							<input id="Name" name="Name" type="text" class="required" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Type" class="text">Loại hình:</label>
+							<select name="Type" id="Type" data-native-menu="false">
+								<option value="1">THƯƠNG MẠI</option>
+								<option value="2">GIA CÔNG</option>
+							</select>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="EmployeeName" class="text">Quản lý:</label>
+							<input id="EmployeeName" name="EmployeeName" type="text" class="required" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="EmployeePhone" class="text">Điện thoại:</label>
+							<input id="EmployeePhone" name="EmployeePhone" type="text" class="required" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="DateStart" class="text">Bắt đầu:</label>
+							<input id="DateStart" name="DateStart" type="text" class="required minlength:5" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="DateEnd" class="text">Kết thúc:</label>
+							<input id="DateEnd" name="DateEnd" type="text" class="required minlength:5" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="CountStart" class="text">Số lượng con giống:</label>
+							<input id="CountStart" name="CountStart" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="ValueStart" class="text">Tiền con giống:</label>
+							<input id="ValueStart" name="ValueStart" type="text" class="required" value="0"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="SampleStart" class="text">Mẫu ban đầu:</label>
+							<input id="SampleStart" name="SampleStart" type="text" class="required" value="0"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="ShipStart" class="text">Vận chuyển giống:</label>
+							<input id="ShipStart" name="ShipStart" type="text" class="required" value="0"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="CountExport" class="text">Số lượng xuất:</label>
+							<input id="CountExport" name="CountExport" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="PriceExport" class="text">Giá xuất:</label>
+							<input id="PriceExport" name="PriceExport" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="BankRate" class="text">Lãi suất ngân hàng:</label>
+							<input id="BankRate" name="BankRate" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="CountWaste" class="text">Số lượng cá ngộp:</label>
+							<input id="CountWaste" name="CountWaste" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="PriceWaste" class="text">Giá cá ngộp:</label>
+							<input id="PriceWaste" name="PriceWaste" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="CountRemain" class="text">Số lượng cá vét:</label>
+							<input id="CountRemain" name="CountRemain" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="PriceRemain" class="text">Giá cá vét:</label>
+							<input id="PriceRemain" name="PriceRemain" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Net" class="text">Công Đoàn + Lưới:</label>
+							<input id="Net" name="Net" type="text" class="required" value="0" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Tip" class="text">Tiền thưởng:</label>
+							<input id="Tip" name="Tip" type="text" class="required" value="0" />
+						</div>
+					</fieldset>
+					<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Lưu</button>
+				</form>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>THIẾT LẬP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingInfo">THÔNG TIN</a></li>
+						<li data-theme="a"><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingPond">AO NUÔI</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingSupplier">NHÀ CUNG CẤP</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingStore">KHO HÀNG</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingCategory">DANH MỤC</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingUnit">ĐƠN VỊ TÍNH</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>	
+</body>
+</html>

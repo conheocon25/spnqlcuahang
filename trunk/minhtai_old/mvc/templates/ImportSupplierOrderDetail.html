@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+	</head>
+<body>
+	
+	<div tal:attributes="id OrderImport/getIdPrint" data-role="page" class="order type-interior">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="php: 'ĐƠN HÀNG CỦA '.Supplier->getName()"/>
+			<a tal:attributes="href Supplier/getURLImport" data-icon="back" data-ajax="false">LUI</a>
+			<a tal:attributes="href User/getApp/getURLSettingSupplier" data-ajax="false" data-icon="gear" data-transition="none">THIẾT LẬP</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<ul data-role="listview" data-theme="a" data-dividertheme="d" data-inset="true">
+					<li>
+						<a data-ajax="false" tal:attributes="href OrderImport/getURLUpdLoad">
+							<h3>NHẬP VÀO <span tal:content="OrderImport/getStore/getName"/></h3>
+							<span class="ui-li-aside" tal:content="OrderImport/getDatePrint"/>
+							<p><span tal:content="OrderImport/getNote"/></p>
+						</a>
+						<a data-theme="d" href="#" data-icon="gear" />
+					</li>
+				</ul>
+				<ul data-filter="true" data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true" data-filter-placeholder="Gõ để lọc tìm...">
+					<li tal:repeat="Detail OrderImport/getDetails">
+						<a tal:attributes="href Detail/getURLUpdLoad">
+							<h3>
+								<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+								<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+							</h3>
+							<span class="ui-li-count" tal:content="Detail/getValuePrint" />
+						</a>
+					</li>					
+				</ul>
+				<ul data-role="listview" data-theme="c" data-dividertheme="d" data-inset="true">
+					<li data-theme="b">
+						<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="OrderImport/getValuePrint"/>
+						<p>( <span tal:content="OrderImport/getValueStrPrint"/> )</p>
+					</li>
+				</ul>
+			</div><!--/content-primary -->
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>CÁC ĐƠN HÀNG</h3>
+					<div align="center" data-role="header" data-theme="d" >
+						<div data-role="navbar" data-theme="f" >
+							<b data-theme="a"  tal:repeat="Page Pages/getPages">
+								 <a tal:attributes="data-theme php:Page->getId()==OrderImport->getCurrentImportPage()?'a':'f';href Page/getURL;" tal:content="Page/getName"/>
+							</b>
+						</div>
+					</div>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="OI1 OIs" tal:attributes="data-theme php:OrderImport->getId()==OI1->getId()?'a':'c'">
+							<a data-transition="none" tal:attributes="href OI1/getURLDetail" tal:content="OI1/getDatePrint"/>
+						</li>
+					</ul>					
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

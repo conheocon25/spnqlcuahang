@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Home.js"/>
+	</head>
+<body>
+	<div data-role="page" class="type-interior" id="PageHome">
+		<div data-role="header" data-position="fixed" data-theme="f">
+			<h1 tal:content="Title" />
+			<a data-ajax="false" tal:attributes="href '/signin/load'" data-role="button" data-icon="star">Đăng nhập</a>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">				
+				<div tal:condition="php:Feedback !EQ 'error'" data-role="collapsible" data-inset="true" data-collapsed="false" data-theme="a" data-content-theme="d">
+					<h3>GIỚI THIỆU</h3>
+					<ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="b">
+						<li data-role="list-divider">Là một hệ thống quản lý<span class="ui-li-count">1</span></li>
+						<li>Hỗ trợ giúp điều hành các hoạt động quản lý một đại lý bán hàng.</li>
+						<li data-role="list-divider">Thiết kế trên nền tảng Web<span class="ui-li-count">2</span></li>
+						<li>Nhanh, gọn, nhẹ, chạy tốt trên nền tảng di động như Android, IOS.</li>
+						<li data-role="list-divider">Giao diện thân thiện và thuần Việt<span class="ui-li-count">3</span></li>
+						<li>Hệ thống nút bấm, menu, nội dung sao cho dễ dùng và tiện lợi cho người sử dụng.</li>
+						<li data-role="list-divider">Sử dụng mọi lúc mọi nơi<span class="ui-li-count">4</span></li>
+						<li>Dù ở đâu và bất kì chỗ nào Doanh Nghiệp vần có thể theo dõi và điều hành được quán/chuỗi quán của mình.</li>
+					</ul>
+				</div>				
+				<div tal:condition="php:Feedback EQ 'error'" data-role="collapsible" data-inset="true" data-collapsed="false" data-theme="e" data-content-theme="d">
+					<h3>CẢNH BÁO</h3>
+					<ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="e">
+						<li>Email hoặc mật khẩu gõ sai. Vui lòng xác định lại cho đúng trước khi đăng nhập !</li>
+						<a data-ajax="false" tal:attributes="href '/signin/load'" data-role="button" data-icon="star">Đăng nhập</a>
+					</ul>
+				</div>
+				<div tal:condition="php:Feedback EQ 'error_update'" data-role="collapsible" data-inset="true" data-collapsed="false" data-theme="e" data-content-theme="d">
+					<h3>CẢNH BÁO</h3>
+					<ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="e">
+						<li>Kiểm tra lại đường truyền Internet !</li>
+						<a data-ajax="false" tal:attributes="href '/signin/load'" data-role="button" data-icon="star">Đăng nhập</a>
+					</ul>
+				</div>
+			</div><!--/content-primary -->
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>SẢN PHẨM</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a tal:attributes="href 'http://cafe.123app.net'">CAFE WIFI</a></li>
+						<li><a tal:attributes="href 'http://kaof.123app.net'">KARAOKE GIA ĐÌNH</a></li>
+						<li><a tal:attributes="href 'http://resf.123app.net'">QUÁN ĂN GIA ĐÌNH</a></li>
+						<li><a tal:attributes="href 'http://hotel.123app.net'">KHÁCH SẠN</a></li>
+						<li data-theme="a"><a tal:attributes="href 'http://vendaf.123app.net'">ĐẠI LÝ BÁN HÀNG</a></li>
+						<li><a tal:attributes="href 'http://fipoma.123app.net'">QUẢN LÝ AO CÁ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- /content -->
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

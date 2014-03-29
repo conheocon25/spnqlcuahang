@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	</head>
+<body>	
+	<!-- WEEK -->
+	<div tal:attributes="id Track/getIdPrint" data-role="page" class="type-interior" tal:repeat="Track PondSession/getLogTrackings">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a tal:attributes="href User/getApp/getURLApp">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<H3>TỔNG HỢP <span tal:content="Track/getDateRangePrint" /> CỦA <span tal:content="Pond/getName" /></H3>
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>THỨC ĂN NHẬP VÀO</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Order Track/getOrderImports">
+							<div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+								<h3 tal:content="Order/getDatePrint"/>
+								<ul data-role="listview" data-theme="d" data-dividertheme="d">
+									<li tal:repeat="Detail Order/getDetails">										
+										<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+										<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+										<span class="ui-li-count" tal:content="Detail/getValuePrint" />
+									</li>
+									<li data-theme="b">
+										<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="Order/getValuePrint"/>
+										<p>( <span tal:content="Order/getValueStrPrint"/> )</p>
+									</li>
+								</ul>						
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>THỨC ĂN XUẤT AO</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Order Track/getOrders">
+							<div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+								<h3 tal:content="Order/getDatePrint"/>
+								<ul data-role="listview" data-theme="d" data-dividertheme="d">
+									<li tal:repeat="Detail Order/getDetails">										
+										<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+										<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+										<span class="ui-li-count" tal:content="Detail/getValuePrint" />
+									</li>
+									<li data-theme="b">
+										<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="Order/getValuePrint"/>
+										<p>( <span tal:content="Order/getValueStrPrint"/> )</p>
+									</li>
+								</ul>						
+							</div>
+						</li>
+					</ul>
+				</div>				
+				<!--
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>THUỐC XUẤT AO</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Order Track/getOrders1">
+							<div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="d">
+								<h3 tal:content="Order/getDatePrint"/>
+								<ul data-role="listview" data-theme="d" data-dividertheme="d">
+									<li tal:repeat="Detail Order/getDetails">										
+										<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+										<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit/getName"/>) x<span tal:content="Detail/getPricePrint"/>
+										<span class="ui-li-count" tal:content="Detail/getValuePrint" />
+									</li>
+									<li data-theme="b">
+										<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="Order/getValuePrint"/>
+										<p>( <span tal:content="Order/getValueStrPrint"/> )</p>
+									</li>
+								</ul>						
+							</div>
+						</li>
+					</ul>
+				</div>
+				!-->
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+					<h3>DANH SÁCH TUẦN</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Track1 PondSession1/getLogTrackings" tal:attributes="data-theme php:Track->getIdPrint()==Track1->getIdPrint()?'a':'c'" >
+							<a data-ajax="false" tal:attributes="href php:'#'.Track1->getIdPrint()" tal:content="Track1/getDateRangePrint" />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,Ltd.</p></div>
+	</div>			
+</body>
+</html>
