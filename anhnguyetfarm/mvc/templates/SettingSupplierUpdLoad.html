@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingSupplierInsLoad.js"/>
+	</head>
+<body>						
+	<div id="info" data-role="page" class="type-interior">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a href="#" data-icon="back" data-rel="back">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<form id="FormSettingSupplierUpdLoad" tal:attributes="action Supplier/getURLUpdExe" method="post" data-ajax="false" class="ui-body ui-body-b ui-corner-all">
+					<fieldset>
+						<div data-role="fieldcontain">
+							<label for="Name" class="text">Tên:</label>
+							<input class="required" id="Name" name="Name" type="text" tal:attributes="value Supplier/getName"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Phone" class="text">Điện thoại:</label>
+							<input class="required" id="Phone" name="Phone" type="text" tal:attributes="value Supplier/getPhone"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Address" class="text">Địa chỉ:</label>
+							<input class="required" id="Address" name="Address" type="text" tal:attributes="value Supplier/getAddress"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Note" class="text">Ghi chú:</label>
+							<input class="required" id="Note" name="Note" type="text" tal:attributes="value Supplier/getNote"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Debt" class="text">Nợ đầu kì:</label>
+							<input class="required" id="Debt" name="Debt" type="text" tal:attributes="value Supplier/getDebt"/>
+						</div>				
+					</fieldset>
+					<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Lưu</button>
+				</form>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>THIẾT LẬP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingInfo">THÔNG TIN</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingPond">AO NUÔI</a></li>
+						<li data-theme="a"><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingSupplier">NHÀ CUNG CẤP</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingStore">KHO HÀNG</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingCategory">DANH MỤC</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingUnit">ĐƠN VỊ TÍNH</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Export.js"/>
+	</head>
+<body>
+	<div id="main" data-role="page" class="type-interior" tal:attributes="alt Pond/getIdPrint" />
+	<div tal:attributes="id Track/getIdMonth" data-role="page" class="pond type-interior" tal:repeat="Track Session1/getOrderTrackings">
+		<div data-role="header" data-position="fixed" data-theme="d">
+			<div align="center">
+				<a data-ajax="false" tal:attributes="href User/getApp/getURLApp">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<H3 tal:content="Track/getPond/getName" />
+				<fieldset class="ui-grid-a">
+					<div tal:attributes="class D/getCSSClass" tal:repeat="D Track/getDates" data-role="collapsible" data-collapsed="true" data-theme="b">
+						<h3 tal:content="D/getDatePrint"/>
+						<ul data-role="listview" data-theme="c" data-dividertheme="d">
+							<li><a data-ajax="false" tal:attributes="href D/getURLExportPond1">1. XUẤT THỨC ĂN</a></li>
+							<li><a data-ajax="false" tal:attributes="href D/getURLExportPond2">2. XUẤT THUỐC</a></li>
+							<li><a data-ajax="false" tal:attributes="href D/getURLPaidPond">3. CHI PHÍ</a></li>
+							<li><a data-ajax="false" tal:attributes="href D/getURLLogUpdLoad">4. HAO HỤT</a></li>
+							<li><a data-ajax="false" tal:attributes="href D/getURLImportPond1">5. NHẬP THỨC ĂN</a></li>
+							<li><a data-ajax="false" tal:attributes="href D/getURLImportPond2">6. NHẬP THUỐC</a></li>
+						</ul>
+					</div>
+				</fieldset>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>THÁNG</h3>					
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li tal:repeat="Track1 Session/getOrderTrackings" tal:attributes="data-theme php:Track->getIdMonth()==Track1->getIdMonth()?'a':'c'">
+							<a data-ajax="false" data-transition="none" tal:attributes="href php:'#'.Track1->getIdMonth()">
+								<span tal:content="Track1/getMonthPrint"/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>	
+</body>
+</html>

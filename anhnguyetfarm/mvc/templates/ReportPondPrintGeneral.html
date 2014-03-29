@@ -1,0 +1,394 @@
+<style type="text/css">
+	.hor-minimalist-a{	background: #fff;margin: 45px;border-collapse: collapse;text-align: left;}
+	.hor-minimalist-a th{ font-weight: normal; border: 1px solid #000; }
+	.hor-minimalist-a td{ padding: 8px; border-right: 1px solid #000; border-left: 1px solid #000; }
+</style>
+<font size="10">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0">
+		<tr>
+			<td width="30%" align="center">TRẠI CÁ ÁNH NGUYỆT</td>
+			<td width="70%" rowspan="2" align="center">
+				<font size="16"><b>THÔNG TIN TỔNG HỢP</b></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="30%" align="center">An Hòa, Châu Thành, Đồng Tháp</td>			
+		</tr>
+		<tr>			
+			<td width="30%" align="center">ĐT: 0939.438837, Fax: 0673.123456</td>
+			<td width="70%" align="center">
+				<font size="13"><B tal:content="Pond/getName"/></font>
+			</td>
+		</tr>
+	</table>
+</font>
+
+<H3>1. THÔNG TIN</H3>
+<table width="100%" border="0" cellpadding="2">
+	<tr>
+		<td width="15%" align="right">Chủ đầu tư:</td>
+		<td width="30%" align="left" tal:content="PondSession/getName"/>
+		<td width="10%" />
+		<td width="15%" align="right">Cá giống:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getCountStartPrint" /></td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">Quản lý:</td>
+		<td width="30%" align="left" tal:content="PondSession/getEmployeeName"/>
+		<td width="10%" />
+		<td width="15%" align="right">Lượng cá ngộp:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getCountWastePrint" /></td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">Điện thoại:</td>
+		<td width="30%" align="left" tal:content="PondSession/getEmployeePhone"/>
+		<td width="10%" />
+		<td width="15%" align="right">Giá cá ngộp:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getPriceWastePrint" /></td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">Hình thức:</td>
+		<td width="30%" align="left" tal:content="PondSession/getTypePrint"/>
+		<td width="10%" />
+		<td width="15%" align="right">Lượng cá vét:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getCountRemainPrint" /></td>
+	</tr>	
+	<tr>
+		<td width="15%" align="right">Lãi suất vay:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getBankRatePrint" /></td>
+		<td width="10%" />
+		<td width="15%" align="right">Giá cá vét:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getPriceRemainPrint" /></td>
+	</tr>
+	<tr>		
+		<td width="15%" align="right">Bắt đầu:</td>
+		<td width="30%" align="left" tal:content="PondSession/getDateStartPrint"/>
+		<td width="10%" />
+		<td width="15%" align="right">Lưới + Công Đoàn:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getNetPrint" /></td>
+	</tr>
+	<tr>		
+		<td width="15%" align="right">Kết thúc:</td>
+		<td width="30%" align="left" tal:content="PondSession/getDateEndPrint"/>
+		<td width="10%" />
+		<td width="15%" align="right">Tiền thưởng:</td>
+		<td width="30%" align="left"><span tal:content="PondSession/getTipPrint" /></td>
+	</tr>
+	<tr>		
+		<td width="15%" align="right">Tổng thời gian:</td>
+		<td width="30%" align="left" tal:content="PondSession/getTimesPrint" />
+		<td width="10%" />
+		<td width="15%" align="right"></td>
+		<td width="30%" align="left"></td>
+	</tr>
+</table>
+
+<H3>2. THỨC ĂN </H3>
+	<span tal:condition="php: PondSession->getType()==1?true:false">
+		<table class="hor-minimalist-a" width="100%" border="1" cellpadding="2">
+			<thead>
+				<tr>			
+					<th width="5%" align="center"><B>STT</B></th>
+					<th width="20%"><B>THÁNG</B></th>
+					<th width="25%" align="right"><B>VỐN GỐC</B></th>
+					<th width="25%" align="right"><B>LÃI SUẤT</B></th>
+					<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr tal:repeat="Track PondSession/getOrderTrackings">
+					<td width="5%" align="center"><span tal:content="repeat/Track/number" /></td>
+					<td width="20%"><span tal:content="Track/getMonthPrint" /></td>
+					<td width="25%" align="right"><span tal:content="Track/getOrdersValue1BasePrint" /></td>
+					<td width="25%" align="right"><span tal:content="Track/getOrdersValue1RatePrint" /></td>						
+					<td width="25%" align="right"><span tal:content="Track/getOrdersValue1BasePrint" /></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th width="25%" align="right" colspan="2"><B>TỔNG CỘNG</B></th>
+					<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue1BasePrint" /></th>
+					<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue1RatePrint" /></th>
+					<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue1Print" /></th>
+				</tr>		
+			</tfoot>
+		</table>
+	</span>
+	<span tal:condition="php: PondSession->getType()==2?true:false">
+		<table class="hor-minimalist-a" width="100%" border="1" cellpadding="2">
+			<thead>
+				<tr>
+					<th width="5%" align="center"><B>STT</B></th>
+					<th width="60%"><B>THÁNG</B></th>				
+					<th width="35%" align="right"><B>SỐ LƯỢNG</B></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr tal:repeat="Track PondSession/getOrderTrackings">
+					<td width="5%" align="center"><span tal:content="repeat/Track/number" /></td>
+					<td width="60%"><span tal:content="Track/getMonthPrint" /></td>
+					<td width="35%" align="right"><span tal:content="Track/getOrdersCount1Print" /></td>
+				</tr>
+			</tbody>		
+			<tfoot>
+				<tr>
+					<th width="65%" align="right" colspan="3"><B>TỔNG CỘNG</B></th>
+					<th width="35%" align="right"><B tal:content="PondSession/getOrderTrackingsCount1Print" /></th>
+				</tr>
+			</tfoot>		
+		</table>
+	</span>
+	
+<H3>3. THUỐC</H3>
+<table class="hor-minimalist-a" width="100%" border="1" cellpadding="2">
+	<thead>
+		<tr>			
+			<th width="5%" align="center"><B>STT</B></th>
+			<th width="20%"><B>THÁNG</B></th>
+			<th width="25%" align="right"><B>VỐN GỐC</B></th>
+			<th width="25%" align="right"><B>LÃI SUẤT</B></th>
+			<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="Track PondSession/getOrderTrackings">
+			<td width="5%" align="center"><span tal:content="repeat/Track/number" /></td>
+			<td width="20%"><span tal:content="Track/getMonthPrint" /></td>			
+			<td width="25%" align="right"><span tal:content="Track/getOrdersValue2BasePrint" /></td>
+			<td width="25%" align="right"><span tal:content="Track/getOrdersValue2RatePrint" /></td>						
+			<td width="25%" align="right"><span tal:content="Track/getOrdersValue2BasePrint" /></td>
+		</tr>
+	</tbody>
+	<tfoot>		
+		<tr>
+			<th width="25%" align="right" colspan="2"><B>TỔNG CỘNG</B></th>
+			<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue2BasePrint" /></th>
+			<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue2RatePrint" /></th>
+			<th width="25%" align="right"><B tal:content="PondSession/getOrdersValue2Print" /></th>
+		</tr>		
+	</tfoot>
+</table>
+
+<H3>4. CHI PHÍ</H3>	
+	<table class="hor-minimalist-a" width="100%" border="1" cellpadding="2">
+		<thead>
+			<tr>
+				<th width="5%" align="center"><B>STT</B></th>
+				<th width="20%"><B>THÁNG</B></th>
+				<th width="25%" align="right"><B>VỐN GỐC</B></th>
+				<th width="25%" align="right"><B>LÃI SUẤT</B></th>
+				<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="Track PondSession/getPaidTrackings">
+				<td width="5%" align="center"><span tal:content="repeat/Track/number" /></td>
+				<td width="20%"><span tal:content="Track/getMonthPrint" /></td>
+				<td width="25%" align="right"><span tal:content="Track/getPaidsValuePrint" /></td>
+				<td width="25%" align="right"><span tal:content="Track/getPaidsValueRatePrint" /></td>
+				<td width="25%" align="right"><span tal:content="Track/getValuePrint" /></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th width="25%" align="right" colspan="2"><B>TỔNG CỘNG</B></th>
+				<th width="25%" align="right"><B tal:content="PondSession/getPaidsValue1Print" /></th>
+				<th width="25%" align="right"><B tal:content="PondSession/getPaidsRateValuePrint" /></th>
+				<th width="25%" align="right"><B tal:content="PondSession/getPaidsValuePrint" /></th>
+			</tr>
+		</tfoot>
+	</table>
+
+<H3>5. TỔNG KẾT</H3>
+<table width="100%" border="0" cellpadding="2">
+	<tr>
+		<td width="5%" />
+		<td width="35%" align="right">CON GIỐNG</td>
+		<td width="20%" align="right"><span tal:content="PondSession/getValueStartPrint" /></td>
+		<td width="40%" />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">VẬN CHUYỂN</td>
+		<td align="right"><span tal:content="PondSession/getShipStartPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td colspan="2" align="right">------------------------------------------------------------------</td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">TIỀN GIỐNG</td>
+		<td align="right"><span tal:content="PondSession/getValueStart1Print" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">LÃI TIỀN GIỐNG</td>
+		<td align="right"><span tal:content="PondSession/getValueStart1RatePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td colspan="2" align="right">------------------------------------------------------------------</td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">ĐẦU TƯ GIỐNG</td>
+		<td align="right"><span tal:content="PondSession/getValueStart2Print" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td colspan="2" align="left">+</td>
+		<td />
+	</tr>	
+	<tr tal:condition="php: PondSession->getType()==1?true:false">
+		<td />
+		<td align="right">TIỀN THỨC ĂN</td>
+		<td align="right"><span tal:content="PondSession/getOrdersValue1Print" /></td>
+		<td />
+	</tr>	
+	<tr>
+		<td />
+		<td align="right">TIỀN THUỐC</td>
+		<td align="right"><span tal:content="PondSession/getOrdersValue2Print" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">CHI PHÍ NUÔI</td>
+		<td align="right"><span tal:content="PondSession/getPaidsValuePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">LƯỚI + CÔNG ĐOÀN</td>
+		<td align="right"><span tal:content="PondSession/getNetPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">TIỀN THƯỞNG</td>
+		<td align="right"><span tal:content="PondSession/getTipPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td colspan="2" align="right">------------------------------------------------------------------</td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right"><B>(1) TỔNG CHI</B></td>
+		<td align="right"><B tal:content="PondSession/getValueExportPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td colspan="2" align="left">-</td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">XUẤT BÁN THÀNH PHẨM</td>
+		<td align="right"><span tal:content="PondSession/getCountExportPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">GIÁ BÁN</td>
+		<td align="right"><span tal:content="PondSession/getPriceExportPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right"><B>(2) TIỀN CÁ THÀNH PHẨM</B></td>
+		<td align="right"><B tal:content="PondSession/getValueImportPrint" /></td>
+		<td />
+	</tr>	
+	<tr>
+		<td />
+		<td align="right"><B>(3) TIỀN CÁ NGỘP</B></td>
+		<td align="right"><B tal:content="PondSession/getValueWastePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right"><B>(4) TIỀN CÁ VÉT</B></td>
+		<td align="right"><B tal:content="PondSession/getValueRemainPrint" /></td>
+		<td />
+	</tr>
+	
+	<tr>
+		<td />
+		<td colspan="2" align="right">------------------------------------------------------------------</td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right"><B>TỔNG THU = (4) + (3) + (2)</B></td>
+		<td align="right"><B tal:content="PondSession/getValue1Print" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right"><B>LỢI NHUẬN = TỔNG THU - TỔNG CHI</B></td>
+		<td align="right"><B tal:content="PondSession/getValuePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td colspan="3" align="center">
+			(<span tal:content="PondSession/getValueStrPrint" />)
+		</td>
+		<td />
+	</tr>
+</table>
+<H3>6. PHÂN TÍCH</H3>
+<table width="100%" border="0" cellpadding="2">
+	<tr>
+		<td width="5%" />
+		<td width="30%" align="right">VỐC GỐC</td>
+		<td width="20%" align="right"><span tal:content="PondSession/getValueExportBasePrint" /></td>
+		<td width="45%" />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">THỜI GIAN ĐẦU TƯ</td>
+		<td align="right"><span tal:content="PondSession/getTimesPrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">LÃI SUẤT NGÂN HÀNG</td>
+		<td align="right"><span tal:content="PondSession/getBankRatePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">TIỀN LÃI SUẤT NGÂN HÀNG</td>
+		<td align="right"><span tal:content="PondSession/getValueExportBaseRatePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">LÃI SUẤT KHI KINH DOANH</td>
+		<td align="right"><span tal:content="PondSession/getBusinessRatePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">TIỀN LÃI KINH DOANH</td>
+		<td align="right"><span tal:content="PondSession/getValuePrint" /></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td align="right">SO SÁNH TỈ LỆ LÃI</td>
+		<td align="right"><span tal:content="PondSession/getCompareRatePrint" /></td>
+		<td />
+	</tr>
+</table>

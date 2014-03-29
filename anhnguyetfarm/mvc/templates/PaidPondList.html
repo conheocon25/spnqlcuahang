@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>	
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/PaidPondList.js"/>
+	</head>
+<body>	
+	<div id="main" data-role="page" class="pond type-interior">
+		<div data-role="header" data-position="fixed" data-theme="d">
+			<div align="center">
+				<a data-ajax="false" tal:attributes="href Pond/getURLExport">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3 tal:content="Title" />
+					<ul data-role="listview" data-inset="true">
+						<li tal:repeat="Paid PPs">
+							<a data-ajax="false" tal:attributes="href Paid/getURLUpdLoad">
+								<strong>
+									<span tal:content="repeat/Paid/number" />. <span tal:content="Paid/getDatePrint" />, 
+									<span tal:content="Paid/getNote" />
+								</strong>
+								<p class="ui-li-aside"><strong tal:content="Paid/getValuePrint"></strong></p>
+							</a>
+							<a tal:attributes="href Paid/getURLDelLoad" data-theme="c" data-icon="delete" />
+						</li>
+					</ul>
+				</div>
+				<a data-ajax="false" tal:attributes="href URLIns" data-role="button" data-icon="plus" data-theme="b">THÊM CHI PHÍ</a>
+			</div>
+			<div class="content-secondary" />
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
+RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
+RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
+RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
+RewriteRule ^register/exe$ 			?cmd=RegisterExe [L]
+
+RewriteRule ^([a-z0-9]+)$ 			?cmd=App&IdApp=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# EXPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)$ 									?cmd=Export&IdApp=$1&IdPond=$2 [L]
+
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/1$					?cmd=ExportPondOrder&IdApp=$1&IdPond=$2&Date=$3&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/2$					?cmd=ExportPondOrder&IdApp=$1&IdPond=$2&Date=$3&Type=2 [L]
+
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/load/1$ 						?cmd=ExportPondOrderCallLoad&IdApp=$1&IdPond=$2&Date=$3&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/load/2$ 						?cmd=ExportPondOrderCallLoad&IdApp=$1&IdPond=$2&Date=$3&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)$			?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)$			?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)/plus$		?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=1&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)/minus$		?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=-1&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)/plus$		?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=1&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)/minus$		?cmd=ExportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=-1&Type=2 [L]
+
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/load$				?cmd=ExportPondOrderUpdLoad&IdApp=$1&IdPond=$2&IdOrderExport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/exe$				?cmd=ExportPondOrderUpdExe&IdApp=$1&IdPond=$2&IdOrderExport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/load$				?cmd=ExportPondOrderDelLoad&IdApp=$1&IdPond=$2&IdOrderExport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/export/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/exe$				?cmd=ExportPondOrderDelExe&IdApp=$1&IdPond=$2&IdOrderExport=$3&IdResource=$4 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# IMPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)$ 												?cmd=Import&IdApp=$1&IdPond=$2 [L]
+
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/1$								?cmd=ImportPondOrder&IdApp=$1&IdPond=$2&Date=$3&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/2$								?cmd=ImportPondOrder&IdApp=$1&IdPond=$2&Date=$3&Type=2 [L]
+
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/load/1$ 						?cmd=ImportPondOrderCallLoad&IdApp=$1&IdPond=$2&Date=$3&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/load/2$ 						?cmd=ImportPondOrderCallLoad&IdApp=$1&IdPond=$2&Date=$3&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)$			?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)$			?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)/plus$		?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=1&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/1/([a-z0-9]+)/minus$		?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=-1&Type=1 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)/plus$		?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=1&Type=2 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9_-]+)/call/exe/2/([a-z0-9]+)/minus$		?cmd=ImportPondOrderCallExe&IdApp=$1&IdPond=$2&Date=$3&IdResource=$4&Delta=-1&Type=2 [L]
+
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/load$				?cmd=ImportPondOrderUpdLoad&IdApp=$1&IdPond=$2&IdOrderImport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/upd/exe$				?cmd=ImportPondOrderUpdExe&IdApp=$1&IdPond=$2&IdOrderImport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/load$				?cmd=ImportPondOrderDelLoad&IdApp=$1&IdPond=$2&IdOrderImport=$3&IdResource=$4 [L]
+RewriteRule ^([a-z0-9]+)/import/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)/del/exe$				?cmd=ImportPondOrderDelExe&IdApp=$1&IdPond=$2&IdOrderImport=$3&IdResource=$4 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# LOG
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/log/([a-z0-9]+)/upd/load/([a-z0-9_-]+)$				?cmd=LogPondUpdLoad&IdApp=$1&IdPond=$2&Date=$3 [L]
+RewriteRule ^([a-z0-9]+)/log/([a-z0-9]+)/upd/exe/([a-z0-9_-]+)$					?cmd=LogPondUpdExe&IdApp=$1&IdPond=$2&Date=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# REPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/report$ 												?cmd=Report&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/report/supplier/([a-z0-9]+)							?cmd=ReportSupplierDetail&IdApp=$1&TypeReport=$2 [L]
+RewriteRule ^([a-z0-9]+)/report/pond/([a-z0-9]+)/([a-z0-9]+)/print/general$ 	?cmd=ReportPondPrintGeneral&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+RewriteRule ^([a-z0-9]+)/report/pond/([a-z0-9]+)/([a-z0-9]+)/print/log$ 		?cmd=ReportPondPrintLog&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+RewriteRule ^([a-z0-9]+)/report/pond/([a-z0-9]+)/([a-z0-9]+)/view/week$ 		?cmd=ReportPondViewWeek&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAID.POND
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9_-]+)$ 				?cmd=PaidPondList&IdApp=$1&IdPond=$2&Date=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9_-]+)/ins/load$		?cmd=PaidPondListInsLoad&IdApp=$1&IdPond=$2&Date=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9_-]+)/ins/exe$ 		?cmd=PaidPondListInsExe&IdApp=$1&IdPond=$2&Date=$3 [L]
+
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9]+)/upd/load$		?cmd=PaidPondListUpdLoad&IdApp=$1&IdPond=$2&IdPaidPond=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9]+)/upd/exe$			?cmd=PaidPondListUpdExe&IdApp=$1&IdPond=$2&IdPaidPond=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9]+)/del/load$		?cmd=PaidPondListDelLoad&IdApp=$1&IdPond=$2&IdPaidPond=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/pond/([a-z0-9]+)/([a-z0-9]+)/del/exe$			?cmd=PaidPondListDelExe&IdApp=$1&IdPond=$2&IdPaidPond=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAID.SUPPLIER
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/paid/supplier$ 										?cmd=PaidSupplierList&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/ins/load$					?cmd=PaidSupplierListInsLoad&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/ins/exe$ 					?cmd=PaidSupplierListInsExe&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/([a-z0-9]+)/upd/load$		?cmd=PaidSupplierListUpdLoad&IdApp=$1&IdSupplier=$2&IdPaidSupplier=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/([a-z0-9]+)/upd/exe$			?cmd=PaidSupplierListUpdExe&IdApp=$1&IdSupplier=$2&IdPaidSupplier=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/([a-z0-9]+)/del/load$		?cmd=PaidSupplierListDelLoad&IdApp=$1&IdSupplier=$2&IdPaidSupplier=$3 [L]
+RewriteRule ^([a-z0-9]+)/paid/supplier/([a-z0-9]+)/([a-z0-9]+)/del/exe$			?cmd=PaidSupplierListDelExe&IdApp=$1&IdSupplier=$2&IdPaidSupplier=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.INFO
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting$ 												?cmd=Setting&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/info/upd/load$ 								?cmd=SettingInfoUpdLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/info/upd/exe$ 									?cmd=SettingInfoUpdExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/info/passwd/load$ 								?cmd=SettingInfoPasswdLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/info/passwd/exe$ 								?cmd=SettingInfoPasswdExe&IdApp=$1 [L]
+                         
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.CATEGORY
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/category/ins/load$ 							?cmd=SettingCategoryInsLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/category/ins/exe$ 								?cmd=SettingCategoryInsExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/category/([a-z0-9]+)/upd/load$ 				?cmd=SettingCategoryUpdLoad&IdApp=$1&IdCategory=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/category/([a-z0-9]+)/upd/exe$ 					?cmd=SettingCategoryUpdExe&IdApp=$1&IdCategory=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/category/([a-z0-9]+)/del/load$ 				?cmd=SettingCategoryDelLoad&IdApp=$1&IdCategory=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/category/([a-z0-9]+)/del/exe$ 					?cmd=SettingCategoryDelExe&IdApp=$1&IdCategory=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.SUPPLIER
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/supplier/ins/load$ 							?cmd=SettingSupplierInsLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/ins/exe$ 								?cmd=SettingSupplierInsExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/upd/load$ 				?cmd=SettingSupplierUpdLoad&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/upd/exe$ 					?cmd=SettingSupplierUpdExe&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/del/load$ 				?cmd=SettingSupplierDelLoad&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/del/exe$ 					?cmd=SettingSupplierDelExe&IdApp=$1&IdSupplier=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.UNIT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/unit/ins/load$ 								?cmd=SettingUnitInsLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/unit/ins/exe$ 									?cmd=SettingUnitInsExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/unit/([a-z0-9]+)/upd/load$ 					?cmd=SettingUnitUpdLoad&IdApp=$1&IdUnit=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/unit/([a-z0-9]+)/upd/exe$ 						?cmd=SettingUnitUpdExe&IdApp=$1&IdUnit=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/unit/([a-z0-9]+)/del/load$ 					?cmd=SettingUnitDelLoad&IdApp=$1&IdUnit=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/unit/([a-z0-9]+)/del/exe$ 						?cmd=SettingUnitDelExe&IdApp=$1&IdUnit=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.SUPPLIER.RESOURCE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/supplier$ 										?cmd=SettingSupplierResource&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/ins/load$ 				?cmd=SettingSupplierResourceInsLoad&IdApp=$1&IdSupplier=$2 [L]                              
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/ins/exe$ 					?cmd=SettingSupplierResourceInsExe&IdApp=$1&IdSupplier=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 	?cmd=SettingSupplierResourceUpdLoad&IdApp=$1&IdSupplier=$2&IdResource=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 		?cmd=SettingSupplierResourceUpdExe&IdApp=$1&IdSupplier=$2&IdResource=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/([a-z0-9]+)/del/load$ 	?cmd=SettingSupplierResourceDelLoad&IdApp=$1&IdSupplier=$2&IdResource=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/supplier/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 		?cmd=SettingSupplierResourceDelExe&IdApp=$1&IdSupplier=$2&IdResource=$3 [L]                        
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.POND
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/pond/ins/load$ 							?cmd=SettingPondInsLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/ins/exe$ 								?cmd=SettingPondInsExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/upd/load$ 				?cmd=SettingPondUpdLoad&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/upd/exe$ 					?cmd=SettingPondUpdExe&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/del/load$ 				?cmd=SettingPondDelLoad&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/del/exe$ 					?cmd=SettingPondDelExe&IdApp=$1&IdPond=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.POND.PONDSESSION
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/pond$ 										?cmd=SettingPondSession&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/ins/load$					?cmd=SettingPondSessionInsLoad&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/ins/exe$ 					?cmd=SettingPondSessionInsExe&IdApp=$1&IdPond=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/([a-z0-9]+)/upd/load$		?cmd=SettingPondSessionUpdLoad&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 		?cmd=SettingPondSessionUpdExe&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/([a-z0-9]+)/del/load$		?cmd=SettingPondSessionDelLoad&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/pond/([a-z0-9]+)/([a-z0-9]+)/del/exe$		?cmd=SettingPondSessionDelExe&IdApp=$1&IdPond=$2&IdPondSession=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.STORE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9]+)/setting/store/ins/load$ 								?cmd=SettingStoreInsLoad&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/ins/exe$ 								?cmd=SettingStoreInsExe&IdApp=$1 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/upd/load$ 					?cmd=SettingStoreUpdLoad&IdApp=$1&IdStore=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/upd/exe$ 					?cmd=SettingStoreUpdExe&IdApp=$1&IdStore=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/del/load$ 					?cmd=SettingStoreDelLoad&IdApp=$1&IdStore=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/del/exe$ 					?cmd=SettingStoreDelExe&IdApp=$1&IdStore=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/init$ 						?cmd=SettingStoreInit&IdApp=$1&IdStore=$2 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/([a-z0-9]+)/upd/load$		?cmd=SettingStoreInitUpdLoad&IdApp=$1&IdStore=$2&IdResource=$3 [L]
+RewriteRule ^([a-z0-9]+)/setting/store/([a-z0-9]+)/([a-z0-9]+)/upd/exe$			?cmd=SettingStoreInitUpdExe&IdApp=$1&IdStore=$2&IdResource=$3 [L]

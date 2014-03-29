@@ -1,0 +1,52 @@
+<style type="text/css">
+	.hor-minimalist-a{	background: #fff;margin: 45px;border-collapse: collapse;text-align: left;}
+	.hor-minimalist-a th{ font-weight: normal; border: 1px solid #000; }
+	.hor-minimalist-a td{ padding: 8px; border-right: 1px solid #000; border-left: 1px solid #000; }
+</style>
+<font size="10">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0">
+		<tr>
+			<td width="30%" align="center">TRẠI CÁ ÁNH NGUYỆT</td>
+			<td width="70%" rowspan="3" align="center">
+				<font size="18"><b>TỔNG HỢP NHẬT KÝ <span tal:content="Pond/getName" /></b></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="30%" align="center">An Hòa, Châu Thành, Đồng Tháp</td>
+		</tr>
+		<tr>			
+			<td width="30%" align="center">ĐT: 0939.438837 Fax: 0673.123456</td>
+		</tr>
+	</table>
+</font>
+<br/>
+<table width="100%" border="1" cellpadding="2">
+	<thead>
+		<tr>
+			<th width="5%" align="center"><B>STT</B></th>
+			<th width="15%" align="center"><B>THỜI GIAN</B></th>
+			<th width="10%" align="right"><B>THỨC ĂN</B></th>
+			<th width="15%" align="right"><B>T.THỨC ĂN</B></th>
+			<th width="2%" align="right" />
+			<th width="10%" align="right"><B>NHẬP VỀ</B></th>
+			<th width="15%" align="right"><B>TỒN LẠI</B></th>
+			<th width="3%" align="right" />
+			<th width="10%" align="right"><B>HAO HỤT</B></th>
+			<th width="15%" align="right"><B>T.HAO HỤT</B></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="Track Pond/getCurrentSession/getLogTrackings">
+			<td width="5%" align="center"><span tal:content="repeat/Track/number" /></td>
+			<td width="15%" align="center"><span tal:content="Track/getDateRangePrint" /></td>
+			<td width="10%" align="right" tal:content="Track/getOrdersCountPrint"/>
+			<td width="15%" align="right" tal:content="Track/getSOrdersCountPrint"/>
+			<td width="2%" align="right"/>
+			<td width="10%" align="right" tal:content="Track/getOrderImportsCountPrint" />
+			<td width="15%" align="right" tal:content="Track/getSOrderImportsCountRemainPrint" />
+			<td width="3%" align="right"/>
+			<td width="10%" align="right" tal:content="Track/getLogsCountPrint" />
+			<td width="15%" align="right" tal:content="Track/getSLogsCountPrint" />
+		</tr>
+	</tbody>	
+</table>

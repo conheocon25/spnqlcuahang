@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingInfoPasswdLoad.js"/>
+	</head>
+<body>						
+	<div id="info" data-role="page" class="type-interior">
+		<div data-role="header" data-theme="d">
+			<div align="center">
+				<a tal:attributes="href User/getApp/getURLApp" href="#" data-icon="back" data-rel="back">
+					<img border="0" width="100%" src="/data/images/app/banner.jpg" />
+				</a>
+			</div>			
+		</div>
+		<div data-role="content">
+			<div class="content-primary">
+				<form id="FormSettingInfoPasswdLoad" tal:attributes="action App/getURLSettingInfoPasswdExe" method="post" ajax="false" class="ui-body ui-body-b ui-corner-all">
+					<fieldset>
+						<div data-role="fieldcontain">
+							<label for="Passwd1" class="text">Mật khẩu mới:</label>
+							<input class="required" id="Passwd1" name="Passwd1" type="password" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="Passwd2" class="text">Lập lại mật khẩu:</label>
+							<input class="required" id="Passwd2" name="Passwd2" type="password" />
+						</div>				
+					</fieldset>
+					<button type="submit" data-theme="b"  data-icon="check" name="submit" value="submit-value">Thay đổi</button>
+				</form>
+			</div>
+			<div class="content-secondary">
+				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
+					<h3>THIẾT LẬP</h3>
+					<ul data-role="listview" data-theme="c" data-dividertheme="d">
+						<li data-theme="a"><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingInfo">THÔNG TIN</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingPond">AO NUÔI</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingSupplier">NHÀ CUNG CẤP</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingStore">KHO HÀNG</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingCategory">DANH MỤC</a></li>
+						<li><a data-ajax="false" tal:attributes="href User/getApp/getURLSettingUnit">ĐƠN VỊ TÍNH</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" class="footer-docs" data-theme="c"><p>&copy; 2012 SPN Co,ltd.</p></div>
+	</div>
+	
+</body>
+</html>

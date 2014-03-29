@@ -1,0 +1,182 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>		
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="App"><view>App</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- GLOBAL			 																-->
+		<!-- ============================================================================== -->
+		<command name="Export"><view>Export</view></command>
+		<command name="Import"><view>Import</view></command>
+		<command name="Log"><view>Log</view></command>
+		<command name="Paid"><view>Paid</view></command>
+		<command name="Report"><view>Report</view></command>
+		<command name="Setting"><view>Setting</view></command>
+
+		<!-- ============================================================================== -->
+		<!-- PAID.POND			 															-->
+		<!-- ============================================================================== -->						
+		<command name="PaidPondList"><view>PaidPondList</view></command>
+		<command name="PaidPondListInsLoad"><view>PaidPondListInsLoad</view></command>
+		<command name="PaidPondListInsExe"><view>PaidPondListInsExe</view><status value="CMD_OK"><forward>PaidPondList</forward></status></command>
+		
+		<command name="PaidPondListUpdLoad"><view>PaidPondListUpdLoad</view></command>
+		<command name="PaidPondListUpdExe"><view>PaidPondListUpdExe</view><status value="CMD_OK"><forward>PaidPondList</forward></status></command>
+		
+		<command name="PaidPondListDelLoad"><view>PaidPondListDelLoad</view></command>
+		<command name="PaidPondListDelExe"><view>PaidPondListDelExe</view><status value="CMD_OK"><forward>PaidPondList</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- PAID.SUPPLIER			 														-->
+		<!-- ============================================================================== -->						
+		<command name="PaidSupplierList"><view>PaidSupplierList</view></command>
+		<command name="PaidSupplierListInsLoad"><view>PaidSupplierListInsLoad</view></command>
+		<command name="PaidSupplierListInsExe"><view>PaidSupplierListInsExe</view><status value="CMD_OK"><forward>PaidSupplierList</forward></status></command>
+		<command name="PaidSupplierListUpdLoad"><view>PaidSupplierListUpdLoad</view></command>
+		<command name="PaidSupplierListUpdExe"><view>PaidSupplierListUpdExe</view><status value="CMD_OK"><forward>PaidSupplierList</forward></status></command>
+		<command name="PaidSupplierListDelLoad"><view>PaidSupplierListDelLoad</view></command>
+		<command name="PaidSupplierListDelExe"><view>PaidSupplierListDelExe</view><status value="CMD_OK"><forward>PaidSupplierList</forward></status></command>				
+				
+		<!-- ============================================================================== -->
+		<!-- SETTING.POND		 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingPondInsLoad"><view>SettingPondInsLoad</view></command>
+		<command name="SettingPondInsExe"><view>SettingPondInsExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingPondUpdLoad"><view>SettingPondUpdLoad</view></command>
+		<command name="SettingPondUpdExe"><view>SettingPondUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>		
+		<command name="SettingPondDelLoad"><view>SettingPondDelLoad</view></command>
+		<command name="SettingPondDelExe"><view>SettingPondDelExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.POND.PONDSESSION														-->
+		<!-- ============================================================================== -->
+		<command name="SettingPondSession"><view>SettingPondSession</view></command>
+		<command name="SettingPondSessionInsLoad"><view>SettingPondSessionInsLoad</view></command>
+		<command name="SettingPondSessionInsExe"><view>SettingPondSessionInsExe</view><status value="CMD_OK"><forward>SettingPondSession</forward></status></command>
+		<command name="SettingPondSessionUpdLoad"><view>SettingPondSessionUpdLoad</view></command>
+		<command name="SettingPondSessionUpdExe"><view>SettingPondSessionUpdExe</view><status value="CMD_OK"><forward>SettingPondSession</forward></status></command>		
+		<command name="SettingPondSessionDelLoad"><view>SettingPondSessionDelLoad</view></command>
+		<command name="SettingPondSessionDelExe"><view>SettingPondSessionDelExe</view><status value="CMD_OK"><forward>SettingPondSession</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.UNIT	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingUnitInsLoad"><view>SettingUnitInsLoad</view></command>
+		<command name="SettingUnitInsExe"><view>SettingUnitInsExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingUnitUpdLoad"><view>SettingUnitUpdLoad</view></command>
+		<command name="SettingUnitUpdExe"><view>SettingUnitUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingUnitDelLoad"><view>SettingUnitDelLoad</view></command>
+		<command name="SettingUnitDelExe"><view>SettingUnitDelExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.CATEGORY	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingCategoryInsLoad"><view>SettingCategoryInsLoad</view></command>
+		<command name="SettingCategoryInsExe"><view>SettingCategoryInsExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingCategoryUpdLoad"><view>SettingCategoryUpdLoad</view></command>
+		<command name="SettingCategoryUpdExe"><view>SettingCategoryUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingCategoryDelLoad"><view>SettingCategoryDelLoad</view></command>
+		<command name="SettingCategoryDelExe"><view>SettingCategoryDelExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.STORE	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingStoreInsLoad"><view>SettingStoreInsLoad</view></command>
+		<command name="SettingStoreInsExe"><view>SettingStoreInsExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingStoreUpdLoad"><view>SettingStoreUpdLoad</view></command>
+		<command name="SettingStoreUpdExe"><view>SettingStoreUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		<command name="SettingStoreDelLoad"><view>SettingStoreDelLoad</view></command>
+		<command name="SettingStoreDelExe"><view>SettingStoreDelExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+		
+		<command name="SettingStoreInit"><view>SettingStoreInit</view></command>
+		<command name="SettingStoreInitUpdLoad"><view>SettingStoreInitUpdLoad</view></command>
+		<command name="SettingStoreInitUpdExe">
+			<view>SettingStoreInitUpdExe</view>
+			<status value="CMD_OK"><forward>SettingStoreInit</forward></status>
+		</command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.SUPPLIER	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingSupplierInsLoad"><view>SettingSupplierInsLoad</view></command>
+		<command name="SettingSupplierInsExe"><view>SettingSupplierInsExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>		
+		<command name="SettingSupplierUpdLoad"><view>SettingSupplierUpdLoad</view></command>
+		<command name="SettingSupplierUpdExe"><view>SettingSupplierUpdExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>		
+		<command name="SettingSupplierDelLoad"><view>SettingSupplierDelLoad</view></command>
+		<command name="SettingSupplierDelExe"><view>SettingSupplierDelExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+								
+		<!-- ============================================================================== -->
+		<!-- SETTING.SUPPLIER.RESOURCE														-->
+		<!-- ============================================================================== -->
+		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		<command name="SettingSupplierResourceInsLoad"><view>SettingSupplierResourceInsLoad</view></command>
+		<command name="SettingSupplierResourceInsExe"><view>SettingSupplierResourceInsExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
+		<command name="SettingSupplierResourceUpdLoad"><view>SettingSupplierResourceUpdLoad</view></command>
+		<command name="SettingSupplierResourceUpdExe"><view>SettingSupplierResourceUpdExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
+		<command name="SettingSupplierResourceDelLoad"><view>SettingSupplierResourceDelLoad</view></command>
+		<command name="SettingSupplierResourceDelExe"><view>SettingSupplierResourceDelExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
+								
+		<!-- ============================================================================== -->
+		<!-- SETTING.INFO		 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
+		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>
+		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
+		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
+
+		<!-- ============================================================================== -->
+		<!-- LOG				 															-->
+		<!-- ============================================================================== -->
+		<command name="LogPond"><view>LogPond</view></command>
+		<command name="LogPondUpdLoad"><view>LogPondUpdLoad</view></command>
+		<command name="LogPondUpdExe"><view>LogPondUpdExe</view><status value="CMD_OK"><forward>Export</forward></status></command>
+		<command name="LogPondDelLoad"><view>LogPondDelLoad</view></command>
+		<command name="LogPondDelExe"><view>LogPondDelExe</view><status value="CMD_OK"><forward>Export</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- EXPORT				 															-->
+		<!-- ============================================================================== -->				
+		<command name="ExportPondOrder"><view>ExportPondOrder</view></command>
+		<command name="ExportPondOrderCallLoad"><view>ExportPondOrderCallLoad</view></command>
+		<command name="ExportPondOrderCallExe"><status value="CMD_OK"><forward>ExportPondOrderCallLoad</forward></status><view>ExportPondOrderCallExe</view></command>
+		<command name="ExportPondOrderInsLoad"><view>ExportPondOrderInsLoad</view></command>
+		<command name="ExportPondOrderInsExe"><view>ExportPondOrderInsExe</view><status value="CMD_OK"><forward>ExportPondOrder</forward></status></command>
+		<command name="ExportPondOrderUpdLoad"><view>ExportPondOrderUpdLoad</view></command>
+		<command name="ExportPondOrderUpdExe"><view>ExportPondOrderUpdExe</view><status value="CMD_OK"><forward>ExportPondOrder</forward></status></command>
+		<command name="ExportPondOrderDelLoad"><view>ExportPondOrderDelLoad</view></command>
+		<command name="ExportPondOrderDelExe"><view>ExportPondOrderDelExe</view><status value="CMD_OK"><forward>ExportPondOrder</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->		
+		<command name="ImportPondOrder"><view>ImportPondOrder</view></command>
+		<command name="ImportPondOrderCallLoad"><view>ImportPondOrderCallLoad</view></command>
+		<command name="ImportPondOrderCallExe"><status value="CMD_OK"><forward>ImportPondOrderCallLoad</forward></status><view>ImportPondOrderCallExe</view></command>
+		<command name="ImportPondOrderInsLoad"><view>ImportPondOrderInsLoad</view></command>
+		<command name="ImportPondOrderInsExe"><view>ImportPondOrderInsExe</view><status value="CMD_OK"><forward>ImportPondOrder</forward></status></command>
+		<command name="ImportPondOrderUpdLoad"><view>ImportPondOrderUpdLoad</view></command>
+		<command name="ImportPondOrderUpdExe"><view>ImportPondOrderUpdExe</view><status value="CMD_OK"><forward>ImportPondOrder</forward></status></command>
+		<command name="ImportPondOrderDelLoad"><view>ImportPondOrderDelLoad</view></command>
+		<command name="ImportPondOrderDelExe"><view>ImportPondOrderDelExe</view><status value="CMD_OK"><forward>ImportPondOrder</forward></status></command>
+																		
+		<!-- ============================================================================== -->
+		<!-- REPORT				 															-->
+		<!-- ============================================================================== -->				
+		<command name="ReportSupplierDetail"><view>ReportSupplierDetail</view></command>
+		<command name="ReportPondPrintGeneral"><view>ReportPondPrintGeneral</view></command>
+		<command name="ReportPondPrintLog"><view>ReportPondPrintLog</view></command>
+		<command name="ReportPondViewWeek"><view>ReportPondViewWeek</view></command>
+	</control>
+</options>
