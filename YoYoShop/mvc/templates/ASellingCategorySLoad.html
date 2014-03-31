@@ -15,4 +15,29 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+		/*<![CDATA[*/																															
+			//-----------------------------------------------------------------------------------
+			//click gọi món
+			//-----------------------------------------------------------------------------------
+			$('.Course').click(function(e){
+				var IdCourse 	= $(this).attr('alt');
+				var Delta 		= $(this).attr('data-delta');
+				var IdTable 	= $("#CurrentTable").attr('alt');
+				URL = "/admin/selling/call/"+IdCourse+"/"+Delta;
+				e.stopImmediatePropagation();
+				$.ajax({
+					type: "POST", 
+					async: false,
+					url: URL,
+					dataType: 'json',
+					success: function(data){						
+						$("#Session").load("/admin/selling/session");
+					}
+				});
+			});
+																	
+		/*]]>*/
+		</script>
+	
 </html>

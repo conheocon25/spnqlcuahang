@@ -9,9 +9,9 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $this->selectAllStmt = self::$PDO->prepare( 
                             "select * from shopc_customer");
         $this->selectStmt = self::$PDO->prepare("select * from shopc_customer where id=?");
-        $this->updateStmt = self::$PDO->prepare("update shopc_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=?, id_domain=? where id=?");
-        $this->insertStmt = self::$PDO->prepare("insert into shopc_customer (name, type, card, phone, address, note, discount, id_domain) 
-							values( ?, ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt = self::$PDO->prepare("update shopc_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt = self::$PDO->prepare("insert into shopc_customer (name, type, card, phone, address, note, discount) 
+							values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from shopc_customer where id=?");		
 		$this->findByCardStmt = self::$PDO->prepare("select * from shopc_customer where card=?");
 		$this->findByDomainStmt = self::$PDO->prepare("select * from shopc_customer where id_domain=? ORDER BY name");
@@ -32,8 +32,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$array['phone'],
 			$array['address'],
 			$array['note'],
-			$array['discount'],
-			$array['id_domain']
+			$array['discount']			
 		);
         return $obj;
     }	
@@ -46,8 +45,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getPhone(),	
 			$object->getAddress(),	
 			$object->getNote(),
-			$object->getDiscount(),
-			$object->getIdDomain()
+			$object->getDiscount()			
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -62,8 +60,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getPhone(),	
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getDiscount(),
-			$object->getIdDomain(),
+			$object->getDiscount(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
