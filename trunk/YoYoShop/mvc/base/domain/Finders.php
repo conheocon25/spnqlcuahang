@@ -16,10 +16,14 @@ interface Category1Finder  		extends Finder {}
 interface SupplierFinder 		extends Finder {}
 interface ResourceFinder 		extends Finder {}
 interface ImageFinder 			extends Finder {}
+
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
+interface OrderExportFinder 	extends Finder {}
+interface OrderExportDetailFinder extends Finder {}
+
 interface CustomerFinder 		extends Finder {}
-interface CustomerLogFinder 	extends Finder {}
+
 interface EmployeeFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface TrackingFinder 		extends Finder {}
