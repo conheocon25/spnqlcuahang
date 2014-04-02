@@ -95,5 +95,5 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 RewriteRule ^admin/selling$ 											?cmd=ASelling [L]
 RewriteRule ^admin/selling/categoryp/([0-9]+)/load$ 					?cmd=ASellingCategoryPLoad&IdCategoryP=$1 [L]
 RewriteRule ^admin/selling/categorys/([0-9]+)/load$ 					?cmd=ASellingCategorySLoad&IdCategoryS=$1 [L]
-RewriteRule ^admin/selling/call/([0-9]+)/plus$ 							?cmd=ASellingCall&IdCourse=$1&Delta=$2 [L]
+RewriteRule ^admin/selling/call/([0-9]+)/plus$ 							?cmd=ASellingCall&IdResource=$1&Delta=1 [L]
 RewriteRule ^admin/selling/session$ 									?cmd=ASellingSession [L]
