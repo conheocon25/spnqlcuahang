@@ -12,8 +12,8 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
-		$updateStmt = sprintf("update %s set idsupplier=?, date=?, description=? where id=?", $tblOrderExport);
-		$insertStmt = sprintf("insert into %s ( idsupplier, date, description ) values( ?, ?, ?)", $tblOrderExport);
+		$updateStmt = sprintf("update %s set idcustomer=?, date=?, note=? where id=?", $tblOrderExport);
+		$insertStmt = sprintf("insert into %s ( idcustomer, date, note ) values( ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
 		
 		$findCurrentStmt = sprintf("
@@ -39,7 +39,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 				*
 			from 
 				%s 
-			where idsupplier=?
+			where idcustomer=?
 			order by date DESC
 		", $tblOrderExport);
 				
@@ -61,7 +61,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 			from 
 				%s
 			where
-				idsupplier=? AND date >= ? AND date <= ?
+				idcustomer=? AND date >= ? AND date <= ?
 			order by 
 				date DESC
 			"
@@ -70,7 +70,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE idsupplier=:idsupplier
+							WHERE idcustomer=:idcustomer
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblOrderExport);
@@ -105,7 +105,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
-			$object->getIdSupplier(), 
+			$object->getIdCustomer(), 
 			$object->getDate(),
 			$object->getNote()
 		); 
