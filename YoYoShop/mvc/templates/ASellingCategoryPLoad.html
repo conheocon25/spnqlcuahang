@@ -19,12 +19,11 @@
 			$(".CategoryS").click(function(){
 				var IdCategory = $(this).attr('alt');				
 				$("#ResourceAll").load("/admin/selling/categorys/"+IdCategory+"/load");
-				$(this).toggleClass('active').siblings().removeClass('active');
-				//alert(IdCategory);							
-				//$("#SearchName").focus();
+				$(this).toggleClass('active').siblings().removeClass('active');				
+				$("#SearchName").focus();
 			});
-			//Mặc định lấy click của BÀN đầu tiên
-			//$('.Category:first').click();
+			//Mặc định lấy click của DANH MỤC CON đầu tiên			
+			$('.CategoryS:first').click();
 						
 			$('.gallery-masonry').masonry({
 				itemSelector: '.item',

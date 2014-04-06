@@ -31,8 +31,8 @@ class OrderExport extends Object{
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date); return $Date->getDateFormat();}
 			
-	function getDescription( ) {return $this->Note;}
-	function setDescription( $Note ) {$this->Note = $Note;$this->markDirty();}
+	function getNote( ) {return $this->Note;}
+	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
 	function getDetailAll(){		
 		$mOD = new \MVC\Mapper\OrderExportDetail();
@@ -68,7 +68,7 @@ class OrderExport extends Object{
 			'Id' 			=> $this->getId(),
 			'IdCustomer' 	=> $this->getIdSupplier(),
 			'Date'			=> $this->getDate(),
-			'Note'	=> $this->getDescription()
+			'Note'	=> $this->getNote()
 		);
 		return json_encode($json);
 	}

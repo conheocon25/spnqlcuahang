@@ -38,7 +38,18 @@
 							<tbody>
 								<tr tal:repeat="SD Order/getDetailAll">
 									<td><div class="text-center" tal:content="repeat/SD/number" /></td>
-									<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id SD/getId" tal:content="SD/getResource/getName"/></td>
+									<td>
+										<a class="update-item" href="#DialogEdit" data-toggle="modal" 
+											tal:attributes="
+												id 			SD/getId;
+												idresource	SD/getIdResource;
+												name 		SD/getResource/getName;
+												count 		SD/getCount;
+												price 		SD/getPrice;
+											"
+											tal:content="SD/getResource/getName"
+										/>
+									</td>
 									<td><div class="text-center" tal:content="SD/getCountPrint"/></td>
 									<td><div class="text-right" tal:content="SD/getPricePrint"/></td>
 									<td><div class="text-right" tal:content="SD/getValuePrint"/></td>
@@ -62,13 +73,13 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT MÓN</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT GIAO DỊCH</h3>
 								</div>								
 								<form id="FormSDUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Id</label>
 										<div class="controls">
-											<input readonly="true" id="IdCourse1" name="IdCourse1" type="text" class="form-control input-small"/>
+											<input readonly="true" id="IdResource1" name="IdResource1" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -249,21 +260,7 @@
 					$("#CustomerName").val(data.Name);
 				});				
 			});
-			$(".SessionPreview").click(function(){
-				URL = $(this).attr('alt');
-				var mPDF = new PDFObject({ 		
-					url: URL,				
-					height: "500px",
-					pdfOpenParams:{
-						view: 'Fit', 
-						toolbar: '1', 
-						statusbar: '1', 
-						messages: '1',
-						navpanes: '1' 
-					}				
-				}).embed("DocPreview");												
-				$("#DocPreview").show().printElement();	
-			});
+			
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
 			//-----------------------------------------------------------------------------------
@@ -355,7 +352,7 @@
 						if ($('#Status1').val()>0){														
 							$(TableActive).removeClass('actived');
 						}
-						$("#Session").load("/selling/load/table/"+IdTable);
+						$("#Session").load("/admin/selling/session");
 					}
 				});
 			});
@@ -363,18 +360,12 @@
 			//-----------------------------------------------------------------------------------
 			//CHECKOUT
 			//-----------------------------------------------------------------------------------
-			$('.Checkout').click(function(e){
-				var URL = $(this).attr('alt');
-				var IdTable = $("#CurrentTable").attr('alt');
+			$('.Checkout').click(function(e){				
 				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/selling/load/table/"+IdTable);
-																		
-						//Đánh dấu Table có khách
-						$(TableActive).toggleClass('actived');
+					type: "POST",
+					url: "/admin/selling/checkout",
+					success: function(msg){						
+						location.reload();
 					}
 				});
 			});
@@ -382,6 +373,15 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 SESSION DETAIL
 			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về								
+				$('#URLUpdButton').attr('alt', 	$(this).attr('id'));
+				$('#IdResource1').attr('value', 	$(this).attr('idresource'));
+				$('#Name1').attr('value', 		$(this).attr('name'));
+				$('#Count1').attr('value', 		$(this).attr('count'));
+				$('#Price1').attr('value', 		$(this).attr('price'));
+			});
+			
 			$("#FormSDUpdate").validate({
 				rules:{
 					Count1:{
@@ -407,27 +407,19 @@
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');				
 					Data[1] = $('#IdSession').attr('alt')				
-					Data[2] = $('#IdCourse1').val();
+					Data[2] = $('#IdResource1').val();
 					Data[3] = $('#Count1').val();
 					Data[4] = $('#Price1').val();
 					
 					$("#DialogEdit").modal('hide');
 										
-					var URL = "/object/upd/SessionDetail";
+					var URL = "/object/upd/OrderExportDetail";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
 						url: URL,
-						success: function(msg){
-							$.gritter.add({
-								title		:'Thông tin',
-								class_name	:'gritter-green',
-								text		:'Đã cập nhật món xong',
-								time		:5000,
-								sticky		: false
-							});
-						
-							$("#Session").load("/selling/load/table/"+IdTable);
+						success: function(msg){																			
+							location.reload();
 						}
 					});
 					return false;

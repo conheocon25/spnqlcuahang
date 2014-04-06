@@ -42,6 +42,7 @@
 		<!-- ============================================================================== -->
 		<command name="ASelling">				<view>ASelling				</view></command>
 		<command name="ASellingSession">		<view>ASellingSession		</view></command>
+		<command name="ASellingCheckout">		<view>ASellingCheckout		</view></command>
 		<command name="ASellingCall">			<view>ASellingCall			</view></command>
 		<command name="ASellingCategoryPLoad">	<view>ASellingCategoryPLoad	</view></command>
 		<command name="ASellingCategorySLoad">	<view>ASellingCategorySLoad	</view></command>
