@@ -8,8 +8,8 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul>
-				<li tal:repeat="Category CategoryAll">
-					<a class="active CategoryP" tal:attributes="alt Category/getId"><i class="glyphicons-show_big_thumbnails" /><span tal:content="Category/getName"/></a>
+				<li class="active" tal:repeat="Category CategoryAll">
+					<a class="CategoryP" tal:attributes="alt Category/getId"><i class="glyphicons-show_big_thumbnails" /><span tal:content="Category/getName"/></a>
 				</li>
 			</ul>			
 		</div>
