@@ -19,7 +19,7 @@ abstract class Mapper implements \MVC\Domain\Finder {
         if ( ! isset(self::$PDO) ) { 
             
 			$dsn 	= "mysql:host=localhost;";
-			$dbname = "dbname=spncom_qlcuahang_yoyoshop";
+			$dbname = "dbname=spncom_qlcuahang_hdncomputer";
 			$user 	= "spncom_admindb";
 			$pass 	= "admin368189";
 						
