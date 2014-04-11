@@ -67,11 +67,7 @@
 			return self::instance()->get('cafe_current_Iduser');
 		}
 		
-		function setCurrentDate( $Date ) {return self::instance()->set('cafe_current_date', $Date);}		
-		function getCurrentDate() {
-			$result = self::instance()->get('cafe_current_date');
-			return $result;
-		}
+		
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
