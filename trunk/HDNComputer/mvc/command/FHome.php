@@ -36,7 +36,7 @@
 			$ResourceAll2 	= $mResource->findAll();
 			$ResourceAll3 	= $mResource->findAll();
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

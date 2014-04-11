@@ -13,26 +13,10 @@
 			<div class="span3">
 				<div class="row-fluid">
 					<div class="span12">
-						<h2>Địa chỉ liên lạc</h2>
-						<address>
-							Trường Chinh<br/>
-							Q.Tân Bình<br/>
-							TP HCM.<br/>
-							info@yoyoshop.com<br/>
-							0803 111 333<br/>
-							<abbr title="Phone">Di động:</abbr> 0919 11 22 33<br/>
-						</address>
-						<h2>Chăm sóc KH</h2>
-						<address>
-							<strong>Nguyễn Thị A</strong><br/>
-							0919 123 456<br/>
-							<a href="mailto:#">nguyenthia@yoyoshop.com</a>
-						</address>
-						<address>
-							<strong>Trần Văn B</strong><br/>
-							0919 111 222<br/>
-							<a href="mailto:#">tranvanb@yoyoshop.com</a>
-						</address>
+						<h2>Địa chỉ</h2>
+						<address tal:content="ConfigAddress/getValue" />
+						<h2>Điện thoại</h2>
+						<address tal:content="ConfigPhone/getValue" />
 					</div>
 				</div>
 			</div>

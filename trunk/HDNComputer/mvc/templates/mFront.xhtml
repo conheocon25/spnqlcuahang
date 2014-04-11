@@ -74,18 +74,11 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="PageTitle" class="row-fluid">
 		<div class="span6 logo">
-			<h1><a href="#" tal:content="ConfigName/getValue"/></h1>
+			<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
 			<p tal:content="ConfigSlogan/getValue"/>
 		</div>
 		<div class="span6 account">
-			<ul>
-				<li id="your-account"><h4><a href="#">KHÁCH</a></h4>
-					<p>Chào mừng, <a href="/dang-nhap">đăng nhập</a></p>
-				</li>
-				<li><h4><a href="/gio-hang">Giỏ hàng</a></h4>
-					<p><strong>1 Sản phẩm</strong></p>
-				</li>
-			</ul>
+			
 		</div>
 	</div>
 	
@@ -122,15 +115,15 @@
 	<div metal:define-macro="Footer">
 		<hr />      
 		<div class="row-fluid footer">
-			<div class="span3">
+			<div class="span6">
 				<h3>Thông tin</h3>
 				<ul>					
 					<li><a href="/faq">FAQ</a></li>
 					<li><a href="/chinh-sach">Chính sách điều khoản</a></li>
 				</ul>
 			</div>
-			<div class="span3">
-				<h3>Nhận email</h3>
+			<div class="span6">
+				<h3>Nhận báo giá qua email</h3>
 				<ul>					
 					<li>
 						<div class="control-group">
@@ -144,25 +137,11 @@
 					
 				</ul>
 				<p></p>
-			</div>
-			<div class="span3">
-				<h3>Chi nhánh</h3>
-				<ul>
-					<li><a href="#">Chi nhánh 1</a></li>
-					<li><a href="#">Chi nhánh 2</a></li>					
-				</ul>
-			</div>
-			<div class="span3">
-				<h3>Kho hàng</h3>
-				<ul>
-					<li><a href="#">TP HCM</a></li>
-					<li><a href="#">Đồng Nai</a></li>					
-				</ul>
-			</div>
+			</div>			
 		</div>
 		<hr/>
 		<footer>
-			<p>&copy; YoYoShop - Bản quyền 2009 - 2014</p>
+			<p>&copy; SPN Shop App - 2009 - 2014</p>
 		</footer>
 	</div>
 	
