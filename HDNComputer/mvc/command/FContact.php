@@ -21,19 +21,24 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			$ConfigSlogan = $mConfig->findByName("SLOGAN");
-			$CategoryAll = $mCategory->findAll();
+			$Title 			= "";
+			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			$ConfigAddress 	= $mConfig->findByName("ADDRESS");
+			$ConfigPhone 	= $mConfig->findByName("PHONE");
+			
+			$CategoryAll 	= $mCategory->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);
-			$request->setProperty("Active", 	'Contact');
-			$request->setObject("ConfigName", 	$ConfigName);
-			$request->setObject("ConfigSlogan", $ConfigSlogan);
-			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setProperty("Title", 			$Title);
+			$request->setProperty("Active", 		'Contact');
+			$request->setObject("ConfigName", 		$ConfigName);
+			$request->setObject("ConfigSlogan", 	$ConfigSlogan);
+			$request->setObject("ConfigAddress", 	$ConfigAddress);
+			$request->setObject("ConfigPhone", 		$ConfigPhone);
+			$request->setObject("CategoryAll", 		$CategoryAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
