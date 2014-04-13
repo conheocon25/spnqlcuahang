@@ -145,5 +145,27 @@
 		</footer>
 	</div>
 	
+	<!-- ======================================================================== -->
+	<!-- FIXED FUNCTION															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="FixedFunction" class="fixed-function">		
+		<div class="bubble" tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/>
+		<p class="bubble-item">Truy cập</p>
+		<div class="bubble">
+			<span tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/>
+		</div>
+		<p class="bubble-item"><img src="/data/images/count_logo.gif"/> Online</p>
+		<a id="bookmark-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Hỗ trợ trực tuyến">
+			<div class="bubble">
+				<img src="/data/images/chat.png"/>
+			</div>
+			<p class="bubble-item">Chat</p>
+		</a>
+		<script language="JavaScript">
+			<!--
+			$('#bookmark-tooltip').tooltip();
+			-->
+		</script>
+	</div>
 </body>
 </html>
