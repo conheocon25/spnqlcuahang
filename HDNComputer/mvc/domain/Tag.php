@@ -9,15 +9,17 @@ class Tag extends Object{
 	private $Id;
 	private $Name;	
 	private $Order;
+	private $Position;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $Key=null) {
+	function __construct($Id=null, $Name=null, $Order=null, $Position=null, $Key=null) {
 		$this->Id 		= $Id;
 		$this->Name 	= $Name;
 		$this->Order 	= $Order;
+		$this->Position = $Position;
 		$this->Key 		= $Key;
 		parent::__construct( $Id );
 	}
@@ -30,6 +32,9 @@ class Tag extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
+	function setPosition($Position){$this->Position = $Position; $this->markDirty();}
+	function getPosition() 	{return $this->Position;}
+		
 	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
 	function getKey() 		{return $this->Key;}
 	function reKey( ) {
@@ -42,6 +47,7 @@ class Tag extends Object{
 			'Id' 			=> $this->getId(),
 			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
+			'Position'		=> $this->getPosition(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -49,8 +55,9 @@ class Tag extends Object{
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];		
+		$this->Name 	= $Data[1];
 		$this->Order	= $Data[2];
+		$this->Position	= $Data[3];
 		$this->reKey();
     }
 	
@@ -61,10 +68,7 @@ class Tag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){
-		return "/san-pham/".$this->getTag()->getKey();
-	}
-	
+	function getURLView(){return "/tin-tuc/".$this->getKey();}
 	function getURLSetting(){return "/admin/setting/tag/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------

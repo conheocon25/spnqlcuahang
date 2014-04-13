@@ -64,6 +64,12 @@
 												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="control-group">
+											<label class="control-label">Vị trí</label>
+											<div class="controls">
+												<input id="Position1" name="Position1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -92,6 +98,12 @@
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Vị trí</label>
+											<div class="controls">
+												<input id="Position2" name="Position2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -176,6 +188,7 @@
 					Data[0] = 'null';					
 					Data[1] = $('#Name1').val();
 					Data[2] = $('#Order1').val();
+					Data[3] = $('#Position1').val();
 					
 					var URL = "/object/ins/Tag";
 					$.ajax({
@@ -205,9 +218,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Order2').attr('value', data.Order);
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Order2').attr('value', 		data.Order);
+					$('#Position2').attr('value', 	data.Position);
 				});
 			});
 			
@@ -235,6 +249,7 @@
 					Data[0] = $('#URLUpdButton').attr('alt');					
 					Data[1] = $('#Name2').val();
 					Data[2] = $('#Order2').val();
+					Data[3] = $('#Position2').val();
 																		
 					var URL = "/object/upd/Tag";
 					$.ajax({

@@ -29,6 +29,27 @@
 				</div>
 			</div>
 			<div class="span9">
+				<div class="carousel slide" id="myCarousel">
+					<div class="carousel-inner">
+						<div class="item active">
+							<img width="100%" tal:attributes="src Presentation/getSlideAll/current/getURL; alt Presentation/getSlideAll/current/getName"/>
+							<div class="carousel-caption">
+								<h4 tal:content="Presentation/getSlideAll/current/getName"/>
+								<p tal:content="Presentation/getSlideAll/current/getNote"/>
+							</div>
+						</div>
+						<div class="item" tal:repeat="Slide Presentation/getSlideAll">
+							<img width="100%" tal:attributes="src Slide/getURL; alt Slide/getName"/>
+							<div class="carousel-caption">
+								<h4 tal:content="Slide/getName"/>
+								<p tal:content="Slide/getNote"/>
+							</div>
+						</div>
+					</div>
+					<a class="left 	carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+				</div>
+        
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="page-header">
