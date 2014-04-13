@@ -20,6 +20,7 @@
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mResource 	= new \MVC\Mapper\Resource();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mTag 		= new \MVC\Mapper\Tag();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,13 +37,17 @@
 			$ResourceAll2 	= $mResource->findAll();
 			$ResourceAll3 	= $mResource->findAll();
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
-						
+			
+			$TagAll 		= $mTag->findByPosition(array(1));
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 	'Home');
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);
+			
+			$request->setObject("TagAll", 		$TagAll);
 			
 			$request->setObject("Save", 		$Save);
 			$request->setObject("Presentation", $Presentation);

@@ -10,19 +10,22 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblTag);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblTag);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblTag);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblTag);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, position=?, `key`=? where id=?", $tblTag);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, position, `key`) values(?, ?, ?, ?)", $tblTag);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblTag);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblTag);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblTag);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblTag);		
+		$findByPositionStmt 		= sprintf("SELECT * FROM  %s WHERE position=?", $tblTag);
 		
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);							
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);							
+		$this->findByPositionStmt 	= self::$PDO->prepare($findByPositionStmt);
+		
     } 
     function getCollection( array $raw ) {return new TagCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -30,6 +33,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 			$array['id'],
 			$array['name'],
 			$array['order'],
+			$array['position'],
 			$array['key']
 		);
         return $obj;
@@ -40,6 +44,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
+			$object->getPosition(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -51,6 +56,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
+			$object->getPosition(),
 			$object->getKey(),
 			$object->getId()
 		);				
@@ -76,5 +82,11 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
+	
+	function findByPosition(array $values) {
+        $this->findByPositionStmt->execute( $values );
+        return new SlideCollection( $this->findByPositionStmt->fetchAll(), $this );
+    }
+	
 }
 ?>

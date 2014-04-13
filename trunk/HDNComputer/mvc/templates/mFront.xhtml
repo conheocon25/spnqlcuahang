@@ -94,6 +94,14 @@
 				<li tal:attributes="class php:Active=='Introduction'?'active':''">
 					<a href="/gioi-thieu">Giới thiệu</a>
 				</li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> Tin tức <b class="caret"></b></a>					
+					<ul class="dropdown-menu">							
+						<li tal:repeat="Tag TagAll">
+							<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName"/>
+						</li>
+					</ul>					
+				</li>
 				<li class="dropdown" tal:repeat="Category CategoryAll">
 					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> <span tal:content="Category/getName"/> <b class="caret"></b></a>
 					<ul class="dropdown-menu">							
