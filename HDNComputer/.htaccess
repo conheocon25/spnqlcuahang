@@ -58,6 +58,9 @@ RewriteRule ^admin/report/([0-9]+)$ 							?cmd=AReportDetail&IdTrack=$1 [L]
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeExe&Theme=$1 [L]
 
+RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
+RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
+
 RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost [L]
 RewriteRule ^admin/setting/post/ins/load$ 								?cmd=ASettingPostInsLoad [L]
 RewriteRule ^admin/setting/post/ins/exe$ 								?cmd=ASettingPostInsExe 	[L]
@@ -65,6 +68,8 @@ RewriteRule ^admin/setting/post/([0-9]+)/upd/load$ 						?cmd=ASettingPostUpdLoa
 RewriteRule ^admin/setting/post/([0-9]+)/upd/exe$ 						?cmd=ASettingPostUpdExe&IdPost=$1	[L]
 RewriteRule ^admin/setting/post/([0-9]+)/del/load$ 						?cmd=ASettingPostDelLoad&IdPost=$1 	[L]
 RewriteRule ^admin/setting/post/([0-9]+)/del/exe$ 						?cmd=ASettingPostDelExe&IdPost=$1	[L]
+
+RewriteRule ^admin/setting/post/([0-9]+)/tag$ 							?cmd=ASettingPostTag&IdPost=$1 		[L]
 
 RewriteRule ^admin/setting/presentation$ 								?cmd=ASettingPresentation [L]
 RewriteRule ^admin/setting/presentation/([0-9]+)$ 						?cmd=ASettingSlide&IdPresentation=$1 [L]

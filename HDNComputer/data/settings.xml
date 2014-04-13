@@ -34,8 +34,8 @@
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
-		<command name="AReport">					<view>AReport</view>						</command>
-		<command name="AReportDetail">				<view>AReportDetail</view>				</command>
+		<command name="AReport">				<view>AReport</view>				</command>
+		<command name="AReportDetail">			<view>AReportDetail</view>			</command>
 								
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
@@ -54,6 +54,9 @@
 		
 		<command name="ASettingPresentation">	<view>ASettingPresentation	</view></command>
 		<command name="ASettingSlide">			<view>ASettingSlide			</view></command>
+		
+		<command name="ASettingTag">			<view>ASettingTag			</view></command>
+		<command name="ASettingPostTag">		<view>ASettingPostTag		</view></command>
 		
 		<command name="ASettingPost">			<view>ASettingPost			</view></command>
 		<command name="ASettingPostInsLoad">	<view>ASettingPostInsLoad	</view></command>
@@ -79,9 +82,9 @@
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="AImport"><view>AImport</view></command>
-		<command name="AImportSupplier"><view>AImportSupplier</view></command>
-		<command name="AImportSupplierOrder"><view>AImportSupplierOrder</view></command>
+		<command name="AImport">				<view>AImport				</view></command>
+		<command name="AImportSupplier">		<view>AImportSupplier		</view></command>
+		<command name="AImportSupplierOrder">	<view>AImportSupplierOrder	</view></command>
 		<command name="AImportSupplierOrderPrint"><view>AImportSupplierOrderPrint</view></command>
 		
 		<!-- ============================================================================== -->

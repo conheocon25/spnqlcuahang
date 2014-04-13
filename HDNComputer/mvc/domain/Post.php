@@ -51,6 +51,12 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getPTAll(){
+		$mPT 	= new \MVC\Mapper\PostTag();	
+		$PTAll 	= $mPT->findByPost(array($this->getId()));
+		return $PTAll;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -72,6 +78,8 @@ class Post extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLRead(){		return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
+	
+	function getURLSettingTag(){return "admin/setting/post/".$this->getId()."/tag";}
 	
 	function getURLUpdLoad(){	return "admin/setting/post/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		

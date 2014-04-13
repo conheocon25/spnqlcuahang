@@ -23,6 +23,8 @@ interface OrderExportFinder 	extends Finder {}
 interface OrderExportDetailFinder extends Finder {}
 
 interface CustomerFinder 		extends Finder {}
+interface TagFinder 			extends Finder {}
+interface PostTagFinder 		extends Finder {}
 
 interface EmployeeFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}

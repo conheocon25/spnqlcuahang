@@ -11,11 +11,11 @@
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Hệ thống quản lý cừa hàng"/>
-		<meta name="description" content="Hệ thống quản lý cừa hàng"/>
-		<meta name="page-topic" content="Hệ thống quản lý cừa hàng"/>
-		<meta name="Abstract" content="Hệ thống quản lý cừa hàng"/>
-		<meta name="classification" content="Hệ thống quản lý cừa hàng"/>
+		<meta name="keywords" content="Hệ thống quản lý cửa hàng"/>
+		<meta name="description" content="Hệ thống quản lý cửa hàng"/>
+		<meta name="page-topic" content="Hệ thống quản lý cửa hàng"/>
+		<meta name="Abstract" content="Hệ thống quản lý cửa hàng"/>
+		<meta name="classification" content="Hệ thống quản lý cửa hàng"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
@@ -57,16 +57,7 @@
         <script src="/mvc/templates/theme/cms/js/jquery.masonry.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.jeditable.js"/>
-						
-		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.pie.min.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.categories.js"/>
-			
-		<script src="/mvc/templates/theme/cms/js/pdfobject.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -74,7 +65,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Cửa hàng bán quần áo</a></h1>
+			<h1><a>Cửa hàng </a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">			
@@ -106,7 +97,7 @@
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->	
 	<div metal:define-macro="ContentHeader" id="content-header">
-		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'cừa hàng'"/></h1>
+		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'cửa hàng'"/></h1>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -151,6 +142,11 @@
 					<i class="glyphicons-picture" />TRÌNH BÀY
 				</a>
 			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/tag'" >
+					<i class="glyphicons-book" />THẺ BÀI
+				</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/post'" >
 					<i class="glyphicons-book" />BÀI VIẾT
@@ -163,9 +159,9 @@
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/category'" >
-					<i class="glyphicons-truck" />DANH MỤC
+					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
 				</a>
-			</li>			
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
@@ -184,7 +180,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2014 &copy; <a href="http://quanly-cuahang.com">SPN Soft - cừa hàng</a>
+			2009 - 2014 &copy; <a href="http://quanly-cuahang.com">SPN Soft - Cửa Hàng</a>
 		</div>
 	</div>
 	
