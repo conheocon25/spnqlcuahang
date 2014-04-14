@@ -106,3 +106,5 @@ RewriteRule ^admin/selling/categorys/([0-9]+)/load$ 					?cmd=ASellingCategorySL
 RewriteRule ^admin/selling/call/([0-9]+)/plus$ 							?cmd=ASellingCall&IdResource=$1&Delta=1 [L]
 RewriteRule ^admin/selling/session$ 									?cmd=ASellingSession [L]
 RewriteRule ^admin/selling/checkout$ 									?cmd=ASellingCheckout [L]
+
+RewriteRule ^admin/selling/session/([0-9]+)/print$ 						?cmd=ASellingSessionPrint&IdOrder=$1 [L]

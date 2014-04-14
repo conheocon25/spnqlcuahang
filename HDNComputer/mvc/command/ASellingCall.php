@@ -34,10 +34,9 @@
 					\date("Y-m-d H:i:s"),
 					"Thêm thử"
 				);
-				$IdOrder = $mOrder->insert($Order);								
-			}else{
-				$IdOrder = $Order->getId();
+				$mOrderExport->insert($Order);												
 			}
+			$IdOrder = $Order->getId();
 			
 			$IdOD = $mOD->exist(array($IdOrder, $IdResource));			
 			if (!isset($IdOD) || $IdOD==-1){

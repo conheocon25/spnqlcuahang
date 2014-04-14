@@ -36,6 +36,30 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="control-label">Người liên hệ</label>
+										<div class="controls">
+											<input id="Contact2" tal:attributes="value ConfigContact/getValue;data-id ConfigContact/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Nick YahooMessenger</label>
+										<div class="controls">
+											<input id="YahooMessenger2" tal:attributes="value ConfigYahooMessenger/getValue;data-id ConfigYahooMessenger/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Nick Skype</label>
+										<div class="controls">
+											<input id="Skype2" tal:attributes="value ConfigSkype/getValue;data-id ConfigSkype/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Nick GTalk</label>
+										<div class="controls">
+											<input id="GTalk2" tal:attributes="value ConfigGTalk/getValue;data-id ConfigGTalk/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="control-label">Điện thoại</label>
 										<div class="controls">
 											<input id="Phone2" tal:attributes="value ConfigPhone/getValue;data-id ConfigPhone/getId" type="text" class="form-control input-small"/>
@@ -141,6 +165,10 @@
 				var Data9 = [];
 				var Data10 = [];
 				var Data11 = [];
+				var Data12 = [];
+				var Data13 = [];
+				var Data14 = [];
+				var Data15 = [];
 				
 				Data1[0] = $('#RowPerPage2').attr('data-id');
 				Data1[1] = "ROW_PER_PAGE";
@@ -255,8 +283,7 @@
 				//Cập nhật Trình bày
 				Data11[0] = $('#ConfigPHome2').attr('data-id');
 				Data11[1] = "PRESENTATION_HOME";
-				Data11[2] = $('#ConfigPHome2').val();
-				
+				Data11[2] = $('#ConfigPHome2').val();				
 				$.ajax({
 					type: "POST",
 					data: {Data:Data11},
@@ -264,15 +291,60 @@
 					success: function(msg){}
 				});
 				
+				//Cập nhật tên người liên hệ
+				Data12[0] = $('#Contact2').attr('data-id');
+				Data12[1] = "CONTACT_NAME";
+				Data12[2] = $('#Contact2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data12},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật nick Yahoo Messenger
+				Data13[0] = $('#YahooMessenger2').attr('data-id');
+				Data13[1] = "CONTACT_YAHOOMESSENGER";
+				Data13[2] = $('#YahooMessenger2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data13},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật nick Skype
+				Data14[0] = $('#Skype2').attr('data-id');
+				Data14[1] = "CONTACT_SKYPE";
+				Data14[2] = $('#Skype2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data14},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật nick GTalk
+				Data15[0] = $('#GTalk2').attr('data-id');
+				Data15[1] = "CONTACT_GTALK";
+				Data15[2] = $('#GTalk2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data15},
+					url: URL,
+					success: function(msg){}
+				});
+				
 				//hiển thị thông báo
 				$.gritter.add({
 					title		:'Thông báo',
-					class_name	: 'gritter-green',
+					class_name	:'gritter-green',
 					text		:'Đã cập nhật xong',
 					time		:5000,
 					sticky		: false
 				});
 			});
-		/*]]>*/</script>
+		/*]]>*/
+		</script>
 	</body>
 </html>
