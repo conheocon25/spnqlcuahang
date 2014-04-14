@@ -6,8 +6,8 @@
 				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
 				<div class="buttons">
 					<a title="Chỉnh sửa" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Order/getId"><i class="glyphicons-ok_2" /></a>					
-					<a title="In phiếu" data-toggle="modal" class="btn" href="#DialogPreview"><i class="glyphicons-print"></i></a>
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Order/getId"><i class="glyphicons-ok_2" /></a>										
+					<a title="In phiếu" class="Ticket btn" tal:attributes="alt Order/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">				
@@ -268,7 +268,7 @@
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});			
 			$('#URLDelButton').click(function(e){								
-				var URL = "/object/del/SessionDetail/" + $(this).attr('alt');
+				var URL = "/object/del/OrderExportDetail/" + $(this).attr('alt');
 				var IdTable = $("#CurrentTable").attr('alt');
 				$("#DialogDel").modal('hide');
 				e.stopImmediatePropagation();
@@ -288,15 +288,14 @@
 				$('#URLSessionDelButton').attr('alt', $(this).attr('data-id'));
 			});			
 			$('#URLSessionDelButton').click(function(e){								
-				var URL = "/object/del/Session/" + $(this).attr('alt');
-				var IdTable = $("#CurrentTable").attr('alt');
+				var URL = "/object/del/OrderExport/" + $(this).attr('alt');				
 				$("#DialogSessionDel").modal('hide');
 				e.stopImmediatePropagation();
 				$.ajax({
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/selling/load/table/"+IdTable);
+						location.reload();
 					}
 				});
 			});
@@ -430,6 +429,13 @@
 				$(event.currentTarget).find('input#Count1').first().focus()
 				}, 0500);
 			});
+			
+			$(".Ticket").click(function(){
+				var url = $(this).attr('alt');
+				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

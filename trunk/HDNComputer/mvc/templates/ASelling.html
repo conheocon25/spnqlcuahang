@@ -8,8 +8,8 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul>
-				<li tal:repeat="Category CategoryAll">
-					<a class="active CategoryP" tal:attributes="alt Category/getId"><i class="glyphicons-show_big_thumbnails" /><span tal:content="Category/getName"/></a>
+				<li class="CategoryP" tal:attributes="alt Category/getId" tal:repeat="Category CategoryAll">
+					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Category/getName"/></a>
 				</li>
 			</ul>			
 		</div>
@@ -44,6 +44,9 @@
 			
 			$('.CategoryP').click(function(){				
 				var IdCategoryP = $(this).attr('alt');
+				$('.CategoryP').removeClass('active');
+				$(this).addClass('active');
+								
 				$("#CategoryS").load("/admin/selling/categoryp/" + IdCategoryP + "/load");
 				$("#SearchName").focus();
 			});

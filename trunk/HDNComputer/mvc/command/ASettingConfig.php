@@ -111,6 +111,30 @@
 				$mConfig->insert($ConfigPHome);
 			}
 			
+			$ConfigContact = $mConfig->findByName("CONTACT_NAME");
+			if ($ConfigContact==null){
+				$ConfigContact = new \MVC\Domain\Config(null, 'CONTACT_NAME', 'A.Tuấn');
+				$mConfig->insert($ConfigContact);
+			}
+			
+			$ConfigYahooMessenger = $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			if ($ConfigYahooMessenger==null){
+				$ConfigYahooMessenger = new \MVC\Domain\Config(null, 'CONTACT_YAHOOMESSENGER', 'abc@yahoo.com');
+				$mConfig->insert($ConfigYahooMessenger);
+			}
+			
+			$ConfigSkype = $mConfig->findByName("CONTACT_SKYPE");
+			if ($ConfigSkype==null){
+				$ConfigSkype = new \MVC\Domain\Config(null, 'CONTACT_SKYPE', 'abc@skype.com');
+				$mConfig->insert($ConfigSkype);
+			}
+			
+			$ConfigGTalk = $mConfig->findByName("CONTACT_GTALK");
+			if ($ConfigGTalk==null){
+				$ConfigGTalk = new \MVC\Domain\Config(null, 'CONTACT_GTALK', 'abc@gmail.com');
+				$mConfig->insert($ConfigGTalk);
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -121,6 +145,7 @@
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
 			$request->setObject('ConfigPhone', 				$ConfigPhone);
+			$request->setObject('ConfigContact', 			$ConfigContact);
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
 			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
@@ -131,9 +156,13 @@
 			$request->setObject('ConfigPolicy', 			$ConfigPolicy);	
 			$request->setObject('ConfigFAQ', 				$ConfigFAQ);
 			$request->setObject('ConfigPHome', 				$ConfigPHome);
-			
+									
 			$request->setObject('PostAll', 					$PostAll);
 			$request->setObject('PresentationAll', 			$PresentationAll);
+			
+			$request->setObject('ConfigYahooMessenger', 	$ConfigYahooMessenger);
+			$request->setObject('ConfigSkype', 				$ConfigSkype);
+			$request->setObject('ConfigGTalk', 				$ConfigGTalk);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

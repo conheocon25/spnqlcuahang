@@ -17,7 +17,8 @@ class OrderExport extends Object{
 		$this->Note = $Note;
         parent::__construct( $Id );
     }
-    function getId( ) {return $this->Id;}
+    function getId( ) 		{return $this->Id;}
+	function setId( $Id ) 	{return $this->Id = $Id;}
     
 	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
     function getIdCustomer( ) {return $this->IdCustomer;}
@@ -83,8 +84,8 @@ class OrderExport extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPrint(){return 	"/admin/import/".$this->getIdCustomer()."/".$this->getId()."/print";}	
-	function getURLDetail(){return 	"/admin/import/".$this->getIdSupplier()."/".$this->getId();}
+	function getURLPrint(){return 	"/admin/selling/session/".$this->getId()."/print";}
+	function getURLDetail(){return 	"/admin/export/".$this->getIdCustomer()."/".$this->getId();}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
