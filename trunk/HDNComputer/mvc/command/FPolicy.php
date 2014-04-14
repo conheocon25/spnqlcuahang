@@ -18,6 +18,7 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mPost 		= new \MVC\Mapper\Post();
 			$mCategory 	= new \MVC\Mapper\Category();
+			$mTag 		= new \MVC\Mapper\Tag();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -28,6 +29,8 @@
 			$ConfigPolicy 	= $mConfig->findByName("POST_POLICY");
 			$CategoryAll 	= $mCategory->findAll();
 			$Post			= $mPost->find($ConfigPolicy->getValue());
+			$TagAll 		= $mTag->findByPosition(array(1));
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -37,6 +40,7 @@
 			$request->setObject("ConfigSlogan", $ConfigSlogan);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Post", 		$Post);
+			$request->setObject("TagAll", 		$TagAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
