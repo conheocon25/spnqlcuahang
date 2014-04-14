@@ -11,6 +11,8 @@
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
+		<command name="FTag" 			type="public"><view>FTag</view></command>
+		<command name="FPost" 			type="public"><view>FPost</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->

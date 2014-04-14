@@ -9,21 +9,23 @@
 		<div class="container">
 			<div metal:use-macro="mFront.xhtml/PageTitle"/>
 			<div metal:use-macro="mFront.xhtml/Menu"/>           
-			<div class="row-fluid">
-				<div class="span3">
-					<div class="row-fluid">
-						<ul class="nav nav-tabs nav-stacked" tal:repeat="Tag TagAll">
-							<li class="active"><a href="#" tal:content="Tag/getName"/></li>						
-							<li tal:repeat="PT Tag/getPostTop4">							
-								<a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/>
-							</li>
-						</ul>										
-					</div>
+			<div class="span3">
+				<div class="row-fluid">
+					<ul class="nav nav-tabs nav-stacked" tal:repeat="Tag TagAll">
+						<li class="active"><a href="#" tal:content="Tag/getName"/></li>						
+						<li tal:repeat="PT Tag/getPostTop4">							
+							<a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/>
+						</li>
+					</ul>										
 				</div>
-				<div class="span9">
-					<div class="page-header"><h1>Giới thiệu</h1></div>
-					<p tal:content="structure Post/getContent" />
-				</div>
+			</div>
+			<div class="span9">
+				<div class="page-header"><h1 tal:content="Tag/getName"/></div>
+				<ul>
+					<li tal:repeat="PT Tag/getPostAll">
+						<span tal:content="PT/getId"/>
+					</li>
+				</ul>
 			</div>			
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 			<div metal:use-macro="mFront.xhtml/FixedFunction"/>

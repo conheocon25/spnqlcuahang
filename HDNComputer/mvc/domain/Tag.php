@@ -63,7 +63,18 @@ class Tag extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
-	//-------------------------------------------------------------------------------		
+	//-------------------------------------------------------------------------------
+	function getPostAll(){
+		$mPT 	= new \MVC\Mapper\PostTag();
+		$PTAll 	= $mPT->findByTag(array($this->getId()));
+		return $PTAll;
+	}
+	
+	function getPostTop4(){
+		$mPT 	= new \MVC\Mapper\PostTag();
+		$PTAll 	= $mPT->findByTagTop4(array($this->getId()));
+		return $PTAll;
+	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL

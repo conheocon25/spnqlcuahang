@@ -25,6 +25,11 @@ class PostTag extends Object{
 		
 	function setIdPost($IdPost) {$this->IdPost = $IdPost;$this->markDirty();}
 	function getIdPost() 		{return $this->IdPost;}
+	function getPost(){
+		$mPost 	= new \MVC\Mapper\Post();
+		$Post 	= $mPost->find($this->getIdPost() );
+		return $Post;
+	}
 	
 	function setIdTag($IdTag){$this->IdTag = $IdTag;$this->markDirty();}
 	function getIdTag() 	{return $this->IdTag;}
@@ -56,7 +61,7 @@ class PostTag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/san-pham/".$this->getPostTag()->getKey();}	
+	function getURLRead()	{return "/tin-tuc/".$this->getTag()->getKey()."/".$this->getPost()->getKey();}
 	function getURLSetting(){return "/admin/setting/PostTag/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------

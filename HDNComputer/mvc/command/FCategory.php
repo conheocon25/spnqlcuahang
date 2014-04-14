@@ -20,6 +20,7 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mCategory1	= new \MVC\Mapper\Category1();
+			$mTag		= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,6 +31,7 @@
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey($KCategory2);
+			$TagAll 		= $mTag->findByPosition(array(1));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -41,6 +43,7 @@
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category1", 	$Category1);			
 			$request->setObject("Category2", 	$Category2);
+			$request->setObject("TagAll", 		$TagAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

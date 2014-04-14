@@ -4,25 +4,19 @@
 	<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 	<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
   </head>
-  <body>
-	<div metal:use-macro="mFront.xhtml/Header"/>    
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>    
 		<div class="container">
 			<div metal:use-macro="mFront.xhtml/PageTitle"/>
-			<div metal:use-macro="mFront.xhtml/Menu"/>
-           
+			<div metal:use-macro="mFront.xhtml/Menu"/>           
 			<div class="row-fluid">
-				<div class="span12">
-					<div class="page-header">
-						<h1>Chính sách</h1>
-					</div>
-				</div>
+				<div class="span12"><div class="page-header"><h1 tal:content="Post/getTitle"/></div></div>
 			</div>
 			<div class="row-fluid">
 				<p tal:content="structure Post/getContent" />
-			</div>                 
+			</div>		  
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-			<div metal:use-macro="mFront.xhtml/FixedFunction"/>
 		</div> <!-- /container -->
-	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-  </body>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
 </html>

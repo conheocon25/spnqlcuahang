@@ -22,6 +22,7 @@
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mCategory1	= new \MVC\Mapper\Category1();
 			$mResource 	= new \MVC\Mapper\Resource();
+			$mTag 		= new \MVC\Mapper\Tag();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -34,6 +35,7 @@
 			$CategoryAll 	= $mCategory->findAll();			
 			$Resource 		= $mResource->findByKey($KResource);
 			$Category 		= $Resource->getCategory()->getCategory();
+			$TagAll 		= $mTag->findByPosition(array(1));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -45,7 +47,8 @@
 			$request->setObject("ConfigPhone", 	$ConfigPhone);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category", 	$Category);
-			$request->setObject("Resource", 	$Resource);			
+			$request->setObject("Resource", 	$Resource);
+			$request->setObject("TagAll", 		$TagAll);			
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -7,21 +7,23 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		
 		$tblPostTag = "shopc_post_tag";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblPostTag);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblPostTag);
-		$updateStmt 	= sprintf("update %s set id_post=?, id_tag=?  where id=?", $tblPostTag);
-		$insertStmt 	= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPostTag);		
-		$findByPostStmt	= sprintf("select *  from %s where id_post=?", 		$tblPostTag);
-		$findByTagStmt	= sprintf("select *  from %s where id_tag=?", 		$tblPostTag);
+		$selectAllStmt 		= sprintf("select * from %s order by `order`", $tblPostTag);
+		$selectStmt 		= sprintf("select * from %s where id=?", $tblPostTag);
+		$updateStmt 		= sprintf("update %s set id_post=?, id_tag=?  where id=?", $tblPostTag);
+		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
+		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
+		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);
+		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);
+		$findByTagTop4Stmt	= sprintf("select *  from %s where id_tag=? LIMIT 4", 	$tblPostTag);
 		
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
-		$this->findByPostStmt 	= self::$PDO->prepare($findByPostStmt);
-		$this->findByTagStmt 	= self::$PDO->prepare($findByTagStmt);
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);		
+		$this->findByPostStmt 		= self::$PDO->prepare($findByPostStmt);
+		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);
+		$this->findByTagTop4Stmt 	= self::$PDO->prepare($findByTagTop4Stmt);
     } 
     function getCollection( array $raw ) {return new PostTagCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -64,6 +66,11 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 	function findByTag(array $values) {
         $this->findByTagStmt->execute( $values );
         return new PostTagCollection( $this->findByTagStmt->fetchAll(), $this );
+    }
+	
+	function findByTagTop4(array $values) {
+        $this->findByTagTop4Stmt->execute( $values );
+        return new PostTagCollection( $this->findByTagTop4Stmt->fetchAll(), $this );
     }
 	
 }
