@@ -19,7 +19,8 @@
 							<li class="span12">
 								<div class="thumbnail">
 									<a tal:attributes="href Resource/getURLView">
-										<img alt="" tal:attributes="src Resource/getImageAll/current/getURL"/>
+										<img tal:condition="Resource/getImageAll/count" tal:attributes="src Resource/getImageAll/current/getURL"/>
+										<img tal:condition="not: Resource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
 									</a>
 									<div class="caption">
 										<h5 	tal:content="Resource/getName"/>
@@ -59,8 +60,9 @@
 					<div class="span6 product">
 						<div class="carousel slide" id="myCarousel">
 							<div class="carousel-inner">																
-								<div class="item active">
-									<img alt="" tal:attributes="src Resource/getImageAll/current/getURL"/>
+								<div class="item active">									
+									<img tal:condition="Resource/getImageAll/count" tal:attributes="src Resource/getImageAll/current/getURL"/>
+									<img tal:condition="not: Resource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
 								</div>
 								<div class="item" tal:repeat="Image Resource/getImageAll">
 									<img alt="" tal:attributes="src Image/getURL"/>

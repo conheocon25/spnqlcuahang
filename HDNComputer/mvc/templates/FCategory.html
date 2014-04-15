@@ -41,8 +41,9 @@
 						<ul class="thumbnails">
 							<li class="span4" tal:repeat="Resource Category2/getResourceAll">
 								<div class="thumbnail">
-									<a tal:attributes="href Resource/getURLView">
-										<img alt="" tal:attributes="src Resource/getImageAll/current/getURL"/>
+									<a tal:attributes="href Resource/getURLView">										
+										<img tal:condition="Resource/getImageAll/count" tal:attributes="src Resource/getImageAll/current/getURL"/>
+										<img tal:condition="not: Resource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
 									</a>
 									<div class="caption">
 										<h5 tal:content="Resource/getName"/>

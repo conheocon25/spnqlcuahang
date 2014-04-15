@@ -11,9 +11,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdPost = $request->getProperty('IdPost');						
-			$Title = $request->getProperty('Title');
-			$Content = \stripslashes($request->getProperty('Content'));
+			$IdPost 	= $request->getProperty('IdPost');						
+			$Title 		= $request->getProperty('Title');
+			$Author 	= $request->getProperty('Author');
+			$Time 		= $request->getProperty('Time');
+			$Count 		= $request->getProperty('Count');
+			$Content 	= \stripslashes($request->getProperty('Content'));
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -27,7 +30,10 @@
 			$Post = $mPost->find($IdPost);
 			
 			$Post->setContent($Content);			
-			$Post->setTitle($Title);			
+			$Post->setTitle($Title);
+			$Post->setTime($Time);
+			$Post->setAuthor($Author);
+			$Post->setCount($Count);
 			$Post->reKey();
 			$mPost->update($Post);
 			

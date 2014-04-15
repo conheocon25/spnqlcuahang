@@ -4,24 +4,38 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Post extends Object{
     private $Id;
-	private $Title;	
+	private $Title;
 	private $Content;	
+	private $Time;
+	private $Count;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Title=null, $Content=null, $Key=null){
+    function __construct( $Id=null, $Title=null, $Content=null, $Author=null, $Time=null, $Count=null, $Key=null){
         $this->Id 			= $Id;
 		$this->Title 		= $Title;
 		$this->Content 		= $Content;		
-		$this->Key 			= $Key;		
+		$this->Author 		= $Author;
+		$this->Time 		= $Time;		
+		$this->Count 		= $Count;
+		$this->Key 			= $Key;
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
 		
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
+	
+	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
+	function getCount( ) {return $this->Count;}
+	
+	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
+	function getTime( ) {return $this->Time;}
+	
+	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
+	function getAuthor( ) {return $this->Author;}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
@@ -61,7 +75,10 @@ class Post extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'Title'			=> $this->getTitle(),
-			'Content'		=> $this->getContent(),			
+			'Content'		=> $this->getContent(),
+			'Author'		=> $this->getAuthor(),
+			'Time'			=> $this->getTime(),
+			'Count'			=> $this->getCount(),
 			'Key'			=> $this->getKey()
 		);				
 		return json_encode($json);
@@ -71,6 +88,9 @@ class Post extends Object{
         $this->Id 			= $Data[0];
 		$this->Title		= $Data[1];
 		$this->Content 		= \stripslashes($Data[2]);				
+		$this->Author		= $Data[3];
+		$this->Time 		= $Data[4];
+		$this->Count 		= $Data[5];
 		$this->reKey();
     }
 	
