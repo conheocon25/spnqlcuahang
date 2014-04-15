@@ -23,7 +23,9 @@
 				<div class="page-header"><h1 tal:content="Tag/getName"/></div>
 				<ul>
 					<li tal:repeat="PT Tag/getPostAll">
-						<span tal:content="PT/getId"/>
+						<a tal:attributes="href PT/getURLRead">
+							<span tal:content="PT/getPost/getTitle"/>
+						</a>
 					</li>
 				</ul>
 			</div>			

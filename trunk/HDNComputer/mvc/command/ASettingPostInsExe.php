@@ -13,6 +13,9 @@
 			//-------------------------------------------------------------												
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
+			$Author 	= $request->getProperty('Author');
+			$Count	 	= $request->getProperty('Count');
+			$Time	 	= $request->getProperty('Time');
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -25,9 +28,12 @@
 			$Post = new \MVC\Domain\Post(
 				null,
 				$Title,
-				$Content,								
+				$Content,
+				$Author,
+				$Time,
+				$Count,
 				""
-			);
+			);						
 			$Post->reKey();
 			$mPost->insert($Post);
 			

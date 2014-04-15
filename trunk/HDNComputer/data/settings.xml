@@ -49,6 +49,7 @@
 		<command name="ASellingCategoryPLoad">	<view>ASellingCategoryPLoad	</view></command>
 		<command name="ASellingCategorySLoad">	<view>ASellingCategorySLoad	</view></command>
 		<command name="ASellingSessionPrint">	<view>ASellingSessionPrint	</view></command>
+		<command name="ASellingSearchResource">	<view>ASellingSearchResource</view></command>
 											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

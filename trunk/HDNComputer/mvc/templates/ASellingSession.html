@@ -137,20 +137,7 @@
 												</option>
 											</select>
 										</div>
-									</div>
-									<!--
-									<div class="form-group">
-										<label class="control-label">Tính tiền</label>
-										<div class="controls">
-											<select name="Status1" id="Status1" style="width:80%;" class="form-control">
-												<option tal:attributes="selected php:Session->getStatus()==0?'true':false" value="0">Chưa tính</option>
-												<option tal:attributes="selected php:Session->getStatus()==1?'true':false" value="1">Thanh toán đủ</option>
-												<option tal:attributes="selected php:Session->getStatus()==2?'true':false" value="2">Nợ phiếu</option>
-												<option tal:attributes="selected php:Session->getStatus()==3?'true':false" value="3">Tiếp khách</option>
-											</select>
-										</div>
-									</div>
-									!-->
+									</div>									
 									<div class="form-group">
 										<label class="control-label">Gõ/quét mã thẻ</label>
 										<div class="controls">
@@ -409,16 +396,16 @@
 					Data[2] = $('#IdResource1').val();
 					Data[3] = $('#Count1').val();
 					Data[4] = $('#Price1').val();
-					
-					$("#DialogEdit").modal('hide');
-										
+																				
 					var URL = "/object/upd/OrderExportDetail";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){																			
-							location.reload();
+							//location.reload();
+							$("#Session").load("/admin/selling/session");
+							$("#DialogEdit").modal('hide');
 						}
 					});
 					return false;

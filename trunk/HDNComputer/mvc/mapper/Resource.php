@@ -55,6 +55,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 				", $tblResource);
 		
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblResource);
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblResource);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -65,6 +66,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByCategoryStmt 	= self::$PDO->prepare($findByCategoryStmt);
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
+		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -159,6 +161,12 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
+	
+	function findByName( $values ) {
+		$this->findByNameStmt->bindValue(':name', $values[0]."%", \PDO::PARAM_STR);
+		$this->findByNameStmt->execute();
+        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
+    }	
 	
 }
 ?>

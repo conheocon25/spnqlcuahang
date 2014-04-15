@@ -22,12 +22,14 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Title = "BÀI VIẾT";
+			$Post 	= $mPost->find($IdPost);
+			$Title 	= mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", 	"/admin/setting")				
+				array("THIẾT LẬP", 	"/admin/setting"),
+				array("BÀI VIẾT", 	"/admin/setting/post")				
 			);									
 			$ConfigName		= $mConfig->findByName("NAME");
-			$Post = $mPost->find($IdPost);
+			
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

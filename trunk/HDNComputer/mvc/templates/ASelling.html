@@ -22,12 +22,12 @@
 					<div class="widget-box">
 						<div class="controls">
 							<input id="SearchName" type="text" placeholder="Nhập tìm món đồ..." style="width:80%;"/>
-							<a class="btn RemoveCourseSearch">
+							<a class="btn RemoveResourceSearch">
 								<i class="glyphicons-circle_remove" />
 							</a>						
 						</div>
 					</div>
-					<div id="CourseF"/>
+					<div id="ResourceF"/>
 				</div>
 				<div class="col-5"><div id="Session"/></div>
 				<div class="col-3"><div id="ResourceAll" /></div>
@@ -51,6 +51,22 @@
 				$("#SearchName").focus();
 			});
 			$('.CategoryP:first').click();
+			
+			//---------------------------------------------------------------------------
+			//Xử lí search tên			
+			$('#SearchName').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#ResourceF").load("/admin/selling/search/resource", { Name: Name });
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//CALL COURSE
+			$(".RemoveResourceSearch").click(function(){
+				$("#ResourceF").html("");
+			});
+									
+			//Mặc định vào ô tìm kiếm
+			$("#SearchName").focus();
 			
         </script>
 	</body>
