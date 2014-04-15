@@ -1,6 +1,7 @@
 body {
     padding-top: 60px;
     padding-bottom: 40px;
+	background: url('/mvc/templates/front/img/bg.jpg') fixed bottom right repeat-x transparent;
 }
 
 .logo{
@@ -336,7 +337,7 @@ a:hover.no-underline{
 	/* ======================================================================== */
 	.fixed-function {
 		position: fixed;
-		left: 0;
+		left: -2px;
 		width: 75px;
 		height: 162px;
 		top: 50%;
@@ -378,14 +379,33 @@ a:hover.no-underline{
 		
 	.fixed-function a { text-decoration: none; }
 	
-	.fixed-function { background-color: transparent; }
+	.fixed-function { background-color: rgba(255, 255, 255, .5); }
 	
 		.bubble {
-			background-color: green;
-			color: white;
-			border: 1px solid green;
+			background-color: #eee;
+			color: black;
+			border: 1px solid #b2b2b2;
 		}
 		
-		.bubble:after { border-color: green transparent transparent transparent; }
+		.bubble:after { border-color: #b2b2b2 transparent transparent transparent; }
 		
-		.bubble-item { color: green; }
+		.bubble-item { color: black; }
+		
+
+	.container {
+		border: 1px solid #DDD;
+		padding: 20px;
+		background-color: white;
+		box-shadow: 0 0 1px 6px rgba(255, 255, 255, .5);
+	}
+	
+	.container.container-head {
+		border: none;
+		padding: 0;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	.navbar .nav > li > a {
+		color: white;
+	}
