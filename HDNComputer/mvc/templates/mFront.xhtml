@@ -73,12 +73,16 @@
 	<!-- PAGE TITLE																  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="PageTitle" class="row-fluid">
-		<div class="span6 logo">
-			<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
-			<p tal:content="ConfigSlogan/getValue"/>
-		</div>
-		<div class="span6 account">
-			
+		<div class="span12 logo">
+			<div class="row-fluid">
+				<div class="span1">
+					<img src="/mvc/templates/front/img/logo_guest.png" width="100%"/>
+				</div>
+				<div class="span11">
+					<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
+					<p tal:content="ConfigSlogan/getValue"/>
+				</div>
+			</div>
 		</div>
 	</div>
 	
