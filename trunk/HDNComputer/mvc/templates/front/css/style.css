@@ -1,7 +1,11 @@
+html {
+	background: url('/mvc/templates/front/img/bg.jpg') fixed top left repeat-x transparent;
+}
+
 body {
     padding-top: 60px;
     padding-bottom: 40px;
-	background: url('/mvc/templates/front/img/bg.jpg') fixed bottom right repeat-x transparent;
+	background: none;
 }
 
 .logo{
