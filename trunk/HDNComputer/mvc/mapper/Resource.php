@@ -45,6 +45,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblResource);
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblResource);
+		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblResource);
 		
 		$findByPageStmt = sprintf("
 							SELECT *
@@ -64,6 +65,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
 		$this->findByCategoryStmt 	= self::$PDO->prepare($findByCategoryStmt);
+		$this->findByTopStmt 		= self::$PDO->prepare($findByTopStmt);
+		
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
 		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
@@ -137,6 +140,11 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
         return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
+    }
+	
+	function findByTop(array $values) {
+        $this->findByTopStmt->execute( $values );
+        return new ResourceCollection( $this->findByTopStmt->fetchAll(), $this );
     }
 	
 	function findByCategory(array $values) {

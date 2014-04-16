@@ -33,9 +33,7 @@
 			$Save	 		= $SaveAll->current();
 			
 			$CategoryAll 	= $mCategory->findAll();
-			$ResourceAll1 	= $mResource->findAll();
-			$ResourceAll2 	= $mResource->findAll();
-			$ResourceAll3 	= $mResource->findAll();
+			$ResourceAll1 	= $mResource->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
@@ -53,9 +51,7 @@
 			$request->setObject("Presentation", $Presentation);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("ResourceAll1", $ResourceAll1);
-			$request->setObject("ResourceAll2", $ResourceAll2);
-			$request->setObject("ResourceAll3", $ResourceAll3);
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
