@@ -85,7 +85,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/PT/0";
+				var URL = "/object/del/PostTag/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -112,7 +112,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/PT/" + $(this).attr('alt');
+				var URL = "/object/del/PostTag/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
