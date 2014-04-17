@@ -413,3 +413,7 @@ a:hover.no-underline{
 	.navbar .nav > li > a {
 		color: white;
 	}
+	
+	.thumbnails li .thumbnail {
+		height: 252px;
+	}
