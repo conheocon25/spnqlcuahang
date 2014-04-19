@@ -24,8 +24,7 @@
 									</a>
 									<div class="caption">
 										<h5 	tal:content="Resource/getName"/>
-										<p 	tal:content="Resource/getPrice2Print"/>
-										<p>Có sẵn</p>
+										<p 	tal:content="Resource/getPrice2Print"/>										
 									</div>
 								</div>
 							</li>
@@ -50,7 +49,7 @@
 			<div class="span9">
 				<div class="row-fluid">
 					<ul class="breadcrumb">
-						<li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
+						<li><a href="/">TRANG CHỦ</a> <span class="divider">/</span></li>
 						<li><a tal:attributes="href '#'"><span tal:content="Category/getName"/></a> <span class="divider">/</span></li>
 						<li><a tal:attributes="href '#'"><span tal:content="Resource/getCategory/getName"/></a> <span class="divider">/</span></li>
 						<li class="active"><span tal:content="Resource/getName"/></li>
@@ -88,9 +87,8 @@
 			</div>
 		</div>      
 		<div metal:use-macro="mFront.xhtml/Footer"/>
-		<div metal:use-macro="mFront.xhtml/FixedFunction"/>
-    </div>
-	<div id="fb-root" />
+		<div metal:use-macro="mFront.xhtml/UserOnline"/>
+    </div>	
 	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	
 	<script>(function(d, s, id) {

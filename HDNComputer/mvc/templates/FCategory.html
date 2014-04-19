@@ -29,15 +29,12 @@
 			</div>
 			<div class="span9">
 				<ul class="breadcrumb">
-					<li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
+					<li><a href="/">TRANG CHỦ</a> <span class="divider">/</span></li>
 					<li><a href="#"><span tal:content="Category1/getName"/></a> <span class="divider">/</span></li>
 					<li class="active" tal:content="Category2/getName"/>
 				</ul>
-
 				<div class="row-fluid">
-					<div class="span12">
-						<h3 tal:content="Category2/getName"/>
-						<hr/>
+					<div class="span12">						
 						<ul class="thumbnails">
 							<li class="span4" tal:repeat="Resource Category2/getResourceAll">
 								<div class="thumbnail">
@@ -47,8 +44,7 @@
 									</a>
 									<div class="caption">
 										<h5 tal:content="Resource/getName"/>
-										<p tal:content="Resource/getPrice2Print"/>
-										<p>Có sẵn</p>
+										<p tal:content="Resource/getPrice2Print"/>										
 									</div>
 								</div>
 							</li>
@@ -66,7 +62,7 @@
 			</div>
 		</div>
         <div metal:use-macro="mFront.xhtml/Footer"/>
-		<div metal:use-macro="mFront.xhtml/FixedFunction"/>
+		<div metal:use-macro="mFront.xhtml/UserOnline"/>
 		</div> <!-- /container -->
 	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
   </body>
