@@ -30,6 +30,7 @@
 			$CategoryAll 			= $mCategory->findAll();
 			
 			$Post 					= $mPost->findByKey($KPost);
+			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
 			//-------------------------------------------------------------
@@ -42,6 +43,7 @@
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("Tag", 					$Tag);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

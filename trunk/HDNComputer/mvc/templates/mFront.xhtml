@@ -59,7 +59,6 @@
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Tài khoản <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/dang-ki">Đăng ký</a></li>
 								<li><a href="/dang-nhap">Đăng nhập</a></li>
 							</ul>
 						</li>
@@ -126,33 +125,7 @@
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Footer">
-		<hr />      
-		<div class="row-fluid footer">
-			<div class="span6">
-				<h3>Thông tin</h3>
-				<ul>					
-					<li><a href="/faq">FAQ</a></li>
-					<li><a href="/chinh-sach">Chính sách điều khoản</a></li>
-				</ul>
-			</div>
-			<div class="span6">
-				<h3>Nhận báo giá qua email</h3>
-				<ul>					
-					<li>
-						<div class="control-group">
-							<div class="controls">
-							  <div class="input-prepend input-append">
-								<span class="add-on"><i class="icon-envelope"></i></span><input type="text" size="16" id="appendedPrependedInput" class="span6" placeholder="Nhập email bạn"/><input type="submit" name="submit" value="Gửi" class="btn" />
-							  </div>
-							</div>
-						</div>
-					</li>
-					
-				</ul>
-				<p></p>
-			</div>			
-		</div>
+	<div metal:define-macro="Footer">			
 		<hr/>
 		<footer>
 			<p>&copy; SPN Shop App - 2009 - 2014</p>
@@ -169,15 +142,7 @@
 			<span tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/>
 		</div>
 		<p class="bubble-item"><img src="/data/images/count_logo.gif"/> Online</p>
-		<a id="bookmark-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Hỗ trợ trực tuyến">
-			<!--
-			<div class="bubble">
-				<img src="/data/images/chat.png"/>
-			</div>
-			<p class="bubble-item">
-				Chat
-			</p>
-			!-->
+		<a id="bookmark-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Hỗ trợ trực tuyến">			
 			<a href="ymsgr:sendIM?tuan_buithanh"><img border="0" src="http://opi.yahoo.com/online?u=tuan_buithanh&m=g&t=2&l=vi" /></a>
 		</a>
 		<script language="JavaScript">
@@ -186,5 +151,15 @@
 			-->
 		</script>
 	</div>
+	<div metal:define-macro="UserOnline">
+		<script id="_wauwbw">var _wau = _wau || [];
+			_wau.push(["tab", "62olwo3o8r24", "wbw", "left-middle"]);
+			(function() {var s=document.createElement("script"); s.async=true;
+			s.src="http://widgets.amung.us/tab.js";
+			document.getElementsByTagName("head")[0].appendChild(s);
+		})();
+		</script>
+	</div>
+
 </body>
 </html>
