@@ -47,6 +47,14 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblResource);
 		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblResource);
 		
+		$findByCategoryPageStmt = sprintf("
+							SELECT *
+							FROM %s
+							WHERE idcategory=:idcategory
+							ORDER BY name
+							LIMIT :start,:max
+				", $tblResource);
+				
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
@@ -70,6 +78,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
 		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
+		
+		$this->findByCategoryPageStmt 		= self::$PDO->prepare($findByCategoryPageStmt);
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -158,6 +168,14 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
         return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
+	
+	function findByCategoryPage( $values ){		
+		$this->findByCategoryPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->execute();
+        return new ResourceCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	
