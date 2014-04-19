@@ -74,15 +74,15 @@
 						type: "POST",
 						data: {Data:Data},
 						url: URL,						
-						success: function(msg){	
-							alert(msg.result);
-							if (msg.result == "OK") { 
+						success: function(msg){								
+							if (msg.result = "OK") { 
 								$("#name").val('');
 								$("#email").val('');
 								$("#subject").val('');
-								$("#content").val('');								
+								$("#content").val('');	
+								alert ("Gui thanh cong!");
 							} else {
-								
+								alert ("Gui that bai !Ban hay gui lai!");
 							}
 						}
 					});
