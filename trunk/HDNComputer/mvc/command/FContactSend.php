@@ -27,7 +27,7 @@
 			
 			if (isset($Email)) {				
 				$MContent = "Website HDN Computer - Gửi phản hồi liên hệ <br /> Người gửi: $Name <br />Email Người gửi: $Email <br />	Nội dung:   $Content<br />";			
-				//$doMail->SendMail("Website HDN Computer - Gửi phản hồi liên hệ", "admin@caytretramdot.com", "tuanbuithanh@gmail.com", $Subject, $MContent);
+				$doMail->SendMail("Website HDN Computer - Gửi phản hồi liên hệ", "admin@caytretramdot.com", "tuanbuithanh@gmail.com", $Subject, $MContent);
 				$doMail->SendMail("Website HDN Computer - Gửi phản hồi liên hệ", "admin@caytretramdot.com", "thanhbao2007vl@gmail.com", $Subject, $MContent);
 				echo "OK";								
 			}else { echo "NO"; }			
