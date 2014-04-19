@@ -10,7 +10,7 @@
         end: '#end',
 		directions: 'directions',
         submit: '#getdirections',      	
-		tooltip: '<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">HDN Computer</span><h5>Địa chỉ: 399D/31 Ấp Phước Yên A, Phú Quới, Long Hồ, Vĩnh Long</h5>',
+		tooltip: '<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">HDN Computer</span><h5>Địa chỉ: 399D/31 Ấp Phước Yên A, Phú Quới, Long Hồ, Vĩnh Long</h5><h5>Di động: 094 490 6467 (gặp A.Hữu)</h5>',
 		image: 'false'
     };
 
@@ -27,7 +27,7 @@
 		var center = new GLatLng(10.167262,105.923749);		
 		var marker = new GMarker(center, {draggable: false}); 
 		map.addOverlay(marker);		
-		marker.openInfoWindowHtml('<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">HDN Computer</span><h5>Địa chỉ: 399D/31 Ấp Phước Yên A, Phú Quới, Long Hồ, Vĩnh Long</h5>');	
+		marker.openInfoWindowHtml('<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">HDN Computer</span><h5>Địa chỉ: 399D/31 Ấp Phước Yên A, Phú Quới, Long Hồ, Vĩnh Long</h5><h5>Di động: 094 490 6467 (gặp A.Hữu)</h5');	
 	}
 	
     $.extend(GoogleMapObject.prototype, {
