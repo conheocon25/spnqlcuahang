@@ -28,7 +28,7 @@
 						</ul>
 					</div>
 					<div class="row-fluid">						
-						<div class="row-fluid" tal:repeat="PT Tag/getPostAll" style="margin-bottom:20px;">
+						<div class="row-fluid" tal:repeat="PT PTAll" style="margin-bottom:20px;">
 							<div class="span6 product">
 								<img tal:attributes="src PT/getPost/getImage" height="200px"/>
 							</div>
@@ -36,17 +36,16 @@
 								<a tal:attributes="href PT/getURLRead">
 									<h3 tal:content="PT/getPost/getTitle"/>
 								</a>
-								<p tal:content="structure PT/getPost/getContentReduce" />
+								<p tal:content="structure PT/getPost/getContentReduce" />								
 							</div>
 						</div>
 						<div class="pagination pull-right">
 							<ul>
-								<li class="disabled"><a href="#">«</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>								
-								<li><a href="#">»</a></li>
-							</ul>
-						</div>
+								<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'disabled':'active'">
+									<a tal:attributes="href P/getURL" tal:content="P/getName" />
+								</li>
+							</ul>															
+						</div>												
 					</div>	
 				</div>			
 			</div>			

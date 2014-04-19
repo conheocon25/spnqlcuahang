@@ -25,8 +25,10 @@ RewriteRule ^lien-he/email$ 		?cmd=FContactSend	[L]
 RewriteRule ^khuyen-mai$ 			?cmd=FDealer 		[L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KResource=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
 
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 								?cmd=FTag&KTag=$1 [L]
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 				?cmd=FTag&KTag=$1&Page=$2 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 			?cmd=FPost&KTag=$1&KPost=$2 [L]
 
 RewriteRule ^dang-nhap$ 			?cmd=SigninLoad [L]

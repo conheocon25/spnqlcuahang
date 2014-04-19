@@ -13,8 +13,17 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
 		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);
-		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);
+		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);		
 		$findByTagTop4Stmt	= sprintf("select *  from %s where id_tag=? LIMIT 4", 	$tblPostTag);
+		$findByTagPageStmt = sprintf(
+			"SELECT 
+				*
+			FROM 
+				%s 			
+			WHERE id_tag=:id_tag			
+			LIMIT :start,:max"
+		, $tblPostTag);
+		
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -24,6 +33,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$this->findByPostStmt 		= self::$PDO->prepare($findByPostStmt);
 		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);
 		$this->findByTagTop4Stmt 	= self::$PDO->prepare($findByTagTop4Stmt);
+		$this->findByTagPageStmt 	= self::$PDO->prepare($findByTagPageStmt);
     } 
     function getCollection( array $raw ) {return new PostTagCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -71,6 +81,14 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 	function findByTagTop4(array $values) {
         $this->findByTagTop4Stmt->execute( $values );
         return new PostTagCollection( $this->findByTagTop4Stmt->fetchAll(), $this );
+    }
+	
+	function findByTagPage( $values ) {
+		$this->findByTagPageStmt->bindValue(':id_tag', $values[0], \PDO::PARAM_INT);
+		$this->findByTagPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByTagPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByTagPageStmt->execute();
+        return new PostTagCollection( $this->findByTagPageStmt->fetchAll(), $this );
     }
 	
 }
