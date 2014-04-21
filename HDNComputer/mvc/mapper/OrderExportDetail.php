@@ -15,7 +15,22 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderExportDetail);
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderExportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetail);
-				
+		
+		$findTopStmt = sprintf("
+							SELECT
+								0 as id,
+								1 as idorder,
+								idresource,
+								sum(`count`) as count,
+								price
+							FROM 
+								%s
+							GROUP BY idresource
+							ORDER BY count DESC
+							LIMIT 8
+		
+		", $tblOrderExportDetail);
+		
 		$findByStmt = sprintf("
 							SELECT
 								*
@@ -27,14 +42,15 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 				
 		$existStmt = sprintf("select id from %s where idorder=? and idresource=?", $tblOrderExportDetail);
 								
-        $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);                            
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
+        $this->selectAllStmt 	= self::$PDO->prepare( $selectAllStmt);                            
+        $this->selectStmt 		= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 		= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 		= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 		= self::$PDO->prepare( $deleteStmt );
 		
-		$this->findByStmt = self::$PDO->prepare($findByStmt);		
-		$this->existStmt = self::$PDO->prepare($existStmt);		
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findTopStmt 		= self::$PDO->prepare($findTopStmt);		
+		$this->existStmt 		= self::$PDO->prepare($existStmt);		
 		
     } 
     function getCollection( array $raw ) {
@@ -82,6 +98,11 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     }
 	
 	//-------------------------------------------------------
+	function findTop( $values ){
+        $this->findTopStmt->execute( $values );
+        return new OrderExportDetailCollection( $this->findTopStmt->fetchAll(), $this );
+    }
+	
 	function findBy( $values ) {		
         $this->findByStmt->execute( $values );
         return new OrderExportDetailCollection( $this->findByStmt->fetchAll(), $this );

@@ -14,7 +14,7 @@
 					<div class="row-fluid">
 						<ul class="nav nav-tabs nav-stacked" tal:repeat="Tag TagAll">
 							<li class="active"><a href="#" tal:content="Tag/getName"/></li>						
-							<li tal:repeat="PT Tag/getPostTop4">							
+							<li tal:repeat="PT Tag/getPostTop4">
 								<a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/>
 							</li>
 						</ul>										

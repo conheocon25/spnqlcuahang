@@ -60,6 +60,14 @@ class SaveResource extends Object{
 		return $N->formatCurrency();
 	}
 	
+	function getPriceSaving1(){
+		return ($this->Discount)*$this->getResource()->getPrice2()/100;
+	}
+	function getPriceSaving1Print(){
+		$N = new \MVC\Library\Number($this->getPriceSaving1());
+		return $N->formatCurrency();
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),

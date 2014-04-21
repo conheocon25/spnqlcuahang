@@ -21,7 +21,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderImportFinder{
 				*
 			from 
 				%s 			
-			order by date DESC
+			order by id DESC, `date` DESC
 			limit 1
 		", $tblOrderExport);
 		
