@@ -15,12 +15,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mSave 		= new \MVC\Mapper\Save();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mResource 	= new \MVC\Mapper\Resource();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mSave 			= new \MVC\Mapper\Save();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mResource 		= new \MVC\Mapper\Resource();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
-			$mTag 		= new \MVC\Mapper\Tag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mOED 			= new \MVC\Mapper\OrderExportDetail();
+			$mOID 			= new \MVC\Mapper\OrderImportDetail();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -38,6 +40,9 @@
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
+			$OEDAll 		= $mOED->findTop(array());
+			$OIDAll 		= $mOID->findTop(array());
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -51,7 +56,10 @@
 			$request->setObject("Presentation", $Presentation);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("ResourceAll1", $ResourceAll1);
-						
+			
+			$request->setObject("OEDAll", 		$OEDAll);
+			$request->setObject("OIDAll", 		$OIDAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

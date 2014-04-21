@@ -20,7 +20,8 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 				*
 			FROM 
 				%s 			
-			WHERE id_tag=:id_tag			
+			WHERE id_tag=:id_tag
+			ORDER BY id DESC
 			LIMIT :start,:max"
 		, $tblPostTag);
 		

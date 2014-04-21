@@ -19,6 +19,21 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
 		
+		$findTopStmt = sprintf("
+							SELECT
+								0 as id,
+								1 as idorder,
+								idresource,
+								sum(`count`) as count,
+								price
+							FROM 
+								%s
+							GROUP BY idresource
+							ORDER BY count DESC
+							LIMIT 8
+		
+		", $tblOrderImportDetail);
+		
 		$evalPriceStmt = sprintf("
 			SELECT 
 				avg(price) 
@@ -70,17 +85,18 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$existStmt = sprintf("select id from %s where idorder=? and idresource=?", $tblOrderImportDetail);
 		$EvaluateStmt = sprintf("select sum(count*price) from %s where idorder=?", $tblOrderImportDetail);
 						
-        $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);                            
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            
-		$this->trackByStmt = self::$PDO->prepare($trackByStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare( $selectAllStmt);                            
+        $this->selectStmt 		= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 		= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 		= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 		= self::$PDO->prepare( $deleteStmt );                            
+		$this->trackByStmt 		= self::$PDO->prepare($trackByStmt);
 		$this->trackByCountStmt = self::$PDO->prepare($trackByCountStmt);
 		$this->trackByExportStmt = self::$PDO->prepare($trackByExportStmt);
-		$this->existStmt = self::$PDO->prepare($existStmt);
-		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);
-		$this->evalPriceStmt = self::$PDO->prepare($evalPriceStmt);		
+		$this->existStmt 		= self::$PDO->prepare($existStmt);
+		$this->EvaluateStmt 	= self::$PDO->prepare($EvaluateStmt);
+		$this->evalPriceStmt 	= self::$PDO->prepare($evalPriceStmt);
+		$this->findTopStmt 		= self::$PDO->prepare($findTopStmt);
 		
     } 
     function getCollection( array $raw ) {
@@ -179,6 +195,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		if (!isset($result) || $result==null)
 			return 0;
         return $result[0][0];
+    }
+	
+	function findTop( $values ){
+        $this->findTopStmt->execute( $values );
+        return new OrderImportDetailCollection( $this->findTopStmt->fetchAll(), $this );
     }
 	
 	//-------------------------------------------------------
