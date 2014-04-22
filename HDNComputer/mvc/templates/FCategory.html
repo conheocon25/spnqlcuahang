@@ -22,7 +22,7 @@
 				<div class="row-fluid">
 					<ul class="nav nav-tabs nav-stacked">
 						<li tal:repeat="Category Category1/getCategoryAll">
-							<a tal:attributes="href Category/getURLView" tal:content="Category/getName"/>
+							<a class="active" tal:attributes="href Category/getURLView" tal:content="Category/getName"/>
 						</li>
 					</ul>
 				</div>
