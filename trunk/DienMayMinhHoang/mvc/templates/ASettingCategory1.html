@@ -34,7 +34,8 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>																				
+										<th class="left">TÊN</th>
+										<th width="80" class="right">THỨ TỰ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -42,6 +43,7 @@
 									<tr tal:repeat="Category1 Category/getCategoryAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category1/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category1/getId" tal:content="Category1/getName"/></td>
+										<td class="right"><span tal:content="Category1/getOrder" /></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category1/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								

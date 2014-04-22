@@ -417,3 +417,7 @@ a:hover.no-underline{
 	.thumbnails li .thumbnail {
 		height: 252px;
 	}
+	
+	.nav-tabs.nav-stacked > li > a.active {
+		background-color: #EEEEEE
+	}
