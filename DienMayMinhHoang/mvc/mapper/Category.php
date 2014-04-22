@@ -13,7 +13,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategory);
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategory);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
