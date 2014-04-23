@@ -10,6 +10,7 @@ interface ImageCollection 				extends \Iterator {function add( Object $Image );	
 
 interface AttributeCollection 			extends \Iterator {function add( Object $Attribute );	}
 interface GAttributeCollection 			extends \Iterator {function add( Object $GAttribute );	}
+interface ManufacturerCollection 		extends \Iterator {function add( Object $Manufacturer );}
 
 interface OrderImportCollection 		extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection 	extends \Iterator {function add( Object $orderimportdetail );	}

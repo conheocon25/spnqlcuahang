@@ -12,6 +12,7 @@ class ImageCollection 			extends Collection implements \MVC\Domain\ImageCollecti
 
 class AttributeCollection 		extends Collection implements \MVC\Domain\AttributeCollection 		{function targetClass( ) {return "\MVC\Domain\Attribute";	}}
 class GAttributeCollection 		extends Collection implements \MVC\Domain\GAttributeCollection 		{function targetClass( ) {return "\MVC\Domain\GAttribute";	}}
+class ManufacturerCollection 	extends Collection implements \MVC\Domain\ManufacturerCollection 	{function targetClass( ) {return "\MVC\Domain\Manufacturer";}}
 
 class OrderImportCollection 	extends Collection implements \MVC\Domain\OrderImportCollection 	{function targetClass( ) {return "\MVC\Domain\OrderImport";	}}
 class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}

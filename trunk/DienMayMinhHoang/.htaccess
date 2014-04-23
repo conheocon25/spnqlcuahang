@@ -101,6 +101,8 @@ RewriteRule ^admin/setting/gattribute$ 									?cmd=ASettingGAttribute [L]
 RewriteRule ^admin/setting/gattribute/page/([0-9]+)$ 					?cmd=ASettingGAttribute&Page=$1 [L]
 RewriteRule ^admin/setting/gattribute/([0-9]+)$ 						?cmd=ASettingAttribute&IdGAttribute=$1 [L]
 
+RewriteRule ^admin/setting/manufacturer$ 								?cmd=ASettingManufacturer [L]
+
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
 
