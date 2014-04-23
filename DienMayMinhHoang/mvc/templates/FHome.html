@@ -1,125 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-	<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-	<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-  </head>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">
+				<div id="slider-sequence" class="homeslider">
+					<div class="sequence-prev"></div><!-- End sequence-prev-->
+					<div class="sequence-next"></div><!-- End sequence-next-->
+					<ul class="sequence-canvas">
+						<li class="sequence-slide1">
+							<div class="sequencebg">
+								<img src="/mvc/templates/front/images/homeslider/slide1.png" alt="Slide 1 image" class="sequencebg-image"/>
+							</div><!-- End .sequencebg -->
+							<div class="sequence-container container">
+								<img src="/mvc/templates/front/images/homeslider/slide1_1.png" alt="Model 1" class="sequence-model"/>
+								<div class="sequence-title">Special offer -25%</div>
+								<div class="sequence-subtitle">Performance &amp; Design. Taken right to the edge.</div>
+								<a href="#" class="btn btn-custom-2 btn-sequence">Learn More</a>
+							</div><!-- End .sequence-container -->
+						</li>
+						<li class="sequence-slide2">
+							<div class="sequencebg">
+								<img src="/mvc/templates/front/images/homeslider/slide2.jpg" alt="Slide 2 image" class="sequencebg-image"/>
+							</div><!-- End .sequencebg -->
+							<div class="sequence-container container">
+								<div class="sequence-price">$1150</div>
+								<img src="/mvc/templates/front/images/homeslider/slide2_2.png" alt="Model 2" class="sequence-model"/>
+								<img src="/mvc/templates/front/images/homeslider/slide2_1.png" alt="Model 1" class="sequence-model2"/>
+								<div class="sequence-title">The next big thing...</div>
+								<div class="sequence-subtitle">Take, view and share photos with the 13MP camera and stunning 5" display.</div>
+								<a href="#" class="btn btn-custom-2 btn-sequence">Learn More</a>
+							</div><!-- End .sequence-container -->
+						</li>
+						<li class="sequence-slide3">
+							<div class="sequencebg">
+								<img src="/mvc/templates/front/images/homeslider/slide3.jpg" alt="Slide 3 image" class="sequencebg-image"/>
+							</div><!-- End .sequencebg -->
+							<div class="sequence-container container">
+								<img src="/mvc/templates/front/images/homeslider/slide3_1.png" alt="Model 3" class="sequence-model"/>
+								<div class="sequence-title">Control. Navigate. Be Recognized.</div>
+								<div class="sequence-subtitle">Smart Interaction lets you interact with your TV as never before.</div>
+								<a href="#" class="btn btn-custom-2 btn-sequence">Learn More</a>
+								<img src="/mvc/templates/front/images/homeslider/slide3_4.png" alt="Mobile phone" class="sequence-phone"/>
+								<img src="/mvc/templates/front/images/homeslider/slide3_2.png" alt="Tablet" class="sequence-tablet"/>
+								<img src="/mvc/templates/front/images/homeslider/slide3_3.png" alt="Screen" class="sequence-screen"/>
+							</div><!-- End .sequence-container -->
+						</li>
+					</ul>
+					<ul class="sequence-pagination">
+						<li>Frame 1</li>
+						<li>Frame 2</li>
+						<li>Frame 3</li>
+					</ul>
+				</div><!-- End #slider-sequence -->
+				<div class="md-margin2x"></div><!-- Space -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
+									<header class="content-title">
+										<h2 class="title">Khuyến mãi</h2>
+										<p class="title-desc" tal:content="Save/getName"/>
+									</header>
+									<div id="products-tabs-content" class="row tab-content">
+										<div class="tab-pane active" id="all">
+											<div tal:repeat="SR Save/getSRAll" class="col-md-4 col-sm-6 col-xs-12">
+												<div class="item">
+													<div class="item-image-container">
+														<figure>
+															<a tal:attributes="href SR/getResource/getURLView">
+																<img tal:attributes="src SR/getResource/getImageAll/current/getURL" class="item-image"/>
+																<img tal:attributes="src SR/getResource/getImageAll/current/getURL" class="item-image-hover"/>
+															</a>
+														</figure>
+														<div class="item-price-container">
+															<span class="old-price" tal:content="SR/getResource/getPrice2Print"/>
+															<span class="item-price" tal:content="SR/getPriceSavingPrint"/>
+														</div>
+														<span class="new-rect">HOT</span>
+														<span class="discount-rect">-<span tal:content="SR/getDiscount"/>%</span>
+													</div><!-- End .item-image -->
+													<div class="item-meta-container">
+														<div class="ratings-container">
+															<div class="ratings">
+																<div class="ratings-result" data-result="90"></div>
+															</div><!-- End .ratings -->
+															<span class="ratings-amount">
+																3 Reviews
+															</span>
+														</div><!-- End .rating-container -->
+														<h3 class="item-name"><a tal:attributes="href SR/getResource/getURLView" tal:content="SR/getResource/getName"/></h3>
+														<div class="item-action">
+															<a href="#" class="item-add-btn">
+																<span class="icon-cart-text">Mua ngay</span>
+															</a>
+															<div class="item-action-inner">
+																<a href="#" class="icon-button icon-like">Favourite</a>
+																<a href="#" class="icon-button icon-compare">Checkout</a>
+															</div><!-- End .item-action-inner -->
+														</div><!-- End .item-action -->
+													</div><!-- End .item-meta-container -->	
+												</div><!-- End .item -->
+											</div>
+										</div><!-- End .tab-pane -->
+									</div><!-- End #products-tabs-content -->
+									
+									<header class="content-title">
+										<div class="title-bg">
+											<h2 class="title">HÀNG MỚI VỀ</h2>
+										</div><!-- End .title-bg -->
+									</header>
+									<div id="products-tabs-content" class="row tab-content">
+										<div class="tab-pane active" id="all">
+											<div tal:repeat="OID OIDAll" class="col-md-4 col-sm-6 col-xs-12">
+												<div class="item">
+													<div class="item-image-container">
+														<figure>
+															<a tal:attributes="href OID/getResource/getURLView">
+																<img tal:attributes="src OID/getResource/getImageAll/current/getURL" class="item-image"/>
+																<img tal:attributes="src OID/getResource/getImageAll/current/getURL" class="item-image-hover"/>
+															</a>
+														</figure>
+														<div class="item-price-container">
+															<span class="old-price" tal:content="OID/getResource/getPrice2Print"/>
+															<span class="item-price" tal:content="OID/getPriceSavingPrint"/>
+														</div>
+														<span class="new-rect">HOT</span>
+														<span class="discount-rect">-<span tal:content="OID/getDiscount"/>%</span>
+													</div><!-- End .item-image -->
+													<div class="item-meta-container">
+														<div class="ratings-container">
+															<div class="ratings">
+																<div class="ratings-result" data-result="90"></div>
+															</div><!-- End .ratings -->
+															<span class="ratings-amount">
+																3 Reviews
+															</span>
+														</div><!-- End .rating-container -->
+														<h3 class="item-name"><a tal:attributes="href OID/getResource/getURLView" tal:content="OID/getResource/getName"/></h3>
+														<div class="item-action">
+															<a href="#" class="item-add-btn">
+																<span class="icon-cart-text">Mua ngay</span>
+															</a>
+															<div class="item-action-inner">
+																<a href="#" class="icon-button icon-like">Favourite</a>
+																<a href="#" class="icon-button icon-compare">Checkout</a>
+															</div><!-- End .item-action-inner -->
+														</div><!-- End .item-action -->
+													</div><!-- End .item-meta-container -->	
+												</div><!-- End .item -->
+											</div>
+										</div><!-- End .tab-pane -->
+									</div><!-- End #products-tabs-content -->
+									
+									<header class="content-title">
+										<div class="title-bg">
+											<h2 class="title">BÁN CHẠY NHẤT</h2>
+										</div><!-- End .title-bg -->
+									</header>
+									<div id="products-tabs-content" class="row tab-content">
+										<div class="tab-pane active" id="all">
+											<div tal:repeat="OED OEDAll" class="col-md-4 col-sm-6 col-xs-12">
+												<div class="item">
+													<div class="item-image-container">
+														<figure>
+															<a tal:attributes="href OED/getResource/getURLView">
+																<img tal:attributes="src OED/getResource/getImageAll/current/getURL" class="item-image"/>
+																<img tal:attributes="src OED/getResource/getImageAll/current/getURL" class="item-image-hover"/>
+															</a>
+														</figure>
+														<div class="item-price-container">
+															<span class="item-price" tal:content="OED/getPricePrint"/>
+														</div>
+														<span class="new-rect">HOT</span>
+													</div><!-- End .item-image -->
+													<div class="item-meta-container">
+														<div class="ratings-container">
+															<div class="ratings">
+																<div class="ratings-result" data-result="90"></div>
+															</div><!-- End .ratings -->
+															<span class="ratings-amount">
+																3 Reviews
+															</span>
+														</div><!-- End .rating-container -->
+														<h3 class="item-name"><a tal:attributes="href OED/getResource/getURLView" tal:content="OED/getResource/getName"/></h3>
+														<div class="item-action">
+															<a href="#" class="item-add-btn">
+																<span class="icon-cart-text">Mua ngay</span>
+															</a>
+															<div class="item-action-inner">
+																<a href="#" class="icon-button icon-like">Favourite</a>
+																<a href="#" class="icon-button icon-compare">Checkout</a>
+															</div><!-- End .item-action-inner -->
+														</div><!-- End .item-action -->
+													</div><!-- End .item-meta-container -->	
+												</div><!-- End .item -->
+											</div>
+										</div><!-- End .tab-pane -->
+									</div><!-- End #products-tabs-content -->
+								</div><!-- End .col-md-9 -->
 
-  <body>
-	<div metal:use-macro="mFront.xhtml/Header"/>
-    <div class="container">
-        <div metal:use-macro="mFront.xhtml/PageTitle"/>
-        <div metal:use-macro="mFront.xhtml/Menu"/>
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="row-fluid">
-					<ul class="nav nav-tabs nav-stacked" tal:repeat="Tag TagAll">
-						<li class="active"><a style="background-color:#EEE;"><h5 tal:content="Tag/getName"/></a></li>
-						<li tal:repeat="PT Tag/getPostTop4">							
-							<a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle" style="max-height:36px;overflow:hidden;"/>
-						</li>
-					</ul>										
-				</div>
-			</div>
-			<div class="span9">
-				<div class="carousel slide" id="myCarousel">
-					<div class="carousel-inner">
-						<div class="item active">
-							<img width="100%" tal:attributes="src Presentation/getSlideAll/current/getURL; alt Presentation/getSlideAll/current/getName"/>
-							<div class="carousel-caption">
-								<h4 tal:content="Presentation/getSlideAll/current/getName"/>
-								<p tal:content="Presentation/getSlideAll/current/getNote"/>
-							</div>
-						</div>
-						<div class="item" tal:repeat="Slide Presentation/getSlideAll">
-							<img width="100%" tal:attributes="src Slide/getURL; alt Slide/getName"/>
-							<div class="carousel-caption">
-								<h4 tal:content="Slide/getName"/>
-								<p tal:content="Slide/getNote"/>
-							</div>
-						</div>
-					</div>
-					<a class="left 	carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-				</div>
-        
-				<div class="row-fluid" tal:condition="Save/getSRAll/count">
-					<div class="span12">
-						<div class="page-header">
-							<h2>Khuyến mãi <small tal:content="Save/getName"/></h2>
-						</div>
-					</div>
-				</div>      
-				<div class="row-fluid" tal:condition="Save/getSRAll/count">
-					<ul class="thumbnails">
-						<li class="span3" tal:repeat="SR Save/getSRAll">
-						  <div class="thumbnail sale-thumbnail" style="height:292px;">
-							<a tal:attributes="href SR/getResource/getURLView">
-								<div class="sale-tag">-<span tal:content="SR/getDiscount"/>%</div>
-								<img alt="" tal:attributes="src SR/getResource/getImageAll/current/getURL"/>
-								<div class="caption">
-									<h5 						tal:content="SR/getResource/getName"/>
-									<p class="price-old" 		tal:content="SR/getResource/getPrice2Print"/>
-									<p>tiết kiệm <span tal:content="SR/getPriceSaving1Print" /></p>
-									<p class="price-new">chỉ còn <span tal:content="SR/getPriceSavingPrint"/></p>
-								</div>
-							</a>
-						  </div>
-						</li>
-					</ul>
-				</div>				
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="page-header">
-							<h2>Hàng mới nhập về</h2>
-						</div>
-					</div>
-				</div>      
-				<div class="row-fluid">
-					<ul class="thumbnails">
-						<li class="span3" tal:repeat="OID OIDAll">
-						  <div class="thumbnail">
-							<a tal:attributes="href OID/getResource/getURLView">
-								<img tal:condition="OID/getResource/getImageAll/count" tal:attributes="src OID/getResource/getImageAll/current/getURL"/>
-								<img tal:condition="not: OID/getResource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
-							</a>
-							<div class="caption">
-							  <h5 	tal:content="OID/getResource/getName"/>
-							  <p 	tal:content="OID/getResource/getPrice2Print"/>
-							</div>
-						  </div>
-						</li>
-					</ul>
-				</div>
-				
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="page-header">
-							<h2>Bán chạy nhất</h2>
-						</div>
-					</div>
-				</div>      
-				<div class="row-fluid">
-					<ul class="thumbnails">
-						<li class="span3" tal:repeat="OED OEDAll">
-						  <div class="thumbnail">
-							<a tal:attributes="href OED/getResource/getURLView">
-								<img tal:condition="OED/getResource/getImageAll/count" tal:attributes="src OED/getResource/getImageAll/current/getURL"/>
-								<img tal:condition="not: OED/getResource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
-							</a>
-							<div class="caption">
-							  <h5 	tal:content="OED/getResource/getName"/>
-							  <p 	tal:content="OED/getResource/getPrice2Print"/>
-							</div>
-						  </div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>	
-		<div metal:use-macro="mFront.xhtml/Footer"/>
+								<div class="col-md-3 col-sm-4 col-xs-12 sidebar">
+									<div class="widget subscribe">
+										<p>Nhận tin tức mới và các chương trình khuyến mãi hấp dẫn</p>
+										<form action="#" id="subscribe-form">
+											<div class="form-group">
+												<input type="email" class="form-control" id="subscribe-email" placeholder="Email của bạn là gì?"/>
+											</div>
+											<input type="submit" value="ĐĂNG KÝ" class="btn btn-custom"/>
+										</form>
+									</div>
+									
+									<div class="widget testimonials">
+										<h3>Testimonials</h3>
+										<div class="testimonials-slider flexslider sidebarslider">
+											<ul class="testimonials-list clearfix">
+												<li>
+													<div class="testimonial-details">
+														<header>Best Service!</header>
+														Maecenas semper aliquam massa. Praesent pharetra sem vitae nisi eleifend molestie. Aliquam molestie scelerisque ultricies. Suspendisse potenti. 
+													</div><!-- End .testimonial-details -->
+													<figure class="clearfix">
+														<img src="/mvc/templates/front/images/testimonials/anna.jpg" alt="Computer Ceo"/>
+														<figcaption>
+															<a href="#">Anna Retallic</a>
+															<span>12.05.2013</span>
+														</figcaption>
+													</figure>
+												</li>
+												<li>
+													<div class="testimonial-details">
+														<header>Cool Style!</header>
+														Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt iure quisquam necessitatibus fugit! Nisi tempora reiciendis omnis error sapiente ipsam maiores dolorem maxime.
+													</div><!-- End .testimonial-details -->
+													<figure class="clearfix">
+														<img src="/mvc/templates/front/images/testimonials/jake.jpg" alt="Computer Ceo"/>
+														<figcaption>
+															<a href="#">Jake Suasoo</a>
+															<span>17.05.2013</span>
+														</figcaption>
+													</figure>
+												</li>
+											</ul>
+										</div><!-- End .testimonials-slider -->
+									</div><!-- End .widget -->
+									
+									<div class="widget latest-posts">
+										<h3>Tin tức</h3>
+										<div class="latest-posts-slider flexslider sidebarslider">
+											<ul class="latest-posts-list clearfix">
+												<li>
+													<a href="single.html">
+														<figure class="latest-posts-media-container">
+															<img src="/mvc/templates/front/images/blog/post1-small.jpg" alt="lats post"/>
+														</figure>
+													</a>
+													<h4><a href="single.html">35% Discount on second purchase!</a></h4>
+													<p>Sed blandit nulla nec nunc ullamcorper tristique. Mauris adipiscing cursus ante ultricies dictum sed lobortis.</p>
+													<div class="latest-posts-meta-container clearfix">
+														<div class="pull-left">
+															<a href="#">Read More...</a>
+														</div><!-- End .pull-left -->
+														<div class="pull-right">
+															12.05.2013
+														</div><!-- End .pull-right -->
+													</div><!-- End .latest-posts-meta-container -->
+												</li>
+											</ul>
+										</div><!-- End .latest-posts-slider -->
+									</div><!-- End .widget -->
+									<div class="widget banner-slider-container">
+										<div class="banner-slider flexslider">
+											<ul class="banner-slider-list clearfix">
+												<li><a href="#"><img src="/mvc/templates/front/images/banner1.jpg" alt="Banner 1"/></a></li>
+												<li><a href="#"><img src="/mvc/templates/front/images/banner2.jpg" alt="Banner 2"/></a></li>
+												<li><a href="#"><img src="/mvc/templates/front/images/banner3.jpg" alt="Banner 3"/></a></li>
+											</ul>
+										</div>
+									</div><!-- End .widget -->
+								</div><!-- End .col-md-3 -->
+							</div><!-- End .row -->
+							
+								<div id="brand-slider-container" class="carousel-wrapper">
+									<header class="content-title">
+										<div class="title-bg">
+											<h2 class="title">Nhãn hàng nỗi tiếng</h2>
+										</div><!-- End .title-bg -->
+									</header>
+									<div class="carousel-controls">
+										<div id="brand-slider-prev" class="carousel-btn carousel-btn-prev"></div><!-- End .carousel-prev -->
+										<div id="brand-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
+									</div><!-- End .carousel-controllers -->
+									<div class="sm-margin"></div><!-- space -->
+									<div class="brand-slider owl-carousel">
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 1"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 2"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 3"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 4"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 5"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 6"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 7"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 8"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 9"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 10"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 11"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 12"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 13"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 14"/></a>
+										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 15"/></a>
+									</div><!-- End .brand-slider -->
+								</div><!-- End #brand-slider-container -->
+							</div><!-- End .col-md-12 -->
+						</div><!-- End .row -->
+				</div><!-- End .container -->
+			</section><!-- End #content -->
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->
 		<div metal:use-macro="mFront.xhtml/UserOnline"/>
-    </div> <!-- /container -->
-	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-  </body>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$(function() {
+				// Sequence.js Slider Plugin
+				var options = {
+					nextButton: true,
+					prevButton: true,
+					pagination:true,
+					autoPlay: true,
+					autoPlayDelay: 8500,
+					pauseOnHover: true,
+					preloader: true,
+					theme: 'slide',
+					speed: 700,
+					animateStartingFrameIn: true
+				},
+				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
+			});
+		</script>
+	</body>
 </html>
