@@ -19,6 +19,7 @@ interface ImageFinder 			extends Finder {}
 
 interface AttributeFinder 		extends Finder {}
 interface GAttributeFinder 		extends Finder {}
+interface ManufacturerFinder 	extends Finder {}
 
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}

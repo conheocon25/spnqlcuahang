@@ -186,7 +186,12 @@
 				<a tal:attributes="href '/admin/setting/gattribute'" >
 					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
 				</a>
-			</li>			
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Manufacturer'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/manufacturer'" >
+					<i class="glyphicons-truck" />NHÀ SẢN XUẤT
+				</a>
+			</li>
 		</ul>
 	</div>
 	

@@ -26,18 +26,16 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
-										<th width="60" class="right">T.TỰ</th>
-										<th width="120"><div class="text-right">CHI TIẾT</div></th>
+										<th width="60" class="right">T.TỰ</th>										
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="GAttribute GAttributeAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id GAttribute/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="GAttribute" tal:attributes="data-id GAttribute/getId" tal:content="GAttribute/getName"/></td>
-										<td class="right"><span tal:content="GAttribute/getOrder" /></td>
-										<td class="right"><a tal:attributes="href GAttribute/getURLSetting"><span tal:content="GAttribute/getAttributeAll/count"/> mô tả</a></td>									
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id GAttribute/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Manufacturer ManufacturerAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Manufacturer/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Manufacturer" tal:attributes="data-id Manufacturer/getId" tal:content="Manufacturer/getName"/></td>
+										<td class="right"><span tal:content="Manufacturer/getOrder" /></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Manufacturer/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
 							</table>
@@ -49,12 +47,18 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI DANH MỤC</h3></div>
-								<form id="FormGAttributeInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormManufacturerInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Image1" name="Image1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="control-group">
@@ -79,12 +83,18 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT DANH MỤC</h3></div>
-								<form id="FormGAttributeUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormManufacturerUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Image2" name="Image2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="control-group">
@@ -115,7 +125,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/GAttribute/0";
+				var URL = "/object/del/Manufacturer/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -135,14 +145,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 GAttribute			
+			//Delete 1 Manufacturer			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/GAttribute/" + $(this).attr('alt');
+				var URL = "/object/del/Manufacturer/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -153,8 +163,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 GAttribute			
-			$("#FormGAttributeInsert").validate({
+			//Insert 1 Manufacturer			
+			$("#FormManufacturerInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -174,9 +184,10 @@
 					var Data = [];
 					Data[0] = 'null';					
 					Data[1] = $('#Name1').val();
-					Data[2] = $('#Order1').val();
+					Data[2] = $('#Image1').val();
+					Data[3] = $('#Order1').val();
 					
-					var URL = "/object/ins/GAttribute";
+					var URL = "/object/ins/Manufacturer";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -196,24 +207,25 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 GAttribute
+			//Load 1 Manufacturer
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/GAttribute/" + $(this).attr('data-id');
+				var url = "/object/load/Manufacturer/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Order2').attr('value', data.Order);
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Image2').attr('value', 		data.Image);
+					$('#Order2').attr('value', 		data.Order);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 GAttribute
+			//Update 1 Manufacturer
 			//-----------------------------------------------------------------------------------
-			$("#FormGAttributeUpdate").validate({
+			$("#FormManufacturerUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -231,11 +243,12 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');					
+					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#Name2').val();
-					Data[2] = $('#Order2').val();
+					Data[2] = $('#Image2').val();
+					Data[3] = $('#Order2').val();
 																		
-					var URL = "/object/upd/GAttribute";
+					var URL = "/object/upd/Manufacturer";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
