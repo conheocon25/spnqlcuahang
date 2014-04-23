@@ -10,6 +10,9 @@ class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCol
 class ResourceCollection 		extends Collection implements \MVC\Domain\ResourceCollection 		{function targetClass( ) {return "\MVC\Domain\Resource";	}}
 class ImageCollection 			extends Collection implements \MVC\Domain\ImageCollection 			{function targetClass( ) {return "\MVC\Domain\Image";		}}
 
+class AttributeCollection 		extends Collection implements \MVC\Domain\AttributeCollection 		{function targetClass( ) {return "\MVC\Domain\Attribute";	}}
+class GAttributeCollection 		extends Collection implements \MVC\Domain\GAttributeCollection 		{function targetClass( ) {return "\MVC\Domain\GAttribute";	}}
+
 class OrderImportCollection 	extends Collection implements \MVC\Domain\OrderImportCollection 	{function targetClass( ) {return "\MVC\Domain\OrderImport";	}}
 class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}
 class OrderExportCollection 	extends Collection implements \MVC\Domain\OrderExportCollection 	{function targetClass( ) {return "\MVC\Domain\OrderExport";	}}

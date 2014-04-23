@@ -175,6 +175,21 @@
 		</ul>	
 	</div>
 	
+	<div metal:define-macro="MenuSettingProduct" id="sidebar">				
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
+			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/category'" >
+					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
+				</a>
+			</li>			
+			<li tal:attributes="class php:ActiveAdmin=='GAttribute'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/gattribute'" >
+					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
+				</a>
+			</li>			
+		</ul>
+	</div>
+	
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->

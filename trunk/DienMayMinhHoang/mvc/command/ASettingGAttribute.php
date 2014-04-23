@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASettingCategory extends Command {
+	class ASettingGAttribute extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,15 +16,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mGAttribute 	= new \MVC\Mapper\GAttribute();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$CategoryAll = $mCategory->findAll();			
+			$GAttributeAll = $mGAttribute->findAll();			
 						
-			$Title = "DANH MỤC SẢN PHẨM";
+			$Title = "DANH MỤC MÔ TẢ";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting")
 			);
@@ -32,19 +32,19 @@
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 						
-			$CategoryAll1 = $mCategory->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($CategoryAll->count(), $Config->getValue(), "/setting/category" );
+			$GAttributeAll1 = $mGAttribute->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($GAttributeAll->count(), $Config->getValue(), "/setting/gattribute" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Category');
-			$request->setProperty('Page'		, $Page);			
-			$request->setObject('PN'			, $PN);
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('CategoryAll1'	, $CategoryAll1);
-			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setProperty('Title'			, $Title);
+			$request->setProperty('ActiveAdmin'		, 'GAttribute');
+			$request->setProperty('Page'			, $Page);			
+			$request->setObject('PN'				, $PN);
+			$request->setObject('Navigation'		, $Navigation);
+			$request->setObject('GAttributeAll1'	, $GAttributeAll1);
+			$request->setObject('ConfigName'		, $ConfigName);
 															
 			return self::statuses('CMD_DEFAULT');
 		}
