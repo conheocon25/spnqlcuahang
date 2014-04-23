@@ -24,6 +24,9 @@
     private $Gender;
 	private $Job;
 	private $Phone;
+	private $Yahoo;
+	private $Gmail;
+	private $Skype;
 	private $Address;
 	private $SalaryBase;
 	private $Card;
@@ -31,12 +34,15 @@
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null, $Card=null){
+    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Yahoo=null, $Skype=null, $Gmail=null, $Address=null, $SalaryBase=null, $Card=null){
         $this->Id 			= $Id;
 		$this->Name 		= $Name;
 		$this->Gender 		= $Gender;
 		$this->Job 			= $Job;
 		$this->Phone 		= $Phone;
+		$this->Yahoo 		= $Yahoo;
+		$this->Skype 		= $Skype;
+		$this->Gmail 		= $Gmail;
 		$this->Address 		= $Address;
 		$this->SalaryBase 	= $SalaryBase;
 		$this->Card 		= $Card;
@@ -50,14 +56,16 @@
 		$this->Gender 		= $Data[2];
 		$this->Job 			= $Data[3];
 		$this->Phone 		= $Data[4];
-		$this->Address 		= $Data[5];
-		$this->SalaryBase 	= $Data[6];
-		$this->Card 		= $Data[7];
+		$this->Yahoo 		= $Data[5];
+		$this->Skype 		= $Data[6];
+		$this->Gmail 		= $Data[7];
+		$this->Address 		= $Data[8];
+		$this->SalaryBase 	= $Data[9];
+		$this->Card 		= $Data[10];
     }
 	
     function getId( ) {return $this->Id;}
-	function getIdPrint( ) {return "e".$this->Id;}
-		
+			
 	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 	function getName(){return $this->Name;}
 	
@@ -70,6 +78,15 @@
 	
     function setPhone( $Phone ) {$this->Phone = $Phone;$this->markDirty();}	
     function getPhone( ) {return $this->Phone;}
+	
+	function setYahoo( $Yahoo ) {$this->Yahoo = $Yahoo; $this->markDirty();}	
+    function getYahoo( ) 		{return $this->Yahoo;}
+	
+	function setSkype( $Skype ) {$this->Skype = $Skype; $this->markDirty();}	
+    function getSkype( ) 		{return $this->Skype;}
+	
+	function setGmail( $Gmail ) {$this->Gmail = $Gmail; $this->markDirty();}	
+    function getGmail( ) 		{return $this->Gmail;}
 		
 	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress( ) {return $this->Address;}
@@ -103,6 +120,9 @@
 			'Gender'		=> $this->getGender(),
 			'Job'			=> $this->getJob(),
 			'Phone'			=> $this->getPhone(),
+			'Yahoo'			=> $this->getYahoo(),
+			'Skype'			=> $this->getSkype(),
+			'Gmail'			=> $this->getGmail(),
 			'Address'		=> $this->getAddress(),
 			'SalaryBase'	=> $this->getSalaryBase(),
 			'Card'			=> $this->getCard()

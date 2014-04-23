@@ -3,10 +3,11 @@
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>
-	
+	</head>	
 	<body>
+		<!--
 		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+		!-->
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
@@ -209,8 +210,8 @@
 
 								<div class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div class="widget subscribe">
-										<p>Nhận tin tức mới và các chương trình khuyến mãi hấp dẫn</p>
-										<form action="#" id="subscribe-form">
+										<p>Nhận thông tin và các chương trình khuyến mãi hấp dẫn</p>
+										<form action="/subcribe" id="subscribe-form">
 											<div class="form-group">
 												<input type="email" class="form-control" id="subscribe-email" placeholder="Email của bạn là gì?"/>
 											</div>
@@ -291,7 +292,7 @@
 								<div id="brand-slider-container" class="carousel-wrapper">
 									<header class="content-title">
 										<div class="title-bg">
-											<h2 class="title">Nhãn hàng nỗi tiếng</h2>
+											<h2 class="title">Nhãn hàng nổi tiếng</h2>
 										</div><!-- End .title-bg -->
 									</header>
 									<div class="carousel-controls">
@@ -299,22 +300,10 @@
 										<div id="brand-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
 									</div><!-- End .carousel-controllers -->
 									<div class="sm-margin"></div><!-- space -->
-									<div class="brand-slider owl-carousel">
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 1"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 2"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 3"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 4"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 5"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 6"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 7"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 8"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 9"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 10"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 11"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 12"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 13"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 14"/></a>
-										<a href="#"><img src="/mvc/templates/front/images/brands/brand-logo.png" alt="Brand Logo 15"/></a>
+									<div class="brand-slider owl-carousel">										
+										<a href="#" tal:repeat="Manufacturer ManufacturerAll">
+											<img tal:attributes="src Manufacturer/getImage; alt Manufacturer/getName" />
+										</a>
 									</div><!-- End .brand-slider -->
 								</div><!-- End #brand-slider-container -->
 							</div><!-- End .col-md-12 -->
@@ -322,8 +311,7 @@
 				</div><!-- End .container -->
 			</section><!-- End #content -->
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->
-		<div metal:use-macro="mFront.xhtml/UserOnline"/>
+		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
 			$(function() {

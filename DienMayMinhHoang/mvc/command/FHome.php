@@ -23,6 +23,7 @@
 			$mTag 			= new \MVC\Mapper\Tag();
 			$mOED 			= new \MVC\Mapper\OrderExportDetail();
 			$mOID 			= new \MVC\Mapper\OrderImportDetail();
+			$mManufacturer	= new \MVC\Mapper\Manufacturer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,6 +31,8 @@
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_HOME");
+			
+			$ManufacturerAll= $mManufacturer->findAll();
 			
 			$SaveAll 		= $mSave->findAll();
 			$Save	 		= $SaveAll->current();
@@ -46,19 +49,20 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 	'Home');
-			$request->setObject("ConfigName", 	$ConfigName);
-			$request->setObject("ConfigSlogan", $ConfigSlogan);
+			$request->setProperty("Active", 			'Home');
+			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			
-			$request->setObject("TagAll", 		$TagAll);
+			$request->setObject("TagAll", 				$TagAll);
 			
-			$request->setObject("Save", 		$Save);
-			$request->setObject("Presentation", $Presentation);
-			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("ResourceAll1", $ResourceAll1);
+			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
+			$request->setObject("Save", 				$Save);
+			$request->setObject("Presentation", 		$Presentation);
+			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("ResourceAll1", 		$ResourceAll1);
 			
-			$request->setObject("OEDAll", 		$OEDAll);
-			$request->setObject("OIDAll", 		$OIDAll);
+			$request->setObject("OEDAll", 				$OEDAll);
+			$request->setObject("OIDAll", 				$OIDAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
