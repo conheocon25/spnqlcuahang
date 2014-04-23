@@ -71,8 +71,11 @@
 		<command name="ASettingPostDelLoad">	<view>ASettingPostDelLoad	</view></command>
 		<command name="ASettingPostDelExe">		<view>ASettingPostDelExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
 		
-		<command name="ASettingCategory">		<view>ASettingCategory		</view></command>		
+		<command name="ASettingCategory">		<view>ASettingCategory		</view></command>
 		<command name="ASettingCategory1">		<view>ASettingCategory1		</view></command>		
+		
+		<command name="ASettingAttribute">		<view>ASettingAttribute		</view></command>
+		<command name="ASettingGAttribute">		<view>ASettingGAttribute	</view></command>
 		
 		<command name="ASettingCustomer">		<view>ASettingCustomer		</view></command>		
 		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		

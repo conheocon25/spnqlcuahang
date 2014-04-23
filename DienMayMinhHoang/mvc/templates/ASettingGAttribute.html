@@ -33,13 +33,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Category CategoryAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Category" tal:attributes="data-id Category/getId" tal:content="Category/getName"/></td>
-										<td class="right"><span tal:content="Category/getOrder" /></td>
-										<td class="right"><a tal:attributes="href Category/getURLSetting"><span tal:content="Category/getCategoryAll/count"/> chi tiết</a></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="GAttribute GAttributeAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id GAttribute/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="GAttribute" tal:attributes="data-id GAttribute/getId" tal:content="GAttribute/getName"/></td>
+										<td class="right"><span tal:content="GAttribute/getOrder" /></td>
+										<td class="right"><a tal:attributes="href GAttribute/getURLSetting"><span tal:content="string:0"/> mô tả</a></td>
+										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id GAttribute/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id GAttribute/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
 							</table>
@@ -51,7 +51,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI DANH MỤC</h3></div>
-								<form id="FormCategoryInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormGAttributeInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
@@ -81,7 +81,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT DANH MỤC</h3></div>
-								<form id="FormCategoryUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormGAttributeUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
 											<label class="control-label">Tên</label>
@@ -117,7 +117,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Category/0";
+				var URL = "/object/del/GAttribute/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -137,14 +137,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 Category			
+			//Delete 1 GAttribute			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Category/" + $(this).attr('alt');
+				var URL = "/object/del/GAttribute/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -155,8 +155,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 Category			
-			$("#FormCategoryInsert").validate({
+			//Insert 1 GAttribute			
+			$("#FormGAttributeInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -178,7 +178,7 @@
 					Data[1] = $('#Name1').val();
 					Data[2] = $('#Order1').val();
 					
-					var URL = "/object/ins/Category";
+					var URL = "/object/ins/GAttribute";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -198,11 +198,11 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 Category
+			//Load 1 GAttribute
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Category/" + $(this).attr('data-id');
+				var url = "/object/load/GAttribute/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -213,9 +213,9 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 Category
+			//Update 1 GAttribute
 			//-----------------------------------------------------------------------------------
-			$("#FormCategoryUpdate").validate({
+			$("#FormGAttributeUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -237,7 +237,7 @@
 					Data[1] = $('#Name2').val();
 					Data[2] = $('#Order2').val();
 																		
-					var URL = "/object/upd/Category";
+					var URL = "/object/upd/GAttribute";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
