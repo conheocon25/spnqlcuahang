@@ -63,10 +63,10 @@
 					<div class="col-md-12">
 						<div class="header-top-left">
 							<ul id="top-links" class="clearfix">
-								<li><a href="#" title="My Wishlist"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">My Wishlist</span></a></li>
-								<li><a href="#" title="My Account"><span class="top-icon top-icon-user"></span><span class="hide-for-xs">My Account</span></a></li>
-								<li><a href="cart.html" title="My Cart"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">My Cart</span></a></li>
-								<li><a href="checkout.html" title="Checkout"><span class="top-icon top-icon-check"></span><span class="hide-for-xs">Checkout</span></a></li>
+								<li><a href="/danh-dau" title="Đánh dấu"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Đánh dấu</span></a></li>
+								<li><a href="/tai-khoan" title="Tài khoản"><span class="top-icon top-icon-user"></span><span class="hide-for-xs">Tài khoản</span></a></li>
+								<li><a href="/gio-hang" title="My Cart"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Giỏ hàng</span></a></li>
+								<li><a href="/thanh-toan" title="Thanh toán"><span class="top-icon top-icon-check"></span><span class="hide-for-xs">Thanh toán</span></a></li>
 							</ul>
 						</div><!-- End .header-top-left -->
 						<div class="header-top-right">
@@ -76,8 +76,8 @@
 										<span class="hide-for-xs">Tài khoản</span><span class="hide-for-lg">TK</span>
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
-										<li><a href="/dang-nhap"><span class="hide-for-xs">Đăng nhập</span><span class="hide-for-lg">Login</span></a></li>
-										<li><a href="/dang-ky"><span class="hide-for-xs">Đăng ký</span><span class="hide-for-lg">Logout</span></a></li>
+										<li><a href="/dang-nhap"><span class="hide-for-xs">Đăng nhập</span><span class="hide-for-lg">Đăng nhập</span></a></li>
+										<li><a href="/dang-ky"><span class="hide-for-xs">Đăng ký</span><span class="hide-for-lg">Đăng xuất</span></a></li>
 									</ul>
 								</div><!-- End .btn-group -->
 							</div><!-- End .header-top-dropdowns -->
@@ -95,7 +95,7 @@
 					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
 						<h1 class="logo clearfix">
 							<span>Điện máy Minh Hoàng</span>
-							<a href="index-2.html" title="Venedor eCommerce Template"><img src="/mvc/templates/front/images/logo.png" alt="Điện máy Minh Hoàng" width="238" height="76"/></a>
+							<a href="/" title="Điện máy Minh Hoàng"><img src="/mvc/templates/front/images/logo.png" alt="Điện máy Minh Hoàng" width="238" height="76"/></a>
 						</h1>
 					</div><!-- End .col-md-5 -->
 					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
@@ -129,60 +129,14 @@
 									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
 									<li class="mega-menu-container"><a href="/san-pham">SẢN PHẨM</a>
 										<div class="mega-menu clearfix">
-											<div class="col-5">
-												<a href="category.html" class="mega-menu-title">Điện lạnh</a><!-- End .mega-menu-title -->
+											<div class="col-5" tal:repeat="Category CategoryAll">
+												<a href="category.html" class="mega-menu-title" tal:content="Category/getName"/>
 												<ul class="mega-menu-list clearfix">
-													<li><a href="#">Máy điều hòa</a></li>
-													<li><a href="#">Tủ lạnh</a></li>
-													<li><a href="#">Tủ đông</a></li>
-													<li><a href="#">Tủ mát</a></li>
-													<li><a href="#">Máy giặc</a></li>
-													<li><a href="#">Máy sấy</a></li>
+													<li tal:repeat="Category1 Category/getCategoryAll">
+														<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
+													</li>
 												</ul>
-											</div><!-- End .col-5 -->
-											<div class="col-5">
-												<a href="category.html" class="mega-menu-title">Điện tử</a><!-- End .mega-menu-title -->
-												<ul class="mega-menu-list clearfix">
-													<li><a href="#">Tivi LED</a></li>
-													<li><a href="#">Tivi LCD</a></li>
-													<li><a href="#">Tivi Flasma</a></li>
-													<li><a href="#">Smart Tivi</a></li>
-													<li><a href="#">Đầu CD/DVD</a></li>
-													<li><a href="#">Dàn Karaoke</a></li>
-												</ul>
-											</div><!-- End .col-5 -->
-											<div class="col-5">
-												<a href="category.html" class="mega-menu-title">Đi động</a><!-- End .mega-menu-title -->
-												<ul class="mega-menu-list clearfix">
-													<li><a href="#">Siêu cấp</a></li>
-													<li><a href="#">Cao cấp</a></li>
-													<li><a href="#">Trung cấp</a></li>
-													<li><a href="#">Phổ thông</a></li>
-													<li><a href="#">Linh kiện</a></li>
-													<li><a href="#">Phụ kiện</a></li>
-													<li><a href="#">Sim số đẹp</a></li>
-												</ul>
-											</div><!-- End .col-5 -->
-											<div class="col-5">
-												<a href="category.html" class="mega-menu-title">Gia dụng</a><!-- End .mega-menu-title -->
-												<ul class="mega-menu-list clearfix">
-													<li><a href="#">Lò vi sóng</a></li>
-													<li><a href="#">Nồi cơm điện</a></li>
-													<li><a href="#">Bếp điện</a></li>
-													<li><a href="#">Quạt điện</a></li>
-													<li><a href="#">Quạt hơi nước</a></li>
-												</ul>
-											</div><!-- End .col-5 -->
-											<div class="col-5">
-												<a href="category.html" class="mega-menu-title">Vi tính</a><!-- End .mega-menu-title -->
-												<ul class="mega-menu-list clearfix">
-													<li><a href="#">Máy tính bộ</a></li>
-													<li><a href="#">Laptop</a></li>
-													<li><a href="#">Tablet</a></li>
-													<li><a href="#">Linh kiện</a></li>
-													<li><a href="#">Phụ kiện</a></li>
-												</ul>
-											</div><!-- End .col-5 -->
+											</div>											
 										</div><!-- End .mega-menu -->
 									</li>
 									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
@@ -322,23 +276,19 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
 						<h3>Hệ thống siêu thị</h3>
 						<ul class="links">
-							<li><a href="#">QUẬN 2: Tầng trệt, lầu 1, Cao ốc Lương Định Của,</a></li>
-							<li><a href="#">QUẬN 12: 189/4 Trường Chinh, P. Tân Hưng Thuận</a></li>
-							<li><a href="#">ĐỒNG THÁP: Khu dân cư Mỹ Trà, P. Mỹ Phú, Tp. Cao Lãnh, Đồng Tháp</a></li>
-							<li><a href="#">SÓC TRĂNG: Khu dân cư Minh Châu, số 64A Quốc lộ 1A, P. 7, Tp. Sóc Trăng, Tỉnh Sóc Trăng</a></li>
-							<li><a href="#">BÌNH DƯƠNG: Lầu 3 tòa nhà Becamex – 230 Đại lộ </a></li>
-							<li><a href="#">TÂY NINH: Số 176 Đường 30/4, KP.4, P.3, TX.Tây </a></li>
+							<li><a href="#">Trụ sở chính: 33/5, Đường Phạm Thái Bường, F4, TP Vĩnh Long</a></li>
+							<li><a href="#">CN1: An Hữu, Cái Bè, Tiền Giang,</a></li>
+							<li><a href="#">CN2: TT.Cai Lậy, Cai Lậy, Tiền Giang</a></li>
 						</ul>
 					</div><!-- End .widget -->
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
 						<h3>Giới thiệu</h3>
 						<ul class="links">
-							<li><a href="#">New products</a></li>
-							<li><a href="#">Top sellers</a></li>
-							<li><a href="#">Specials</a></li>
-							<li><a href="#">Manufacturers</a></li>
-							<li><a href="#">Suppliers</a></li>
-							<li><a href="#">Our stores</a></li>
+							<li><a href="#">Sản phẩm mới</a></li>
+							<li><a href="#">Bán chạy nhất</a></li>
+							<li><a href="#">Hàng đặc biệt</a></li>
+							<li><a href="#">Nhà sản xuất</a></li>
+							<li><a href="#">Khuyến mãi</a></li>
 						</ul>
 					</div><!-- End .widget -->
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
@@ -346,9 +296,7 @@
 						<ul class="contact-list">
 							<li><strong>Trung tâm điện máy Minh Hoàng</strong></li>
 							<li>33/5, Đường Phạm Thái Bường,</li>
-							<li>Phường 4, Thành Phố Vĩnh Long,</li>
-							<li>Tỉnh Vĩnh Long</li>
-							<li>Việt Nam</li>
+							<li>Phường 4, TP.Vĩnh Long, Vĩnh Long</li>							
 							<li>Làm việc tất cả các ngày trong tuần</li>
 							<li>Giờ mở cửa: 8.00AM - 21.00PM</li>
 						</ul>

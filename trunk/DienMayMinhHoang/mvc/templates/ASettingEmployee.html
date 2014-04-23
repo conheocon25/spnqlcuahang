@@ -5,8 +5,7 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -93,6 +92,30 @@
 										</div>
 										<div class="form-group">
 											<div class="control-group">
+												<label class="control-label">Yahoo</label>
+												<div class="controls">								
+													<input id="Yahoo1" name="Yahoo1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">Skype</label>
+												<div class="controls">								
+													<input id="Skype1" name="Skype1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">Gmail</label>
+												<div class="controls">								
+													<input id="Gmail1" name="Gmail1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="control-group">
 												<label class="control-label">Địa chỉ</label>
 												<div class="controls">
 													<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
@@ -162,7 +185,31 @@
 												<div class="controls">								
 													<input id="Phone2" name="Phone2" type="text" class="form-control input-small"/>
 												</div>
-											</div>										
+											</div>
+											<div class="form-group">
+												<div class="control-group">
+													<label class="control-label">Yahoo</label>
+													<div class="controls">								
+														<input id="Yahoo2" name="Yahoo2" type="text" class="form-control input-small"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="control-group">
+													<label class="control-label">Skype</label>
+													<div class="controls">								
+														<input id="Skype2" name="Skype2" type="text" class="form-control input-small"/>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="control-group">
+													<label class="control-label">Gmail</label>
+													<div class="controls">								
+														<input id="Gmail2" name="Gmail2" type="text" class="form-control input-small"/>
+													</div>
+												</div>
+											</div>
 											<div class="control-group">
 												<label class="control-label">Địa chỉ</label>
 												<div class="controls">
@@ -275,9 +322,12 @@
 					Data[2] = $('#Gender1').val();
 					Data[3] = $('#Job1').val();
 					Data[4] = $('#Phone1').val();
-					Data[5] = $('#Address1').val();
-					Data[6] = $('#SalaryBase1').val();
-					Data[7] = $('#Card1').val();
+					Data[5] = $('#Yahoo1').val();
+					Data[6] = $('#Skype1').val();
+					Data[7] = $('#Gmail1').val();
+					Data[8] = $('#Address1').val();
+					Data[9] = $('#SalaryBase1').val();
+					Data[10] = $('#Card1').val();
 															
 					var URL = "/object/ins/Employee";
 					$.ajax({
@@ -313,6 +363,9 @@
 					$('#Gender2').select2('val', data.Gender);
 					$('#Job2').attr('value', data.Job);
 					$('#Phone2').attr('value', data.Phone);
+					$('#Yahoo2').attr('value', data.Yahoo);
+					$('#Skype2').attr('value', data.Skype);
+					$('#Gmail2').attr('value', data.Gmail);
 					$('#Address2').attr('value', data.Address);
 					$('#SalaryBase2').attr('value', data.SalaryBase);
 					$('#Card2').attr('value', data.Card);
@@ -350,9 +403,12 @@
 					Data[2] = $('#Gender2').val();
 					Data[3] = $('#Job2').val();
 					Data[4] = $('#Phone2').val();
-					Data[5] = $('#Address2').val();				
-					Data[6] = $('#SalaryBase2').val();
-					Data[7] = $('#Card2').val();
+					Data[5] = $('#Yahoo2').val();
+					Data[6] = $('#Skype2').val();
+					Data[7] = $('#Gmail2').val();
+					Data[8] = $('#Address2').val();				
+					Data[9] = $('#SalaryBase2').val();
+					Data[10] = $('#Card2').val();
 					
 					var URL = "/object/upd/Employee";
 					$.ajax({

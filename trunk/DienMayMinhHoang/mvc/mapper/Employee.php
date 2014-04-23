@@ -8,8 +8,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblEmployee);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblEmployee);
-		$updateStmt 	= sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=?, card=? where id=?", $tblEmployee);
-		$insertStmt 	= sprintf("insert into %s (name, gender, job, phone, address, salary_base, card) values(?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
+		$updateStmt 	= sprintf("update %s set name=?, gender=?, job=?, phone=?, yahoo=?, skype=?, gmail=?, address=?, salary_base=?, card=? where id=?", $tblEmployee);
+		$insertStmt 	= sprintf("insert into %s (name, gender, job, phone, yahoo, skype, gmail, address, salary_base, card) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblEmployee);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
 		
@@ -30,6 +30,9 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$array['gender'],
 			$array['job'],
 			$array['phone'],
+			$array['yahoo'],
+			$array['skype'],
+			$array['gmail'],
 			$array['address'],
 			$array['salary_base'],
 			$array['card']
@@ -42,7 +45,10 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getName(),
 			$object->getGender(),
 			$object->getJob(),
-			$object->getPhone(),			
+			$object->getPhone(),
+			$object->getYahoo(),
+			$object->getSkype(),
+			$object->getGmail(),
 			$object->getAddress(),
 			$object->getSalaryBase(),
 			$object->getCard()
@@ -57,7 +63,10 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getName(),
 			$object->getGender(),
 			$object->getJob(),
-			$object->getPhone(),
+			$object->getPhone(),			
+			$object->getYahoo(),
+			$object->getSkype(),
+			$object->getGmail(),
 			$object->getAddress(),
 			$object->getSalaryBase(),
 			$object->getCard(),
