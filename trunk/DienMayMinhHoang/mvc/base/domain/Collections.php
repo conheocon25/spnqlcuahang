@@ -4,13 +4,13 @@ namespace MVC\Domain;
 interface UserCollection 				extends \Iterator {function add( Object $user );		}
 interface CategoryCollection 			extends \Iterator {function add( Object $Category );	}
 interface Category1Collection 			extends \Iterator {function add( Object $Category1 );	}
-interface SupplierCollection 			extends \Iterator {function add( Object $supplier );	}
-interface ResourceCollection 			extends \Iterator {function add( Object $resource );	}
 interface ImageCollection 				extends \Iterator {function add( Object $Image );		}
 
 interface AttributeCollection 			extends \Iterator {function add( Object $Attribute );	}
 interface GAttributeCollection 			extends \Iterator {function add( Object $GAttribute );	}
 interface ManufacturerCollection 		extends \Iterator {function add( Object $Manufacturer );}
+interface SupplierCollection 			extends \Iterator {function add( Object $supplier );	}
+interface ProductCollection 			extends \Iterator {function add( Object $Product );		}
 
 interface OrderImportCollection 		extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection 	extends \Iterator {function add( Object $orderimportdetail );	}

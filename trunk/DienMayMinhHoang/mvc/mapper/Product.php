@@ -2,50 +2,40 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
+class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
     function __construct() {
         parent::__construct();
-		$tblResource = "shopc_resource";
+		$tblProduct = "shopc_resource";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblResource);
-		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
+		$selectAllStmt = sprintf("select * from %s", $tblProduct);
+		$selectStmt = sprintf("select * from %s where id=?", $tblProduct);
 		$updateStmt = sprintf("update %s set 
 				idsupplier=?, 
 				idcategory=?, 
+				idmanufacturer=?, 
 				name=?, 
 				code=?, 
-				price1=?, 
-				price2=?, 
-				madein=?, 
-				madeby=?, 
-				type=?, 
-				style=?, 
-				canvas=?, 
-				note=?,
+				price1=?,
+				price2=?,
 				`key`=? 
-			where id=?", $tblResource);
+			where id=?", $tblProduct);
 			
 		$insertStmt = sprintf("insert into %s ( 
 					idsupplier, 
 					idcategory, 
+					idmanufacturer, 
 					name, 
 					code, 
-					price1, 
-					price2, 
-					madein, 
-					madeby, 
-					type, 
-					style, 
-					canvas, 
-					note,
+					price1,
+					price2,					
 					`key`
 				) 
-				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblResource);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblResource);
-		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblResource);
-		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblResource);
+				values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblProduct);
+		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblProduct);
+		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
+		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
 		
 		$findByCategoryPageStmt = sprintf("
 							SELECT *
@@ -53,7 +43,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							WHERE idcategory=:idcategory
 							ORDER BY name
 							LIMIT :start,:max
-				", $tblResource);
+				", $tblProduct);
 				
 		$findByPageStmt = sprintf("
 							SELECT *
@@ -61,10 +51,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							WHERE idsupplier=:idsupplier
 							ORDER BY idcategory, name
 							LIMIT :start,:max
-				", $tblResource);
+				", $tblProduct);
 		
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblResource);
-		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblResource);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblProduct);
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblProduct);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -81,42 +71,32 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		
 		$this->findByCategoryPageStmt 		= self::$PDO->prepare($findByCategoryPageStmt);
     } 
-    function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new ProductCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Resource( 
+        $obj = new \MVC\Domain\Product( 
 			$array['id'],
 			$array['idsupplier'],
 			$array['idcategory'],
+			$array['idmanufacturer'],
 			$array['name'],				
 			$array['code'],	
 			$array['price1'],	
-			$array['price2'],	
-			$array['madein'],	
-			$array['madeby'],	
-			$array['type'],	
-			$array['style'],	
-			$array['canvas'],	
-			$array['note'],
+			$array['price2'],			
 			$array['key']
 		);
         return $obj;
     }
 	
-    protected function targetClass(){return "Resource";}
+    protected function targetClass(){return "Product";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdSupplier(),
 			$object->getIdCategory(),
-			$object->getName(),	
-			$object->getCode(),				
-			$object->getPrice1(),	
+			$object->getIdManufacturer(),
+			$object->getName(),
+			$object->getCode(),
+			$object->getPrice1(),
 			$object->getPrice2(),
-			$object->getMadeIn(),
-			$object->getMadeBy(),
-			$object->getType(),
-			$object->getStyle(),
-			$object->getCanvas(),
-			$object->getNote(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -128,16 +108,11 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $values = array( 
 			$object->getIdSupplier(),
 			$object->getIdCategory(),
-			$object->getName(),	
-			$object->getCode(),				
-			$object->getPrice1(),	
+			$object->getIdManufacturer(),
+			$object->getName(),
+			$object->getCode(),
+			$object->getPrice1(),
 			$object->getPrice2(),
-			$object->getMadeIn(),
-			$object->getMadeBy(),
-			$object->getType(),
-			$object->getStyle(),
-			$object->getCanvas(),
-			$object->getNote(),
 			$object->getKey(),
 			$object->getId()
 		);		
@@ -149,17 +124,17 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
-        return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findBySupplierStmt->fetchAll(), $this );
     }
 	
 	function findByTop(array $values) {
         $this->findByTopStmt->execute( $values );
-        return new ResourceCollection( $this->findByTopStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findByTopStmt->fetchAll(), $this );
     }
 	
 	function findByCategory(array $values) {
         $this->findByCategoryStmt->execute( $values );
-        return new ResourceCollection( $this->findByCategoryStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findByCategoryStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ){
@@ -167,7 +142,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByCategoryPage( $values ){		
@@ -175,7 +150,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->execute();
-        return new ResourceCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	
@@ -191,7 +166,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	function findByName( $values ) {
 		$this->findByNameStmt->bindValue(':name', $values[0]."%", \PDO::PARAM_STR);
 		$this->findByNameStmt->execute();
-        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
+        return new ProductCollection( $this->findByNameStmt->fetchAll(), $this );
     }	
 	
 }

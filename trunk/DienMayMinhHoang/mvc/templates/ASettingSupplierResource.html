@@ -10,7 +10,7 @@
 		<div id="sidebar">
 			<ul style="display: block;">
 				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
-					<a tal:attributes="href Supplier1/getURLResource">
+					<a tal:attributes="href Supplier1/getURLProduct">
 						<i class="glyphicons-truck"/><span tal:content="Supplier1/getName"/>
 					</a>
 				</li>
@@ -32,44 +32,39 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="30"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="90" class="left">DANH MỤC</th>
 										<th width="200" class="left">TÊN</th>										
 										<th class="right" width="60">GIÁ NHẬP</th>
 										<th class="right" width="60">GIÁ BÁN</th>										
-										<th width="32"><i class="glyphicons-edit"/></th>
-										<th width="32"><i class="glyphicons-bin"/></th>
+										<th width="30"><i class="glyphicons-edit"/></th>
+										<th width="30"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Resource ResourceAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Resource/getId"/></td>
+									<tr tal:repeat="Product ProductAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Product/getId"/></td>
 										<td class="left">
-											<span tal:content="Resource/getCategory/getCategory/getName"/> / 
-											<span tal:content="Resource/getCategory/getName"/>
+											<span tal:content="Product/getCategory/getCategory/getName"/> / 
+											<span tal:content="Product/getCategory/getName"/>
 										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
-												tal:attributes="id Resource/getId;
-																idcategory 	Resource/getIdCategory;
-																name 		Resource/getName;
-																code 		Resource/getCode;
-																price1 		Resource/getPrice1;
-																price2 		Resource/getPrice2;
-																madein 		Resource/getMadeIn;
-																madeby 		Resource/getMadeBy;
-																type 		Resource/getType;
-																style 		Resource/getStyle;
-																canvas 		Resource/getCanvas;
-																note 		Resource/getNote;
+												tal:attributes="id 				Product/getId;
+																idcategory 		Product/getIdCategory;
+																idmanufacturer 	Product/getIdManufacturer;
+																name 			Product/getName;
+																code 			Product/getCode;
+																price1 			Product/getPrice1;
+																price2 			Product/getPrice2;
 												" 
-												tal:content="Resource/getName"/>
+												tal:content="Product/getName"/>
 										</td>
-										<td class="right" tal:content="Resource/getPrice1Print"/>
-										<td class="right" tal:content="Resource/getPrice2Print"/>																				
+										<td class="right" tal:content="Product/getPrice1Print"/>
+										<td class="right" tal:content="Product/getPrice2Print"/>																				
 										<td class="center">
-											<a tal:attributes="href Resource/getURLSettingImage"><i class="glyphicons-picture"/></a>
+											<a tal:attributes="href Product/getURLSettingImage"><i class="glyphicons-picture"/></a>
 										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Resource/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Product/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -81,7 +76,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM NGUYÊN LIỆU</h3></div>								
-								<form id="FormResourceInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormProductInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">													
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -96,12 +91,22 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Danh mục</label>											
+											<label class="control-label">Danh mục</label>
 											<div class="controls">
 												<select name="IdCategory1" id="IdCategory1" style="width:80%;">
 													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
 														<span tal:content="Category1/getCategory/getName" /> / 
 														<span tal:content="Category1/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Nhà sản xuất</label>
+											<div class="controls">
+												<select name="IdManufacturer1" id="IdManufacturer1" style="width:80%;">
+													<option tal:repeat="Manufacturer ManufacturerAll" tal:attributes="value Manufacturer/getId">
+														<span tal:content="Manufacturer/getName" />
 													</option>
 												</select>
 											</div>
@@ -117,51 +122,7 @@
 											<div class="controls">
 												<input id="Price21" name="Price21" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Xuất xứ</label>
-											<div class="controls">												
-												<select name="MadeIn1" id="MadeIn1" style="width:80%;">
-													<option value="Việt Nam">Việt Nam</option>
-													<option value="Hong Kong">Hong Kong</option>
-													<option value="Trung Quốc">Trung Quốc</option>
-													<option value="Đài Loan">Đài Loan</option>
-													<option value="Mỹ">Mỹ</option>
-												</select>
-											</div>											
-										</div>
-										<!--
-										<div class="form-group">
-											<label class="control-label">MadeBy</label>
-											<div class="controls">
-												<input id="MadeBy1" name="MadeBy1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Type</label>
-											<div class="controls">
-												<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Style</label>
-											<div class="controls">
-												<input id="Style1" name="Style1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Canvas</label>
-											<div class="controls">
-												<input id="Canvas1" name="Canvas1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										!-->
-										<div class="form-group">
-											<label class="control-label">Mô tả</label>
-											<div class="controls">
-												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -180,7 +141,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA SẢN PHẨM</h3>
 								</div>
-								<form id="FormResourceUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormProductUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
 											<div class="controls">
@@ -204,7 +165,16 @@
 												</select>
 											</div>
 										</div>
-										
+										<div class="form-group">
+											<label class="control-label">Nhà sản xuất</label>
+											<div class="controls">
+												<select name="IdManufacturer2" id="IdManufacturer2" style="width:80%;">
+													<option tal:repeat="Manufacturer ManufacturerAll" tal:attributes="value Manufacturer/getId">
+														<span tal:content="Manufacturer/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
 										<div class="form-group">
 											<label class="control-label">Giá nhập</label>
 											<div class="controls">
@@ -216,51 +186,7 @@
 											<div class="controls">
 												<input id="Price22" name="Price22" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Xuất xứ</label>
-											<div class="controls">												
-												<select name="MadeIn2" id="MadeIn2" style="width:80%;">
-													<option value="Việt Nam">Việt Nam</option>
-													<option value="Hong Kong">Hong Kong</option>
-													<option value="Trung Quốc">Trung Quốc</option>
-													<option value="Đài Loan">Đài Loan</option>
-													<option value="Mỹ">Mỹ</option>
-												</select>
-											</div>
-										</div>
-										<!--
-										<div class="form-group">
-											<label class="control-label">MadeBy</label>
-											<div class="controls">
-												<input id="MadeBy2" name="MadeBy2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Type</label>
-											<div class="controls">
-												<input id="Type2" name="Type2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Style</label>
-											<div class="controls">
-												<input id="Style2" name="Style2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Canvas</label>
-											<div class="controls">
-												<input id="Canvas2" name="Canvas2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										!-->
-										<div class="form-group">
-											<label class="control-label">Mô tả</label>
-											<div class="controls">
-												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
+										</div>										
 									<div class="modal-footer">
 										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -283,7 +209,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Resource/0";
+				var URL = "/object/del/Product/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -310,7 +236,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Resource/" + $(this).attr('alt');
+				var URL = "/object/del/Product/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",
 					url: URL,
@@ -321,8 +247,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 RESOURCE			
-			$("#FormResourceInsert").validate({
+			//Insert 1 Product			
+			$("#FormProductInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -348,17 +274,12 @@
 					Data[0] = 'null';
 					Data[1] = $('#IdSupplier').attr('alt');
 					Data[2] = $('#IdCategory1').val();
-					Data[3] = $('#Name1').val();
-					Data[4] = $('#Code1').val();
-					Data[5] = $('#Price11').val();
-					Data[6] = $('#Price21').val();										
-					Data[7] = $('#MadeIn1').val();										
-					Data[8] = 0;//$('#MadeBy1').val();										
-					Data[9] = 0;//$('#Type1').val();										
-					Data[10] = 0;//$('#Style1').val();										
-					Data[11] = 0;//$('#Canvas1').val();										
-					Data[12] = $('#Note1').val();
-					var URL = "/object/ins/Resource";
+					Data[3] = $('#IdManufacturer1').val();
+					Data[4] = $('#Name1').val();
+					Data[5] = $('#Code1').val();
+					Data[6] = $('#Price11').val();
+					Data[7] = $('#Price21').val();
+					var URL = "/object/ins/Product";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -382,26 +303,21 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Resource/" + $(this).attr('data-id');
+				var url = "/object/load/Product/" + $(this).attr('data-id');
 				
 				$('#URLUpdButton').attr('alt', 	$(this).attr('id')	);
 				$('#Name2').attr('value', 		$(this).attr('name'));
 				$('#IdCategory2').select2('val', $(this).attr('idcategory'));
+				$('#IdManufacturer2').select2('val', $(this).attr('idmanufacturer'));
 				$('#Code2').attr('value', 		$(this).attr('code'));
 				$('#Price12').attr('value', 	$(this).attr('price1'));
-				$('#Price22').attr('value', 	$(this).attr('price2'));				
-				$('#MadeIn2').select2('val', 	$(this).attr('madein'));
-				$('#MadeBy2').attr('value', 	$(this).attr('madeby'));
-				$('#Type2').attr('value', 		$(this).attr('type'));
-				$('#Style2').attr('value', 		$(this).attr('style'));
-				$('#Canvas2').attr('value', 	$(this).attr('canvas'));
-				$('#Note2').attr('value', 		$(this).attr('note'));
+				$('#Price22').attr('value', 	$(this).attr('price2'));
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 RESOURCE
+			//Update 1 Product
 			//-----------------------------------------------------------------------------------
-			$("#FormResourceUpdate").validate({
+			$("#FormProductUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -427,18 +343,13 @@
 					Data[0] = $('#URLUpdButton').attr('alt');					
 					Data[1] = $('#IdSupplier').attr('alt');
 					Data[2] = $('#IdCategory2').val();
-					Data[3] = $('#Name2').val();
-					Data[4] = $('#Code2').val();
-					Data[5] = $('#Price12').val();
-					Data[6] = $('#Price22').val();										
-					Data[7] = $('#MadeIn2').val();										
-					Data[8] = 0;//$('#MadeBy2').val();
-					Data[9] = 0;//$('#Type2').val();
-					Data[10] = 0;//$('#Style2').val();
-					Data[11] = 0;//$('#Canvas2').val();
-					Data[12] = $('#Note2').val();
-									
-					var URL = "/object/upd/Resource";
+					Data[3] = $('#IdManufacturer2').val();
+					Data[4] = $('#Name2').val();
+					Data[5] = $('#Code2').val();
+					Data[6] = $('#Price12').val();
+					Data[7] = $('#Price22').val();
+					
+					var URL = "/object/upd/Product";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},

@@ -176,22 +176,27 @@
 	</div>
 	
 	<div metal:define-macro="MenuSettingProduct" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
-			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/category'" >
-					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
-				</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='GAttribute'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/gattribute'" >
-					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
-				</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
 			<li tal:attributes="class php:ActiveAdmin=='Manufacturer'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/manufacturer'" >
 					<i class="glyphicons-truck" />NHÀ SẢN XUẤT
 				</a>
 			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/supplier'" >
+					<i class="glyphicons-truck" />NHÀ CUNG CẤP
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/category'" >
+					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='GAttribute'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/gattribute'" >
+					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
+				</a>
+			</li>			
 		</ul>
 	</div>
 	

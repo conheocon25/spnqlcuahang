@@ -68,53 +68,7 @@ class Supplier extends Object{
 		$this->Note 	= $Data[4];
 		$this->Debt 	= $Data[5];
     }
-	
-	//--------------------------------------------------------	
-	//TÍNH CÔNG NỢ
-	//--------------------------------------------------------	
-	function getOldDebt( ){
-		$Session = \MVC\Base\SessionRegistry::instance();
-		$DateStart = $Session->getReportSupplierDateStart();
-							
-		$mOrder = new \MVC\Mapper\OrderImport();
-		$mSPaid = new \MVC\Mapper\PaidSupplier();
 		
-		$NDate = new \MVC\Library\Date();
-		$arr = $NDate->rangeOldDebt($DateStart);
-				
-		//(1) Nhập hàng trước đó
-		$Orders = $mOrder->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
-		$SOrders = 0;
-		while($Orders->valid()){
-			$SOrders += $Orders->current()->getValue();
-			$Orders->next();
-		}
-				
-		//(2) Trả tiền
-		$Paids = $mSPaid->findByTracking1( array($this->getId(), $arr[0], $arr[1]) );
-		$SPaids = 0;
-		while($Paids->valid()){
-			$SPaids += $Paids->current()->getValue();
-			$Paids->next();
-		}
-				
-		return $this->getDebt() + $SOrders - $SPaids;
-	}
-	function getOldDebtPrint(){
-		$Value = $this->getOldDebt();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
-	}
-	function getNewDebt( ){
-		$Value = $this->getOldDebt() + $this->getOrdersTrackingValue() - $this->getPaidsTrackingValue(); 
-		return $Value;
-	}
-	function getNewDebtPrint(){
-		$Value = $this->getNewDebt();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
-	}
-	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -190,10 +144,10 @@ class Supplier extends Object{
 	}
 	
 	//Lấy về danh sách các tài nguyên nhà cung cấp có
-	function getResourceAll() {
-		$mResource = new \MVC\Mapper\Resource();
-		$Resources = $mResource->findBySupplier(array($this->getId()));
-		return $Resources;
+	function getProductAll() {
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findBySupplier(array($this->getId()));
+		return $ProductAll;
 	}
 	
 	//-------------------------------------------------------------------------------
@@ -206,7 +160,7 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLResource(){return "/admin/setting/supplier/".$this->getId();}
+	function getURLProduct(){return "/admin/setting/supplier/".$this->getId();}
 		
 		
 	//-------------------------------------------------------------------------------
