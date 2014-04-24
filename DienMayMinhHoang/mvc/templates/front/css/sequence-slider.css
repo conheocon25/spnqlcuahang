@@ -206,7 +206,7 @@
 
 /* content */
 .sequence-title {
-	font:400 33px/1 "Oswald", Arial, sans-serif;
+	font:400 33px/1 Tahoma, Arial, sans-serif;
 	color:#444645;
 	width: 35%;
 	opacity: 0;
@@ -487,7 +487,7 @@
 .sequence-slide1 .sequence-model,
 .sequence-slide1.animate-out .sequence-model {
 	left:-30%;
-	bottom:0;
+	top:20%;
 
 }
 

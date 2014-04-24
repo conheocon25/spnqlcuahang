@@ -1368,6 +1368,8 @@ parent's font-size:0
 	margin-bottom:30px;
 	padding:20px;
 	border:1px solid transparent;
+	height: 412px;
+	overflow: hidden;
 }
 
 /* cut left/right padding for carousel items */
@@ -6129,4 +6131,28 @@ html[xmlns] .slides {display: block;}
 }
 #option-panel #panel-font .panel {
 	margin-bottom:10px;
+}
+
+.header-text-container {
+	width: 400px;
+	height: 36px;
+	overflow: hidden;
+	position: relative;
+}
+
+p.header-text {  
+    position: absolute;
+	width: 2230px;
+	display: block;
+	animation: run-to-left 40s infinite;
+	left: 400px;
+}
+
+@keyframes run-to-left {
+	0%  {
+		left: 400px;
+	}
+	100%{  
+		left: -2230px;
+	}
 }
