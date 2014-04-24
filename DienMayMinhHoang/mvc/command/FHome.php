@@ -18,7 +18,7 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mSave 			= new \MVC\Mapper\Save();
 			$mCategory 		= new \MVC\Mapper\Category();
-			$mResource 		= new \MVC\Mapper\Resource();
+			$mProduct 		= new \MVC\Mapper\Product();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mTag 			= new \MVC\Mapper\Tag();
 			$mOED 			= new \MVC\Mapper\OrderExportDetail();
@@ -38,7 +38,7 @@
 			$Save	 		= $SaveAll->current();
 			
 			$CategoryAll 	= $mCategory->findAll();
-			$ResourceAll1 	= $mResource->findByTop(array());			
+			$ProductAll1 	= $mProduct->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
@@ -59,7 +59,7 @@
 			$request->setObject("Save", 				$Save);
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("ResourceAll1", 		$ResourceAll1);
+			$request->setObject("ProductAll1", 		$ProductAll1);
 			
 			$request->setObject("OEDAll", 				$OEDAll);
 			$request->setObject("OIDAll", 				$OIDAll);

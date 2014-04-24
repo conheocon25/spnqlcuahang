@@ -6,9 +6,8 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/MenuSettingProduct"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -40,7 +39,7 @@
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId" tal:content="Supplier/getName"/></td>
 										<td><span tal:content="Supplier/getPhone"/></td>
 										<td><span tal:content="Supplier/getAddress"/></td>
-										<td class="right"><a tal:attributes="href Supplier/getURLResource"> <span tal:content="Supplier/getResourceAll/count" /> món</a></td>
+										<td class="right"><a tal:attributes="href Supplier/getURLProduct"> <span tal:content="Supplier/getProductAll/count" /> món</a></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId">
 												<i class="glyphicon glyphicon-pencil"/>

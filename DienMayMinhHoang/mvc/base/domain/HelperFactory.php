@@ -4,12 +4,12 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" 			);	
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Category1.php" 		);
-	require_once( "mvc/mapper/Supplier.php" 		);
-	require_once( "mvc/mapper/Resource.php" 		);
-	
+		
 	require_once( "mvc/mapper/Attribute.php" 		);
 	require_once( "mvc/mapper/GAttribute.php" 		);
 	require_once( "mvc/mapper/Manufacturer.php" 	);
+	require_once( "mvc/mapper/Supplier.php" 		);
+	require_once( "mvc/mapper/Product.php" 			);
 	
 	require_once( "mvc/mapper/Image.php" 			);
 	require_once( "mvc/mapper/OrderImport.php" 		);

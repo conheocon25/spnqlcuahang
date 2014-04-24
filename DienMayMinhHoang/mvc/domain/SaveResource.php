@@ -37,9 +37,9 @@ class SaveResource extends Object{
 	function setIdResource($IdResource) {$this->IdResource = $IdResource;$this->markDirty();}
 	function getIdResource() 			{return $this->IdResource;}
 	function getResource(){
-		$mResource	= new \MVC\Mapper\Resource();
-		$Resource 	= $mResource->find($this->IdResource);
-		return $Resource;		
+		$mProduct	= new \MVC\Mapper\Product();
+		$Product 	= $mProduct->find($this->IdResource);
+		return $Product;		
 	}
 	
 	function setDiscount($Discount){$this->Discount = $Discount;$this->markDirty();}

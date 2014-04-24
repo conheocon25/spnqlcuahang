@@ -13,13 +13,13 @@ interface Finder {
 interface UserFinder  			extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface Category1Finder  		extends Finder {}
-interface SupplierFinder 		extends Finder {}
-interface ResourceFinder 		extends Finder {}
 interface ImageFinder 			extends Finder {}
 
 interface AttributeFinder 		extends Finder {}
 interface GAttributeFinder 		extends Finder {}
 interface ManufacturerFinder 	extends Finder {}
+interface SupplierFinder 		extends Finder {}
+interface ProductFinder 		extends Finder {}
 
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
