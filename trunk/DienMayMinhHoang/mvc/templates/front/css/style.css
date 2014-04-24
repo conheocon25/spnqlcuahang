@@ -1548,6 +1548,8 @@ parent's font-size:0
 .item-name {
 	font:400 19px/24px Tahoma, Arial, sans-serif;
 	margin:0 0 15px;
+	height: 48px;
+	overflow: hidden;
 }
 
 /* title for list style items */
