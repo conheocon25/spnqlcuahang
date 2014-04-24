@@ -46,7 +46,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family:'Oswald', Arial, sans-serif;
+	font-family: Tahoma, Arial, sans-serif;
 	line-height:1;
 	color:#444645;
 	margin-top:0;
@@ -569,7 +569,7 @@ blockquote:before{
 #main-nav-container #main-nav .menu li a {
 	display:inline-block;
 	color:#494940;
-	font:700 17px/19px 'PT Sans', sans-serif;
+	font:700 17px/19px Tahoma, Arial, sans-serif;
 	padding:13px 25px;
 }
 
@@ -645,7 +645,7 @@ blockquote:before{
 } 
 
 #main-nav-container #main-nav .menu li .mega-menu .mega-menu-title {
-	font:700 16px/20px "Gudea", Arial, sans-serif;
+	font:700 16px/20px Tahoma, Arial, sans-serif;
 	color:#4c4e4d;
 	display:block;
 	padding:15px 0;
@@ -707,7 +707,7 @@ blockquote:before{
 
 #main-nav-container #main-nav #responsive-nav ul li {
 	background:#fafafa;
-	font:700 17px/25px 'PT Sans', sans-serif;
+	font:700 17px/25px Tahoma, Arial, sans-serif;
 	border-top:1px solid rgba(200, 200, 200, 0.2);
 	border-bottom:1px solid rgba(255, 255, 255, 0.5);
 	position:relative;
@@ -749,7 +749,7 @@ blockquote:before{
 }
 
 #main-nav-container #main-nav #responsive-nav ul li ul li {
-	font:700 16px/22px "Gudea", Arial, sans-serif;
+	font:700 16px/22px Tahoma, Arial, sans-serif;
 	background:#f6f6f6;
 }
 
@@ -811,7 +811,7 @@ blockquote:before{
 }
 
 #main-nav-container #main-nav #responsive-nav ul li .mega-menu .mega-menu-title {
-	font:700 16px/22px "Gudea", Arial, sans-serif;
+	font:700 16px/22px Tahoma, Arial, sans-serif;
 	color:#4c4e4d;
 	background:#f6f6f6;
 }
@@ -902,7 +902,7 @@ blockquote:before{
 }
 
 #responsive-nav-button {
-	font:700 20px/38px 'PT Sans', sans-serif;
+	font:700 20px/38px Tahoma, Arial, sans-serif;
 	color:#494940;
 	text-transform:uppercase;
 	margin-top:2px;
@@ -1165,7 +1165,7 @@ blockquote:before{
 }
 
 .dropdown-cart-total li  {
-	font:700 15px/18px 'PT Sans', sans-serif;
+	font:700 15px/18px Tahoma, Arial, sans-serif;
 	color:#7bae23;
 	margin-bottom:6px;
 }
@@ -1320,7 +1320,7 @@ parent's font-size:0
 	text-transform:Uppercase;
 	padding:4px 20px;
 	display:inline-block;
-	font:400 14px/20px 'PT Sans', sans-serif;
+	font:400 14px/20px Tahoma, Arial, sans-serif;
 	-webkit-transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
 	-o-transition:all 0.3s ease-in-out;
@@ -1433,7 +1433,7 @@ parent's font-size:0
 	display:block;
 	background:#a8bf00;
 	text-align:center;
-	font:700 16px/20px "Gudea", Arial, sans-serif;
+	font:700 16px/20px Tahoma, Arial, sans-serif;
 	color:#fff;
 	width:81px;
 	height:81px;
@@ -1446,7 +1446,7 @@ parent's font-size:0
 }
 
 .item-price-special {
-	font:700 16px/20px "Gudea", Arial, sans-serif;
+	font:700 16px/20px Tahoma, Arial, sans-serif;
 	color:#e82c0c;
 }
 
@@ -1544,7 +1544,7 @@ parent's font-size:0
 
 /* title for all items */
 .item-name {
-	font:400 19px/24px 'PT Sans', sans-serif;
+	font:400 19px/24px Tahoma, Arial, sans-serif;
 	margin:0 0 15px;
 }
 
@@ -2009,7 +2009,7 @@ select.input-lg {
 	padding:6px 20px;
 	background:#575a59;
 	color:#fff;
-	font:700 14px/18px 'PT Sans', sans-serif;
+	font:700 14px/18px Tahoma, Arial, sans-serif;
 	-webkit-transition:background 0.4s;
 	-moz-transition:background 0.4s;
 	-o-transition:background 0.4s;
@@ -2158,7 +2158,7 @@ select.input-lg {
 }
 
 .portfolio-item h2 {
-	font:700 16px/17px 'PT Sans', sans-serif;
+	font:700 16px/17px Tahoma, Arial, sans-serif;
 	color:#666;
 	margin:0 0 5px;
 }
@@ -2389,7 +2389,7 @@ select.input-lg {
 
 #category-header.category-header-slider .category-title h1,
 #category-header.category-header-slider .category-title h2 {
-	font:400 43px/1 'PT Sans', sans-serif;
+	font:400 43px/1 Tahoma, Arial, sans-serif;
 	color:#585858;
 	margin-bottom:10px;
 }
@@ -2441,7 +2441,7 @@ select.input-lg {
 
 #category-header.category-banner .category-title  h1,
 #category-header.category-banner .category-title  h2 {
-	font:400 35px/1 'Oswald', Arial, sans-serif;
+	font:400 35px/1 Tahoma, Arial, sans-serif;
 	color:#fff;
 	margin-bottom:15px;
 }
@@ -2520,7 +2520,7 @@ select.input-lg {
 
 .featured-slider .featured-product .featured-price,
 .related-slider .related-product .related-price  {
-	font:700 18px/1 "Gudea", Arial, sans-serif;
+	font:700 18px/1 Tahoma, Arial, sans-serif;
 	color:#e82c0c;
 }
 
@@ -2851,7 +2851,7 @@ select.input-lg {
 	float:left;
 	width:65px;
 	margin: 0 10px 10px 0;
-	font:700 16px/28px "Gudea", Arial, sans-serif;
+	font:700 16px/28px Tahoma, Arial, sans-serif;
 	text-align:center;
 	text-transform:uppercase;
 }
@@ -3309,7 +3309,7 @@ noUi-target,
   margin-top: 0;
   margin-bottom: 0;
   font-size: 16px;
-  font-family:'PT Sans', sans-serif;
+  font-family:Tahoma, Arial, sans-serif;
   font-weight:bold;
   color:#888888;
 
@@ -3658,7 +3658,7 @@ noUi-target,
 }
 
 .comments .comments-list li .comment .comment-details .comment-title {
-	font:700 18px/20px "Gudea", Arial, sans-serif;
+	font:700 18px/20px Tahoma, Arial, sans-serif;
 	color:#777;
 	margin-bottom:10px;
 }
@@ -3678,7 +3678,7 @@ noUi-target,
 .comments .comments-list li .comment .comment-details .comment-meta-container .replay-button {
 	font-weight:700;
 	color:#7c7c7c;
-	font-family:'PT Sans', sans-serif;
+	font-family:Tahoma, Arial, sans-serif;
 }
 .comments .comments-list li .comment .comment-details .comment-meta-container .replay-button:hover  {
 	color:#7bae23;
@@ -3842,7 +3842,7 @@ noUi-target,
 	margin:25px 0;
 }
 .product .product-name {
-	font: 700 25px/1 'PT Sans', sans-serif;
+	font: 700 25px/1 Tahoma, Arial, sans-serif;
 	color:#646464;
 	color:#646464;
 }
@@ -4099,7 +4099,7 @@ noUi-target,
 }
 
 .table .table-title {
-	font:700 15px/22px 'PT Sans', sans-serif;
+	font:700 15px/22px Tahoma, Arial, sans-serif;
 	color:#565656;
 	text-transform:uppercase;
 }
@@ -4421,7 +4421,7 @@ noUi-target,
 }
 
 .accordion-title {
-	font:700 18px/1 "Gudea", Arial, sans-serif;
+	font:700 18px/1 Tahoma, Arial, sans-serif;
 	color:#777;
 }
 .accordion-title > span {
@@ -4541,7 +4541,7 @@ noUi-target,
 }
 
 .checkout-title {
-	font:400 25px/30px 'Oswald', Arial, sans-serif;
+	font:400 25px/30px Tahoma, Arial, sans-serif;
 	color:#444645;
 	text-transform:uppercase;
 	margin-bottom:20px;
@@ -4889,7 +4889,7 @@ noUi-target,
 }
 
 #footer h3 {
-	font:19px/38px 'Oswald', Arial, sans-serif;
+	font:19px/38px Tahoma, Arial, sans-serif;
 	margin:50px 0 20px;
 	color:#e3e3e3;
 	text-transform:uppercase;
@@ -5464,7 +5464,7 @@ html[xmlns] .slides {display: block;}
 }
 
 #page-header .page-header-desc {
-	font:400 24px/33px "Gudea", Arial, sans-serif;
+	font:400 24px/33px Tahoma, Arial, sans-serif;
 	color:#fff;
 	margin-top:30px;
 }
@@ -5482,7 +5482,7 @@ html[xmlns] .slides {display: block;}
 }
 
 .hero-unit p {
-	font:400 21px/1 "Gudea", Arial, sans-serif;
+	font:400 21px/1 Tahoma, Arial, sans-serif;
 }
 
 .services-box {
@@ -5801,7 +5801,7 @@ html[xmlns] .slides {display: block;}
 }
 
 .no-content-comment h2 {
-	font:700 110px/0.8 "Gudea", Arial, sans-serif;
+	font:700 110px/0.8 Tahoma, Arial, sans-serif;
 	color:#7bae23;
 	text-shadow: 8px 4px 0 rgba(0,0,0, 0.1);
 	margin-bottom: 15px;
@@ -6008,7 +6008,7 @@ html[xmlns] .slides {display: block;}
 }
 
 #option-panel .accordion-title {
-	font:700 16px/21px "Gudea", Arial, sans-serif;
+	font:700 16px/21px Tahoma, Arial, sans-serif;
 	color:#757575;
 }
 
