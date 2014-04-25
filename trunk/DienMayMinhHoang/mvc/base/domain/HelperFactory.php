@@ -10,6 +10,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Manufacturer.php" 	);
 	require_once( "mvc/mapper/Supplier.php" 		);
 	require_once( "mvc/mapper/Product.php" 			);
+	require_once( "mvc/mapper/ProductInfo.php" 		);
 	
 	require_once( "mvc/mapper/Image.php" 			);
 	require_once( "mvc/mapper/OrderImport.php" 		);

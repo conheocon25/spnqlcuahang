@@ -132,6 +132,12 @@ class Product extends Object{
 	function getURLSettingImage(){
 		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
 	}
+	function getURLSettingInfo(){
+		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info";
+	}
+	function getURLSettingInfoExe(){
+		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info/exe";
+	}
 	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

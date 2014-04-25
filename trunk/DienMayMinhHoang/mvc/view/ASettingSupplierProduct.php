@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ASettingSupplierResource.html");
+	$Viewer = new Viewer("mvc/templates/ASettingSupplierProduct.html");
 	echo $Viewer->html();
 ?>

@@ -11,6 +11,7 @@ interface GAttributeCollection 			extends \Iterator {function add( Object $GAttr
 interface ManufacturerCollection 		extends \Iterator {function add( Object $Manufacturer );}
 interface SupplierCollection 			extends \Iterator {function add( Object $supplier );	}
 interface ProductCollection 			extends \Iterator {function add( Object $Product );		}
+interface ProductInfoCollection 		extends \Iterator {function add( Object $ProductInfo );	}
 
 interface OrderImportCollection 		extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection 	extends \Iterator {function add( Object $orderimportdetail );	}

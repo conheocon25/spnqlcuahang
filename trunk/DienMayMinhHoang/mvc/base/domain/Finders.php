@@ -20,6 +20,7 @@ interface GAttributeFinder 		extends Finder {}
 interface ManufacturerFinder 	extends Finder {}
 interface SupplierFinder 		extends Finder {}
 interface ProductFinder 		extends Finder {}
+interface ProductInfoFinder 	extends Finder {}
 
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
