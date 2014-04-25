@@ -6,7 +6,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProduct = "shopc_resource";
+		$tblProduct = "shopc_product";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblProduct);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProduct);

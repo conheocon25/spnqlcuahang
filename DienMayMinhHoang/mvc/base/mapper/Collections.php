@@ -13,6 +13,7 @@ class GAttributeCollection 		extends Collection implements \MVC\Domain\GAttribut
 class ManufacturerCollection 	extends Collection implements \MVC\Domain\ManufacturerCollection 	{function targetClass( ) {return "\MVC\Domain\Manufacturer";}}
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";	}}
 class ProductCollection 		extends Collection implements \MVC\Domain\ProductCollection 		{function targetClass( ) {return "\MVC\Domain\Product";		}}
+class ProductInfoCollection 	extends Collection implements \MVC\Domain\ProductInfoCollection 	{function targetClass( ) {return "\MVC\Domain\ProductInfo";	}}
 
 class OrderImportCollection 	extends Collection implements \MVC\Domain\OrderImportCollection 	{function targetClass( ) {return "\MVC\Domain\OrderImport";	}}
 class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}

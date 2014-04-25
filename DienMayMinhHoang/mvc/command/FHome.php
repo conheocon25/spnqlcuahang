@@ -28,9 +28,12 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$ConfigName 	= $mConfig->findByName("NAME");
-			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
-			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_HOME");
+			$ConfigName 			= $mConfig->findByName("NAME");
+			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
+			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
+			$ConfigPhone 			= $mConfig->findByName("PHONE");
+			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$ManufacturerAll= $mManufacturer->findAll();
 			
@@ -52,6 +55,9 @@
 			$request->setProperty("Active", 			'Home');
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
+			$request->setObject("ConfigPhone", 			$ConfigPhone);
+			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("TagAll", 				$TagAll);
 			

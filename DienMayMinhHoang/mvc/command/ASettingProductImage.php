@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASettingResourceImage extends Command {
+	class ASettingProductImage extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -18,20 +18,20 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mSupplier 	= new \MVC\Mapper\Supplier();
-			$mResource 	= new \MVC\Mapper\Resource();
+			$mProduct 	= new \MVC\Mapper\Product();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																		
 			$Supplier = $mSupplier->find($IdSupplier);
-			$Resource = $mResource->find($IdResource);
+			$Product = $mProduct->find($IdProduct);
 			
-			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
+			$Title = mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
 				array("NHÀ CUNG CẤP", "/admin/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLProduct())
 			);
 			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
@@ -44,7 +44,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('ConfigName'	, $ConfigName);
 			
-			$request->setObject('Resource'		, $Resource);
+			$request->setObject('Product'		, $Product);
 			$request->setObject('Supplier'		, $Supplier);
 															
 			return self::statuses('CMD_DEFAULT');
