@@ -13,7 +13,7 @@
 			//-------------------------------------------------------------
 			$KCategory1 	= 	$request->getProperty('KCategory1');
 			$KCategory2 	= 	$request->getProperty('KCategory2');
-			$KResource 		= 	$request->getProperty('KResource');
+			$KProduct 		= 	$request->getProperty('KProduct');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,7 +21,7 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mCategory1	= new \MVC\Mapper\Category1();
-			$mResource 	= new \MVC\Mapper\Resource();
+			$mProduct 	= new \MVC\Mapper\Product();
 			$mTag 		= new \MVC\Mapper\Tag();
 			
 			//-------------------------------------------------------------
@@ -31,10 +31,12 @@
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigPhone 	= $mConfig->findByName("PHONE");
+			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 	= $mCategory->findAll();			
-			$Resource 		= $mResource->findByKey($KResource);
-			$Category 		= $Resource->getCategory()->getCategory();
+			$Product 		= $mProduct->findByKey($KProduct);
+			$Category 		= $Product->getCategory()->getCategory();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
 			//-------------------------------------------------------------
@@ -45,9 +47,11 @@
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);			
 			$request->setObject("ConfigPhone", 	$ConfigPhone);
+			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category", 	$Category);
-			$request->setObject("Resource", 	$Resource);
+			$request->setObject("Product", 	$Product);
 			$request->setObject("TagAll", 		$TagAll);			
 			
 			return self::statuses('CMD_DEFAULT');

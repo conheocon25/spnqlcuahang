@@ -10,7 +10,7 @@
         end: '#end',
 		directions: 'directions',
         submit: '#getdirections',      	
-		tooltip: '<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">Trung Tâm Điện Máy Minh Hoàng</span><h5>Địa chỉ: 33 Phạm Thái Bường, 4, Vĩnh Long</h5>',
+		tooltip: '<img src="/mvc/templates/front/images/logo.png" height="100px"/><h5>Địa chỉ: 33 Phạm Thái Bường, 4, Vĩnh Long</h5>',
 		image: 'false' 
     };
 

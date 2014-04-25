@@ -1283,7 +1283,6 @@ parent's font-size:0
 .sub-title {
 	font-size:25px;
 	line-height:1;
-	text-transform:uppercase;
 	margin-bottom:30px;
 	margin-top:0;
 }
@@ -1368,7 +1367,6 @@ parent's font-size:0
 	margin-bottom:30px;
 	padding:20px;
 	border:1px solid transparent;
-	height: 412px;
 	overflow: hidden;
 }
 
@@ -1748,7 +1746,7 @@ Bootstrap Breadcrumb style overwrite
 #category-breadcrumb,
 #breadcrumb-container {
 	padding:15px 0;
-	font:13px/18px "Oswald", Arial, sans-serif;	
+	font:13px/18px Tahoma, Arial, sans-serif;	
 }
 #category-breadcrumb {
 	margin-bottom:20px;
@@ -3251,7 +3249,7 @@ noUi-target,
 	color:#444645;
 	font-size:15px;
 	text-transform:uppercase;
-	font:400 22px/32px "Oswald", Arial, sans-serif;
+	font:400 22px/32px Tahoma, Arial, sans-serif;
 	margin-bottom:20px;
 }
 
