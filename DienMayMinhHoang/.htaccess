@@ -127,6 +127,9 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
 RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
 
+RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
+RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
