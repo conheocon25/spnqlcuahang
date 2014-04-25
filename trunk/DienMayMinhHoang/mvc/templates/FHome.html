@@ -13,6 +13,7 @@
 					<div class="sequence-prev"></div>
 					<div class="sequence-next"></div>
 					<ul class="sequence-canvas">
+						<!--
 						<li tal:repeat="Slide Presentation/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
 							<div class="sequencebg">
 								<img src="/mvc/templates/front/images/homeslider/slide1.png" tal:attributes="alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
@@ -22,6 +23,19 @@
 								<div class="sequence-title" tal:content="Slide/getName"/>
 								<div class="sequence-subtitle" tal:content="Slide/getNote"/>
 								<a href="#" class="btn btn-custom-2 btn-sequence">Xem chi tiết</a>
+							</div>
+						</li>
+						!-->
+						<li tal:repeat="Slide Presentation/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
+							<div class="sequencebg">
+								<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
+							</div>
+							<div class="sequence-container container">
+								<!--
+								<img tal:attributes="src Slide/getURL" alt="Model 1" class="sequence-model"/>
+								<div class="sequence-title" tal:content="Slide/getName"/>
+								<a href="#" class="btn btn-custom-2 btn-sequence">Xem chi tiết</a>
+								!-->
 							</div>
 						</li>
 					</ul>

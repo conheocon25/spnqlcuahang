@@ -175,6 +175,51 @@
 		</ul>	
 	</div>
 	
+	<div metal:define-macro="MenuSettingGeneral" id="sidebar">				
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
+			<li tal:attributes="class php:ActiveAdmin=='Branch'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/branch'">
+					<i class="glyphicons-group" />CHI NHÁNH
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/user'">
+					<i class="glyphicons-group" />NGƯỜI DÙNG 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/employee'">
+					<i class="glyphicons-group" />NHÂN VIÊN
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/config'">
+					<i class="glyphicons-cogwheel" />CẤU HÌNH
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div metal:define-macro="MenuSettingPost" id="sidebar">				
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
+			<li tal:attributes="class php:ActiveAdmin=='Presentation'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/presentation'" >
+					<i class="glyphicons-picture" />TRÌNH BÀY
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/tag'" >
+					<i class="glyphicons-book" />THẺ BÀI
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/post'" >
+					<i class="glyphicons-book" />BÀI VIẾT
+				</a>
+			</li>
+		</ul>
+	</div>
+	
 	<div metal:define-macro="MenuSettingProduct" id="sidebar">				
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
 			<li tal:attributes="class php:ActiveAdmin=='Manufacturer'?'active':'disable'">

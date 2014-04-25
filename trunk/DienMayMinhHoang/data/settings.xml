@@ -59,6 +59,10 @@
 		
 		<command name="ASettingPresentation">	<view>ASettingPresentation	</view></command>
 		<command name="ASettingSlide">			<view>ASettingSlide			</view></command>
+		<command name="ASettingSlideInsLoad">	<view>ASettingSlideInsLoad	</view></command>
+		<command name="ASettingSlideInsExe">	<view>ASettingSlideInsExe	</view><status value="CMD_OK"><forward>ASettingSlide</forward></status></command>
+		<command name="ASettingSlideUpdLoad">	<view>ASettingSlideUpdLoad	</view></command>
+		<command name="ASettingSlideUpdExe">	<view>ASettingSlideUpdExe	</view><status value="CMD_OK"><forward>ASettingSlide</forward></status></command>
 		
 		<command name="ASettingTag">			<view>ASettingTag			</view></command>
 		<command name="ASettingPostTag">		<view>ASettingPostTag		</view></command>
@@ -78,6 +82,7 @@
 		<command name="ASettingGAttribute">		<view>ASettingGAttribute	</view></command>
 		<command name="ASettingManufacturer">	<view>ASettingManufacturer	</view></command>
 		
+		<command name="ASettingBranch">			<view>ASettingBranch		</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer		</view></command>		
 		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		

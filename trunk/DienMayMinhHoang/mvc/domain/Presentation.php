@@ -67,6 +67,8 @@ class Presentation extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLSetting(){return "/admin/setting/presentation/".$this->getId();}
+	function getURLSettingSlideInsLoad(){return "/admin/setting/presentation/".$this->getId()."/ins/load";}
+	function getURLSettingSlideInsExe()	{return "/admin/setting/presentation/".$this->getId()."/ins/exe";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
