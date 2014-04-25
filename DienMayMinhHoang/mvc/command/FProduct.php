@@ -23,6 +23,7 @@
 			$mCategory1	= new \MVC\Mapper\Category1();
 			$mProduct 	= new \MVC\Mapper\Product();
 			$mTag 		= new \MVC\Mapper\Tag();
+			$mBranch 	= new \MVC\Mapper\Branch();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -38,6 +39,7 @@
 			$Product 		= $mProduct->findByKey($KProduct);
 			$Category 		= $Product->getCategory()->getCategory();
 			$TagAll 		= $mTag->findByPosition(array(1));
+			$BranchAll 		= $mBranch->findAll();			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -51,8 +53,9 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category", 	$Category);
-			$request->setObject("Product", 	$Product);
-			$request->setObject("TagAll", 		$TagAll);			
+			$request->setObject("Product", 		$Product);
+			$request->setObject("TagAll", 		$TagAll);
+			$request->setObject("BranchAll", 	$BranchAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

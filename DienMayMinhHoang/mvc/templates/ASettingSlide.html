@@ -22,7 +22,7 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+					<a tal:attributes="href Presentation/getURLSettingSlideInsLoad" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
 					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
@@ -42,7 +42,7 @@
 								<tbody>
 									<tr tal:repeat="Slide Presentation/getSlideAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Slide/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Slide/getId" tal:content="Slide/getName"/></td>
+										<td><a tal:attributes="href Slide/getURLSettingUpdLoad" tal:content="Slide/getName"/></td>
 										<td class="right"><span tal:content="Slide/getOrder" /></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Slide/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
@@ -50,89 +50,7 @@
 							</table>
 						</div>
 					</div>					
-					<!-- INSERT DIALOG  -->
-					<div id="DialogIns" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI SLIDE</h3></div>
-								<form id="FormSlideInsert" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<div class="control-group">
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Thứ tự</label>
-											<div class="controls">
-												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Ghi chú</label>
-											<div class="controls">
-												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">URL</label>
-											<div class="controls">
-												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END INSERT DIALOG  -->
-					
-					<!-- UPDATE DIALOG  -->
-					<div id="DialogEdit" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT SLIDE</h3></div>
-								<form id="FormSlideUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<div class="control-group">
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Thứ tự</label>
-											<div class="controls">
-												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
-											</div>
-										</div>										
-										<div class="control-group">
-											<label class="control-label">Ghi chú</label>
-											<div class="controls">
-												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">URL</label>
-											<div class="controls">
-												<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END UPDATE DIALOG  -->
+															
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
@@ -182,116 +100,7 @@
 					}
 				});
 			});
-		
-			//-----------------------------------------------------------------------------------
-			//Insert 1 Presentation			
-			$("#FormSlideInsert").validate({
-				rules:{
-					Name1:{
-						minlength: 2,
-						required:true
-					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = 'null';
-					Data[1] = $('#PresentationCurrent').attr('alt');
-					Data[2] = $('#Name1').val();
-					Data[3] = $('#Order1').val();
-					Data[4] = $('#Note1').val();
-					Data[5] = $('#URL1').val();
-					
-					var URL = "/object/ins/Slide";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
-			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name1').first().focus()},
-					0500
-				);
-			});
-			
-			//-----------------------------------------------------------------------------------
-			//Load 1 Presentation
-			//-----------------------------------------------------------------------------------
-			$('.update-item').click(function(){
-				//Load dữ liệu JSON về
-				var url = "/object/load/Slide/" + $(this).attr('data-id');
 				
-				//Load dữ liệu JSON lên FORM
-				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Order2').attr('value', 		data.Order);
-					$('#Note2').attr('value', 		data.Note);
-					$('#URL2').attr('value', 		data.URL);
-				});
-			});
-			
-			//-----------------------------------------------------------------------------------
-			//Update 1 Presentation
-			//-----------------------------------------------------------------------------------
-			$("#FormSlideUpdate").validate({
-				rules:{
-					Name2:{
-						minlength: 2,
-						required:true
-					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');					
-					Data[1] = $('#PresentationCurrent').attr('alt');
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Order2').val();					
-					Data[4] = $('#Note2').val();
-					Data[5] = $('#URL2').val();
-																		
-					var URL = "/object/upd/Slide";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});		
-					return false;
-				}
-			});
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name2').first().focus()},
-					0500
-				);
-			});
 		/*]]>*/
 		</script>
 	</body>

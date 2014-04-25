@@ -14,8 +14,8 @@
 				<div id="breadcrumb-container">
 					<div class="container">
 						<ul class="breadcrumb">
-							<li><a href="index-2.html">Trang chủ</a></li>
-							<li class="active">Liên hệ</li>
+							<li><a href="/">TRANG CHỦ</a></li>
+							<li class="active">LIÊN HỆ</li>
 						</ul>
 					</div>
 				</div>
@@ -29,9 +29,20 @@
 							<div class="xs-margin"></div><!-- space -->
 							<div class="row">
 								<div class="col-md-2">
+									<!--
 									<button class="btn btn-custom" style="width:100%;">Chi nhánh 1</button>
 									<button class="btn btn-custom active" style="width:100%;">Chi nhánh 2</button>
 									<button class="btn btn-custom" style="width:100%;">Chi nhánh 3</button>
+									!-->
+									<button class="btn btn-custom" style="width:100%;" tal:repeat="Branch BranchAll"
+										tal:attributes="data-name Branch/getName;
+														data-address Branch/getAddress;
+														data-x Branch/getX;
+														data-y Branch/getY;
+										"	
+									>
+										<span tal:content="Branch/getName"/>
+									</button>
 								</div>
 								<div class="col-md-10">
 									<div id="map"></div>
@@ -59,7 +70,7 @@
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
 													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>
 												</div><!-- End .input-group -->
-												<input id="BtnSend" type="submit" value="Gữi" class="btn btn-custom-2 md-margin"/>
+												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
 											</div><!-- End .col-md-6 -->
 										</form>
 									</div><!-- End .row -->
@@ -110,6 +121,10 @@
 		<script type="text/javascript">
 			$(function() {			
 				$("#map").googleMap().load();				
+			});
+			
+			$('.btn-custom').click(function(e){
+				alert( $(this).attr('data-name') + $(this).attr('data-x') + $(this).attr('data-y'));
 			});
 			
 			$('#BtnSend').click(function(e){				

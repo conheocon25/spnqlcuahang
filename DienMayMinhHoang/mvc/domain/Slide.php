@@ -76,6 +76,12 @@ class Slide extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLSettingUpdLoad(){
+		return "/admin/setting/presentation/".$this->getIdPresentation()."/".$this->getId()."/upd/load";
+	}	
+	function getURLSettingUpdExe(){
+		return "/admin/setting/presentation/".$this->getIdPresentation()."/".$this->getId()."/upd/exe";
+	}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -18,6 +18,7 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mTag 		= new \MVC\Mapper\Tag();
+			$mBranch 	= new \MVC\Mapper\Branch();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -33,6 +34,7 @@
 			
 			$CategoryAll 	= $mCategory->findAll();
 			$TagAll 		= $mTag->findByPosition(array(1));
+			$BranchAll 		= $mBranch->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -48,6 +50,7 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("BranchAll", 			$BranchAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

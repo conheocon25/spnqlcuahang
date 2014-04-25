@@ -292,19 +292,19 @@
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
 						<h3>Hệ thống siêu thị</h3>
 						<ul class="links">
-							<li><a href="#">CN1: An Hữu, Cái Bè, Tiền Giang,</a></li>
-							<li><a href="#">CN2: TT.Cai Lậy, Cai Lậy, Tiền Giang</a></li>
-							<li><a href="#">CN1: An Hữu, Cái Bè, Tiền Giang,</a></li>
-							<li><a href="#">CN2: TT.Cai Lậy, Cai Lậy, Tiền Giang</a></li>
+							<li tal:repeat="Branch BranchAll">
+								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
+							</li>
 						</ul>
 					</div><!-- End .widget -->
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
-						<h3>Hệ thống siêu thị</h3>
+						<h3>Tin tức</h3>
 						<ul class="links">
-							<li><a href="#">CN1: An Hữu, Cái Bè, Tiền Giang,</a></li>
-							<li><a href="#">CN2: TT.Cai Lậy, Cai Lậy, Tiền Giang</a></li>
-							<li><a href="#">CN1: An Hữu, Cái Bè, Tiền Giang,</a></li>
-							<li><a href="#">CN2: TT.Cai Lậy, Cai Lậy, Tiền Giang</a></li>
+							<li tal:repeat="Tag TagAll">
+								<a tal:attributes="href Tag/getURLView">
+									<span tal:content="Tag/getName"/>
+								</a>
+							</li>
 						</ul>
 					</div><!-- End .widget -->
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
@@ -314,7 +314,6 @@
 							<li><a href="#">Mua hàng trả góp</a></li>
 							<li><a href="#">Thanh toán</a></li>
 							<li><a href="#">Bảo hành</a></li>
-							<li><a href="#">Tuyển dụng</a></li>
 						</ul>
 					</div><!-- End .widget -->
 				</div><!-- End .row -->
@@ -343,36 +342,7 @@
 		</div><!-- End #footer-bottom -->
 		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
 	</footer><!-- End #footer -->
-	
-	<!-- ======================================================================== -->
-	<!-- FIXED FUNCTION															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="FixedFunction" class="fixed-function">		
-		<div class="bubble" tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/>
-		<p class="bubble-item">Truy cập</p>
-		<div class="bubble">
-			<span tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/>
-		</div>
-		<p class="bubble-item"><img src="/data/images/count_logo.gif"/> Online</p>
-		<a id="bookmark-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Hỗ trợ trực tuyến">			
-			<a href="ymsgr:sendIM?tuan_buithanh"><img border="0" src="http://opi.yahoo.com/online?u=tuan_buithanh&m=g&t=2&l=vi" /></a>
-		</a>
-		<script language="JavaScript">
-			<!--
-			$('#bookmark-tooltip').tooltip();
-			-->
-		</script>
-	</div>
-	<div metal:define-macro="UserOnline">
-		<script id="_wauwbw">var _wau = _wau || [];
-			_wau.push(["tab", "62olwo3o8r24", "wbw", "left-middle"]);
-			(function() {var s=document.createElement("script"); s.async=true;
-			s.src="http://widgets.amung.us/tab.js";
-			document.getElementsByTagName("head")[0].appendChild(s);
-		})();
-		</script>
-	</div>
-	
+			
 	<!-- ======================================================================== -->
 	<!-- OPTION PANEL															  -->
 	<!-- ======================================================================== -->

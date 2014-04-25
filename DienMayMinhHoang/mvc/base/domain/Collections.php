@@ -1,6 +1,8 @@
 <?php
 namespace MVC\Domain;
 
+interface BranchCollection 				extends \Iterator {function add( Object $Branch );		}
+
 interface UserCollection 				extends \Iterator {function add( Object $user );		}
 interface CategoryCollection 			extends \Iterator {function add( Object $Category );	}
 interface Category1Collection 			extends \Iterator {function add( Object $Category1 );	}
