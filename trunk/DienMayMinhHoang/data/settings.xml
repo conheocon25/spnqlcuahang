@@ -83,6 +83,7 @@
 		<command name="ASettingManufacturer">	<view>ASettingManufacturer	</view></command>
 		
 		<command name="ASettingBranch">			<view>ASettingBranch		</view></command>
+		<command name="ASettingStoryLine">		<view>ASettingStoryLine		</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer		</view></command>		
 		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		

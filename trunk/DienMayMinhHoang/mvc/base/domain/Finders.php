@@ -30,6 +30,8 @@ interface OrderExportFinder 	extends Finder {}
 interface OrderExportDetailFinder extends Finder {}
 
 interface CustomerFinder 		extends Finder {}
+interface StoryLineFinder 		extends Finder {}
+
 interface TagFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
 

@@ -21,6 +21,8 @@ interface OrderExportCollection 		extends \Iterator {function add( Object $order
 interface OrderExportDetailCollection 	extends \Iterator {function add( Object $orderexportdetail );	}
 
 interface CustomerCollection 			extends \Iterator {function add( Object $Customer );	}
+interface StoryLineCollection 			extends \Iterator {function add( Object $StoryLine );	}
+
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 interface PostTagCollection 			extends \Iterator {function add( Object $PostTag );		}
 

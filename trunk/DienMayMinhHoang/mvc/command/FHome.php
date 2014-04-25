@@ -25,6 +25,7 @@
 			$mOID 			= new \MVC\Mapper\OrderImportDetail();
 			$mManufacturer	= new \MVC\Mapper\Manufacturer();
 			$mBranch		= new \MVC\Mapper\Branch();
+			$mStoryLine		= new \MVC\Mapper\StoryLine();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,9 +37,9 @@
 			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$BranchAll		= $mBranch->findAll();
-			
+			$BranchAll		= $mBranch->findAll();			
 			$ManufacturerAll= $mManufacturer->findAll();
+			$StoryLineAll	= $mStoryLine->findAll();
 			
 			$SaveAll 		= $mSave->findAll();
 			$Save	 		= $SaveAll->current();
@@ -66,6 +67,8 @@
 			
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			
 			$request->setObject("Save", 				$Save);
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
