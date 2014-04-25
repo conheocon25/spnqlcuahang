@@ -1634,9 +1634,10 @@ parent's font-size:0
 
 
 #products-tabs-content .item:hover {
-	border: 1px solid #e8e8e8;
+	border: 1px solid #696969;
 	-webkit-box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
 	box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
+	background-color: #FAFAFA;
 }
 
 /* index sidebar */
