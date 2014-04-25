@@ -1,105 +1,408 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-	<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-	<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-  </head>
-
-  <body>
-	<div metal:use-macro="mFront.xhtml/Header"/>
-    <div class="container">
-        <div metal:use-macro="mFront.xhtml/PageTitle"/>
-        <div metal:use-macro="mFront.xhtml/Menu"/>
-           
-		<div class="row-fluid">
-			<div class="span3">												
-				<div class="row-fluid">
-					<div class="span12">
-						<ul class="thumbnails">
-							<li class="span12">
-								<div class="thumbnail" style="height:278px;overflow:hidden;">
-									<a tal:attributes="href Resource/getURLView">
-										<img tal:condition="Resource/getImageAll/count" tal:attributes="src Resource/getImageAll/current/getURL"/>
-										<img tal:condition="not: Resource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
-									</a>
-									<div class="caption">
-										<h5 	tal:content="Resource/getName"/>
-										<p 	tal:content="Resource/getPrice2Print"/>										
-									</div>
-								</div>
-							</li>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">
+				<div id="breadcrumb-container">
+					<div class="container">
+						<ul class="breadcrumb">
+							<li><a href="index-2.html">Trang chủ</a></li>
+							<li class="active">Sản phẩm</li>
 						</ul>
 					</div>
 				</div>
-				<div class="row-fluid">
-					<ul class="nav nav-tabs nav-stacked">
-						<li class="active"><a>Danh mục</a></li>
-						<li tal:repeat="Category1 Category/getCategoryAll">
-							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
-						</li>
-					</ul>
-				</div>				
-			</div>
-			<div class="span9">
-				<div class="row-fluid">
-					<ul class="breadcrumb">
-						<li><a href="/">TRANG CHỦ</a> <span class="divider">/</span></li>
-						<li><a tal:attributes="href '#'"><span tal:content="Category/getName"/></a> <span class="divider">/</span></li>
-						<li><a tal:attributes="href '#'"><span tal:content="Resource/getCategory/getName"/></a> <span class="divider">/</span></li>
-						<li class="active"><span tal:content="Resource/getName"/></li>
-					</ul>
-				</div>
-				<div class="row-fluid">
-					<div class="span12 product">
-						<div class="carousel slide" id="myCarousel">
-							<div class="carousel-inner">																
-								<div class="item active">									
-									<img tal:condition="Resource/getImageAll/count" tal:attributes="src Resource/getImageAll/current/getURL"/>
-									<img tal:condition="not: Resource/getImageAll/count" tal:attributes="src '/data/images/product.jpg'"/>
-								</div>
-								<div class="item" tal:repeat="Image Resource/getImageAll">
-									<img alt="" tal:attributes="src Image/getURL"/>
-								</div>
-							</div>
-							<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-							<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="page-header">
-								<h2>Đặt hàng trực tiếp Mr. Hữu: <small tal:content="ConfigPhone/getValue"/></h2>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span12 product-detail">
-						<div class="fb-comments" 
-							data-href="http://yoyoshop.quanly-cuahang.com" 
-							data-width="" 
-							data-numposts="5" 
-							data-colorscheme="light">						
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>      
-		<div metal:use-macro="mFront.xhtml/Footer"/>
-		<div metal:use-macro="mFront.xhtml/UserOnline"/>
-    </div>	
-	<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-	
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	$(document).ready(function(){
-		$('.fb-comments').attr('data-width', $('.product-detail').width());
-	});
-	</script>
-  </body>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+									<div id="product-image-carousel-container">
+										<ul id="product-carousel" class="celastislide-list">
+											<li class="active-slide"><a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL"><img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/></a></li>
+											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone2.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone2.jpg" alt="Phone photo 2"/></a></li>
+											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone3.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone3.jpg" alt="Phone photo 3"/></a></li>
+											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone4.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone4.jpg" alt="Phone photo 4"/></a></li>
+											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone5.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone5.jpg" alt="Phone photo 4"/></a></li>
+										</ul><!-- End product-carousel -->
+									</div>
+									<div id="product-image-container">
+										<figure>
+											<img tal:attributes="src Product/getImageAll/current/getURL; data-big Product/getImageAll/current/getURL" alt="Product Big image" id="product-image"/>
+											<figcaption class="item-price-container">
+												<span class="item-price" tal:content="Product/getPrice2Print"/>
+											</figcaption>
+										</figure>
+									</div><!-- product-image-container -->
+								</div><!-- End .col-md-6 -->
+								<div class="col-md-6 col-sm-12 col-xs-12 product">
+									<div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
+									<h1 class="product-name" tal:content="Product/getName"/>
+									<div class="ratings-container">
+										<div class="ratings separator">
+											<div class="ratings-result" data-result="70"></div>
+										</div><!-- End .ratings -->
+										<span class="ratings-amount separator">
+											3 Review(s)
+										</span>
+										<span class="separator">|</span>
+										<a href="#review" class="rate-this">Add Your Review</a>
+									</div><!-- End .rating-container -->
+									<ul class="product-list">
+										<li><span>Availability:</span>In Stock</li>
+										<li><span>Product Code:</span>483512569</li>
+										<li><span>Brand:</span>Apple</li>
+									</ul>
+									<hr/>
+									<div class="product-color-filter-container">
+										<span>Select Color:</span>
+										<div class="xs-margin"></div>
+										<ul class="filter-color-list clearfix">
+											<li><a href="#" data-bgcolor="#fff" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#d1d2d4" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#666467" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#515151" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#bcdae6" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#5272b3" class="filter-color-box"></a></li>
+											<li><a href="#" data-bgcolor="#acbf0b" class="filter-color-box"></a></li>
+										</ul>
+									</div><!-- End .product-color-filter-container-->
+									<div class="product-size-filter-container">
+										<span>Select Size:</span>
+										<div class="xs-margin"></div>
+										<ul class="filter-size-list clearfix">
+											<li><a href="#">XS</a></li>
+											<li><a href="#">S</a></li>
+											<li><a href="#">M</a></li>
+											<li><a href="#">L</a></li>
+											<li><a href="#">XL</a></li>
+										</ul>
+									</div><!-- End .product-size-filter-container-->
+									<hr/>
+									<div class="product-add clearfix">
+										<div class="custom-quantity-input">
+											<input type="text" name="quantity" value="1"/>
+											<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
+											<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
+										</div>
+										<button class="btn btn-custom-2">ADD TO CART</button>
+									</div><!-- .product-add -->
+									<div class="md-margin"></div><!-- Space -->
+									<div class="product-extra clearfix">
+										<div class="product-extra-box-container clearfix">
+											<div class="item-action-inner">
+												<a href="#" class="icon-button icon-like">Favourite</a>
+												<a href="#" class="icon-button icon-compare">Checkout</a>
+											</div><!-- End .item-action-inner -->
+										</div>
+										<div class="md-margin visible-xs"></div>
+										<div class="share-button-group">
+											<!-- AddThis Button BEGIN -->
+											<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+												<a class="addthis_button_facebook"></a>
+												<a class="addthis_button_twitter"></a>
+												<a class="addthis_button_email"></a>
+												<a class="addthis_button_print"></a>
+												<a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+											</div>
+											<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+											<script type="text/javascript" src="../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b2197865ea0183"></script>
+											<!-- AddThis Button END -->
+										</div><!-- End .share-button-group -->
+									</div>
+								</div><!-- End .col-md-6 -->
+							</div><!-- End .row -->
+							<div class="lg-margin2x"></div><!-- End .space -->
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="tab-container left product-detail-tab clearfix">
+										<ul class="nav-tabs">
+											<li class="active"><a href="#overview" data-toggle="tab">Chi tiết</a></li>
+											<li><a href="#facebook" data-toggle="tab">Đánh giá</a></li>
+										</ul>
+										<div class="tab-content clearfix">
+											<div class="tab-pane active" id="overview">
+												<p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
+												<p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti architecto ratione accusantium.
+												</p>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti in impedit modi aliquid explicabo aperiam illum esse quibusdam aspernatur commodi voluptate veritatis vero quidem porro vitae non nihil architecto optio!</p>
+												<p>Phasellus consequat id purus in convallis. Nulla quis nunc auctor, pretium enimnec, tristique magna.</p>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam minima officiis consequatur expedita nesciunt voluptates at enim. Reprehenderit possimus vitae dolor tempore earum nulla maxime delectus repellendus excepturi suscipit qui?</p>
+											</div><!-- End .tab-pane -->
+											<div class="tab-pane" id="facebook">
+												<div class="fb-comments"
+													data-href="http://yoyoshop.quanly-cuahang.com" 
+													data-width="780px" 
+													data-numposts="5" 
+													data-colorscheme="light">						
+												</div>
+											</div><!-- End .tab-pane -->
+										</div><!-- End .tab-content -->
+									</div><!-- End .tab-container -->
+									<div class="lg-margin visible-xs"></div>
+								</div><!-- End .col-md-9 -->
+								<div class="lg-margin2x visible-sm visible-xs"></div><!-- Space -->
+							</div><!-- End .row -->
+							<div class="lg-margin2x"></div><!-- Space -->
+							<div class="purchased-items-container carousel-wrapper">
+								<header class="content-title">
+									<div class="title-bg">
+										<h2 class="title">Sản phẩm đồng giá</h2>
+									</div><!-- End .title-bg -->
+								</header>
+								<div class="carousel-controls">
+									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div><!-- End .carousel-prev -->
+									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
+								</div><!-- End .carousel-controllers -->
+								<div class="purchased-items-slider owl-carousel">
+									<div class="item">
+										<div class="item-image-container">
+											<figure>
+												<a href="product.html">
+													<img src="/mvc/templates/front/images/products/item3.jpg" alt="item3" class="item-image"/>
+													<img src="/mvc/templates/front/images/products/item3-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
+												</a>
+											</figure>
+											<div class="item-price-container">
+												<span class="item-price">$160<span class="sub-price">.99</span></span>
+											</div>
+											<span class="new-rect">New</span>
+											<span class="discount-rect">-10%</span>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+											<div class="ratings-container">
+												<div class="ratings">
+													<div class="ratings-result" data-result="95"></div>
+												</div><!-- End .ratings -->
+												<span class="ratings-amount">
+													1 Reviews
+												</span>
+											</div><!-- End .rating-container -->
+											<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+											<div class="item-action">
+												<a href="#" class="item-add-btn">
+													<span class="icon-cart-text">Add to Cart</span>
+												</a>
+												<div class="item-action-inner">
+													<a href="#" class="icon-button icon-like">Favourite</a>
+													<a href="#" class="icon-button icon-compare">Checkout</a>
+												</div><!-- End .item-action-inner -->
+											</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+									<div class="item">
+										<div class="item-image-container">
+										<figure>
+										<a href="product.html">
+										<img src="/mvc/templates/front/images/products/phone3.jpg" alt="Phone 3" class="item-image"/>
+										<img src="/mvc/templates/front/images/products/phone3-hover.jpg" alt="Phone 3 Hover" class="item-image-hover"/>
+										</a>
+										</figure>
+										<div class="item-price-container">
+										<span class="item-price">$99<span class="sub-price">.75</span></span>
+										</div>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+										<div class="ratings-container">
+										</div><!-- End .rating-container -->
+										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+										<div class="item-action">
+										<a href="#" class="item-add-btn">
+										<span class="icon-cart-text">Add to Cart</span>
+										</a>
+										<div class="item-action-inner">
+										<a href="#" class="icon-button icon-like">Favourite</a>
+										<a href="#" class="icon-button icon-compare">Checkout</a>
+										</div><!-- End .item-action-inner -->
+										</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+									<div class="item">
+										<div class="item-image-container">
+										<figure>
+										<a href="product.html">
+										<img src="/mvc/templates/front/images/products/headphones1.jpg" alt="Headphones 1" class="item-image"/>
+										<img src="/mvc/templates/front/images/products/headphones1-hover.jpg" alt="Headphones 1 Hover" class="item-image-hover"/>
+										</a>
+										</figure>
+										<div class="item-price-container">
+										<span class="item-price">$79<span class="sub-price">.99</span></span>
+										</div>
+										<span class="new-rect">New</span>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+										<div class="ratings-container">
+										</div><!-- End .rating-container -->
+										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+										<div class="item-action">
+										<a href="#" class="item-add-btn">
+										<span class="icon-cart-text">Add to Cart</span>
+										</a>
+										<div class="item-action-inner">
+										<a href="#" class="icon-button icon-like">Favourite</a>
+										<a href="#" class="icon-button icon-compare">Checkout</a>
+										</div><!-- End .item-action-inner -->
+										</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+									<div class="item">
+										<div class="item-image-container">
+										<figure>
+										<a href="product.html">
+										<img src="/mvc/templates/front/images/products/phone5.jpg" alt="item3" class="item-image"/>
+										<img src="/mvc/templates/front/images/products/phone5-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
+										</a>
+										</figure>
+										<div class="item-price-container">
+										<span class="old-price">$300</span>
+										<span class="item-price">$175</span>
+										</div>
+										<span class="new-rect">New</span>
+										<span class="discount-rect">-35%</span>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+										<div class="ratings-container">
+										<div class="ratings">
+										<div class="ratings-result" data-result="70"></div>
+										</div><!-- End .ratings -->
+										<span class="ratings-amount">
+										7 Reviews
+										</span>
+										</div><!-- End .rating-container -->
+										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+										<div class="item-action">
+										<a href="#" class="item-add-btn">
+										<span class="icon-cart-text">Add to Cart</span>
+										</a>
+										<div class="item-action-inner">
+										<a href="#" class="icon-button icon-like">Favourite</a>
+										<a href="#" class="icon-button icon-compare">Checkout</a>
+										</div><!-- End .item-action-inner -->
+										</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+									<div class="item">
+										<div class="item-image-container">
+										<figure>
+										<a href="product.html">
+										<img src="/mvc/templates/front/images/products/item4.jpg" alt="item3" class="item-image"/>
+										<img src="/mvc/templates/front/images/products/item4-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
+										</a>
+										</figure>
+										<div class="item-price-container">
+										<span class="item-price">$180<span class="sub-price">.99</span></span>
+										</div>
+										<span class="new-rect">New</span>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+										<div class="ratings-container">
+										<div class="ratings">
+										<div class="ratings-result" data-result="95"></div>
+										</div><!-- End .ratings -->
+										<span class="ratings-amount">
+										2 Reviews
+										</span>
+										</div><!-- End .rating-container -->
+										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+										<div class="item-action">
+										<a href="#" class="item-add-btn">
+										<span class="icon-cart-text">Add to Cart</span>
+										</a>
+										<div class="item-action-inner">
+										<a href="#" class="icon-button icon-like">Favourite</a>
+										<a href="#" class="icon-button icon-compare">Checkout</a>
+										</div><!-- End .item-action-inner -->
+										</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+									<div class="item">
+										<div class="item-image-container">
+											<figure>
+												<a href="product.html">
+													<img src="/mvc/templates/front/images/products/item2.jpg" alt="item3" class="item-image"/>
+													<img src="/mvc/templates/front/images/products/item2-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
+												</a>
+											</figure>
+											<div class="item-price-container">
+												<span class="item-price">$89<span class="sub-price">.75</span></span>
+											</div>
+											<span class="new-rect">New</span>
+										</div><!-- End .item-image -->
+										<div class="item-meta-container">
+											<div class="ratings-container">
+												<div class="ratings">
+													<div class="ratings-result" data-result="95"></div>
+												</div><!-- End .ratings -->
+												<span class="ratings-amount">
+													4 Reviews
+												</span>
+											</div><!-- End .rating-container -->
+											<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+											<div class="item-action">
+												<a href="#" class="item-add-btn">
+													<span class="icon-cart-text">Add to Cart</span>
+												</a>
+												<div class="item-action-inner">
+													<a href="#" class="icon-button icon-like">Favourite</a>
+													<a href="#" class="icon-button icon-compare">Checkout</a>
+												</div><!-- End .item-action-inner -->
+											</div><!-- End .item-action -->
+										</div><!-- End .item-meta-container --> 
+									</div><!-- End .item -->
+								</div><!--purchased-items-slider -->
+							</div><!-- End .purchased-items-container -->
+						</div><!-- End .col-md-12 -->
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</section><!-- End #content -->
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$(function() {
+				var carouselContainer = $('#product-carousel'),
+					productImg =  $('#product-image');
+				carouselContainer.elastislide({
+					orientation : 'vertical',
+					minItems : 4
+				});
+				productImg.mlens({
+					imgSrc: $("#product-image").attr("data-big"),         
+					lensShape: "square",
+					lensSize: 150,
+					borderSize: 4,
+					borderColor: "#999",
+					borderRadius: 0
+				});
+				var oldImg = productImg.attr('src');
+				carouselContainer.find('li').on('mouseover', function() {
+					var newImg = $(this).find('a').attr('href');
+					productImg.attr({'src': newImg, 'data-big': newImg}).trigger('imagechanged');
+				});
+				productImg.on('imagechanged', function() {
+					productImg.mlens("update", 0 ,{
+						imgSrc: productImg.attr("data-big"),
+						lensShape: "square",
+						lensSize: 150,
+						borderSize: 4,
+						borderColor: "#999"
+					});
+				});
+
+			});
+		</script>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+	</body>
 </html>
