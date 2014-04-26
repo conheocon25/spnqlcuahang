@@ -18,12 +18,12 @@
 			//-------------------------------------------------------------
 			$mSave 		= new \MVC\Mapper\Save();
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mResource 	= new \MVC\Mapper\Resource();
+			$mProduct 	= new \MVC\Mapper\Product();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$ResourceAll= $mResource->findAll();
+			$ProductAll= $mProduct->findAll();
 			$SaveAll 	= $mSave->findAll();
 			$Save 		= $mSave->find($IdSave);
 			
@@ -40,7 +40,7 @@
 			$request->setProperty('ActiveAdmin'	, 'Saving');
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('ResourceAll'	, $ResourceAll);
+			$request->setObject('ProductAll'	, $ProductAll);
 			$request->setObject('SaveAll'		, $SaveAll);
 			$request->setObject('Save'			, $Save);
 															

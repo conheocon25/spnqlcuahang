@@ -69,9 +69,9 @@
 											<label class="control-label" for="Name">Sản phẩm</label>											
 											<div class="controls">
 												<select name="IdResource1" id="IdResource1" style="width:80%;">
-													<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
-														<span tal:content="Resource/getCategory/getName" /> / 
-														<span tal:content="Resource/getName" />
+													<option tal:repeat="Product ProductAll" tal:attributes="value Product/getId">
+														<span tal:content="Product/getCategory/getName" /> / 
+														<span tal:content="Product/getName" />
 													</option>
 												</select>
 											</div>
@@ -130,10 +130,10 @@
 										<div class="form-group">
 											<label class="control-label" for="Name">Sản phẩm</label>
 											<div class="controls">
-												<select name="IdResource2" id="IdResource2" style="width:80%;">
-													<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
-														<span tal:content="Resource/getCategory/getName" /> / 
-														<span tal:content="Resource/getName" />
+												<select name="IdProduct2" id="IdProduct2" style="width:80%;">
+													<option tal:repeat="Product ProductAll" tal:attributes="value Product/getId">
+														<span tal:content="Product/getCategory/getName" /> / 
+														<span tal:content="Product/getName" />
 													</option>
 												</select>
 											</div>
@@ -209,10 +209,10 @@
 				var Data = [];
 				Data[0] = 'null';
 				Data[1] = $('#SaveCurrent').attr('alt');
-				Data[2] = $('#IdResource1').val();
+				Data[2] = $('#IdProduct1').val();
 				Data[3] = $('#Discount1').val();
 				Data[4] = $('#Value1').val();
-				var URL = "/object/ins/SaveResource";
+				var URL = "/object/ins/SaveProduct";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -228,12 +228,12 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/SaveResource/" + $(this).attr('data-id');
+				var url = "/object/load/SaveProduct/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', 		data.Id);
-					$('#IdResource2').select2('val', 	data.IdResource);
+					$('#IdProduct2').select2('val', 	data.IdProduct);
 					$('#Discount2').attr('value', 		data.Discount);
 					$('#Value2').attr('value', 			data.Value);
 				});
@@ -246,11 +246,11 @@
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#SaveCurrent').attr('alt');
-				Data[2] = $('#IdResource2').val();
+				Data[2] = $('#IdProduct2').val();
 				Data[3] = $('#Discount2').val();
 				Data[4] = $('#Value2').val();
 				
-				var URL = "/object/upd/SaveResource";
+				var URL = "/object/upd/SaveProduct";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

@@ -41,11 +41,17 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
+			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
+			$Navigation = array(
+				
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			//$request->setProperty("Title", 			$Title);			
+			$request->setProperty("Title", 				$Title);
 			$request->setProperty("Active", 			'Post');
+			$request->setObject("Navigation", 			$Navigation);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
