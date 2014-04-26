@@ -11,30 +11,30 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty("IdSupplier");
-			$IdOrder = $request->getProperty("IdOrder");
-			$IdResource = $request->getProperty("IdResource");
-			$Count = $request->getProperty("Count");
-			$Price = $request->getProperty("Price");
+			$IdSupplier 	= $request->getProperty("IdSupplier");
+			$IdOrder 		= $request->getProperty("IdOrder");
+			$IdProduct 		= $request->getProperty("IdProduct");
+			$Count 			= $request->getProperty("Count");
+			$Price 			= $request->getProperty("Price");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 						
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mOI = new \MVC\Mapper\OrderImport();
-			$mOID = new \MVC\Mapper\OrderImportDetail();
-			$mResource = new \MVC\Mapper\Resource();
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mOI 		= new \MVC\Mapper\OrderImport();
+			$mOID 		= new \MVC\Mapper\OrderImportDetail();
+			$mProduct 	= new \MVC\Mapper\Product();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Supplier = $mSupplier->find($IdSupplier);
 			$OI = $mOI->find($IdOrder);
-			$Resource = $mResource->find($IdResource);
+			$Product = $mProduct->find($IdProduct);
 			
 			//Kiểm tra xem record có tồn tại chưa
-			$IdOID = $mOID->exist(array($IdOrder, $IdResource));
+			$IdOID = $mOID->exist(array($IdOrder, $IdProduct));
 			
 			if ($IdOID>0){
 				if ($Count==0){
@@ -49,7 +49,7 @@
 				$OID = new \MVC\Domain\OrderImportDetail(
 					null,
 					$IdOrder,
-					$IdResource,
+					$IdProduct,
 					$Count,
 					$Price
 				);

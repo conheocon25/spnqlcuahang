@@ -15,6 +15,7 @@
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>
 		<command name="FCart" 			type="public"><view>FCart</view></command>
+		<command name="FDealer" 		type="public"><view>FDealer</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
@@ -103,6 +104,7 @@
 		<command name="AImport">				<view>AImport				</view></command>
 		<command name="AImportSupplier">		<view>AImportSupplier		</view></command>
 		<command name="AImportSupplierOrder">	<view>AImportSupplierOrder	</view></command>
+		<command name="AImportSupplierOrderExe"><view>AImportSupplierOrderExe</view></command>
 		<command name="AImportSupplierOrderPrint"><view>AImportSupplierOrderPrint</view></command>
 		
 		<!-- ============================================================================== -->

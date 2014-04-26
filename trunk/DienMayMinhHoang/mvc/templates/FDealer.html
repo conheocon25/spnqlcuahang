@@ -90,15 +90,17 @@
 												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href OID/getProduct/getURLView">																																
-																<img tal:attributes="src OID/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src OID/getProduct/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href OID/getResource/getURLView">
+																<img tal:attributes="src OID/getResource/getImageAll/current/getURL" class="item-image"/>
+																<img tal:attributes="src OID/getResource/getImageAll/current/getURL" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container">
-															<span class="old-price" tal:content="OID/getProduct/getPrice2Print"/>
+															<span class="old-price" tal:content="OID/getResource/getPrice2Print"/>
+															<span class="item-price" tal:content="OID/getPriceSavingPrint"/>
 														</div>
-														<span class="new-rect">MỚI</span>														
+														<span class="new-rect">HOT</span>
+														<span class="discount-rect">-<span tal:content="OID/getDiscount"/>%</span>
 													</div><!-- End .item-image -->
 													<div class="item-meta-container">
 														<div class="ratings-container">
@@ -109,7 +111,7 @@
 																3 Reviews
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href OID/getProduct/getURLView" tal:content="OID/getProduct/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href OID/getResource/getURLView" tal:content="OID/getResource/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
 																<span class="icon-cart-text">Mua ngay</span>
@@ -133,12 +135,12 @@
 									<div id="products-tabs-content" class="row tab-content">
 										<div class="tab-pane active" id="all">
 											<div tal:repeat="OED OEDAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="OED/getProduct/getInfo">
+												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href OED/getProduct/getURLView">																																
-																<img tal:attributes="src OED/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src OED/getProduct/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href OED/getResource/getURLView">
+																<img tal:attributes="src OED/getResource/getImageAll/current/getURL" class="item-image"/>
+																<img tal:attributes="src OED/getResource/getImageAll/current/getURL" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container">
@@ -152,10 +154,10 @@
 																<div class="ratings-result" data-result="90"></div>
 															</div><!-- End .ratings -->
 															<span class="ratings-amount">
-																1 đánh giá
+																3 Reviews
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href OED/getProduct/getURLView" tal:content="OED/getProduct/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href OED/getResource/getURLView" tal:content="OED/getResource/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
 																<span class="icon-cart-text">Mua ngay</span>
