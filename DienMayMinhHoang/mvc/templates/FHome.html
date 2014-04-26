@@ -5,7 +5,9 @@
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>
+		<!--
 		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+		!-->
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
@@ -211,26 +213,28 @@
 										<h3>Tin tức</h3>
 										<div class="latest-posts-slider flexslider sidebarslider">
 											<ul class="latest-posts-list clearfix">
-												<li>
+												<li tal:repeat="PT Tag/getPostTop4">
 													<a href="single.html">
 														<figure class="latest-posts-media-container">
-															<img src="/mvc/templates/front/images/blog/post1-small.jpg" alt="lats post"/>
+															<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" />
 														</figure>
 													</a>
-													<h4><a href="single.html">35% Discount on second purchase!</a></h4>
-													<p>Sed blandit nulla nec nunc ullamcorper tristique. Mauris adipiscing cursus ante ultricies dictum sed lobortis.</p>
+													<h4><a href="single.html" tal:content="PT/getPost/getTitle"/></h4>
+													<p tal:content="structure PT/getPost/getContentReduce"/>
+													
 													<div class="latest-posts-meta-container clearfix">
 														<div class="pull-left">
-															<a href="#">Read More...</a>
+															<a href="#">Chi tiết...</a>
 														</div><!-- End .pull-left -->
 														<div class="pull-right">
-															12.05.2013
+															<span tal:content="PT/getPost/getTimePrint"/>
 														</div><!-- End .pull-right -->
 													</div><!-- End .latest-posts-meta-container -->
 												</li>
 											</ul>
 										</div><!-- End .latest-posts-slider -->
 									</div><!-- End .widget -->
+									
 									<div class="widget banner-slider-container">
 										<div class="banner-slider flexslider">
 											<ul class="banner-slider-list clearfix">

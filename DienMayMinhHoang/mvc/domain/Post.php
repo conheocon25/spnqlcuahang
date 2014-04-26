@@ -33,6 +33,9 @@ class Post extends Object{
 	
 	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}
+	function getTimePrint( ){		
+		$D = new \MVC\Library\Date($this->Time);return $D->getDateFormat();
+	}
 	
 	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
 	function getAuthor( ) {return $this->Author;}

@@ -59,9 +59,15 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Điện thoại</label>
+										<label class="control-label">Điện thoại 1</label>
 										<div class="controls">
-											<input id="Phone2" tal:attributes="value ConfigPhone/getValue;data-id ConfigPhone/getId" type="text" class="form-control input-small"/>
+											<input id="Phone12" tal:attributes="value ConfigPhone1/getValue;data-id ConfigPhone1/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Điện thoại 2</label>
+										<div class="controls">
+											<input id="Phone22" tal:attributes="value ConfigPhone2/getValue;data-id ConfigPhone2/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -168,6 +174,7 @@
 				var Data13 = [];
 				var Data14 = [];
 				var Data15 = [];
+				var Data16 = [];
 				
 				Data1[0] = $('#RowPerPage2').attr('data-id');
 				Data1[1] = "ROW_PER_PAGE";
@@ -225,9 +232,9 @@
 				});
 				
 				//Cập nhật điện thoại
-				Data6[0] = $('#Phone2').attr('data-id');
-				Data6[1] = "PHONE";
-				Data6[2] = $('#Phone2').val();
+				Data6[0] = $('#Phone12').attr('data-id');
+				Data6[1] = "PHONE1";
+				Data6[2] = $('#Phone12').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data6},
@@ -330,6 +337,17 @@
 				$.ajax({
 					type: "POST",
 					data: {Data:Data15},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật điện thoại
+				Data16[0] = $('#Phone22').attr('data-id');
+				Data16[1] = "PHONE2";
+				Data16[2] = $('#Phone22').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data16},
 					url: URL,
 					success: function(msg){}
 				});
