@@ -12,7 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
 			$IdSupplier = $request->getProperty('IdSupplier');
-			$IdResource = $request->getProperty('IdResource');
+			$IdProduct 	= $request->getProperty('IdProduct');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU

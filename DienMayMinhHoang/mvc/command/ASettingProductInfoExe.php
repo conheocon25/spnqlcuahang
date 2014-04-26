@@ -13,6 +13,8 @@
 			//-------------------------------------------------------------			
 			$IdSupplier = $request->getProperty('IdSupplier');
 			$IdProduct 	= $request->getProperty('IdProduct');
+			$Image1 	= $request->getProperty('Image1');
+			$Image2 	= $request->getProperty('Image2');
 			$Info 		= $request->getProperty('Info');
 			
 			//-------------------------------------------------------------
@@ -28,6 +30,8 @@
 				$PI = new \MVC\Domain\ProductInfo(
 					null,
 					$IdProduct,
+					$Image1,
+					$Image2,
 					"Thu nghiem"
 				);
 				$mProductInfo->insert($PI);
@@ -35,6 +39,8 @@
 				$PI = $mProductInfo->find($IdPI);
 			}
 			$PI->setInfo($Info);
+			$PI->setImage1($Image1);
+			$PI->setImage2($Image2);
 			$mProductInfo->update($PI);
 			
 			return self::statuses('CMD_OK');

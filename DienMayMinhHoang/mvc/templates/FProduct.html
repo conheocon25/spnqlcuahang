@@ -9,14 +9,7 @@
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
-				<div id="breadcrumb-container">
-					<div class="container">
-						<ul class="breadcrumb">
-							<li><a href="/">TRANG CHỦ</a></li>
-							<li class="active">SẢN PHẨM</li>
-						</ul>
-					</div>
-				</div>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -48,56 +41,31 @@
 											<div class="ratings-result" data-result="70"></div>
 										</div><!-- End .ratings -->
 										<span class="ratings-amount separator">
-											3 Review(s)
+											3 Đánh giá
 										</span>
 										<span class="separator">|</span>
-										<a href="#review" class="rate-this">Add Your Review</a>
+										<a href="#review" class="rate-this">Thêm đánh giá</a>
 									</div><!-- End .rating-container -->
 									<ul class="product-list">
-										<li><span>Availability:</span>In Stock</li>
-										<li><span>Product Code:</span>483512569</li>
-										<li><span>Brand:</span>Apple</li>
+										<li><span>Tình trạng:</span>Có hàng</li>
+										<li><span>Sổ Seri:</span><span tal:content="Product/getCode"/></li>
+										<li><span>Nhà SX:</span><span tal:content="Product/getManufacturer/getName"/></li>
 									</ul>
-									<hr/>
-									<div class="product-color-filter-container">
-										<span>Select Color:</span>
-										<div class="xs-margin"></div>
-										<ul class="filter-color-list clearfix">
-											<li><a href="#" data-bgcolor="#fff" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#d1d2d4" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#666467" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#515151" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#bcdae6" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#5272b3" class="filter-color-box"></a></li>
-											<li><a href="#" data-bgcolor="#acbf0b" class="filter-color-box"></a></li>
-										</ul>
-									</div><!-- End .product-color-filter-container-->
-									<div class="product-size-filter-container">
-										<span>Select Size:</span>
-										<div class="xs-margin"></div>
-										<ul class="filter-size-list clearfix">
-											<li><a href="#">XS</a></li>
-											<li><a href="#">S</a></li>
-											<li><a href="#">M</a></li>
-											<li><a href="#">L</a></li>
-											<li><a href="#">XL</a></li>
-										</ul>
-									</div><!-- End .product-size-filter-container-->
-									<hr/>
+									<hr/>																											
 									<div class="product-add clearfix">
 										<div class="custom-quantity-input">
 											<input type="text" name="quantity" value="1"/>
 											<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
 											<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
 										</div>
-										<button class="btn btn-custom-2">ADD TO CART</button>
+										<button class="btn btn-custom-2">THÊM VÀO GIỎ</button>
 									</div><!-- .product-add -->
 									<div class="md-margin"></div><!-- Space -->
 									<div class="product-extra clearfix">
 										<div class="product-extra-box-container clearfix">
 											<div class="item-action-inner">
-												<a href="#" class="icon-button icon-like">Favourite</a>
-												<a href="#" class="icon-button icon-compare">Checkout</a>
+												<a href="#" class="icon-button icon-like">Ưu thích</a>
+												<a href="#" class="icon-button icon-compare">Thanh toán</a>
 											</div><!-- End .item-action-inner -->
 										</div>
 										<div class="md-margin visible-xs"></div>
@@ -122,17 +90,16 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="tab-container left product-detail-tab clearfix">
 										<ul class="nav-tabs">
-											<li class="active"><a href="#overview" data-toggle="tab">Chi tiết</a></li>
+											<li class="active"><a href="#overview" data-toggle="tab">Giới thiệu</a></li>
+											<li><a href="#detail" 	data-toggle="tab">Chi tiết</a></li>
 											<li><a href="#facebook" data-toggle="tab">Đánh giá</a></li>
 										</ul>
 										<div class="tab-content clearfix">
 											<div class="tab-pane active" id="overview">
-												<p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna. </p>
-												<p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti architecto ratione accusantium.
-												</p>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti in impedit modi aliquid explicabo aperiam illum esse quibusdam aspernatur commodi voluptate veritatis vero quidem porro vitae non nihil architecto optio!</p>
-												<p>Phasellus consequat id purus in convallis. Nulla quis nunc auctor, pretium enimnec, tristique magna.</p>
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam minima officiis consequatur expedita nesciunt voluptates at enim. Reprehenderit possimus vitae dolor tempore earum nulla maxime delectus repellendus excepturi suscipit qui?</p>
+												<p tal:content="structure Product/getInfo/getInfo"/>
+											</div><!-- End .tab-pane -->
+											<div class="tab-pane" id="detail">
+												<p>Chi tiết thông số sản phẩm </p>
 											</div><!-- End .tab-pane -->
 											<div class="tab-pane" id="facebook">
 												<div class="fb-comments"

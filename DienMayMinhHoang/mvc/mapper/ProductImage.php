@@ -2,36 +2,36 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class Image extends Mapper implements \MVC\Domain\ImageFinder {
+class ProductImage extends Mapper implements \MVC\Domain\ProductImageFinder {
 
     function __construct() {
         parent::__construct();
-		$tblImage = "shopc_product_image";
+		$tblProductImage = "shopc_product_image";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblImage);
-		$selectStmt = sprintf("select * from %s where id=?", $tblImage);
+		$selectAllStmt = sprintf("select * from %s", $tblProductImage);
+		$selectStmt = sprintf("select * from %s where id=?", $tblProductImage);
 		$updateStmt = sprintf("update %s set 
-				idresource=?,
+				idproduct=?,
 				name=?, 
 				`date`=?, 				
 				url=? 
-			where id=?", $tblImage);
+			where id=?", $tblProductImage);
 			
 		$insertStmt = sprintf("insert into %s ( 
-					idresource, 					
+					idproduct, 					
 					name, 
 					`date`, 					
 					url
 				) 
-				values( ?, ?, ?, ?)", $tblImage);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblImage);
-		$findByStmt = sprintf("select * from %s where idresource=?", $tblImage);
+				values( ?, ?, ?, ?)", $tblProductImage);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblProductImage);
+		$findByStmt = sprintf("select * from %s where idproduct=?", $tblProductImage);
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
 							WHERE idsupplier=:idsupplier
 							LIMIT :start,:max
-				", $tblImage);
+				", $tblProductImage);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -42,11 +42,11 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 
-    function getCollection( array $raw ) {return new ImageCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new ProductImageCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Image( 
+        $obj = new \MVC\Domain\ProductImage( 
 			$array['id'],
-			$array['idresource'],			
+			$array['idproduct'],			
 			$array['name'],						
 			$array['date'],	
 			$array['url']
@@ -54,10 +54,10 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
         return $obj;
     }
 	
-    protected function targetClass(){return "Image";}
+    protected function targetClass(){return "ProductImage";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdResource(),
+			$object->getIdProduct(),
 			$object->getName(),	
 			$object->getDate(),
 			$object->getURL()
@@ -69,7 +69,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
-			$object->getIdResource(),
+			$object->getIdProduct(),
 			$object->getName(),
 			$object->getDate(),
 			$object->getURL(),
@@ -83,7 +83,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
 	
 	function findBy(array $values) {
         $this->findByStmt->execute( $values );
-        return new SupplierCollection( $this->findByStmt->fetchAll(), $this );
+        return new ProductImageCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ){
@@ -91,7 +91,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
-        return new ImageCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new ProductImageCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

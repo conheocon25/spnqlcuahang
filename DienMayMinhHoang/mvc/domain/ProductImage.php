@@ -2,10 +2,10 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Image extends Object{
+class ProductImage extends Object{
 
     private $Id;	
-	private $IdResource;	
+	private $IdProduct;	
 	private $Name;	
 	private $Date;
 	private $URL;
@@ -15,13 +15,13 @@ class Image extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
-		$IdResource=null, 		
+		$IdProduct=null, 		
 		$Name=null, 
 		$Date=null, 		
 		$URL=null)
 	{        	
 		$this->Id			= $Id;		
-		$this->IdResource	= $IdResource;	
+		$this->IdProduct	= $IdProduct;	
 		$this->Name			= $Name;		
 		$this->Date			= $Date;		
 		$this->URL			= $URL;
@@ -30,12 +30,12 @@ class Image extends Object{
     }
     function getId( ) {return $this->Id;}
 		
-	function getIdResource( ) {return $this->IdResource;}
-    function setIdResource( $IdResource ) {$this->IdResource = $IdResource;$this->markDirty();}
-	function getResource(){
-		$mResource = new \MVC\Mapper\Resource();
-		$Resource = $mResource->find( $this->IdResource);
-		return $Resource;
+	function getIdProduct( ) {return $this->IdProduct;}
+    function setIdProduct( $IdProduct ) {$this->IdProduct = $IdProduct;$this->markDirty();}
+	function getProduct(){
+		$mProduct = new \MVC\Mapper\Product();
+		$Product = $mProduct->find( $this->IdProduct);
+		return $Product;
 	}
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
@@ -50,7 +50,7 @@ class Image extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),	
-			'IdResource'	=> $this->getIdResource(),			
+			'IdProduct'	=> $this->getIdProduct(),			
 			'Name'			=> $this->getName(),			
 			'Date'			=> $this->getDate(),			
 			'URL'			=> $this->getURL()
@@ -60,7 +60,7 @@ class Image extends Object{
 	
 	function setArray( $Data ){        	
 		$this->Id			= $Data[0];
-		$this->IdResource	= $Data[1];		
+		$this->IdProduct	= $Data[1];		
 		$this->Name			= $Data[2];
 		$this->Date			= \date("Y-m-d");
 		$this->URL			= $Data[4];

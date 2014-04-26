@@ -11,12 +11,16 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 		$selectAllStmt = sprintf("select * from %s", $tblProductInfo);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProductInfo);
 		$updateStmt = sprintf("update %s set 
-				idproduct=?, 				
+				idproduct=?,
+				image1=?,
+				image2=?,
 				info=? 
 			where id=?", $tblProductInfo);
 			
 		$insertStmt = sprintf("insert into %s ( 
-					idproduct, 					
+					idproduct, 
+					image1, 					
+					image2,
 					info					
 				) 
 				values( ?, ?)", $tblProductInfo);
@@ -34,7 +38,9 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\ProductInfo( 
 			$array['id'],
-			$array['idproduct'],			
+			$array['idproduct'],
+			$array['image1'],
+			$array['image2'],
 			$array['info']						
 		);
         return $obj;
@@ -43,7 +49,9 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     protected function targetClass(){return "ProductInfo";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdProduct(),					
+			$object->getIdProduct(),
+			$object->getImage1(),
+			$object->getImage2(),
 			$object->getInfo()					
 		); 
         $this->insertStmt->execute( $values );
@@ -53,7 +61,9 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
-			$object->getIdProduct(),					
+			$object->getIdProduct(),
+			$object->getImage1(),
+			$object->getImage2(),
 			$object->getInfo(),
 			$object->getId()
 		);		
