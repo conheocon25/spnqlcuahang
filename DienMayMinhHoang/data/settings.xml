@@ -14,6 +14,7 @@
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>
+		<command name="FCart" 			type="public"><view>FCart</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
