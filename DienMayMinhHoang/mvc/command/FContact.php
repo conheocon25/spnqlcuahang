@@ -37,11 +37,18 @@
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 			
+			$Title = "LIÊN HỆ";
+			$Navigation = array(
+				
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);
 			$request->setProperty("Active", 			'Contact');
+			$request->setObject("Navigation", 			$Navigation);
+			
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigContact", 		$ConfigContact);

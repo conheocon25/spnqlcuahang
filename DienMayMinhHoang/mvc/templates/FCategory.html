@@ -28,11 +28,7 @@
 				</div>
 			</div>
 			<div class="span9">
-				<ul class="breadcrumb">
-					<li><a href="/">TRANG CHỦ</a> <span class="divider">/</span></li>
-					<li><a href="#"><span tal:content="Category1/getName"/></a> <span class="divider">/</span></li>
-					<li class="active" tal:content="Category2/getName"/>
-				</ul>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>	
 				<div class="row-fluid">
 					<div class="span12">						
 						<ul class="thumbnails">

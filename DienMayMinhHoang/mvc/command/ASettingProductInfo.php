@@ -35,6 +35,8 @@
 				$PI = new \MVC\Domain\ProductInfo(
 					null,
 					$IdProduct,
+					"abc",
+					"abc",
 					"Thu nghiem"
 				);
 				$mProductInfo->insert($PI);

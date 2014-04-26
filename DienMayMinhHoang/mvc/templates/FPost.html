@@ -4,30 +4,19 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body>
-		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
-				<div id="breadcrumb-container">
-					<div class="container">
-						<ul class="breadcrumb">
-							<li><a href="index-2.html">Trang chủ</a></li>
-							<li class="active">Tin tức</li>
-						</ul>
-					</div>
-				</div>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12">
-							<header class="content-title">
-								<h1 class="title">Tin tức</h1>
-							</header>
+						<div class="col-md-12">							
 							<div class="xs-margin"></div><!-- space -->
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
 									<article class="article">
-										<div class="article-meta-date" tal:content="Post/getTime"/>
+										<div class="article-meta-date" tal:content="Post/getTimePrint"/>
 										<h2 tal:content="Post/getTitle"/>
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">
@@ -44,13 +33,12 @@
 									</article><!-- End .article -->
 								</div><!-- End .col-md-9 -->
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget category-accordion">
-										<h3>Category</h3>
+									<div class="widget category-accordion">										
 										<div class="panel-group" id="accordion">
-											<div class="panel panel-custom">
+											<div class="panel panel-custom" tal:repeat="Tag TagAll">
 												<div class="panel-heading">
 													<h4 class="panel-title">
-														ELECTRONICS
+														<span tal:content="Tag/getName"/>
 														<a data-toggle="collapse" href="#collapseOne">
 															<span class="icon-box">&plus;</span>
 														</a>
@@ -59,77 +47,13 @@
 												<div id="collapseOne" class="panel-collapse collapse in">
 													<div class="panel-body">
 														<ul class="category-accordion-list">
-															<li><a href="#">Mobile</a></li>
-															<li><a href="#">Communicators</a></li>
-															<li><a href="#">CMDA Phones</a></li>
-															<li><a href="#">Accessories</a></li>
-															<li><a href="#">Accessories</a></li>
-															<li><a href="#">Memory Cards</a></li>
+															<li tal:repeat="PT Tag/getPostTop4">
+																<a tal:attributes="href PT/getURLRead"><span tal:content="PT/getPost/getTitle"/></a>
+															</li>
 														</ul>
 													</div>
 												</div>
-											</div><!-- End .panel -->
-											<div class="panel panel-custom">
-												<div class="panel-heading">
-													<h4 class="panel-title">
-														FASHION
-														<a data-toggle="collapse" href="#collapseTwo">
-															<span class="icon-box">&minus;</span>
-														</a>
-													</h4>
-												</div>
-												<div id="collapseTwo" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="category-accordion-list">
-															<li><a href="#">Jeans</a></li>
-															<li><a href="#">Socks</a></li>
-															<li><a href="#">Skirts</a></li>
-															<li><a href="#">Shoes</a></li>
-															<li><a href="#">T-Shirts</a></li>
-														</ul>
-													</div>
-												</div>
-											</div><!-- End .panel -->
-											<div class="panel panel-custom">
-												<div class="panel-heading">
-													<h4 class="panel-title">
-														AT HOME
-														<a data-toggle="collapse" href="#collapseThree">
-															<span class="icon-box">&minus;</span>
-														</a>
-													</h4>
-												</div>
-												<div id="collapseThree" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="category-accordion-list">
-															<li><a href="#">Tables</a></li>
-															<li><a href="#">Sofas</a></li>
-															<li><a href="#">Carpets</a></li>
-															<li><a href="#">Beds</a></li>
-															<li><a href="#">Chairs</a></li>
-														</ul>
-													</div>
-												</div>
-											</div><!-- End .panel -->
-											<div class="panel panel-custom">
-												<div class="panel-heading">
-													<h4 class="panel-title">
-														BOOKS
-														<a data-toggle="collapse" href="#collapseFour">
-															<span class="icon-box">&minus;</span>
-														</a>
-													</h4>
-												</div>
-												<div id="collapseFour" class="panel-collapse collapse">
-													<div class="panel-body">
-														<ul class="category-accordion-list">
-															<li><a href="#">Poems</a></li>
-															<li><a href="#">Novels</a></li>
-															<li><a href="#">Science Fiction</a></li>
-														</ul>
-													</div>
-												</div>
-											</div><!-- End .panel -->
+											</div><!-- End .panel -->																																	
 										</div><!-- End .panel-group -->
 									</div><!-- End .widget -->
 								</aside><!-- End .col-md-3 -->

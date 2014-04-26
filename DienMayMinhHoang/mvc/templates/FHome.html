@@ -39,12 +39,12 @@
 									<div id="products-tabs-content" class="row tab-content">
 										<div class="tab-pane active" id="all">
 											<div tal:repeat="SR Save/getSRAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item">
+												<div class="item" tal:condition="SR/getResource/getInfo">
 													<div class="item-image-container">
 														<figure>
 															<a tal:attributes="href SR/getResource/getURLView">
-																<img tal:attributes="src SR/getResource/getImageAll/current/getURL" class="item-image"/>
-																<img tal:attributes="src SR/getResource/getImageAll/current/getURL" class="item-image-hover"/>
+																<img tal:attributes="src SR/getResource/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src SR/getResource/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container">
@@ -60,7 +60,7 @@
 																<div class="ratings-result" data-result="90"></div>
 															</div><!-- End .ratings -->
 															<span class="ratings-amount">
-																3 Reviews
+																2 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href SR/getResource/getURLView" tal:content="SR/getResource/getName"/></h3>

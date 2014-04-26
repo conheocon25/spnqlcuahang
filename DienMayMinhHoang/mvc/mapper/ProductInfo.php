@@ -23,7 +23,7 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 					image2,
 					info					
 				) 
-				values( ?, ?)", $tblProductInfo);
+				values( ?, ?, ?, ?)", $tblProductInfo);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProductInfo);
 		$existStmt 	= sprintf("select id from %s where idproduct=? ", $tblProductInfo);
 				
