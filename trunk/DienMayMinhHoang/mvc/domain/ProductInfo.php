@@ -5,20 +5,26 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class ProductInfo extends Object{
 
     private $Id;
-	private $IdProduct;	
+	private $IdProduct;
+	private $Image1;
+	private $Image2;
 	private $Info;	
-	
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
-		$IdProduct=null, 		
+		$IdProduct=null,
+		$Image1=null,
+		$Image2=null,
 		$Info=null
 	)
 	{        		
 		$this->Id				= $Id;
-		$this->IdProduct		= $IdProduct;				
+		$this->IdProduct		= $IdProduct;
+		$this->Image1			= $Image1;
+		$this->Image2			= $Image2;
 		$this->Info				= $Info;
 				
         parent::__construct( $Id );
@@ -32,7 +38,13 @@ class ProductInfo extends Object{
 		$Product 	= $mProduct->find( $this->getIdProduct() );
 		return $Product;
 	}
-			
+	
+	function setImage1( $Image1 ) 	{$this->Image1 = $Image1;$this->markDirty();}
+    function getImage1( ) 			{return $this->Image1;}
+	
+	function setImage2( $Image2 ) 	{$this->Image2 = $Image2; $this->markDirty();}
+    function getImage2( ) 			{return $this->Image2;}
+	
     function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}
     function getInfo( ) {return $this->Info;}
 				
@@ -40,6 +52,8 @@ class ProductInfo extends Object{
 		$json = array(
 			'Id' 				=> $this->getId(),	
 			'IdProduct'			=> $this->getIdProduct(),			
+			'Image1'			=> $this->getImage1(),
+			'Image2'			=> $this->getImage2(),
 			'Info'				=> $this->getInfo()			
 		);		
 		return json_encode($json);
@@ -49,7 +63,9 @@ class ProductInfo extends Object{
         	
 		$this->Id				= $Data[0];
 		$this->IdProduct		= $Data[1];		
-		$this->Info				= $Data[2];
+		$this->Image1			= $Data[2];
+		$this->Image2			= $Data[3];
+		$this->Info				= $Data[4];
     }
 	
 	function getURLSettingExe(){

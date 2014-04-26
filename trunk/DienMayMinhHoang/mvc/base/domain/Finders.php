@@ -15,7 +15,7 @@ interface BranchFinder  		extends Finder {}
 interface UserFinder  			extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface Category1Finder  		extends Finder {}
-interface ImageFinder 			extends Finder {}
+interface ProductImageFinder 	extends Finder {}
 
 interface AttributeFinder 		extends Finder {}
 interface GAttributeFinder 		extends Finder {}

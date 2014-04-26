@@ -120,9 +120,20 @@ class Product extends Object{
     }
 	
 	function getImageAll(){
-		$mImage = new \MVC\Mapper\Image();
-		$ImageAll = $mImage->findBy(array($this->getId()));
+		$mProductImage = new \MVC\Mapper\ProductImage();
+		$ImageAll = $mProductImage->findBy(array($this->getId()));
 		return $ImageAll;
+	}
+	
+	function getInfo(){
+		$mProductInfo 	= new \MVC\Mapper\ProductInfo();
+		$IdInfo 			= $mProductInfo->exist(array($this->getId()));
+		if ($IdInfo>0){
+			$Info = $mProductInfo->find($IdInfo);
+		}else{
+			$Info = null;
+		}
+		return $Info;
 	}
 	
 	function getURLView(){

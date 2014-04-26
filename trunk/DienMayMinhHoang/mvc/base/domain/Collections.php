@@ -6,7 +6,7 @@ interface BranchCollection 				extends \Iterator {function add( Object $Branch )
 interface UserCollection 				extends \Iterator {function add( Object $user );		}
 interface CategoryCollection 			extends \Iterator {function add( Object $Category );	}
 interface Category1Collection 			extends \Iterator {function add( Object $Category1 );	}
-interface ImageCollection 				extends \Iterator {function add( Object $Image );		}
+interface ProductImageCollection 		extends \Iterator {function add( Object $ProductImage );}
 
 interface AttributeCollection 			extends \Iterator {function add( Object $Attribute );	}
 interface GAttributeCollection 			extends \Iterator {function add( Object $GAttribute );	}

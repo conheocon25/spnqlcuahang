@@ -31,24 +31,35 @@
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
-			$ConfigPhone 	= $mConfig->findByName("PHONE");
+			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
+			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 	= $mCategory->findAll();			
 			$Product 		= $mProduct->findByKey($KProduct);
-			$Category 		= $Product->getCategory()->getCategory();
+			$Category1 		= $Product->getCategory();
+			$Category 		= $Category1->getCategory();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();			
 			
+			$Title = mb_strtoupper($Product->getName(),'UTF8');
+			$Navigation = array(
+				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLView()),
+				array(mb_strtoupper($Category1->getName(), 'UTF8'), $Category1->getURLView())
+			);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);			
+			$request->setProperty("Title", 		$Title);
 			$request->setProperty("Active", 	"");
+			$request->setObject("Navigation", 	$Navigation);
+			
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);			
-			$request->setObject("ConfigPhone", 	$ConfigPhone);
+			$request->setObject("ConfigPhone1", 	$ConfigPhone1);
+			$request->setObject("ConfigPhone2", 	$ConfigPhone2);
 			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 	$CategoryAll);
