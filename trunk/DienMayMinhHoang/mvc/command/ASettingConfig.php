@@ -45,10 +45,16 @@
 				$mConfig->insert($ConfigAddress);
 			}
 			
-			$ConfigPhone 	= $mConfig->findByName("PHONE");
-			if ($ConfigPhone==null){
-				$ConfigPhone = new \MVC\Domain\Config(null, 'PHONE', '0919 153 189');
-				$mConfig->insert($ConfigPhone);
+			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
+			if ($ConfigPhone1==null){
+				$ConfigPhone1 = new \MVC\Domain\Config(null, 'PHONE1', '0919 153 189');
+				$mConfig->insert($ConfigPhone1);
+			}
+			
+			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
+			if ($ConfigPhone2==null){
+				$ConfigPhone2 = new \MVC\Domain\Config(null, 'PHONE2', '0919 153 189');
+				$mConfig->insert($ConfigPhone2);
 			}
 			
 			$ConfigRowPerPage	= $mConfig->findByName("ROW_PER_PAGE");
@@ -144,7 +150,8 @@
 						
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
-			$request->setObject('ConfigPhone', 				$ConfigPhone);
+			$request->setObject('ConfigPhone1', 			$ConfigPhone1);
+			$request->setObject('ConfigPhone2', 			$ConfigPhone2);
 			$request->setObject('ConfigContact', 			$ConfigContact);
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);

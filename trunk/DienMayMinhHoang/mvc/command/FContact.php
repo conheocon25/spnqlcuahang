@@ -28,7 +28,8 @@
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
 			$ConfigContact 			= $mConfig->findByName("CONTACT_NAME");
 			$ConfigAddress 			= $mConfig->findByName("ADDRESS");
-			$ConfigPhone 			= $mConfig->findByName("PHONE");
+			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
+			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
@@ -45,7 +46,8 @@
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigContact", 		$ConfigContact);
 			$request->setObject("ConfigAddress", 		$ConfigAddress);
-			$request->setObject("ConfigPhone", 			$ConfigPhone);
+			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
+			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 			$CategoryAll);
