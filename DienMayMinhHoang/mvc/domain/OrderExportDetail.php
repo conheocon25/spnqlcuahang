@@ -5,15 +5,15 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class OrderExportDetail extends Object{
     private $Id;
 	private $IdOrder;
-	private $IdResource;
+	private $IdProduct;
 	private $Count;
     private $Price;
 		
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdOrder=null, $IdResource=null, $Count=null, $Price=null) {
+    function __construct( $Id=null, $IdOrder=null, $IdProduct=null, $Count=null, $Price=null) {
         $this->Id = $Id;
 		$this->IdOrder = $IdOrder;
-		$this->IdResource = $IdResource;
+		$this->IdProduct = $IdProduct;
 		$this->Count = $Count;
 		$this->Price = $Price;
         parent::__construct( $Id );
@@ -28,11 +28,11 @@ class OrderExportDetail extends Object{
         return $Order;
     }
 		
-	function setIdResource( $IdResource ) {$this->IdResource = $IdResource;$this->markDirty();}
-    function getIdResource( ) {return $this->IdResource;}
-	function getResource( ){		
+	function setIdProduct( $IdProduct ) {$this->IdProduct = $IdProduct;$this->markDirty();}
+    function getIdProduct( ) {return $this->IdProduct;}
+	function getProduct( ){		
 		$mProduct 	= new \MVC\Mapper\Product();
-		$Product 	= $mProduct->find($this->getIdResource());
+		$Product 	= $mProduct->find($this->getIdProduct());
         return $Product;
     }
 		
@@ -56,7 +56,7 @@ class OrderExportDetail extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdOrder' 		=> $this->getIdOrder(),
-			'IdResource'	=> $this->getIdResource(),
+			'IdProduct'	=> $this->getIdProduct(),
 			'Count'			=> $this->getCount(),
 			'Price'			=> $this->getPrice()
 		);
@@ -66,7 +66,7 @@ class OrderExportDetail extends Object{
 	function setArray( $Data ){        
 		$this->Id 			= $Data[0];
 		$this->IdOrder 		= $Data[1];	
-		$this->IdResource 	= $Data[2];	
+		$this->IdProduct 	= $Data[2];	
 		$this->Count 		= $Data[3];	
 		$this->Price 		= $Data[4];	
     }	
@@ -76,10 +76,10 @@ class OrderExportDetail extends Object{
 	//-------------------------------------------------------------------------------	
 	function getURLUpdLoad(){
 		$Order = $this->getOrder();		
-		return "/import/".$Order->getSupplier()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/upd/load";
+		return "/import/".$Order->getSupplier()->getId()."/".$this->getIdOrder()."/".$this->getIdProduct()."/upd/load";
 	}
 	function getURLUpdExe(){
-		return "/import/".$Order->getSupplier()->getId()."/".$this->getIdOrder()."/".$this->getIdResource()."/upd/exe";
+		return "/import/".$Order->getSupplier()->getId()."/".$this->getIdOrder()."/".$this->getIdProduct()."/upd/exe";
 	}
 	
 	//---------------------------------------------------------

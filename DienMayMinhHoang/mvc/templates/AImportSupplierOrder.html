@@ -29,7 +29,7 @@
 								<tbody>
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getProduct/getName; data-idproduct Detail/getProduct/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getProduct/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>										
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
@@ -54,7 +54,7 @@
 									<div class="control-group">
 										<label class="control-label">Id</label>
 										<div class="controls">
-											<input readonly="true" id="IdResource2" name="IdResource2" type="text" class="form-control input-small"/>
+											<input readonly="true" id="IdProduct2" name="IdProduct2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -98,7 +98,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				var count = $(this).attr('data-count');
-				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
+				$('#IdProduct2').attr('value', $(this).attr('data-idproduct'));
 				$('#Name2').attr('value', $(this).attr('data-name'));
 				if (count==null){
 					$('#Count2').attr('value', '1');
@@ -138,7 +138,7 @@
 					var Data = [];
 					Data[0] = $('#IdSupplier').attr('alt');
 					Data[1] = $('#IdOrder').attr('alt');
-					Data[2] = $('#IdResource2').val();									
+					Data[2] = $('#IdProduct2').val();									
 					Data[3] = $('#Count2').val();
 					Data[4] = $('#Price2').val();
 					

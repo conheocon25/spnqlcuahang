@@ -57,7 +57,7 @@ RewriteRule ^admin/import/([0-9]+)/page/([0-9]+)$ 				?cmd=AImportSupplier&IdSup
 
 RewriteRule ^admin/import/([0-9]+)/([0-9]+)$					?cmd=AImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
 RewriteRule ^admin/import/([0-9]+)/([0-9]+)/print$				?cmd=AImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^admin/import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=AImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=AImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdProduct=$3&Count=$4&Price=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # DEALER

@@ -7,7 +7,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "shopc_resource";
+		$tblResource = "shopc_product";
 		$tblOrderImport = "shopc_order_import";
 		$tblOrderImportDetail = "shopc_order_import_detail";
 		$tblSessionDetail = "shopc_session_detail";
@@ -16,19 +16,19 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
 		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
-		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
+		$insertStmt = sprintf("insert into %s ( idorder, idproduct, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
 		
 		$findTopStmt = sprintf("
 							SELECT
 								0 as id,
 								1 as idorder,
-								idresource,
+								idproduct,
 								sum(`count`) as count,
 								price
 							FROM 
 								%s
-							GROUP BY idresource
+							GROUP BY idproduct
 							ORDER BY count DESC
 							LIMIT 8
 		
@@ -39,7 +39,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 				avg(price) 
 			FROM
 				%s
-			WHERE 	idresource=?
+			WHERE 	idproduct=?
 		", $tblOrderImportDetail);
 		
 		$trackByCountStmt = sprintf("
@@ -47,13 +47,13 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 				sum(count)
 			from 
 				%s S inner join %s SD on S.id = SD.idorder
-			where idresource=? and date >= ? and date <= ?
+			where idproduct=? and date >= ? and date <= ?
 		", $tblOrderImport, $tblOrderImportDetail);		
 		$trackByStmt = sprintf("
 							SELECT
 								IFNULL(0, ODI.id) as id,
 								(?) as idorder,
-								P.id as idresource,
+								P.id as idproduct,
 								ODI.count,
 								IFNULL(ODI.price, P.price1) as price
 							FROM 
@@ -67,7 +67,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								FROM %s
 								WHERE idorder = ?
 							) ODI
-							ON P.id = ODI.idresource
+							ON P.id = ODI.idproduct
 		
 		", $tblResource, $tblOrderImportDetail);
 		
@@ -82,7 +82,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		", $tblSessionDetail, $tblR2C);
 		
 		
-		$existStmt = sprintf("select id from %s where idorder=? and idresource=?", $tblOrderImportDetail);
+		$existStmt = sprintf("select id from %s where idorder=? and idproduct=?", $tblOrderImportDetail);
 		$EvaluateStmt = sprintf("select sum(count*price) from %s where idorder=?", $tblOrderImportDetail);
 						
         $this->selectAllStmt 	= self::$PDO->prepare( $selectAllStmt);                            
@@ -107,7 +107,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
         $obj = new \MVC\Domain\OrderImportDetail( 
 			$array['id'],  
 			$array['idorder'], 
-			$array['idresource'], 
+			$array['idproduct'], 
 			$array['count'],	
 			$array['price']
 		);
@@ -121,7 +121,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdOrder(), 
-			$object->getIdResource(), 
+			$object->getIdProduct(), 
 			$object->getCount(),
 			$object->getPrice()
 		); 
