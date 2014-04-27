@@ -9,16 +9,18 @@ class Category1 extends Object{
 	private $Id;
 	private $IdCategory;
 	private $Name;
+	private $Info;
 	private $Order;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $Name=null, $Order=null, $Key=null){
+	function __construct($Id=null, $IdCategory=null, $Name=null, $Info=null, $Order=null, $Key=null){
 		$this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
 		$this->Name 		= $Name;
+		$this->Info 		= $Info;
 		$this->Order 		= $Order;
 		$this->Key 			= $Key;
 		parent::__construct( $Id );
@@ -37,6 +39,9 @@ class Category1 extends Object{
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
+	function setInfo($Info) {$this->Info = $Info;$this->markDirty();}
+	function getInfo() 		{return $this->Info;}
+	
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
@@ -52,6 +57,7 @@ class Category1 extends Object{
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
 			'Name'			=> $this->getName(),
+			'Info'			=> $this->getInfo(),
 			'Order'			=> $this->getOrder(),
 			'Key'			=> $this->getKey()
 		);
@@ -62,7 +68,8 @@ class Category1 extends Object{
         $this->Id 			= $Data[0];
 		$this->IdCategory 	= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Order		= $Data[3];
+		$this->Info 		= $Data[3];
+		$this->Order		= $Data[4];
 		$this->reKey();
     }
 	

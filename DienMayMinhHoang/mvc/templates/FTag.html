@@ -9,20 +9,10 @@
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
-				<div id="breadcrumb-container">
-					<div class="container">
-						<ul class="breadcrumb">
-							<li><a href="/trang-chu">Trang chủ</a></li>
-							<li class="active">Tin tức</li>
-						</ul>
-					</div>
-				</div>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12">
-							<header class="content-title">
-								<h1 class="title">Tin tức</h1>
-							</header>
+						<div class="col-md-12">							
 							<div class="row portfolio-item-container" data-max-col="4">
 								<div tal:repeat="PT PTAll" class="col-md-3 col-sm-4 col-xs-6 portfolio-item photography">
 									<figure>

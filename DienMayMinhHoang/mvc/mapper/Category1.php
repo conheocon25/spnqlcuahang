@@ -10,8 +10,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 						
 		$selectAllStmt 	= sprintf("SELECT * from %s order by id_category, name", $tblCategory1);
 		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblCategory1);
-		$updateStmt 	= sprintf("update %s set id_category=?, name=?, `order`=?, `key`=? where id=?", $tblCategory1);
-		$insertStmt 	= sprintf("insert into %s ( id_category, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategory1);
+		$updateStmt 	= sprintf("update %s set id_category=?, name=?, info=?, `order`=?, `key`=? where id=?", $tblCategory1);
+		$insertStmt 	= sprintf("insert into %s ( id_category, info, name, `order`, `key`) values(?, ?, ?, ?, ?)", $tblCategory1);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory1);
 		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_category=?", $tblCategory1);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory1);
@@ -33,6 +33,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 			$array['id'],
 			$array['id_category'],
 			$array['name'],
+			$array['info'],
 			$array['order'],
 			$array['key']
 		);
@@ -44,6 +45,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $values = array( 
 			$object->getIdCategory(),
 			$object->getName(),
+			$object->getInfo(),
 			$object->getOrder(),
 			$object->getKey()
 		); 
@@ -56,7 +58,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $values = array( 
 			$object->getIdCategory(),
 			$object->getName(),
-			$object->getOrder(),
+			$object->getInfo(),
+			$object->getOrder(),			
 			$object->getKey(),
 			$object->getId()
 		);		

@@ -43,11 +43,19 @@
 			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
 			
+			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
+			$Navigation = array(
+				
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
+			$request->setProperty("Title", 				$Title);
 			$request->setProperty("Active", 			'Post');
 			$request->setProperty("Page", 				$Page);
+			$request->setObject("Navigation", 			$Navigation);
+			
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
