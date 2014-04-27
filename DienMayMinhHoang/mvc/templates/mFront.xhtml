@@ -108,15 +108,15 @@
 					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
 						<div class="header-box contact-infos pull-right">
 							<ul>
-								<li><span class="header-box-icon header-box-icon-skype"/><span tal:content="ConfigSkype/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-email"/><span tal:content="ConfigYahooMessenger/getValue"/></li>
+								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
+								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigYahooMessenger/getValue"/></li>
 							</ul>
 						</div><!-- End .contact-infos -->
 						<div class="header-box contact-phones pull-right clearfix">
 							<span class="header-box-icon header-box-icon-earphones"></span>
 							<ul class="pull-left">
-								<li tal:content="ConfigPhone1/getValue"/>
-								<li tal:content="ConfigPhone2/getValue"/>
+								<li><h4 tal:content="ConfigPhone1/getValue"/></li>
+								<li><h4 tal:content="ConfigPhone2/getValue"/></li>
 							</ul>
 						</div><!-- End .contact-phones -->
 					</div><!-- End .col-md-7 -->
@@ -134,10 +134,19 @@
 								</div>
 								<ul class="menu clearfix">
 									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
-									<li class="mega-menu-container"><a href="/san-pham">SẢN PHẨM</a>
+									<li><a href="JavaScript:;">TIN TỨC</a>
+										<ul>
+											<li tal:repeat="Tag TagAll">
+												<a tal:attributes="href Tag/getURLView">
+													<span tal:content="Tag/getName"/>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="mega-menu-container"><a href="JavaScript:;">SẢN PHẨM</a>
 										<div class="mega-menu clearfix">
 											<div class="col-5" tal:repeat="Category CategoryAll">
-												<a href="category.html" class="mega-menu-title" tal:content="Category/getName"/>
+												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
 												<ul class="mega-menu-list clearfix">
 													<li tal:repeat="Category1 Category/getCategoryAll">
 														<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
@@ -147,7 +156,6 @@
 										</div><!-- End .mega-menu -->
 									</li>
 									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
-									<li><a href="/mua-tra-gop">MUA TRẢ GÓP</a></li>
 									<li><a href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
 							</nav>
@@ -314,16 +322,6 @@
 						</ul>
 					</div><!-- End .widget -->
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
-						<h3>Tin tức</h3>
-						<ul class="links">
-							<li tal:repeat="Tag TagAll">
-								<a tal:attributes="href Tag/getURLView">
-									<span tal:content="Tag/getName"/>
-								</a>
-							</li>
-						</ul>
-					</div><!-- End .widget -->
-					<div class="col-md-3 col-sm-4 col-xs-12 widget">
 						<h3>Hướng dẫn</h3>
 						<ul class="links">
 							<li><a href="#">Đặt hàng online</a></li>
@@ -331,6 +329,12 @@
 							<li><a href="#">Thanh toán</a></li>
 							<li><a href="#">Bảo hành</a></li>
 						</ul>
+					</div><!-- End .widget -->
+					<div class="col-md-3 col-sm-12 col-xs-12 widget">
+						<h3>FACEBOOK</h3>
+						<div class="facebook-likebox">
+							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdienmayminhhoang&amp;width&amp;height=258&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowTransparency="true"></iframe>
+						</div>
 					</div><!-- End .widget -->
 				</div><!-- End .row -->
 			</div><!-- End .container -->
