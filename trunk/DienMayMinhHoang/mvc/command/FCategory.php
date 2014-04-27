@@ -24,6 +24,7 @@
 			$mTag		= new \MVC\Mapper\Tag();
 			$mProduct	= new \MVC\Mapper\Product();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mManufacturer 	= new \MVC\Mapper\Manufacturer();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -32,38 +33,47 @@
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
-			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
-			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
-			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
+			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
+			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey($KCategory2);
 			$TagAll 		= $mTag->findByPosition(array(1));
-			$BranchAll 				= $mBranch->findAll();
+			$BranchAll 		= $mBranch->findAll();
+			$ManufacturerAll 		= $mManufacturer->findAll();
 			
 			if (!isset($Page)) $Page = 1;
 			$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 6));
 			$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 6, $Category2->getURLView());
 			
+			$Title = mb_strtoupper($Category2->getName(), 'UTF8');
+			$Navigation = array(
+				array(mb_strtoupper($Category1->getName(), 'UTF8'), "/")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", 		$Title);			
-			$request->setProperty("Active", 	"Category");
-			$request->setProperty("Page", 		$Page);
-			$request->setObject("PN", 			$PN);
-			$request->setObject("ConfigName", 	$ConfigName);
-			$request->setObject("ConfigSlogan", $ConfigSlogan);
+			$request->setProperty("Title", 				$Title);			
+			$request->setProperty("Active", 			"Category");
+			$request->setProperty("Page", 				$Page);
+			$request->setObject("PN", 					$PN);
+			$request->setObject("Navigation", 			$Navigation);
+			
+			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("Category1", 	$Category1);			
-			$request->setObject("Category2", 	$Category2);
-			$request->setObject("TagAll", 		$TagAll);
-			$request->setObject("ProductAll", 	$ProductAll);
+			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category1", 			$Category1);			
+			$request->setObject("Category2", 			$Category2);
+			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("ProductAll", 			$ProductAll);
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -69,6 +69,12 @@
 												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="control-group">
+											<label class="control-label">Thông tin</label>
+											<div class="controls">												
+												<textarea id="Info1" name="Info1" class="form-control input-small" rows="6"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -97,6 +103,12 @@
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Thông tin</label>
+											<div class="controls">												
+												<textarea id="Info2" name="Info2" class="form-control input-small" rows="6"/>
 											</div>
 										</div>
 									</div>
@@ -150,7 +162,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Category/" + $(this).attr('alt');
+				var URL = "/object/del/Category1/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -183,7 +195,8 @@
 					Data[0] = 'null';
 					Data[1] = $('#CurrentCategory').attr('alt');
 					Data[2] = $('#Name1').val();
-					Data[3] = $('#Order1').val();
+					Data[3] = $('#Info1').val();
+					Data[4] = $('#Order1').val();
 					
 					var URL = "/object/ins/Category1";
 					$.ajax({
@@ -213,9 +226,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Order2').attr('value', data.Order);
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Info2').val( 				data.Info);
+					$('#Order2').attr('value', 		data.Order);
 				});
 			});
 			
@@ -243,7 +257,8 @@
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#CurrentCategory').attr('alt');
 					Data[2] = $('#Name2').val();
-					Data[3] = $('#Order2').val();
+					Data[3] = $('#Info2').val();
+					Data[4] = $('#Order2').val();
 																		
 					var URL = "/object/upd/Category1";
 					$.ajax({
