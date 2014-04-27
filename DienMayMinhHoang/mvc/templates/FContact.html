@@ -4,7 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body onload="load()" onunload="GUnload()">
+	<body onunload="GUnload()">
 		<!--
 		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
 		!-->
@@ -34,6 +34,9 @@
 														data-y Branch/getY;
 										"	
 									>
+										<input id="X" type="hidden" tal:attributes="value Branch/getX"/>
+										<input id="Y" type="hidden" tal:attributes="value Branch/getY"/>
+										<input id="NameXY" type="hidden" tal:attributes="value Branch/getName"/>
 										<span tal:content="Branch/getName"/>
 									</button>
 								</div>
@@ -113,14 +116,24 @@
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>				
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/showmarker.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
 		<script type="text/javascript">
 			$(function() {			
-				SetNewMap();				
+				
+				//setPointMap($('.btn-custom').attr('data-x'), $('.btn-custom').attr('data-y'), $('.btn-custom').attr('data-name'));
+				
+				$("#map").googleMap().load();
 			});
 			
 			$('.btn-custom').click(function(e){
-				alert( $(this).attr('data-name') + $(this).attr('data-x') + $(this).attr('data-y'));
+				//alert( $(this).attr('data-name') + $(this).attr('data-x') + $(this).attr('data-y'));			
+				
+				$('#X').val($(this).attr('data-x'));
+				$('#Y').val($(this).attr('data-y'));
+				$('#NameXY').val($(this).attr('data-name'));
+				
+				$("#map").googleMap().reload();	
+				
 			});
 			
 			$('#BtnSend').click(function(e){				
