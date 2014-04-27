@@ -69,10 +69,10 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getResourceAll(){
-		$mResource = new \MVC\Mapper\Resource();
-		$ResourceAll = $mResource->findByCategory(array($this->getId()));	
-		return $ResourceAll;
+	function getProductAll(){
+		$mProduct = new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findByCategory(array($this->getId()));	
+		return $ProductAll;
 	}
 	
 	//-------------------------------------------------------------------------------
