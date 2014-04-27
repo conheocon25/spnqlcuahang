@@ -1,5 +1,8 @@
 (function($) { 
 	var map ;
+	var lat=0;
+	var lng=0;
+	var namelocation;
 	
     $.GoogleMapObjectDefaults = {        
         zoomLevel: 15,
@@ -10,7 +13,7 @@
         end: '#end',
 		directions: 'directions',
         submit: '#getdirections',      	
-		tooltip: '<img src="/mvc/templates/front/images/logo.png" height="100px"/><h5>Địa chỉ: 33 Phạm Thái Bường, 4, Vĩnh Long</h5>',
+		tooltip: '<img src="/mvc/templates/front/images/logo.png" height="100px"/><h5>'+ $('#NameXY').val() +'</h5>',
 		image: 'false' 
     };
 
@@ -24,12 +27,13 @@
     }
 	
 	function showMaker() {					
-		var center = new GLatLng(10.241474,105.980255);		
+		var center = new GLatLng(parseFloat($('#X').val()), parseFloat($('#Y').val()));		
 		var marker = new GMarker(center, {draggable: false}); 
 		map.addOverlay(marker);		
-		marker.openInfoWindowHtml('<img src="/mvc/templates/front/img/logo_guest.png" height="60px" width="60px"/><span style="font:bold 24px/30px arial;color:red;padding-left:5%">Trung Tâm Điện Máy Minh Hoàng</span><h5>Địa chỉ: 33 Phạm Thái Bường, 4, Vĩnh Long</h5>');	
+		marker.openInfoWindowHtml('<img src="/mvc/templates/front/images/logo.png" height="100pxpx"/><h5>'+ $('#NameXY').val() +'</h5>');	
 	}
-	
+		
+
     $.extend(GoogleMapObject.prototype, {
         init: function() {
             if (!this._inited) {
@@ -65,7 +69,7 @@
 				}		
                 this._geocoder.getLatLng(center, function(point) {
 				
-                    center = new GLatLng(10.241474,105.980255);
+                    center = new GLatLng(parseFloat($('#X').val()), parseFloat($('#Y').val()));
 					
 					if (!point) { alert(center + " not found"); }
                     else {
@@ -87,41 +91,61 @@
 						if(customtooltip == true) {
 							marker.openInfoWindowHtml(tooltipinfo);
 						}
+						showMaker();
                     }
                 });
 				
             }
-	                
-            $.data($(this.Settings.submit)[0], 'inst', this);	
+	        
+            return this;
+        },
+		reload: function() {            
+            this.init();	    
+            if (this._geocoder) {                
+                var zoom = this.Settings.zoomLevel;
+                var center = this.Settings.center;
+				var width = this.Settings.imagewidth;
+				var height = this.Settings.imageheight;
+                map = this._map;
+				
+				if (this.Settings.tooltip != 'false') {
+					var customtooltip = true;
+					var tooltipinfo = this.Settings.tooltip;
+				}				
+				if (this.Settings.image != 'false') {
+					var customimage = true;
+					var imageurl = this.Settings.image;
+				}		
+                this._geocoder.getLatLng(center, function(point) {
+				
+                    center = new GLatLng(parseFloat($('#X').val()), parseFloat($('#Y').val()));
+					
+					if (!point) { alert(center + " not found"); }
+                    else {
+                        //set center on the map
+                        map.setCenter(center, zoom);
 			
-            $(this.Settings.submit).click(function(e) {
-                e.preventDefault();
-                var obj = $.data(this, 'inst');
-				var outputto = obj.Settings.directions;
-                var from = $(obj.Settings.start).val();
-                var to = $(obj.Settings.end).val();
-				map.clearOverlays();
-				$('#directions' ).html('');
-				var gdir = new GDirections(map, document.getElementById('directions'));
-				gdir.load("from: " + from + " to: " + to);
-				showMaker();				
-            });	
-			
-			$('#cboTinhThanh').change(function(e) {
-                 e.preventDefault();
-				var from; 
-				$("select#cboTinhThanh option:selected").each(function () {
-						from = $(this).text();
-				});				
-                var obj = $.data(this, 'inst');
-                var to = $('#end').val();
-				map.clearOverlays();
-				$('#directions' ).html('');
-				var gdir = new GDirections(map, document.getElementById('directions'));
-				gdir.load("from: " + from + " to: " + to);		
-				showMaker();		
-            }).change();	
-			
+						if (customimage == true) {
+							//add the marker
+							var customiconsize = new GSize(width, height);
+							var customicon = new GIcon(G_DEFAULT_ICON, imageurl);
+							customicon.iconSize = customiconsize;
+							var marker = new GMarker(center, { icon: customicon });
+							map.addOverlay(marker);
+						} else {
+							var marker = new GMarker(center);
+							map.addOverlay(marker);
+						}
+						
+						if(customtooltip == true) {
+							marker.openInfoWindowHtml(tooltipinfo);
+						}
+						showMaker();
+                    }
+                });
+				
+            }
+	        
             return this;
         }
     });
