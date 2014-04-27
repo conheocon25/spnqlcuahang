@@ -6146,17 +6146,16 @@ p.header-text {
 	width: 2230px;
 	display: block;
 	animation: run-to-left 40s infinite;
+	-webkit-animation: run-to-left 40s infinite;
+	-moz-animation: run-to-left 40s infinite;
+	-o-animation: run-to-left 40s infinite;
 	left: 400px;
 }
 
-@keyframes run-to-left {
-	0%  {
-		left: 400px;
-	}
-	100%{  
-		left: -2230px;
-	}
-}
+@keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
+@-webkit-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
+@-moz-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
+@-o-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
 
 /* Testimonials Slider */
 .testimonial-details-contact {
