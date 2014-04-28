@@ -29,7 +29,7 @@
 			$Navigation = array(				
 				array("THIẾT LẬP", 	"/admin/setting"),
 				array("DANH MỤC", 	"/admin/setting")
-			);			
+			);
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 					

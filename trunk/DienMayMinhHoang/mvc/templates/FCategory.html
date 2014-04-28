@@ -70,7 +70,7 @@
 												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href Product/getURLView">
+															<a tal:attributes="href Product/getURLView" tal:condition="Product/getInfo">
 																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
 																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
@@ -119,7 +119,7 @@
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
 															<li tal:repeat="Category2 Category1/getCategoryAll">
-																<a href="#"><span tal:content="Category2/getName"/> (1)</a>
+																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (1)</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->
@@ -160,81 +160,9 @@
 														</div>
 													</div><!-- End .panel-body -->
 												</div><!-- #collapse -->
-											</div><!-- End .panel -->
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>Color</span></div><!-- End .accordion-title -->
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-4"></a>
-												</div><!-- End .accordion-header -->
-												<div id="category-list-4" class="collapse in">
-													<div class="panel-body">
-														<ul class="filter-color-list clearfix">
-															<li><a href="#" data-bgcolor="#fff" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#ffff33" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#ff9900" class="filter-color-box"></a></li>
-															<li class="last-md"><a href="#" data-bgcolor="#ff9999" class="filter-color-box"></a></li>
-															<li class="last-lg"><a href="#" data-bgcolor="#99cc33" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#339933" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#ff0000" class="filter-color-box"></a></li>
-															<li class="last-md"><a href="#" data-bgcolor="#ff3366" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#cc33ff" class="filter-color-box"></a></li>
-															<li class="last-lg"><a href="#" data-bgcolor="#9966cc" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#99ccff" class="filter-color-box"></a></li>
-															<li  class="last-md"><a href="#" data-bgcolor="#3333cc" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#999999" class="filter-color-box"></a></li>
-															<li><a href="#" data-bgcolor="#663300" class="filter-color-box"></a></li>
-															<li class="last-lg"><a href="#" data-bgcolor="#000" class="filter-color-box"></a></li>
-														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->
+											</div><!-- End .panel -->											
 										</div><!-- .panel-group -->
-									</div><!-- End .widget -->
-									<div class="widget featured">
-										<h3>Featured</h3>
-										<div class="featured-slider flexslider sidebarslider">
-											<ul class="featured-list clearfix">
-												<li>
-													<div class="featured-product clearfix">
-														<figure>
-															<img src="/mvc/templates/front/images/products/thumbnails/item5.jpg" alt="item5"/>
-														</figure>
-														<h5><a href="#">Jacket Suiting Blazer</a></h5>
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="84"></div>
-															</div><!-- End .ratings -->
-														</div><!-- End .rating-container -->
-														<div class="featured-price">$40</div><!-- End .featured-price -->
-													</div><!-- End .featured-product -->
-													<div class="featured-product clearfix">
-														<figure>
-															<img src="/mvc/templates/front/images/products/thumbnails/item1.jpg" alt="item1"/>
-														</figure>
-														<h5><a href="#">Gap Graphic Cuffed</a></h5>
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="84"></div>
-															</div><!-- End .ratings -->
-														</div><!-- End .rating-container -->
-														<div class="featured-price">$18</div><!-- End .featured-price -->
-													</div><!-- End .featured-product -->
-													<div class="featured-product clearfix">
-														<figure>
-															<img src="/mvc/templates/front/images/products/thumbnails/item2.jpg" alt="item2"/>
-														</figure>
-														<h5><a href="#">Women's Lauren Dress</a></h5>
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="84"></div>
-															</div><!-- End .ratings -->
-														</div><!-- End .rating-container -->
-														<div class="featured-price">$30</div><!-- End .featured-price -->
-													</div><!-- End .featured-product -->
-												</li>
-											</ul>
-										</div><!-- End .featured-slider -->
-									</div><!-- End .widget -->
+									</div><!-- End .widget -->									
 									<div class="widget banner-slider-container">
 										<div class="banner-slider flexslider">
 											<ul class="banner-slider-list clearfix">

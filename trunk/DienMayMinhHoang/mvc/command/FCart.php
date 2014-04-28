@@ -41,20 +41,14 @@
 			$BranchAll		= $mBranch->findAll();			
 			$ManufacturerAll= $mManufacturer->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
-			
-			$SaveAll 		= $mSave->findAll();
-			$Save	 		= $SaveAll->current();
-			
+									
 			$CategoryAll 	= $mCategory->findAll();
 			$ProductAll1 	= $mProduct->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
-			
-			$OEDAll 		= $mOED->findTop(array());
-			$OIDAll 		= $mOID->findTop(array());
-			
-			$Title = "LIÊN HỆ";
+									
+			$Title = "GIỎ HÀNG";
 			$Navigation = array(
 				
 			);
@@ -62,27 +56,26 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 			'Home');
+			$request->setProperty("Active", 			'Cart');
+			$request->setProperty("Title", 				$Title);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("TagAll", 				$TagAll);
 			
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
-			
-			$request->setObject("Save", 				$Save);
+						
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("ProductAll1", 			$ProductAll1);
-			
-			$request->setObject("OEDAll", 				$OEDAll);
-			$request->setObject("OIDAll", 				$OIDAll);
+						
 			
 			return self::statuses('CMD_DEFAULT');
 		}

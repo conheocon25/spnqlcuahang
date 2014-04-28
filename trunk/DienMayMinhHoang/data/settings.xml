@@ -16,6 +16,7 @@
 		<command name="FPost" 			type="public"><view>FPost</view></command>
 		<command name="FCart" 			type="public"><view>FCart</view></command>
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
+		<command name="FBookmark" 		type="public"><view>FBookmark</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->

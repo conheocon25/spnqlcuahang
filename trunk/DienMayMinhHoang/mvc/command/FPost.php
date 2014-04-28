@@ -41,9 +41,9 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
-			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
+			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
-				
+				array(mb_strtoupper($Tag->getName(), 'UTF8'), $Tag->getURLView())
 			);
 			
 			//-------------------------------------------------------------

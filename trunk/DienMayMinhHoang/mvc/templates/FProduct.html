@@ -48,7 +48,11 @@
 									<ul class="product-list">
 										<li><span>Tình trạng:</span>Có hàng</li>
 										<li><span>Sổ Seri:</span><span tal:content="Product/getCode"/></li>
-										<li><span>Nhà SX:</span><span tal:content="Product/getManufacturer/getName"/></li>
+										<li>
+											<span>Nhà SX:</span>
+											<span tal:condition="Product/getManufacturer" tal:content="Product/getManufacturer/getName"/>
+											<span tal:condition="not:Product/getManufacturer" tal:content="string:chưa xác định"/>
+										</li>
 									</ul>
 									<hr/>																											
 									<div class="product-add clearfix">

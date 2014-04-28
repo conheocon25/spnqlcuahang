@@ -8,14 +8,14 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 		
 		$tblTag = "shopc_tag";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblTag);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`, name", $tblTag);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblTag);
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, position=?, `key`=? where id=?", $tblTag);
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, position, `key`) values(?, ?, ?, ?)", $tblTag);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblTag);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblTag);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblTag);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblTag);		
-		$findByPositionStmt 		= sprintf("SELECT * FROM  %s WHERE position=?", $tblTag);
+		$findByPositionStmt 		= sprintf("SELECT * FROM  %s WHERE position=? order by `order`, name", $tblTag);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);

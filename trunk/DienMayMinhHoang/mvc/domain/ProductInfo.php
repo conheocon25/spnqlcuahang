@@ -40,10 +40,18 @@ class ProductInfo extends Object{
 	}
 	
 	function setImage1( $Image1 ) 	{$this->Image1 = $Image1;$this->markDirty();}
-    function getImage1( ) 			{return $this->Image1;}
+    function getImage1( ) 			{
+		if ($this->Image1=="")
+			return "/data/images/product1.jpg";
+		return $this->Image1;
+	}
 	
 	function setImage2( $Image2 ) 	{$this->Image2 = $Image2; $this->markDirty();}
-    function getImage2( ) 			{return $this->Image2;}
+    function getImage2( ) 			{
+		if ($this->Image2=="")
+			return "/data/images/product2.jpg";
+		return $this->Image2;
+	}
 	
     function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}
     function getInfo( ) {return $this->Info;}
