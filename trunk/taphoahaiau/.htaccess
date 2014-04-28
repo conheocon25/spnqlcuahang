@@ -41,18 +41,11 @@ RewriteRule ^search/customer/([A-Za-z0-9]+)$ 						?cmd=SearchCustomer&IdCard=$1
 RewriteRule ^app$ 												?cmd=App [L]
 
 RewriteRule ^selling$ 											?cmd=Selling [L]
-RewriteRule ^selling/load/domain/([0-9]+)$ 						?cmd=SellingDomainLoad&IdDomain=$1 [L]
-RewriteRule ^selling/load/table/([0-9]+)$ 						?cmd=SellingTableLoad&IdTable=$1 [L]
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=1 [L]
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=-1 [L]
-RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
-RewriteRule ^selling/log/course$ 								?cmd=SellingLogCourse [L]
-RewriteRule ^selling/log/course/print/prepare$ 					?cmd=SellingLogCoursePreparePrint [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print$			?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/supplierp/([0-9]+)/load$ 					?cmd=SellingSupplierPLoad&IdSupplier=$1 [L]
+RewriteRule ^selling/call/([0-9]+)/plus$ 						?cmd=SellingCall&IdResource=$1&Delta=1 [L]
+RewriteRule ^selling/search/resource$ 							?cmd=SellingSearchResource [L]
+RewriteRule ^selling/session$ 									?cmd=SellingSession [L]
+RewriteRule ^selling/checkout$ 									?cmd=SellingCheckout [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY

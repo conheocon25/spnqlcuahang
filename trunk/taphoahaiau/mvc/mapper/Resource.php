@@ -10,9 +10,9 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
-		$updateStmt = sprintf("update %s set name=?, unit=?, price=?, description=? where id=?", $tblResource);
-		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price, description ) 
-							values( ?, ?, ?, ?, ?)", $tblResource);
+		$updateStmt = sprintf("update %s set name=?, unit=?, price1=?, price2=?, description=? where id=?", $tblResource);
+		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price1, price2, description ) 
+							values( ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
 		$findByPageStmt = sprintf("
@@ -21,7 +21,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							WHERE idsupplier=:idsupplier
 							LIMIT :start,:max
 				", $tblResource);
-				
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblResource);	
+		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
@@ -29,6 +30,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByNameStmt = self::$PDO->prepare($findByNameStmt);
 		
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
@@ -38,7 +40,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$array['idsupplier'],
 			$array['name'],
 			$array['unit'],				
-			$array['price'],	
+			$array['price1'],	
+			$array['price2'],	
 			$array['description']
 		);
         return $obj;
@@ -50,7 +53,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$object->getIdSupplier(),
 			$object->getName(),	
 			$object->getUnit(),	
-			$object->getPrice(),	
+			$object->getPrice1(),	
+			$object->getPrice2(),	
 			$object->getDescription()
 		); 
         $this->insertStmt->execute( $values );
@@ -62,7 +66,8 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $values = array( 
 			$object->getName(),
 			$object->getUnit(),
-			$object->getPrice(),
+			$object->getPrice1(),
+			$object->getPrice2(),
 			$object->getDescription(),
 			$object->getId()
 		);		
@@ -84,5 +89,11 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 		$this->findByPageStmt->execute();
         return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function findByName( $values ) {
+		$this->findByNameStmt->bindValue(':name', $values[0]."%", \PDO::PARAM_STR);
+		$this->findByNameStmt->execute();
+        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
+    }	
 }
 ?>
