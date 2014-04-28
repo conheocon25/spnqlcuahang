@@ -1,13 +1,12 @@
 <?php		
 	namespace MVC\Command;	
-	class Selling extends Command {
+	class SellingSession extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
-			$Session = \MVC\Base\SessionRegistry::instance();
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -15,28 +14,24 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mSupplier 	= new \MVC\Mapper\Supplier();			
-			$mConfig	= new \MVC\Mapper\Config();
+			$mOrderExport 	= new \MVC\Mapper\OrderExport();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mConfig		= new \MVC\Mapper\Config();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$SupplierAll 			= $mSupplier->findAll();									
-			$ConfigName				= $mConfig->findByName("NAME");
+			$Order 		= $mOrderExport->findCurrent();
+			$OrderAll	= $mOrderExport->findTop5(array());
+			$EmployeeAll= $mEmployee->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$Title 		= "BÁN HÀNG";
-			$Navigation = array();
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setProperty('Title'				, $Title);
-			$request->setObject('Navigation'			, $Navigation);
-			$request->setObject('SupplierAll'			, $SupplierAll);						
-						
+			//-------------------------------------------------------------			
+			$request->setObject('Order'			, $Order);						
+			$request->setObject('OrderAll'		, $OrderAll);
+			$request->setObject('EmployeeAll'	, $EmployeeAll);
+								
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

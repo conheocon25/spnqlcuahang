@@ -1,13 +1,12 @@
 <?php		
 	namespace MVC\Command;	
-	class Selling extends Command {
+	class SellingCheckout extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
-			$Session = \MVC\Base\SessionRegistry::instance();
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -15,29 +14,25 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mSupplier 	= new \MVC\Mapper\Supplier();			
-			$mConfig	= new \MVC\Mapper\Config();
-						
+			$mOrderExport 	= new \MVC\Mapper\OrderExport();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$SupplierAll 			= $mSupplier->findAll();									
-			$ConfigName				= $mConfig->findByName("NAME");
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$Title 		= "BÁN HÀNG";
-			$Navigation = array();
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setProperty('Title'				, $Title);
-			$request->setObject('Navigation'			, $Navigation);
-			$request->setObject('SupplierAll'			, $SupplierAll);						
+			$Order = new \MVC\Domain\OrderExport(
+				null,
+				1,
+				\date('y-m-d h:m'),
+				"hóa đon bán lẻ"
+			);
+			$mOrderExport->insert($Order);
 						
-			return self::statuses('CMD_DEFAULT');
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------			
+			$json = array('result' => "OK");
+			echo json_encode($json);
 		}
 	}
 ?>

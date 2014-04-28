@@ -18,15 +18,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
-		
-		$evalPriceStmt = sprintf("
-			SELECT 
-				avg(price) 
-			FROM
-				%s
-			WHERE 	idresource=?
-		", $tblOrderImportDetail);
-		
+						
 		$trackByCountStmt = sprintf("
 			select 
 				sum(count)
@@ -40,7 +32,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								(?) as idorder,
 								P.id as idresource,
 								ODI.count,
-								IFNULL(ODI.price, P.price) as price
+								IFNULL(ODI.price, P.price1) as price
 							FROM 
 							(
 								SELECT *
@@ -80,8 +72,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$this->trackByExportStmt = self::$PDO->prepare($trackByExportStmt);
 		$this->existStmt = self::$PDO->prepare($existStmt);
 		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);
-		$this->evalPriceStmt = self::$PDO->prepare($evalPriceStmt);		
-		
+				
     } 
     function getCollection( array $raw ) {
         return new OrderImportDetailCollection( $raw, $this );
@@ -172,14 +163,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			return $result[0][0];
 		}
     }
-	
-	function evalPrice( $values ) {
-        $this->evalPriceStmt->execute( $values );
-		$result = $this->evalPriceStmt->fetchAll();		
-		if (!isset($result) || $result==null)
-			return 0;
-        return $result[0][0];
-    }
+		
 	
 	//-------------------------------------------------------
     function selectStmt() {return $this->selectStmt;}	

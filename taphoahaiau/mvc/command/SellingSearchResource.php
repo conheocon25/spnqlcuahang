@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingSearchCourse extends Command{
+	class SellingSearchResource extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,18 +16,17 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCourse 	= new \MVC\Mapper\Course();
+			$mResource 	= new \MVC\Mapper\Resource();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CourseAll	= $mCourse->findByName(array($Name));
-			//$CourseAll	= $mCourse->findAll();
+			$ResourceAll	= $mResource->findByName(array($Name));
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('CourseFAll'		, $CourseAll);
+			$request->setObject('ResourceFAll'		, $ResourceAll);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

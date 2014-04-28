@@ -15,8 +15,7 @@ interface UserFinder  			extends Finder {}
 interface DomainFinder  		extends Finder {}
 interface TableFinder  			extends Finder {}
 interface TableLogFinder  		extends Finder {}
-interface SessionFinder  		extends Finder {}
-interface SessionDetailFinder  	extends Finder {}
+
 interface CategoryFinder  		extends Finder {}
 interface CourseFinder  		extends Finder {}
 interface CourseLogFinder  		extends Finder {}
@@ -33,6 +32,9 @@ interface TermCollectFinder 	extends Finder {}
 
 interface CollectGeneralFinder 	extends Finder {}
 interface CollectCustomerFinder extends Finder {}
+
+interface OrderExportFinder 	extends Finder {}
+interface OrderExportDetailFinder extends Finder {}
 
 interface ResourceFinder 		extends Finder {}
 interface OrderImportFinder 	extends Finder {}

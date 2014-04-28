@@ -8,8 +8,7 @@ class UserCollection 			extends Collection implements \MVC\Domain\UserCollection
 class DomainCollection 			extends Collection implements \MVC\Domain\DomainCollection 			{function targetClass( ) {return "\MVC\Domain\Domain";}}	
 class TableCollection 			extends Collection implements \MVC\Domain\TableCollection 			{function targetClass( ) {return "\MVC\Domain\Table";}}		
 class TableLogCollection 		extends Collection implements \MVC\Domain\TableLogCollection 		{function targetClass( ) {return "\MVC\Domain\TableLog";}}
-class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection 		{function targetClass( ) {return "\MVC\Domain\Session";}}			
-class SessionDetailCollection 	extends Collection implements \MVC\Domain\SessionDetailCollection 	{function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
+
 class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCollection 		{function targetClass( ) {return "\MVC\Domain\Category";}}	
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection 			{function targetClass( ) {return "\MVC\Domain\Course";}}
 class CourseLogCollection 		extends Collection implements \MVC\Domain\CourseLogCollection 		{function targetClass( ) {return "\MVC\Domain\CourseLog";}}
@@ -31,6 +30,9 @@ class OrderImportCollection 	extends Collection implements \MVC\Domain\OrderImpo
 class OrderImportDetailCollection extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}
 class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass( ) {return "\MVC\Domain\Customer";}}
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection		{function targetClass( ) {return "\MVC\Domain\Employee";}}
+
+class OrderExportCollection 	extends Collection implements \MVC\Domain\OrderExportCollection 	{function targetClass( ) {return "\MVC\Domain\OrderExport";}}
+class OrderExportDetailCollection extends Collection implements \MVC\Domain\OrderExportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderExportDetail";}}
 
 class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection			{function targetClass(){return "\MVC\Domain\Unit";}}
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";}}
