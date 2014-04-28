@@ -149,10 +149,12 @@
 												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
 												<ul class="mega-menu-list clearfix">
 													<li tal:repeat="Category1 Category/getCategoryAll">
-														<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
+														<a tal:attributes="href Category1/getURLView">
+															<span tal:content="Category1/getName"/> (<span tal:content="Category1/getProductAll/count"/>)
+														</a>
 													</li>
 												</ul>
-											</div>											
+											</div>
 										</div><!-- End .mega-menu -->
 									</li>
 									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
@@ -303,24 +305,24 @@
 		<div id="inner-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 col-sm-4 col-xs-12 widget">
+					<div class="col-md-4 col-sm-4 col-xs-12 widget">
 						<h3>Trụ sở chính</h3>
 						<ul class="contact-list">
 							<li><strong>Trung tâm điện máy Minh Hoàng</strong></li>
-							<li>33/5, Đường Phạm Thái Bường,</li>
-							<li>Phường 4, TP.Vĩnh Long, Vĩnh Long</li>							
+							<li>33/5 Phạm Thái Bường F4 TP.Vĩnh Long</li>							
 							<li>Làm việc tất cả các ngày trong tuần</li>
 							<li>Giờ mở cửa: 8.00AM - 21.00PM</li>
 						</ul>
-					</div><!-- End .widget -->
-					<div class="col-md-3 col-sm-4 col-xs-12 widget">
+					</div>
+					<div class="col-md-5 col-sm-4 col-xs-12 widget">
 						<h3>Hệ thống siêu thị</h3>
 						<ul class="links">
 							<li tal:repeat="Branch BranchAll">
 								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
 							</li>
 						</ul>
-					</div><!-- End .widget -->
+					</div>
+					<!--
 					<div class="col-md-3 col-sm-4 col-xs-12 widget">
 						<h3>Hướng dẫn</h3>
 						<ul class="links">
@@ -329,7 +331,8 @@
 							<li><a href="#">Thanh toán</a></li>
 							<li><a href="#">Bảo hành</a></li>
 						</ul>
-					</div><!-- End .widget -->
+					</div>
+					!-->
 					<div class="col-md-3 col-sm-12 col-xs-12 widget">
 						<h3>FACEBOOK</h3>
 						<div class="facebook-likebox">
@@ -344,14 +347,10 @@
 				<div class="row">
 					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
 						<ul class="social-links clearfix">
-							<li><a href="#" class="social-icon icon-facebook"></a></li>
-							<li><a href="#" class="social-icon icon-twitter"></a></li>
-							<li><a href="#" class="social-icon icon-rss"></a></li>
-							<li><a href="#" class="social-icon icon-delicious"></a></li>
-							<li><a href="#" class="social-icon icon-linkedin"></a></li>
-							<li><a href="#" class="social-icon icon-flickr"></a></li>
+							<li><a href="https://facebook.com/dienmayminhhoang" class="social-icon icon-facebook"></a></li>
+							<li><a href="#" class="social-icon icon-rss"></a></li>							
 							<li><a href="#" class="social-icon icon-skype"></a></li>
-							<li><a href="#" class="social-icon icon-email"></a></li>
+							<li><a href="/lien-he" class="social-icon icon-email"></a></li>
 						</ul>
 					</div><!-- End .col-md-7 -->
 					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
@@ -591,6 +590,20 @@
 			</div><!-- End #option-panel-container -->
 		</div><!-- End #option-panel-wrapper -->
 	</div><!-- End #option panel -->
-
+	
+	<!-- ======================================================================== 	-->
+	<!-- ADS SERVICE															  			-->
+	<!-- ======================================================================== 	-->
+	<div metal:define-macro="AdsService" class="widget banner-slider-container">
+		<div class="banner-slider flexslider">
+			<ul class="banner-slider-list clearfix">
+				<li><a href="#"><img src="/mvc/templates/front/images/banner1.jpg" alt="Banner 1"/></a></li>
+				<li><a href="#"><img src="/mvc/templates/front/images/banner2.jpg" alt="Banner 2"/></a></li>
+				<li><a href="#"><img src="/mvc/templates/front/images/banner3.jpg" alt="Banner 3"/></a></li>
+			</ul>
+		</div>
+	</div>
+		
+	
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FDealer extends Command {
+	class FBookmark extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -41,25 +41,22 @@
 			$BranchAll		= $mBranch->findAll();			
 			$ManufacturerAll= $mManufacturer->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
-			
-			$SaveAll 		= $mSave->findAll();
-			$Save	 		= $SaveAll->current();
-			
+									
 			$CategoryAll 	= $mCategory->findAll();
-			$ProductAll 	= $mProduct->findByTop(array());			
+			$ProductAll1 	= $mProduct->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 									
-			$Title = "KHUYẾN MÃI";
+			$Title = "ĐÁNH DẤU";
 			$Navigation = array(
-			
+				
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 			'Dialer');
+			$request->setProperty("Active", 			'Cart');
 			$request->setProperty("Title", 				$Title);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
@@ -70,16 +67,16 @@
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$TagAll->current());
 			
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
 						
-			$request->setObject("Save", 				$Save);
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("ProductAll", 			$ProductAll);
-									
+			$request->setObject("ProductAll1", 			$ProductAll1);
+						
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

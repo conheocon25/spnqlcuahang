@@ -21,17 +21,16 @@
 							</header>
 							<div class="xs-margin"></div><!-- space -->
 							<div class="row">
-								<div class="col-md-2">
-									<!--
-									<button class="btn btn-custom" style="width:100%;">Chi nhánh 1</button>
-									<button class="btn btn-custom active" style="width:100%;">Chi nhánh 2</button>
-									<button class="btn btn-custom" style="width:100%;">Chi nhánh 3</button>
-									!-->
-									<button class="btn btn-custom" style="width:100%;" tal:repeat="Branch BranchAll"
+								<div class="col-md-2">									
+									<button class="btn btn-custom btnBranch" style="width:100%;" tal:repeat="Branch BranchAll"
 										tal:attributes="data-name Branch/getName;
 														data-address Branch/getAddress;
 														data-x Branch/getX;
 														data-y Branch/getY;
+														data-phone1 Branch/getPhone1;
+														data-phone2 Branch/getPhone1;
+														data-email1 Branch/getEmail1;
+														data-email2 Branch/getEmail1;
 										"	
 									>
 										<input id="X" type="hidden" tal:attributes="value Branch/getX"/>
@@ -76,35 +75,28 @@
 								</div><!-- End .col-md-8 -->
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<h2 class="sub-title">Thông tin liên hệ</h2>
-									<ul class="contact-details-list">
-										<li>
-											<span class="contact-icon contact-icon-phone"></span>
-											<ul>
-												<li>0203 280 3703</li>
-												<li>0203 281 3704</li>
-											</ul>
-										</li>
+									<ul class="contact-details-list">										
 										<li>
 											<span class="contact-icon contact-icon-mobile"></span>
 											<ul>
-												<li>445-115-747-38</li>
-												<li>445-170-029-32</li>
+												<li id="IdName" />
+												<li id="IdAddress" />
+											</ul>
+										</li>
+										<li>
+											<span class="contact-icon contact-icon-phone"></span>
+											<ul>
+												<li id="IdPhone1" />
+												<li id="IdPhone2" />
 											</ul>
 										</li>
 										<li>
 											<span class="contact-icon contact-icon-email"></span>
 											<ul>
-												<li>Venedor@gmail.com</li>
-												<li>Venedor@aol.com</li>
+												<li id="IdEmail1" />
+												<li id="IdEmail2" />
 											</ul>
-										</li>
-										<li>
-											<span class="contact-icon contact-icon-skype"></span>
-											<ul>
-												<li>Venedor_store</li>
-												<li>Venedor_support</li>
-											</ul>
-										</li>
+										</li>										
 									</ul>
 								</div><!-- End .col-md-4 -->
 							</div><!-- End .row -->
@@ -118,23 +110,28 @@
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>				
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
 		<script type="text/javascript">
-			$(function() {			
-				
-				//setPointMap($('.btn-custom').attr('data-x'), $('.btn-custom').attr('data-y'), $('.btn-custom').attr('data-name'));
-				
+			$(function() {											
 				$("#map").googleMap().load();
 			});
 			
-			$('.btn-custom').click(function(e){
-				//alert( $(this).attr('data-name') + $(this).attr('data-x') + $(this).attr('data-y'));			
-				
+			$('.btnBranch').click(function(e){								
 				$('#X').val($(this).attr('data-x'));
 				$('#Y').val($(this).attr('data-y'));
 				$('#NameXY').val($(this).attr('data-name'));
 				
 				$("#map").googleMap().reload();	
 				
+				$("#IdPhone1").html($(this).attr('data-phone1'));
+				$("#IdPhone2").html($(this).attr('data-phone2'));
+				
+				$("#IdEmail1").html($(this).attr('data-email1'));
+				$("#IdEmail2").html($(this).attr('data-email2'));
+				
+				$("#IdName").html($(this).attr('data-name'));
+				$("#IdAddress").html($(this).attr('data-address'));
+				
 			});
+			$('.btnBranch:first').click();
 			
 			$('#BtnSend').click(function(e){				
 				var Data = [];

@@ -52,7 +52,7 @@ class Post extends Object{
 			$first_img = $matches[1][0];
 		}
 		else {
-			$first_img = "/data/images/Post.jpg";
+			$first_img = "/data/images/post.jpg";
 		}
 		return $first_img;
 	}
