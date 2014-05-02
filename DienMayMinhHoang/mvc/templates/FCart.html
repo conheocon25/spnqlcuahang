@@ -23,7 +23,7 @@
 							</header>
 							<div class="xs-margin"></div><!-- space -->
 							<div class="row">
-								<div class="col-md-12 table-responsive">
+								<div class="col-md-12 table-responsive">									
 									<table class="table cart-table">
 										<thead>
 											<tr>
@@ -34,33 +34,38 @@
 												<th class="table-title">T.TIỀN</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody tal:repeat="Item Cart/getItems">
 											<tr>
 												<td class="item-name-col">
 													<figure>
 														<a href="#"><img src="/mvc/templates/front/images/products/compare1.jpg" alt="Lowlands Lace Blouse"/></a>
 													</figure>
-													<header class="item-name"><a href="#">Lowlands Lace Blouse</a></header>
+													<header class="item-name">
+														<span tal:content="php:Item['Name']"/>
+													</header>
 													<ul>
 														<li>Color: White</li>
 														<li>Size: SM</li>
 													</ul>
 												</td>
 												<td class="item-code">MP125984154</td>
-												<td class="item-price-col"><span class="item-price-special">$1175</span></td>
+												<td class="item-price-col">
+													<span class="item-price-special" tal:content="php:Item['Price']" />
+												</td>
 												<td>
 													<div class="custom-quantity-input">
-														<input type="text" name="quantity" value="1"/>
+														<input type="text" name="Quantity" tal:attributes="value php:Item['Quantity']"/>
 														<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
 														<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
 													</div>
 												</td>
-												<td class="item-total-col"><span class="item-price-special">$1175</span>
+												<td class="item-total-col">
+													<span class="item-price-special" tal:content="php:Item['Value']" />
 													<a href="#" class="close-button"></a>
 												</td>
 											</tr>
 										</tbody>
-									</table>
+									</table>																											
 								</div><!-- End .col-md-12 -->
 							</div><!-- End .row -->
 							<div class="lg-margin"></div><!-- End .space -->

@@ -15,7 +15,8 @@
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			require_once 'mvc/domain/User.php';			
+			require_once 'mvc/domain/User.php';
+			require_once 'mvc/domain/Cart.php';			
 			session_start();
 		}
 		
@@ -41,25 +42,7 @@
 		function getCurrentUser() {
 			return self::instance()->get('cafe_current_user');
 		}
-		
-		function setCurrentTheme( $theme ) {
-			return self::instance()->set('cafe_current_theme', $theme);
-		}
-		
-		function getCurrentTheme(){
-			$Theme = self::instance()->get('cafe_current_theme');
-			if (!isset($Theme)){
-				$mConfig = new \MVC\Mapper\Config();
-				$Config = $mConfig->findByName("THEME");
-				if (!isset($Config))
-					return "grey";
-				else
-					return $Config->getValue();
-			}
-				
-			return self::instance()->get('cafe_current_theme');
-		}
-		
+						
 		function setCurrentIdUser( $Iduser ) {
 			return self::instance()->set('cafe_current_Iduser', $Iduser);
 		}
@@ -67,6 +50,13 @@
 			return self::instance()->get('cafe_current_Iduser');
 		}
 		
+		//Quản lí Giỏ hàng
+		function setCart( \MVC\Domain\Cart $Cart ){
+			return self::instance()->set('cafe_current_cart', $Cart);
+		}
+		function getCart(){
+			return self::instance()->get('cafe_current_cart');
+		}
 		
 	}
 	/*--------------------------------------------------------------------------------*/
