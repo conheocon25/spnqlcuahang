@@ -60,17 +60,24 @@
 																<div class="ratings-result" data-result="90"></div>
 															</div><!-- End .ratings -->
 															<span class="ratings-amount">
-																2 đánh giá
+																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href SR/getResource/getURLView" tal:content="SR/getResource/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
-																<span class="icon-cart-text">Mua ngay</span>
+																<span class="icon-cart-text"
+																	tal:attributes="	id SR/getIdResource;
+																						name SR/getResource/getName;
+																						price SR/getResource/getPrice2;
+																	"
+																>
+																	Mua ngay
+																</span>
 															</a>
 															<div class="item-action-inner">
-																<a href="#" class="icon-button icon-like">Favourite</a>
-																<a href="#" class="icon-button icon-compare">Checkout</a>
+																<a href="#" class="icon-button icon-like">Ưa thích</a>
+																<a href="#" class="icon-button icon-compare">Thanh toán</a>
 															</div><!-- End .item-action-inner -->
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
@@ -273,6 +280,24 @@
 					animateStartingFrameIn: true
 				},
 				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
+				
+				$(".icon-cart-text").click(function(){										
+					var Data 	= [];
+					Data[0]		= $(this).attr('id');
+					Data[1]		= $(this).attr('name');
+					Data[2]		= $(this).attr('price');					
+					var URL = "/gio-hang/them";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							//location.reload();
+						}
+					});
+				
+				});
+				
 			});
 		</script>
 	</body>

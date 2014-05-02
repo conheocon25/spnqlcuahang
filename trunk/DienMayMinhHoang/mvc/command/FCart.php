@@ -51,7 +51,8 @@
 			$Title = "GIỎ HÀNG";
 			$Navigation = array(
 				
-			);
+			);			
+			$Cart = $Session->getCart();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -66,8 +67,9 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("Navigation", 			$Navigation);
 			
-			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("Cart", 				$Cart);
 			
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
