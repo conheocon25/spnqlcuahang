@@ -4,10 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body onload="load()" onunload="GUnload()">
-		<!--
-		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
-		!-->
+	<body>
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">				
@@ -27,8 +24,7 @@
 									<table class="table cart-table">
 										<thead>
 											<tr>
-												<th class="table-title">TÊN SẢN PHẨM</th>
-												<th class="table-title">MÃ CODE</th>
+												<th class="table-title">TÊN SẢN PHẨM</th>												
 												<th class="table-title">GIÁ</th>
 												<th class="table-title">SỐ LƯỢNG</th>
 												<th class="table-title">T.TIỀN</th>
@@ -47,21 +43,20 @@
 														<li>Color: White</li>
 														<li>Size: SM</li>
 													</ul>
-												</td>
-												<td class="item-code">MP125984154</td>
+												</td>												
 												<td class="item-price-col">
-													<span class="item-price-special" tal:content="php:Item['Price']" />
+													<span class="item-price-special" tal:content="php:Item['PriceP']" />
 												</td>
 												<td>
 													<div class="custom-quantity-input">
 														<input type="text" name="Quantity" tal:attributes="value php:Item['Quantity']"/>
-														<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
-														<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
+														<div class="quantity-btn quantity-input-up" 	tal:attributes="alt php:Item['URLPlusUpd']">	<i class="fa fa-angle-up"></i></div>
+														<div class="quantity-btn quantity-input-down"	tal:attributes="alt php:Item['URLMinusUpd']">	<i class="fa fa-angle-down"></i></div>
 													</div>
 												</td>
 												<td class="item-total-col">
-													<span class="item-price-special" tal:content="php:Item['Value']" />
-													<a tal:attributes="href php:Item['URLDel']" class="close-button" />
+													<span class="item-price-special" tal:content="php:Item['ValueP']" />
+													<div tal:attributes="alt php:Item['URLDel']" class="close-button" />
 												</td>
 											</tr>
 										</tbody>
@@ -75,5 +70,31 @@
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$(function() {				
+				$(".close-button").click(function(){										
+					var URL = $(this).attr('alt');
+					$.ajax({
+						type: "POST",						
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});				
+				});
+				
+				$(".quantity-btn").click(function(){
+					var URL = $(this).attr('alt');										
+					$.ajax({
+						type: "POST",						
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});				
+				});
+				
+			});
+		</script>
 	</body>
 </html>
