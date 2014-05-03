@@ -38,6 +38,8 @@ class Cart extends Object{
 			$this->Items[$Id] 				= $Info;
 			$this->Items[$Id]['Quantity'] 	= 1;
 			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];
+			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/xoa";
+			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat";
 		}
 	}
 	
@@ -47,6 +49,8 @@ class Cart extends Object{
 		} elseif ( ($Quantity > 0) && ($Quantity != $this->Items[$Id]['Quantity'])){
 			$this->Items[$Id]['Quantity'] 	= $Quantity;
 			$this->Items[$Id]['Value'] 		= $Quantity*$this->Items[$Id]['Price'];
+			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/xoa";
+			$this->Items[$Id]['URLUpd'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat";
 		}
 	}
 	
@@ -54,6 +58,13 @@ class Cart extends Object{
 		if (isset($this->Items[$Id])){
 			unset($this->Items[$Id]);
 		}
+	}
+	
+	public function countItem(){
+		$C = 0;
+		foreach ($this->Items as $Item)
+			$C = $C + $Item['Quantity'];
+		return $C;
 	}
 		
 	//-------------------------------------------------------------------------------
