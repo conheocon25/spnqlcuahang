@@ -55,9 +55,10 @@
 			return self::instance()->set('cafe_current_cart', $Cart);
 		}
 		function getCart(){
-			return self::instance()->get('cafe_current_cart');
-		}
-		
+			$Cart = self::instance()->get('cafe_current_cart');
+			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
+			return $Cart;
+		}		
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 

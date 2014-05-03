@@ -12,16 +12,14 @@ class Cart extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Items=null) {
+	function __construct($Id=null, $Items=array()) {
 		$this->Id 		= $Id;
 		$this->Items 	= $Items;
 		parent::__construct( $Id );
 	}		
 	function getId() {return $this->Id;}
 	
-	public function getItems(){
-		return 	$this->Items;
-	}
+	public function getItems(){return 	$this->Items;}
 	public function isEmpty() {
 		if (empty($this->Items)) {
 			return true;
@@ -37,20 +35,33 @@ class Cart extends Object{
 			// Add the array of info:
 			$this->Items[$Id] 				= $Info;
 			$this->Items[$Id]['Quantity'] 	= 1;
-			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];
+			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];			
+			
+			$N1 = new \MVC\Library\Number($this->Items[$Id]['Quantity']*$this->Items[$Id]['Price']);
+			$this->Items[$Id]['ValueP'] 	= $N1->formatCurrency();
+			$N2 = new \MVC\Library\Number($this->Items[$Id]['Price']);
+			$this->Items[$Id]['PriceP'] 	= $N2->formatCurrency();
+						
 			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/xoa";
-			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat";
+			$this->Items[$Id]['URLPlusUpd']	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat/cong";
+			$this->Items[$Id]['URLMinusUpd']= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat/tru";
 		}
 	}
 	
 	public function updateItem($Id, $Quantity){
 		if ($Quantity == 0){
 			$this->deleteItem($Id);
-		} elseif ( ($Quantity > 0) && ($Quantity != $this->Items[$Id]['Quantity'])){
-			$this->Items[$Id]['Quantity'] 	= $Quantity;
-			$this->Items[$Id]['Value'] 		= $Quantity*$this->Items[$Id]['Price'];
-			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/xoa";
-			$this->Items[$Id]['URLUpd'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat";
+		}else{
+			$this->Items[$Id]['Quantity'] 	= $this->Items[$Id]['Quantity'] + $Quantity;
+			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];
+			
+			$N1 = new \MVC\Library\Number($this->Items[$Id]['Quantity']*$this->Items[$Id]['Price']);
+			$this->Items[$Id]['ValueP'] 	= $N1->formatCurrency();
+			$N2 = new \MVC\Library\Number($this->Items[$Id]['Price']);
+			$this->Items[$Id]['PriceP'] 	= $N2->formatCurrency();
+			
+			$this->Items[$Id]['URLPlusUpd']	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat/cong";
+			$this->Items[$Id]['URLMinusUpd']= "/gio-hang/" . $this->Items[$Id]['Id'] . "/cap-nhat/tru";
 		}
 	}
 	
@@ -61,6 +72,7 @@ class Cart extends Object{
 	}
 	
 	public function countItem(){
+		//if ()
 		$C = 0;
 		foreach ($this->Items as $Item)
 			$C = $C + $Item['Quantity'];
