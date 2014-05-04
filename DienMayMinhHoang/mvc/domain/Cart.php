@@ -35,7 +35,7 @@ class Cart extends Object{
 			// Add the array of info:
 			$this->Items[$Id] 				= $Info;
 			$this->Items[$Id]['Quantity'] 	= 1;
-			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];			
+			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Quantity']*$this->Items[$Id]['Price'];
 			
 			$N1 = new \MVC\Library\Number($this->Items[$Id]['Quantity']*$this->Items[$Id]['Price']);
 			$this->Items[$Id]['ValueP'] 	= $N1->formatCurrency();
@@ -71,12 +71,23 @@ class Cart extends Object{
 		}
 	}
 	
-	public function countItem(){
-		//if ()
+	public function countItem(){		
 		$C = 0;
 		foreach ($this->Items as $Item)
 			$C = $C + $Item['Quantity'];
 		return $C;
+	}
+	
+	public function getValue(){
+		$Value = 0;
+		foreach ($this->Items as $Item)
+			$Value += $Item['Quantity']*$Item['Price'];
+		return $Value;
+	}
+	
+	public function getValuePrint(){
+		$N = new \MVC\Library\Number( $this->getValue() );
+		return $N->formatCurrency();
 	}
 		
 	//-------------------------------------------------------------------------------

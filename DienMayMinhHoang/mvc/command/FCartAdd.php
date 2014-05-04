@@ -26,7 +26,8 @@
 				array(
 					"Id"	=> $Data[0],
 					"Name"	=> $Data[1],
-					"Price"	=> $Data[2]
+					"Price"	=> $Data[2],
+					"Image"	=> $Data[3]
 				)
 			);								
 			$Session->setCart($Cart);
