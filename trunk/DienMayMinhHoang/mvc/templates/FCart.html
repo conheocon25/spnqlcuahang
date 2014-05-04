@@ -34,7 +34,7 @@
 											<tr>
 												<td class="item-name-col">
 													<figure>
-														<a href="#"><img src="/mvc/templates/front/images/products/compare1.jpg" alt="Lowlands Lace Blouse"/></a>
+														<img tal:attributes="src php:Item['Image']" />
 													</figure>
 													<header class="item-name">
 														<span tal:content="php:Item['Name']"/>
@@ -57,9 +57,17 @@
 												<td class="item-total-col">
 													<span class="item-price-special" tal:content="php:Item['ValueP']" />
 													<div tal:attributes="alt php:Item['URLDel']" class="close-button" />
+												</td>												
+											</tr>											
+										</tbody>
+										<tfoot>
+											<tr>
+												<td colspan="3"><B>TỔNG CỘNG</B></td>
+												<td>													
+													<span class="item-price-special" tal:content="Cart/getValuePrint" />
 												</td>
 											</tr>
-										</tbody>
+										</tfoot>	
 									</table>																											
 								</div><!-- End .col-md-12 -->
 							</div><!-- End .row -->											

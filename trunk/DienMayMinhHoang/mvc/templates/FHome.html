@@ -70,6 +70,7 @@
 																	tal:attributes="	id SR/getIdResource;
 																						name SR/getResource/getName;
 																						price SR/getResource/getPrice2;
+																						image SR/getResource/getInfo/getImage1;
 																	"
 																>
 																	Mua ngay
@@ -119,7 +120,15 @@
 														<h3 class="item-name"><a tal:attributes="href OID/getProduct/getURLView" tal:content="OID/getProduct/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
-																<span class="icon-cart-text">Mua ngay</span>
+																<span class="icon-cart-text"
+																	tal:attributes="	id 		OID/getProduct/getId;
+																						name 	OID/getProduct/getName;
+																						price 	OID/getProduct/getPrice2;
+																						image 	OID/getProduct/getInfo/getImage1;
+																	"
+																	>
+																	Mua ngay
+																</span>
 															</a>
 															<div class="item-action-inner">
 																<a href="#" class="icon-button icon-like">Favourite</a>
@@ -165,7 +174,15 @@
 														<h3 class="item-name"><a tal:attributes="href OED/getProduct/getURLView" tal:content="OED/getProduct/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
-																<span class="icon-cart-text">Mua ngay</span>
+																<span class="icon-cart-text"
+																	tal:attributes="	id 		OED/getProduct/getId;
+																						name 	OED/getProduct/getName;
+																						price 	OED/getProduct/getPrice2;
+																						image 	OED/getProduct/getInfo/getImage1;
+																	"
+																>
+																	Mua ngay
+																</span>
 															</a>
 															<div class="item-action-inner">
 																<a href="#" class="icon-button icon-like">Favourite</a>
@@ -285,14 +302,16 @@
 					var Data 	= [];
 					Data[0]		= $(this).attr('id');
 					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');					
+					Data[2]		= $(this).attr('price');
+					Data[3]		= $(this).attr('image');
+					
 					var URL = "/gio-hang/them";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){
-							//location.reload();
+							location.reload();
 						}
 					});
 				

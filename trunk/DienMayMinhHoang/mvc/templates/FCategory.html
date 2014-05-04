@@ -119,7 +119,7 @@
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
 															<li tal:repeat="Category2 Category1/getCategoryAll">
-																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (1)</a>
+																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (<span tal:content="Category2/getProductAll/count"/>)</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->
