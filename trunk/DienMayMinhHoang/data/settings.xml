@@ -15,7 +15,11 @@
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
+		
 		<command name="FBookmark" 		type="public"><view>FBookmark</view></command>
+		<command name="FBookmarkAdd" 	type="public"><view>FBookmarkAdd</view></command>
+		<command name="FBookmarkDel" 	type="public"><view>FBookmarkDel</view></command>
+		
 		<command name="FCart" 			type="public"><view>FCart</view></command>
 		<command name="FCartAdd" 		type="public"><view>FCartAdd</view></command>
 		<command name="FCartDel" 		type="public"><view>FCartDel</view></command>
