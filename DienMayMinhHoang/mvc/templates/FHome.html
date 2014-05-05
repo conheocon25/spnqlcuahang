@@ -65,7 +65,7 @@
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href SR/getResource/getURLView" tal:content="SR/getResource/getName"/></h3>
 														<div class="item-action">
-															<a href="#" class="item-add-btn">
+															<div  class="item-add-btn">
 																<span class="icon-cart-text"
 																	tal:attributes="	id SR/getIdResource;
 																						name SR/getResource/getName;
@@ -75,10 +75,17 @@
 																>
 																	Mua ngay
 																</span>
-															</a>
+															</div>
 															<div class="item-action-inner">
-																<a href="#" class="icon-button icon-like">Ưa thích</a>
-																<a href="#" class="icon-button icon-compare">Thanh toán</a>
+																<span class="icon-button icon-like"
+																	tal:attributes="	id SR/getIdResource;
+																						name SR/getResource/getName;
+																						price SR/getResource/getPrice2;
+																						image SR/getResource/getInfo/getImage1;
+																	"
+																>
+																	Ưa thích
+																</span>
 															</div><!-- End .item-action-inner -->
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
@@ -298,7 +305,7 @@
 				},
 				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
 				
-				$(".icon-cart-text").click(function(){										
+				$(".icon-cart-text").click(function(){
 					var Data 	= [];
 					Data[0]		= $(this).attr('id');
 					Data[1]		= $(this).attr('name');
@@ -312,6 +319,24 @@
 						url: URL,
 						success: function(msg){
 							location.reload();
+						}
+					});				
+				});
+				
+				$(".icon-like").click(function(){
+					var Data 	= [];
+					Data[0]		= $(this).attr('id');
+					Data[1]		= $(this).attr('name');
+					Data[2]		= $(this).attr('price');
+					Data[3]		= $(this).attr('image');
+					
+					var URL = "/danh-dau/them";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							//location.reload();
 						}
 					});
 				

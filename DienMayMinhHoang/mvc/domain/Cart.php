@@ -30,7 +30,9 @@ class Cart extends Object{
 	
 	public function addItem($Id, $Info){
 		if (isset($this->Items[$Id])) {
-			$this->updateItem($Id, $this->Items[$Id]['Quantity'] + 1);
+			//$Count = $this->Items[$Id]['Quantity'] + 1;
+			$Count = 1;
+			$this->updateItem($Id, $Count);
 		} else {
 			// Add the array of info:
 			$this->Items[$Id] 				= $Info;

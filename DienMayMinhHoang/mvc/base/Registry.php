@@ -58,7 +58,18 @@
 			$Cart = self::instance()->get('cafe_current_cart');
 			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
 			return $Cart;
+		}
+		
+		//Quản lí đánh dấu
+		function setBookmark( \MVC\Domain\Cart $Cart ){
+			return self::instance()->set('cafe_current_bookmark', $Cart);
+		}
+		function getBookmark(){
+			$Cart = self::instance()->get('cafe_current_bookmark');
+			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
+			return $Cart;
 		}		
+		
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
