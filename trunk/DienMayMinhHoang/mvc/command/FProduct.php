@@ -28,11 +28,11 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "";
-			$ConfigName 	= $mConfig->findByName("NAME");
-			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
-			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
-			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
+			$Title 					= "";
+			$ConfigName 			= $mConfig->findByName("NAME");
+			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
+			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
+			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			

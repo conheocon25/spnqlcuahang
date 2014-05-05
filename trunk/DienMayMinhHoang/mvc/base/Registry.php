@@ -70,6 +70,23 @@
 			return $Cart;
 		}		
 		
+		function setCurrentTheme( $theme ) {
+			return self::instance()->set('cafe_current_theme', $theme);
+		}
+		
+		function getCurrentTheme(){
+			$Theme = self::instance()->get('cafe_current_theme');
+			if (!isset($Theme)){
+				$mConfig = new \MVC\Mapper\Config();
+				$Config = $mConfig->findByName("THEME");
+				if (!isset($Config))
+					return "grey";
+				else
+					return $Config->getValue();
+			}
+				
+			return self::instance()->get('cafe_current_theme');
+		}
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 

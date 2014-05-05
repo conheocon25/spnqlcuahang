@@ -18,12 +18,12 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mCategory1	= new \MVC\Mapper\Category1();
-			$mTag		= new \MVC\Mapper\Tag();
-			$mProduct	= new \MVC\Mapper\Product();
-			$mBranch 	= new \MVC\Mapper\Branch();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mCategory1		= new \MVC\Mapper\Category1();
+			$mTag			= new \MVC\Mapper\Tag();
+			$mProduct		= new \MVC\Mapper\Product();
+			$mBranch 		= new \MVC\Mapper\Branch();
 			$mManufacturer 	= new \MVC\Mapper\Manufacturer();
 						
 			//-------------------------------------------------------------
@@ -44,8 +44,8 @@
 			$ManufacturerAll 		= $mManufacturer->findAll();
 			
 			if (!isset($Page)) $Page = 1;
-			$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 6));
-			$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 6, $Category2->getURLView());
+			$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 9));
+			$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 9, $Category2->getURLView());
 			
 			$Title = mb_strtoupper($Category2->getName(), 'UTF8');
 			$Navigation = array(

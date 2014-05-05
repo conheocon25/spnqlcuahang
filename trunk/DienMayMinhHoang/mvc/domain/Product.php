@@ -69,6 +69,12 @@ class Product extends Object{
 		return $Manufacturer;
 	}
 	
+	function getTopSameManufacturer(){
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findByManufacturerTop( array($this->IdManufacturer) );
+		return $ProductAll;
+	}
+	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
 	
