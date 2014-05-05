@@ -16,11 +16,14 @@
 								<div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
 									<div id="product-image-carousel-container">
 										<ul id="product-carousel" class="celastislide-list">
-											<li class="active-slide"><a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL"><img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/></a></li>
-											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone2.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone2.jpg" alt="Phone photo 2"/></a></li>
-											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone3.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone3.jpg" alt="Phone photo 3"/></a></li>
-											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone4.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone4.jpg" alt="Phone photo 4"/></a></li>
-											<li><a data-rel='prettyPhoto' href="/mvc/templates/front/images/products/big-phone5.jpg"><img src="/mvc/templates/front/images/products/thumbnails/phone5.jpg" alt="Phone photo 4"/></a></li>
+											<li class="active-slide">
+												<a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL"><img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/></a>
+											</li>
+											<li tal:repeat="Image Product/getImageAll">
+												<a data-rel='prettyPhoto' tal:attributes="href Image/getURL">
+													<img tal:attributes="src Image/getURL"/>
+												</a>
+											</li>
 										</ul><!-- End product-carousel -->
 									</div>
 									<div id="product-image-container">
@@ -40,7 +43,7 @@
 											<div class="ratings-result" data-result="70"></div>
 										</div><!-- End .ratings -->
 										<span class="ratings-amount separator">
-											3 Đánh giá
+											1 Đánh giá
 										</span>
 										<span class="separator">|</span>
 										<a href="#review" class="rate-this">Thêm đánh giá</a>
@@ -61,7 +64,15 @@
 											<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
 											<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
 										</div>
-										<button class="btn btn-custom-2">THÊM VÀO GIỎ</button>
+										<button class="btn btn-custom-2 icon-cart-text"
+											tal:attributes="	id 		Product/getId;
+																name 	Product/getName;
+																price 	Product/getPrice2;
+																image 	Product/getInfo/getImage1;
+															"
+										>
+											THÊM VÀO GIỎ
+										</button>
 									</div><!-- .product-add -->
 									<div class="md-margin"></div><!-- Space -->
 									<div class="product-extra clearfix">
@@ -121,28 +132,24 @@
 							<div class="lg-margin2x"></div><!-- Space -->
 							<div class="purchased-items-container carousel-wrapper">
 								<header class="content-title">
-									<div class="title-bg">
-										<h2 class="title">Sản phẩm đồng giá</h2>
-									</div><!-- End .title-bg -->
+									<div class="title-bg"> <h2 class="title">Sản phẩm cùng hãng</h2></div>
 								</header>
 								<div class="carousel-controls">
 									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div><!-- End .carousel-prev -->
 									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
 								</div><!-- End .carousel-controllers -->
 								<div class="purchased-items-slider owl-carousel">
-									<div class="item">
+									<div class="item" tal:repeat="P1 Product/getTopSameManufacturer">
 										<div class="item-image-container">
-											<figure>
-												<a href="product.html">
-													<img src="/mvc/templates/front/images/products/item3.jpg" alt="item3" class="item-image"/>
-													<img src="/mvc/templates/front/images/products/item3-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
+											<figure>												
+												<a tal:attributes="href P1/getURLView">
+													<img tal:attributes="src P1/getInfo/getImage1" class="item-image"/>
+													<img tal:attributes="src P1/getInfo/getImage2" class="item-image-hover"/>
 												</a>
 											</figure>
-											<div class="item-price-container">
-												<span class="item-price">$160<span class="sub-price">.99</span></span>
-											</div>
-											<span class="new-rect">New</span>
-											<span class="discount-rect">-10%</span>
+											<div class="item-price-container">												
+												<span class="item-price" tal:content="P1/getPrice2Print"/>
+											</div>											
 										</div><!-- End .item-image -->
 										<div class="item-meta-container">
 											<div class="ratings-container">
@@ -150,13 +157,13 @@
 													<div class="ratings-result" data-result="95"></div>
 												</div><!-- End .ratings -->
 												<span class="ratings-amount">
-													1 Reviews
+													1 đánh giá
 												</span>
 											</div><!-- End .rating-container -->
-											<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
+											<h3 class="item-name"><a href="product.html" tal:content="P1/getName"/></h3>
 											<div class="item-action">
 												<a href="#" class="item-add-btn">
-													<span class="icon-cart-text">Add to Cart</span>
+													<span class="icon-cart-text">Thêm vào giỏ</span>
 												</a>
 												<div class="item-action-inner">
 													<a href="#" class="icon-button icon-like">Favourite</a>
@@ -165,165 +172,8 @@
 											</div><!-- End .item-action -->
 										</div><!-- End .item-meta-container --> 
 									</div><!-- End .item -->
-									<div class="item">
-										<div class="item-image-container">
-										<figure>
-										<a href="product.html">
-										<img src="/mvc/templates/front/images/products/phone3.jpg" alt="Phone 3" class="item-image"/>
-										<img src="/mvc/templates/front/images/products/phone3-hover.jpg" alt="Phone 3 Hover" class="item-image-hover"/>
-										</a>
-										</figure>
-										<div class="item-price-container">
-										<span class="item-price">$99<span class="sub-price">.75</span></span>
-										</div>
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-										<div class="ratings-container">
-										</div><!-- End .rating-container -->
-										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
-										<div class="item-action">
-										<a href="#" class="item-add-btn">
-										<span class="icon-cart-text">Add to Cart</span>
-										</a>
-										<div class="item-action-inner">
-										<a href="#" class="icon-button icon-like">Favourite</a>
-										<a href="#" class="icon-button icon-compare">Checkout</a>
-										</div><!-- End .item-action-inner -->
-										</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-									<div class="item">
-										<div class="item-image-container">
-										<figure>
-										<a href="product.html">
-										<img src="/mvc/templates/front/images/products/headphones1.jpg" alt="Headphones 1" class="item-image"/>
-										<img src="/mvc/templates/front/images/products/headphones1-hover.jpg" alt="Headphones 1 Hover" class="item-image-hover"/>
-										</a>
-										</figure>
-										<div class="item-price-container">
-										<span class="item-price">$79<span class="sub-price">.99</span></span>
-										</div>
-										<span class="new-rect">New</span>
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-										<div class="ratings-container">
-										</div><!-- End .rating-container -->
-										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
-										<div class="item-action">
-										<a href="#" class="item-add-btn">
-										<span class="icon-cart-text">Add to Cart</span>
-										</a>
-										<div class="item-action-inner">
-										<a href="#" class="icon-button icon-like">Favourite</a>
-										<a href="#" class="icon-button icon-compare">Checkout</a>
-										</div><!-- End .item-action-inner -->
-										</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-									<div class="item">
-										<div class="item-image-container">
-										<figure>
-										<a href="product.html">
-										<img src="/mvc/templates/front/images/products/phone5.jpg" alt="item3" class="item-image"/>
-										<img src="/mvc/templates/front/images/products/phone5-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
-										</a>
-										</figure>
-										<div class="item-price-container">
-										<span class="old-price">$300</span>
-										<span class="item-price">$175</span>
-										</div>
-										<span class="new-rect">New</span>
-										<span class="discount-rect">-35%</span>
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-										<div class="ratings-container">
-										<div class="ratings">
-										<div class="ratings-result" data-result="70"></div>
-										</div><!-- End .ratings -->
-										<span class="ratings-amount">
-										7 Reviews
-										</span>
-										</div><!-- End .rating-container -->
-										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
-										<div class="item-action">
-										<a href="#" class="item-add-btn">
-										<span class="icon-cart-text">Add to Cart</span>
-										</a>
-										<div class="item-action-inner">
-										<a href="#" class="icon-button icon-like">Favourite</a>
-										<a href="#" class="icon-button icon-compare">Checkout</a>
-										</div><!-- End .item-action-inner -->
-										</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-									<div class="item">
-										<div class="item-image-container">
-										<figure>
-										<a href="product.html">
-										<img src="/mvc/templates/front/images/products/item4.jpg" alt="item3" class="item-image"/>
-										<img src="/mvc/templates/front/images/products/item4-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
-										</a>
-										</figure>
-										<div class="item-price-container">
-										<span class="item-price">$180<span class="sub-price">.99</span></span>
-										</div>
-										<span class="new-rect">New</span>
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-										<div class="ratings-container">
-										<div class="ratings">
-										<div class="ratings-result" data-result="95"></div>
-										</div><!-- End .ratings -->
-										<span class="ratings-amount">
-										2 Reviews
-										</span>
-										</div><!-- End .rating-container -->
-										<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
-										<div class="item-action">
-										<a href="#" class="item-add-btn">
-										<span class="icon-cart-text">Add to Cart</span>
-										</a>
-										<div class="item-action-inner">
-										<a href="#" class="icon-button icon-like">Favourite</a>
-										<a href="#" class="icon-button icon-compare">Checkout</a>
-										</div><!-- End .item-action-inner -->
-										</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-									<div class="item">
-										<div class="item-image-container">
-											<figure>
-												<a href="product.html">
-													<img src="/mvc/templates/front/images/products/item2.jpg" alt="item3" class="item-image"/>
-													<img src="/mvc/templates/front/images/products/item2-hover.jpg" alt="item3 Hover" class="item-image-hover"/>
-												</a>
-											</figure>
-											<div class="item-price-container">
-												<span class="item-price">$89<span class="sub-price">.75</span></span>
-											</div>
-											<span class="new-rect">New</span>
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-											<div class="ratings-container">
-												<div class="ratings">
-													<div class="ratings-result" data-result="95"></div>
-												</div><!-- End .ratings -->
-												<span class="ratings-amount">
-													4 Reviews
-												</span>
-											</div><!-- End .rating-container -->
-											<h3 class="item-name"><a href="product.html">Lorem Ipsum Dolla</a></h3>
-											<div class="item-action">
-												<a href="#" class="item-add-btn">
-													<span class="icon-cart-text">Add to Cart</span>
-												</a>
-												<div class="item-action-inner">
-													<a href="#" class="icon-button icon-like">Favourite</a>
-													<a href="#" class="icon-button icon-compare">Checkout</a>
-												</div><!-- End .item-action-inner -->
-											</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
+																		
+																		
 								</div><!--purchased-items-slider -->
 							</div><!-- End .purchased-items-container -->
 						</div><!-- End .col-md-12 -->
@@ -362,6 +212,24 @@
 						borderSize: 4,
 						borderColor: "#999"
 					});
+				});
+				
+				$(".icon-cart-text").click(function(){
+					var Data 	= [];
+					Data[0]		= $(this).attr('id');
+					Data[1]		= $(this).attr('name');
+					Data[2]		= $(this).attr('price');
+					Data[3]		= $(this).attr('image');
+					
+					var URL = "/gio-hang/them";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});				
 				});
 
 			});
