@@ -82,6 +82,12 @@ class Category1 extends Object{
 		return $ProductAll;
 	}
 	
+	function getProductManufacturerAll($IdManufacturer){
+		$mProduct = new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findByCategoryManufacturer(array($this->getId(), $IdManufacturer));	
+		return $ProductAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
@@ -91,6 +97,9 @@ class Category1 extends Object{
 		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
+	function getURLViewManufacturer($IdManufacturer){
+		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey()."/".$IdManufacturer."/m";
+	}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

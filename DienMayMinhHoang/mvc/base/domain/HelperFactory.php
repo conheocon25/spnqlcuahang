@@ -4,6 +4,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Branch.php" 			);	
 	
 	require_once( "mvc/mapper/User.php" 			);	
+	require_once( "mvc/mapper/Feed.php" 			);	
+	
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Category1.php" 		);
 		

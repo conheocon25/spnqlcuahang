@@ -24,7 +24,12 @@
 		<command name="FCartAdd" 		type="public"><view>FCartAdd</view></command>
 		<command name="FCartDel" 		type="public"><view>FCartDel</view></command>
 		<command name="FCartUpd" 		type="public"><view>FCartUpd</view></command>
-				
+		
+		<command name="FSubcribe" 		type="public">
+			<view>FSubcribe</view>
+			<status value="CMD_OK"><forward>FHome</forward></status>
+		</command>
+		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
