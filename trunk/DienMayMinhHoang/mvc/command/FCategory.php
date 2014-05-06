@@ -24,8 +24,7 @@
 			$mTag			= new \MVC\Mapper\Tag();
 			$mProduct		= new \MVC\Mapper\Product();
 			$mBranch 		= new \MVC\Mapper\Branch();
-			$mManufacturer 	= new \MVC\Mapper\Manufacturer();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -41,8 +40,9 @@
 			$Category2 		= $mCategory1->findByKey($KCategory2);
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
-			$ManufacturerAll 		= $mManufacturer->findAll();
 			
+			$PMAll 			= $mProduct->findManufacturer1(array($Category2->getId()));
+						
 			if (!isset($Page)) $Page = 1;
 			$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 9));
 			$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 9, $Category2->getURLView());
@@ -67,14 +67,15 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
+			
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("Category1", 			$Category1);			
 			$request->setObject("Category2", 			$Category2);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("ProductAll", 			$ProductAll);
 			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
-			
+			$request->setObject("PMAll", 				$PMAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -56,6 +56,23 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				group by idmanufacturer
 		", $tblProduct);
 		
+		$findManufacturer1Stmt 		= sprintf("
+				select 
+					1 as id,
+					1 as idsupplier,
+					1 as idcategory,
+					idmanufacturer,
+					'abc' as name,
+					'123' as code,
+					0	as price1,
+					0	as price2,
+					'abc' as `key`
+				from %s
+				where
+					idcategory=?
+				group by idmanufacturer
+		", $tblProduct);
+		
 		$findByCategoryPageStmt = sprintf("
 							SELECT *
 							FROM %s
@@ -96,6 +113,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByTopStmt 		= self::$PDO->prepare($findByTopStmt);
 		$this->findByManufacturerTopStmt 		= self::$PDO->prepare($findByManufacturerTopStmt);
 		$this->findManufacturerStmt = self::$PDO->prepare($findManufacturerStmt);
+		$this->findManufacturer1Stmt = self::$PDO->prepare($findManufacturer1Stmt);
 		
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByPage1Stmt 		= self::$PDO->prepare($findByPage1Stmt);
@@ -225,6 +243,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 	function findManufacturer( $values ) {
 		$this->findManufacturerStmt->execute( $values );
         return new ProductCollection( $this->findManufacturerStmt->fetchAll(), $this );
+    }
+	
+	function findManufacturer1( $values ) {
+		$this->findManufacturer1Stmt->execute( $values );
+        return new ProductCollection( $this->findManufacturer1Stmt->fetchAll(), $this );
     }
 	
 }

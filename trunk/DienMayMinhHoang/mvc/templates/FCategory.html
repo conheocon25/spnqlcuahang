@@ -75,12 +75,9 @@
 																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
-														<div class="item-price-container">
-															<span class="old-price" tal:content="Product/getPrice1Print"/>
+														<div class="item-price-container">															
 															<span class="item-price" tal:content="Product/getPrice2Print" />
-														</div>
-														<span class="new-rect">HOT</span>
-														<span class="discount-rect">-15%</span>
+														</div>														
 													</div><!-- End .item-image -->
 													<div class="item-meta-container">
 														<div class="ratings-container">
@@ -133,8 +130,10 @@
 												<div id="category-list-2" class="collapse in">
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="Manufacturer ManufacturerAll">
-																<a href="#"><span tal:content="Manufacturer/getName"/> (50)</a>
+															<li tal:repeat="PM PMAll">
+																<a href="#">
+																	<span tal:content="PM/getManufacturer/getName"/>
+																</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->
