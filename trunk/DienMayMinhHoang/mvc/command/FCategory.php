@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$KCategory1 	= 	$request->getProperty('KCategory1');
 			$KCategory2 	= 	$request->getProperty('KCategory2');
+			$IdManufacturer = 	$request->getProperty('IdManufacturer');
 			$Page 			= 	$request->getProperty('Page');
 						
 			//-------------------------------------------------------------
@@ -44,8 +45,14 @@
 			$PMAll 			= $mProduct->findManufacturer1(array($Category2->getId()));
 						
 			if (!isset($Page)) $Page = 1;
-			$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 9));
-			$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 9, $Category2->getURLView());
+			
+			if (!isset($IdManufacturer)){
+				$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 9));
+				$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 9, $Category2->getURLView());
+			}else{
+				$ProductAll 	= $mProduct->findByCategoryManufacturerPage(array($Category2->getId(), $IdManufacturer, $Page, 9));
+				$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductManufacturerAll($IdManufacturer)->count(), 9, $Category2->getURLViewManufacturer($IdManufacturer));
+			}
 			
 			$Title = mb_strtoupper($Category2->getName(), 'UTF8');
 			$Navigation = array(

@@ -131,7 +131,7 @@
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
 															<li tal:repeat="PM PMAll">
-																<a href="#">
+																<a tal:attributes="href php:Category2->getURLViewManufacturer( PM->getIdManufacturer() )">
 																	<span tal:content="PM/getManufacturer/getName"/>
 																</a>
 															</li>

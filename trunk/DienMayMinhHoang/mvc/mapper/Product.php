@@ -35,8 +35,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProduct);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblProduct);
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by idcategory, name", $tblProduct);
-		
-		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
+				
 		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
 		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 8", $tblProduct);
 		$findManufacturerStmt 		= sprintf("
@@ -73,6 +72,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				group by idmanufacturer
 		", $tblProduct);
 		
+		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
 		$findByCategoryPageStmt = sprintf("
 							SELECT *
 							FROM %s
@@ -80,6 +80,18 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 							ORDER BY name
 							LIMIT :start,:max
 				", $tblProduct);
+
+		$findByCategoryManufacturerStmt = sprintf("select * from %s where idcategory=? AND idmanufacturer=? order by idcategory, name", $tblProduct);
+		$findByCategoryManufacturerPageStmt = sprintf("
+							SELECT *
+							FROM %s
+							WHERE 
+								idcategory=:idcategory AND
+								idmanufacturer=:idmanufacturer
+							ORDER BY name
+							LIMIT :start,:max
+				", $tblProduct);
+				
 				
 		$findByPageStmt = sprintf("
 							SELECT *
@@ -108,8 +120,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
 		$this->findBySupplierManufacturerStmt 	= self::$PDO->prepare($findBySupplierManufacturerStmt);
-		
-		$this->findByCategoryStmt 	= self::$PDO->prepare($findByCategoryStmt);
+				
 		$this->findByTopStmt 		= self::$PDO->prepare($findByTopStmt);
 		$this->findByManufacturerTopStmt 		= self::$PDO->prepare($findByManufacturerTopStmt);
 		$this->findManufacturerStmt = self::$PDO->prepare($findManufacturerStmt);
@@ -120,7 +131,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
 		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
 		
-		$this->findByCategoryPageStmt 		= self::$PDO->prepare($findByCategoryPageStmt);
+		$this->findByCategoryStmt 					= self::$PDO->prepare($findByCategoryStmt);
+		$this->findByCategoryPageStmt 				= self::$PDO->prepare($findByCategoryPageStmt);
+		
+		$this->findByCategoryManufacturerStmt 		= self::$PDO->prepare($findByCategoryManufacturerStmt);
+		$this->findByCategoryManufacturerPageStmt 	= self::$PDO->prepare($findByCategoryManufacturerPageStmt);
     } 
     function getCollection( array $raw ) {return new ProductCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -187,11 +202,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         $this->findByTopStmt->execute( $values );
         return new ProductCollection( $this->findByTopStmt->fetchAll(), $this );
     }
-	
-	function findByCategory(array $values) {
-        $this->findByCategoryStmt->execute( $values );
-        return new ProductCollection( $this->findByCategoryStmt->fetchAll(), $this );
-    }
+		
 	
 	function findByPage( $values ){
 		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
@@ -210,12 +221,31 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         return new ProductCollection( $this->findByPage1Stmt->fetchAll(), $this );
     }
 	
+	function findByCategory(array $values) {
+        $this->findByCategoryStmt->execute( $values );
+        return new ProductCollection( $this->findByCategoryStmt->fetchAll(), $this );
+    }
+	
 	function findByCategoryPage( $values ){		
 		$this->findByCategoryPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->execute();
         return new ProductCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
+    }
+	
+	function findByCategoryManufacturer(array $values) {
+        $this->findByCategoryManufacturerStmt->execute( $values );
+        return new ProductCollection( $this->findByCategoryManufacturerStmt->fetchAll(), $this );
+    }
+	
+	function findByCategoryManufacturerPage( $values ){
+		$this->findByCategoryManufacturerPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
+		$this->findByCategoryManufacturerPageStmt->bindValue(':idmanufacturer', $values[1], \PDO::PARAM_INT);
+		$this->findByCategoryManufacturerPageStmt->bindValue(':start', ((int)($values[2])-1)*(int)($values[3]), \PDO::PARAM_INT);
+		$this->findByCategoryManufacturerPageStmt->bindValue(':max', (int)($values[3]), \PDO::PARAM_INT);
+		$this->findByCategoryManufacturerPageStmt->execute();
+        return new ProductCollection( $this->findByCategoryManufacturerPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	
@@ -233,7 +263,6 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByNameStmt->execute();
         return new ProductCollection( $this->findByNameStmt->fetchAll(), $this );
     }	
-	
 	
 	function findByManufacturerTop( $values ) {
 		$this->findByManufacturerTopStmt->execute( $values );

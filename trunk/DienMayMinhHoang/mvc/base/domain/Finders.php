@@ -13,6 +13,8 @@ interface Finder {
 interface BranchFinder  		extends Finder {}
 
 interface UserFinder  			extends Finder {}
+interface FeedFinder  			extends Finder {}
+
 interface CategoryFinder  		extends Finder {}
 interface Category1Finder  		extends Finder {}
 interface ProductImageFinder 	extends Finder {}
