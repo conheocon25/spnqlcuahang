@@ -156,7 +156,7 @@ class Supplier extends Object{
 		return $ProductAll;
 	}
 	
-	//Lấy về danh sách các tài nguyên nhà cung cấp có
+	//Lấy về danh sách các nhà sản xuất
 	function getManufacturerAll() {
 		$mProduct 	= new \MVC\Mapper\Product();
 		$ProductAll = $mProduct->findManufacturer(array($this->getId()));

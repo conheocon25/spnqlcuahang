@@ -58,7 +58,7 @@ class Manufacturer extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){
+	function getURLView($Category){
 		return "#";
 	}
 			
