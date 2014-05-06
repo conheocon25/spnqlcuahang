@@ -167,13 +167,11 @@
 							<div id="quick-access">
 								<div class="dropdown-cart-menu-container pull-right">
 									<div class="btn-group dropdown-cart">
-										<button type="button" class="btn btn-custom dropdown-toggle">
-											<a href="/gio-hang">
-												<span class="cart-menu-icon" />
-												<span tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCart()->countItem()" />
-												sản phẩm <span class="drop-price"> được chọn</span>
-											</a>
-										</button>										
+										<a href="/gio-hang" class="btn btn-custom dropdown-toggle">
+											<span class="cart-menu-icon" />
+											<span tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCart()->countItem()" />
+											sản phẩm <span class="drop-price"> được chọn</span>
+										</a>									
 									</div><!-- End .btn-group -->
 								</div><!-- End .dropdown-cart-menu-container -->
 								<form class="form-inline quick-search-form" role="form" action="#">
