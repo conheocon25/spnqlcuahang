@@ -5,13 +5,12 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
-			<ul style="display: block;">
-				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
-					<a tal:attributes="href Supplier1/getURLProduct">
-						<i class="glyphicons-truck"/><span tal:content="Supplier1/getName"/>
+			<ul style="display: block;">				
+				<li tal:repeat="P1 Supplier/getManufacturerAll" tal:attributes="class php: P1->getIdManufacturer()==IdManufacturer?'active':''">
+					<a tal:attributes="href php:Supplier->getURLSettingManufacturer(P1->getIdManufacturer())">
+						<i class="glyphicons-truck"/><span tal:content="P1/getManufacturer/getName"/>
 					</a>
 				</li>
 			</ul>
@@ -198,11 +197,17 @@
 					
 				</div>
 			</div>
-		</div>
+		</div>		
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			
+			//Mặc định chọn nhà sản xuất hiện tại
+			//alert($("#IdManufacturer").attr('alt'));
+			$('#IdManufacturer1').select2('val', '20');
+			//$('#IdManufacturer2').select2('val', $(this).attr('idmanufacturer'));
+			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
