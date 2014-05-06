@@ -150,6 +150,19 @@ class Supplier extends Object{
 		return $ProductAll;
 	}
 	
+	function getProductManufacturer($IdManufacturer) {
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findBySupplierManufacturer(array($this->getId(), $IdManufacturer));
+		return $ProductAll;
+	}
+	
+	//Lấy về danh sách các tài nguyên nhà cung cấp có
+	function getManufacturerAll() {
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findManufacturer(array($this->getId()));
+		return $ProductAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
@@ -161,7 +174,10 @@ class Supplier extends Object{
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
 	function getURLProduct(){return "/admin/setting/supplier/".$this->getId();}
-		
+	function getURLSettingManufacturer($IdManufacturer){
+		return "/admin/setting/supplier/".$this->getId()."/".$IdManufacturer."/manufacturer";
+	}
+	
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER

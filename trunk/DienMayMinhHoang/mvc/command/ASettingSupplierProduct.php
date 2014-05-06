@@ -11,8 +11,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page 		= $request->getProperty('Page');
-			$IdSupplier = $request->getProperty('IdSupplier');
+			$Page 			= $request->getProperty('Page');
+			$IdSupplier 	= $request->getProperty('IdSupplier');
+			$IdManufacturer = $request->getProperty('IdManufacturer');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -26,10 +27,15 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
+			$Supplier = $mSupplier->find($IdSupplier);			
+			if (!isset($IdManufacturer)){
+				$P1All = $Supplier->getManufacturerAll();
+				$IdManufacturer = $P1All->current()->getId();
+			}
+			
 			$SupplierAll 		= $mSupplier->findAll();
 			$ManufacturerAll 	= $mManufacturer->findAll();
 						
-			$Supplier = $mSupplier->find($IdSupplier);			
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
@@ -39,15 +45,20 @@
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 			
-			$ProductAll1 = $mProduct->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Supplier->getProductAll()->count(), $Config->getValue(), $Supplier->getURLProduct() );
+			$ProductAll1 = $mProduct->findByPage1(array($IdSupplier, $IdManufacturer, $Page, $Config->getValue() ));
+			
+			$PN = new \MVC\Domain\PageNavigation( 
+					$Supplier->getProductManufacturer($IdManufacturer)->count(), 
+					$Config->getValue(), 
+					$Supplier->getURLSettingManufacturer($IdManufacturer) 
+				);
 			$CategoryAll1 = $mCategory1->findAll();			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Product');
+			$request->setProperty('IdManufacturer'	, $IdManufacturer);
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('Navigation'	, $Navigation);
 			
