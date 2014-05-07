@@ -545,9 +545,11 @@
 	<div metal:define-macro="AdsService" class="widget banner-slider-container">
 		<div class="banner-slider flexslider">
 			<ul class="banner-slider-list clearfix">
-				<li><a href="#"><img src="/mvc/templates/front/images/banner1.jpg" alt="Banner 1"/></a></li>
-				<li><a href="#"><img src="/mvc/templates/front/images/banner2.jpg" alt="Banner 2"/></a></li>
-				<li><a href="#"><img src="/mvc/templates/front/images/banner3.jpg" alt="Banner 3"/></a></li>
+				<li tal:repeat="Slide Presentation2/getSlideAll">
+					<a tal:attributes="href Slide/getURL">
+						<span tal:content="structure Slide/getNote" />
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

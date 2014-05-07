@@ -155,7 +155,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 							LIMIT :start,:max
 				", $tblProduct);
 		
-		$findBySaveManufacturerStmt = sprintf("			
+		$findBySaveManufacturerStmt = sprintf("
 			SELECT 
 				P.id as id,
 				P.idsupplier as idsupplier,
@@ -261,6 +261,16 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblProduct);
 		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblProduct);
 		
+		$findBySamePriceStmt = sprintf("
+					select * 
+					from %s P
+					where 
+						id<>?
+					order by	
+						abs(P.price2-?) 
+					limit 12	
+				", $tblProduct);
+		
 		//----------------------------------------------------------------------------------------
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
@@ -297,6 +307,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		
 		$this->findBySaveManufacturerStmt 			= self::$PDO->prepare($findBySaveManufacturerStmt);
 		$this->findBySaveManufacturerPageStmt 		= self::$PDO->prepare($findBySaveManufacturerPageStmt);
+		
+		$this->findBySamePriceStmt 					= self::$PDO->prepare($findBySamePriceStmt);
     } 
     function getCollection( array $raw ) {return new ProductCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -473,5 +485,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findBySaveManufacturerPageStmt->execute();
         return new ProductCollection( $this->findBySaveManufacturerPageStmt->fetchAll(), $this );
     }	
+	
+	function findBySamePrice( $values ){
+		$this->findBySamePriceStmt->execute( $values );
+        return new ProductCollection( $this->findBySamePriceStmt->fetchAll(), $this );
+    }
+	
 }
 ?>

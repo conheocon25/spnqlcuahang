@@ -11,17 +11,20 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-									
+			$IdTag = $request->getProperty('IdTag');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mPost 	= new \MVC\Mapper\Post();
+			$mTag 	= new \MVC\Mapper\Tag();
+			$mPT 	= new \MVC\Mapper\PostTag();
 			$mConfig= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$PostAll 		= $mPost->findAll();
+			$TagAll 	= $mTag->findAll();
+			$PTAll 		= $mPT->findByTag(array($IdTag));
 									
 			$Title = "BÀI VIẾT";
 			$Navigation = array(				
@@ -33,11 +36,13 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
+			$request->setProperty('IdTag'		, $IdTag);
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('PostAll'		, $PostAll);			
+			$request->setObject('TagAll'		, $TagAll);			
+			$request->setObject('PTAll'			, $PTAll);
 															
 			return self::statuses('CMD_DEFAULT');
 		}
