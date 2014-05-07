@@ -39,7 +39,9 @@ class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollecti
 class PostCollection 			extends Collection implements \MVC\Domain\PostCollection			{function targetClass(){return "\MVC\Domain\Post";			}}
 class PresentationCollection 	extends Collection implements \MVC\Domain\PresentationCollection	{function targetClass(){return "\MVC\Domain\Presentation";	}}
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
+
 class SaveCollection 			extends Collection implements \MVC\Domain\SaveCollection			{function targetClass(){return "\MVC\Domain\Save";			}}
 class SaveResourceCollection 	extends Collection implements \MVC\Domain\SaveResourceCollection	{function targetClass(){return "\MVC\Domain\SaveResource";	}}
+class SaveProductCollection 	extends Collection implements \MVC\Domain\SaveProductCollection		{function targetClass(){return "\MVC\Domain\SaveProduct";	}}
 
 ?>

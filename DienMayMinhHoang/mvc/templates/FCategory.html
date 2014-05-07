@@ -10,8 +10,7 @@
 		!-->
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
+			<section id="content">				
 				<div id="category-header">
 					<div class="row">
 						<div class="container" tal:content="structure Category2/getInfo" />
@@ -23,20 +22,7 @@
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
 									<div class="category-toolbar clearfix">
-										<div class="toolbox-filter clearfix">
-											<div class="sort-box">
-												<span class="separator">sắp xếp:</span>
-												<div class="btn-group select-dropdown">
-													<button type="button" class="btn select-btn">Vị trí</button>
-													<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-														<i class="fa fa-angle-down"></i>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">Thời gian</a></li>
-														<li><a href="#">Tên</a></li>
-													</ul>
-												</div>
-											</div>
+										<div class="toolbox-filter clearfix">											
 											<div class="view-box">
 												<a href="#" class="active icon-button icon-grid"><i class="fa fa-th-large"></i></a>
 												<a href="#" class="icon-button icon-list"><i class="fa fa-th-list"></i></a>
@@ -47,20 +33,7 @@
 												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
 													<a tal:attributes="href P/getURL" tal:content="P/getName" />
 												</li>
-											</ul>
-											<div class="view-count-box">
-												<span class="separator">xem:</span>
-												<div class="btn-group select-dropdown">
-													<button type="button" class="btn select-btn">10</button>
-													<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-														<i class="fa fa-angle-down"></i>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">15</a></li>
-														<li><a href="#">30</a></li>
-													</ul>
-												</div>
-											</div><!-- End .view-count-box -->
+											</ul>											
 										</div><!-- End .toolbox-pagination -->
 									</div><!-- End .category-toolbar -->
 									<div class="md-margin"></div><!-- .space -->

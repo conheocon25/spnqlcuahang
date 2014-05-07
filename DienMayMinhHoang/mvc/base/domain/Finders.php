@@ -47,4 +47,5 @@ interface PresentationFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
 interface SaveFinder 			extends Finder {}
 interface SaveResourceFinder 	extends Finder {}
+interface SaveProductFinder 	extends Finder {}
 ?>

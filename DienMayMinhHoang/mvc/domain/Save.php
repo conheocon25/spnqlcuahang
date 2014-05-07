@@ -64,10 +64,10 @@ class Save extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getSRAll(){
-		$mSR 	= new \MVC\Mapper\SaveResource();
-		$SRAll 	= $mSR->findBy(array($this->Id));
-		return $SRAll;
+	function getSPAll(){
+		$mSP 	= new \MVC\Mapper\SaveProduct();
+		$SPAll 	= $mSP->findBy(array($this->Id));
+		return $SPAll;
 	}
 	
 	//-------------------------------------------------------------------------------

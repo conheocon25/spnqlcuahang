@@ -38,6 +38,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Slide.php"			);
 	require_once( "mvc/mapper/Save.php"				);
 	require_once( "mvc/mapper/SaveResource.php"		);
+	require_once( "mvc/mapper/SaveProduct.php"		);
 }
 
 class HelperFactory {
