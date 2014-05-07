@@ -49,21 +49,20 @@
 									<div class="md-margin"></div><!-- .space -->
 									<div class="category-item-container">
 										<div class="row">
-											<div tal:repeat="SR Save/getSRAll" class="col-md-4 col-sm-6 col-xs-12">
+											<div tal:repeat="SP Save/getSPAll" class="col-md-4 col-sm-6 col-xs-12">
 												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href SR/getProduct/getURLView" tal:condition="SR/getProduct/getInfo">
-																<img tal:attributes="src SR/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src SR/getProduct/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href SP/getProduct/getURLView" tal:condition="SP/getProduct/getInfo">
+																<img tal:attributes="src SP/getProduct/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src SP/getProduct/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container">
-															<span class="old-price" tal:content="SR/getProduct/getPrice1Print"/>
-															<span class="item-price" tal:content="SR/getProduct/getPrice2Print" />
-														</div>
-														<span class="new-rect">HOT</span>
-														<span class="discount-rect">-15%</span>
+															<span class="old-price" tal:content="SP/getProduct/getPrice2Print"/>
+															<span class="item-price" tal:content="SP/getProduct/getPrice1Print" />
+														</div>														
+														<span class="discount-rect" tal:content="SP/getDiscountPrint"/>
 													</div><!-- End .item-image -->
 													<div class="item-meta-container">
 														<div class="ratings-container">
@@ -74,7 +73,7 @@
 																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href SR/getProduct/getURLView" tal:content="SR/getProduct/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href SP/getProduct/getURLView" tal:content="SP/getProduct/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
 																<span class="icon-cart-text">Mua ngay</span>
@@ -101,8 +100,10 @@
 												<div id="category-list-1" class="collapse in">
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="Category2 CategoryAll">
-																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (1)</a>
+															<li tal:repeat="SC Save/getSCAll">
+																<a tal:attributes="href SC/getCategory/getURLView"><span tal:content="SC/getCategory/getName"/> 
+																	(<span tal:content="php: Save->getSPCAll( SC->getIdCategory() )->count()"/>)
+																</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->
@@ -116,8 +117,8 @@
 												<div id="category-list-2" class="collapse in">
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="Manufacturer ManufacturerAll">
-																<a href="#"><span tal:content="Manufacturer/getName"/> (50)</a>
+															<li tal:repeat="PM PMAll">
+																<a href="#"><span tal:content="PM/getManufacturer/getName"/> (<span tal:content="php: Save->getSPMAll( PM->getIdManufacturer() )->count()"/>)</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->

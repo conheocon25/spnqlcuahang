@@ -39,7 +39,6 @@ interface PresentationCollection 		extends \Iterator {function add( Object $Pres
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 
 interface SaveCollection 				extends \Iterator {function add( Object $Save);			}
-interface SaveResourceCollection 		extends \Iterator {function add( Object $SaveResource);	}
 interface SaveProductCollection 		extends \Iterator {function add( Object $SaveProduct);	}
 
 ?>

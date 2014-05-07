@@ -41,7 +41,6 @@ class PresentationCollection 	extends Collection implements \MVC\Domain\Presenta
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
 
 class SaveCollection 			extends Collection implements \MVC\Domain\SaveCollection			{function targetClass(){return "\MVC\Domain\Save";			}}
-class SaveResourceCollection 	extends Collection implements \MVC\Domain\SaveResourceCollection	{function targetClass(){return "\MVC\Domain\SaveResource";	}}
 class SaveProductCollection 	extends Collection implements \MVC\Domain\SaveProductCollection		{function targetClass(){return "\MVC\Domain\SaveProduct";	}}
 
 ?>

@@ -70,6 +70,24 @@ class Save extends Object{
 		return $SPAll;
 	}
 	
+	function getSCAll(){
+		$mProduct 	= new \MVC\Mapper\Product();
+		$SCAll 		= $mProduct->findSaveCategory(array($this->Id));
+		return $SCAll;
+	}
+	
+	function getSPMAll($IdManufacturer){
+		$mProduct 		= new \MVC\Mapper\Product();
+		$ProductAll 	= $mProduct->findBySaveManufacturer(array($this->Id, $IdManufacturer));
+		return $ProductAll;
+	}
+	
+	function getSPCAll($IdCategory){
+		$mProduct 		= new \MVC\Mapper\Product();
+		$ProductAll 	= $mProduct->findBySaveCategory(array($this->Id, $IdCategory));
+		return $ProductAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

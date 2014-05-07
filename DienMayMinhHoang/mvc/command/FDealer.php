@@ -52,6 +52,8 @@
 			$SaveAll 		= $mSave->findAll();
 			$Save	 		= $SaveAll->current();
 			
+			$PMAll 			= $mProduct->findManufacturer2(array($Save->getId()));
+			
 			$TagAll 		= $mTag->findByPosition(array(1));
 									
 			$Title = "KHUYẾN MÃI";
@@ -79,6 +81,8 @@
 			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 						
 			$request->setObject("Save", 				$Save);
+			$request->setObject("PMAll", 				$PMAll);
+			
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 												

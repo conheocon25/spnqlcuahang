@@ -36,7 +36,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblProduct);
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by idcategory, name", $tblProduct);
 				
-		$findByTopStmt 		= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
+		$findByTopStmt 				= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
 		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 8", $tblProduct);
 		$findManufacturerStmt 		= sprintf("
 				select 
@@ -72,6 +72,79 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				group by idmanufacturer
 		", $tblProduct);
 		
+		$findManufacturer2Stmt 		= sprintf("
+				select 
+					1 as id,
+					1 as idsupplier,
+					1 as idcategory,
+					idmanufacturer,
+					'abc' as name,
+					'123' as code,
+					0	as price1,
+					0	as price2,
+					'abc' as `key`
+				from 
+					(
+						shopc_save S INNER JOIN 
+						shopc_save_product SP 
+						ON S.id = SP.idsave
+					) INNER JOIN
+						shopc_product P
+					ON 
+						P.id = SP.idproduct	
+				where					
+					S.id=?
+				group by idmanufacturer
+		", $tblProduct);
+		
+		$findSaveCategoryStmt 		= sprintf("
+				select 
+					1 as id,
+					1 as idsupplier,
+					P.idcategory as idcategory,
+					1 as idmanufacturer,
+					'abc' as name,
+					'123' as code,
+					0	as price1,
+					0	as price2,
+					'abc' as `key`
+				from 
+					(
+						shopc_save S INNER JOIN 
+						shopc_save_product SP 
+						ON S.id = SP.idsave
+					) INNER JOIN
+						shopc_product P
+					ON 
+						P.id = SP.idproduct	
+				where					
+					S.id=?
+				group by P.idcategory
+		", $tblProduct);
+		
+		$findBySaveCategoryStmt = sprintf("
+				select 
+					P.id as id,
+					P.idcategory as idcategory,
+					P.idmanufacturer as idmanufacturer,
+					P.name as name,
+					P.code as code,
+					P.price1 as price1,
+					P.price2 as price2,
+					P.key as `key`
+				from 
+					(
+						shopc_save S INNER JOIN 
+						shopc_save_product SP 
+						ON S.id = SP.idsave
+					) INNER JOIN
+						shopc_product P
+					ON 
+						P.id = SP.idproduct	
+				where					
+					S.id=? AND P.idcategory = ?
+		", $tblProduct);
+			
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
 		$findByCategoryPageStmt = sprintf("
 							SELECT *
@@ -80,7 +153,55 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 							ORDER BY name
 							LIMIT :start,:max
 				", $tblProduct);
-
+		
+		$findBySaveManufacturerStmt = sprintf("			
+			SELECT 
+				P.id as id,
+				P.idcategory as idcategory,
+				P.idmanufacturer as idmanufacturer,
+				P.name as name,
+				P.code as code,
+				P.price1 as price1,
+				P.price2 as price2,
+				P.key as `key`				
+			FROM
+				(
+					shopc_save S INNER JOIN 
+					shopc_save_product SP 
+					ON S.id = SP.idsave
+				) INNER JOIN
+					shopc_product P
+				ON 
+					P.id = SP.idproduct	
+			WHERE
+				S.id = ? AND P.idmanufacturer = ?
+		", $tblProduct);
+		
+		$findBySaveManufacturerPageStmt = sprintf("
+			SELECT 
+				P.id as id,
+				P.idcategory as idcategory,
+				P.idmanufacturer as idmanufacturer,
+				P.name as name,
+				P.code as code,
+				P.price1 as price1,
+				P.price2 as price2,
+				P.key as `key`				
+			FROM
+				(
+					shopc_save S INNER JOIN 
+					shopc_save_product SP 
+					ON S.id = SP.idsave
+				) INNER JOIN
+					shopc_product P
+				ON 
+					P.id = SP.idproduct	
+			WHERE
+				S.id = :idsave AND P.idmanufacturer = :idmanufacturer
+			LIMIT :start,:max	
+		", $tblProduct);
+		
+		
 		$findByCategoryManufacturerStmt = sprintf("select * from %s where idcategory=? AND idmanufacturer=? order by idcategory, name", $tblProduct);
 		$findByCategoryManufacturerPageStmt = sprintf("
 							SELECT *
@@ -112,30 +233,42 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblProduct);
 		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblProduct);
-				
+		
+		//----------------------------------------------------------------------------------------
+		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
         $this->updateStmt 			= self::$PDO->prepare($updateStmt);
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
-		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
-		$this->findBySupplierManufacturerStmt 	= self::$PDO->prepare($findBySupplierManufacturerStmt);
-				
-		$this->findByTopStmt 		= self::$PDO->prepare($findByTopStmt);
-		$this->findByManufacturerTopStmt 		= self::$PDO->prepare($findByManufacturerTopStmt);
-		$this->findManufacturerStmt = self::$PDO->prepare($findManufacturerStmt);
-		$this->findManufacturer1Stmt = self::$PDO->prepare($findManufacturer1Stmt);
+						
+		$this->findByTopStmt 						= self::$PDO->prepare($findByTopStmt);
+		$this->findByManufacturerTopStmt 			= self::$PDO->prepare($findByManufacturerTopStmt);
 		
-		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
-		$this->findByPage1Stmt 		= self::$PDO->prepare($findByPage1Stmt);
-		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);
-		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
+		$this->findBySupplierStmt 					= self::$PDO->prepare($findBySupplierStmt);
+		$this->findBySupplierManufacturerStmt 		= self::$PDO->prepare($findBySupplierManufacturerStmt);
+		
+		$this->findManufacturerStmt 				= self::$PDO->prepare($findManufacturerStmt);
+		$this->findManufacturer1Stmt 				= self::$PDO->prepare($findManufacturer1Stmt);
+		$this->findManufacturer2Stmt 				= self::$PDO->prepare($findManufacturer2Stmt);
+		
+		$this->findByPageStmt 						= self::$PDO->prepare($findByPageStmt);
+		$this->findByPage1Stmt 						= self::$PDO->prepare($findByPage1Stmt);
+		$this->findByKeyStmt 						= self::$PDO->prepare($findByKeyStmt);
+		$this->findByNameStmt 						= self::$PDO->prepare($findByNameStmt);
 		
 		$this->findByCategoryStmt 					= self::$PDO->prepare($findByCategoryStmt);
 		$this->findByCategoryPageStmt 				= self::$PDO->prepare($findByCategoryPageStmt);
-		
+						
 		$this->findByCategoryManufacturerStmt 		= self::$PDO->prepare($findByCategoryManufacturerStmt);
 		$this->findByCategoryManufacturerPageStmt 	= self::$PDO->prepare($findByCategoryManufacturerPageStmt);
+		
+		$this->findSaveCategoryStmt 				= self::$PDO->prepare($findSaveCategoryStmt);
+		$this->findBySaveCategoryStmt 				= self::$PDO->prepare($findBySaveCategoryStmt);
+		//$this->findBySaveCategoryPageStmt 			= self::$PDO->prepare($findBySaveCategoryPageStmt);
+		
+		$this->findBySaveManufacturerStmt 			= self::$PDO->prepare($findBySaveManufacturerStmt);
+		$this->findBySaveManufacturerPageStmt 		= self::$PDO->prepare($findBySaveManufacturerPageStmt);
     } 
     function getCollection( array $raw ) {return new ProductCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -277,6 +410,35 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 	function findManufacturer1( $values ) {
 		$this->findManufacturer1Stmt->execute( $values );
         return new ProductCollection( $this->findManufacturer1Stmt->fetchAll(), $this );
+    }
+	
+	function findManufacturer2( $values ) {
+		$this->findManufacturer2Stmt->execute( $values );
+        return new ProductCollection( $this->findManufacturer2Stmt->fetchAll(), $this );
+    }
+	
+	function findSaveCategory( $values ) {
+		$this->findSaveCategoryStmt->execute( $values );
+        return new ProductCollection( $this->findSaveCategoryStmt->fetchAll(), $this );
+    }
+	function findBySaveCategory(array $values){
+        $this->findBySaveCategoryStmt->execute( $values );
+        return new ProductCollection( $this->findBySaveCategoryStmt->fetchAll(), $this );
+    }
+	
+	
+	function findBySaveManufacturer(array $values) {
+        $this->findBySaveManufacturerStmt->execute( $values );
+        return new ProductCollection( $this->findBySaveManufacturerStmt->fetchAll(), $this );
+    }
+	
+	function findBySaveManufacturerPage( $values ){
+		$this->findBySaveManufacturerPageStmt->bindValue(':idsave', $values[0], \PDO::PARAM_INT);
+		$this->findBySaveManufacturerPageStmt->bindValue(':idmanufacturer', $values[1], \PDO::PARAM_INT);
+		$this->findBySaveManufacturerPageStmt->bindValue(':start', ((int)($values[2])-1)*(int)($values[3]), \PDO::PARAM_INT);
+		$this->findBySaveManufacturerPageStmt->bindValue(':max', (int)($values[3]), \PDO::PARAM_INT);
+		$this->findBySaveManufacturerPageStmt->execute();
+        return new ProductCollection( $this->findBySaveManufacturerPageStmt->fetchAll(), $this );
     }
 	
 }
