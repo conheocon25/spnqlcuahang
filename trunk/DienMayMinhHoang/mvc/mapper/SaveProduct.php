@@ -1,20 +1,20 @@
 <?php
 Namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class SaveResource extends Mapper implements \MVC\Domain\SaveResourceFinder {
+class SaveProduct extends Mapper implements \MVC\Domain\SaveProductFinder {
 
     function __construct() {
         parent::__construct();
 		
-		$tblSaveResource = "shopc_save_product";
+		$tblSaveProduct = "shopc_save_product";
 						
-		$selectAllStmt 	= sprintf("select * from %s ", $tblSaveResource);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblSaveResource);
-		$updateStmt 	= sprintf("update %s set idsave=?, `idproduct`=?, `discount`=?, `value`=? where id=?", $tblSaveResource);
-		$insertStmt 	= sprintf("insert into %s ( idsave, `idproduct`, `discount`, `value`) values(?, ?, ?, ?)", $tblSaveResource);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblSaveResource);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSaveResource);
-		$findByStmt 	= sprintf("select * from %s where idsave=?", $tblSaveResource);
+		$selectAllStmt 	= sprintf("select * from %s ", $tblSaveProduct);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblSaveProduct);
+		$updateStmt 	= sprintf("update %s set idsave=?, `idproduct`=?, `discount`=?, `value`=? where id=?", $tblSaveProduct);
+		$insertStmt 	= sprintf("insert into %s ( idsave, `idproduct`, `discount`, `value`) values(?, ?, ?, ?)", $tblSaveProduct);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblSaveProduct);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSaveProduct);
+		$findByStmt 	= sprintf("select * from %s where idsave=?", $tblSaveProduct);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -25,9 +25,9 @@ class SaveResource extends Mapper implements \MVC\Domain\SaveResourceFinder {
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 									
     } 
-    function getCollection( array $raw ) {return new SaveResourceCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new SaveProductCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\SaveResource( 
+        $obj = new \MVC\Domain\SaveProduct( 
 			$array['id'],
 			$array['idsave'],
 			$array['idproduct'],
@@ -37,11 +37,11 @@ class SaveResource extends Mapper implements \MVC\Domain\SaveResourceFinder {
         return $obj;
     }
 	
-    protected function targetClass() {  return "SaveResource";}
+    protected function targetClass() {  return "SaveProduct";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdSave(),
-			$object->getidproduct(),
+			$object->getIdProduct(),
 			$object->getDiscount(),
 			$object->getValue()
 		); 
@@ -53,7 +53,7 @@ class SaveResource extends Mapper implements \MVC\Domain\SaveResourceFinder {
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdSave(),
-			$object->getidproduct(),
+			$object->getIdProduct(),
 			$object->getDiscount(),
 			$object->getValue(),
 			$object->getId()
@@ -66,14 +66,14 @@ class SaveResource extends Mapper implements \MVC\Domain\SaveResourceFinder {
 	
 	function findBy(array $values) {
         $this->findByStmt->execute( $values );
-        return new SaveResourceCollection( $this->findByStmt->fetchAll(), $this );
+        return new SaveProductCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SaveResourceCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new SaveProductCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>

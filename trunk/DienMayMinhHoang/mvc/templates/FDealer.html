@@ -30,20 +30,7 @@
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
 									<div class="category-toolbar clearfix">
-										<div class="toolbox-filter clearfix">
-											<div class="sort-box">
-												<span class="separator">sắp xếp:</span>
-												<div class="btn-group select-dropdown">
-													<button type="button" class="btn select-btn">Vị trí</button>
-													<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-														<i class="fa fa-angle-down"></i>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">Thời gian</a></li>
-														<li><a href="#">Tên</a></li>
-													</ul>
-												</div>
-											</div>
+										<div class="toolbox-filter clearfix">											
 											<div class="view-box">
 												<a href="#" class="active icon-button icon-grid"><i class="fa fa-th-large"></i></a>
 												<a href="#" class="icon-button icon-list"><i class="fa fa-th-list"></i></a>
@@ -56,37 +43,24 @@
 													<a tal:attributes="href P/getURL" tal:content="P/getName" />
 												</li>
 											</ul>
-											!-->
-											<div class="view-count-box">
-												<span class="separator">xem:</span>
-												<div class="btn-group select-dropdown">
-													<button type="button" class="btn select-btn">10</button>
-													<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-														<i class="fa fa-angle-down"></i>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">15</a></li>
-														<li><a href="#">30</a></li>
-													</ul>
-												</div>
-											</div><!-- End .view-count-box -->
+											!-->											
 										</div><!-- End .toolbox-pagination -->
 									</div><!-- End .category-toolbar -->
 									<div class="md-margin"></div><!-- .space -->
 									<div class="category-item-container">
 										<div class="row">
-											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
+											<div tal:repeat="SR Save/getSRAll" class="col-md-4 col-sm-6 col-xs-12">
 												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href Product/getURLView" tal:condition="Product/getInfo">
-																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href SR/getProduct/getURLView" tal:condition="SR/getProduct/getInfo">
+																<img tal:attributes="src SR/getProduct/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src SR/getProduct/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container">
-															<span class="old-price" tal:content="Product/getPrice1Print"/>
-															<span class="item-price" tal:content="Product/getPrice2Print" />
+															<span class="old-price" tal:content="SR/getProduct/getPrice1Print"/>
+															<span class="item-price" tal:content="SR/getProduct/getPrice2Print" />
 														</div>
 														<span class="new-rect">HOT</span>
 														<span class="discount-rect">-15%</span>
@@ -100,7 +74,7 @@
 																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href SR/getProduct/getURLView" tal:content="SR/getProduct/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
 																<span class="icon-cart-text">Mua ngay</span>

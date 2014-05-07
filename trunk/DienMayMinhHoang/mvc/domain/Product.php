@@ -133,7 +133,7 @@ class Product extends Object{
 	
 	function getInfo(){
 		$mProductInfo 	= new \MVC\Mapper\ProductInfo();
-		$IdInfo 			= $mProductInfo->exist(array($this->getId()));
+		$IdInfo 		= $mProductInfo->exist(array($this->getId()));
 		if ($IdInfo>0){
 			$Info = $mProductInfo->find($IdInfo);
 		}else{

@@ -49,6 +49,9 @@
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
 			
+			$SaveAll 		= $mSave->findAll();
+			$Save	 		= $SaveAll->current();
+			
 			$TagAll 		= $mTag->findByPosition(array(1));
 									
 			$Title = "KHUYẾN MÃI";
@@ -78,8 +81,7 @@
 			$request->setObject("Save", 				$Save);
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("ProductAll", 			$ProductAll);
-									
+												
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

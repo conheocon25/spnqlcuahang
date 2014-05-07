@@ -2,23 +2,23 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class SaveResource extends Object{
+class SaveProduct extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
 	private $IdSave;
-	private $IdResource;
+	private $IdProduct;
 	private $Discount;
 	private $Value;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdSave=null, $IdResource=null, $Discount=null, $Value=null){
+	function __construct($Id=null, $IdSave=null, $IdProduct=null, $Discount=null, $Value=null){
 		$this->Id 		= $Id;
 		$this->IdSave 	= $IdSave;
-		$this->IdResource 	= $IdResource;
+		$this->IdProduct 	= $IdProduct;
 		$this->Discount 	= $Discount;
 		$this->Value 		= $Value;
 		parent::__construct( $Id );
@@ -34,16 +34,11 @@ class SaveResource extends Object{
 		return $Save;
 	}
 	
-	function setIdResource($IdResource) {$this->IdResource = $IdResource;$this->markDirty();}
-	function getIdResource() 			{return $this->IdResource;}
-	function getResource(){
-		$mProduct	= new \MVC\Mapper\Product();
-		$Product 	= $mProduct->find($this->IdResource);
-		return $Product;		
-	}
+	function setIdProduct($IdProduct) {$this->IdProduct = $IdProduct;$this->markDirty();}
+	function getIdProduct() 			{return $this->IdProduct;}	
 	function getProduct(){
 		$mProduct	= new \MVC\Mapper\Product();
-		$Product 	= $mProduct->find($this->IdResource);
+		$Product 	= $mProduct->find($this->IdProduct);
 		return $Product;		
 	}
 	
@@ -58,7 +53,7 @@ class SaveResource extends Object{
 	}
 	
 	function getPriceSaving(){
-		return (100-$this->Discount)*$this->getResource()->getPrice2()/100;
+		return (100-$this->Discount)*$this->getProduct()->getPrice2()/100;
 	}
 	function getPriceSavingPrint(){
 		$N = new \MVC\Library\Number($this->getPriceSaving());		
@@ -66,7 +61,7 @@ class SaveResource extends Object{
 	}
 	
 	function getPriceSaving1(){
-		return ($this->Discount)*$this->getResource()->getPrice2()/100;
+		return ($this->Discount)*$this->getProduct()->getPrice2()/100;
 	}
 	function getPriceSaving1Print(){
 		$N = new \MVC\Library\Number($this->getPriceSaving1());
@@ -77,7 +72,7 @@ class SaveResource extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdSave'		=> $this->getIdSave(),
-			'IdResource'	=> $this->getIdResource(),			
+			'IdProduct'		=> $this->getIdProduct(),
 			'Discount'		=> $this->getDiscount(),
 			'Value'			=> $this->getValue()
 		);
@@ -87,7 +82,7 @@ class SaveResource extends Object{
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
 		$this->IdSave 		= $Data[1];
-		$this->IdResource 	= $Data[2];
+		$this->IdProduct 	= $Data[2];
 		$this->Discount		= $Data[3];
 		$this->Value		= $Data[4];		
     }
