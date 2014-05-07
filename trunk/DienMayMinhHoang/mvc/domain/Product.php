@@ -142,6 +142,12 @@ class Product extends Object{
 		return $Info;
 	}
 	
+	function getSamePriceAll(){
+		$mProduct = new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findBySamePrice(array($this->getId(), $this->getPrice2() ));
+		return $ProductAll;
+	}
+	
 	function getURLView(){
 		return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}

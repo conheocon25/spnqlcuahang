@@ -33,7 +33,7 @@
 			$ConfigName = $mConfig->findByName("NAME");
 						
 			$ManufacturerAll1 = $mManufacturer->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($ManufacturerAll->count(), $Config->getValue(), "/setting/manufacturer" );
+			$PN = new \MVC\Domain\PageNavigation($ManufacturerAll->count(), $Config->getValue(), "/admin/setting/manufacturer" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

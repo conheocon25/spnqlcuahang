@@ -81,6 +81,7 @@ class Tag extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/tin-tuc/".$this->getKey();}
 	function getURLSetting(){return "/admin/setting/tag/".$this->getId();}
+	function getURLSettingPost(){return "/admin/setting/post/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

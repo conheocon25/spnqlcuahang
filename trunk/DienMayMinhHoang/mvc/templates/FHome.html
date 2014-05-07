@@ -15,7 +15,7 @@
 					<div class="sequence-prev"></div>
 					<div class="sequence-next"></div>
 					<ul class="sequence-canvas">						
-						<li tal:repeat="Slide Presentation/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
+						<li tal:repeat="Slide Presentation1/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
 							<div class="sequencebg">
 								<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
 							</div>
@@ -23,7 +23,7 @@
 						</li>
 					</ul>
 					<ul class="sequence-pagination">
-						<li tal:repeat="Slide Presentation/getSlideAll" tal:content="php:'Frame ' . repeat.Slide.number"/>
+						<li tal:repeat="Slide Presentation1/getSlideAll" tal:content="php:'Frame ' . repeat.Slide.number"/>
 					</ul>
 				</div>
 				<div class="md-margin2x"></div><!-- Space -->
@@ -33,7 +33,7 @@
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
 									<header class="content-title">
-										<h2 class="title">Khuyến mãi</h2>
+										<h2 class="title">KHUYẾN MÃI</h2>
 										<p class="title-desc" tal:content="Save/getName"/>
 									</header>
 									<div id="products-tabs-content" class="row tab-content">
@@ -119,7 +119,7 @@
 																<div class="ratings-result" data-result="90"></div>
 															</div><!-- End .ratings -->
 															<span class="ratings-amount">
-																3 Reviews
+																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href OID/getProduct/getURLView" tal:content="OID/getProduct/getName"/></h3>
@@ -240,7 +240,7 @@
 												<li tal:repeat="PT Tag/getPostTop4">
 													<a tal:attributes="href PT/getURLRead">
 														<figure class="latest-posts-media-container">
-															<img tal:attributes="SPc PT/getPost/getImage;alt PT/getPost/getTitle" />
+															<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" />
 														</figure>
 													</a>
 													<h4><a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/></h4>
@@ -265,7 +265,7 @@
 								<div id="brand-slider-container" class="carousel-wrapper">
 									<header class="content-title">
 										<div class="title-bg">
-											<h2 class="title">NHÃN HÀNG ĐƯỢC ƯA CHUỘNG</h2>
+											<h2 class="title">NHÃN ƯA THÍCH</h2>
 										</div><!-- End .title-bg -->
 									</header>
 									<div class="carousel-controls">
@@ -273,7 +273,7 @@
 										<div id="brand-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
 									</div><!-- End .carousel-controllers -->
 									<div class="sm-margin"></div><!-- space -->
-									<div class="brand-slider owl-carousel">										
+									<div class="brand-slider owl-carousel">
 										<a href="#" tal:repeat="Manufacturer ManufacturerAll">
 											<img height="100" width="170" tal:attributes="src Manufacturer/getImage; alt Manufacturer/getName" />
 										</a>

@@ -47,7 +47,8 @@
 			
 			$CategoryAll 	= $mCategory->findAll();
 			$ProductAll1 	= $mProduct->findByTop(array());			
-			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
+			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
+			$Presentation2	= $mPresentation->find(3);
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
@@ -73,7 +74,8 @@
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			
 			$request->setObject("Save", 				$Save);
-			$request->setObject("Presentation", 		$Presentation);
+			$request->setObject("Presentation1", 		$Presentation1);
+			$request->setObject("Presentation2", 		$Presentation2);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("ProductAll1", 			$ProductAll1);
 			
