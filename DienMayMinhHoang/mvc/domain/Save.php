@@ -65,9 +65,9 @@ class Save extends Object{
 	//GET LIST
 	//-------------------------------------------------------------------------------		
 	function getSPAll(){
-		$mSP 	= new \MVC\Mapper\SaveProduct();
-		$SPAll 	= $mSP->findBy(array($this->Id));
-		return $SPAll;
+		$mProduct 		= new \MVC\Mapper\Product();
+		$ProductAll 	= $mProduct->findBySave(array($this->Id));
+		return $ProductAll;
 	}
 	
 	function getSCAll(){
@@ -93,6 +93,10 @@ class Save extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLAdmin(){
 		return "/admin/saving/".$this->getId();
+	}
+	
+	function getURLViewManufacturer($IdManufacturer){
+		return "/khuyen-mai/m/".$IdManufacturer;
 	}
 	
 	//-------------------------------------------------------------------------------

@@ -97,6 +97,10 @@ class Category1 extends Object{
 		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
+	function getURLViewSave(){
+		return "/khuyen-mai/".$this->getKey();
+	}
+	
 	function getURLViewManufacturer($IdManufacturer){
 		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey()."/".$IdManufacturer."/m";
 	}
