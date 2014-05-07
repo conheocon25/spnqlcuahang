@@ -39,20 +39,18 @@
 									<div id="products-tabs-content" class="row tab-content">
 										<div class="tab-pane active" id="all">
 											<div tal:repeat="SP Save/getSPAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="SP/getProduct/getInfo">
+												<div class="item" tal:condition="SP/getInfo">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href SP/getProduct/getURLView">
-																<img tal:attributes="src SP/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src SP/getProduct/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href SP/getURLView">
+																<img tal:attributes="src SP/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src SP/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
-														<div class="item-price-container">
-															<span class="old-price" tal:content="SP/getProduct/getPrice2Print"/>
-															<span class="item-price" tal:content="SP/getPriceSavingPrint"/>
+														<div class="item-price-container">															
+															<span class="item-price" tal:content="SP/getPrice2Print"/>
 														</div>
-														<span class="new-rect">HOT</span>
-														<span class="discount-rect">-<span tal:content="SP/getDiscount"/>%</span>
+														<span class="new-rect">HOT</span>														
 													</div><!-- End .item-image -->
 													<div class="item-meta-container">
 														<div class="ratings-container">
@@ -63,14 +61,14 @@
 																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href SP/getProduct/getURLView" tal:content="SP/getProduct/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href SP/getURLView" tal:content="SP/getName"/></h3>
 														<div class="item-action">
 															<div  class="item-add-btn">
 																<span class="icon-cart-text"
-																	tal:attributes="	id SP/getIdProduct;
-																						name SP/getProduct/getName;
-																						price SP/getProduct/getPrice2;
-																						image SP/getProduct/getInfo/getImage1;
+																	tal:attributes="	id SP/getId;
+																						name SP/getName;
+																						price SP/getPrice2;
+																						image SP/getInfo/getImage1;
 																	"
 																>
 																	Mua ngay
@@ -78,10 +76,10 @@
 															</div>
 															<div class="item-action-inner">
 																<span class="icon-button icon-like"
-																	tal:attributes="	id SP/getIdProduct;
-																						name SP/getProduct/getName;
-																						price SP/getProduct/getPrice2;
-																						image SP/getProduct/getInfo/getImage1;
+																	tal:attributes="	id 		SP/getId;
+																						name 	SP/getName;
+																						price 	SP/getPrice2;
+																						image 	SP/getInfo/getImage1;
 																	"
 																>
 																	Ưa thích
@@ -224,7 +222,7 @@
 														<span tal:content="StoryLine/getNote"/>														
 													</div><!-- End .testimonial-details -->
 													<figure class="clearfix">
-														<img tal:attributes="SPc StoryLine/getImage" alt="Computer Ceo"/>
+														<img tal:attributes="src StoryLine/getImage"/>
 														<figcaption>
 															<a href="#"><span tal:content="StoryLine/getName"/></a>
 															<span tal:content="StoryLine/getDatePrint"/>

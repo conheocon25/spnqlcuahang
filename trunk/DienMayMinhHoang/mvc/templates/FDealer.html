@@ -29,13 +29,7 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<div class="category-toolbar clearfix">
-										<div class="toolbox-filter clearfix">											
-											<div class="view-box">
-												<a href="#" class="active icon-button icon-grid"><i class="fa fa-th-large"></i></a>
-												<a href="#" class="icon-button icon-list"><i class="fa fa-th-list"></i></a>
-											</div><!-- End .view-box -->
-										</div><!-- End .toolbox-filter -->
+									<div class="category-toolbar clearfix">										
 										<div class="toolbox-pagination clearfix">
 											<!--
 											<ul class="pagination">
@@ -49,20 +43,18 @@
 									<div class="md-margin"></div><!-- .space -->
 									<div class="category-item-container">
 										<div class="row">
-											<div tal:repeat="SP Save/getSPAll" class="col-md-4 col-sm-6 col-xs-12">
+											<div tal:repeat="Product PSAll" class="col-md-4 col-sm-6 col-xs-12">
 												<div class="item">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href SP/getProduct/getURLView" tal:condition="SP/getProduct/getInfo">
-																<img tal:attributes="src SP/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src SP/getProduct/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href Product/getURLView" tal:condition="Product/getInfo">
+																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
-														<div class="item-price-container">
-															<span class="old-price" tal:content="SP/getProduct/getPrice2Print"/>
-															<span class="item-price" tal:content="SP/getProduct/getPrice1Print" />
-														</div>														
-														<span class="discount-rect" tal:content="SP/getDiscountPrint"/>
+														<div class="item-price-container">															
+															<span class="item-price" tal:content="Product/getPrice1Print" />
+														</div>
 													</div><!-- End .item-image -->
 													<div class="item-meta-container">
 														<div class="ratings-container">
@@ -73,7 +65,7 @@
 																1 đánh giá
 															</span>
 														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href SP/getProduct/getURLView" tal:content="SP/getProduct/getName"/></h3>
+														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
 														<div class="item-action">
 															<a href="#" class="item-add-btn">
 																<span class="icon-cart-text">Mua ngay</span>
@@ -101,7 +93,7 @@
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
 															<li tal:repeat="SC Save/getSCAll">
-																<a tal:attributes="href SC/getCategory/getURLView"><span tal:content="SC/getCategory/getName"/> 
+																<a tal:attributes="href SC/getCategory/getURLViewSave"><span tal:content="SC/getCategory/getName"/> 
 																	(<span tal:content="php: Save->getSPCAll( SC->getIdCategory() )->count()"/>)
 																</a>
 															</li>
@@ -118,7 +110,9 @@
 													<div class="panel-body">
 														<ul class="category-filter-list jscrollpane">
 															<li tal:repeat="PM PMAll">
-																<a href="#"><span tal:content="PM/getManufacturer/getName"/> (<span tal:content="php: Save->getSPMAll( PM->getIdManufacturer() )->count()"/>)</a>
+																<a tal:attributes="href php: Save->getURLViewManufacturer( PM->getIdManufacturer() )">
+																	<span tal:content="PM/getManufacturer/getName"/> (<span tal:content="php: Save->getSPMAll( PM->getIdManufacturer() )->count()"/>)
+																</a>
 															</li>
 														</ul>
 													</div><!-- End .panel-body -->

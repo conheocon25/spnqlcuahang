@@ -125,6 +125,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySaveCategoryStmt = sprintf("
 				select 
 					P.id as id,
+					P.idsupplier as idsupplier,
 					P.idcategory as idcategory,
 					P.idmanufacturer as idmanufacturer,
 					P.name as name,
@@ -157,6 +158,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySaveManufacturerStmt = sprintf("			
 			SELECT 
 				P.id as id,
+				P.idsupplier as idsupplier,
 				P.idcategory as idcategory,
 				P.idmanufacturer as idmanufacturer,
 				P.name as name,
@@ -180,6 +182,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySaveManufacturerPageStmt = sprintf("
 			SELECT 
 				P.id as id,
+				P.idsupplier as idsupplier,
 				P.idcategory as idcategory,
 				P.idmanufacturer as idmanufacturer,
 				P.name as name,
@@ -199,6 +202,30 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			WHERE
 				S.id = :idsave AND P.idmanufacturer = :idmanufacturer
 			LIMIT :start,:max	
+		", $tblProduct);
+		
+		$findBySaveStmt = sprintf("			
+			SELECT 
+				P.id as id,
+				P.idsupplier as idsupplier,
+				P.idcategory as idcategory,
+				P.idmanufacturer as idmanufacturer,
+				P.name as name,
+				P.code as code,
+				P.price1 as price1,
+				P.price2 as price2,
+				P.key as `key`				
+			FROM
+				(
+					shopc_save S INNER JOIN 
+					shopc_save_product SP 
+					ON S.id = SP.idsave
+				) INNER JOIN
+					shopc_product P
+				ON 
+					P.id = SP.idproduct	
+			WHERE
+				S.id = ?
 		", $tblProduct);
 		
 		
@@ -263,6 +290,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByCategoryManufacturerStmt 		= self::$PDO->prepare($findByCategoryManufacturerStmt);
 		$this->findByCategoryManufacturerPageStmt 	= self::$PDO->prepare($findByCategoryManufacturerPageStmt);
 		
+		$this->findBySaveStmt 						= self::$PDO->prepare($findBySaveStmt);
 		$this->findSaveCategoryStmt 				= self::$PDO->prepare($findSaveCategoryStmt);
 		$this->findBySaveCategoryStmt 				= self::$PDO->prepare($findBySaveCategoryStmt);
 		//$this->findBySaveCategoryPageStmt 			= self::$PDO->prepare($findBySaveCategoryPageStmt);
@@ -397,6 +425,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         return new ProductCollection( $this->findByNameStmt->fetchAll(), $this );
     }	
 	
+	//DANH SÁCH CÁC NHÀ SẢN XUẤT
 	function findByManufacturerTop( $values ) {
 		$this->findByManufacturerTopStmt->execute( $values );
         return new ProductCollection( $this->findByManufacturerTopStmt->fetchAll(), $this );
@@ -417,6 +446,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         return new ProductCollection( $this->findManufacturer2Stmt->fetchAll(), $this );
     }
 	
+	//TÌM CÁC SẢN PHẨM KHUYẾN MÃI
+	function findBySave( $values ) {
+		$this->findBySaveStmt->execute( $values );
+        return new ProductCollection( $this->findBySaveStmt->fetchAll(), $this );
+    }	
 	function findSaveCategory( $values ) {
 		$this->findSaveCategoryStmt->execute( $values );
         return new ProductCollection( $this->findSaveCategoryStmt->fetchAll(), $this );
@@ -425,8 +459,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         $this->findBySaveCategoryStmt->execute( $values );
         return new ProductCollection( $this->findBySaveCategoryStmt->fetchAll(), $this );
     }
-	
-	
+		
 	function findBySaveManufacturer(array $values) {
         $this->findBySaveManufacturerStmt->execute( $values );
         return new ProductCollection( $this->findBySaveManufacturerStmt->fetchAll(), $this );
@@ -439,7 +472,6 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findBySaveManufacturerPageStmt->bindValue(':max', (int)($values[3]), \PDO::PARAM_INT);
 		$this->findBySaveManufacturerPageStmt->execute();
         return new ProductCollection( $this->findBySaveManufacturerPageStmt->fetchAll(), $this );
-    }
-	
+    }	
 }
 ?>

@@ -11,13 +11,16 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdManufacturer = $request->getProperty('IdManufacturer');
+			$KCategory2 	= $request->getProperty('KCategory2');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mSave 			= new \MVC\Mapper\Save();
 			$mCategory 		= new \MVC\Mapper\Category();
+			$mCategory1 	= new \MVC\Mapper\Category1();
 			$mProduct 		= new \MVC\Mapper\Product();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mTag 			= new \MVC\Mapper\Tag();
@@ -41,10 +44,7 @@
 			$BranchAll		= $mBranch->findAll();			
 			$ManufacturerAll= $mManufacturer->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
-			
-			$SaveAll 		= $mSave->findAll();
-			$Save	 		= $SaveAll->current();
-			
+									
 			$CategoryAll 	= $mCategory->findAll();
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
@@ -52,10 +52,18 @@
 			$SaveAll 		= $mSave->findAll();
 			$Save	 		= $SaveAll->current();
 			
-			$PMAll 			= $mProduct->findManufacturer2(array($Save->getId()));
-			
+			$PMAll 			= $mProduct->findManufacturer2(array($Save->getId()));			
 			$TagAll 		= $mTag->findByPosition(array(1));
-									
+			
+			if (isset($IdManufacturer)){
+				$PSAll = $Save->getSPMAll($IdManufacturer);
+			}else if (isset($KCategory2)){
+				$Category2 = $mCategory1->findByKey($KCategory2);
+				$PSAll = $Save->getSPCAll( $Category2->getId() );
+			}else{
+				$PSAll = $Save->getSPAll();
+			}
+												
 			$Title = "KHUYẾN MÃI";
 			$Navigation = array(
 			
@@ -82,6 +90,7 @@
 						
 			$request->setObject("Save", 				$Save);
 			$request->setObject("PMAll", 				$PMAll);
+			$request->setObject("PSAll", 				$PSAll);
 			
 			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
