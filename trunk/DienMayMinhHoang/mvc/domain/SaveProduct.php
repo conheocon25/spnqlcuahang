@@ -42,8 +42,9 @@ class SaveProduct extends Object{
 		return $Product;		
 	}
 	
-	function setDiscount($Discount){$this->Discount = $Discount;$this->markDirty();}
-	function getDiscount() 	{return $this->Discount;}
+	function setDiscount($Discount)	{$this->Discount = $Discount;$this->markDirty();}
+	function getDiscount() 			{return $this->Discount;}
+	function getDiscountPrint() 	{return $this->Discount." %";}
 	
 	function setValue($Value)	{$this->Value = $Value;$this->markDirty();}
 	function getValue() 		{return $this->Value;}
