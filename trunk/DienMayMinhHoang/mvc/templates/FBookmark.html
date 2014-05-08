@@ -7,41 +7,105 @@
 	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">				
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
+			<section id="content">
+				<div id="breadcrumb-container">
+					<div class="container">
+						<ul class="breadcrumb">
+							<li><a href="/trang-chu">Trang chủ</a></li>
+							<li class="active">So sánh</li>
+						</ul>
+					</div>
+				</div>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 							<header class="content-title">
 								<h1 class="title">CÁC SẢN PHẨM ĐÃ CHỌN</h1>
-								<p class="title-desc">
-									Hãy sử dụng chức năng so sánh để tìm ra sản phẩm bạn ưng ý !
-								</p>
+								<p class="title-desc">Tìm ra sản phẩm bạn ưng ý</p>
 							</header>
-							<div class="xs-margin"></div><!-- space -->
+							<div class="xs-margin"></div>
 							<div class="row">
 								<div class="col-md-12 table-responsive">
-									<table class="table cart-table">
-										<thead>
-											<tr>
-												<th class="table-title">SẢN PHẨM</th>
-											</tr>
-										</thead>
-										<tbody tal:repeat="Item Cart/getItems">
-											<tr>
-												<td class="item-name-col">
-													<figure>
-														<img tal:attributes="src php:Item['Image']" />
-													</figure>
-													<header class="item-name">
-														<span tal:content="php:Item['Name']"/>
-													</header>													
-												</td>
-											</tr>
-										</tbody>										
+									<table class="table table-striped compare-item-table">
+										<tr>
+											<td class="table-title">Sản phẩm</td>
+											<td tal:repeat="Item Cart/getItems">
+												<figure>
+													<a href="#"><img tal:attributes="src php:Item['Image']" width="180"/></a>
+												</figure>
+												<p class="item-name"><a href="#" tal:content="php:Item['Name']"/></p>
+											</td>
+										</tr>
+										<tr>
+											<td class="table-title">Giá</td>
+											<td><span class="item-price-special">$130</span></td>
+											<td><span class="item-price-special">$599</span></td>
+										</tr>
+										<tr class="item-brand-col">
+											<td class="table-title">Hãng sản xuất</td>
+											<td>SONY</td>
+											<td>SAMSUNG</td>
+										</tr>
+										<tr>
+											<td class="table-title">Tình trạng</td>
+											<td>Còn hàng</td>
+											<td>Hết hàng</td>
+										</tr>
+										<tr>
+											<td class="table-title">Đánh giá</td>
+											<td>
+												<div class="ratings-container">
+													<div class="ratings">
+														<div class="ratings-result" data-result="90"></div>
+													</div><!-- End .ratings -->
+													<span class="ratings-amount">
+														3 Reviews
+													</span>
+												</div><!-- End .rating-container -->
+											</td>
+											<td>
+												<div class="ratings-container">
+													<div class="ratings">
+														<div class="ratings-result" data-result="75"></div>
+													</div><!-- End .ratings -->
+													<span class="ratings-amount">
+														3 Reviews
+													</span>
+												</div><!-- End .rating-container -->
+											</td>
+										</tr>
+										<tr>
+											<td class="table-title">Tính năng</td>
+											<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit mi, lacinia sed suscipit quis, dapibus nec odio. Pellentesque eu porttitor eros.</td>
+											<td>Sed ac lacus magna. In pulvinar diam diam, et lobortis massa tincidunt id. Quisque porttitor venenatis dolor sit amet sodales. Aliquam ligula erat.</td>
+										</tr>
+										<tr>
+											<td class="table-title">Trọng lượng</td>
+											<td>1.2 Kg</td>
+											<td>2.1 Kg</td>
+										</tr>
+										<tr>
+											<td class="table-title">Kích thước</td>
+											<td>45 cm x 35 cm  x 68 cm</td>
+											<td>21 cm x 32 cm  x 61 cm</td>
+										</tr>
+										<tr>
+											<td class="table-title"></td>
+											<td>
+												<a href="#" class="btn btn-custom-2">Mua ngay</a>
+													<div class="sm-margin"></div><!-- Space -->
+												<a href="#" class="close-button"></a>
+											</td>
+											<td>
+												<a href="#" class="btn btn-custom-2">Mua ngay</a>
+													<div class="sm-margin"></div><!-- Space -->
+												<a href="#" class="close-button"></a>
+											</td>
+										</tr>
 									</table>
+									<div class="xlg-margin"></div><!-- Space -->
 								</div><!-- End .col-md-12 -->
-							</div><!-- End .row -->							
+							</div><!-- End .row -->
 						</div><!-- End .col-md-12 -->
 					</div><!-- End .row -->
 				</div><!-- End .container -->
