@@ -4,8 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body>
-		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
+	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
@@ -62,7 +61,7 @@
 														<h3 class="item-name"><a tal:attributes="href SP/getURLView" tal:content="SP/getName"/></h3>
 														<div class="item-action">
 															<div  class="item-add-btn">
-																<span class="icon-cart-text"
+																<span class="icon-cart-text" style="cursor:pointer"
 																	tal:attributes="	id SP/getId;
 																						name SP/getName;
 																						price SP/getPrice2;
@@ -73,7 +72,7 @@
 																</span>
 															</div>
 															<div class="item-action-inner">
-																<span class="icon-button icon-like"
+																<span class="icon-button icon-like" style="cursor:pointer"
 																	tal:attributes="	id 		SP/getId;
 																						name 	SP/getName;
 																						price 	SP/getPrice2;
@@ -81,6 +80,15 @@
 																	"
 																>
 																	Ưa thích
+																</span>
+																<span class="icon-button icon-compare" style="cursor:pointer"
+																	tal:attributes="	id 		SP/getId;
+																						name 	SP/getName;
+																						price 	SP/getPrice2;
+																						image 	SP/getInfo/getImage1;
+																	"
+																>
+																	Email
 																</span>
 															</div><!-- End .item-action-inner -->
 														</div><!-- End .item-action -->
@@ -121,22 +129,38 @@
 															</span>
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href OID/getProduct/getURLView" tal:content="OID/getProduct/getName"/></h3>
-														<div class="item-action">
-															<a href="#" class="item-add-btn">
-																<span class="icon-cart-text"
+														<div class="item-action">															
+															<div  class="item-add-btn">
+																<span class="icon-cart-text" style="cursor:pointer"
 																	tal:attributes="	id 		OID/getProduct/getId;
 																						name 	OID/getProduct/getName;
 																						price 	OID/getProduct/getPrice2;
 																						image 	OID/getProduct/getInfo/getImage1;
 																	"
-																	>
+																>
 																	Mua ngay
 																</span>
-															</a>
+															</div>															
 															<div class="item-action-inner">
-																<a href="#" class="icon-button icon-like">Favourite</a>
-																<a href="#" class="icon-button icon-compare">Checkout</a>
-															</div><!-- End .item-action-inner -->
+																<span class="icon-button icon-like" style="cursor:pointer"
+																	tal:attributes="	id 		OID/getProduct/getId;
+																						name 	OID/getProduct/getName;
+																						price 	OID/getProduct/getPrice2;
+																						image 	OID/getProduct/getInfo/getImage1;
+																	"
+																>
+																	Ưa thích
+																</span>
+																<span class="icon-button icon-compare" style="cursor:pointer"
+																	tal:attributes="	id 		OID/getProduct/getId;
+																						name 	OID/getProduct/getName;
+																						price 	OID/getProduct/getPrice2;
+																						image 	OID/getProduct/getInfo/getImage1;
+																	"
+																>
+																	Email
+																</span>
+															</div>
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
 												</div><!-- End .item -->
@@ -175,9 +199,9 @@
 															</span>
 														</div><!-- End .rating-container -->
 														<h3 class="item-name"><a tal:attributes="href OED/getProduct/getURLView" tal:content="OED/getProduct/getName"/></h3>
-														<div class="item-action">
-															<a href="#" class="item-add-btn">
-																<span class="icon-cart-text"
+														<div class="item-action">															
+															<div  class="item-add-btn">
+																<span class="icon-cart-text" style="cursor:pointer"
 																	tal:attributes="	id 		OED/getProduct/getId;
 																						name 	OED/getProduct/getName;
 																						price 	OED/getProduct/getPrice2;
@@ -186,11 +210,27 @@
 																>
 																	Mua ngay
 																</span>
-															</a>
+															</div>
 															<div class="item-action-inner">
-																<a href="#" class="icon-button icon-like">Favourite</a>
-																<a href="#" class="icon-button icon-compare">Checkout</a>
-															</div><!-- End .item-action-inner -->
+																<span class="icon-button icon-like" style="cursor:pointer"
+																	tal:attributes="	id 		OED/getProduct/getId;
+																						name 	OED/getProduct/getName;
+																						price 	OED/getProduct/getPrice2;
+																						image 	OED/getProduct/getInfo/getImage1;
+																	"
+																>
+																	Ưa thích
+																</span>
+																<span class="icon-button icon-compare" style="cursor:pointer"
+																	tal:attributes="	id 		OED/getProduct/getId;
+																						name 	OED/getProduct/getName;
+																						price 	OED/getProduct/getPrice2;
+																						image 	OED/getProduct/getInfo/getImage1;
+																	"
+																>
+																	Email
+																</span>
+															</div>
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
 												</div><!-- End .item -->
@@ -332,7 +372,7 @@
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){
-							//location.reload();
+							location.reload();
 						}
 					});
 				

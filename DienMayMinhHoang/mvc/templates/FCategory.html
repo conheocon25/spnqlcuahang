@@ -4,10 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body>
-		<!--
-		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
-		!-->
+	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">				
@@ -58,12 +55,34 @@
 														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
 														<div class="item-action">
 															<div class="item-add-btn" style="cursor:pointer">
-																<span class="icon-cart-text">Mua ngay</span>
+																<span class="icon-cart-text"
+																	tal:attributes="	id 		Product/getId;
+																						name 	Product/getName;
+																						price 	Product/getPrice2;
+																						image 	Product/getInfo/getImage1;
+																	"
+																> Mua ngay</span>																
 															</div>
 															<div class="item-action-inner">
-																<a href="#" class="icon-button icon-like">Favourite</a>
-																<a href="#" class="icon-button icon-compare">Checkout</a>
-															</div><!-- End .item-action-inner -->
+																<span class="icon-button icon-like" style="cursor:pointer"
+																	tal:attributes="	id 		Product/getId;
+																						name 	Product/getName;
+																						price 	Product/getPrice2;
+																						image 	Product/getInfo/getImage1;
+																	"
+																>
+																	Ưa thích
+																</span>
+																<span class="icon-button icon-compare" style="cursor:pointer"
+																	tal:attributes="	id 		Product/getId;
+																						name 	Product/getName;
+																						price 	Product/getPrice2;
+																						image 	Product/getInfo/getImage1;
+																	"
+																>
+																	Email
+																</span>
+															</div>
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
 												</div><!-- End .col-md-4 -->
@@ -140,5 +159,46 @@
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$(function() {								
+				$(".icon-cart-text").click(function(){
+					var Data 	= [];
+					Data[0]		= $(this).attr('id');
+					Data[1]		= $(this).attr('name');
+					Data[2]		= $(this).attr('price');
+					Data[3]		= $(this).attr('image');
+					
+					var URL = "/gio-hang/them";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});				
+				});
+				
+				$(".icon-like").click(function(){
+					var Data 	= [];
+					Data[0]		= $(this).attr('id');
+					Data[1]		= $(this).attr('name');
+					Data[2]		= $(this).attr('price');
+					Data[3]		= $(this).attr('image');
+					
+					var URL = "/danh-dau/them";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+				
+				});
+				
+			});
+		</script>
 	</body>
 </html>
