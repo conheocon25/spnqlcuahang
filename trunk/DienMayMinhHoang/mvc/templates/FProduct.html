@@ -17,14 +17,16 @@
 									<div id="product-image-carousel-container">
 										<ul id="product-carousel" class="celastislide-list">
 											<li class="active-slide">
-												<a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL"><img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/></a>
+												<a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL">
+													<img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/>
+												</a>
 											</li>
-											<li tal:repeat="Image Product/getImageAll">
+											<li tal:condition="php: (Product->getImageAll()->count() > 1) ? true:false" tal:repeat="Image Product/getImageAll">
 												<a data-rel='prettyPhoto' tal:attributes="href Image/getURL">
 													<img tal:attributes="src Image/getURL"/>
 												</a>
 											</li>
-										</ul><!-- End product-carousel -->
+										</ul>
 									</div>
 									<div id="product-image-container">
 										<figure>

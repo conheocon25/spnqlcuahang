@@ -31,76 +31,35 @@
 											<td class="table-title">Sản phẩm</td>
 											<td tal:repeat="Item Cart/getItems">
 												<figure>
-													<a href="#"><img tal:attributes="src php:Item['Image']" width="180"/></a>
+													<img tal:attributes="src php:Item['Image']" width="180"/>
 												</figure>
 												<p class="item-name"><a href="#" tal:content="php:Item['Name']"/></p>
 											</td>
 										</tr>
 										<tr>
 											<td class="table-title">Giá</td>
-											<td><span class="item-price-special">$130</span></td>
-											<td><span class="item-price-special">$599</span></td>
-										</tr>
-										<tr class="item-brand-col">
-											<td class="table-title">Hãng sản xuất</td>
-											<td>SONY</td>
-											<td>SAMSUNG</td>
-										</tr>
-										<tr>
-											<td class="table-title">Tình trạng</td>
-											<td>Còn hàng</td>
-											<td>Hết hàng</td>
-										</tr>
+											<td tal:repeat="Item Cart/getItems">
+												<span class="item-price-special" tal:content="php:Item['PriceP']"/>
+											</td>
+										</tr>																			
 										<tr>
 											<td class="table-title">Đánh giá</td>
-											<td>
+											<td tal:repeat="Item Cart/getItems">
 												<div class="ratings-container">
 													<div class="ratings">
 														<div class="ratings-result" data-result="90"></div>
-													</div><!-- End .ratings -->
+													</div>
 													<span class="ratings-amount">
-														3 Reviews
+														1 đánh giá
 													</span>
-												</div><!-- End .rating-container -->
-											</td>
-											<td>
-												<div class="ratings-container">
-													<div class="ratings">
-														<div class="ratings-result" data-result="75"></div>
-													</div><!-- End .ratings -->
-													<span class="ratings-amount">
-														3 Reviews
-													</span>
-												</div><!-- End .rating-container -->
-											</td>
-										</tr>
-										<tr>
-											<td class="table-title">Tính năng</td>
-											<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam velit mi, lacinia sed suscipit quis, dapibus nec odio. Pellentesque eu porttitor eros.</td>
-											<td>Sed ac lacus magna. In pulvinar diam diam, et lobortis massa tincidunt id. Quisque porttitor venenatis dolor sit amet sodales. Aliquam ligula erat.</td>
-										</tr>
-										<tr>
-											<td class="table-title">Trọng lượng</td>
-											<td>1.2 Kg</td>
-											<td>2.1 Kg</td>
-										</tr>
-										<tr>
-											<td class="table-title">Kích thước</td>
-											<td>45 cm x 35 cm  x 68 cm</td>
-											<td>21 cm x 32 cm  x 61 cm</td>
-										</tr>
+												</div>
+											</td>											
+										</tr>										
 										<tr>
 											<td class="table-title"></td>
-											<td>
+											<td tal:repeat="Item Cart/getItems">
 												<a href="#" class="btn btn-custom-2">Mua ngay</a>
-													<div class="sm-margin"></div><!-- Space -->
-												<a href="#" class="close-button"></a>
-											</td>
-											<td>
-												<a href="#" class="btn btn-custom-2">Mua ngay</a>
-													<div class="sm-margin"></div><!-- Space -->
-												<a href="#" class="close-button"></a>
-											</td>
+											</td>											
 										</tr>
 									</table>
 									<div class="xlg-margin"></div><!-- Space -->

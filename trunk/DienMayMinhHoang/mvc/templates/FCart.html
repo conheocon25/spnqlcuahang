@@ -24,7 +24,7 @@
 									<table class="table cart-table">
 										<thead>
 											<tr>
-												<th class="table-title">TÊN SẢN PHẨM</th>												
+												<th class="table-title">TÊN SẢN PHẨM</th>
 												<th class="table-title">GIÁ</th>
 												<th class="table-title">SỐ LƯỢNG</th>
 												<th class="table-title">T.TIỀN</th>
@@ -34,16 +34,12 @@
 											<tr>
 												<td class="item-name-col">
 													<figure>
-														<img tal:attributes="src php:Item['Image']" />
+														<img width="50%" tal:attributes="src php:Item['Image']" />
 													</figure>
 													<header class="item-name">
 														<span tal:content="php:Item['Name']"/>
-													</header>
-													<ul>
-														<li>Color: White</li>
-														<li>Size: SM</li>
-													</ul>
-												</td>												
+													</header>													
+												</td>
 												<td class="item-price-col">
 													<span class="item-price-special" tal:content="php:Item['PriceP']" />
 												</td>
@@ -68,9 +64,39 @@
 												</td>
 											</tr>
 										</tfoot>	
-									</table>																											
-								</div><!-- End .col-md-12 -->
-							</div><!-- End .row -->											
+									</table>									
+								</div>
+							</div>
+							<div class="xs-margin"></div><!-- space -->
+							<header class="content-title">
+								<h1 class="title">THÔNG TIN CỦA BẠN</h1>
+								<p class="title-desc">
+									Để chúng tôi có thể liên lạc xác nhận thông tin
+								</p>
+							</header>
+							<div class="xs-margin"></div><!-- space -->
+							<div class="row">
+								<div class="col-md-12 table-responsive">																		
+									<div class="col-md-6 col-sm-6 col-xs-12">								   										   		
+								   		<div class="xs-margin"></div>								   		
+										<div class="input-group">
+											<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
+											<input type="text" class="form-control input-lg" placeholder="Email của bạn" />
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Điện thoại&#42;</span></span>
+											<input type="text" class="form-control input-lg" placeholder="Điện thoại của bạn" />
+										</div>								   		
+								   	</div>
+									<div>
+										<div class="lg-margin" />
+										<div class="text-right">
+											<input type="submit" class="btn btn-custom-2" value="Xác nhận" />
+										</div>
+									</div>
+								</div>								
+							</div>
+							
 						</div><!-- End .col-md-12 -->
 					</div><!-- End .row -->
 				</div><!-- End .container -->
