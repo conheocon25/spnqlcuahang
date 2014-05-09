@@ -9,6 +9,7 @@ interface FeedCollection 				extends \Iterator {function add( Object $Feed );		}
 interface CategoryCollection 			extends \Iterator {function add( Object $Category );	}
 interface Category1Collection 			extends \Iterator {function add( Object $Category1 );	}
 interface ProductImageCollection 		extends \Iterator {function add( Object $ProductImage );}
+interface ProductAttributeCollection 	extends \Iterator {function add( Object $ProductAttribute );}
 
 interface AttributeCollection 			extends \Iterator {function add( Object $Attribute );	}
 interface GAttributeCollection 			extends \Iterator {function add( Object $GAttribute );	}
