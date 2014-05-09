@@ -50,13 +50,16 @@
 										<span class="separator">|</span>
 										<a href="#review" class="rate-this">Thêm đánh giá</a>
 									</div><!-- End .rating-container -->
-									<ul class="product-list">
-										<li><span>Tình trạng:</span>Có hàng</li>
+									<ul class="product-list">										
 										<li><span>Sổ Seri:</span><span tal:content="Product/getCode"/></li>
 										<li>
 											<span>Nhà SX:</span>
 											<span tal:condition="Product/getManufacturer" tal:content="Product/getManufacturer/getName"/>
 											<span tal:condition="not:Product/getManufacturer" tal:content="string:chưa xác định"/>
+										</li>
+										<li tal:repeat="PA Product/getAttributeAll ">
+											<span tal:content="PA/getAttribute/getName"/>:
+											<span tal:content="PA/getValue"/>
 										</li>
 									</ul>
 									<hr/>																											

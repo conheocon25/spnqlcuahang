@@ -18,6 +18,7 @@ interface FeedFinder  			extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface Category1Finder  		extends Finder {}
 interface ProductImageFinder 	extends Finder {}
+interface ProductAttributeFinder 	extends Finder {}
 
 interface AttributeFinder 		extends Finder {}
 interface GAttributeFinder 		extends Finder {}

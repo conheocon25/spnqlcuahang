@@ -10,7 +10,7 @@ class Attribute extends Object{
 	private $IdGAttribute;
 	private $Name;
 	private $Order;
-		
+
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------

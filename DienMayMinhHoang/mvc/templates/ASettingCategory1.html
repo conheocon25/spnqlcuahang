@@ -62,7 +62,7 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
+										</div>										
 										<div class="control-group">
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
@@ -97,6 +97,16 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Nhóm thông tin</label>
+											<div class="controls">												
+												<select name="IdGAttribute2" id="IdGAttribute2" style="width:80%;">
+													<option tal:repeat="GAttribute GAttributeAll" tal:attributes="value GAttribute/getId">
+														<span tal:content="GAttribute/getName" />
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="control-group">
@@ -226,10 +236,11 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Info2').val( 				data.Info);
-					$('#Order2').attr('value', 		data.Order);
+					$('#URLUpdButton').attr('alt', 		data.Id);
+					$('#IdGAttribute2').select2('val', 	data.IdGAttribute);
+					$('#Name2').attr('value', 			data.Name);
+					$('#Info2').val( 					data.Info);
+					$('#Order2').attr('value', 			data.Order);
 				});
 			});
 			
@@ -256,9 +267,10 @@
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#CurrentCategory').attr('alt');
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Info2').val();
-					Data[4] = $('#Order2').val();
+					Data[2] = $('#IdGAttribute2').val();
+					Data[3] = $('#Name2').val();
+					Data[4] = $('#Info2').val();
+					Data[5] = $('#Order2').val();
 																		
 					var URL = "/object/upd/Category1";
 					$.ajax({

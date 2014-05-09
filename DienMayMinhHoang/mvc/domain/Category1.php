@@ -8,6 +8,7 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	private $Id;
 	private $IdCategory;
+	private $IdGAttribute;
 	private $Name;
 	private $Info;
 	private $Order;
@@ -16,9 +17,10 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $Name=null, $Info=null, $Order=null, $Key=null){
+	function __construct($Id=null, $IdCategory=null, $IdGAttribute=null, $Name=null, $Info=null, $Order=null, $Key=null){
 		$this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
+		$this->IdGAttribute = $IdGAttribute;
 		$this->Name 		= $Name;
 		$this->Info 		= $Info;
 		$this->Order 		= $Order;
@@ -34,6 +36,14 @@ class Category1 extends Object{
 		$mCategory = new \MVC\Mapper\Category();
 		$Category = $mCategory->find($this->IdCategory);
 		return $Category;
+	}
+	
+	function setIdGAttribute($IdGAttribute) {$this->IdGAttribute = $IdGAttribute;$this->markDirty();}
+	function getIdGAttribute() 			{return $this->IdGAttribute;}
+	function getGAttribute(){
+		$mGAttribute = new \MVC\Mapper\GAttribute();
+		$GAttribute = $mGAttribute->find($this->IdGAttribute);
+		return $GAttribute;
 	}
 	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
@@ -56,6 +66,7 @@ class Category1 extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
+			'IdGAttribute' 	=> $this->getIdGAttribute(),
 			'Name'			=> $this->getName(),
 			'Info'			=> $this->getInfo(),
 			'Order'			=> $this->getOrder(),
@@ -67,9 +78,10 @@ class Category1 extends Object{
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
 		$this->IdCategory 	= $Data[1];
-		$this->Name 		= $Data[2];
-		$this->Info 		= $Data[3];
-		$this->Order		= $Data[4];
+		$this->IdGAttribute	= $Data[2];
+		$this->Name 		= $Data[3];
+		$this->Info 		= $Data[4];
+		$this->Order		= $Data[5];
 		$this->reKey();
     }
 	

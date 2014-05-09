@@ -125,6 +125,12 @@ class Product extends Object{
 		$this->reKey();
     }
 	
+	function getAttributeAll(){
+		$mProductAttribute = new \MVC\Mapper\ProductAttribute();
+		$AttributeAll = $mProductAttribute->findBy(array($this->getId()));
+		return $AttributeAll;
+	}
+	
 	function getImageAll(){
 		$mProductImage = new \MVC\Mapper\ProductImage();
 		$ImageAll = $mProductImage->findBy(array($this->getId()));
@@ -160,6 +166,12 @@ class Product extends Object{
 	}
 	function getURLSettingInfoExe(){
 		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info/exe";
+	}	
+	function getURLSettingAttribute(){
+		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/attribute";
+	}
+	function getURLSettingAttributeExe(){
+		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/attribute/exe";
 	}
 	
 	//-------------------------------------------------------------------------------

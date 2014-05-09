@@ -8,7 +8,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Category1.php" 		);
-		
+			
 	require_once( "mvc/mapper/Attribute.php" 		);
 	require_once( "mvc/mapper/GAttribute.php" 		);
 	require_once( "mvc/mapper/Manufacturer.php" 	);
@@ -16,6 +16,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Product.php" 			);
 	require_once( "mvc/mapper/ProductInfo.php" 		);	
 	require_once( "mvc/mapper/ProductImage.php" 	);
+	require_once( "mvc/mapper/ProductAttribute.php" );
 	
 	require_once( "mvc/mapper/OrderImport.php" 		);
 	require_once( "mvc/mapper/OrderImportDetail.php");
