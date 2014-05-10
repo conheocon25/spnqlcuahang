@@ -7,14 +7,7 @@
 	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<!--
-				<div id="category-header">
-					<div class="row">
-						<div class="container" tal:content="structure Category2/getInfo" />
-					</div>
-				</div>
-				!-->				
+			<section id="content">				
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -105,18 +98,20 @@
 												</div>
 												<div id="category-list-3" class="collapse in">
 													<div class="panel-body">
-														<div>
-															<input type="text" name="term" class="separator"/>
-														</div>
-														<div id="price-range-details">
-															<span class="sm-separator">từ</span>
-															<input type="text" id="price-range-low" class="separator"/>
-															<span class="sm-separator">đến</span>
-															<input type="text" id="price-range-high"/>
-														</div>
-														<div id="price-range-btns">
-															<a href="/tim-kiem" class="btn btn-custom-2 btn-sm">Tìm</a>
-														</div>
+														<form class="form-inline quick-search-form" role="form" action="/tim-kiem" method="POST">
+															<div>
+																<input type="text" name="Term" class="separator"/>
+															</div>
+															<div id="price-range-details">
+																<span class="sm-separator">từ</span>
+																<input type="text" name="Price1" class="separator"/>
+																<span class="sm-separator">đến</span>
+																<input type="text" name="Price2"/>
+															</div>
+															<div id="price-range-btns">
+																<button type="submit" id="quick-search" class="btn btn-custom"></button>
+															</div>
+														</form>														
 													</div>
 												</div>
 											</div>

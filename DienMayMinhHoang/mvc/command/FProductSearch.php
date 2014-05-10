@@ -12,6 +12,8 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
 			$Term 			= 	$request->getProperty('Term');
+			$Price1 		= 	(int)($request->getProperty('Price1'));
+			$Price2 		= 	(int)($request->getProperty('Price2'));
 			$Page 			= 	$request->getProperty('Page');
 						
 			//-------------------------------------------------------------
@@ -38,31 +40,31 @@
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 												
-			if (!isset($Term)) {
-				$Term = $Session->getTermSearch();
-			}else{
-				$Session->setTermSearch( $Term );
-			}
+			$Cond = " name like '$Term%' ";
+			if ( $Price1 > 0&&$Price2 > 0 )
+				$Cond = $Cond." AND price2>=$Price1 AND price2<=$Price2 ";
 			
+			if (!isset($Term)&!isset($Price1)&!isset($Price2)){
+				$Cond = $Session->getTermSearch();
+			}else{				
+				$Session->setTermSearch( $Cond );
+			}			
 			if (!isset($Page)) $Page = 1;
-						
-			$ProductAll1 	= $mProduct->findByName(array($Term));
-			$ProductAll 	= $mProduct->findByNamePage(array($Term, $Page, 9));
+			
+			$ProductAll1 	= $mProduct->findByCondition($Cond);
+			$ProductAll 	= $mProduct->findByConditionPage(array($Cond, $Page, 9));
 			$PN 			= new \MVC\Domain\PageNavigation($ProductAll1->count(), 9, "/tim-kiem");
 						
 			$Title = "TÌM KIẾM ";
-			$Navigation = array();
-			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);			
 			$request->setProperty("Active", 			"Category");
-			$request->setProperty("Term", 				$Term);			
+			$request->setProperty("Term", 				$Term);
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("PN", 					$PN);
-			$request->setObject("Navigation", 			$Navigation);
-						
+									
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);

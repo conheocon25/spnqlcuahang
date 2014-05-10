@@ -270,11 +270,10 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					limit 12	
 				", $tblProduct);
 		
-		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name", $tblProduct);
+		$findByNameStmt 	= sprintf("select * from %s where name like :name ORDER BY name", $tblProduct);
 		$findByNamePageStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT :start,:max", $tblProduct);
 		
-		//----------------------------------------------------------------------------------------
-		
+		//----------------------------------------------------------------------------------------		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
         $this->updateStmt 			= self::$PDO->prepare($updateStmt);
@@ -501,6 +500,23 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByNamePageStmt->execute();
         return new ProductCollection( $this->findByNamePageStmt->fetchAll(), $this );
     }	
+	
+	function findByCondition( $Cond ){
+		$findByConditionStmt = "select * from shopc_product where $Cond ORDER BY name";		
+		$this->findByConditionStmt 		= self::$PDO->prepare($findByConditionStmt);
+		$this->findByConditionStmt->execute(array());
+        return new ProductCollection( $this->findByConditionStmt->fetchAll(), $this );
+    }
+	
+	function findByConditionPage( $values ){
+		$Cond 	= $values[0];
+		$start 	= ((int)($values[1])-1)*(int)($values[2]);
+		$max	=  $values[2];		
+		$findByConditionPageStmt = "select * from shopc_product where $Cond ORDER BY name limit $start, $max";
+		$this->findByConditionPageStmt 		= self::$PDO->prepare($findByConditionPageStmt);
+		$this->findByConditionPageStmt->execute(array());
+        return new ProductCollection( $this->findByConditionPageStmt->fetchAll(), $this );
+    }
 	
 }
 ?>
