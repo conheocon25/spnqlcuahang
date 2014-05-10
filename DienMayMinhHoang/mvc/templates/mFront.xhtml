@@ -68,14 +68,8 @@
 					<div class="col-md-12">
 						<div class="header-top-left">
 							<ul id="top-links" class="clearfix">
-								<li><a href="/danh-dau" title="Đánh dấu"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Đánh dấu</span></a></li>
-								<!--
-								<li><a href="/tai-khoan" title="Tài khoản"><span class="top-icon top-icon-user"></span><span class="hide-for-xs">Tài khoản</span></a></li>
-								!-->
+								<li><a href="/danh-dau" title="Đánh dấu"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Đánh dấu</span></a></li>								
 								<li><a href="/gio-hang" title="My Cart"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Giỏ hàng</span></a></li>
-								<!--
-								<li><a href="/thanh-toan" title="Thanh toán"><span class="top-icon top-icon-check"></span><span class="hide-for-xs">Thanh toán</span></a></li>
-								!-->
 							</ul>
 						</div><!-- End .header-top-left -->
 						<div class="header-top-right">
@@ -172,17 +166,17 @@
 											<span tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCart()->countItem()" />
 											sản phẩm <span class="drop-price"> được chọn</span>
 										</a>									
-									</div><!-- End .btn-group -->
-								</div><!-- End .dropdown-cart-menu-container -->
-								<form class="form-inline quick-search-form" role="form" action="#">
+									</div>
+								</div>
+								<form class="form-inline quick-search-form" role="form" action="/tim-kiem" method="POST">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Bạn cần mua gì ?"/>
-									</div><!-- End .form-inline -->
+										<input type="text" class="form-control" id="Term" name="Term" placeholder="Bạn cần mua gì ?"/>
+									</div>
 									<button type="submit" id="quick-search" class="btn btn-custom"></button>
 								</form>
-							</div><!-- End #quick-access -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
+							</div>
+						</div>
+					</div>
 				</div><!-- End .container -->
 			</div><!-- End #nav -->
 		</div><!-- End #inner-header -->

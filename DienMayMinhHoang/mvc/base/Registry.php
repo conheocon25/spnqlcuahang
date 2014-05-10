@@ -50,6 +50,14 @@
 			return self::instance()->get('cafe_current_Iduser');
 		}
 		
+		//Quản lí TỪ KHÓA TÌM KIẾM
+		function setTermSearch( $TermSearch ) {
+			return self::instance()->set('cafe_current_term', $TermSearch);
+		}
+		function getTermSearch() {
+			return self::instance()->get('cafe_current_term');
+		}
+		
 		//Quản lí Giỏ hàng
 		function setCart( \MVC\Domain\Cart $Cart ){
 			return self::instance()->set('cafe_current_cart', $Cart);

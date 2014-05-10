@@ -12,6 +12,7 @@
 		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
+		<command name="FProductSearch" 	type="public"><view>FProductSearch</view></command>
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
