@@ -87,20 +87,10 @@
 												<a href="#" class="icon-button icon-compare">Thanh toán</a>
 											</div><!-- End .item-action-inner -->
 										</div>
-										<div class="md-margin visible-xs"></div>
-										<div class="share-button-group">
-											<!-- AddThis Button BEGIN -->
-											<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-												<a class="addthis_button_facebook"></a>
-												<a class="addthis_button_twitter"></a>
-												<a class="addthis_button_email"></a>
-												<a class="addthis_button_print"></a>
-												<a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-											</div>
-											<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-											<script type="text/javascript" src="../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b2197865ea0183"></script>
-											<!-- AddThis Button END -->
-										</div><!-- End .share-button-group -->
+										<div class="md-margin visible-xs" />
+										<div class="share-button-group">																				
+											<div class="fb-share-button" tal:attributes="data-href Product/getURLViewFull" data-type="button_count" />
+										</div>
 									</div>
 								</div><!-- End .col-md-6 -->
 							</div><!-- End .row -->
@@ -122,26 +112,26 @@
 											</div><!-- End .tab-pane -->
 											<div class="tab-pane" id="facebook">
 												<div class="fb-comments"
-													data-href="http://yoyoshop.quanly-cuahang.com" 
+													tal:attributes="data-href Product/getURLViewFull" 
 													data-width="780px" 
-													data-numposts="5" 
-													data-colorscheme="light">						
+													data-numposts="12"
+													data-colorscheme="light">
 												</div>
 											</div><!-- End .tab-pane -->
 										</div><!-- End .tab-content -->
 									</div><!-- End .tab-container -->
 									<div class="lg-margin visible-xs"></div>
 								</div><!-- End .col-md-9 -->
-								<div class="lg-margin2x visible-sm visible-xs"></div><!-- Space -->
-							</div><!-- End .row -->
-							<div class="lg-margin2x"></div><!-- Space -->
+								<div class="lg-margin2x visible-sm visible-xs"></div>
+							</div>
+							<div class="lg-margin2x"></div>
 							<div class="purchased-items-container carousel-wrapper">
 								<header class="content-title">
 									<div class="title-bg"> <h2 class="title">Sản phẩm cùng hãng</h2></div>
 								</header>
 								<div class="carousel-controls">
-									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div><!-- End .carousel-prev -->
-									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
+									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
 								</div><!-- End .carousel-controllers -->
 								<div class="purchased-items-slider owl-carousel">
 									<div class="item" tal:repeat="P1 Product/getTopSameManufacturer">
@@ -164,7 +154,7 @@
 												<span class="ratings-amount">
 													1 đánh giá
 												</span>
-											</div><!-- End .rating-container -->
+											</div>
 											<h3 class="item-name"><a href="product.html" tal:content="P1/getName"/></h3>
 											<div class="item-action">
 												<a href="#" class="item-add-btn">
@@ -173,22 +163,20 @@
 												<div class="item-action-inner">
 													<a href="#" class="icon-button icon-like">Favourite</a>
 													<a href="#" class="icon-button icon-compare">Checkout</a>
-												</div><!-- End .item-action-inner -->
-											</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-																		
-																		
-								</div><!--purchased-items-slider -->
-							</div><!-- End .purchased-items-container -->
-							<div class="lg-margin2x"></div><!-- Space -->
+												</div>
+											</div>
+										</div>
+									</div>																																			
+								</div>
+							</div>
+							<div class="lg-margin2x"></div>
 							<div class="purchased-items-container carousel-wrapper">
 								<header class="content-title">
 									<div class="title-bg"> <h2 class="title">Sản phẩm gần giá</h2></div>
 								</header>
 								<div class="carousel-controls">
-									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div><!-- End .carousel-prev -->
-									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div><!-- End .carousel-next -->
+									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
 								</div><!-- End .carousel-controllers -->
 								<div class="purchased-items-slider owl-carousel">
 									<div class="item" tal:repeat="P1 Product/getSamePriceAll">

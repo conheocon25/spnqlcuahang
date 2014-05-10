@@ -158,6 +158,10 @@ class Product extends Object{
 		return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
+	function getURLViewFull(){
+		return "http://minhhoang.quanly-cuahang.com/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
+	}
+	
 	function getURLSettingImage(){
 		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
 	}
