@@ -48,7 +48,7 @@
 				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLView()),
 				array(mb_strtoupper($Category1->getName(), 'UTF8'), $Category1->getURLView())
 			);
-						
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
