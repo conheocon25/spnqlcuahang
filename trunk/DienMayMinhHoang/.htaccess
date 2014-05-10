@@ -41,6 +41,9 @@ RewriteRule ^danh-dau$ 							?cmd=FBookmark		[L]
 RewriteRule ^danh-dau/them$ 					?cmd=FBookmarkAdd	[L]
 RewriteRule ^danh-dau/([0-9]+)/xoa$ 			?cmd=FBookmarkDel&IdProduct=$1	[L]
 
+RewriteRule ^tim-kiem$ 							?cmd=FProductSearch [L]
+RewriteRule ^tim-kiem/page/([0-9]+)$ 			?cmd=FProductSearch&Page=$1 [L]
+
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
