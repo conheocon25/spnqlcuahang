@@ -16,6 +16,10 @@ class Date{
 		return date('d/m H:i',strtotime($this->Value));
 	}
 	
+	function getFullDateTimeFormat(){
+		return date('d/m/Y H:i',strtotime($this->Value));
+	}
+	
 	function getTimeFormat(){
 		return date('H:i:s',strtotime($this->Value));
 	}
