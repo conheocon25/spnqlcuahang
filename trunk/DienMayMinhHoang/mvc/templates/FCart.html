@@ -25,9 +25,10 @@
 										<thead>
 											<tr>
 												<th class="table-title">TÊN SẢN PHẨM</th>
-												<th class="table-title">GIÁ</th>
+												<th class="table-title" style="text-align:right;">GIÁ</th>
 												<th class="table-title">SỐ LƯỢNG</th>
-												<th class="table-title">T.TIỀN</th>
+												<th class="table-title" style="text-align:right;">T.TIỀN</th>
+												<th class="table-title" width="30"></th>
 											</tr>
 										</thead>
 										<tbody tal:repeat="Item Cart/getItems">
@@ -40,7 +41,7 @@
 														<span tal:content="php:Item['Name']"/>
 													</header>													
 												</td>
-												<td class="item-price-col">
+												<td class="item-price-col" style="text-align:right;">
 													<span class="item-price-special" tal:content="php:Item['PriceP']" />
 												</td>
 												<td>
@@ -50,18 +51,21 @@
 														<div class="quantity-btn quantity-input-down"	tal:attributes="alt php:Item['URLMinusUpd']">	<i class="fa fa-angle-down"></i></div>
 													</div>
 												</td>
+												<td class="item-total-col" style="text-align:right;">
+													<span class="item-price-special" tal:content="php:Item['ValueP']"/>
+												</td>
 												<td class="item-total-col">
-													<span class="item-price-special" tal:content="php:Item['ValueP']" />
-													<div tal:attributes="alt php:Item['URLDel']" class="close-button" />
-												</td>												
+													<div tal:attributes="alt php:Item['URLDel']" class="close-button" style="cursor:pointer;"/>
+												</td>
 											</tr>											
 										</tbody>
 										<tfoot>
 											<tr>
 												<td colspan="3"><B>TỔNG CỘNG</B></td>
-												<td>													
+												<td style="text-align:right;">													
 													<span class="item-price-special" tal:content="Cart/getValuePrint" />
 												</td>
+												<td></td>
 											</tr>
 										</tfoot>	
 									</table>									
