@@ -89,35 +89,21 @@
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div class="md-margin" />
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">											
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>TÌM KIẾM NÂNG CAO</span></div>
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-3"></a>
-												</div>
-												<div id="category-list-3" class="collapse in">
-													<div class="panel-body">
-														<form class="form-inline quick-search-form" role="form" action="/tim-kiem" method="POST">
-															<div>
-																<input type="text" name="Term" class="separator"/>
-															</div>
-															<div id="price-range-details">
-																<span class="sm-separator">từ</span>
-																<input type="text" name="Price1" class="separator"/>
-																<span class="sm-separator">đến</span>
-																<input type="text" name="Price2"/>
-															</div>
-															<div id="price-range-btns">
-																<button type="submit" id="quick-search" class="btn btn-custom"></button>
-															</div>
-														</form>														
-													</div>
-												</div>
+									<div class="widget subscribe">
+										<h3>TÌM SẢN PHẨM</h3>
+										<form action="/tim-san-pham" id="subscribe-form" method="post">
+											<div class="form-group">
+												<input type="text" class="form-control" name="Product" placeholder="Gõ tên sản phẩm bạn cần tìm"/>
 											</div>
-										</div>
+											<div class="form-group" style="text-align:left;">
+												Giá từ
+												<input type="text" class="form-control" name="FFrom"/>
+												Đến
+												<input type="text" class="form-control" name="FTo"/>
+											</div>
+											<input type="submit" value="Tìm kiếm" class="btn btn-custom"/>
+										</form>
 									</div>
-									
 								</aside><!-- End .col-md-3 -->
 							</div><!-- End .row -->
 						</div><!-- End .col-md-12 -->
