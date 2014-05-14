@@ -18,14 +18,14 @@
 			//-------------------------------------------------------------						
 			$mCustomer 		= new \MVC\Mapper\Customer();
 			$mOrderExport 	= new \MVC\Mapper\OrderExport();
-			$mResource 		= new \MVC\Mapper\Resource();
+			$mProduct 		= new \MVC\Mapper\Product();
 			$mOD 			= new \MVC\Mapper\OrderExportDetail();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$Order 		= $mOrderExport->findCurrent();
-			$Resource 	= $mResource->find($IdResource);
+			$Product 	= $mProduct->find($IdResource);
 			
 			if (!isset($Order)){
 				$Order = new \MVC\Domain\OrderExport(
@@ -45,7 +45,7 @@
 					$IdOrder, 
 					$IdResource, 
 					1,
-					$Resource->getPrice2()
+					$Product->getPrice2()
 				);
 				$mOD->insert($OD);								
 			}else{
