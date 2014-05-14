@@ -1022,7 +1022,7 @@ function checkSupport(elemname, pluginname) {
 
 	var panelContainer = $('div#option-panel'),
 		panelContainerWidth = panelContainer.outerWidth(),
-		positionLeft = panelContainer.offset().left,
+		positionLeft = panelContainer.left,
 		panelOpen = positionLeft < 0 ? false : true;
 
 
