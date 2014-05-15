@@ -33,8 +33,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				) 
 				values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProduct);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=? order by idcategory, name", $tblProduct);
-		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by idcategory, name", $tblProduct);
+		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?  order by id DESC", $tblProduct);
+		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by id DESC", $tblProduct);
 				
 		$findByTopStmt 				= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
 		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 8", $tblProduct);
@@ -245,7 +245,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 							SELECT *
 							FROM %s
 							WHERE idsupplier=:idsupplier
-							ORDER BY idcategory, name
+							ORDER BY id DESC
 							LIMIT :start,:max
 				", $tblProduct);
 		
@@ -254,7 +254,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 							FROM %s
 							WHERE 	idsupplier=:idsupplier AND
 									idmanufacturer=:idmanufacturer
-							ORDER BY idcategory, name
+							ORDER BY id DESC
 							LIMIT :start,:max
 				", $tblProduct);
 				
