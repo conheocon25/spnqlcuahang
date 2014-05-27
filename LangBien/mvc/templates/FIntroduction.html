@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>		
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">							
+							<div class="xs-margin"></div><!-- space -->
+							<div class="row">
+								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
+									<article class="article">
+										<div class="article-meta-date" tal:content="string:0"/>
+										<h2 tal:content="string:GIỚI THIỆU"/>
+										<div class="article-meta-container clearfix">
+											<div class="article-meta-more">
+												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="string:BBT"></span></a>
+												<a href="#"><span class="separator"><i class="fa fa-comments "></i></span>3 nhận xét</a>
+												<a href="#"><span class="separator"><i class="fa fa-tag"></i></span>Category</a>
+											</div><!-- End. pull-left -->
+											<div class="article-meta-view">
+												<a href="#"><span class="separator"><i class="fa fa-eye "></i></span>1</a>
+												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span>1</a>
+											</div><!-- End. pull-right -->
+										</div><!-- End .article-meta-container -->
+										<div class="article-content-container">
+											<p tal:content="structure Post/getContent" />
+										</div>
+									</article><!-- End .article -->
+								</div><!-- End .col-md-9 -->
+								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+									<div class="widget">
+										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
+											<div class="panel">
+												
+											</div><!-- End .panel -->																																	
+										</div><!-- .panel-group -->
+									</div><!-- End .widget -->																		
+								</aside><!-- End .col-md-3 -->
+								
+							</div><!-- End .row -->
+						</div><!-- End .col-md-12 -->
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</section><!-- End #content -->
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>

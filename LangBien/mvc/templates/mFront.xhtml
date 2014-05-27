@@ -129,17 +129,8 @@
 										Menu <span id="responsive-nav-button-icon"></span>
 									</div><!-- responsive-nav-button -->
 								</div>
-								<ul class="menu clearfix">
-									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
-									<li><a href="JavaScript:;">TIN TỨC</a>
-										<ul>
-											<li tal:repeat="Tag TagAll">
-												<a tal:attributes="href Tag/getURLView">
-													<span tal:content="Tag/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
+								<ul class="menu clearfix">									
+									<li><a class="active" href="/gioi-thieu">GIỚI THIỆU</a></li>
 									<li class="mega-menu-container"><a href="JavaScript:;">THỰC ĐƠN</a>
 										<div class="mega-menu clearfix">
 											<div class="col-5" tal:repeat="Category CategoryAll">
@@ -154,7 +145,17 @@
 											</div>
 										</div><!-- End .mega-menu -->
 									</li>
-									<li><a href="/khuyen-mai">ĐẶT BÀN</a></li>
+									<li><a href="JavaScript:;">TIN TỨC</a>
+										<ul>
+											<li tal:repeat="Tag TagAll">
+												<a tal:attributes="href Tag/getURLView">
+													<span tal:content="Tag/getName"/>
+												</a>
+											</li>
+										</ul>
+									</li>									
+									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
+									<li><a href="/hinh-anh">ALBUM ẢNH</a></li>
 									<li><a href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
 							</nav>
