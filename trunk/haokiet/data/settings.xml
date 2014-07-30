@@ -95,6 +95,7 @@
 		<command name="ImportSupplier"><view>ImportSupplier</view></command>
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-				
+		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
+		
 	</control>
 </options>

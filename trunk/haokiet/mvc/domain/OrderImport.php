@@ -60,6 +60,31 @@ class OrderImport extends Object{
 		return $Value->formatCurrency()." đ";
 	}
 	
+	function getValue1(){
+		$DetailAll = $this->getDetailAll();
+		$Count = 0;
+		while ($DetailAll->valid()){
+			$Count += $DetailAll->current()->getValue1();
+			$DetailAll->next();
+		}
+		return $Count;
+	}
+	
+	function getValue1Print(){
+		$Value = new \MVC\Library\Number($this->getValue1());
+		return $Value->formatCurrency()." đ";
+	}
+	
+	function getValue2(){
+		$Count = $this->getValue() - $this->getValue1();
+		return $Count;
+	}
+	
+	function getValue2Print(){
+		$Value = new \MVC\Library\Number($this->getValue2());
+		return $Value->formatCurrency()." đ";
+	}
+	
 	function getValueStrPrint(){
 		$Value = new \MVC\Library\Number($this->getValue());
 		return $Value->readDigit()." đồng";

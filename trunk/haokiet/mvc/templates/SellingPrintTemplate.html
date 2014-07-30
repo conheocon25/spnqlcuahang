@@ -6,11 +6,11 @@
 		</tr>
 		<tr>			
 			<td width="50%" align="left" tal:content="ConfigAddress/getValue" />
-			<td width="50%" align="right"><B tal:content="php: mb_strtoupper(Domain->getName(), 'UTF8')"/></td>
+			<td width="50%" align="right"><B tal:content="php: 'KHU VỰC ' . mb_strtoupper(Domain->getName(), 'UTF8')"/></td>
 		</tr>
 		<tr>			
 			<td width="50%" align="left" tal:content="ConfigPhone/getValue"/>
-			<td width="50%" align="right">NGÀY:____/____/2014</td>
+			<td width="50%" align="right">NGÀY:<span tal:content="Date"/></td>
 		</tr>
 	</table>
 	<BR/>
@@ -31,13 +31,25 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr tal:repeat="Customer CustomerAll">
-			<td width="3%" align="center" tal:content="repeat/Customer/number" />
-			<td width="19%" tal:content="Customer/getName"/>
-			<td width="8%"/>
-			<td width="8%"/>
-			<td width="8%"/>
+		<tr tal:repeat="CL CLAll">
+			<td width="3%" align="center" tal:content="repeat/CL/number" />
+			<td width="19%" tal:content="CL/getCustomer/getName" />
+			<td width="8%" align="right" tal:content="CL/getTicket1" />
+			<td width="8%" align="right" tal:content="CL/getTicket2" />
+			<td width="8%" align="right" tal:content="CL/getTicketD" />
+			<td width="11%" align="right" tal:content="CL/getPaid1RemainPrint" />
 			<td width="11%"/>
+			<td width="11%"/>
+			<td width="1%"/>
+			<td width="10%"/>
+			<td width="10%"/>
+		</tr>
+		<tr>
+			<td width="22%" colspan="2" align="right"><B>TỔNG CỘNG</B></td>
+			<td width="8%" align="right"><B tal:content="STicket1"/></td>
+			<td width="8%" align="right"><B tal:content="STicket2"/></td>
+			<td width="8%" align="right"><B tal:content="STicketD"/></td>
+			<td width="11%" align="right"><B tal:content="SPaid1Remain"/></td>
 			<td width="11%"/>
 			<td width="11%"/>
 			<td width="1%"/>

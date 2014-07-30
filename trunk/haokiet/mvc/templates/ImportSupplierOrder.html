@@ -21,7 +21,8 @@
 									<tr>
 										<th width="40">STT</th>
 										<th class="left">TÊN</th>
-										<th class="right" width="80">SỐ LƯỢNG</th>
+										<th class="right" width="80">VÉ LẤY</th>
+										<th class="right" width="80">VÉ TRẢ Ế</th>
 										<th class="left" width="80">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
@@ -30,8 +31,9 @@
 								<tbody>
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-count1 Detail/getCount1; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getCount1Print"/></td>
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
@@ -66,9 +68,15 @@
 										</div>
 									</div>									
 									<div class="control-group">
-										<label class="control-label">Số lượng</label>
+										<label class="control-label">Vé nhập</label>
 										<div class="controls">
 											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Vé trả ế</label>
+										<div class="controls">
+											<input id="Count21" name="Count21" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -100,14 +108,16 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				var count = $(this).attr('data-count');
+				var count1 = $(this).attr('data-count1');
+				
 				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
 				$('#Name2').attr('value', $(this).attr('data-name'));
 				if (count==null){
 					$('#Count2').attr('value', '1');
 				}else{
 					$('#Count2').attr('value', count);
-				}
-					
+					$('#Count21').attr('value', count1);
+				}				
 				$('#Price2').attr('value', $(this).attr('data-price'));
 			});
 			
@@ -117,6 +127,11 @@
 			$("#FormEdit").validate({
 				rules:{
 					Count2:{
+						required:true,
+						number:true,
+						min:0
+					},
+					Count21:{
 						required:true,
 						number:true,
 						min:0
@@ -142,9 +157,10 @@
 					Data[1] = $('#IdOrder').attr('alt');
 					Data[2] = $('#IdResource2').val();									
 					Data[3] = $('#Count2').val();
-					Data[4] = $('#Price2').val();
+					Data[4] = $('#Count21').val();
+					Data[5] = $('#Price2').val();
 					
-					var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+					var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4]+"/"+Data[5];
 					$.ajax({
 						type: "POST",					
 						url: URL,

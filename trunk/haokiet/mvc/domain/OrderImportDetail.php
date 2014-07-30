@@ -7,14 +7,16 @@ class OrderImportDetail extends Object{
 	private $IdOrder;
 	private $IdResource;
 	private $Count;
+	private $Count1;
     private $Price;
 		
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdOrder=null, $IdResource=null, $Count=null, $Price=null) {
+    function __construct( $Id=null, $IdOrder=null, $IdResource=null, $Count=null, $Count1=null, $Price=null) {
         $this->Id = $Id;
 		$this->IdOrder = $IdOrder;
 		$this->IdResource = $IdResource;
 		$this->Count = $Count;
+		$this->Count1 = $Count1;
 		$this->Price = $Price;
         parent::__construct( $Id );
     }
@@ -44,6 +46,15 @@ class OrderImportDetail extends Object{
 		}
         return $this->Count;
     }
+	
+	function getCount1( ) {return $this->Count1;}
+    function setCount1( $Count1 ) {$this->Count1 = $Count1;$this->markDirty();}
+	function getCount1Print( ) {
+		if (!isset($this->Count1)){
+			return 0;
+		}
+        return $this->Count1;
+    }
 
 	function getPrice( ) {return $this->Price;}
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
@@ -51,6 +62,9 @@ class OrderImportDetail extends Object{
 
 	function getValue( ) {return $this->Count*$this->Price;}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
+	
+	function getValue1( ) {return $this->Count1*$this->Price;}
+	function getValue1Print( ) {$N = new \MVC\Library\Number($this->getValue1());return $N->formatCurrency()." đ";}
 
 	function toJSON(){
 		$json = array(
