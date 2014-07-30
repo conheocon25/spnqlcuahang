@@ -15,6 +15,7 @@
 			$IdOrder = $request->getProperty("IdOrder");
 			$IdResource = $request->getProperty("IdResource");
 			$Count = $request->getProperty("Count");
+			$Count1 = $request->getProperty("Count1");
 			$Price = $request->getProperty("Price");
 			
 			//-------------------------------------------------------------
@@ -43,6 +44,7 @@
 					$OID = $mOID->find($IdOID);
 					$OID->setPrice($Price);
 					$OID->setCount($Count);
+					$OID->setCount1($Count1);
 					$mOID->update($OID);
 				}
 			}else{
@@ -51,6 +53,7 @@
 					$IdOrder,
 					$IdResource,
 					$Count,
+					0,
 					$Price
 				);
 				$mOID->insert($OID);
@@ -58,6 +61,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
+			
 		}
 	}
 ?>

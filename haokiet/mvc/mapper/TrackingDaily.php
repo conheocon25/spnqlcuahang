@@ -11,7 +11,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);
 		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?", $tblTrackingDaily);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);

@@ -70,6 +70,8 @@ class Tracking extends Object{
 				0, 
 				0, 
 				0, 
+				0, 
+				0, 
 				0
 			);
 			$mTD->insert($TD);
