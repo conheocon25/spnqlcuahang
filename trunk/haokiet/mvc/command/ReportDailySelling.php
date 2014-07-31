@@ -21,6 +21,7 @@
 			$mDomain 	= new \MVC\Mapper\Domain();			
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mTDD 		= new \MVC\Mapper\TrackingDomainDaily();
 			$mCL 		= new \MVC\Mapper\CustomerLog();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
@@ -32,52 +33,33 @@
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
 			
-			$Domain = $mDomain->find($IdDomain);
-			if (!isset($IdDomain)){
-				$Domain = $DomainAll->current();
-				$IdDomain = $Domain->getId();
-			}
+			$TD->Ticket1 = 0;
+			$TD->Ticket2 = 0;
 			
-			$CLAll = $mCL->findByDate1(array($IdDomain, $TD->getDate()));
-			$STicket1 		= 0;
-			$STicket2 		= 0;
-			$STicketD 		= 0;
-			$STicketValue 	= 0;			
-			$SPaid1 		= 0;
-			$SPaid1Remain 	= 0;
-			$SPaid2 		= 0;
-			$SPaid2Remain 	= 0;
-			$SDebt 			= 0;
-			$SValue 		= 0;
-			
-			while ($CLAll->valid()){
-				$CL = $CLAll->current();
+			$mTDD->deleteByDate(array($TD->Date));
+			while($DomainAll->valid()){
+				$Domain = $DomainAll->current();				
+				$DT = new \MVC\Domain\TrackingDomainDaily(null, $Domain->getId(), $TD->Date, 0, 0, 0, 0, 0, 0, 0 );
 				
-				$STicket1 		+= $CL->getTicket1();
-				$STicket2 		+= $CL->getTicket2();
-				$STicketD 		+= $CL->getTicketD();
-				$STicketValue 	+= $CL->getTicketValue();
-				$SPaid1 		+= $CL->getPaid1();
-				$SPaid1Remain	+= $CL->getPaid1Remain();
-				$SPaid2 		+= $CL->getPaid2();
-				$SPaid2Remain	+= $CL->getPaid2Remain();
-				$SDebt 			+= $CL->getDebt();
-				$SValue			+= $CL->getValue();
-				$CLAll->next();
+				$CLAll = $mCL->findByDateDomain(array($TD->Date, $Domain->getId()));
+				$CLAll->rewind();
+				while ($CLAll->valid()){
+					$CL = $CLAll->current();					
+					$DT->Ticket1 += $CL->getTicket1();
+					$DT->Ticket2 += $CL->getTicket2();
+					
+					$TD->Ticket1 += $CL->getTicket1();
+					$TD->Ticket2 += $CL->getTicket2();
+			
+					$CLAll->next();
+				}
+				$mTDD->insert($DT);				
+				$DomainAll->next();
 			}
-			$NSTicket1 		= new \MVC\Library\Number($STicket1);
-			$NSTicket2 		= new \MVC\Library\Number($STicket2);
-			$NSTicketD 		= new \MVC\Library\Number($STicketD);
-			$NSTicketValue 	= new \MVC\Library\Number($STicketValue);
-			$NSPaid1 		= new \MVC\Library\Number($SPaid1);
-			$NSPaid1Remain 	= new \MVC\Library\Number($SPaid1Remain);
-			$NSPaid2 		= new \MVC\Library\Number($SPaid2);
-			$NSPaid2Remain 	= new \MVC\Library\Number($SPaid2Remain);
-			$NSDebt 		= new \MVC\Library\Number($SDebt);
-			$NSValue 		= new \MVC\Library\Number($SValue);
+			$mTD->update($TD);
 			
 			$Title = $TD->getDatePrint();
-			$Navigation = array(				
+			$Navigation = array(
 				array("BÁO CÁO", "/report"),
 				array($Tracking->getName(), $Tracking->getURLView() )
 			);
@@ -86,22 +68,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);
-			$request->setObject('Navigation'	, $Navigation);
-			
-			$request->setProperty('STicket1'	, $NSTicket1->formatCurrency());
-			$request->setProperty('STicket2'	, $NSTicket2->formatCurrency());
-			$request->setProperty('STicketD'	, $NSTicketD->formatCurrency());
-			$request->setProperty('STicketValue', $NSTicketValue->formatCurrency());
-			$request->setProperty('SPaid1'		, $NSPaid1->formatCurrency());
-			$request->setProperty('SPaid1Remain', $NSPaid1Remain->formatCurrency());
-			$request->setProperty('SPaid2'		, $NSPaid2->formatCurrency());
-			$request->setProperty('SPaid2Remain', $NSPaid2Remain->formatCurrency());
-			$request->setProperty('SDebt'		, $NSDebt->formatCurrency());
-			$request->setProperty('SValue'		, $NSValue->formatCurrency());
-			
-			$request->setObject('CLAll'			, $CLAll);
+			$request->setObject('Navigation'	, $Navigation);												
 			$request->setObject('TD'			, $TD);
-			$request->setObject('Domain'		, $Domain);
 			$request->setObject('DomainAll'		, $DomainAll);
 			
 			$request->setObject('ConfigName'	, $ConfigName);

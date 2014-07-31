@@ -1,10 +1,10 @@
 <?php
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
-class TrackingDaily extends Object{
+class TrackingDomainDaily extends Object{
 
     public $Id;
-	public $IdTracking;
+	public $IdDomain;
 	public $Date;
 	public $Ticket1;
     public $Ticket2;
@@ -19,7 +19,7 @@ class TrackingDaily extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id			= null,
-		$IdTracking	= null, 
+		$IdDomain	= null, 
 		$Date		= null, 
 		$Ticket1	= null, 
 		$Ticket2	= null, 
@@ -30,7 +30,7 @@ class TrackingDaily extends Object{
 		$Paid2Remain= null
 	) {
         $this->Id 			= $Id;
-		$this->IdTracking 	= $IdTracking;
+		$this->IdDomain 	= $IdDomain;
 		$this->Date 		= $Date;
 		$this->Ticket1 		= $Ticket1;
 		$this->Ticket2 		= $Ticket2;
@@ -45,26 +45,19 @@ class TrackingDaily extends Object{
 
     function getId() {return $this->Id;}	
 		
-    function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}   
-	function getIdTracking( ) {return $this->IdTracking;}
+    function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}   
+	function getIdDomain( ) {return $this->IdDomain;}
+	function getDomain( ) {
+		$mDomain = new \MVC\Mapper\Domain();
+		$Domain = $mDomain->find($this->IdDomain);
+		return $Domain;
+	}
 	
 	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}   
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
-	function getDayName(){
-		$Arr = array(
-			"Sunday"	=>"CN",
-			"Monday"	=>"T.Hai",
-			"Tuesday"	=>"T.Ba",
-			"Wednesday"	=>"T.Tư",
-			"Thursday"	=>"T.Năm",
-			"Friday"	=>"T.Sáu",
-			"Saturday"	=>"T.Bảy"
-		);
-		return $Arr[\date('l', strtotime( $this->Date))];
-	}
-	
+		
 	function setTicket1( $Ticket1 ) {$this->Ticket1 = $Ticket1;$this->markDirty();}   
 	function getTicket1( ) {return $this->Ticket1;}
 	function getTicket1Print( ){$N = new \MVC\Library\Number($this->Ticket1);return $N->formatCurrency();}
@@ -114,32 +107,11 @@ class TrackingDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getLotoAll(){
-		$mLoto = new \MVC\Mapper\Loto();
-		$LotoAll = 	$mLoto->findBy(array($this->getId()));
-		return $LotoAll;
-	}
-	
-	function getDomainTracking(){
-		$mDT = new \MVC\Mapper\TrackingDomainDaily();		
-		return $mDT->findByDate(array($this->Date));
-	}
-	
-	function getSupplierTracking(){
-		$mTSD = new \MVC\Mapper\TrackingSupplierDaily();		
-		return $mTSD->findByDate(array($this->Date));
-	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLReport()				{return "/report/".$this->getIdTracking()."/".$this->getId();}
-	function getURLReportSelling()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
-	function getURLReportSellingExe()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/exe";}
-	function getURLReportImport()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
-	function getURLResult()				{return "/result/".$this->getIdTracking()."/".$this->getId();}
-	function getURLResultView()			{return "/result/".$this->getIdTracking()."/".$this->getId()."/view";}
-	function getURLResultPrint()		{return "/result/".$this->getIdTracking()."/".$this->getId()."/print";}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

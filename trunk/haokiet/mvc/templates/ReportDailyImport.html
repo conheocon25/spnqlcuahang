@@ -20,26 +20,34 @@
 									<thead>
 										<tr>										
 											<th width="5%"><B>#ID</B></th>											
-											<th width="35%"><div class="text-left">NHÀ CUNG CẤP</div></th>
-											<th width="20%"><div class="text-right">VÉ LẤY</div></th>
-											<th width="20%"><div class="text-right">VÉ TRẢ</div></th>
-											<th width="20%"><div class="text-right">CÒN LẠI</div></th>
+											<th width="20%"><div class="text-left">NHÀ CUNG CẤP</div></th>
+											<th width="10%"><div class="text-right">(N)VÉ LẤY</div></th>
+											<th width="15%"><div class="text-right">(T)VÉ LẤY</div></th>
+											<th width="10%"><div class="text-right">(N)VÉ TRẢ</div></th>
+											<th width="15%"><div class="text-right">(T)VÉ TRẢ</div></th>
+											<th width="10%"><div class="text-right">(N)CÒN LẠI</div></th>
+											<th width="15%"><div class="text-right">(T)CÒN LẠI</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Order OrderAll">
-											<td align="center"><span tal:content="repeat/Order/number"/></td>
-											<td align="left"><span tal:content="Order/getSupplier/getName"/></td>
-											<td align="right"><span tal:content="Order/getValuePrint"/></td>
-											<td align="right"><span tal:content="Order/getValue1Print"/></td>
-											<td align="right"><span tal:content="Order/getValue2Print"/></td>
+										<tr tal:repeat="DS TD/getSupplierTracking">
+											<td align="center"><span tal:content="repeat/DS/number"/></td>
+											<td align="left"><span tal:content="DS/getSupplier/getName"/></td>
+											<td align="right"><span tal:content="DS/getTicketImportPrint"/></td>
+											<td align="right"><span tal:content="DS/getValueImportPrint"/></td>
+											<td align="right"><span tal:content="DS/getTicketBackPrint"/></td>
+											<td align="right"><span tal:content="DS/getValueBackPrint"/></td>
+											<td align="right"><span tal:content="DS/getTicketDPrint"/></td>
+											<td align="right"><span tal:content="DS/getValueDPrint"/></td>
 										</tr>
+										<!--
 										<tr>
 											<td align="left" colspan="2">TỔNG CỘNG</td>
 											<td align="right"><B tal:content="SValue"/></td>
 											<td align="right"><B tal:content="SValue1"/></td>
 											<td align="right"><B tal:content="SValue2"/></td>
 										</tr>
+										!-->
 									</tbody>
 								</table>								
 							</div>
