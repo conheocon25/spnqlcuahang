@@ -13,6 +13,18 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer_log where id=?");		
 		
 		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=? order by datetime desc");
+		$this->findByDateDomainStmt= self::$PDO->prepare("
+			select * 
+			from 
+				haokiet_customer 		CU 
+					inner join
+				haokiet_customer_log 	CL
+					on
+				CU.id = CL.id_customer
+			where 
+				date(`datetime`)=? AND CU.id_domain=?
+		");
+		
 		$this->findByDateStmt 		= self::$PDO->prepare("			
 			select * 
 			from 				
@@ -103,6 +115,11 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 	function findByDate( $values ) {
 		$this->findByDateStmt->execute($values);
         return new CustomerLogCollection( $this->findByDateStmt->fetchAll(), $this );
+    }
+	
+	function findByDateDomain( $values ) {
+		$this->findByDateDomainStmt->execute($values);
+        return new CustomerLogCollection( $this->findByDateDomainStmt->fetchAll(), $this );
     }
 	
 	function findActive( $values ){		

@@ -27,6 +27,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Tracking.php");	
 	require_once( "mvc/mapper/TrackingDaily.php");
+	require_once( "mvc/mapper/TrackingDomainDaily.php");
+	require_once( "mvc/mapper/TrackingSupplierDaily.php");
 	require_once( "mvc/mapper/Loto.php");
 	
 	require_once( "mvc/mapper/Guest.php");	

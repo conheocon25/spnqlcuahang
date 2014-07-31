@@ -28,6 +28,8 @@ class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollec
 
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDaily";}}
+class TrackingDomainDailyCollection 	extends Collection implements \MVC\Domain\TrackingDomainDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDomainDaily";}}
+class TrackingSupplierDailyCollection 	extends Collection implements \MVC\Domain\TrackingSupplierDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingSupplierDaily";}}
 class LotoCollection 			extends Collection implements \MVC\Domain\LotoCollection			{function targetClass(){return "\MVC\Domain\Loto";}}
 
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";}}

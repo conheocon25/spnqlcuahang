@@ -16,12 +16,13 @@
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mDomain 	= new \MVC\Mapper\Domain();			
+			//-------------------------------------------------------------						
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mOrder		= new \MVC\Mapper\OrderImport();
+			$mSupplier	= new \MVC\Mapper\Supplier();
 			$mConfig 	= new \MVC\Mapper\Config();
+			$mTSD 		= new \MVC\Mapper\TrackingSupplierDaily();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,21 +30,31 @@
 			$ConfigName = $mConfig->findByName("NAME");
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
-			$OrderAll	= $mOrder->findByTracking(array($TD->getDate(), $TD->getDate()));
-			
-			$SValue = 0;
-			$SValue1 = 0;
-			$SValue2 = 0;
-			
-			while($OrderAll->valid()){
-				$Order = $OrderAll->current();
+			$SupplierAll= $mSupplier->findAll();
+																				
+			$mTSD->deleteByDate(array($TD->Date));
+			while($SupplierAll->valid()){
+				$Supplier = $SupplierAll->current();				
+				$DS = new \MVC\Domain\TrackingSupplierDaily(null, $Supplier->getId(), $TD->Date, 0, 0, 0, 0);
 				
-				$SValue += $Order->getValue();
-				$SValue1 += $Order->getValue1();	
-				$SValue2 += $Order->getValue2();
+				$OrderAll	= $mOrder->findByDateSupplier(array($TD->getDate(), $Supplier->getId()));
+				$OrderAll->rewind();
+				while($OrderAll->valid())
+				{
+					$Order = $OrderAll->current();
+					
+					$DS->TicketImport += $Order->getTicket();					
+					$DS->TicketBack += $Order->getTicket1();
+					$DS->ValueImport += $Order->getValue();
+					$DS->ValueBack += $Order->getValue1();
+					
+					$OrderAll->next();
+				}
 				
-				$OrderAll->next();		
-			}	
+				$mTSD->insert($DS);
+				$SupplierAll->next();
+			}
+			//$mTD->update($TD);
 			
 			$Title = $TD->getDatePrint();
 			$Navigation = array(				
@@ -55,15 +66,9 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
-			
-			$request->setProperty('SValue'		, number_format($SValue, 0, ',', '.')." đ");
-			$request->setProperty('SValue1'		, number_format($SValue1, 0, ',', '.')." đ");
-			$request->setProperty('SValue2'		, number_format($SValue2, 0, ',', '.')." đ");
-						
+			$request->setObject('Navigation'	, $Navigation);											
 			$request->setObject('TD'			, $TD);
-			$request->setObject('OrderAll'		, $OrderAll);
-			
+									
 			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}
