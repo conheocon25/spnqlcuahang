@@ -21,33 +21,27 @@
 										<tr>										
 											<th width="5%"><B>#ID</B></th>											
 											<th width="20%"><div class="text-left">NHÀ CUNG CẤP</div></th>
-											<th width="10%"><div class="text-right">(N)VÉ LẤY</div></th>
-											<th width="15%"><div class="text-right">(T)VÉ LẤY</div></th>
-											<th width="10%"><div class="text-right">(N)VÉ TRẢ</div></th>
-											<th width="15%"><div class="text-right">(T)VÉ TRẢ</div></th>
-											<th width="10%"><div class="text-right">(N)CÒN LẠI</div></th>
-											<th width="15%"><div class="text-right">(T)CÒN LẠI</div></th>
+											<th width="25%"><div class="text-right">(N)VÉ LẤY</div></th>											
+											<th width="25%"><div class="text-right">(N)VÉ TRẢ</div></th>											
+											<th width="10%"><div class="text-right">TIÊU THỤ</div></th>
+											<th width="15%"><div class="text-right">PHẢI THANH TOÁN</div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="DS TD/getSupplierTracking">
 											<td align="center"><span tal:content="repeat/DS/number"/></td>
 											<td align="left"><span tal:content="DS/getSupplier/getName"/></td>
-											<td align="right"><span tal:content="DS/getTicketImportPrint"/></td>
-											<td align="right"><span tal:content="DS/getValueImportPrint"/></td>
-											<td align="right"><span tal:content="DS/getTicketBackPrint"/></td>
-											<td align="right"><span tal:content="DS/getValueBackPrint"/></td>
+											<td align="right"><span tal:content="DS/getTicketImportPrint"/></td>											
+											<td align="right"><span tal:content="DS/getTicketImportBackPrint"/></td>											
 											<td align="right"><span tal:content="DS/getTicketDPrint"/></td>
 											<td align="right"><span tal:content="DS/getValueDPrint"/></td>
-										</tr>
-										<!--
+										</tr>										
 										<tr>
-											<td align="left" colspan="2">TỔNG CỘNG</td>
-											<td align="right"><B tal:content="SValue"/></td>
-											<td align="right"><B tal:content="SValue1"/></td>
-											<td align="right"><B tal:content="SValue2"/></td>
-										</tr>
-										!-->
+											<td align="left" colspan="2"><B>TỔNG CỘNG</B></td>
+											<td align="right"><B tal:content="TD/getTicketImportPrint"/></td>
+											<td align="right"><B tal:content="TD/getTicketImportBackPrint"/></td>
+											<td align="right"><B tal:content="TD/getTicketImportDPrint"/></td>
+										</tr>										
 									</tbody>
 								</table>								
 							</div>

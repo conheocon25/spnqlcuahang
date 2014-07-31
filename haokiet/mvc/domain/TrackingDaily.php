@@ -6,8 +6,10 @@ class TrackingDaily extends Object{
     public $Id;
 	public $IdTracking;
 	public $Date;
-	public $Ticket1;
-    public $Ticket2;
+	public $TicketImport;
+	public $TicketImportBack;
+	public $TicketSelling;
+	public $TicketSellingBack;
     public $Paid1;
     public $Paid2;
 	public $Debt;
@@ -21,8 +23,10 @@ class TrackingDaily extends Object{
 		$Id			= null,
 		$IdTracking	= null, 
 		$Date		= null, 
-		$Ticket1	= null, 
-		$Ticket2	= null, 
+		$TicketImport		= null, 
+		$TicketImportBack	= null, 
+		$TicketSelling		= null, 
+		$TicketSellingBack	= null, 
 		$Paid1		= null,
 		$Paid2		= null,
 		$Debt		= null,
@@ -32,9 +36,11 @@ class TrackingDaily extends Object{
         $this->Id 			= $Id;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
-		$this->Ticket1 		= $Ticket1;
-		$this->Ticket2 		= $Ticket2;
-		$this->Paid1 		= $Paid1;
+		$this->TicketImport 			= $TicketImport;
+		$this->TicketImportBack 		= $TicketImportBack;
+		$this->TicketSelling 			= $TicketSelling;
+		$this->TicketSellingBack 		= $TicketSellingBack;
+		$this->Paid1 		= $Paid1;		
 		$this->Paid2 		= $Paid2;
 		$this->Debt 		= $Debt;
 		$this->Paid1Remain	= $Paid1Remain;
@@ -65,25 +71,30 @@ class TrackingDaily extends Object{
 		return $Arr[\date('l', strtotime( $this->Date))];
 	}
 	
-	function setTicket1( $Ticket1 ) {$this->Ticket1 = $Ticket1;$this->markDirty();}   
-	function getTicket1( ) {return $this->Ticket1;}
-	function getTicket1Print( ){$N = new \MVC\Library\Number($this->Ticket1);return $N->formatCurrency();}
+	function setTicketImport( $TicketImport ) {$this->TicketImport = $TicketImport;$this->markDirty();}   
+	function getTicketImport( ) {return $this->TicketImport;}
+	function getTicketImportPrint( ){$N = new \MVC\Library\Number($this->TicketImport);return $N->formatCurrency();}
 	
-	function setTicket2( $Ticket2 ) {$this->Ticket2 = $Ticket2;$this->markDirty();}   
-	function getTicket2( ) {return $this->Ticket2;}
-	function getTicket2Print( ){$N = new \MVC\Library\Number($this->Ticket2);return $N->formatCurrency();}
+	function setTicketImportBack( $TicketImportBack ) {$this->TicketImportBack = $TicketImportBack;$this->markDirty();}   
+	function getTicketImportBack( ) {return $this->TicketImportBack;}
+	function getTicketImportBackPrint( ){$N = new \MVC\Library\Number($this->TicketImportBack);return $N->formatCurrency();}
 	
-	function getTicketD(){return $this->Ticket1 - $this->Ticket2;}
-	function getTicketDPrint(){
-		$N = new \MVC\Library\Number($this->getTicketD());
-		return 	$N->formatCurrency();
-	}
+	function getTicketImportD( ) {return $this->TicketImport - $this->TicketImportBack;}
+	function getTicketImportDPrint( ){$N = new \MVC\Library\Number($this->getTicketImportD());return $N->formatCurrency();}
 	
-	function getTicketValue(){return 	$this->getTicketD()*9000; }
-	function getTicketValuePrint(){
-		$N = new \MVC\Library\Number($this->getTicketValue());
-		return 	$N->formatCurrency();
-	}
+	function setTicketSelling( $TicketSelling ) {$this->TicketSelling = $TicketSelling;$this->markDirty();}   
+	function getTicketSelling( ) {return $this->TicketSelling;}
+	function getTicketSellingPrint( ){$N = new \MVC\Library\Number($this->TicketSelling);return $N->formatCurrency();}
+	
+	function setTicketSellingBack( $TicketSellingBack ) {$this->TicketSellingBack = $TicketSellingBack;$this->markDirty();}   
+	function getTicketSellingBack( ) {return $this->TicketSellingBack;}
+	function getTicketSellingBackPrint( ){$N = new \MVC\Library\Number($this->TicketSellingBack);return $N->formatCurrency();}
+	
+	function getTicketSellingD( ) {return $this->TicketSelling - $this->TicketSellingBack;}
+	function getTicketSellingDPrint( ){$N = new \MVC\Library\Number($this->getTicketSellingD());return $N->formatCurrency();}
+
+	function getTicketBack( ) {return $this->TicketSellingBack + $this->TicketImportBack;}
+	function getTicketBackPrint( ){$N = new \MVC\Library\Number($this->getTicketBack());return $N->formatCurrency();}
 	
 	function setPaid1( $Paid1 ) {$this->Paid1 = $Paid1; $this->markDirty();}   
 	function getPaid1( ) {return $this->Paid1;}
@@ -134,8 +145,8 @@ class TrackingDaily extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLReport()				{return "/report/".$this->getIdTracking()."/".$this->getId();}
+	function getURLReportGeneral()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/general";}
 	function getURLReportSelling()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
-	function getURLReportSellingExe()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/exe";}
 	function getURLReportImport()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
 	function getURLResult()				{return "/result/".$this->getIdTracking()."/".$this->getId();}
 	function getURLResultView()			{return "/result/".$this->getIdTracking()."/".$this->getId()."/view";}

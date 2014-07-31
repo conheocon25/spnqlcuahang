@@ -31,7 +31,10 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			$SupplierAll= $mSupplier->findAll();
-																				
+			
+			$TD->TicketImport = 0;
+			$TD->TicketImportBack = 0;
+			
 			$mTSD->deleteByDate(array($TD->Date));
 			while($SupplierAll->valid()){
 				$Supplier = $SupplierAll->current();				
@@ -43,10 +46,14 @@
 				{
 					$Order = $OrderAll->current();
 					
-					$DS->TicketImport += $Order->getTicket();					
-					$DS->TicketBack += $Order->getTicket1();
-					$DS->ValueImport += $Order->getValue();
-					$DS->ValueBack += $Order->getValue1();
+					$TD->TicketImport 		+= $Order->getTicket();
+					$DS->TicketImport 		+= $Order->getTicket();					
+					
+					$DS->TicketImportBack 	+= $Order->getTicket1();
+					$TD->TicketImportBack 	+= $Order->getTicket1();					
+					
+					$DS->ValueImport 		+= $Order->getValue();
+					$DS->ValueImportBack 	+= $Order->getValue1();
 					
 					$OrderAll->next();
 				}
@@ -54,7 +61,7 @@
 				$mTSD->insert($DS);
 				$SupplierAll->next();
 			}
-			//$mTD->update($TD);
+			$mTD->update($TD);
 			
 			$Title = $TD->getDatePrint();
 			$Navigation = array(				

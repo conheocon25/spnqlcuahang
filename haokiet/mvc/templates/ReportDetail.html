@@ -32,14 +32,13 @@
 											<th><div class="text-left">NGÀY</div></th>
 											<th width="120"><div class="text-right">NHẬP HÀNG</div></th>
 											<th width="120"><div class="text-right">BÁN HÀNG</div></th>
-											<th width="120"><div class="text-right">TIỀN GÓP</div></th>
-											<th width="40"><div class="text-right"></div></th>
+											<th width="120"><div class="text-right">TIỀN GÓP</div></th>											
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">
 											<td>
-												<a 	tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getDateShortPrint"/></a>
+												<a 	tal:attributes="href TD/getURLReportGeneral"><span tal:content="TD/getDateShortPrint"/></a>
 											</td>
 											<td align="right">
 												<a 	tal:attributes="href TD/getURLReportImport">Xem chi tiết</a>
@@ -49,17 +48,7 @@
 											</td>
 											<td align="right">
 												<a 	tal:attributes="href TD/getURLReportSelling">Xem chi tiết</a>
-											</td>
-											<td>
-												<a class="TDExe" tal:attributes="alt TD/getURLReportSellingExe"><i class="glyphicons-circle_ok"/></a>
-											</td>
-										</tr>
-										<tr>
-											<td><B>TK</B></td>
-											<td align="right"><B tal:content="STicket1"/></td>
-											<td align="right"><B tal:content="STicket2"/></td>											
-											<td align="right"><B tal:content="SValue" style="color:red;"/></td>
-											<td />											
+											</td>											
 										</tr>										
 									</tbody>
 								</table>								

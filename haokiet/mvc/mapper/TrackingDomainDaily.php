@@ -10,8 +10,8 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDomainDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDomainDaily);
-		$updateStmt 				= sprintf("update %s set id_domain=?, `date`=?, ticket1=?, ticket2=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?", $tblTrackingDomainDaily);
-		$insertStmt 				= sprintf("insert into %s (id_domain, `date`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDomainDaily);
+		$updateStmt 				= sprintf("update %s set id_domain=?, `date`=?, ticket_selling=?, ticket_selling_back=?, value_selling_back=?, value_selling=? where id=?", $tblTrackingDomainDaily);
+		$insertStmt 				= sprintf("insert into %s (id_domain, `date`, ticket_selling, ticket_selling_back, value_selling_back, value_selling) values(?, ?, ?, ?, ?, ?)", $tblTrackingDomainDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDomainDaily);
 		$deleteByDateStmt 			= sprintf("delete from %s where `date`=?", $tblTrackingDomainDaily);
 		$findByDateStmt 			= sprintf("select *  from %s where `date`=?", $tblTrackingDomainDaily);
@@ -31,13 +31,10 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 			$array['id'],
 			$array['id_domain'],
 			$array['date'],
-			$array['ticket1'],
-			$array['ticket2'],
-			$array['paid1'],
-			$array['paid2'],
-			$array['debt'],
-			$array['paid1_remain'],
-			$array['paid2_remain']
+			$array['ticket_selling'],
+			$array['ticket_selling_back'],
+			$array['value_selling'],
+			$array['value_selling_back']			
 		);
 	    return $obj;
     }
@@ -46,13 +43,10 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
         $values = array( 
 			$object->getIdDomain(),
 			$object->getDate(),
-			$object->getTicket1(),
-			$object->getTicket2(),
-			$object->getPaid1(),
-			$object->getPaid2(),
-			$object->getDebt(),
-			$object->getPaid1Remain(),
-			$object->getPaid2Remain()
+			$object->getTicketSelling(),
+			$object->getTicketSellingBack(),
+			$object->getValueSelling(),
+			$object->getValueSellingBack()			
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -63,13 +57,10 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
         $values = array( 
 			$object->getIdDomain(),
 			$object->getDate(),
-			$object->getTicket1(),
-			$object->getTicket2(),
-			$object->getPaid1(),
-			$object->getPaid2(),
-			$object->getDebt(),
-			$object->getPaid1Remain(),
-			$object->getPaid2Remain(),
+			$object->getTicketSelling(),
+			$object->getTicketSellingBack(),
+			$object->getValueSelling(),
+			$object->getValueSellingBack(),			
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

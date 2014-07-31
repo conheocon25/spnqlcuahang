@@ -10,8 +10,8 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingSupplierDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingSupplierDaily);
-		$updateStmt 				= sprintf("update %s set id_supplier=?, `date`=?, ticket_import=?, ticket_back=?, value_import=?, value_back=? where id=?", $tblTrackingSupplierDaily);
-		$insertStmt 				= sprintf("insert into %s (id_supplier, `date`, ticket_import, ticket_back, value_import, value_back) values(?, ?, ?, ?, ?, ?)", $tblTrackingSupplierDaily);
+		$updateStmt 				= sprintf("update %s set id_supplier=?, `date`=?, ticket_import=?, ticket_import_back=?, value_import=?, value_import_back=? where id=?", $tblTrackingSupplierDaily);
+		$insertStmt 				= sprintf("insert into %s (id_supplier, `date`, ticket_import, ticket_import_back, value_import, value_import_back) values(?, ?, ?, ?, ?, ?)", $tblTrackingSupplierDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingSupplierDaily);
 		$deleteByDateStmt 			= sprintf("delete from %s where `date`=?", $tblTrackingSupplierDaily);
 		$findByDateStmt 			= sprintf("select *  from %s where `date`=?", $tblTrackingSupplierDaily);
@@ -32,9 +32,9 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
 			$array['id_supplier'],
 			$array['date'],
 			$array['ticket_import'],
-			$array['ticket_back'],
+			$array['ticket_import_back'],
 			$array['value_import'],
-			$array['value_back']
+			$array['value_import_back']
 		);
 	    return $obj;
     }
@@ -44,9 +44,9 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
 			$object->getIdSupplier(),
 			$object->getDate(),
 			$object->getTicketImport(),
-			$object->getTicketBack(),
+			$object->getTicketImportBack(),
 			$object->getValueImport(),
-			$object->getValueBack()
+			$object->getValueImportBack()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -58,9 +58,9 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
 			$object->getIdSupplier(),
 			$object->getDate(),
 			$object->getTicketImport(),
-			$object->getTicketBack(),
+			$object->getTicketImportBack(),
 			$object->getValueImport(),
-			$object->getValueBack(),
+			$object->getValueImportBack(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
