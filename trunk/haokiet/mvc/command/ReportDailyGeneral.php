@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDailySelling extends Command {
+	class ReportDailyGeneral extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -13,16 +13,12 @@
 			//-------------------------------------------------------------
 			$IdTrack 	= $request->getProperty('IdTrack');
 			$IdTD 		= $request->getProperty('IdTD');
-			$IdDomain 	= $request->getProperty('IdDomain');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mDomain 	= new \MVC\Mapper\Domain();			
+			//-------------------------------------------------------------						
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mTDD 		= new \MVC\Mapper\TrackingDomainDaily();
-			$mCL 		= new \MVC\Mapper\CustomerLog();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -31,36 +27,8 @@
 			$ConfigName = $mConfig->findByName("NAME");
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
-			$DomainAll	= $mDomain->findAll();
-			
-			$TD->TicketSelling = 0;
-			$TD->TicketSellingBack = 0;
-			
-			$mTDD->deleteByDate(array($TD->Date));
-			while($DomainAll->valid()){
-				$Domain = $DomainAll->current();				
-				$DT = new \MVC\Domain\TrackingDomainDaily(null, $Domain->getId(), $TD->Date, 0, 0, 0, 0, 0, 0, 0 );
-				
-				$CLAll = $mCL->findByDateDomain(array($TD->Date, $Domain->getId()));
-				$CLAll->rewind();
-				while ($CLAll->valid()){
-					$CL = $CLAll->current();					
-					$DT->TicketSelling 		+= $CL->getTicket1();
-					$DT->TicketSellingBack 	+= $CL->getTicket2();
-					$DT->ValueSelling 		+= $CL->getTicket1();
-					$DT->ValueSellingBack 	+= $CL->getTicket1();
-					
-					$TD->TicketSelling 		+= $CL->getTicket1();
-					$TD->TicketSellingBack 	+= $CL->getTicket2();
-			
-					$CLAll->next();
-				}
-				$mTDD->insert($DT);				
-				$DomainAll->next();
-			}
-			$mTD->update($TD);
-			
-			$Title = $TD->getDatePrint();
+						
+			$Title = $TD->getDatePrint()." TỔNG HỢP";
 			$Navigation = array(
 				array("BÁO CÁO", "/report"),
 				array($Tracking->getName(), $Tracking->getURLView() )
@@ -72,8 +40,7 @@
 			$request->setProperty('Title'		, $Title);
 			$request->setObject('Navigation'	, $Navigation);												
 			$request->setObject('TD'			, $TD);
-			$request->setObject('DomainAll'		, $DomainAll);
-			
+						
 			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}

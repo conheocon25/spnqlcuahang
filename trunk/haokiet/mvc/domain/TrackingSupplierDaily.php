@@ -7,9 +7,9 @@ class TrackingSupplierDaily extends Object{
 	public $IdSupplier;
 	public $Date;
 	public $TicketImport;
-    public $TicketBack;
+    public $TicketImportBack;
 	public $ValueImport;
-    public $ValueBack;
+    public $ValueImportBack;
     	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -19,17 +19,17 @@ class TrackingSupplierDaily extends Object{
 		$IdSupplier	= null, 
 		$Date		= null, 
 		$TicketImport	= null, 
-		$TicketBack	= null,
+		$TicketImportBack	= null,
 		$ValueImport		= null, 
-		$ValueBack		= null	
+		$ValueImportBack		= null	
 	) {
         $this->Id 			= $Id;
 		$this->IdSupplier 	= $IdSupplier;
 		$this->Date 		= $Date;
 		$this->TicketImport 		= $TicketImport;
-		$this->TicketBack 		= $TicketBack;		
+		$this->TicketImportBack 		= $TicketImportBack;		
 		$this->ValueImport 		= $ValueImport;
-		$this->ValueBack 		= $ValueBack;
+		$this->ValueImportBack 		= $ValueImportBack;
 			
         parent::__construct( $Id );
     }
@@ -53,11 +53,11 @@ class TrackingSupplierDaily extends Object{
 	function getTicketImport( ) {return $this->TicketImport;}
 	function getTicketImportPrint( ){$N = new \MVC\Library\Number($this->TicketImport);return $N->formatCurrency();}
 	
-	function setTicketBack( $TicketBack ) {$this->TicketBack = $TicketBack;$this->markDirty();}   
-	function getTicketBack( ) {return $this->TicketBack;}
-	function getTicketBackPrint( ){$N = new \MVC\Library\Number($this->TicketBack);return $N->formatCurrency();}
+	function setTicketImportBack( $TicketImportBack ) {$this->TicketImportBack = $TicketImportBack;$this->markDirty();}   
+	function getTicketImportBack( ) {return $this->TicketImportBack;}
+	function getTicketImportBackPrint( ){$N = new \MVC\Library\Number($this->TicketImportBack);return $N->formatCurrency();}
 	
-	function getTicketD(){return $this->TicketImport - $this->TicketBack;}
+	function getTicketD(){return $this->TicketImport - $this->TicketImportBack;}
 	function getTicketDPrint(){
 		$N = new \MVC\Library\Number($this->getTicketD());
 		return 	$N->formatCurrency();
@@ -67,11 +67,11 @@ class TrackingSupplierDaily extends Object{
 	function getValueImport( ) {return $this->ValueImport;}
 	function getValueImportPrint( ){$N = new \MVC\Library\Number($this->ValueImport);return $N->formatCurrency();}
 	
-	function setValueBack( $ValueBack ) {$this->ValueBack = $ValueBack;$this->markDirty();}   
-	function getValueBack( ) {return $this->ValueBack;}
-	function getValueBackPrint( ){$N = new \MVC\Library\Number($this->ValueBack);return $N->formatCurrency();}
+	function setValueImportBack( $ValueImportBack ) {$this->ValueImportBack = $ValueImportBack;$this->markDirty();}   
+	function getValueImportBack( ) {return $this->ValueImportBack;}
+	function getValueImportBackPrint( ){$N = new \MVC\Library\Number($this->ValueImportBack);return $N->formatCurrency();}
 	
-	function getValueD(){return $this->ValueImport - $this->ValueBack;}
+	function getValueD(){return $this->ValueImport - $this->ValueImportBack;}
 	function getValueDPrint(){
 		$N = new \MVC\Library\Number($this->getValueD());
 		return 	$N->formatCurrency();

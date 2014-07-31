@@ -23,22 +23,22 @@
 										<th class="left">KHU VỰC</th>
 										<th width="120"><div class="text-right">VÉ LẤY</div></th>
 										<th width="120"><div class="text-right">VÉ TRẢ</div></th>
-										<th width="120"><div class="text-right">CÒN LẠI</div></th>										
+										<th width="120"><div class="text-right">BÁN ĐƯỢC</div></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="DT TD/getDomainTracking">
 										<td class="center"><span tal:content="repeat/DT/number"/></td>
 										<td><span tal:content="DT/getDomain/getName"/></td>
-										<td><div class="text-right" tal:content="DT/getTicket1Print"/></td>
-										<td><div class="text-right" tal:content="DT/getTicket2Print"/></td>
-										<td><div class="text-right" tal:content="string:0"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingBackPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingDPrint"/></td>
 									</tr>
 									<tr>										
 										<td colspan="2" class="left"><B>TỔNG CỘNG</B></td>
-										<td><B><div class="text-right" tal:content="TD/getTicket1Print"/></B></td>
-										<td><B><div class="text-right" tal:content="TD/getTicket2Print" /></B></td>
-										<td><B><div class="text-right" tal:content="string:0" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingPrint"/></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingBackPrint" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingDPrint" /></B></td>
 									</tr>
 								</tbody>
 							</table>							

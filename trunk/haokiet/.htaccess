@@ -70,6 +70,7 @@ RewriteRule ^report$ 										?cmd=Report [L]
 RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
 
 RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/general$ 				?cmd=ReportDailyGeneral&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/selling/([0-9]+)$ 	?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2&IdDomain=$3 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/selling/exe$ 			?cmd=ReportDailySellingExe&IdTrack=$1&IdTD=$2 [L]
