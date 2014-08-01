@@ -47,6 +47,8 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 		");
 		$this->findActiveStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=? AND id_customer=?");
 		$this->findPreStmt 			= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`) < date(?) AND id_customer=? ORDER BY `datetime` DESC LIMIT 1");
+		
+		$this->findAfterStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`) > date(?) AND id_customer=? ORDER BY `datetime`");
     } 
     function getCollection( array $raw ) {return new CustomerLogCollection( $raw, $this );}
 
@@ -120,6 +122,11 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 	function findByDateDomain( $values ) {
 		$this->findByDateDomainStmt->execute($values);
         return new CustomerLogCollection( $this->findByDateDomainStmt->fetchAll(), $this );
+    }
+	
+	function findAfter( $values ) {
+		$this->findAfterStmt->execute($values);
+        return new CustomerLogCollection( $this->findAfterStmt->fetchAll(), $this );
     }
 	
 	function findActive( $values ){		

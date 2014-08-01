@@ -27,30 +27,24 @@
 			$CL = $mCL->find($Id);
 			if ($Column==2){
 				$CL->setTicket1($Value);
-				$CL->autoUpdate();
-				$mCL->update($CL);
+				$CL->autoUpdate();				
 			}else if ($Column==3){
 				$CL->setTicket2($Value);
-				$CL->autoUpdate();
-				$mCL->update($CL);
+				$CL->autoUpdate();				
 			}else if ($Column==5){
 				$CL->setPaid1($Value);
-				$CL->autoUpdate();
-				$mCL->update($CL);
+				$CL->autoUpdate();				
 			}else if ($Column==8){
 				$CL->setPaid2($Value);
-				$CL->autoUpdate();
-				$mCL->update($CL);
+				$CL->autoUpdate();				
 			}else if ($Column==9){
 				$CL->setDebt($Value);
-				$CL->autoUpdate();
-				$mCL->update($CL);
+				$CL->autoUpdate();				
 			}
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-					
+			//-------------------------------------------------------------					
 			
 			echo $Value;
 		}
