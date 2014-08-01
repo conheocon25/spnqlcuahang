@@ -34,6 +34,8 @@
 			
 			$TD->TicketImport = 0;
 			$TD->TicketImportBack = 0;
+			$TD->ValueImport = 0;
+			$TD->ValueImportBack = 0;
 			
 			$mTSD->deleteByDate(array($TD->Date));
 			while($SupplierAll->valid()){
@@ -53,7 +55,10 @@
 					$TD->TicketImportBack 	+= $Order->getTicket1();					
 					
 					$DS->ValueImport 		+= $Order->getValue();
+					$TD->ValueImport 		+= $Order->getValue();					
+					
 					$DS->ValueImportBack 	+= $Order->getValue1();
+					$TD->ValueImportBack	+= $Order->getValue1();					
 					
 					$OrderAll->next();
 				}

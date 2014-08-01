@@ -150,6 +150,22 @@ class CustomerLog extends Object{
 		$this->autoUpdate();
     }
 	function autoUpdate(){
+		$mCL = new \MVC\Mapper\CustomerLog();
+		$CLAll = $mCL->findAfter(array($this->DateTime, $this->IdCustomer));
+		
+		//Update lan truyền ngược đến các giao dịch sau này !
+		$this->autoUpdate_();
+		$mCL->update($this);
+		
+		while ($CLAll->valid()){
+			$CL = $CLAll->current();			
+			$CL->autoUpdate_();
+			$mCL->update($CL);
+			$CLAll->next();
+		}
+	}
+	
+	function autoUpdate_(){
 		//Tính tự động 2 tham số này Paid1Remain / Paid2Remain		
 		//Tìm CL trước đó 1 ngày để cập nhật những công nợ cũ
 		$mCL = new \MVC\Mapper\CustomerLog();

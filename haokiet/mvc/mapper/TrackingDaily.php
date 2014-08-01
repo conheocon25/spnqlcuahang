@@ -10,8 +10,8 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, ticket_import=?, ticket_import_back=?, ticket_selling=?, ticket_selling_back=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?", $tblTrackingDaily);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, ticket_import, ticket_import_back, ticket_selling, ticket_selling_back, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, ticket_import=?, ticket_import_back=?, value_import=?, value_import_back=?, ticket_selling=?, ticket_selling_back=?, paid1=?, paid2=?, debt=?, paid1_remain=?, paid2_remain=? where id=?", $tblTrackingDaily);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, ticket_import, ticket_import_back, value_import, value_import_back, ticket_selling, ticket_selling_back, paid1, paid2, debt, paid1_remain, paid2_remain) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
@@ -36,8 +36,10 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$array['date'],
 			$array['ticket_import'],
 			$array['ticket_import_back'],
+			$array['value_import'],
+			$array['value_import_back'],
 			$array['ticket_selling'],
-			$array['ticket_selling_back'],
+			$array['ticket_selling_back'],			
 			$array['paid1'],
 			$array['paid2'],
 			$array['debt'],
@@ -53,8 +55,10 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$object->getDate(),
 			$object->getTicketImport(),
 			$object->getTicketImportBack(),
+			$object->getValueImport(),
+			$object->getValueImportBack(),
 			$object->getTicketSelling(),
-			$object->getTicketSellingBack(),
+			$object->getTicketSellingBack(),			
 			$object->getPaid1(),
 			$object->getPaid2(),
 			$object->getDebt(),
@@ -72,6 +76,8 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$object->getDate(),
 			$object->getTicketImport(),
 			$object->getTicketImportBack(),
+			$object->getValueImport(),
+			$object->getValueImportBack(),
 			$object->getTicketSelling(),
 			$object->getTicketSellingBack(),
 			$object->getPaid1(),
