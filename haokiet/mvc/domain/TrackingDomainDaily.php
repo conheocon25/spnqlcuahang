@@ -8,8 +8,9 @@ class TrackingDomainDaily extends Object{
 	public $Date;
 	public $TicketSelling;
     public $TicketSellingBack;
-    public $ValueSelling;
-    public $ValueSellingBack;
+    public $TicketValue;    
+	public $PaidTicket;
+    public $PaidDebt;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -18,18 +19,20 @@ class TrackingDomainDaily extends Object{
 		$Id			= null,
 		$IdDomain	= null, 
 		$Date		= null, 
-		$TicketSelling	= null, 
+		$TicketSelling			= null, 
 		$TicketSellingBack		= null, 
-		$ValueSelling	= null,
-		$ValueSellingBack		= null	
+		$TicketValue			= null,		
+		$PaidTicket				= null,
+		$PaidDebt				= null	
 	) {
         $this->Id 			= $Id;
 		$this->IdDomain 	= $IdDomain;
 		$this->Date 		= $Date;
 		$this->TicketSelling = $TicketSelling;
 		$this->TicketSellingBack 	= $TicketSellingBack;
-		$this->ValueSelling 	= $ValueSelling;
-		$this->ValueSellingBack 	= $ValueSellingBack;
+		$this->TicketValue 			= $TicketValue;		
+		$this->PaidTicket 			= $PaidTicket;
+		$this->PaidDebt 			= $PaidDebt;
 			
         parent::__construct( $Id );
     }
@@ -63,17 +66,17 @@ class TrackingDomainDaily extends Object{
 		return 	$N->formatCurrency();
 	}
 	
-	function setValueSelling( $ValueSelling ) {$this->ValueSelling = $ValueSelling; $this->markDirty();}   
-	function getValueSelling( ) {return $this->ValueSelling;}
-	function getValueSellingPrint( ) {$N = new \MVC\Library\Number($this->ValueSelling);return $N->formatCurrency();}
-	
-	function setValueSellingBack( $ValueSellingBack ) {$this->ValueSellingBack = $ValueSellingBack; $this->markDirty();}   
-	function getValueSellingBack( ) {return $this->ValueSellingBack;}
-	function getValueSellingBackPrint( ) {$N = new \MVC\Library\Number($this->ValueSellingBack);return $N->formatCurrency();}
-	
-	function setValueSellingD( $ValueSellingD ) {$this->ValueSellingBackD = $ValueSellingBackD; $this->markDirty();}   	
-	function getValueSellingDPrint( ) {$N = new \MVC\Library\Number($this->ValueSellingBackD);return $N->formatCurrency();}
-	
+	function setTicketValue( $TicketValue ) {$this->TicketValue = $TicketValue; $this->markDirty();}   
+	function getTicketValue( ) {return $this->TicketValue;}
+	function getTicketValuePrint( ) {$N = new \MVC\Library\Number($this->TicketValue);return $N->formatCurrency();}		
+
+	function setPaidTicket( $PaidTicket ) {$this->PaidTicket = $PaidTicket; $this->markDirty();}
+	function getPaidTicket( ) {return $this->PaidTicket;}
+	function getPaidTicketPrint( ) {$N = new \MVC\Library\Number($this->PaidTicket);return $N->formatCurrency();}
+
+	function setPaidDebt( $PaidDebt ) {$this->PaidDebt = $PaidDebt; $this->markDirty();}
+	function getPaidDebt( ) {return $this->PaidDebt;}
+	function getPaidDebtPrint( ) {$N = new \MVC\Library\Number($this->PaidDebt);return $N->formatCurrency();}
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -85,6 +88,5 @@ class TrackingDomainDaily extends Object{
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	
 }
 ?>

@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$IdDomain 	= $request->getProperty('IdDomain');
 			$IdCustomer = $request->getProperty('IdCustomer');
+			$Page 		= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -34,8 +35,14 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigRPP 		= 12;
 			$ConfigName		= $mConfig->findByName("NAME");
+			
+			$CLAll 		= $mCL->findByCustomerPage(array($IdCustomer, $Page, $ConfigRPP));
+			
+			$CLAll1 	= $Customer->getLogAll();
+			$PN 		= new \MVC\Domain\PageNavigation($CLAll1->count(), $ConfigRPP, "/selling/".$IdDomain."/".$IdCustomer);
+			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -45,6 +52,8 @@
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Domain'		, $Domain);
 			$request->setObject('Customer'		, $Customer);
+			$request->setObject('CLAll'			, $CLAll);
+			$request->setObject('PN'			, $PN);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

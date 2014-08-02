@@ -35,24 +35,41 @@
 			
 			$TD->TicketSelling = 0;
 			$TD->TicketSellingBack = 0;
+			$TD->TicketSellingValue = 0;
+			$TD->PaidTicket = 0;
+			$TD->PaidDebt	= 0;
+			$TD->Debt 		= 0;
+			$TD->PaidDebtRemain = 0;
+			$TD->PaidTicketRemain = 0;
 			
 			$mTDD->deleteByDate(array($TD->Date));
 			while($DomainAll->valid()){
 				$Domain = $DomainAll->current();				
-				$DT = new \MVC\Domain\TrackingDomainDaily(null, $Domain->getId(), $TD->Date, 0, 0, 0, 0, 0, 0, 0 );
+				$DT = new \MVC\Domain\TrackingDomainDaily(null, $Domain->getId(), $TD->Date, 0, 0, 0, 0, 0, 0, 0, 0);
 				
 				$CLAll = $mCL->findByDateDomain(array($TD->Date, $Domain->getId()));
 				$CLAll->rewind();
 				while ($CLAll->valid()){
 					$CL = $CLAll->current();					
+					
 					$DT->TicketSelling 		+= $CL->getTicket1();
 					$DT->TicketSellingBack 	+= $CL->getTicket2();
-					$DT->ValueSelling 		+= $CL->getTicket1();
-					$DT->ValueSellingBack 	+= $CL->getTicket1();
-					
 					$TD->TicketSelling 		+= $CL->getTicket1();
-					$TD->TicketSellingBack 	+= $CL->getTicket2();
-			
+					$TD->TicketSellingBack	+= $CL->getTicket2();
+					
+					$DT->TicketValue 		+= $CL->getTicketValue();
+					$TD->TicketSellingValue += $CL->getTicketValue();
+										
+					$TD->PaidTicket 		+= $CL->getPaid1();
+					$DT->PaidTicket 		+= $CL->getPaid1();
+					
+					$TD->PaidDebt 			+= $CL->getPaid2();
+					$DT->PaidDebt 			+= $CL->getPaid2();
+					
+					$TD->Debt 				+= $CL->getDebt();
+					$TD->PaidDebtRemain		+= $CL->getPaid1Remain();
+					$TD->PaidTicketRemain	+= $CL->getPaid2Remain();
+					
 					$CLAll->next();
 				}
 				$mTDD->insert($DT);				
