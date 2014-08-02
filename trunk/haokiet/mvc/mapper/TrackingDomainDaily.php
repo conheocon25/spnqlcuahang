@@ -4,14 +4,13 @@ require_once( "mvc/base/Mapper.php" );
 class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDailyFinder{
 
     function __construct() {
-        parent::__construct();
-				
+        parent::__construct();				
 		$tblTrackingDomainDaily = "haokiet_tracking_domain_daily";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDomainDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDomainDaily);
-		$updateStmt 				= sprintf("update %s set id_domain=?, `date`=?, ticket_selling=?, ticket_selling_back=?, value_selling_back=?, value_selling=? where id=?", $tblTrackingDomainDaily);
-		$insertStmt 				= sprintf("insert into %s (id_domain, `date`, ticket_selling, ticket_selling_back, value_selling_back, value_selling) values(?, ?, ?, ?, ?, ?)", $tblTrackingDomainDaily);
+		$updateStmt 				= sprintf("update %s set id_domain=?, `date`=?, ticket_selling=?, ticket_selling_back=?, ticket_value=?, paid_ticket=?, paid_debt=? where id=?", $tblTrackingDomainDaily);
+		$insertStmt 				= sprintf("insert into %s (id_domain, `date`, ticket_selling, ticket_selling_back, ticket_value, paid_ticket, paid_debt) values(?, ?, ?, ?, ?, ?, ?)", $tblTrackingDomainDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDomainDaily);
 		$deleteByDateStmt 			= sprintf("delete from %s where `date`=?", $tblTrackingDomainDaily);
 		$findByDateStmt 			= sprintf("select *  from %s where `date`=?", $tblTrackingDomainDaily);
@@ -33,8 +32,9 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 			$array['date'],
 			$array['ticket_selling'],
 			$array['ticket_selling_back'],
-			$array['value_selling'],
-			$array['value_selling_back']			
+			$array['ticket_value'],			
+			$array['paid_ticket'],
+			$array['paid_debt']
 		);
 	    return $obj;
     }
@@ -45,8 +45,9 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 			$object->getDate(),
 			$object->getTicketSelling(),
 			$object->getTicketSellingBack(),
-			$object->getValueSelling(),
-			$object->getValueSellingBack()			
+			$object->getTicketValue(),			
+			$object->getPaidTicket(),
+			$object->getPaidDebt()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -59,8 +60,9 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 			$object->getDate(),
 			$object->getTicketSelling(),
 			$object->getTicketSellingBack(),
-			$object->getValueSelling(),
-			$object->getValueSellingBack(),			
+			$object->getTicketValue(),			
+			$object->getPaidTicket(),
+			$object->getPaidDebt(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

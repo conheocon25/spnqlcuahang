@@ -22,12 +22,20 @@
 									<td width="50%" align="right"><span tal:content="TD/getTicketImportPrint"/> (+)</td>
 								</tr>
 								<tr>
-									<td width="50%" align="right">VÉ TAY EM BÁN</td>
+									<td width="50%" align="right">VÉ ĐƯA TAY EM BÁN</td>
 									<td width="50%" align="right"><span tal:content="TD/getTicketSellingPrint"/> (-)</td>
 								</tr>								
 								<tr>
 									<td width="50%" align="right">VÉ TAY EM TRẢ LẠI</td>
 									<td width="50%" align="right"><span tal:content="TD/getTicketSellingBackPrint"/> (-)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">TIỀN VÉ BÁN ƯỚC TÍNH</td>
+									<td width="50%" align="right"><B tal:content="TD/getTicketSellingValuePrint"/> (-)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">TIỀN VÉ BÁN THỰC THU</td>
+									<td width="50%" align="right"><B tal:content="TD/getPaidTicketPrint"/> (-)</td>
 								</tr>
 								<tr>
 									<td width="50%" align="right">------------------------------------------</td>
@@ -40,6 +48,26 @@
 								<tr>
 									<td width="50%" align="right">TIỀN VÉ PHẢI TRẢ ĐẠI LÝ</td>
 									<td width="50%" align="right"><B tal:content="TD/getValueImportDPrint"/> (-)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">------------------------------------------</td>
+									<td width="50%" align="left">------------------------------------------------------------------------------------------------------</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">ỨNG THÊM TIỀN GÓP</td>
+									<td width="50%" align="right"><B tal:content="TD/getDebtPrint"/> (-)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">TIỀN GÓP HIỆN TẠI</td>
+									<td width="50%" align="right"><B tal:content="TD/getPaidDebtPrint"/> (+)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">TỔNG NỢ TIỀN VÉ</td>
+									<td width="50%" align="right"><B tal:content="TD/getPaidTicketRemainPrint"/> (+)</td>
+								</tr>
+								<tr>
+									<td width="50%" align="right">TỔNG NỢ TIỀN GÓP</td>
+									<td width="50%" align="right"><B tal:content="TD/getPaidDebtRemainPrint"/> (+)</td>
 								</tr>
 							</table>							
 						</div>

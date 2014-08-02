@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$IdDomain 	= $request->getProperty('IdDomain');
 			$doAction 	= $request->getProperty('doAction');
+			$Page 		= $request->getProperty('Page');
 			$Date 		= $Session->getCurrentDate();
 			
 			//-------------------------------------------------------------
@@ -45,11 +46,12 @@
 				
 			}
 			$Session->setCurrentDate($Date);
-			
+						
 			//Phát sinh dữ liệu CustomerLog cho ngày hiện tại
 			$CustomerAll 	= $mCustomer->findAll();
-			
 			$CLAll = $mCL->findByDate1(array($IdDomain, $Date));
+			$CLAll1 = $mCL->findByDate1Page(array($IdDomain, $Date, $Page, 12));
+			
 			if ($CLAll->count()==0){
 				while ($CustomerAll->valid()){
 					$Customer = $CustomerAll->current();
@@ -66,19 +68,22 @@
 			}
 						
 			$Title = mb_strtoupper($Domain->getName(), 'UTF8')." > ".date('d/m/Y', strtotime($Date));
-			$Navigation = array();
+			$Navigation 	= array();
 			$ConfigName		= $mConfig->findByName("NAME");
+			$PN 			= new \MVC\Domain\PageNavigation($CLAll->count(), 12, "/selling/".$IdDomain);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('PN'			, $PN);
 			$request->setProperty('Date'		, $Date);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Domain'		, $Domain);
 			$request->setObject('CLAll'			, $CLAll);
+			$request->setObject('CLAll1'		, $CLAll1);
 			$request->setObject('DomainAll'		, $DomainAll);
 																		
 			return self::statuses('CMD_DEFAULT');

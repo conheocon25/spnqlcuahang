@@ -10,11 +10,12 @@ class TrackingDaily extends Object{
 	public $TicketImportBack;
 	public $TicketSelling;
 	public $TicketSellingBack;
-    public $Paid1;
-    public $Paid2;
+	public $TicketSellingValue;
+    public $PaidTicket;
+    public $PaidDebt;
+	public $PaidTicketRemain;
+    public $PaidDebtRemain;
 	public $Debt;
-	public $Paid1Remain;
-    public $Paid2Remain;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -29,26 +30,28 @@ class TrackingDaily extends Object{
 		$ValueImportBack	= null, 
 		$TicketSelling		= null, 
 		$TicketSellingBack	= null, 
-		$Paid1		= null,
-		$Paid2		= null,
-		$Debt		= null,
-		$Paid1Remain= null,
-		$Paid2Remain= null
+		$TicketSellingValue	= null, 
+		$PaidTicket			= null,
+		$PaidDebt			= null,
+		$Debt				= null,
+		$PaidTicketRemain	= null,
+		$PaidDebtRemain		= null
 	) {
-        $this->Id 			= $Id;
-		$this->IdTracking 	= $IdTracking;
-		$this->Date 		= $Date;
+        $this->Id 						= $Id;
+		$this->IdTracking 				= $IdTracking;
+		$this->Date 					= $Date;
 		$this->TicketImport 			= $TicketImport;
 		$this->TicketImportBack 		= $TicketImportBack;
 		$this->ValueImport 				= $ValueImport;
 		$this->ValueImportBack 			= $ValueImportBack;
 		$this->TicketSelling 			= $TicketSelling;
 		$this->TicketSellingBack 		= $TicketSellingBack;
-		$this->Paid1 		= $Paid1;		
-		$this->Paid2 		= $Paid2;
-		$this->Debt 		= $Debt;
-		$this->Paid1Remain	= $Paid1Remain;
-		$this->Paid2Remain	= $Paid2Remain;
+		$this->TicketSellingValue 		= $TicketSellingValue;
+		$this->PaidTicket 				= $PaidTicket;
+		$this->PaidDebt 				= $PaidDebt;
+		$this->Debt 					= $Debt;
+		$this->PaidTicketRemain			= $PaidTicketRemain;
+		$this->PaidDebtRemain			= $PaidDebtRemain;
 			
         parent::__construct( $Id );
     }
@@ -104,6 +107,10 @@ class TrackingDaily extends Object{
 	function setTicketSellingBack( $TicketSellingBack ) {$this->TicketSellingBack = $TicketSellingBack;$this->markDirty();}   
 	function getTicketSellingBack( ) {return $this->TicketSellingBack;}
 	function getTicketSellingBackPrint( ){$N = new \MVC\Library\Number($this->TicketSellingBack);return $N->formatCurrency();}
+
+	function setTicketSellingValue( $TicketSellingValue ) {$this->TicketSellingValue = $TicketSellingValue;$this->markDirty();}   
+	function getTicketSellingValue( ) {return $this->TicketSellingValue;}
+	function getTicketSellingValuePrint( ){$N = new \MVC\Library\Number($this->TicketSellingValue);return $N->formatCurrency();}
 	
 	function getTicketSellingD( ) {return $this->TicketSelling - $this->TicketSellingBack;}
 	function getTicketSellingDPrint( ){$N = new \MVC\Library\Number($this->getTicketSellingD());return $N->formatCurrency();}
@@ -111,27 +118,27 @@ class TrackingDaily extends Object{
 	function getTicketBack( ) {return $this->TicketSellingBack + $this->TicketImportBack;}
 	function getTicketBackPrint( ){$N = new \MVC\Library\Number($this->getTicketBack());return $N->formatCurrency();}
 	
-	function setPaid1( $Paid1 ) {$this->Paid1 = $Paid1; $this->markDirty();}   
-	function getPaid1( ) {return $this->Paid1;}
-	function getPaid1Print( ) {$N = new \MVC\Library\Number($this->Paid1);return $N->formatCurrency();}
+	function setPaidTicket( $PaidTicket ) {$this->PaidTicket = $PaidTicket; $this->markDirty();}   
+	function getPaidTicket( ) {return $this->PaidTicket;}
+	function getPaidTicketPrint( ) {$N = new \MVC\Library\Number($this->PaidTicket);return $N->formatCurrency();}
 	
-	function setPaid2( $Paid2 ) {$this->Paid2 = $Paid2; $this->markDirty();}   
-	function getPaid2( ) {return $this->Paid2;}
-	function getPaid2Print( ) {$N = new \MVC\Library\Number($this->Paid2);return $N->formatCurrency();}
+	function setPaidDebt( $PaidDebt ) {$this->PaidDebt = $PaidDebt; $this->markDirty();}   
+	function getPaidDebt( ) {return $this->PaidDebt;}
+	function getPaidDebtPrint( ) {$N = new \MVC\Library\Number($this->PaidDebt);return $N->formatCurrency();}
 	
 	function setDebt( $Debt ) {$this->Debt = $Debt; $this->markDirty();}
 	function getDebt( ) {return $this->Debt;}
 	function getDebtPrint( ) {$N = new \MVC\Library\Number($this->Debt);return $N->formatCurrency();}
 	
-	function setPaid1Remain( $Paid1Remain ) {$this->Paid1Remain = $Paid1Remain; $this->markDirty();}   
-	function getPaid1Remain( ) {return $this->Paid1Remain;}
-	function getPaid1RemainPrint( ) {$N = new \MVC\Library\Number($this->Paid1Remain);return $N->formatCurrency();}
+	function setPaidTicketRemain( $PaidTicketRemain ) {$this->PaidTicketRemain = $PaidTicketRemain; $this->markDirty();}   
+	function getPaidTicketRemain( ) {return $this->PaidTicketRemain;}
+	function getPaidTicketRemainPrint( ) {$N = new \MVC\Library\Number($this->PaidTicketRemain);return $N->formatCurrency();}
 	
-	function setPaid2Remain( $Paid2Remain ) {$this->Paid2Remain = $Paid2Remain; $this->markDirty();}   
-	function getPaid2Remain( ) {return $this->Paid2Remain;}
-	function getPaid2RemainPrint( ) {$N = new \MVC\Library\Number($this->Paid2Remain);return $N->formatCurrency();}
+	function setPaidDebtRemain( $PaidDebtRemain ) {$this->PaidDebtRemain = $PaidDebtRemain; $this->markDirty();}   
+	function getPaidDebtRemain( ) {return $this->PaidDebtRemain;}
+	function getPaidDebtRemainPrint( ) {$N = new \MVC\Library\Number($this->PaidDebtRemain);return $N->formatCurrency();}
 	
-	function getValue(){return $this->Paid1Remain + $this->Paid2Remain;}
+	function getValue(){return $this->PaidTicketRemain + $this->PaidDebtRemain;}
 	function getValuePrint(){
 		$N = new \MVC\Library\Number($this->getValue());
 		return 	$N->formatCurrency();
@@ -168,7 +175,6 @@ class TrackingDaily extends Object{
 	function getURLResultPrint()		{return "/result/".$this->getIdTracking()."/".$this->getId()."/print";}
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 }
 ?>

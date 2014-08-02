@@ -5,8 +5,7 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">			
 			<ul style="display: block;">
 				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
@@ -14,9 +13,7 @@
 						<i class="glyphicons-group" /><span tal:content="Domain1/getName"/>							
 					</a>
 				</li>
-				<li/>
-				<li><a tal:attributes="href Domain/getURLSellingNext">TỚI</a></li>
-				<li><a tal:attributes="href Domain/getURLSellingBack">LUI</a></li>
+				<li/>				
 			</ul>
 		</div>		
 		<div id="content">			
@@ -36,8 +33,8 @@
 										<th width="80"><div class="text-right">VÉ NHẬN</div></th>
 										<th width="80"><div class="text-right">VÉ TRẢ</div></th>
 										<th width="80"><div class="text-right">VÉ BÁN</div></th>
-										<th width="90"><div class="text-right">TRẢ TIỀN VÉ</div></th>
-										<th><div class="text-right">NỢ T.VÉ </div></th>
+										<th width="90"><div class="text-right">THỰC THU</div></th>
+										<th><div class="text-right">NỢ LẠI </div></th>
 										<th width="10px" />
 										<th width="90"><div class="text-right">TIỂN GÓP</div></th>
 										<th><div class="text-right">NỢ T.ỨNG</div></th>
@@ -47,7 +44,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="CL CLAll" tal:attributes="id CL/getId">
+									<tr tal:repeat="CL CLAll1" tal:attributes="id CL/getId">
 										<td class="center"><span tal:content="repeat/CL/number"/></td>
 										<td>
 											<a class="update-item" href="#DialogEdit" data-toggle="modal"
@@ -82,13 +79,13 @@
 							</table>
 						</div>
 					</div>					
+					<a tal:attributes="href Domain/getURLSellingPrintTemplate" target="blank" class="btn btn-primary btn-ins"><i class="glyphicons-print"/> In mẫu</a>
+					<a tal:attributes="href Domain/getURLSellingBack" class="btn btn-primary btn-ins">Đến ngày trước đó</a>
+					<a tal:attributes="href Domain/getURLSellingNext" class="btn btn-primary btn-ins">Đến ngày kế tiếp</a>					
 				</div>
-				<a tal:attributes="href Domain/getURLSellingPrintTemplate" target="blank" class="btn btn-primary btn-ins">
-					<i class="glyphicons-print"/>  In mẫu
-				</a>
+				<div metal:use-macro="mAdmin.xhtml/PageBar"/>
 			</div>
-		</div>
-		
+		</div>		
 		<!-- UPDATE DIALOG  -->
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
@@ -210,20 +207,20 @@
 			});
 			
 			$('.Ticket1').keyup(function(e) {if (e.which == 13) {					
-				var url = $("#DomainURL").attr('alt');				
-				$(location).attr('href', url);
+				//var url = $("#DomainURL").attr('alt');
+				location.reload();
 			}});			
 			$('.Ticket2').keyup(function(e) {if (e.which == 13) {
-				var url = $("#DomainURL").attr('alt');				
-				$(location).attr('href', url);
+				//var url = $("#DomainURL").attr('alt');				
+				location.reload();
 			}});			
 			$('.Paid1').keyup(function(e) {if (e.which == 13) {
-				var url = $("#DomainURL").attr('alt');				
-				$(location).attr('href', url);
+				//var url = $("#DomainURL").attr('alt');				
+				location.reload();
 			}});			
 			$('.Paid2').keyup(function(e) {if (e.which == 13) {
-				var url = $("#DomainURL").attr('alt');				
-				$(location).attr('href', url);
+				//var url = $("#DomainURL").attr('alt');				
+				location.reload();
 			}});			
 			
 			//-----------------------------------------------------------------------------------

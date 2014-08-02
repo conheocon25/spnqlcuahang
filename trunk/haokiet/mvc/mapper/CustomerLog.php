@@ -12,7 +12,15 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         $this->insertStmt = self::$PDO->prepare("insert into haokiet_customer_log (id_customer, `datetime`, ticket1, ticket2, paid1, paid2, debt, paid1_remain, paid2_remain) values( ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare("delete from haokiet_customer_log where id=?");		
 		
-		$this->findByCustomerStmt 	= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=? order by datetime desc");
+		$this->findByCustomerStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where id_customer=? order by datetime desc");
+		$this->findByCustomerPageStmt 	= self::$PDO->prepare("
+			SELECT 		* 
+			FROM 		haokiet_customer_log 
+			WHERE 		id_customer=:id_customer 
+			ORDER BY 	datetime desc
+			LIMIT 		:start,:max
+		");
+		
 		$this->findByDateDomainStmt= self::$PDO->prepare("
 			select * 
 			from 
@@ -45,6 +53,21 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 			CU.id_domain=? AND date(`datetime`)=?
 			order by name
 		");
+		
+		$this->findByDate1PageStmt 		= self::$PDO->prepare("			
+			select * 
+			from 
+				haokiet_customer 		CU 
+					inner join
+				haokiet_customer_log 	CL
+					on
+				CU.id = CL.id_customer
+			where 
+			CU.id_domain=:id_domain AND date(`datetime`)=:date
+			ORDER BY name
+			LIMIT :start,:max
+		");
+		
 		$this->findActiveStmt 		= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`)=? AND id_customer=?");
 		$this->findPreStmt 			= self::$PDO->prepare("select * from haokiet_customer_log where date(`datetime`) < date(?) AND id_customer=? ORDER BY `datetime` DESC LIMIT 1");
 		
@@ -113,7 +136,15 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
 		$this->findByDate1Stmt->execute($values);
         return new CustomerLogCollection( $this->findByDate1Stmt->fetchAll(), $this );
     }
-	
+	function findByDate1Page( $values ) {	
+		$this->findByDate1PageStmt->bindValue(':id_domain', (int)$values[0], \PDO::PARAM_INT);
+		$this->findByDate1PageStmt->bindValue(':date', $values[1], \PDO::PARAM_STR);
+		$this->findByDate1PageStmt->bindValue(':start', ((int)($values[2])-1)*(int)($values[3]), \PDO::PARAM_INT);
+		$this->findByDate1PageStmt->bindValue(':max', (int)($values[3]), \PDO::PARAM_INT);
+		$this->findByDate1PageStmt->execute();
+        return new CustomerLogCollection( $this->findByDate1PageStmt->fetchAll(), $this );
+    }
+		
 	function findByDate( $values ) {
 		$this->findByDateStmt->execute($values);
         return new CustomerLogCollection( $this->findByDateStmt->fetchAll(), $this );
@@ -149,5 +180,12 @@ class CustomerLog extends Mapper implements \MVC\Domain\CustomerLogFinder {
         return $object;
     }	
 	
+	function findByCustomerPage( $values ) {
+		$this->findByCustomerPageStmt->bindValue(':id_customer', (int)$values[0], \PDO::PARAM_INT);
+		$this->findByCustomerPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCustomerPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCustomerPageStmt->execute();
+        return new CustomerLogCollection( $this->findByCustomerPageStmt->fetchAll(), $this );
+    }
 }
 ?>
