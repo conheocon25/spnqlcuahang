@@ -8,22 +8,20 @@ class Resource extends Object{
     private $Id;
 	private $IdSupplier;
 	private $Name;
-    private $Price1;
-	private $Price2;
+    private $Price;
     private $Unit;
 	private $Description;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdSupplier=null, $Name=null, $Unit=null, $Price1=null, $Price2=null, $Description=null) {
+    function __construct( $Id=null, $IdSupplier=null, $Name=null, $Unit=null, $Price=null, $Description=null) {
         $this->Id = $Id;
-		$this->IdSupplier 	= $IdSupplier;
-		$this->Name 		= $Name;
-		$this->Price1 		= $Price1;
-		$this->Price2 		= $Price2;
-		$this->Unit 		= $Unit;
-		$this->Description 	= $Description;
+		$this->IdSupplier = $IdSupplier;
+		$this->Name = $Name;
+		$this->Price = $Price;
+		$this->Unit = $Unit;
+		$this->Description = $Description;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -39,13 +37,13 @@ class Resource extends Object{
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
 	
-	function setPrice1( $Price1 ) {$this->Price1 = $Price1;$this->markDirty();}
-    function getPrice1( ) {return $this->Price1;}
-	function getPrice1Print( ) {$num = new Number($this->Price1);return $num->formatCurrency();}
-	
-	function setPrice2( $Price2 ) {$this->Price2 = $Price2;$this->markDirty();}
-    function getPrice2( ) {return $this->Price2;}
-	function getPrice2Print( ) {$num = new Number($this->Price2);return $num->formatCurrency();}
+	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
+    function getPrice( ) {return $this->Price;}
+	function getPricePrint( ) {$num = new Number($this->Price);return $num->formatCurrency()." đ";}
+	function getPriceAverage(){
+		$mOID = new \MVC\Mapper\OrderImportDetail();		
+		return $mOID->evalPrice(array($this->getId()));
+	}
 	
 	function setUnit( $Unit ) {$this->Unit = $Unit;$this->markDirty();}
     function getUnit( ) {return $this->Unit;}
@@ -58,8 +56,7 @@ class Resource extends Object{
 			'Id' 			=> $this->getId(),	
 			'IdSupplier'	=> $this->getIdSupplier(),
 			'Name'			=> $this->getName(),			
-			'Price1'		=> $this->getPrice1(),
-			'Price2'		=> $this->getPrice2(),
+			'Price'			=> $this->getPrice(),
 			'Unit'			=> $this->getUnit(),
 			'Description'	=> $this->getDescription()
 		);		
@@ -70,10 +67,9 @@ class Resource extends Object{
         $this->Id 			= $Data[0];
 		$this->IdSupplier 	= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Price1 		= $Data[3];
-		$this->Price2 		= $Data[4];
-		$this->Unit 		= $Data[5];
-		$this->Description 	= $Data[6];
+		$this->Price 		= $Data[3];
+		$this->Unit 		= $Data[4];
+		$this->Description 	= $Data[5];
     }
 				
 	//-------------------------------------------------------------------------------

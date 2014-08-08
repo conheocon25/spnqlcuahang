@@ -7,18 +7,26 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "taphoahaiau_resource";
-		$tblOrderImport = "taphoahaiau_order_import";
-		$tblOrderImportDetail = "taphoahaiau_order_import_detail";
-		$tblSessionDetail = "taphoahaiau_session_detail";
-		$tblR2C = "taphoahaiau_r2c";
+		$tblResource = "giaydep_resource";
+		$tblOrderImport = "giaydep_order_import";
+		$tblOrderImportDetail = "giaydep_order_import_detail";
+		$tblSessionDetail = "giaydep_session_detail";
+		$tblR2C = "giaydep_r2c";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
-		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
-		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
+		$updateStmt = sprintf("update %s set count=?, count1=?,  price=? where id=?", $tblOrderImportDetail);
+		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, count1, price ) values( ?, ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
-						
+		
+		$evalPriceStmt = sprintf("
+			SELECT 
+				avg(price) 
+			FROM
+				%s
+			WHERE 	idresource=?
+		", $tblOrderImportDetail);
+		
 		$trackByCountStmt = sprintf("
 			select 
 				sum(count)
@@ -32,7 +40,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								(?) as idorder,
 								P.id as idresource,
 								ODI.count,
-								IFNULL(ODI.price, P.price1) as price
+								ODI.count1,
+								IFNULL(ODI.price, P.price) as price
 							FROM 
 							(
 								SELECT *
@@ -52,9 +61,9 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			select
 				sum(SD.count) as count
 			from
-				taphoahaiau_session S inner join taphoahaiau_session_detail SD on S.id = SD.idsession
+				giaydep_session S inner join giaydep_session_detail SD on S.id = SD.idsession
 			where
-				SD.idcourse IN(select id_course from taphoahaiau_r2c where id_resource=?) AND
+				SD.idcourse IN(select id_course from giaydep_r2c where id_resource=?) AND
 				S.datetime >= ? AND S.datetime <= ? 
 		", $tblSessionDetail, $tblR2C);
 		
@@ -72,7 +81,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$this->trackByExportStmt = self::$PDO->prepare($trackByExportStmt);
 		$this->existStmt = self::$PDO->prepare($existStmt);
 		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);
-				
+		$this->evalPriceStmt = self::$PDO->prepare($evalPriceStmt);		
+		
     } 
     function getCollection( array $raw ) {
         return new OrderImportDetailCollection( $raw, $this );
@@ -84,6 +94,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$array['idorder'], 
 			$array['idresource'], 
 			$array['count'],	
+			$array['count1'],
 			$array['price']
 		);
         return $obj;
@@ -98,6 +109,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$object->getIdOrder(), 
 			$object->getIdResource(), 
 			$object->getCount(),
+			$object->getCount1(),
 			$object->getPrice()
 		); 
         $this->insertStmt->execute( $values );
@@ -108,6 +120,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     protected function doUpdate(\MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getCount(),
+			$object->getCount1(),
 			$object->getPrice(),
 			$object->getId()
 		);		
@@ -163,7 +176,14 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			return $result[0][0];
 		}
     }
-		
+	
+	function evalPrice( $values ) {
+        $this->evalPriceStmt->execute( $values );
+		$result = $this->evalPriceStmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return 0;
+        return $result[0][0];
+    }
 	
 	//-------------------------------------------------------
     function selectStmt() {return $this->selectStmt;}	

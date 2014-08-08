@@ -48,34 +48,15 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Giảm giá (mặc định)</label>
+										<label class="control-label">Giá giao</label>
 										<div class="controls">
-											<input id="Discount2" tal:attributes="value ConfigDiscount/getValue;data-id ConfigDiscount/getId" type="text" class="form-control input-small"/>
+											<input id="Price1" tal:attributes="value ConfigPrice1/getValue;data-id ConfigPrice1/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Phạt trễ giờ</label>
+										<label class="control-label">Giá nhập</label>
 										<div class="controls">
-											<input id="Every5Minutes2" tal:attributes="value ConfigEvery5Minutes/getValue;data-id ConfigEvery5Minutes/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Danh mục tự chọn</label>
-										<div class="controls">											
-											<select name="CategoryAuto2" id="CategoryAuto2" style="width:80%;" tal:attributes="data-id ConfigCategoryAuto/getId">
-												<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId; selected php:ConfigCategoryAuto->getValue()==Category->getId()?'selected':''">
-													<span tal:content="Category/getName" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Hiển thị gọi món</label>
-										<div class="controls">											
-											<select name="SwitchBoardCall2" id="SwitchBoardCall2" style="width:80%;" tal:attributes="data-id ConfigSwitchBoardCall/getId">
-												<option value="0" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='1'?'selected':''">Bật</option>
-											</select>
+											<input id="Price2" tal:attributes="value ConfigPrice2/getValue;data-id ConfigPrice2/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -147,10 +128,11 @@
 					url: URL,
 					success: function(msg){}
 				});
-				
-				Data3[0] = $('#Discount2').attr('data-id');
-				Data3[1] = "DISCOUNT";
-				Data3[2] = $('#Discount2').val();								
+								
+				//Cập nhật bật/tắt in 2 liên
+				Data3[0] = $('#ReceiptVirtualDouble2').attr('data-id');
+				Data3[1] = "RECEIPT_VIRTUAL_DOUBLE";
+				Data3[2] = $('#ReceiptVirtualDouble2').val();				
 				$.ajax({
 					type: "POST",
 					data: {Data:Data3},
@@ -158,9 +140,10 @@
 					success: function(msg){}
 				});
 				
-				Data4[0] = $('#Every5Minutes2').attr('data-id');
-				Data4[1] = "EVERY_5_MINUTES";
-				Data4[2] = $('#Every5Minutes2').val();
+				//Cập nhật tên quán
+				Data4[0] = $('#Name2').attr('data-id');
+				Data4[1] = "NAME";
+				Data4[2] = $('#Name2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data4},
@@ -168,9 +151,10 @@
 					success: function(msg){}
 				});
 				
-				Data5[0] = $('#CategoryAuto2').attr('data-id');
-				Data5[1] = "CATEGORY_AUTO";
-				Data5[2] = $('#CategoryAuto2').val();
+				//Cập nhật địa chỉ
+				Data5[0] = $('#Address2').attr('data-id');
+				Data5[1] = "ADDRESS";
+				Data5[2] = $('#Address2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data5},
@@ -178,10 +162,10 @@
 					success: function(msg){}
 				});
 				
-				//Cập nhật bật/tắt board gọi món
-				Data6[0] = $('#SwitchBoardCall2').attr('data-id');
-				Data6[1] = "SWITCH_BOARD_CALL";
-				Data6[2] = $('#SwitchBoardCall2').val();
+				//Cập nhật điện thoại
+				Data6[0] = $('#Phone2').attr('data-id');
+				Data6[1] = "PHONE";
+				Data6[2] = $('#Phone2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data6},
@@ -189,10 +173,10 @@
 					success: function(msg){}
 				});
 				
-				//Cập nhật bật/tắt in 2 liên
-				Data7[0] = $('#ReceiptVirtualDouble2').attr('data-id');
-				Data7[1] = "RECEIPT_VIRTUAL_DOUBLE";
-				Data7[2] = $('#ReceiptVirtualDouble2').val();				
+				//Cập nhật giá giao
+				Data7[0] = $('#Price1').attr('data-id');
+				Data7[1] = "PHONE";
+				Data7[2] = $('#Price1').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data7},
@@ -200,35 +184,13 @@
 					success: function(msg){}
 				});
 				
-				//Cập nhật tên quán
-				Data8[0] = $('#Name2').attr('data-id');
-				Data8[1] = "NAME";
-				Data8[2] = $('#Name2').val();
+				//Cập nhật giá giao
+				Data8[0] = $('#Price2').attr('data-id');
+				Data8[1] = "PHONE";
+				Data8[2] = $('#Price2').val();
 				$.ajax({
 					type: "POST",
 					data: {Data:Data8},
-					url: URL,
-					success: function(msg){}
-				});
-				
-				//Cập nhật địa chỉ
-				Data9[0] = $('#Address2').attr('data-id');
-				Data9[1] = "ADDRESS";
-				Data9[2] = $('#Address2').val();
-				$.ajax({
-					type: "POST",
-					data: {Data:Data9},
-					url: URL,
-					success: function(msg){}
-				});
-				
-				//Cập nhật điện thoại
-				Data10[0] = $('#Phone2').attr('data-id');
-				Data10[1] = "PHONE";
-				Data10[2] = $('#Phone2').val();
-				$.ajax({
-					type: "POST",
-					data: {Data:Data10},
 					url: URL,
 					success: function(msg){}
 				});

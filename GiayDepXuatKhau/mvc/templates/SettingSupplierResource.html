@@ -34,8 +34,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="200" class="left">TÊN</th>
-										<th class="right" width="120">GIÁ NHẬP</th>
-										<th class="right" width="120">GIÁ BÁN</th>
+										<th class="right" width="120">GIÁ</th>
 										<th class="left" width="100">ĐƠN VỊ</th>
 										<th class="left">GHI CHÚ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -46,8 +45,7 @@
 									<tr tal:repeat="Resource ResourceAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Resource/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Resource/getId" tal:content="Resource/getName"/></td>
-										<td class="right" tal:content="Resource/getPrice1Print"/>
-										<td class="right" tal:content="Resource/getPrice2Print"/>
+										<td class="right" tal:content="Resource/getPricePrint"/>
 										<td class="left" tal:content="Resource/getUnit"/>
 										<td class="left" tal:content="Resource/getDescription"/>
 										<td class="center">
@@ -76,24 +74,16 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Giá nhập</label>
+											<label class="control-label">Giá</label>
 											<div class="controls">
-												<input id="Price11" name="Price11" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Giá bán</label>
-											<div class="controls">
-												<input id="Price12" name="Price12" type="text" class="form-control input-small"/>
+												<input id="Price1" name="Price1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Đơn vị</label>
 											<div class="controls">
 												<select name="Unit1" id="Unit1" style="width:80%;">
-													<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
-														<span tal:content="Unit/getName" />
-													</option>
+													<option value="Đôi">Đôi</option>													
 												</select>
 											</div>
 										</div>
@@ -129,24 +119,16 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Giá nhập</label>
+										<label class="control-label">Giá</label>
 										<div class="controls">
-											<input id="Price21" name="Price21" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Giá bán</label>
-										<div class="controls">
-											<input id="Price22" name="Price22" type="text" class="form-control input-small"/>
+											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Đơn vị</label>
 										<div class="controls">
-											<select name="Unit2" id="Unit2" style="width:80%;">
-												<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
-													<span tal:content="Unit/getName" />
-												</option>
+											<select name="Unit2" id="Unit2" style="width:80%;">												
+												<option value="Đôi">Đôi</option>
 											</select>
 										</div>
 									</div>
@@ -243,10 +225,9 @@
 					Data[0] = 'null';
 					Data[1] = $('#IdSupplier').attr('alt');
 					Data[2] = $('#Name1').val();
-					Data[3] = $('#Price11').val();
-					Data[4] = $('#Price21').val();
-					Data[5] = $('#Unit1').val();
-					Data[6] = $('#Description1').val();
+					Data[3] = $('#Price1').val();
+					Data[4] = $('#Unit1').val();
+					Data[5] = $('#Description1').val();
 					var URL = "/object/ins/Resource";
 					$.ajax({
 						type: "POST",
@@ -275,12 +256,11 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 		data.Id);
-					$('#Name2').attr('value', 			data.Name);
-					$('#Unit2').select2('val', 			data.Unit);
-					$('#Price21').attr('value', 		data.Price1);
-					$('#Price22').attr('value', 		data.Price2);
-					$('#Description2').attr('value', 	data.Description);
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#Unit2').select2('val', data.Unit);
+					$('#Price2').attr('value', data.Price);					
+					$('#Description2').attr('value', data.Description);
 				});
 			});
 			
@@ -313,11 +293,10 @@
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#IdSupplier').attr('alt');				
 					Data[2] = $('#Name2').val();
-					Data[3] = $('#Price21').val();
-					Data[4] = $('#Price22').val();
-					Data[5] = $('#Unit2').val();
-					Data[6] = $('#Description2').val();
-					
+					Data[3] = $('#Price2').val();
+					Data[4] = $('#Unit2').val();
+					Data[5] = $('#Description2').val();
+									
 					var URL = "/object/upd/Resource";
 					$.ajax({
 						type: "POST",

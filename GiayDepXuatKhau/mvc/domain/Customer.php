@@ -12,9 +12,10 @@ class Customer extends Object{
     private $Note;
     private $Address;
 	private $Discount;
+	private $IdDomain;
 	
-	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
+	/*Hàm khởi tạo và thiet lap các thuoc tính*/
+    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null, $IdDomain=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
@@ -23,6 +24,7 @@ class Customer extends Object{
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
 		$this->Discount = $Discount;
+		$this->IdDomain = $IdDomain;
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -38,7 +40,7 @@ class Customer extends Object{
 	function getNote(){return $this->Note;}	
     function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
-	function getName(){return $this->Name;}	
+	function getName(){return \trim($this->Name);}
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
 	function getPhone(){return $this->Phone;}
@@ -50,6 +52,14 @@ class Customer extends Object{
 	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
 	function getDiscount(){return $this->Discount;}
 	
+	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
+	function getIdDomain(){return $this->IdDomain;}
+	function getDomain(){
+		$mDomain 	= new \MVC\Mapper\Domain();
+		$Domain 	= $mDomain->find($this->IdDomain);
+		return $Domain;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -59,7 +69,8 @@ class Customer extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount()
+			'Discount'		=> $this->getDiscount(),
+			'IdDomain'		=> $this->getIdDomain()
 		);
 		return json_encode($json);
 	}
@@ -73,58 +84,27 @@ class Customer extends Object{
 		$this->Address	= $Data[5];
 		$this->Note		= $Data[6];
 		$this->Discount	= $Data[7];
+		$this->IdDomain	= $Data[8];
     }
-	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "customer" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-						
-		$Name = $Doc->createElement( "name" );
-		$Name->appendChild($Doc->createTextNode( $this->getName() ));
 		
-		$Type = $Doc->createElement( "type" );
-		$Type->appendChild($Doc->createTextNode( $this->getType() ));
-		
-		$Card = $Doc->createElement( "card" );
-		$Card->appendChild($Doc->createTextNode( $this->getCard() ));
-		
-		$Phone = $Doc->createElement( "phone" );
-		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
-		
-		$Address = $Doc->createElement( "address" );
-		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
-		
-		$Note = $Doc->createElement( "note" );
-		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
-		
-		$Discount = $Doc->createElement( "discount" );
-		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
-		
-		$Obj->appendChild( $Name 		);
-		$Obj->appendChild( $Type 		);
-		$Obj->appendChild( $Card 		);
-		$Obj->appendChild( $Phone 		);
-		$Obj->appendChild( $Address 	);
-		$Obj->appendChild( $Note 		);
-		$Obj->appendChild( $Discount 	);
-		
-		return $Obj;
-	}
-	
-	function getSessionAll(){
-		$mSession = new	\MVC\Mapper\Session();
-		$Sessions = $mSession->findByCustomer(array($this->Id));
-		return $Sessions;
-	}
-	
 	function getCollectAll(){
 		$mCC = new \MVC\Mapper\CollectCustomer();
 		$CollectAll = $mCC->findBy(array($this->getId()));
 		return $CollectAll;
 	}
+	function getLogActive(){
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CL 	= $mCL->findActive(array(\date('Y-m-d'), $this->getId()));
+		return $CL;
+	}
+	function getLogAll(){
+		$mCL 	= new \MVC\Mapper\CustomerLog();
+		$CLAll = $mCL->findByCustomer(array($this->getId()));
+		return $CLAll;
+	}
 	
-	//=================================================================================
-	function getURLCollect(){return "/money/collect/customer/".$this->getId();}
+	//=================================================================================	
+	function getURLSelling(){return "/selling/".$this->getIdDomain()."/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

@@ -67,9 +67,9 @@
 			return self::instance()->get('cafe_current_Iduser');
 		}
 		
-		function setCurrentAction( $Action ) {return self::instance()->set('cafe_current_action', $Action);}		
-		function getCurrentAction() {
-			$result = self::instance()->get('cafe_current_action');			
+		function setCurrentDate( $Date ) {return self::instance()->set('cafe_current_date', $Date);}		
+		function getCurrentDate() {
+			$result = self::instance()->get('cafe_current_date');
 			return $result;
 		}
 	}

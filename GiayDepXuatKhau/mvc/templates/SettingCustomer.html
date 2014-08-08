@@ -7,7 +7,15 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="sidebar">			
+			<ul style="display: block;">
+				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
+					<a tal:attributes="href Domain1/getURLCustomer">
+						<i class="glyphicons-fast_food" /><span tal:content="Domain1/getName"/>							
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -27,20 +35,18 @@
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="200" class="left">TÊN</th>
 										<th width="120" class="left">CMND</th>
-										<th width="120" class="left">ĐIỆN THOẠI</th>
-										<th width="120" class="left">GIẢM GIÁ</th>
+										<th width="120" class="left">ĐIỆN THOẠI</th>										
 										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer CustomerAll1">
+									<tr tal:repeat="Customer Domain/getCustomerAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
 										<td><span tal:content="Customer/getCard"/></td>
-										<td><span tal:content="Customer/getPhone"/></td>
-										<td><span tal:content="Customer/getDiscount"/></td>
+										<td><span tal:content="Customer/getPhone"/></td>										
 										<td><span tal:content="Customer/getAddress"/></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
@@ -56,8 +62,7 @@
 								</tbody>
 							</table>							
 						</div>
-					</div>					
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					</div>
 
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
@@ -106,7 +111,7 @@
 											<div class="control-group">
 												<label class="control-label">Giảm giá</label>
 												<div class="controls">
-													<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
+													<input id="Discount1" name="Discount1" type="text" class="form-control input-small" value="0"/>
 												</div>
 											</div>
 										</div>
@@ -189,9 +194,10 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div id="CurrentDomain" tal:attributes="alt Domain/getId" />
 		
 		<script type="text/javascript">
-		/*<![CDATA[*/
+		/*<![CDATA[*/			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
@@ -256,7 +262,8 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';				
+					var IdDomain = $("#CurrentDomain").attr('alt');
+					Data[0] = 'null';									
 					Data[1] = $('#Name1').val();
 					Data[2] = $('#Type1').val();
 					Data[3] = $('#Card1').val();
@@ -264,6 +271,7 @@
 					Data[5] = $('#Address1').val();
 					Data[6] = $('#Note1').val();
 					Data[7] = $('#Discount1').val();
+					Data[8] = IdDomain;
 															
 					var URL = "/object/ins/Customer";
 					$.ajax({
@@ -290,7 +298,7 @@
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
 				var url = "/object/load/Customer/" + $(this).attr('data-id');
-				
+								
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
@@ -331,6 +339,8 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
+					var IdDomain = $("#CurrentDomain").attr('alt');
+					
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#Name2').val();
 					Data[2] = $('#Type2').val();
@@ -339,7 +349,8 @@
 					Data[5] = $('#Address2').val();
 					Data[6] = $('#Note2').val();
 					Data[7] = $('#Discount2').val();
-															
+					Data[8] = IdDomain;
+					
 					var URL = "/object/upd/Customer";
 					$.ajax({
 						type: "POST",
