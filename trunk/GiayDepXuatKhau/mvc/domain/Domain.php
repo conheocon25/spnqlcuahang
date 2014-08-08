@@ -39,83 +39,30 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getTableAll(){		
-		$mTable = new \MVC\Mapper\Table();
-		$TableAll = $mTable->findByDomain(array($this->getId()));		
-		return $TableAll;
+	function getCustomerAll(){		
+		$mCustomer 		= new \MVC\Mapper\Customer();
+		$CustomerAll 	= $mCustomer->findByDomain(array($this->getId()));
+		return $CustomerAll;
 	}
-	
-	function getSessionByDate($Date){
-		$mSession 	= new \MVC\Mapper\Session();
-		$SessionAll = $mSession->findByDomainTracking(array($this->getId(), $Date." 0:0:0", $Date." 23:59:59"));
-		return $SessionAll;
-	}
-	
-	function getSessionByDateValue($Date){
-		$Sessions = $this->getSessionByDate($Date);
-		$Sum = 0;
-		$Sessions->rewind();
-		while($Sessions->valid()){
-			$Session = $Sessions->current();
-			$Sum += $Session->getValue();
-			$Sessions->next();
-		}
-		return $Sum;
-	}	
-	function getSessionByDateValuePrint($Date){
-		$num = new \MVC\Library\Number($this->getSessionByDateValue($Date));
-		return $num->formatCurrency();
-	}
-	
-	function getSessionByDateValue1($Date){
-		$Sessions = $this->getSessionByDate($Date);
-		$Sum = 0;
-		$Sessions->rewind();
-		while($Sessions->valid()){			
-			$Session = $Sessions->current();
-			if ($Session->getStatus()==0)
-				$Sum += $Session->getValue();
-			$Sessions->next();
-		}
-		return $Sum;
-	}	
-	function getSessionByDateValue1Print($Date){
-		$num = new \MVC\Library\Number($this->getSessionByDateValue1($Date));
-		return $num->formatCurrency();
-	}
-	
-	function getSessionByDateValue2($Date){
-		$Sessions = $this->getSessionByDate($Date);
-		$Sum = 0;
-		$Sessions->rewind();
-		while($Sessions->valid()){			
-			$Session = $Sessions->current();
-			if ($Session->getStatus()==1)
-				$Sum += $Session->getValue();
-			$Sessions->next();
-		}
-		return $Sum;
-	}	
-	function getSessionByDateValue2Print($Date){
-		$num = new \MVC\Library\Number($this->getSessionByDateValue2($Date));
-		return $num->formatCurrency();
-	}
-			
+					
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){	return "/setting/domain/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/domain/".$this->getId()."/upd/exe";}
+	function getURLCustomer(){	return "/setting/domain/".$this->getId();}
+	function getURLSelling(){	return "/selling/".$this->getId();}
+	function getURLSellingNext(){	return "/selling/".$this->getId()."/next";}
+	function getURLSellingBack(){	return "/selling/".$this->getId()."/back";}
 	
-	function getURLDelLoad(){	return "/setting/domain/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/domain/".$this->getId()."/del/exe";}
-					
-	function getURLTable(){		return "/setting/domain/".$this->getId();}
-	function getURLTableInsLoad(){return "/setting/domain/".$this->getId()."/ins/load";}
-	function getURLTableInsExe(){return "/setting/domain/".$this->getId()."/ins/exe";}
+	function getURLDailyReport($TD){
+		return $TD->getURLReportSelling()."/".$this->getId();
+	}
+	function getURLDailyReportPrint($TD){
+		return $TD->getURLReportSelling()."/".$this->getId()."/print";
+	}
 	
-	function getURLSelling(){return "/selling/".$this->getId();}
-			
+	function getURLSellingPrintTemplate(){	return "/selling/".$this->getId()."/print/template";}
+	function getURLSellingPrintReport(){	return "/selling/".$this->getId()."/print/report";}
+	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

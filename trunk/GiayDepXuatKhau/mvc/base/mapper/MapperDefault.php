@@ -1,10 +1,8 @@
-<?php	
-	$mCategory 		= new \MVC\Mapper\Category();
+<?php		
 	$mEmployee 		= new \MVC\Mapper\Employee();
 	$mDomain 		= new \MVC\Mapper\Domain();
 	$mSupplier 		= new \MVC\Mapper\Supplier();			
-	$mResource 		= new \MVC\Mapper\Resource();
-	$mUnit 			= new \MVC\Mapper\Unit();
+	$mResource 		= new \MVC\Mapper\Resource();	
 	$mOrderImport 	= new \MVC\Mapper\OrderImport();
 	$mCustomer 		= new \MVC\Mapper\Customer();
 	$mTermPaid 		= new \MVC\Mapper\TermPaid();

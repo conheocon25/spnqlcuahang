@@ -13,14 +13,16 @@
 			//-------------------------------------------------------------
 			$IdTrack 	= $request->getProperty('IdTrack');
 			$IdTD 		= $request->getProperty('IdTD');
-						
+			$IdDomain 	= $request->getProperty('IdDomain');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mDomain 	= new \MVC\Mapper\Domain();
-			$mSession 	= new \MVC\Mapper\Session();
+			$mDomain 	= new \MVC\Mapper\Domain();			
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mTDD 		= new \MVC\Mapper\TrackingDomainDaily();
+			$mCL 		= new \MVC\Mapper\CustomerLog();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -31,102 +33,61 @@
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
 			
-			//TỔNG KẾT CA1 01:00 ĐẾN TRƯỚC 11:00
-			$Session1All = $mSession->findByTracking( array(
-				$TD->getDate()." 1:0:0", 
-				$TD->getDate()." 10:59:59"
-			));			
-			$Value11 		= 0;
-			$Value12 		= 0;
-			while ($Session1All->valid()){
-				$Session = $Session1All->current();
-				if ($Session->getStatus()==0)
-					$Value11 += $Session->getValue();
-				else	
-					$Value12 += $Session->getValue();
-					
-				$Session1All->next();
-			}
-			$NTotal1 = new \MVC\Library\Number($Value11 + $Value12);
-			$NTotal11 = new \MVC\Library\Number($Value11);
-			$NTotal12 = new \MVC\Library\Number($Value12);
+			$TD->TicketSelling = 0;
+			$TD->TicketSellingBack = 0;
+			$TD->TicketSellingValue = 0;
+			$TD->PaidTicket = 0;
+			$TD->PaidDebt	= 0;
+			$TD->Debt 		= 0;
+			$TD->PaidDebtRemain = 0;
+			$TD->PaidTicketRemain = 0;
 			
-			//TỔNG KẾT CA2 11:00 ĐẾN TRƯỚC 17:00
-			$Session2All = $mSession->findByTracking( array(
-				$TD->getDate()." 11:0:0", 
-				$TD->getDate()." 16:59:59"
-			));			
-			$Value21 		= 0;
-			$Value22 		= 0;
-			while ($Session2All->valid()){
-				$Session = $Session2All->current();
-				if ($Session->getStatus()==0)
-					$Value21 += $Session->getValue();
-				else	
-					$Value22 += $Session->getValue();
+			$mTDD->deleteByDate(array($TD->Date));
+			while($DomainAll->valid()){
+				$Domain = $DomainAll->current();				
+				$DT = new \MVC\Domain\TrackingDomainDaily(null, $Domain->getId(), $TD->Date, 0, 0, 0, 0, 0, 0, 0, 0);
+				
+				$CLAll = $mCL->findByDateDomain(array($TD->Date, $Domain->getId()));
+				$CLAll->rewind();
+				while ($CLAll->valid()){
+					$CL = $CLAll->current();					
 					
-				$Session2All->next();
-			}
-			$NTotal2 = new \MVC\Library\Number($Value21 + $Value22);
-			$NTotal21 = new \MVC\Library\Number($Value21);
-			$NTotal22 = new \MVC\Library\Number($Value22);
-									
-			//TỔNG KẾT CA3 17:00 ĐẾN TRƯỚC 00:00
-			$Session3All = $mSession->findByTracking( array(
-				$TD->getDate()." 17:0:0", 
-				$TD->getDate()." 23:59:59"
-			));			
-			$Value31 		= 0;
-			$Value32 		= 0;
-			while ($Session3All->valid()){
-				$Session = $Session3All->current();
-				if ($Session->getStatus()==0)
-					$Value31 += $Session->getValue();
-				else	
-					$Value32 += $Session->getValue();
+					$DT->TicketSelling 		+= $CL->getTicket1();
+					$DT->TicketSellingBack 	+= $CL->getTicket2();
+					$TD->TicketSelling 		+= $CL->getTicket1();
+					$TD->TicketSellingBack	+= $CL->getTicket2();
 					
-				$Session3All->next();
+					$DT->TicketValue 		+= $CL->getTicketValue();
+					$TD->TicketSellingValue += $CL->getTicketValue();
+										
+					$TD->PaidTicket 		+= $CL->getPaid1();
+					$DT->PaidTicket 		+= $CL->getPaid1();
+					
+					$TD->PaidDebt 			+= $CL->getPaid2();
+					$DT->PaidDebt 			+= $CL->getPaid2();
+					
+					$TD->Debt 				+= $CL->getDebt();
+					$TD->PaidDebtRemain		+= $CL->getPaid1Remain();
+					$TD->PaidTicketRemain	+= $CL->getPaid2Remain();
+					
+					$CLAll->next();
+				}
+				$mTDD->insert($DT);				
+				$DomainAll->next();
 			}
-			$NTotal3 = new \MVC\Library\Number($Value31 + $Value32);
-			$NTotal31 = new \MVC\Library\Number($Value31);
-			$NTotal32 = new \MVC\Library\Number($Value32);
+			$mTD->update($TD);
 			
-			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
+			$Title = $TD->getDatePrint();
 			$Navigation = array(
-				array("BÁO CÁO"				, "/report"),
-				array($Tracking->getName()	, $Tracking->getURLView())
+				array("BÁO CÁO", "/report"),
+				array($Tracking->getName(), $Tracking->getURLView() )
 			);
-			
-			//TỔNG CỘNG
-			$NTotal 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31 + $Value12 + + $Value22 + + $Value32);
-			$NTotal_1 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31); 
-			$NTotal_2 	= new \MVC\Library\Number($Value12 + $Value22 + $Value32);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
-			
-			$request->setObject('Session1All'	, $Session1All);
-			$request->setObject('NTotal1'		, $NTotal1);
-			$request->setObject('NTotal11'		, $NTotal11);
-			$request->setObject('NTotal12'		, $NTotal12);
-			
-			$request->setObject('Session2All'	, $Session2All);
-			$request->setObject('NTotal2'		, $NTotal2);
-			$request->setObject('NTotal21'		, $NTotal21);
-			$request->setObject('NTotal22'		, $NTotal22);
-			
-			$request->setObject('Session3All'	, $Session3All);
-			$request->setObject('NTotal3'		, $NTotal3);
-			$request->setObject('NTotal31'		, $NTotal31);
-			$request->setObject('NTotal32'		, $NTotal32);
-			
-			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('NTotal_1'		, $NTotal_1);
-			$request->setObject('NTotal_2'		, $NTotal_2);
-			
+			$request->setProperty('Title'		, $Title);
+			$request->setObject('Navigation'	, $Navigation);												
 			$request->setObject('TD'			, $TD);
 			$request->setObject('DomainAll'		, $DomainAll);
 			

@@ -1,6 +1,6 @@
-<?php		
+<?php
 	namespace MVC\Command;	
-	class ReportDailyImport extends Command {
+	class ReportDailyImport extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,51 +16,72 @@
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mOrder 	= new \MVC\Mapper\OrderImport();
+			//-------------------------------------------------------------						
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mOrder		= new \MVC\Mapper\OrderImport();
+			$mSupplier	= new \MVC\Mapper\Supplier();
 			$mConfig 	= new \MVC\Mapper\Config();
+			$mTSD 		= new \MVC\Mapper\TrackingSupplierDaily();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$ConfigName	= $mConfig->findByName("NAME");
+			$ConfigName = $mConfig->findByName("NAME");
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
+			$SupplierAll= $mSupplier->findAll();
 			
-			$OrderAll = $mOrder->findByTracking( array(
-				$TD->getDate(), 
-				$TD->getDate()
-			));
+			$TD->TicketImport = 0;
+			$TD->TicketImportBack = 0;
+			$TD->ValueImport = 0;
+			$TD->ValueImportBack = 0;
 			
-			$Value 		= 0;
-			while ($OrderAll->valid()){
-				$Order 	= $OrderAll->current();
-				$Value 	+= $Order->getValue();
-				$OrderAll->next();
-			}			
-			$NTotal = new \MVC\Library\Number($Value);
-			
-			//Cập nhật kết quả vào DB
-			$TD->setImport($Value);
+			$mTSD->deleteByDate(array($TD->Date));
+			while($SupplierAll->valid()){
+				$Supplier = $SupplierAll->current();				
+				$DS = new \MVC\Domain\TrackingSupplierDaily(null, $Supplier->getId(), $TD->Date, 0, 0, 0, 0);
+				
+				$OrderAll	= $mOrder->findByDateSupplier(array($TD->getDate(), $Supplier->getId()));
+				$OrderAll->rewind();
+				while($OrderAll->valid())
+				{
+					$Order = $OrderAll->current();
+					
+					$TD->TicketImport 		+= $Order->getTicket();
+					$DS->TicketImport 		+= $Order->getTicket();					
+					
+					$DS->TicketImportBack 	+= $Order->getTicket1();
+					$TD->TicketImportBack 	+= $Order->getTicket1();					
+					
+					$DS->ValueImport 		+= $Order->getValue();
+					$TD->ValueImport 		+= $Order->getValue();					
+					
+					$DS->ValueImportBack 	+= $Order->getValue1();
+					$TD->ValueImportBack	+= $Order->getValue1();					
+					
+					$OrderAll->next();
+				}
+				
+				$mTSD->insert($DS);
+				$SupplierAll->next();
+			}
 			$mTD->update($TD);
 			
-			$Title 		= "NHẬP HÀNG ".$TD->getDatePrint();
-			$Navigation = array(
-				array("BÁO CÁO"				, "/report"),
-				array($Tracking->getName()	, $Tracking->getURLView())
+			$Title = $TD->getDatePrint();
+			$Navigation = array(				
+				array("BÁO CÁO", "/report"),
+				array($Tracking->getName(), $Tracking->getURLView() )
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);			
-			
+			$request->setObject('Navigation'	, $Navigation);											
+			$request->setObject('TD'			, $TD);
+									
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('OrderAll'		, $OrderAll);
 		}
 	}
 ?>
