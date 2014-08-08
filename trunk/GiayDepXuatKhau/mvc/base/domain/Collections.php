@@ -2,7 +2,6 @@
 namespace MVC\Domain;
 
 interface UserCollection 			extends \Iterator {function add( Object $user );}
-interface DomainCollection 			extends \Iterator {function add( Object $domain );}
 interface SupplierCollection 		extends \Iterator {function add( Object $supplier );}
 
 interface PaidSupplierCollection 	extends \Iterator {function add( Object $PaidSupplier );}
@@ -16,10 +15,13 @@ interface CollectGeneralCollection 	extends \Iterator {function add( Object $Col
 interface CollectCustomerCollection extends \Iterator {function add( Object $CollectCustomer );}
 
 interface ResourceCollection 		extends \Iterator {function add( Object $resource );	}
+interface CustomerCollection 		extends \Iterator {function add( Object $Customer );}
+
 interface OrderImportCollection 	extends \Iterator {function add( Object $orderimport );	}
 interface OrderImportDetailCollection extends \Iterator {function add( Object $orderimportdetail );	}
-interface CustomerCollection 		extends \Iterator {function add( Object $Customer );}
-interface CustomerLogCollection 	extends \Iterator {function add( Object $CustomerLog );}
+
+interface OrderExportCollection 	extends \Iterator {function add( Object $orderexport );	}
+interface OrderExportDetailCollection extends \Iterator {function add( Object $orderexportdetail );	}
 
 interface EmployeeCollection 		extends \Iterator {function add( Object $Employee );}
 interface ConfigCollection 			extends \Iterator {function add( Object $Config );}
@@ -28,7 +30,6 @@ interface TrackingCollection 		extends \Iterator {function add( Object $Tracking
 interface TrackingDailyCollection 	extends \Iterator {function add( Object $TrackingDaily);}
 interface TrackingDomainDailyCollection 	extends \Iterator {function add( Object $TrackingDomainDaily);}
 interface TrackingSupplierDailyCollection 	extends \Iterator {function add( Object $TrackingSupplierDaily);}
-interface LotoCollection 			extends \Iterator {function add( Object $Loto);}
 
 interface PageCollection 			extends \Iterator {function add( Object $Page);}
 interface GuestCollection 			extends \Iterator {function add( Object $Guest);}

@@ -43,13 +43,15 @@ RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmplo
 RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# RESULT
+# EXPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^result$ 								?cmd=Result [L]
-RewriteRule ^result/([0-9]+)$ 						?cmd=Result&IdTrack=$1 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)$ 				?cmd=ResultDetail&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)/view$ 		?cmd=ResultDetailView&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^result/([0-9]+)/([0-9]+)/print$ 		?cmd=ResultDetailPrint&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^export$ 								?cmd=Export [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
+RewriteRule ^export/([0-9]+)/page/([0-9]+)$ 		?cmd=ExportCustomer&IdCustomer=$1&Page=$2 [L]
+
+RewriteRule ^export/([0-9]+)/([0-9]+)$				?cmd=ExportCustomerOrder&IdCustomer=$1&IdOrder=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)/print$		?cmd=ExportCustomerOrderPrint&IdCustomer=$1&IdOrder=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
@@ -87,10 +89,9 @@ RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTra
 RewriteRule ^setting$ 												?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 							?cmd=SettingThemeChangeExe&Theme=$1 [L]
 
-RewriteRule ^setting/domain$ 										?cmd=SettingDomain [L]
-RewriteRule ^setting/domain/page/([0-9]+)$ 							?cmd=SettingDomain&Page=$1 [L]
-RewriteRule ^setting/domain/([0-9]+)$ 								?cmd=SettingCustomer&IdDomain=$1 [L]
-RewriteRule ^setting/domain/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCustomer&IdDomain=$1&Page=$2 [L]
+RewriteRule ^setting/customer$ 										?cmd=SettingCustomer [L]
+RewriteRule ^setting/customer/page/([0-9]+)$ 						?cmd=SettingCustomer&Page=$1 [L]
+
 RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]
 RewriteRule ^setting/supplier$ 										?cmd=SettingSupplier [L]
@@ -106,18 +107,3 @@ RewriteRule ^setting/termcollect/page/([0-9]+)$ 					?cmd=SettingTermCollect&Pag
 RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
 RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
 
-#---------------------------------------------------------------------------------------------------------------------------
-# SELLING
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^selling$ 												?cmd=Selling&IdDomain=1&Page=1 [L]
-RewriteRule ^selling/saving$ 										?cmd=SellingSaving [L]
-
-RewriteRule ^selling/([0-9]+)$ 										?cmd=Selling&IdDomain=$1&Page=1 [L]
-RewriteRule ^selling/([0-9]+)/page/([0-9]+)$ 						?cmd=Selling&IdDomain=$1&Page=$2 [L]
-RewriteRule ^selling/([0-9]+)/next$ 								?cmd=Selling&IdDomain=$1&doAction=next&Page=1 [L]
-RewriteRule ^selling/([0-9]+)/back$ 								?cmd=Selling&IdDomain=$1&doAction=back&Page=1 [L]
-
-RewriteRule ^selling/([0-9]+)/print/template$ 						?cmd=SellingPrintTemplate&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/print/report$ 						?cmd=SellingPrintReport&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingCustomer&IdDomain=$1&IdCustomer=$2&Page=1 	[L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/page/([0-9]+)$ 				?cmd=SellingCustomer&IdDomain=$1&IdCustomer=$2&Page=$3 	[L]

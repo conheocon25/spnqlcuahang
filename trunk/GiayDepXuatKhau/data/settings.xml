@@ -55,15 +55,8 @@
 		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
 		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
 		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-						
-		<!-- ============================================================================== -->
-		<!-- SELLING.DOMAIN		 															-->
-		<!-- ============================================================================== -->
-		<command name="Selling">				<view>Selling				</view></command>
-		<command name="SellingSaving">			<view>SellingSaving			</view></command>
-		<command name="SellingCustomer">		<view>SellingCustomer		</view></command>
-		<command name="SellingPrintTemplate">	<view>SellingPrintTemplate	</view></command>
-						
+					
+								
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
@@ -79,9 +72,7 @@
 		<command name="Setting">				<view>Setting				</view></command>
 		<command name="SettingCustomer">		<view>SettingCustomer		</view></command>		
 		<command name="SettingEmployee">		<view>SettingEmployee		</view></command>		
-		<command name="SettingUser">			<view>SettingUser			</view></command>
-		<command name="SettingDomain">			<view>SettingDomain			</view></command>		
-		<command name="SettingDomainTable">		<view>SettingDomainTable	</view></command>		
+		<command name="SettingUser">			<view>SettingUser			</view></command>				
 		<command name="SettingUnit">			<view>SettingUnit			</view></command>
 		<command name="SettingConfig">			<view>SettingConfig			</view></command>				
 		<command name="SettingSupplier">		<view>SettingSupplier		</view></command>
@@ -97,6 +88,14 @@
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
 		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- EXPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Export"><view>Export</view></command>
+		<command name="ExportCustomer"><view>ExportCustomer</view></command>
+		<command name="ExportCustomerOrder"><view>ExportCustomerOrder</view></command>
+		<command name="ExportCustomerOrderPrint"><view>ExportCustomerOrderPrint</view></command>
 		
 	</control>
 </options>

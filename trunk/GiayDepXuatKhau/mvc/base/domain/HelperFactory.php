@@ -2,7 +2,6 @@
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
 	require_once( "mvc/mapper/User.php" );	
-	require_once( "mvc/mapper/Domain.php" );
 	require_once( "mvc/mapper/Supplier.php" );	
 	
 	require_once( "mvc/mapper/PaidSupplier.php");
@@ -16,12 +15,15 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/CollectGeneral.php");
 	require_once( "mvc/mapper/CollectCustomer.php");
 	
-	require_once( "mvc/mapper/Resource.php" );
+	require_once( "mvc/mapper/Resource.php" );	
+	require_once( "mvc/mapper/Customer.php" );	
+	require_once( "mvc/mapper/Employee.php" );
+	
 	require_once( "mvc/mapper/OrderImport.php" );
 	require_once( "mvc/mapper/OrderImportDetail.php");
-	require_once( "mvc/mapper/Customer.php" );
-	require_once( "mvc/mapper/CustomerLog.php" );
-	require_once( "mvc/mapper/Employee.php" );
+	
+	require_once( "mvc/mapper/OrderExport.php" );
+	require_once( "mvc/mapper/OrderExportDetail.php");
 	
 	require_once( "mvc/mapper/Config.php");
 	
@@ -29,8 +31,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/TrackingDaily.php");
 	require_once( "mvc/mapper/TrackingDomainDaily.php");
 	require_once( "mvc/mapper/TrackingSupplierDaily.php");
-	require_once( "mvc/mapper/Loto.php");
-	
+		
 	require_once( "mvc/mapper/Guest.php");	
 }
 
@@ -60,7 +61,6 @@ class HelperFactory {
             return new $model();
         }
         throw new \MVC\Base\AppException( "Không biết: $model" );
-    }
-	
+    }	
 }
 ?>
