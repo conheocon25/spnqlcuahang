@@ -6,16 +6,6 @@
 	</head>
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div id="sidebar">			
-			<ul style="display: block;">
-				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
-					<a tal:attributes="href Domain1/getURLCustomer">
-						<i class="glyphicons-fast_food" /><span tal:content="Domain1/getName"/>							
-					</a>
-				</li>
-			</ul>
-		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -42,7 +32,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer Domain/getCustomerAll">
+									<tr tal:repeat="Customer CustomerAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
 										<td><span tal:content="Customer/getCard"/></td>
@@ -60,10 +50,10 @@
 										</td>
 									</tr>
 								</tbody>
-							</table>							
-						</div>
+							</table>														
+						</div>						
 					</div>
-
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
@@ -194,8 +184,7 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<div id="CurrentDomain" tal:attributes="alt Domain/getId" />
-		
+				
 		<script type="text/javascript">
 		/*<![CDATA[*/			
 			$('#URLDelSelectedButton').click(function(){

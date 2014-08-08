@@ -12,10 +12,9 @@ class Customer extends Object{
     private $Note;
     private $Address;
 	private $Discount;
-	private $IdDomain;
 	
 	/*Hàm khởi tạo và thiet lap các thuoc tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null, $IdDomain=null ) {
+    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null){
         $this->Id = $Id;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
@@ -24,7 +23,7 @@ class Customer extends Object{
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
 		$this->Discount = $Discount;
-		$this->IdDomain = $IdDomain;
+
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -51,13 +50,12 @@ class Customer extends Object{
 		
 	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
 	function getDiscount(){return $this->Discount;}
-	
-	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
-	function getIdDomain(){return $this->IdDomain;}
-	function getDomain(){
-		$mDomain 	= new \MVC\Mapper\Domain();
-		$Domain 	= $mDomain->find($this->IdDomain);
-		return $Domain;
+			
+	function getOrderAll()
+	{
+		$mOrder = new \MVC\Mapper\OrderExport();
+		$OrderAll = $mOrder->findByCustomer(array($this->getId()));
+		return $OrderAll;
 	}
 	
 	function toJSON(){
@@ -69,8 +67,7 @@ class Customer extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount(),
-			'IdDomain'		=> $this->getIdDomain()
+			'Discount'		=> $this->getDiscount()	
 		);
 		return json_encode($json);
 	}
@@ -83,28 +80,11 @@ class Customer extends Object{
 		$this->Phone	= $Data[4];
 		$this->Address	= $Data[5];
 		$this->Note		= $Data[6];
-		$this->Discount	= $Data[7];
-		$this->IdDomain	= $Data[8];
+		$this->Discount	= $Data[7];		
     }
-		
-	function getCollectAll(){
-		$mCC = new \MVC\Mapper\CollectCustomer();
-		$CollectAll = $mCC->findBy(array($this->getId()));
-		return $CollectAll;
-	}
-	function getLogActive(){
-		$mCL 	= new \MVC\Mapper\CustomerLog();
-		$CL 	= $mCL->findActive(array(\date('Y-m-d'), $this->getId()));
-		return $CL;
-	}
-	function getLogAll(){
-		$mCL 	= new \MVC\Mapper\CustomerLog();
-		$CLAll = $mCL->findByCustomer(array($this->getId()));
-		return $CLAll;
-	}
 	
 	//=================================================================================	
-	function getURLSelling(){return "/selling/".$this->getIdDomain()."/".$this->getId();}
+	function getURLExport(){return "/export/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

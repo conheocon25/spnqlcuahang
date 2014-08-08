@@ -11,7 +11,6 @@ interface Finder {
 }
 
 interface UserFinder  			extends Finder {}
-interface DomainFinder  		extends Finder {}
 interface SupplierFinder 		extends Finder {}
 
 interface PaidSupplierFinder 	extends Finder {}
@@ -29,8 +28,10 @@ interface ResourceFinder 		extends Finder {}
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
 
+interface OrderExportFinder 	extends Finder {}
+interface OrderExportDetailFinder extends Finder {}
+
 interface CustomerFinder 		extends Finder {}
-interface CustomerLogFinder 	extends Finder {}
 
 interface EmployeeFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
@@ -39,7 +40,6 @@ interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}
 interface TrackingDomainDailyFinder 	extends Finder {}
 interface TrackingSupplierDailyFinder 	extends Finder {}
-interface LotoFinder 			extends Finder {}
 
 interface GuestFinder 			extends Finder {}
 ?>
