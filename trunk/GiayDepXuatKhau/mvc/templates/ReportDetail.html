@@ -31,8 +31,7 @@
 										<tr>																					
 											<th><div class="text-left">NGÀY</div></th>
 											<th width="120"><div class="text-right">NHẬP HÀNG</div></th>
-											<th width="120"><div class="text-right">BÁN HÀNG</div></th>
-											<th width="120"><div class="text-right">TIỀN GÓP</div></th>											
+											<th width="120"><div class="text-right">XUẤT HÀNG</div></th>											
 										</tr>
 									</thead>
 									<tbody>
@@ -41,13 +40,14 @@
 												<a 	tal:attributes="href TD/getURLReportGeneral"><span tal:content="TD/getDateShortPrint"/></a>
 											</td>
 											<td align="right">
-												<a 	tal:attributes="href TD/getURLReportImport">Xem chi tiết</a>
+												<a 	tal:attributes="href TD/getURLReportImport">
+													<span tal:content="TD/getImportPrint" />
+												</a>
 											</td>
 											<td align="right">
-												<a 	tal:attributes="href TD/getURLReportSelling">Xem chi tiết</a>
-											</td>
-											<td align="right">
-												<a 	tal:attributes="href TD/getURLReportSelling">Xem chi tiết</a>
+												<a 	tal:attributes="href TD/getURLReportExport">
+													<span tal:content="TD/getExportPrint" />
+												</a>
 											</td>											
 										</tr>										
 									</tbody>
