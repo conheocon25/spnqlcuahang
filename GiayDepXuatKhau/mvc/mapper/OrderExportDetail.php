@@ -16,28 +16,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, count1, price ) values( ?, ?, ?, ?, ?)", $tblOrderExportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetail);
 				
-		$trackByStmt = sprintf("
-							SELECT
-								IFNULL(0, ODI.id) as id,
-								(?) as idorder,
-								P.id as idresource,
-								ODI.count,
-								ODI.count1,
-								IFNULL(ODI.price, P.price) as price
-							FROM 
-							(
-								SELECT *
-								FROM %s
-								WHERE idsupplier = ?
-							) P LEFT JOIN
-							(
-								SELECT *
-								FROM %s
-								WHERE idorder = ?
-							) ODI
-							ON P.id = ODI.idresource
-		
-		", $tblResource, $tblOrderExportDetail);
+		$findByStmt = sprintf("SELECT * FROM %s WHERE idorder=?", $tblOrderExportDetail);
 				
 		$existStmt = sprintf("select id from %s where idorder=? and idresource=?", $tblOrderExportDetail);
 								
@@ -46,7 +25,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
         $this->updateStmt = self::$PDO->prepare( $updateStmt );
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            
-		$this->trackByStmt = self::$PDO->prepare($trackByStmt);				
+		$this->findByStmt = self::$PDO->prepare( $findByStmt );
 		$this->existStmt = self::$PDO->prepare($existStmt);			
     } 
     function getCollection( array $raw ) {
@@ -97,23 +76,11 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     }
 	
 	//-------------------------------------------------------
-	function trackBy( $values ) {		
-        $this->trackByStmt->execute( $values );
-        return new OrderExportDetailCollection( $this->trackByStmt->fetchAll(), $this );
+	function findBy( $values ) {		
+        $this->findByStmt->execute( $values );
+        return new OrderExportDetailCollection( $this->findByStmt->fetchAll(), $this );
     }
-	
-	function trackByExport( $values ) {
-        $this->trackByExportStmt->execute( $values );
-		$result1 = $this->trackByExportStmt->fetchAll();
 		
-		$this->trackByExportStmt->execute( $values );
-		$result2 = $this->trackByExportStmt->fetchAll();
-		
-		if (!isset($result) || $result==null)
-			return 0;
-        return $result1[0][0]/$result2[0][0];
-    }
-	
 	function exist($values) {
 		$this->existStmt->execute($values);
 		$result = $this->existStmt->fetchAll();

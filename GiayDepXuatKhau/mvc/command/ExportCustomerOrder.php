@@ -19,6 +19,7 @@
 			//-------------------------------------------------------------
 			$mOrder	 		= new \MVC\Mapper\OrderExport();
 			$mCustomer 		= new \MVC\Mapper\Customer();
+			$mResource 		= new \MVC\Mapper\Resource();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -26,6 +27,8 @@
 			//-------------------------------------------------------------									
 			$Customer 	= $mCustomer->find($IdCustomer);
 			$Order 		= $mOrder->find($IdOrder);
+			$ResourceAll= $mResource->findAll();
+			
 			$ConfigName	= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
@@ -45,6 +48,7 @@
 									
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Order'			, $Order);
+			$request->setObject('ResourceAll'	, $ResourceAll);
 			$request->setObject('Customer'		, $Customer);
 			
 			return self::statuses('CMD_DEFAULT');

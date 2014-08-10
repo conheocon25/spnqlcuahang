@@ -17,7 +17,9 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mOrderImport = new \MVC\Mapper\OrderImport();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH

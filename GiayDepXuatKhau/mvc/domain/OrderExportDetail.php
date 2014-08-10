@@ -60,7 +60,7 @@ class OrderExportDetail extends Object{
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
 	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency();}
 
-	function getValue( ) {return $this->Count*$this->Price;}
+	function getValue( ) {return ($this->Count - $this->Count1)*$this->Price;}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
 	
 	function getValue1( ) {return $this->Count1*$this->Price;}
