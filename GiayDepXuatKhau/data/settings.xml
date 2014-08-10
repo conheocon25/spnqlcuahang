@@ -48,15 +48,10 @@
 								
 		<command name="ReportDaily">				<view>ReportDaily</view>				</command>
 		<command name="ReportDailyGeneral">			<view>ReportDailyGeneral</view>			</command>
-		<command name="ReportDailySelling">			<view>ReportDailySelling</view>			</command>
-		<command name="ReportDailySellingPrint">	<view>ReportDailySellingPrint</view>	</command>
-		<command name="ReportDailySellingExe">		<view>ReportDailySellingExe</view>		</command>
-		
+				
 		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
-		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
-		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-					
-								
+		<command name="ReportDailyExport">	<view>ReportDailyExport</view>	</command>
+													
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->

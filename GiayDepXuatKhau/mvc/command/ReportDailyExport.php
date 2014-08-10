@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ReportDailyImport extends Command{
+	class ReportDailyExport extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -19,7 +19,7 @@
 			//-------------------------------------------------------------						
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mOrder		= new \MVC\Mapper\OrderImport();
+			$mOrder		= new \MVC\Mapper\OrderExport();
 			$mSupplier	= new \MVC\Mapper\Supplier();
 			$mConfig 	= new \MVC\Mapper\Config();
 						
@@ -39,7 +39,7 @@
 				$Value += $Order->getValue();
 				$OrderAll->next();
 			}
-			$TD->setImport($Value);
+			$TD->setExport($Value);
 			$mTD->update($TD);
 			
 			$Navigation = array(				
