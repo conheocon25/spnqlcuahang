@@ -96,6 +96,7 @@
 		<command name="ExportCustomer"><view>ExportCustomer</view></command>
 		<command name="ExportCustomerOrder"><view>ExportCustomerOrder</view></command>
 		<command name="ExportCustomerOrderPrint"><view>ExportCustomerOrderPrint</view></command>
+		<command name="ExportCustomerOrderExe"><view>ExportCustomerOrderExe</view></command>
 		
 	</control>
 </options>

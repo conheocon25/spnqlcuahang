@@ -35,14 +35,9 @@ class OrderExport extends Object{
 	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
 	
 	function getDetailAll(){		
-		$mOID = new \MVC\Mapper\OrderExportDetail();
-		$Tracks = $mOID->trackBy(array(
-			$this->getId(),
-			$this->getIdCustomer(),
-			$this->getId()
-		));
-		
-		return $Tracks;
+		$mOD = new \MVC\Mapper\OrderExportDetail();
+		$ODAll = $mOD->findBy(array($this->getId()));
+		return $ODAll;
 	}
 	
 	function getValue(){
@@ -53,34 +48,6 @@ class OrderExport extends Object{
 			$DetailAll->next();
 		}
 		return $Count;
-	}
-	
-	function getTicket(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getCount();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	function getTicketPrint(){
-		$Value = new \MVC\Library\Number($this->getTicket());
-		return $Value->formatCurrency();
-	}
-	
-	function getTicket1(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getCount1();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	function getTicket1Print(){
-		$Value = new \MVC\Library\Number($this->getTicket1());
-		return $Value->formatCurrency();
 	}
 	
 	function getValuePrint(){
