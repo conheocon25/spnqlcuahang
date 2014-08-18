@@ -1,6 +1,5 @@
 <?php		
-	$mEmployee 		= new \MVC\Mapper\Employee();
-	$mDomain 		= new \MVC\Mapper\Domain();
+	$mEmployee 		= new \MVC\Mapper\Employee();	
 	$mSupplier 		= new \MVC\Mapper\Supplier();			
 	$mResource 		= new \MVC\Mapper\Resource();	
 	$mOrderImport 	= new \MVC\Mapper\OrderImport();
