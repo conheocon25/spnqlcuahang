@@ -6,7 +6,7 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
     function __construct() {
         parent::__construct();
 				
-		$tblTrackingSupplierDaily = "giaydep_tracking_supplier_daily";
+		$tblTrackingSupplierDaily = "tbl_tracking_supplier_daily";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingSupplierDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingSupplierDaily);
