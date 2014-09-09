@@ -19,10 +19,9 @@
 		<tr>
 			<th width="5%"><B>STT</B></th>
 			<th width="30%" align="left"><B>TÊN</B></th>
-			<th width="10%" align="right" ><B>NHẬP VỀ</B></th>
-			<th width="10%" align="right" ><B>TRẢ LẠI</B></th>			
-			<th width="20%" align="right" ><B>ĐƠN GIÁ</B></th>
-			<th width="25%" align="right" ><B>THÀNH TIỀN</B></th>
+			<th width="15%" align="right" ><B>SỐ LƯỢNG</B></th>
+			<th width="25%" align="right"><B>ĐƠN GIÁ</B></th>
+			<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
 		</tr>
 		<tr tal:repeat="Detail OI/getDetailAll">
 			<td align="center" tal:content="repeat/Detail/number" />
@@ -31,12 +30,11 @@
 				(<span tal:content="Detail/getResource/getUnit" />)
 			</td>
 			<td align="right" tal:content="Detail/getCountPrint" />
-			<td align="right" tal:content="Detail/getCount1Print" />
 			<td align="right" tal:content="Detail/getPricePrint" />
 			<td align="right" tal:content="Detail/getValuePrint" />
 		</tr>
 		<tr>
-			<th align="right" colspan="5">TỔNG CỘNG</th>
+			<th align="right" colspan="4">TỔNG CỘNG</th>
 			<th align="right" colspan="1" tal:content="OI/getValuePrint" />
 		</tr>
 	</table>

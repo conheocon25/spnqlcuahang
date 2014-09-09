@@ -10,8 +10,8 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$Page 		= $request->getProperty('Page');
+			//-------------------------------------------------------------
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -20,12 +20,12 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
-			$CustomerAll 	= $mCustomer->findAll();
+			//-------------------------------------------------------------									
+			$CustomerAll = $mCustomer->findAll();
 						
 			$Title = "KHÁCH HÀNG";
 			$Navigation = array(				
-				array("THIẾT LẬP", 	"/setting")				
+				array("THIẾT LẬP", "/setting")
 			);
 			
 			if (!isset($Page)) $Page=1;
@@ -44,7 +44,7 @@
 			$request->setObject('PN'			, $PN);
 			$request->setObject('Navigation'	, $Navigation);
 			
-			$request->setObject('ConfigName'	, $ConfigName);			
+			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('CustomerAll1'	, $CustomerAll1);
 															
 			return self::statuses('CMD_DEFAULT');

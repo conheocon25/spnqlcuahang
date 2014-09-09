@@ -144,10 +144,11 @@
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
 		<script type="text/javascript">
-		/*<![CDATA[*/
+		/*<![CDATA[*/			
 			$('#Date1').datepicker({language:'vi'});
+			$('#Date1').datepicker('setDate', new Date());
 			$('#Date2').datepicker({language:'vi'});
-			
+									
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
@@ -208,6 +209,12 @@
 					}
 				});
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){				
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Value1').first().focus()},
+					0500
+				);
+			});
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 PAID GENERAL
@@ -245,7 +252,14 @@
 						location.reload();
 					}
 				});
-			});			
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Value2').first().focus()},
+					0500
+				);
+			});
+			
 		/*]]>*/
 		</script>
 	</body>
