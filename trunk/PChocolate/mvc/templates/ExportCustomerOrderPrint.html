@@ -1,0 +1,56 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B tal:content="ConfigName/getValue"/></td>
+			<td width="50%" align="right"><B>PHIẾU XUẤT HÀNG</B></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left" tal:content="ConfigAddress/getValue" />
+			<td width="50%" align="right"><span tal:content="php:mb_strtoupper(Customer->getName(),'UTF8')"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left" tal:content="ConfigPhone/getValue"/>
+			<td width="50%" align="right"><span tal:content="Order/getDatePrint"/></td>
+		</tr>
+	</table>
+	<p align="center"><span tal:content="Order/getDescription"/></p>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>
+			<th width="5%"><B>STT</B></th>
+			<th width="30%" align="left"><B>TÊN</B></th>
+			<th width="10%" align="right" ><B>NHẬP</B></th>
+			<th width="10%" align="right" ><B>TRẢ</B></th>
+			<th width="20%" align="right"><B>ĐƠN GIÁ</B></th>
+			<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
+		</tr>
+		<tr tal:repeat="Detail Order/getDetailAll">
+			<td align="center" tal:content="repeat/Detail/number" />
+			<td>
+				<span tal:content="Detail/getResource/getName" />
+				(<span tal:content="Detail/getResource/getUnit" />)
+			</td>
+			<td align="right" tal:content="Detail/getCountPrint" />
+			<td align="right" tal:content="Detail/getCount1Print" />
+			<td align="right" tal:content="Detail/getPricePrint" />
+			<td align="right" tal:content="Detail/getValuePrint" />
+		</tr>
+		<tr>
+			<th align="right" colspan="5">TỔNG CỘNG</th>
+			<th align="right" colspan="1" tal:content="Order/getValuePrint" />
+		</tr>
+	</table>
+	<p align="right">( <span tal:content="Order/getValueStrPrint"/> )</p>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center"><span tal:content="DateCurrent" /></td>
+		</tr>
+		<tr>
+			<td width="35%" align="center">NGƯỜI LẬP PHIẾU</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">QUẢN LÝ</td>
+		</tr>		
+	</table>
+</body>

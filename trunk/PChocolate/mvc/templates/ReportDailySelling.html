@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="sidebar">			
+			
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="32">STT</th>
+										<th class="left">KHU VỰC</th>
+										<th width="120"><div class="text-right">VÉ LẤY</div></th>
+										<th width="120"><div class="text-right">VÉ TRẢ</div></th>
+										<th width="120"><div class="text-right">BÁN ĐƯỢC</div></th>
+										<th width="120"><div class="text-right">T.VÉ BÁN</div></th>
+										<th width="120"><div class="text-right">T.VÉ THỰC THU</div></th>
+										<th width="120"><div class="text-right">THU TIỀN GÓP</div></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="DT TD/getDomainTracking">
+										<td class="center"><span tal:content="repeat/DT/number"/></td>
+										<td><span tal:content="DT/getDomain/getName"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingBackPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketSellingDPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getTicketValuePrint"/></td>
+										<td><div class="text-right" tal:content="DT/getPaidTicketPrint"/></td>
+										<td><div class="text-right" tal:content="DT/getPaidDebtPrint"/></td>
+									</tr>
+									<tr>										
+										<td colspan="2" class="left"><B>TỔNG CỘNG</B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingPrint"/></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingBackPrint" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingDPrint" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getTicketSellingValuePrint" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getPaidTicketPrint" /></B></td>
+										<td><B><div class="text-right" tal:content="TD/getPaidDebtPrint" /></B></td>
+									</tr>
+								</tbody>
+							</table>							
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+						
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+					
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>
