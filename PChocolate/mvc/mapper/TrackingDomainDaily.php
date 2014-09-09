@@ -5,7 +5,7 @@ class TrackingDomainDaily extends Mapper implements \MVC\Domain\TrackingDomainDa
 
     function __construct() {
         parent::__construct();				
-		$tblTrackingDomainDaily = "giaydep_tracking_domain_daily";
+		$tblTrackingDomainDaily = "tbl_tracking_domain_daily";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDomainDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDomainDaily);
