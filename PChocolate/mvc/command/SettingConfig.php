@@ -17,12 +17,14 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
-									
+			$mCategory 	= new \MVC\Mapper\Category();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
-						
+			$CategoryAll 	= $mCategory->findAll();
+			
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
@@ -31,7 +33,7 @@
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
 			$ConfigName 	= $mConfig->findByName("NAME");
 			if ($ConfigName==null){
-				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN CAFE');
+				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN ĂN');
 				$mConfig->insert($ConfigName);
 			}
 			
@@ -65,18 +67,24 @@
 				$mConfig->insert($ConfigGuestVisit);
 			}
 			
-			$ConfigPrice1 	= $mConfig->findByName("PRICE1");
-			if ($ConfigPrice1==null){
-				$ConfigPrice1 = new \MVC\Domain\Config(null, 'PRICE1', 9000);
-				$mConfig->insert($ConfigPrice1);
+			$ConfigDiscount 	= $mConfig->findByName("DISCOUNT");
+			if ($ConfigDiscount==null){
+				$ConfigDiscount = new \MVC\Domain\Config(null, 'DISCOUNT', 0);
+				$mConfig->insert($ConfigDiscount);
 			}
 			
-			$ConfigPrice2 = $mConfig->findByName("PRICE2");
-			if ($ConfigPrice2==null){
-				$ConfigPrice2 = new \MVC\Domain\Config(null, 'PRICE2', 8700);
-				$mConfig->insert($ConfigPrice2);
+			$ConfigCategoryAuto = $mConfig->findByName("CATEGORY_AUTO");
+			if ($ConfigCategoryAuto==null){
+				$ConfigCategoryAuto = new \MVC\Domain\Config(null, 'CATEGORY_AUTO', $CategoryAll->current()->getId());
+				$mConfig->insert($ConfigCategoryAuto);
 			}
-									
+			
+			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
+			if ($ConfigSwitchBoardCall==null){
+				$ConfigSwitchBoardCall = new \MVC\Domain\Config(null, 'SWITCH_BOARD_CALL', 1);
+				$mConfig->insert($ConfigSwitchBoardCall);
+			}
+			
 			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
 			if ($ConfigReceiptVirtualDouble==null){
 				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
@@ -95,14 +103,17 @@
 			$request->setProperty('Title', 				$Title);
 			$request->setProperty('ActiveAdmin', 		'Config');
 			$request->setObject('Navigation', 			$Navigation);
-						
+			$request->setObject('CategoryAll', 			$CategoryAll);
+			
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
 			$request->setObject('ConfigPhone', 				$ConfigPhone);
-			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
+			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);
+			$request->setObject('ConfigEvery5Minutes', 		$ConfigEvery5Minutes);
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
-			$request->setObject('ConfigPrice1', 			$ConfigPrice1);
-			$request->setObject('ConfigPrice2', 			$ConfigPrice2);
+			$request->setObject('ConfigDiscount', 			$ConfigDiscount);
+			$request->setObject('ConfigCategoryAuto', 		$ConfigCategoryAuto);
+			$request->setObject('ConfigSwitchBoardCall', 	$ConfigSwitchBoardCall);
 			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
 			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
 												

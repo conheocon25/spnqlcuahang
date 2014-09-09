@@ -10,14 +10,14 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, import=?, export=?  where id=?", $tblTrackingDaily);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, import, export) values(?, ?, ?, ?)", $tblTrackingDaily);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, selling=?, import=?, store=?, paid=?, collect=?, time1=? where id=?", $tblTrackingDaily);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, selling, import, store, paid, collect, time1) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
-		$findByNowStmt 				= sprintf("select *  from %s where `date`=now()", $tblTrackingDaily);
 		$findByPreStmt 				= sprintf("select *  from %s where id_tracking=? AND `date`<? ORDER BY `date` DESC", $tblTrackingDaily);
-				
+		$findByDateStmt 			= sprintf("select *  from %s where `date`=?", $tblTrackingDaily);
+		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
         $this->updateStmt 			= self::$PDO->prepare($updateStmt);
@@ -26,6 +26,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$this->deleteByTrackingStmt = self::$PDO->prepare($deleteByTrackingStmt);
 		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
 		$this->findByPreStmt 		= self::$PDO->prepare($findByPreStmt);
+		$this->findByDateStmt 		= self::$PDO->prepare($findByDateStmt);
     }
 	
     function getCollection( array $raw ) {return new TrackingDailyCollection( $raw, $this );}
@@ -34,8 +35,12 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$array['id'],
 			$array['id_tracking'],
 			$array['date'],
+			$array['selling'],
 			$array['import'],
-			$array['export']			
+			$array['store'],
+			$array['paid'],
+			$array['collect'],
+			$array['time1']
 		);
 	    return $obj;
     }
@@ -44,8 +49,12 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
+			$object->getSelling(),
 			$object->getImport(),
-			$object->getExport()			
+			$object->getStore(),
+			$object->getPaid(),
+			$object->getCollect(),
+			$object->getTime1()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -56,8 +65,12 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
+			$object->getSelling(),
 			$object->getImport(),
-			$object->getExport(),			
+			$object->getStore(),
+			$object->getPaid(),
+			$object->getCollect(),
+			$object->getTime1(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -72,14 +85,14 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$this->findByStmt->execute( $values );
         return new TrackingDailyCollection( $this->findByStmt->fetchAll(), $this );
     }
-	function findByNow(array $values) {
-		$this->findByNowStmt->execute( $values );
-        return new TrackingDailyCollection( $this->findByNowStmt->fetchAll(), $this );
-    }
-	
 	function findByPre(array $values) {
 		$this->findByPreStmt->execute( $values );
         return new TrackingDailyCollection( $this->findByPreStmt->fetchAll(), $this );
+    }
+	
+	function findByDate(array $values) {
+		$this->findByDateStmt->execute( $values );
+        return new TrackingDailyCollection( $this->findByDateStmt->fetchAll(), $this );
     }
 }
 ?>

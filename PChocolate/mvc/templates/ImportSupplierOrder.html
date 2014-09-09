@@ -21,8 +21,7 @@
 									<tr>
 										<th width="40">STT</th>
 										<th class="left">TÊN</th>
-										<th class="right" width="80">LẤY</th>
-										<th class="right" width="80">TRẢ LẠI</th>
+										<th class="right" width="80">SỐ LƯỢNG</th>
 										<th class="left" width="80">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
 										<th class="right" width="120">T.TIỀN</th>
@@ -31,9 +30,8 @@
 								<tbody>
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-count1 Detail/getCount1; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
-										<td><div class="text-right" tal:content="Detail/getCount1Print"/></td>
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
@@ -52,9 +50,9 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHI TIẾT ĐƠN HÀNG</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
 								</div>
-								<form id="FormEdit" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="form-horizontal">
 									<div class="control-group">
 										<label class="control-label">Id</label>
 										<div class="controls">
@@ -68,15 +66,9 @@
 										</div>
 									</div>									
 									<div class="control-group">
-										<label class="control-label">Nhập về</label>
+										<label class="control-label">Số lượng</label>
 										<div class="controls">
 											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Trả lại</label>
-										<div class="controls">
-											<input id="Count21" name="Count21" type="text" class="form-control input-small" value="0"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -89,7 +81,7 @@
 										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -108,68 +100,36 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				var count = $(this).attr('data-count');
-				var count1 = $(this).attr('data-count1');
-				
 				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
 				$('#Name2').attr('value', $(this).attr('data-name'));
 				if (count==null){
 					$('#Count2').attr('value', '1');
 				}else{
 					$('#Count2').attr('value', count);
-					$('#Count21').attr('value', count1);
-				}				
+				}
+					
 				$('#Price2').attr('value', $(this).attr('data-price'));
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 TABLE
-			//-----------------------------------------------------------------------------------			
-			$("#FormEdit").validate({
-				rules:{
-					Count2:{
-						required:true,
-						number:true,
-						min:0
-					},
-					Count21:{
-						required:true,
-						number:true,
-						min:0
-					},
-					Price2:{						
-						required:true,
-						number:true,
-						min:0
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#IdSupplier').attr('alt');
+				Data[1] = $('#IdOrder').attr('alt');
+				Data[2] = $('#IdResource2').val();									
+				Data[3] = $('#Count2').val();
+				Data[4] = $('#Price2').val();
+				
+				var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
 					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = $('#IdSupplier').attr('alt');
-					Data[1] = $('#IdOrder').attr('alt');
-					Data[2] = $('#IdResource2').val();									
-					Data[3] = $('#Count2').val();
-					Data[4] = $('#Count21').val();
-					Data[5] = $('#Price2').val();
-					
-					var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4]+"/"+Data[5];
-					$.ajax({
-						type: "POST",					
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
+				});
 			});
 			$("#DialogEdit").on('show.bs.modal', function(event){
 				window.setTimeout(

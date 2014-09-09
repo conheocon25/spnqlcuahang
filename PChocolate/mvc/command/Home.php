@@ -15,19 +15,17 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig = new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "";
-			$ConfigName = $mConfig->findByName("NAME");
-			
+			$Title = "HỆ THỐNG QUẢN LÝ PHÒNG KARAOKE";
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Title", $Title);			
-			$request->setObject("ConfigName", $ConfigName);
+			$request->setProperty("Title", $Title);
+			$request->setProperty("URLHeader", '/signin/load');
 			
 			return self::statuses('CMD_DEFAULT');
 		}

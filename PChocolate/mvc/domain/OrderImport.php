@@ -55,61 +55,8 @@ class OrderImport extends Object{
 		return $Count;
 	}
 	
-	function getTicket(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getCount();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	function getTicketPrint(){
-		$Value = new \MVC\Library\Number($this->getTicket());
-		return $Value->formatCurrency();
-	}
-	
-	function getTicket1(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getCount1();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	function getTicket1Print(){
-		$Value = new \MVC\Library\Number($this->getTicket1());
-		return $Value->formatCurrency();
-	}
-	
 	function getValuePrint(){
 		$Value = new \MVC\Library\Number($this->getValue());
-		return $Value->formatCurrency()." đ";
-	}
-	
-	function getValue1(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getValue1();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	
-	function getValue1Print(){
-		$Value = new \MVC\Library\Number($this->getValue1());
-		return $Value->formatCurrency()." đ";
-	}
-	
-	function getValue2(){
-		$Count = $this->getValue() - $this->getValue1();
-		return $Count;
-	}
-	
-	function getValue2Print(){
-		$Value = new \MVC\Library\Number($this->getValue2());
 		return $Value->formatCurrency()." đ";
 	}
 	

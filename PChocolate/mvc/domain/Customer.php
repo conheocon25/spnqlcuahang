@@ -13,8 +13,8 @@ class Customer extends Object{
     private $Address;
 	private $Discount;
 	
-	/*Hàm khởi tạo và thiet lap các thuoc tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null){
+	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
+    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
@@ -23,7 +23,6 @@ class Customer extends Object{
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
 		$this->Discount = $Discount;
-
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -39,7 +38,7 @@ class Customer extends Object{
 	function getNote(){return $this->Note;}	
     function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	
-	function getName(){return \trim($this->Name);}
+	function getName(){return $this->Name;}	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
 	function getPhone(){return $this->Phone;}
@@ -50,13 +49,6 @@ class Customer extends Object{
 		
 	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
 	function getDiscount(){return $this->Discount;}
-			
-	function getOrderAll()
-	{
-		$mOrder = new \MVC\Mapper\OrderExport();
-		$OrderAll = $mOrder->findByCustomer(array($this->getId()));
-		return $OrderAll;
-	}
 	
 	function toJSON(){
 		$json = array(
@@ -67,7 +59,7 @@ class Customer extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount()	
+			'Discount'		=> $this->getDiscount()
 		);
 		return json_encode($json);
 	}
@@ -80,11 +72,59 @@ class Customer extends Object{
 		$this->Phone	= $Data[4];
 		$this->Address	= $Data[5];
 		$this->Note		= $Data[6];
-		$this->Discount	= $Data[7];		
+		$this->Discount	= $Data[7];
     }
 	
-	//=================================================================================	
-	function getURLExport(){return "/export/".$this->getId();}
+	function toXML($Doc){
+		$Obj = $Doc->createElement( "customer" );
+		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
+						
+		$Name = $Doc->createElement( "name" );
+		$Name->appendChild($Doc->createTextNode( $this->getName() ));
+		
+		$Type = $Doc->createElement( "type" );
+		$Type->appendChild($Doc->createTextNode( $this->getType() ));
+		
+		$Card = $Doc->createElement( "card" );
+		$Card->appendChild($Doc->createTextNode( $this->getCard() ));
+		
+		$Phone = $Doc->createElement( "phone" );
+		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
+		
+		$Address = $Doc->createElement( "address" );
+		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
+		
+		$Note = $Doc->createElement( "note" );
+		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
+		
+		$Discount = $Doc->createElement( "discount" );
+		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
+		
+		$Obj->appendChild( $Name 		);
+		$Obj->appendChild( $Type 		);
+		$Obj->appendChild( $Card 		);
+		$Obj->appendChild( $Phone 		);
+		$Obj->appendChild( $Address 	);
+		$Obj->appendChild( $Note 		);
+		$Obj->appendChild( $Discount 	);
+		
+		return $Obj;
+	}
+	
+	function getSessionAll(){
+		$mSession = new	\MVC\Mapper\Session();
+		$Sessions = $mSession->findByCustomer(array($this->Id));
+		return $Sessions;
+	}
+	
+	function getCollectAll(){
+		$mCC = new \MVC\Mapper\CollectCustomer();
+		$CollectAll = $mCC->findBy(array($this->getId()));
+		return $CollectAll;
+	}
+	
+	//=================================================================================
+	function getURLCollect(){return "/money/collect/customer/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

@@ -15,8 +15,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
-		$updateStmt = sprintf("update %s set count=?, count1=?,  price=? where id=?", $tblOrderImportDetail);
-		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, count1, price ) values( ?, ?, ?, ?, ?)", $tblOrderImportDetail);
+		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
+		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
 		
 		$evalPriceStmt = sprintf("
@@ -40,7 +40,6 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								(?) as idorder,
 								P.id as idresource,
 								ODI.count,
-								ODI.count1,
 								IFNULL(ODI.price, P.price) as price
 							FROM 
 							(
@@ -94,7 +93,6 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$array['idorder'], 
 			$array['idresource'], 
 			$array['count'],	
-			$array['count1'],
 			$array['price']
 		);
         return $obj;
@@ -109,7 +107,6 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$object->getIdOrder(), 
 			$object->getIdResource(), 
 			$object->getCount(),
-			$object->getCount1(),
 			$object->getPrice()
 		); 
         $this->insertStmt->execute( $values );
@@ -120,7 +117,6 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     protected function doUpdate(\MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getCount(),
-			$object->getCount1(),
 			$object->getPrice(),
 			$object->getId()
 		);		

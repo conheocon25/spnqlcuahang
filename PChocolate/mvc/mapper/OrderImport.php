@@ -23,19 +23,7 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 			where idsupplier=?
 			order by date DESC
 		", $tblOrderImport);
-		
-		$findByDateSupplierStmt = sprintf("
-			select
-				*
-			from 
-				%s
-			where
-				date = ? AND idsupplier = ?
-			order by 
-				date DESC
-			"
-		, $tblOrderImport);
-		
+				
 		$findByTrackingStmt = sprintf("
 			select
 				*
@@ -74,7 +62,6 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
 		$this->findByStmt = self::$PDO->prepare( $findByStmt );		
-		$this->findByDateSupplierStmt = self::$PDO->prepare( $findByDateSupplierStmt );
 		$this->findByTrackingStmt = self::$PDO->prepare( $findByTrackingStmt );
 		$this->findByTracking1Stmt = self::$PDO->prepare( $findByTracking1Stmt );
 		$this->findByPageStmt = self::$PDO->prepare( $findByPageStmt );		
@@ -137,11 +124,6 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 	function findByTracking1(array $values){
         $this->findByTracking1Stmt->execute( $values );
         return new OrderImportCollection( $this->findByTracking1Stmt->fetchAll(), $this );
-    }
-	
-	function findByDateSupplier(array $values){
-        $this->findByDateSupplierStmt->execute( $values );
-        return new OrderImportCollection( $this->findByDateSupplierStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {		
