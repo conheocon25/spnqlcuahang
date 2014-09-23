@@ -6,6 +6,7 @@
 	$mResource 		= new \MVC\Mapper\Resource();
 	$mUnit 			= new \MVC\Mapper\Unit();
 	$mOrderImport 	= new \MVC\Mapper\OrderImport();
+	$mOrderExport 	= new \MVC\Mapper\OrderExport();
 	$mCustomer 		= new \MVC\Mapper\Customer();
 	$mTermPaid 		= new \MVC\Mapper\TermPaid();
 	$mTermCollect 	= new \MVC\Mapper\TermCollect();

@@ -130,6 +130,14 @@
 		<command name="ImportSupplier"><view>ImportSupplier</view></command>
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- EXPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Export"><view>Export</view></command>
+		<command name="ExportSupplier"><view>ExportSupplier</view></command>
+		<command name="ExportSupplierOrder"><view>ExportSupplierOrder</view></command>
+		<command name="ExportSupplierOrderPrint"><view>ExportSupplierOrderPrint</view></command>
 				
 	</control>
 </options>

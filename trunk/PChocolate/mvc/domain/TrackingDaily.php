@@ -74,6 +74,13 @@ class TrackingDaily extends Object{
 	function getCollect( ) {return $this->Collect;}
 	function getCollectPrint( ) {$N = new \MVC\Library\Number($this->Collect);return $N->formatCurrency();}
 	
+	/*
+	function getImportCount($Resource){
+		$mOD = new \MVC\Mapper\OrderImportDetail();
+		$Count = $mOD->trackByCount(array($this->getDate(), $this->getDate(), $Resource->getId()));
+		return 0;
+	}*/
+	
 	function isOne(){
 		if ($this->getTime1()=="0000-00-00 00:00:00")
 			return true;
@@ -118,9 +125,9 @@ class TrackingDaily extends Object{
 		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
 		return $Count;
 	}
-	function getExportCount($IdCourse){
-		$mSD = new \MVC\Mapper\SessionDetail();
-		$Count = $mSD->trackByCount( array($IdCourse, $this->getDate(), $this->getDate()) );
+	function getExportCount($IdResource){
+		$mOD = new \MVC\Mapper\OrderExportDetail();
+		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
 		return $Count;
 	}
 	

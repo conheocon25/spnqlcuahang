@@ -12,23 +12,18 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExport);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExport);
-		$updateStmt = sprintf("update %s set idcustomer=?, date=?, description=? where id=?", $tblOrderExport);
-		$insertStmt = sprintf("insert into %s ( idcustomer, date, description ) values( ?, ?, ?)", $tblOrderExport);
+		$updateStmt = sprintf("update %s set idsupplier=?, date=?, description=? where id=?", $tblOrderExport);
+		$insertStmt = sprintf("insert into %s ( idsupplier, date, description ) values( ?, ?, ?)", $tblOrderExport);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExport);
-		$findByCustomerStmt = sprintf("select * from %s where idcustomer=? order by date DESC", $tblOrderExport);
-		
-		$findByDateCustomerStmt = sprintf("
-			select
+		$findByStmt = sprintf("
+			select 
 				*
 			from 
-				%s
-			where
-				date = ? AND idcustomer = ?
-			order by 
-				date DESC
-			"
-		, $tblOrderExport);
-		
+				%s 
+			where idsupplier=?
+			order by date DESC
+		", $tblOrderExport);
+				
 		$findByTrackingStmt = sprintf("
 			select
 				*
@@ -47,16 +42,16 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 			from 
 				%s
 			where
-				idcustomer=? AND date >= ? AND date <= ?
+				idsupplier=? AND date >= ? AND date <= ?
 			order by 
 				date DESC
 			"
 		, $tblOrderExport);
 		
-		$findByCustomerPageStmt = sprintf("
+		$findByPageStmt = sprintf("
 							SELECT * 
 							FROM %s 							 
-							WHERE idcustomer=:idcustomer
+							WHERE idsupplier=:idsupplier
 							ORDER BY date desc
 							LIMIT :start,:max
 				", $tblOrderExport);
@@ -66,11 +61,10 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $this->updateStmt = self::$PDO->prepare( $updateStmt );
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
-		$this->findByCustomerStmt = self::$PDO->prepare( $findByCustomerStmt );		
-		$this->findByDateCustomerStmt = self::$PDO->prepare( $findByDateCustomerStmt );
+		$this->findByStmt = self::$PDO->prepare( $findByStmt );		
 		$this->findByTrackingStmt = self::$PDO->prepare( $findByTrackingStmt );
 		$this->findByTracking1Stmt = self::$PDO->prepare( $findByTracking1Stmt );
-		$this->findByCustomerPageStmt = self::$PDO->prepare( $findByCustomerPageStmt );		
+		$this->findByPageStmt = self::$PDO->prepare( $findByPageStmt );		
     }
 	
     function getCollection( array $raw ) {
@@ -80,7 +74,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\OrderExport( 
 			$array['id'],  
-			$array['idcustomer'], 
+			$array['idsupplier'], 
 			$array['date'],	
 			$array['description']
 		);
@@ -93,7 +87,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
-			$object->getidcustomer(), 
+			$object->getIdSupplier(), 
 			$object->getDate(),
 			$object->getDescription()
 		); 
@@ -104,7 +98,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getidcustomer(), 
+			$object->getIdSupplier(), 
 			$object->getDate(),
 			$object->getDescription(),
 			$object->getId()
@@ -112,12 +106,14 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
+	protected function doDelete(array $values) {
+        return $this->deleteStmt->execute( $values );
+    }
 	
 	//-------------------------------------------------------
-	function findByCustomer(array $values) {
-        $this->findByCustomerStmt->execute( $values );
-        return new OrderExportCollection( $this->findByCustomerStmt->fetchAll(), $this );
+	function findBy(array $values) {
+        $this->findByStmt->execute( $values );
+        return new OrderExportCollection( $this->findByStmt->fetchAll(), $this );
     }
 		
 	function findByTracking(array $values){
@@ -130,17 +126,12 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         return new OrderExportCollection( $this->findByTracking1Stmt->fetchAll(), $this );
     }
 	
-	function findByDateCustomer(array $values){
-        $this->findByDateCustomerStmt->execute( $values );
-        return new OrderExportCollection( $this->findByDateCustomerStmt->fetchAll(), $this );
-    }
-	
-	function findByCustomerPage( $values ) {		
-		$this->findByCustomerPageStmt->bindValue(':idcustomer', $values[0], \PDO::PARAM_INT);
-		$this->findByCustomerPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByCustomerPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
-		$this->findByCustomerPageStmt->execute();
-        return new OrderExportCollection( $this->findByCustomerPageStmt->fetchAll(), $this );
+	function findByPage( $values ) {		
+		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
+		$this->findByPageStmt->execute();
+        return new OrderExportCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	//-------------------------------------------------------

@@ -36,8 +36,13 @@ interface CollectGeneralFinder 	extends Finder {}
 interface CollectCustomerFinder extends Finder {}
 
 interface ResourceFinder 		extends Finder {}
+
 interface OrderImportFinder 	extends Finder {}
 interface OrderImportDetailFinder extends Finder {}
+
+interface OrderExportFinder 	extends Finder {}
+interface OrderExportDetailFinder extends Finder {}
+
 interface CustomerFinder 		extends Finder {}
 interface EmployeeFinder 		extends Finder {}
 interface UnitFinder 			extends Finder {}

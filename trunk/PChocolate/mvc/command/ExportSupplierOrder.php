@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ExportCustomerOrder extends Command {
+	class ExportSupplierOrder extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,24 +11,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCustomer 	= $request->getProperty('IdCustomer');
+			$IdSupplier 	= $request->getProperty('IdSupplier');
 			$IdOrder 		= $request->getProperty('IdOrder');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mOrder	 		= new \MVC\Mapper\OrderExport();
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mResource 		= new \MVC\Mapper\Resource();
+			$mOrderExport 	= new \MVC\Mapper\OrderExport();
+			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Customer 	= $mCustomer->find($IdCustomer);
-			$Order 		= $mOrder->find($IdOrder);
-			$ResourceAll= $mResource->findAll();
-			
+			$Supplier 	= $mSupplier->find($IdSupplier);
+			$Order 		= $mOrderExport->find($IdOrder);
 			$ConfigName	= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
@@ -37,7 +34,7 @@
 			$Title = $Order->getDatePrint();
 			$Navigation = array(
 				array("XUẤT HÀNG", "/export"),
-				array(mb_strtoupper($Customer->getName(), 'UTF8'), $Customer->getURLExport())
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLExport())
 			);
 			
 			//-------------------------------------------------------------
@@ -48,8 +45,7 @@
 									
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Order'			, $Order);
-			$request->setObject('ResourceAll'	, $ResourceAll);
-			$request->setObject('Customer'		, $Customer);
+			$request->setObject('Supplier'		, $Supplier);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

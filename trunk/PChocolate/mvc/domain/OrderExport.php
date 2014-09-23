@@ -5,26 +5,26 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class OrderExport extends Object{
 
     private $Id;
-	private $IdCustomer;
+	private $IdSupplier;
 	private $Date;
     private $Description;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdCustomer=null, $Date=null, $Description=null) {
+    function __construct( $Id=null, $IdSupplier=null, $Date=null, $Description=null) {
         $this->Id = $Id;
-		$this->IdCustomer = $IdCustomer;
+		$this->IdSupplier = $IdSupplier;
 		$this->Date = $Date;
 		$this->Description = $Description;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
     
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
-    function getIdCustomer( ) {return $this->IdCustomer;}
-	function getCustomer( ) {	
-		$mCustomer = new \MVC\Mapper\Customer();
-		$Customer = $mCustomer->find($this->IdCustomer);		
-        return $Customer;
+	function setIdSupplier( $IdSupplier ) {$this->IdSupplier = $IdSupplier;$this->markDirty();}
+    function getIdSupplier( ) {return $this->IdSupplier;}
+	function getSupplier( ) {	
+		$mSupplier = new \MVC\Mapper\Supplier();
+		$Supplier = $mSupplier->find($this->IdSupplier);		
+        return $Supplier;
     }
 	
 	function getDate( ) {return $this->Date;}
@@ -35,9 +35,14 @@ class OrderExport extends Object{
 	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
 	
 	function getDetailAll(){		
-		$mOD = new \MVC\Mapper\OrderExportDetail();
-		$ODAll = $mOD->findBy(array($this->getId()));
-		return $ODAll;
+		$mOID = new \MVC\Mapper\OrderExportDetail();
+		$Tracks = $mOID->trackBy(array(
+			$this->getId(),
+			$this->getIdSupplier(),
+			$this->getId()
+		));
+		
+		return $Tracks;
 	}
 	
 	function getValue(){
@@ -55,31 +60,6 @@ class OrderExport extends Object{
 		return $Value->formatCurrency()." đ";
 	}
 	
-	function getValue1(){
-		$DetailAll = $this->getDetailAll();
-		$Count = 0;
-		while ($DetailAll->valid()){
-			$Count += $DetailAll->current()->getValue1();
-			$DetailAll->next();
-		}
-		return $Count;
-	}
-	
-	function getValue1Print(){
-		$Value = new \MVC\Library\Number($this->getValue1());
-		return $Value->formatCurrency()." đ";
-	}
-	
-	function getValue2(){
-		$Count = $this->getValue() - $this->getValue1();
-		return $Count;
-	}
-	
-	function getValue2Print(){
-		$Value = new \MVC\Library\Number($this->getValue2());
-		return $Value->formatCurrency()." đ";
-	}
-	
 	function getValueStrPrint(){
 		$Value = new \MVC\Library\Number($this->getValue());
 		return $Value->readDigit()." đồng";
@@ -88,7 +68,7 @@ class OrderExport extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdCustomer' 	=> $this->getIdCustomer(),
+			'IdSupplier' 	=> $this->getIdSupplier(),
 			'Date'			=> $this->getDate(),
 			'Description'	=> $this->getDescription()
 		);
@@ -97,7 +77,7 @@ class OrderExport extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];	
-		$this->IdCustomer 	= $Data[1];	
+		$this->IdSupplier 	= $Data[1];	
 		$this->Date 		= $Data[2];
 		$this->Description 	= $Data[3];
     }
@@ -105,8 +85,8 @@ class OrderExport extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/export/".$this->getIdCustomer()."/".$this->getId()."/print";}
-	function getURLDetail(){return "/export/".$this->getIdCustomer()."/".$this->getId();}
+	function getURLPrint(){return "/export/".$this->getIdSupplier()."/".$this->getId()."/print";}	
+	function getURLDetail(){return "/export/".$this->getIdSupplier()."/".$this->getId();}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

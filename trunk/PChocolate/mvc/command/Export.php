@@ -15,13 +15,12 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCustomer 	= new \MVC\Mapper\Customer();
-						
+			require_once("mvc/base/mapper/MapperDefault.php");
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$CustomerAll = $mCustomer->findAll();			
+			$SupplierAll = $mSupplier->findAll();			
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -37,7 +36,7 @@
 			$request->setProperty('ActiveAdmin'	, 'Export');
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('CustomerAll'	, $CustomerAll);
+			$request->setObject('SupplierAll'	, $SupplierAll);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}
