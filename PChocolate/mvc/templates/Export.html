@@ -6,7 +6,8 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -24,10 +25,10 @@
 									</tr>
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
-									<tr class="gradeA odd" tal:repeat="Customer CustomerAll">
-										<td align="center" tal:content="repeat/Customer/number"/>
-										<td><a tal:attributes="href Customer/getURLExport" ><span tal:content="Customer/getName"/></a></td>
-										<td align="left"><a tal:attributes="href Customer/getURLExport">Xem (<span tal:content="Customer/getOrderAll/count"/>)</a></td>
+									<tr class="gradeA odd" tal:repeat="Supplier SupplierAll">
+										<td align="center" tal:content="repeat/Supplier/number"/>
+										<td><a tal:attributes="href Supplier/getURLExport" ><span tal:content="Supplier/getName"/></a></td>
+										<td align="left"><a tal:attributes="href Supplier/getURLExport">Xem (<span tal:content="Supplier/getOrderExportAll/count"/>)</a></td>
 									</tr>											
 								</tbody>
 							</table>

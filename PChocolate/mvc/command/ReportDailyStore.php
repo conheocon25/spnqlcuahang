@@ -19,9 +19,7 @@
 			//-------------------------------------------------------------			
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTS 		= new \MVC\Mapper\TrackingStore();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();			
-			$mSD 		= new \MVC\Mapper\SessionDetail();
-			$mR2C  		= new \MVC\Mapper\R2C();
+			$mTD 		= new \MVC\Mapper\TrackingDaily();						
 			$mResource 	= new \MVC\Mapper\Resource();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
@@ -35,65 +33,7 @@
 			$ResourceAll 	= $mResource->findAll();			
 			//Xóa những dữ liệu tồn kho cũ
 			$mTS->deleteByTracking(array($IdTrack, $IdTD));
-			
-			while ($ResourceAll->valid()){
-				$Resource = $ResourceAll->current();				
-				
-				//Tính phần nhập hàng
-				$R2CAll = $mR2C->findByResource(array($Resource->getId()));
-												
-				//Nếu có trong bảng ánh xạ mới tính toán
-				if ($R2CAll->count()>0){
-					
-					//Tính số lượng hàng nhập trong kì
-					$CountImport = $TD->getImportCount( $Resource->getId() );
-					
-					//Tính số lượng hàng nhập xuất kho bán trong kì
-					$R2CAll->rewind();
-					$CountExport = 0;
-					while ($R2CAll->valid()){
-						$R2C = $R2CAll->current();
-						$IdCourse = $R2C->getIdCourse();
-						$CountExport += round(($TD->getExportCount( $IdCourse ))*$R2C->getValue1()/$R2C->getValue2(),1);
-						$R2CAll->next();
-					}
-					
-					//Tính toán tồn cũ còn trước đó
-					$TSAllPre = $mTS->findByPre(array($IdTD, $Resource->getId()));
-					if ($TSAllPre->count()==0){
-						$CountOld = 0;
-					}else{
-						$CountOld = $TSAllPre->current()->getCountRemain();
-					}
-					
-					$TS = new \MVC\Domain\TrackingStore(
-						null,
-						$IdTrack,
-						$IdTD,
-						$Resource->getId(), 
-						$CountOld,
-						$CountImport, 
-						$CountExport,
-						$Resource->getPrice()
-					);
-					$mTS->insert($TS);																				
-										
-				}
-				$ResourceAll->next();
-			}						
-			$TSAll = $mTS->findByDaily(array($IdTrack, $IdTD));
-			
-			$Value = 0;
-			while ($TSAll->valid()){
-				$TS = $TSAll->current();
-				$Value += $TS->getCountRemainValue();
-				$TSAll->next();
-			}
-			
-			//Cập nhật DB 
-			$TD->setStore($Value);
-			$mTD->update($TD);
-			
+						
 			$Title = "TỒN KHO ".$TD->getDatePrint();
 			$Navigation = array(				
 				array("BÁO CÁO", "/report"),
@@ -107,7 +47,9 @@
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Tracking'		, $Tracking);
-			$request->setObject('TSAll'			, $TSAll);			
+			$request->setObject('TD'			, $TD);
+			$request->setObject('ResourceAll'	, $ResourceAll);
+			//$request->setObject('TSAll'			, $TSAll);
 		}
 	}
 ?>

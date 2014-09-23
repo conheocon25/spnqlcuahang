@@ -137,8 +137,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
         $this->trackByCountStmt->execute( $values );
 		$result = $this->trackByCountStmt->fetchAll();		
 		if (!isset($result) || $result==null)
-			return 0;
-        return $result[0][0];
+			return 0;        
+		return number_format((float)$result[0][0], 1, '.', '');
     }
 	
 	function trackByExport( $values ) {

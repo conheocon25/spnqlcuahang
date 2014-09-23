@@ -152,8 +152,7 @@ class Supplier extends Object{
 		$N = new \MVC\Library\Number($Value);
 		return $N->formatCurrency()." đ";
 	}
-	
-			
+				
 	//Lấy về danh sách các đơn hàng
 	function getOrderAll(){
 		$mOrderImport = new \MVC\Mapper\OrderImport();
@@ -196,12 +195,26 @@ class Supplier extends Object{
 		return $Resources;
 	}
 	
+	//Lấy về danh sách các đơn hàng xuất
+	function getOrderExportAll(){
+		$mOrderExport 	= new \MVC\Mapper\OrderExport();
+		$OrderAll 		= $mOrderExport->findBy(array($this->getId()));
+		return $OrderAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE IMPORT.SUPPLIER
 	//-------------------------------------------------------------------------------
 	function getURLImport(){return "/import/".$this->getId();}	
 	function getURLImportInsLoad(){return "/import/".$this->getId()."/ins/load";}	
 	function getURLImportInsExe(){return "/import/".$this->getId()."/ins/exe";}
+	
+	//-------------------------------------------------------------------------------
+	//DEFINE EXPORT.SUPPLIER
+	//-------------------------------------------------------------------------------
+	function getURLExport(){return "/export/".$this->getId();}	
+	function getURLExportInsLoad(){return "/export/".$this->getId()."/ins/load";}
+	function getURLExportInsExe(){return "/export/".$this->getId()."/ins/exe";}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER

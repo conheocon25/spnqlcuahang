@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ExportCustomerOrderPrint extends Command{
+	class ImportSupplierOrderPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,21 +11,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdCustomer = $request->getProperty("IdCustomer");
+			$IdSupplier = $request->getProperty("IdSupplier");
 			$IdOrder = $request->getProperty("IdOrder");
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mOrder 	= new \MVC\Mapper\OrderExport();
-			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mOI 		= new \MVC\Mapper\OrderImport();
+			$mSupplier 	= new \MVC\Mapper\Supplier();
 			$mConfig 	= new \MVC\Mapper\Config();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Order 			= $mOrder->find($IdOrder);
-			$Customer 		= $mCustomer->find($IdCustomer);
+			$OI 			= $mOI->find($IdOrder);
+			$Supplier 		= $mSupplier->find($IdSupplier);
 			$DateCurrent 	= "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
 			$ConfigName		= $mConfig->findByName("NAME");
@@ -36,8 +36,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('DateCurrent'	, $DateCurrent);
-			$request->setObject('Order'			, $Order);
-			$request->setObject('Customer'		, $Customer );
+			$request->setObject('OI'			, $OI);
+			$request->setObject('Supplier'		, $Supplier );
 			$request->setObject('ConfigName'	, $ConfigName );
 			$request->setObject('ConfigAddress'	, $ConfigAddress );
 			$request->setObject('ConfigPhone'	, $ConfigPhone );

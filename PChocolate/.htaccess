@@ -100,6 +100,19 @@ RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSu
 RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# EXPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^export$ 								?cmd=Export [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportSupplier&IdSupplier=$1 [L]
+RewriteRule ^export/([0-9]+)$ 						?cmd=ExportSupplier&IdSupplier=$1 [L]
+RewriteRule ^export/([0-9]+)/page/([0-9]+)$ 		?cmd=ExportSupplier&IdSupplier=$1&Page=$2 [L]
+
+RewriteRule ^export/([0-9]+)/([0-9]+)$				?cmd=ExportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)/print$		?cmd=ExportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^export/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ExportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^report$ 										?cmd=Report [L]

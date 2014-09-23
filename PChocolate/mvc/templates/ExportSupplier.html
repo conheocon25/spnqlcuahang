@@ -6,12 +6,22 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+					<a tal:attributes="href Supplier1/getURLExport">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Supplier1/getName"/>
+					</a>
+				</li>
+			</ul>			
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div id="IdCustomer" tal:attributes="alt Customer/getId" class="col-12">
+				<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="col-12">
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
@@ -41,7 +51,7 @@
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
 											</div>
 										</td>
-										<td class="center"><a class="Preview" data-toggle="modal" href="#DialogPreview" tal:attributes="data-url Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
+										<td class="center"><a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																
@@ -111,43 +121,20 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
-					
-					<!-- DIALOG PREVIEW	-->
-					<div id="DialogPreview" class="modal fade">
-						<div class="modal-dialog full-screen">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3>
-								</div>								
-								<form class="form">
-									<div class="form-group">
-										<div id="DocPreview" width="320px" height="480px"/>
-									</div>
-									<div class="modal-footer">									
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
-		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			$('#Date1').datepicker({language:'vi'});
 			$('#Date2').datepicker({language:'vi'});
-						
 			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/OrderImport/0";
+				var URL = "/object/del/OrderExport/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -174,7 +161,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/OrderImport/" + $(this).attr('alt');
+				var URL = "/object/del/OrderExport/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -189,7 +176,7 @@
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';
-				Data[1] = $('#IdCustomer').attr('alt');
+				Data[1] = $('#IdSupplier').attr('alt');
 				Data[2] = $('#Date1').val();				
 				Data[3] = $('#Description1').val();
 							
@@ -217,7 +204,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/OrderImport/" + $(this).attr('data-id');
+				var url = "/object/load/OrderExport/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -233,7 +220,7 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#IdCustomer').attr('alt');
+				Data[1] = $('#IdSupplier').attr('alt');
 				Data[2] = $('#Date2').val();				
 				Data[3] = $('#Description2').val();
 				
@@ -250,25 +237,11 @@
 			/*
 			$("#DialogEdit").on('show.bs.modal', function(event){
 				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Description2').first().focus()},
+					function(){$(event.currentTarget).find('input#Date2').first().focus()},
 					0500
 				);
 			});
 			*/
-			$(".Preview").click(function(){
-				URL = $(this).attr('data-url');
-				var mPDF = new PDFObject({ 		
-					url: URL,				
-					height: "500px",
-					pdfOpenParams:{
-						view: 'Fit', 
-						toolbar: '1', 
-						statusbar: '1', 
-						messages: '1',
-						navpanes: '1' 
-					}				
-				}).embed("DocPreview");
-			});
 		/*]]>*/
 		</script>
 	</body>
