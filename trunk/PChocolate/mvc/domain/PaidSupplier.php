@@ -100,23 +100,35 @@ class PaidSupplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/exe";
+		
+	function getURLUpdLoad(){return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/exe";}
+	
+	function getURLDelLoad(){return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/load";}
+	function getURLDelExe(){return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/exe";}
+		
+	public function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdSupplier'	=> $this->getIdSupplier(),
+		 	'Date'			=> $this->getDate(),
+		 	'Value'			=> $this->getValue(),
+		 	'Note'			=> $this->getNote()
+		);
+		return json_encode($json);
 	}
 	
-	function getURLDelLoad(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/exe";
-	}
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->IdSupplier 	= $Data[1];
+		$this->Date 		= $Data[2];
+		$this->Value 		= $Data[3];
+		$this->Note 		= $Data[4];				
+    }
 	
 	/*--------------------------------------------------------------------*/	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-		
+	
 }
 ?>

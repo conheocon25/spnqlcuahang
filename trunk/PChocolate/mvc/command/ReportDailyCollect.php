@@ -17,10 +17,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCollect 	= new \MVC\Mapper\CollectGeneral();
-			$mTracking 	= new \MVC\Mapper\Tracking();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mCollect 			= new \MVC\Mapper\CollectGeneral();
+			$mCollectCustomer 	= new \MVC\Mapper\CollectCustomer();
+			$mTracking 			= new \MVC\Mapper\Tracking();
+			$mTD 				= new \MVC\Mapper\TrackingDaily();
+			$mConfig 			= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,24 +30,37 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
+			$Value 		= 0;
+			//Tiền thu từ các khoản chung chung
 			$CollectAll = $mCollect->findByTracking( array(
 				$TD->getDate(), 
 				$TD->getDate()
 			));
-			
-			$Value 		= 0;
+						
 			while ($CollectAll->valid()){
 				$Collect 	= $CollectAll->current();
-				$Value 	+= $Collect->getValue();
+				$Value 	   += $Collect->getValue();
 				$CollectAll->next();
+			}
+			$NTotal1 = new \MVC\Library\Number($Value);
+
+			//Tiền thu từ TẤT CẢ KHÁCH HÀNG
+			$Value1 = 0;
+			$CollectCustomerAll = $mCollectCustomer->findByTracking1( array($TD->getDate(), $TD->getDate()));
+			while ($CollectCustomerAll->valid()){
+				$Collect 	= $CollectCustomerAll->current();
+				$Value1 	+= $Collect->getValue();
+				$CollectCustomerAll->next();
 			}			
-			$NTotal = new \MVC\Library\Number($Value);
+			$NTotal2 = new \MVC\Library\Number($Value1);
+			
+			$NTotal = new \MVC\Library\Number($Value1 + $Value);
 			
 			//Cập nhật kết quả vào DB
-			$TD->setCollect($Value);
+			$TD->setCollect($Value1 + $Value);
 			$mTD->update($TD);
 			
-			$Title 		= "TIỀN THU".$TD->getDatePrint();
+			$Title 		= "TIỀN THU ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView())
@@ -55,11 +69,16 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('CollectAll'	, $CollectAll);
+			$request->setProperty('Title'			, $Title);
+			$request->setObject('Navigation'		, $Navigation);
+			$request->setObject('ConfigName'		, $ConfigName);
+			
+			$request->setObject('NTotal'			, $NTotal);
+			$request->setObject('NTotal1'			, $NTotal1);
+			$request->setObject('NTotal2'			, $NTotal2);
+			
+			$request->setObject('CollectAll'		, $CollectAll);
+			$request->setObject('CollectCustomerAll', $CollectCustomerAll);
 		}
 	}
 ?>

@@ -17,7 +17,7 @@ class TrackingStore extends Mapper implements \MVC\Domain\TrackingStoreFinder{
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingStore);
 		$findByDailyStmt			= sprintf("select *  from %s where id_tracking=? AND id_td=?", $tblTrackingStore);
 		$findByPreStmt 				= sprintf("select *  from %s where id_td<? AND id_resource=? ORDER BY id_td DESC", $tblTrackingStore);
-		$findByCourseStmt 			= sprintf("select *  from %s where id_tracking=? AND id_resource=?", $tblTrackingStore);
+		$findByResourceStmt 		= sprintf("select *  from %s where id_tracking=? AND id_resource=?", $tblTrackingStore);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -28,7 +28,7 @@ class TrackingStore extends Mapper implements \MVC\Domain\TrackingStoreFinder{
 		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
 		$this->findByDailyStmt 		= self::$PDO->prepare($findByDailyStmt);
 		$this->findByPreStmt 		= self::$PDO->prepare($findByPreStmt);
-		$this->findByCourseStmt 	= self::$PDO->prepare($findByCourseStmt);
+		$this->findByResourceStmt 	= self::$PDO->prepare($findByResourceStmt);
     }
     function getCollection( array $raw ) {return new TrackingStoreCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
@@ -95,9 +95,9 @@ class TrackingStore extends Mapper implements \MVC\Domain\TrackingStoreFinder{
         return new TrackingStoreCollection( $this->findByPreStmt->fetchAll(), $this );
     }
 	
-	function findByCourse(array $values) {
-		$this->findByCourseStmt->execute( $values );
-        return new TrackingStoreCollection( $this->findByCourseStmt->fetchAll(), $this );
+	function findByResource(array $values) {
+		$this->findByResourceStmt->execute( $values );
+        return new TrackingStoreCollection( $this->findByResourceStmt->fetchAll(), $this );
     }	
 }
 ?>

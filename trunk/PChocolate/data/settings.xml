@@ -103,6 +103,7 @@
 		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
 		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
 		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
+		<command name="MoneyPaidSupplier"><view>MoneyPaidSupplier</view></command>
 							
 		<!-- ============================================================================== -->
 		<!-- SETTING	 															-->

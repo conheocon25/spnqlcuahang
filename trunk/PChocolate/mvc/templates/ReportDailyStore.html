@@ -31,16 +31,20 @@
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Resource ResourceAll" class="gradeA odd">
-												<td align="center" tal:content="repeat/Resource/number"/>
-												<td><span tal:content="Resource/getName"/></td>
-												<td><span tal:content="Resource/getUnit"/></td>												
-												<td align="right"><span tal:content="string:0"/></td>
-												<td align="right"><span tal:content="php: TD->getImportCount( Resource->getId() )"/></td>
-												<td align="right"><span tal:content="php: TD->getExportCount( Resource->getId() )"/></td>
-												<td align="right"><span tal:content="string:0"/></td>
-												<td align="right"><span tal:content="string:0"/></td>
-												<td align="right"><span tal:content="string:0"/></td>
+											<tr tal:repeat="TS TSAll" class="gradeA odd">
+												<td align="center" tal:content="repeat/TS/number"/>
+												<td><span tal:content="TS/getResource/getName"/></td>
+												<td><span tal:content="TS/getResource/getUnit"/></td>												
+												<td align="right"><span tal:content="TS/getCountOldPrint"/></td>
+												<td align="right"><span tal:content="TS/getCountImportPrint"/></td>
+												<td align="right"><span tal:content="TS/getCountExportPrint"/></td>
+												<td align="right"><span tal:content="TS/getPricePrint"/></td>
+												<td align="right"><span tal:content="TS/getCountRemainPrint"/></td>
+												<td align="right"><span tal:content="TS/getCountRemainValuePrint"/></td>
+											</tr>
+											<tr>
+												<td colspan="8" align="left"><B>TỔNG CỘNG</B></td>
+												<td align="right"><B tal:content="Sum/formatCurrency"/></td>
 											</tr>
 										</tbody>
 									</table>

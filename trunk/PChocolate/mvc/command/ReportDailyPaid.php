@@ -17,10 +17,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPaid 		= new \MVC\Mapper\PaidGeneral();
-			$mTracking 	= new \MVC\Mapper\Tracking();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mPaidGeneral	= new \MVC\Mapper\PaidGeneral();
+			$mPaidSupplier	= new \MVC\Mapper\PaidSupplier();
+			$mPaidEmployee	= new \MVC\Mapper\PaidEmployee();
+			
+			$mTracking 		= new \MVC\Mapper\Tracking();
+			$mTD 			= new \MVC\Mapper\TrackingDaily();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,21 +32,52 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
-			$PaidAll = $mPaid->findByTracking( array(
+			//CHI CHUNG
+			$PaidGeneralAll = $mPaidGeneral->findByTracking( array(
 				$TD->getDate(), 
 				$TD->getDate()
 			));
 			
-			$Value 		= 0;
-			while ($PaidAll->valid()){
-				$Paid 	= $PaidAll->current();
-				$Value 	+= $Paid->getValue();
-				$PaidAll->next();
+			$Value1 		= 0;
+			while ($PaidGeneralAll->valid()){
+				$Paid 	= $PaidGeneralAll->current();
+				$Value1	+= $Paid->getValue();
+				$PaidGeneralAll->next();
 			}			
-			$NTotal = new \MVC\Library\Number($Value);
+			$NTotal1 = new \MVC\Library\Number($Value1);
 			
+			//CHI NHÀ CUNG CẤP
+			$PaidSupplierAll = $mPaidSupplier->findByTracking( array(
+				$TD->getDate(), 
+				$TD->getDate()
+			));
+			
+			$Value2 		= 0;
+			while ($PaidSupplierAll->valid()){
+				$Paid 	 = $PaidSupplierAll->current();
+				$Value2 += $Paid->getValue();
+				$PaidSupplierAll->next();
+			}			
+			$NTotal2 = new \MVC\Library\Number($Value2);
+			
+			//CHI NHÂN VIÊN
+			$PaidEmployeeAll = $mPaidEmployee->findByTracking( array(
+				$TD->getDate(),
+				$TD->getDate()
+			));
+			
+			$Value3 		= 0;
+			while ($PaidEmployeeAll->valid()){
+				$Paid 	 = $PaidEmployeeAll->current();
+				$Value3 += $Paid->getValue();
+				$PaidEmployeeAll->next();
+			}			
+			$NTotal3 = new \MVC\Library\Number($Value3);
+						
 			//Cập nhật kết quả vào DB
-			$TD->setPaid($Value);
+			$NTotal = new \MVC\Library\Number( $Value1 + $Value2 + $Value3 );
+			
+			$TD->setPaid( $Value1 + $Value2 + $Value3 );
 			$mTD->update($TD);
 			
 			$Title 		= "TIỀN CHI ".$TD->getDatePrint();
@@ -55,11 +89,20 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);			
+			$request->setProperty('Title'		, $Title);
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
+			
+			$request->setObject('NTotal1'		, $NTotal1);
+			$request->setObject('PaidGeneralAll', $PaidGeneralAll);
+			
+			$request->setObject('NTotal2'		, $NTotal2);
+			$request->setObject('PaidSupplierAll', $PaidSupplierAll);
+			
+			$request->setObject('NTotal3'		, $NTotal3);
+			$request->setObject('PaidEmployeeAll', $PaidEmployeeAll);
+			
 			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('PaidAll'		, $PaidAll);
 		}
 	}
 ?>
