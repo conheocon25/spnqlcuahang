@@ -29,44 +29,43 @@
 								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>																					
-											<th><div class="text-left">NGÀY</div></th>											
-											<th width="90"><div class="text-right">BÁN HÀNG</div></th>											
-											<th width="90"><div class="text-right">KHO HÀNG</div></th>
-											<th width="90"><div class="text-right">TIỀN CHI</div></th>
-											<th width="90"><div class="text-right">TIỀN THU</div></th>
-											<th width="90"><div class="text-right">QUỸ</div></th>											
-											<th width="90"><div class="text-center">TK.MÓN</div></th>
-											<th width="90"><div class="text-center">TK.KHÁCH</div></th>
+											<th rowspan="2"><div class="text-left">NGÀY</div></th>
+											<th colspan="2" width="90"><div class="text-center">BÁN HÀNG</div></th>
+											<th rowspan="2" width="90"><div class="text-right">KHO HÀNG</div></th>
+											<th colspan="2" width="90"><div class="text-center">TIỀN</div></th>
+											<th rowspan="2" width="90"><div class="text-right">SỐ DƯ</div></th>											
+											<th rowspan="2" width="90"><div class="text-center">CN.NPP</div></th>
+											<th rowspan="2" width="90"><div class="text-center">CN.KHÁCH</div></th>
+										</tr>
+										<tr>																																
+											<th width="90"><div class="text-right">C.NỢ</div></th>
+											<th width="90"><div class="text-right">T.MẶT</div></th>											
+											<th width="90"><div class="text-right">K.CHI</div></th>
+											<th width="90"><div class="text-right">K.THU</div></th>											
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">											
-											<td><div class="TDExe" tal:attributes="alt TD/getURLReport" tal:content="TD/getDatePrint"></div></td>											
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>											
+											<td><div class="TDExe" tal:attributes="alt TD/getURLReport" tal:content="TD/getDatePrint"></div></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportSellingDebt"><span tal:content="TD/getSellingPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportSellingCash"><span tal:content="TD/getSellingPrint"/></a></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportStore"><span tal:content="TD/getStorePrint"/></a></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>
 											<td align="right"><b tal:content="TD/getValuePrint"/></td>
-											<td align="center"><a tal:attributes="href TD/getURLReportCourse">Xem</a></td>
+											<td align="center"><a tal:attributes="href TD/getURLReportSupplier">Xem</a></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 										</tr>
 										<tr>
 											<td align="right"><B>TỔNG KẾT</B></td>
-											<td align="right">
-												<a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a>
-											</td>											
+											<td align="right"><a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a></td>
+											<td align="right"><a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a></td>
 											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>
-											<td align="right">												
-												<a class="ViewPaidChart" href="#DialogPaidChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValuePaid/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewCollectChart" href="#DialogCollectChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueCollect/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewValueChart" href="#DialogValueChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueNew/formatCurrency"/></a>
-											</td>
+											<td align="right"><a class="ViewPaidChart" href="#DialogPaidChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValuePaid/formatCurrency"/></a></td>
+											<td align="right"><a class="ViewCollectChart" href="#DialogCollectChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueCollect/formatCurrency"/></a></td>
+											<td align="right"><a class="ViewValueChart" href="#DialogValueChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueNew/formatCurrency"/></a></td>
 											<td align="center"><a tal:attributes="href Tracking/getURLReportCourse">Xem</a></td>
-											<td align="center"></td>											
+											<td align="center"></td>
 										</tr>
 									</tbody>
 								</table>								
@@ -153,7 +152,7 @@
 						});
 					}
 				});
-				//location.reload();
+				location.reload();
 			});
 			
 			$(".ViewSellingChart").click(function(){

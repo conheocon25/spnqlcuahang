@@ -73,14 +73,7 @@ class TrackingDaily extends Object{
 	function setCollect( $Collect ) {$this->Collect = $Collect; $this->markDirty();}
 	function getCollect( ) {return $this->Collect;}
 	function getCollectPrint( ) {$N = new \MVC\Library\Number($this->Collect);return $N->formatCurrency();}
-	
-	/*
-	function getImportCount($Resource){
-		$mOD = new \MVC\Mapper\OrderImportDetail();
-		$Count = $mOD->trackByCount(array($this->getDate(), $this->getDate(), $Resource->getId()));
-		return 0;
-	}*/
-	
+			
 	function isOne(){
 		if ($this->getTime1()=="0000-00-00 00:00:00")
 			return true;
@@ -130,65 +123,27 @@ class TrackingDaily extends Object{
 		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
 		return $Count;
 	}
-	
-	//DOANH SỐ THEO KHU VỰC
-	function getSellingByDomainValue($IdDomain){
-		$mSession 	= new \MVC\Mapper\Session();
-		$SessionAll = $mSession->findByTrackingDomain(array($IdDomain, $this->getDate(), $this->getDate()));
-		$Value 		= 0;
-		while ($SessionAll->valid()){
-			$Session = $SessionAll->current();
-			$Value += $Session->getValue();
-			$SessionAll->next();
-		}		
-		return $Value;
-	}
-	function getSellingByDomainValuePrint($IdDomain){
-		$N = new \MVC\Library\Number($this->getSellingByDomainValue($IdDomain));
-		return $N->formatCurrency();
-	}
-	function getSellingByDomainPercent($IdDomain){
-		$SS = $this->getSelling();
-		if (!isset($SS) || $SS ==0)
-			return 0;
-		return round(($this->getSellingByDomainValue($IdDomain) / $SS)*100,0)." %";
-	}
-	
-	//DOANH SỐ THEO DANH MỤC MÓN
-	function getSellingByCategoryValue($IdCategory){
-		$mSD 	= new \MVC\Mapper\SessionDetail();
-		$Value = $mSD->trackByCategoryValue(array($IdCategory, $this->getDate(), $this->getDate()));		 		
-		return $Value;
-	}
-	function getSellingByCategoryValuePrint($IdCategory){
-		$N = new \MVC\Library\Number($this->getSellingByCategoryValue($IdCategory));
-		return $N->formatCurrency();
-	}
-	function getSellingByCategoryPercent($IdCategory){
-		$SS = $this->getSelling();
-		if (!isset($SS) || $SS ==0)
-			return 0;
-		return round(($this->getSellingByCategoryValue($IdCategory) / $SS )*100,0)." %";
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLReport()			{return "/report/".$this->getIdTracking()."/".$this->getId();}
-	function getURLReportSelling()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
-	function getURLReportSellingByCategory()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/bycategory";}
-	function getURLReportSellingByDomain()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/bydomain";}
-	function getURLReportImport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
+	function getURLReportSellingCash(){return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/cash";}
+	function getURLReportSellingDebt(){return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/debt";}
 	function getURLReportStore()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/store";}
 	function getURLReportPaid()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/paid";}
-	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}
-	function getURLReportCourse()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/course";}
+	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}	
 	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";}
-	function getURLReportLog()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/log";}
-	
+	function getURLReportSupplier()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/supplier";}
+		
 	function getURLReportCustomerDetail($IdCustomer){
 		return "/report/".$this->getIdTracking()."/".$this->getId()."/customer/".$IdCustomer;
 	}	
+	
+	function getURLReportSupplierDetail($IdSupplier){
+		return "/report/".$this->getIdTracking()."/".$this->getId()."/supplier/".$IdSupplier;
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

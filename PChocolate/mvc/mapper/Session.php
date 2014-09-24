@@ -60,7 +60,35 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 								S.datetime DESC
 							"
 		, $tblSession);
-
+		
+		$findByTrackingDebtStmt = sprintf(
+							"select
+								*
+							from 
+								%s S
+							where
+								S.datetime >= ? AND 
+								S.datetime <= ? AND
+								S.status = 2
+							order by 
+								S.datetime DESC
+							"
+		, $tblSession);
+		
+		$findByTrackingCashStmt = sprintf(
+							"select
+								*
+							from 
+								%s S
+							where
+								S.datetime >= ? AND 
+								S.datetime <= ? AND
+								S.status = 1
+							order by 
+								S.datetime DESC
+							"
+		, $tblSession);
+		
 		$findByTrackingDomainStmt = sprintf(
 							"select
 								*
@@ -144,6 +172,9 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
+		$this->findByTrackingCashStmt = self::$PDO->prepare($findByTrackingCashStmt);
+		$this->findByTrackingDebtStmt = self::$PDO->prepare($findByTrackingDebtStmt);
+		
 		$this->findByTrackingDomainStmt = self::$PDO->prepare($findByTrackingDomainStmt);
 		$this->findByTrackingCustomerStmt = self::$PDO->prepare($findByTrackingCustomerStmt);
 		$this->findByTrackingDebtCustomerStmt = self::$PDO->prepare($findByTrackingDebtCustomerStmt);
@@ -261,6 +292,16 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 	function findByTracking($values ){		
         $this->findByTrackingStmt->execute( $values );
         return new SessionCollection( $this->findByTrackingStmt->fetchAll(), $this );
+    }
+	
+	function findByTrackingDebt($values ){		
+        $this->findByTrackingDebtStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingDebtStmt->fetchAll(), $this );
+    }
+	
+	function findByTrackingCash($values ){		
+        $this->findByTrackingCashStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingCashStmt->fetchAll(), $this );
     }
 	
 	function findByTrackingDomain($values ){

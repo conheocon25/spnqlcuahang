@@ -122,15 +122,11 @@ RewriteRule ^export/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=Export
 RewriteRule ^report$ 										?cmd=Report [L]
 RewriteRule ^report/info$ 									?cmd=ReportInfo [L]
 RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
 
 RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/log$ 					?cmd=ReportDailyLog&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/bydomain$ 	?cmd=ReportDailySellingByDomain&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/bycategory$ 	?cmd=ReportDailySellingByCategory&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling/cash$ 		?cmd=ReportDailySellingCash&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling/debt$ 		?cmd=ReportDailySellingDebt&IdTrack=$1&IdTD=$2 [L]
 
-RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 				?cmd=ReportDailyStore&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
