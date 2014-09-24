@@ -14,17 +14,17 @@ class CollectCustomer extends Object{
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
     function __construct(
-		$Id=null,		
+		$Id=null,
 		$IdCustomer=null,
 		$Date=null,
 		$Value=0,
 		$Note=null
-	) {
-        $this->Id = $Id;
-		$this->IdCustomer = $IdCustomer;
-		$this->Date = $Date;
-		$this->Value = $Value;
-		$this->Note = $Note;
+	){
+        $this->Id 			= $Id;
+		$this->IdCustomer 	= $IdCustomer;
+		$this->Date 		= $Date;
+		$this->Value 		= $Value;
+		$this->Note 		= $Note;
         parent::__construct( $Id );
     }
     function setId( $Id ) {$this->Id = $Id; $this->markDirty(); }

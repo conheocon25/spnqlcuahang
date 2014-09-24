@@ -233,13 +233,12 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLPaid(){return "/paid/supplier/".$this->getId();}
-	function getURLPaidInsLoad(){return "/paid/supplier/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/paid/supplier/".$this->getId()."/ins/exe";}
+	function getURLPaid()		{return "money/paid/supplier/".$this->getId();}
+	function getURLPaidInsLoad(){return "money/paid/supplier/".$this->getId()."/ins/load";}
+	function getURLPaidInsExe()	{return "money/paid/supplier/".$this->getId()."/ins/exe";}
 							
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
-	
 }
 ?>
