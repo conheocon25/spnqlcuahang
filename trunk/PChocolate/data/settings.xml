@@ -13,8 +13,8 @@
 			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
-		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
-		<command name="App"><view>App</view></command>		
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="App"><view>App</view></command>
 		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
 		
 		<!-- ============================================================================== -->
@@ -43,16 +43,14 @@
 		<command name="Report">				<view>Report</view>				</command>
 		<command name="ReportInfo">			<view>ReportInfo</view>			</command>
 		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
-		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
-		
+				
 		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
-		<command name="ReportDailySelling">	<view>ReportDailySelling</view>	</command>
-		<command name="ReportDailySellingByCategory">	<view>ReportDailySellingByCategory</view></command>
-		<command name="ReportDailySellingByDomain">		<view>ReportDailySellingByDomain</view>	</command>
+		<command name="ReportDailySellingCash">	<view>ReportDailySellingCash</view></command>
+		<command name="ReportDailySellingDebt">	<view>ReportDailySellingDebt</view>	</command>
+		
 		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
 		<command name="ReportDailyStore">	<view>ReportDailyStore</view>	</command>
 		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
-		<command name="ReportDailyLog">		<view>ReportDailyLog</view>		</command>
 		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
 		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
 		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDailySellingByDomain extends Command {
+	class ReportDailySellingCash extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,38 +17,52 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mDomain 	= new \MVC\Mapper\Domain();
 			$mSession 	= new \MVC\Mapper\Session();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mDomain	= new \MVC\Mapper\Domain();
-			$mConfig	= new \MVC\Mapper\Config();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$ConfigName		= $mConfig->findByName("NAME");
-			$ConfigAddress	= $mConfig->findByName("ADDRESS");
-			$ConfigPhone	= $mConfig->findByName("PHONE");
-			
+			//-------------------------------------------------------------																	
+			$ConfigName = $mConfig->findByName("NAME");
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
-			$DomainAll	= $mDomain->findAll();
-			
-			$SessionAll = $mSession->findByTracking( array(
-				$TD->getDate()." 0:0:0", 
+						
+			//TỔNG KẾT CA1 00:00 ĐẾN TRƯỚC 23:59
+			$SessionAll = $mSession->findByTrackingCash( array(
+				$TD->getDate()." 0:0:0",
 				$TD->getDate()." 23:59:59"
-			));
-															
+			));			
+			
+			$Value = 0;
+			while ($SessionAll->valid()){
+				$Session = $SessionAll->current();				
+				$Value += $Session->getValue();
+				$SessionAll->next();
+			}
+			
+			//TỔNG CỘNG
+			$NTotal 	= new \MVC\Library\Number($Value);
+																											
+			$Title 		= "BÁN TIỀN MẶT - ".$TD->getDatePrint();
+			$Navigation = array(
+				array("BÁO CÁO"				, "/report"),
+				array($Tracking->getName()	, $Tracking->getURLView())
+			);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('ConfigAddress'	, $ConfigAddress);
-			$request->setObject('ConfigPhone'	, $ConfigPhone);
-			
-			$request->setObject('TD'			, $TD);
-			$request->setObject('DomainAll'		, $DomainAll);
+			//-------------------------------------------------------------
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
+									
 			$request->setObject('SessionAll'	, $SessionAll);
+			$request->setObject('NTotal'		, $NTotal);
+			$request->setObject('TD'			, $TD);
+						
+			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}
 ?>
