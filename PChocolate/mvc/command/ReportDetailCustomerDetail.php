@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDailyCustomerDetail extends Command{
+	class ReportDetailCustomerDetail extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,8 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$IdTrack 	= $request->getProperty('IdTrack');
-			$IdTD 		= $request->getProperty('IdTD');
+			$IdTrack 	= $request->getProperty('IdTrack');			
 			$IdCustomer = $request->getProperty('IdCustomer');
 			
 			//-------------------------------------------------------------
@@ -20,8 +19,7 @@
 			//-------------------------------------------------------------
 			$mCustomer 	= new \MVC\Mapper\Customer();			
 			$mTracking 	= new \MVC\Mapper\Tracking();
-			$mTC 		= new \MVC\Mapper\TrackingCustomer();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mTC 		= new \MVC\Mapper\TrackingCustomer();			
 			$mSession 	= new \MVC\Mapper\Session();
 			$mCC 		= new \MVC\Mapper\CollectCustomer();
 			$mConfig 	= new \MVC\Mapper\Config();
@@ -29,15 +27,13 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracking 	= $mTracking->find($IdTrack);
-			$TD 		= $mTD->find($IdTD);
+			$Tracking 	= $mTracking->find($IdTrack);			
 			$Customer 	= $mCustomer->find($IdCustomer);
 			$ConfigName	= $mConfig->findByName("NAME");
 			
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
-				array($Tracking->getName()	, $Tracking->getURLView()),
-				array($TD->getDatePrint()	, $Tracking->getURLView())
+				array($Tracking->getName()	, $Tracking->getURLView())			
 			);
 			$Title 	= mb_strtoupper($Customer->getName(), 'UTF8');
 						
@@ -52,13 +48,13 @@
 					0,
 					0
 				);				
-			}else{
+			}else{				
 				$TC = $TCAll->current();
 			}
 						
 			//CÁC GIAO DỊCH TRONG KÌ HIỆN TẠI
 			$D1 		= $Tracking->getDateStart()." 1:0:0";
-			$D2 		= $TD->getDate()." 23:59:59";
+			$D2 		= $Tracking->getDateEnd()." 23:59:59";
 			$SessionAll = $mSession->findByTrackingCustomer(array($IdCustomer, $D1, $D2));			
 			$VS1	=	0;
 			$VS2	=	0;
@@ -74,7 +70,7 @@
 			$NVS2 = new \MVC\Library\Number($VS2);
 			
 			//CÁC TRẢ TIỀN TRONG KÌ HIỆN TẠI
-			$CollectAll = $mCC->findByTracking(array($IdCustomer, $Tracking->getDateStart(), $TD->getDate()));
+			$CollectAll = $mCC->findByTracking(array($IdCustomer, $Tracking->getDateStart(), $Tracking->getDateEnd()));
 			$VC = 0;
 			while ($CollectAll->valid()){
 				$Collect = $CollectAll->current();
@@ -90,35 +86,12 @@
 			$VN	= $VO + $VS2 - $VC;
 			$NVN = new \MVC\Library\Number($VN);
 			
-			//NẾU LÀ NGÀY CUỐI THÁNG THÌ TỔNG KẾT SỔ THÁNG
-			if ($TD->getDate() == $Tracking->getDateEnd()){
-				$TCAll = $mTC->findBy1(array($IdTrack, $IdCustomer));
-				if ($TCAll->count()==0){
-					$TC = new \MVC\Domain\TrackingCustomer(
-						null,
-						$IdTrack,
-						$IdCustomer,
-						$VS1,
-						$VS2,
-						$VC
-					);
-					$mTC->insert($TC);
-				}else{
-					$TC = $TCAll->current();
-					$TC->setValueSession1($VS1);
-					$TC->setValueSession2($VS2);
-					$TC->setValueCollect($VC);
-					$mTC->update($TC);
-				}
-			}
-			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Title'	, $Title);			
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Tracking'	, $Tracking);
-			$request->setObject('TD'		, $TD);
+			$request->setObject('Tracking'	, $Tracking);			
 			$request->setObject('Customer'	, $Customer);
 			$request->setObject('ConfigName', $ConfigName);
 			

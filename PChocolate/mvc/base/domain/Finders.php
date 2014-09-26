@@ -50,6 +50,7 @@ interface ConfigFinder 			extends Finder {}
 
 interface TrackingFinder 		extends Finder {}
 interface TrackingCustomerFinder 	extends Finder {}
+interface TrackingSupplierFinder 	extends Finder {}
 interface TrackingStoreFinder 	extends Finder {}
 interface TrackingCourseFinder 	extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}

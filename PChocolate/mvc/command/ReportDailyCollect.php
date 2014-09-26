@@ -43,21 +43,11 @@
 				$CollectAll->next();
 			}
 			$NTotal1 = new \MVC\Library\Number($Value);
-
-			//Tiền thu từ TẤT CẢ KHÁCH HÀNG
-			$Value1 = 0;
-			$CollectCustomerAll = $mCollectCustomer->findByTracking1( array($TD->getDate(), $TD->getDate()));
-			while ($CollectCustomerAll->valid()){
-				$Collect 	= $CollectCustomerAll->current();
-				$Value1 	+= $Collect->getValue();
-				$CollectCustomerAll->next();
-			}			
-			$NTotal2 = new \MVC\Library\Number($Value1);
-			
-			$NTotal = new \MVC\Library\Number($Value1 + $Value);
+						
+			$NTotal = new \MVC\Library\Number($Value);
 			
 			//Cập nhật kết quả vào DB
-			$TD->setCollect($Value1 + $Value);
+			$TD->setCollect($Value);
 			$mTD->update($TD);
 			
 			$Title 		= "TIỀN THU ".$TD->getDatePrint();
@@ -75,10 +65,8 @@
 			
 			$request->setObject('NTotal'			, $NTotal);
 			$request->setObject('NTotal1'			, $NTotal1);
-			$request->setObject('NTotal2'			, $NTotal2);
-			
-			$request->setObject('CollectAll'		, $CollectAll);
-			$request->setObject('CollectCustomerAll', $CollectCustomerAll);
+						
+			$request->setObject('CollectAll'		, $CollectAll);			
 		}
 	}
 ?>

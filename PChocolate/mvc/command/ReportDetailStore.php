@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDailyStore extends Command{
+	class ReportDetailStore extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -12,14 +12,12 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
 			$IdTrack 	= $request->getProperty('IdTrack');
-			$IdTD 		= $request->getProperty('IdTD');
-						
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mTracking 	= new \MVC\Mapper\Tracking();
-			$mTS 		= new \MVC\Mapper\TrackingStore();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();						
+			$mTS 		= new \MVC\Mapper\TrackingStore();			
 			$mResource 	= new \MVC\Mapper\Resource();
 			$mOID 		= new \MVC\Mapper\OrderImportDetail();
 			$mOED 		= new \MVC\Mapper\OrderExportDetail();
@@ -30,29 +28,27 @@
 			//-------------------------------------------------------------
 			$ConfigName		= $mConfig->findByName("NAME");
 			$Tracking 		= $mTracking->find($IdTrack);
-			$TD				= $mTD->find($IdTD);
-			
+						
 			$ResourceAll 	= $mResource->findAll();			
+			
 			//Xóa những dữ liệu tồn kho cũ
-			$mTS->deleteByTracking(array($IdTrack, $IdTD));
+			$mTS->deleteByTracking(array($IdTrack));
 			
-			$Sum = 0;
-			
+			$Sum = 0;			
 			while ($ResourceAll->valid())
 			{
 				$Resource = $ResourceAll->current();
 				
-				$TS1 	 = $mTS->findByPre( array( $IdTD, $Resource->getId()) );
+				$TS1 	 = $mTS->findByPre( array( $IdTrack, $Resource->getId()) );
 				if ($TS1->count() <= 0) $CountOld=0;
 				else $CountOld = $TS1->current()->getCountRemain();
 				
-				$CountImport = $mOID->trackByCount( array($Resource->getId(), $TD->getDate(), $TD->getDate()));
-				$CountExport = $mOED->trackByCount( array($Resource->getId(), $TD->getDate(), $TD->getDate()));
+				$CountImport = $mOID->trackByCount( array($Resource->getId(), $Tracking->getDateStart(), $Tracking->getDateEnd() ));
+				$CountExport = $mOED->trackByCount( array($Resource->getId(), $Tracking->getDateStart(), $Tracking->getDateEnd() ));
 				
 				$TS = new \MVC\Domain\TrackingStore(
 					null,
-					$IdTrack,
-					$IdTD,
+					$IdTrack,				
 					$Resource->getId(),
 					$CountOld,
 					$CountImport,
@@ -64,17 +60,12 @@
 				
 				$ResourceAll->next();
 			}			
-			$TSAll = $mTS->findByDaily(array($IdTrack, $IdTD));
+			$TSAll = $mTS->findBy(array($IdTrack));
 			
-			$NSum = new \MVC\Library\Number($Sum);
-			
-			$TD->setStore($Sum);
-			$mTD->update($TD);
-						
-			$Title = "TỒN KHO ".$TD->getDatePrint();
+			$NSum = new \MVC\Library\Number($Sum);			
+			$Title = "TỒN KHO ".$Tracking->getName();
 			$Navigation = array(				
-				array("BÁO CÁO", "/report"),
-				array($Tracking->getName(), $Tracking->getURLView() )
+				array("BÁO CÁO", "/report")				
 			);
 			
 			//-------------------------------------------------------------
@@ -85,8 +76,7 @@
 			$request->setProperty('Sum'			, $NSum);
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('Tracking'		, $Tracking);
-			$request->setObject('TD'			, $TD);
+			$request->setObject('Tracking'		, $Tracking);			
 			$request->setObject('ResourceAll'	, $ResourceAll);
 			$request->setObject('TSAll'			, $TSAll);
 		}

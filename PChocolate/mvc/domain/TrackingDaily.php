@@ -6,8 +6,10 @@ class TrackingDaily extends Object{
     private $Id;
 	private $IdTracking;
 	private $Date;
-	private $Selling;
+	private $SellingCash;
+	private $SellingDebt;
 	private $Import;
+	private $Export;
 	private $Store;
 	private $Paid;
 	private $Collect;
@@ -20,8 +22,10 @@ class TrackingDaily extends Object{
 		$Id			= null,
 		$IdTracking	= null, 
 		$Date		= null, 
-		$Selling	= null, 
+		$SellingCash= null, 
+		$SellingDebt= null, 
 		$Import		= null, 
+		$Export		= null,
 		$Store		= null,
 		$Paid		= null,
 		$Collect	= null,
@@ -30,8 +34,10 @@ class TrackingDaily extends Object{
         $this->Id 			= $Id;
 		$this->IdTracking 	= $IdTracking;
 		$this->Date 		= $Date;
-		$this->Selling 		= $Selling;
+		$this->SellingCash 	= $SellingCash;
+		$this->SellingDebt 	= $SellingDebt;
 		$this->Import 		= $Import;
+		$this->Export 		= $Export;
 		$this->Store 		= $Store;
 		$this->Paid 		= $Paid;
 		$this->Collect 		= $Collect;
@@ -54,14 +60,22 @@ class TrackingDaily extends Object{
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
 	
-	function setSelling( $Selling ) {$this->Selling = $Selling;$this->markDirty();}   
-	function getSelling( ) {return $this->Selling;}
-	function getSellingPrint( ){$N = new \MVC\Library\Number($this->Selling);return $N->formatCurrency();}
+	function setSellingCash( $SellingCash ) {$this->SellingCash = $SellingCash; $this->markDirty();}   
+	function getSellingCash( ) {return $this->SellingCash;}
+	function getSellingCashPrint( ){$N = new \MVC\Library\Number($this->SellingCash);return $N->formatCurrency();}
+
+	function setSellingDebt( $SellingDebt ) {$this->SellingDebt = $SellingDebt; $this->markDirty();}
+	function getSellingDebt( ) {return $this->SellingDebt;}
+	function getSellingDebtPrint( ){$N = new \MVC\Library\Number($this->SellingDebt);return $N->formatCurrency();}
 	
 	function setImport( $Import ) {$this->Import = $Import;$this->markDirty();}   
 	function getImport( ) {return $this->Import;}
 	function getImportPrint( ) {$N = new \MVC\Library\Number($this->Import);return $N->formatCurrency();}
-			
+	
+	function setExport( $Export ) {$this->Export = $Export;$this->markDirty();}   
+	function getExport( ) {return $this->Export;}
+	function getExportPrint( ) {$N = new \MVC\Library\Number($this->Export);return $N->formatCurrency();}
+	
 	function setStore( $Store ) {$this->Store = $Store;$this->markDirty();}   
 	function getStore( ) {return $this->Store;}
 	function getStorePrint( ) {$N = new \MVC\Library\Number($this->Store);return $N->formatCurrency();}
@@ -80,32 +94,35 @@ class TrackingDaily extends Object{
 		return false;	
 	}
 	
-	function getValue(){
+	function getValueCash(){
 		$mTD 		= new \MVC\Mapper\TrackingDaily();
 		$TDPreAll 	= $mTD->findByPre(array($this->getIdTracking(), $this->getDate()));
-		if ($TDPreAll->count()==0){
-			$OldValue 	= 0;
-			$NewValue  	= 
-							$OldValue + 
-							$this->getSelling() + 
-							$this->getCollect() + 
-							$this->getStore() - 
-							$this->getImport() - 
-							$this->getPaid();
-		}
-		else{
-			$OldValue 	= $TDPreAll->current()->getValue();
-			$NewValue  	= 
-							$OldValue + 
-							$this->getSelling() + 
-							$this->getCollect() + 
-							($this->getStore() - $TDPreAll->current()->getStore()) - 
-							$this->getImport() - 
-							$this->getPaid();
-		}			
-		return $NewValue ;
+		if ($TDPreAll->count()==0){ $OldValue 	= 0;}
+		else{ $OldValue 	= $TDPreAll->current()->getValueCash();}
+		
+		$NewValue  	= 	$OldValue + 
+						$this->getSellingCash() + 							
+						$this->getCollect();
+						
+		return $NewValue;
 	}
-	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency();}
+	function getValueCashPrint( ) {$N = new \MVC\Library\Number($this->getValueCash());return $N->formatCurrency();}
+	
+	function getValueDebt(){
+		$mTD 		= new \MVC\Mapper\TrackingDaily();
+		$TDPreAll 	= $mTD->findByPre(array($this->getIdTracking(), $this->getDate()));
+		if ($TDPreAll->count()==0){$OldValue 	= 0;}
+		else{$OldValue 	= $TDPreAll->current()->getValueDebt();}
+		
+		$NewValue  	= 	$OldValue +
+						$this->getSellingDebt() +
+						$this->getStore() -
+						$this->getImport() -
+						$this->getPaid();
+						
+		return $NewValue;
+	}
+	function getValueDebtPrint( ) {$N = new \MVC\Library\Number($this->getValueDebt()); return $N->formatCurrency();}
 	
 	function setTime1( $Time1 ) {$this->Time1 = $Time1; $this->markDirty();}
 	function getTime1( ) {return $this->Time1;}
@@ -113,6 +130,7 @@ class TrackingDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	/*
 	function getImportCount($IdResource){
 		$mOD = new \MVC\Mapper\OrderImportDetail();
 		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
@@ -123,7 +141,8 @@ class TrackingDaily extends Object{
 		$Count = $mOD->trackByCount( array($IdResource, $this->getDate(), $this->getDate()) );
 		return $Count;
 	}
-			
+	*/
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
@@ -131,6 +150,8 @@ class TrackingDaily extends Object{
 	function getURLReportSellingCash(){return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/cash";}
 	function getURLReportSellingDebt(){return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/debt";}
 	function getURLReportStore()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/store";}
+	function getURLReportImport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
+	function getURLReportExport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/export";}
 	function getURLReportPaid()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/paid";}
 	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}	
 	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";}

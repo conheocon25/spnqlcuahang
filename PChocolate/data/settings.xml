@@ -48,21 +48,19 @@
 		<command name="ReportDailySellingCash">	<view>ReportDailySellingCash</view></command>
 		<command name="ReportDailySellingDebt">	<view>ReportDailySellingDebt</view>	</command>
 		
-		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
-		<command name="ReportDailyStore">	<view>ReportDailyStore</view>	</command>
-		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
+		<command name="ReportDailyImport"><view>ReportDailyImport</view></command>		
+		<command name="ReportDailyExport"><view>ReportDailyExport</view></command>		
+		<command name="ReportDailyPaid"><view>ReportDailyPaid</view></command>
 		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
-		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>
-		<command name="ReportDailyCustomerDetail"><view>ReportDailyCustomerDetail</view></command>
 		
-		<command name="ReportChartCourse">	<view>ReportChartCourse</view>	</command>
-		<command name="ReportChartSelling">	<view>ReportChartSelling</view>	</command>
-		<command name="ReportChartImport">	<view>ReportChartImport</view>	</command>
-		<command name="ReportChartPaid">	<view>ReportChartPaid</view>	</command>
-		<command name="ReportChartCollect">	<view>ReportChartCollect</view>	</command>
-		<command name="ReportChartValue">	<view>ReportChartValue</view>	</command>
-										
+		<command name="ReportDetailStore"><view>ReportDetailStore</view></command>
+		
+		<command name="ReportDetailCustomer">	<view>ReportDetailCustomer</view>	</command>
+		<command name="ReportDetailCustomerDetail">	<view>ReportDetailCustomerDetail</view>	</command>
+		
+		<command name="ReportDetailSupplier">	<view>ReportDetailSupplier</view>	</command>
+		<command name="ReportDetailSupplierDetail"><view>ReportDetailSupplierDetail</view></command>
+												
 		<!-- ============================================================================== -->
 		<!-- SELLING		 																-->
 		<!-- ============================================================================== -->		

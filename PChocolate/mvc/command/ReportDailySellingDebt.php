@@ -44,7 +44,10 @@
 			}			
 			//TỔNG CỘNG
 			$NTotal 	= new \MVC\Library\Number($Value);
-																											
+			
+			$TD->setSellingDebt($Value);
+			$mTD->update($TD);
+			
 			$Title 		= "BÁN CÔNG NỢ - ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
