@@ -43,6 +43,9 @@
 				$SessionAll->next();
 			}
 			
+			$TD->setSellingCash($Value);
+			$mTD->update($TD);
+			
 			//TỔNG CỘNG
 			$NTotal 	= new \MVC\Library\Number($Value);
 																											

@@ -10,8 +10,8 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, selling=?, import=?, store=?, paid=?, collect=?, time1=? where id=?", $tblTrackingDaily);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, selling, import, store, paid, collect, time1) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, `date`=?, selling_cash=?, selling_debt=?, import=?, export=?,  store=?, paid=?, collect=?, time1=? where id=?", $tblTrackingDaily);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, `date`, selling_cash, selling_debt, import, export, store, paid, collect, time1) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
@@ -35,8 +35,10 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$array['id'],
 			$array['id_tracking'],
 			$array['date'],
-			$array['selling'],
+			$array['selling_cash'],
+			$array['selling_debt'],
 			$array['import'],
+			$array['export'],
 			$array['store'],
 			$array['paid'],
 			$array['collect'],
@@ -49,8 +51,10 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
-			$object->getSelling(),
+			$object->getSellingCash(),
+			$object->getSellingDebt(),
 			$object->getImport(),
+			$object->getExport(),
 			$object->getStore(),
 			$object->getPaid(),
 			$object->getCollect(),
@@ -65,8 +69,10 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         $values = array( 
 			$object->getIdTracking(),
 			$object->getDate(),
-			$object->getSelling(),
+			$object->getSellingCash(),
+			$object->getSellingDebt(),
 			$object->getImport(),
+			$object->getExport(),
 			$object->getStore(),
 			$object->getPaid(),
 			$object->getCollect(),

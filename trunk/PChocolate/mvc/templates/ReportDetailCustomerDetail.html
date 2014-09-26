@@ -19,7 +19,7 @@
 						<div class="widget-box">
 							<div class="widget-content nopadding">
 								<div role="grid" class="dataTables_wrapper">
-									<H3>BẢNG TỔNG KẾT</H3>
+									<H3>TỔNG KẾT <span tal:content="Customer/getName"/></H3>
 									<table class="table table-striped table-hover">										
 										<tbody>											
 											<tr>
@@ -27,11 +27,11 @@
 												<td align="right" width="120"><B tal:content="NVO/formatCurrency"/> đ</td>
 											</tr>											
 											<tr>
-												<td align="right"><B>PHIẾU THIẾU</B></td>
+												<td align="right"><B>MUA THIẾU</B></td>
 												<td align="right" width="120"><B tal:content="NVS2/formatCurrency"/> đ</td>
 											</tr>											
 											<tr>
-												<td align="right"><B>KHÁCH TRẢ</B></td>
+												<td align="right"><B>TRẢ TIỀN</B></td>
 												<td align="right" width="120"><B tal:content="NVC/formatCurrency"/> đ</td>
 											</tr>
 											<tr>
@@ -42,7 +42,7 @@
 									</table>
 									
 									<p> Trong đó chi tiết như sau:</p>									
-									<H3>CHI TIẾT GIAO DỊCH</H3>
+									<H4>CÁC GIAO DỊCH</H4>
 									<table class="table table-bordered table-striped table-hover">
 										<thead>
 											<tr role="row">
@@ -76,7 +76,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<H3>CHI TIẾT TRẢ TIỀN</H3>
+									<H4>TRẢ TIỀN</H4>
 									<table class="table table-bordered table-striped table-hover">
 										<thead>
 											<tr role="row">
@@ -98,8 +98,7 @@
 												<td align="right"><B tal:content="NVC/formatCurrency"/> đ</td>
 											</tr>
 										</tbody>
-									</table>									
-																		
+									</table>
 								</div>
 							</div>
 						</div>
