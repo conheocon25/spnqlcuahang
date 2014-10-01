@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Website Điện Máy Minh Hoàng"/>
-		<base href="http://minhhoang.quanly-cuahang.com"/>
+		<title tal:content="string:Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
+		<base href="http://langsenquan.quanly-cuahang.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Điện Máy Minh Hoàng"/>
-		<meta name="description" content="Website Điện Máy Minh Hoàng"/>
-		<meta name="page-topic" content="Website Điện Máy Minh Hoàng"/>
-		<meta name="Abstract" content="Website Điện Máy Minh Hoàng"/>
-		<meta name="classification" content="Website Điện Máy Minh Hoàng"/>
+		<meta name="keywords" content="Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
+		<meta name="description" content="Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
+		<meta name="page-topic" content="Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
+		<meta name="Abstract" content="Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
+		<meta name="classification" content="Website Quán Ăn Sinh Thái Làng Sen Đồng Tháp"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
@@ -66,12 +66,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
+						
 						<div class="header-top-left">
 							<ul id="top-links" class="clearfix">
 								<li><a href="/danh-dau" title="Đánh dấu"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Đánh dấu</span></a></li>								
 								<li><a href="/gio-hang" title="My Cart"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Giỏ hàng</span></a></li>
 							</ul>
-						</div><!-- End .header-top-left -->
+						</div>
+						
 						<div class="header-top-right">
 							<div class="header-top-dropdowns pull-right">
 								<div class="btn-group dropdown-money">
@@ -85,7 +87,7 @@
 							</div><!-- End .header-top-dropdowns -->
 							<div class="header-text-container pull-right">
 								<p class="header-text">
-									Trung tâm điện máy Minh Hoàng xin kính chào quý khách! Với các mặt hàng chất lượng chính hãng, phong phú, đa dạng đến từ đầy đủ các ngành hàng như Vi tính, Giải trí số, Điện tử, Điện lạnh, Gia dụng cùng phong cách phục vụ chuyên nghiệp, chu đáo, Điện máy Minh Hoàng hứa hẹn sẽ là điểm đến tham quan, mua sắm lý tưởng cho mọi gia đình
+									Quán Ăn Sinh Thái Làng Sen Đồng Tháp xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình
 								</p>
 							</div><!-- End .pull-right -->
 						</div><!-- End .header-top-right -->
@@ -98,8 +100,8 @@
 				<div class="row">
 					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
 						<h1 class="logo clearfix">
-							<span>Điện máy Minh Hoàng</span>
-							<a href="/" title="Điện máy Minh Hoàng"><img src="/mvc/templates/front/images/logo.png" alt="Điện máy Minh Hoàng" width="238" height="76"/></a>
+							<span>Quán Ăn Sinh Thái Làng Sen</span>
+							<a href="/" title="Quán Ăn Sinh Thái Làng Sen"><img src="/mvc/templates/front/images/logo.png" alt="Điện máy Minh Hoàng" width="238" height="76"/></a>
 						</h1>
 					</div><!-- End .col-md-5 -->
 					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
@@ -131,6 +133,13 @@
 								</div>
 								<ul class="menu clearfix">
 									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
+									<li><a href="JavaScript:;">GIỚI THIỆU</a>
+										<ul>
+											<li><a href="/gioi-thieu">Mô hình quán ăn sinh thái</a></li>
+											<li><a href="/chinh-sach">Chính sách khách hàng</a></li>
+											<li><a href="/the-vip">Phát hành thẻ VIP</a></li>
+										</ul>
+									</li>
 									<li><a href="JavaScript:;">TIN TỨC</a>
 										<ul>
 											<li tal:repeat="Tag TagAll">
@@ -140,7 +149,7 @@
 											</li>
 										</ul>
 									</li>
-									<li class="mega-menu-container"><a href="JavaScript:;">SẢN PHẨM</a>
+									<li class="mega-menu-container"><a href="JavaScript:;">THỰC ĐƠN</a>
 										<div class="mega-menu clearfix">
 											<div class="col-5" tal:repeat="Category CategoryAll">
 												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
@@ -158,6 +167,7 @@
 									<li><a href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
 							</nav>
+							<!--
 							<div id="quick-access">
 								<div class="dropdown-cart-menu-container pull-right">
 									<div class="btn-group dropdown-cart">
@@ -175,6 +185,7 @@
 									<button type="submit" id="quick-search" class="btn btn-custom"></button>
 								</form>
 							</div>
+							!-->
 						</div>
 					</div>
 				</div><!-- End .container -->
@@ -261,14 +272,14 @@
 					<div class="col-md-4 col-sm-4 col-xs-12 widget">
 						<h3>Trụ sở chính</h3>
 						<ul class="contact-list">
-							<li><strong>Trung tâm điện máy Minh Hoàng</strong></li>
-							<li>33/5 Phạm Thái Bường F4 TP.Vĩnh Long</li>							
-							<li>Làm việc tất cả các ngày trong tuần</li>
-							<li>Giờ mở cửa: 8.00AM - 21.00PM</li>
+							<li><strong>Quán Ăn Sinh Thái Làng Sen</strong></li>
+							<li>??? Điện Biên Phủ Mỹ Phú TP.Cao Lãnh</li>							
+							<li>Tiếp đón tất cả các ngày trong tuần</li>
+							<li>Giờ mở cửa: 8.00AM - 22.00PM</li>
 						</ul>
 					</div>
 					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Hệ thống siêu thị</h3>
+						<h3>Hệ thống chuỗi Quán Ăn</h3>
 						<ul class="links">
 							<li tal:repeat="Branch BranchAll">
 								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
