@@ -22,6 +22,7 @@
 			$mPostTag	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine	= new \MVC\Mapper\StoryLine();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,11 +32,12 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
+			$StoryLineAll			= $mStoryLine->findAll();
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
@@ -44,15 +46,13 @@
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
 			
 			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
-			$Navigation = array(
-				
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
-			$request->setProperty("Active", 			'Post');
+			$request->setProperty("Active", 			'News');
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			
@@ -60,10 +60,11 @@
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);

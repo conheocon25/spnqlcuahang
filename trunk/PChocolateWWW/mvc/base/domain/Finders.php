@@ -10,6 +10,10 @@ interface Finder {
     //function delete();
 }
 
+interface AlbumFinder  			extends Finder {}
+interface ImageFinder  			extends Finder {}
+interface VideoFinder  			extends Finder {}
+
 interface BranchFinder  		extends Finder {}
 
 interface UserFinder  			extends Finder {}
@@ -27,26 +31,15 @@ interface SupplierFinder 		extends Finder {}
 interface ProductFinder 		extends Finder {}
 interface ProductInfoFinder 	extends Finder {}
 
-interface OrderImportFinder 	extends Finder {}
-interface OrderImportDetailFinder extends Finder {}
-interface OrderExportFinder 	extends Finder {}
-interface OrderExportDetailFinder extends Finder {}
-
 interface CustomerFinder 		extends Finder {}
 interface StoryLineFinder 		extends Finder {}
 
 interface TagFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
 
-interface EmployeeFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
-interface TrackingFinder 		extends Finder {}
-interface TrackingDailyFinder 	extends Finder {}
 interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
 interface PresentationFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
-
-interface SaveFinder 			extends Finder {}
-interface SaveProductFinder 	extends Finder {}
 ?>
