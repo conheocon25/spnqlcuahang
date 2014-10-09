@@ -49,7 +49,7 @@ class SessionDetail extends Object{
     }	
     function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
-	function getCountPrint( ) { return round($this->Count,1);}
+	function getCountPrint( ) { return round($this->Count,2);}
 			
 	function setPrice( $Price) {$this->Price = $Price;}
 	function getPrice( ) {return $this->Price;}
