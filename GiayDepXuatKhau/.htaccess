@@ -43,6 +43,16 @@ RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmplo
 RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# SELLING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^selling/online$ 						?cmd=SellingOnline 	[L]
+RewriteRule ^selling/store$ 						?cmd=SellingStore 	[L]
+RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 	[L]
+RewriteRule ^selling/load/order/([0-9]+)$			?cmd=SellingLoadOrder&IdOrder=$1 	[L]
+
+RewriteRule ^checking$ 								?cmd=Checking 		[L]
+
+#---------------------------------------------------------------------------------------------------------------------------
 # EXPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^export$ 								?cmd=Export [L]

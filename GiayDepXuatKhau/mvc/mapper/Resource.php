@@ -21,14 +21,16 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							WHERE idsupplier=:idsupplier
 							LIMIT :start,:max
 				", $tblResource);
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name", $tblResource);		
 				
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->findBySupplierStmt 	= self::$PDO->prepare($findBySupplierStmt);
+		$this->findByNameStmt 		= self::$PDO->prepare($findByNameStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		
     } 
     function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
@@ -74,8 +76,15 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
-        return new SupplierCollection( $this->findBySupplierStmt->fetchAll(), $this );
+        return new ResourceCollection( $this->findBySupplierStmt->fetchAll(), $this );
     }
+	
+	function findByName($values) {        
+		$this->findByNameStmt->bindValue(':name', $values, \PDO::PARAM_STR);		
+		$this->findByNameStmt->execute();		
+        return new ResourceCollection( $this->findByNameStmt->fetchAll(), $this );
+    }
+	
 	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);

@@ -93,5 +93,14 @@
 		<command name="ExportCustomerOrderPrint"><view>ExportCustomerOrderPrint</view></command>
 		<command name="ExportCustomerOrderExe"><view>ExportCustomerOrderExe</view></command>
 		
+		<!-- ============================================================================== -->
+		<!-- SELLING				 															-->
+		<!-- ============================================================================== -->
+		<command name="SellingOnline"><view>SellingOnline</view></command>
+		<command name="SellingStore"><view>SellingStore</view></command>
+		<command name="SellingLoadOrder"><view>SellingLoadOrder</view></command>
+		<command name="SellingSearchResource"><view>SellingSearchResource</view></command>
+		<command name="Checking"><view>Checking</view></command>
+		
 	</control>
 </options>
