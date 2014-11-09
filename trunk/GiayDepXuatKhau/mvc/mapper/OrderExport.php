@@ -88,10 +88,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "OrderExport";
-    }
-
+    protected function targetClass(){return "OrderExport";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdUser(), 

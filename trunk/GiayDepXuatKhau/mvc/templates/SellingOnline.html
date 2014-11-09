@@ -10,7 +10,7 @@
 		<ul>
 			<li tal:repeat="Order OrderAll" class="OrderExport" tal:attributes="alt Order/getId">
 				<a><i class="glyphicons-shop_window" />
-					<span tal:content="Order/getDatePrint"/>
+					<span tal:content="Order/getDateTimePrint"/>
 				</a>
 			</li>
 		</ul>		

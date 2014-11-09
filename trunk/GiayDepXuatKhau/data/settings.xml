@@ -34,12 +34,7 @@
 			<view>ChangePassExe</view>
 			<status value="CMD_OK"><forward>SignoutExe</forward></status>
 		</command>
-		
-		<command name="Result">						<view>Result</view>						</command>
-		<command name="ResultDetail">				<view>ResultDetail</view>				</command>
-		<command name="ResultDetailView">			<view>ResultDetailView</view>			</command>
-		<command name="ResultDetailPrint">			<view>ResultDetailPrint</view>			</command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
@@ -83,18 +78,9 @@
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
 		<command name="ImportSupplierOrderExe"><view>ImportSupplierOrderExe</view></command>
-		
+						
 		<!-- ============================================================================== -->
-		<!-- EXPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="Export"><view>Export</view></command>
-		<command name="ExportCustomer"><view>ExportCustomer</view></command>
-		<command name="ExportCustomerOrder"><view>ExportCustomerOrder</view></command>
-		<command name="ExportCustomerOrderPrint"><view>ExportCustomerOrderPrint</view></command>
-		<command name="ExportCustomerOrderExe"><view>ExportCustomerOrderExe</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SELLING				 															-->
+		<!-- SELLING				 														-->
 		<!-- ============================================================================== -->
 		<command name="SellingOnline"><view>SellingOnline</view></command>
 		<command name="SellingStateNext"><view>SellingStateNext</view></command>
@@ -102,6 +88,7 @@
 		<command name="SellingLoadOrder"><view>SellingLoadOrder</view></command>
 		<command name="SellingSearchResource"><view>SellingSearchResource</view></command>
 		<command name="SellingCall"><view>SellingCall</view></command>
+		<command name="SellingPrint"><view>SellingPrint</view></command>
 		
 		<command name="Checking"><view>Checking</view></command>
 		

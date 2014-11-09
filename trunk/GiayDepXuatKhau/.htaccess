@@ -53,20 +53,9 @@ RewriteRule ^selling/state/back/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&De
 RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 			[L]
 RewriteRule ^selling/load/order/([0-9]+)$			?cmd=SellingLoadOrder&IdOrder=$1 	[L]
 RewriteRule ^selling/call/([0-9]+)$					?cmd=SellingCall&IdResource=$1 		[L]
+RewriteRule ^selling/print/([0-9]+)$				?cmd=SellingPrint&IdOrder=$1 		[L]
 
 RewriteRule ^checking$ 								?cmd=Checking 						[L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# EXPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^export$ 								?cmd=Export [L]
-RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
-RewriteRule ^export/([0-9]+)$ 						?cmd=ExportCustomer&IdCustomer=$1 [L]
-RewriteRule ^export/([0-9]+)/page/([0-9]+)$ 		?cmd=ExportCustomer&IdCustomer=$1&Page=$2 [L]
-
-RewriteRule ^export/([0-9]+)/([0-9]+)$				?cmd=ExportCustomerOrder&IdCustomer=$1&IdOrder=$2 [L]
-RewriteRule ^export/([0-9]+)/([0-9]+)/print$		?cmd=ExportCustomerOrderPrint&IdCustomer=$1&IdOrder=$2 [L]
-RewriteRule ^export/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)/([0-9]+)$ 	?cmd=ExportCustomerOrderExe&IdCustomer=$1&IdOrder=$2&IdResource=$3&Count=$4&Count1=$5&Price=$6 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT

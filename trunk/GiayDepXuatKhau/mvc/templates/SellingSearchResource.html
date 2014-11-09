@@ -27,7 +27,11 @@
 					url: URL,
 					dataType: 'json',
 					success: function(data){
-						$('.OrderExport:first').click();
+						if (data.StateNew == 1){							
+							location.reload();
+						}else{
+							$('.OrderExport:first').click();
+						}							
 					}
 				});				
 			});
