@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingOnline extends Command {
+	class SellingChecking extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -31,7 +31,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title 		= "BÁN HÀNG ONLINE";
+			$Title 		= "KIỂM DUYỆT ĐƠN HÀNG";
 			$Navigation = array();
 			$ConfigName	= $mConfig->findByName("NAME");
 			

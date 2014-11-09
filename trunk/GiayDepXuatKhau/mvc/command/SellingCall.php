@@ -55,7 +55,7 @@
 					$IdResource, 
 					1,
 					1,
-					$Resource->getPrice()
+					$Resource->getPriceExport()
 				);
 				$mOrderDetail->insert($OD);
 			}else{

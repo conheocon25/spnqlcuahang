@@ -8,20 +8,25 @@ class Resource extends Object{
     private $Id;
 	private $IdSupplier;
 	private $Name;
-    private $Price;
+    private $PriceImport;
+	private $PriceExport;
     private $Unit;
 	private $Description;
+	private $Image;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdSupplier=null, $Name=null, $Unit=null, $Price=null, $Description=null) {
-        $this->Id = $Id;
-		$this->IdSupplier = $IdSupplier;
-		$this->Name = $Name;
-		$this->Price = $Price;
-		$this->Unit = $Unit;
-		$this->Description = $Description;
+    function __construct( $Id=null, $IdSupplier=null, $Name=null, $Unit=null, $PriceImport=null, $PriceExport=null, $Description=null, $Image=null) {
+        $this->Id 			= $Id;
+		$this->IdSupplier 	= $IdSupplier;
+		$this->Name 		= $Name;
+		$this->PriceImport	= $PriceImport;
+		$this->PriceExport	= $PriceExport;
+		$this->Unit 		= $Unit;
+		$this->Description 	= $Description;
+		$this->Image		= $Image;
+		
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -37,28 +42,33 @@ class Resource extends Object{
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
 	
-	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
-    function getPrice( ) {return $this->Price;}
-	function getPricePrint( ) {$num = new Number($this->Price);return $num->formatCurrency()." đ";}
-	function getPriceAverage(){
-		$mOID = new \MVC\Mapper\OrderImportDetail();		
-		return $mOID->evalPrice(array($this->getId()));
-	}
+	function setPriceImport( $PriceImport ) {$this->PriceImport = $PriceImport;$this->markDirty();}
+    function getPriceImport( ) {return $this->PriceImport;}
+	function getPriceImportPrint( ) {$num = new Number($this->PriceImport);return $num->formatCurrency()." đ";}
+	
+	function setPriceExport( $PriceExport ) {$this->PriceExport = $PriceExport;$this->markDirty();}
+    function getPriceExport( ) {return $this->PriceExport;}
+	function getPriceExportPrint( ) {$num = new Number($this->PriceExport);return $num->formatCurrency()." đ";}
 	
 	function setUnit( $Unit ) {$this->Unit = $Unit;$this->markDirty();}
     function getUnit( ) {return $this->Unit;}
 		
 	function getDescription( ) {return $this->Description;}
 	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty(); }
-		
+
+	function setImage( $Image ) {$this->Image = $Image; $this->markDirty();}
+    function getImage( ) {return $this->Image;}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),	
 			'IdSupplier'	=> $this->getIdSupplier(),
 			'Name'			=> $this->getName(),			
-			'Price'			=> $this->getPrice(),
+			'PriceImport'	=> $this->getPriceImport(),
+			'PriceExport'	=> $this->getPriceExport(),
 			'Unit'			=> $this->getUnit(),
-			'Description'	=> $this->getDescription()
+			'Description'	=> $this->getDescription(),
+			'Image'			=> $this->getImage()
 		);		
 		return json_encode($json);
 	}
@@ -67,9 +77,11 @@ class Resource extends Object{
         $this->Id 			= $Data[0];
 		$this->IdSupplier 	= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Price 		= $Data[3];
-		$this->Unit 		= $Data[4];
-		$this->Description 	= $Data[5];
+		$this->PriceImport	= $Data[3];
+		$this->PriceExport	= $Data[4];
+		$this->Unit 		= $Data[5];
+		$this->Description 	= $Data[6];
+		$this->Image 		= $Data[7];
     }
 				
 	//-------------------------------------------------------------------------------

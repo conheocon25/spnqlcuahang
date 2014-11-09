@@ -16,6 +16,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblOrderExport);
 		$findByUserStmt 	= sprintf("select * from %s where iduser=? order by date DESC", $tblOrderExport);
 		$findByCustomerStmt = sprintf("select * from %s where idcustomer=? order by date DESC", $tblOrderExport);
+		$findByStateStmt 	= sprintf("select * from %s where state=? order by date DESC", $tblOrderExport);
 		
 		$findByDateCustomerStmt = sprintf("
 			select
@@ -72,6 +73,7 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 		$this->findByTrackingStmt 		= self::$PDO->prepare( $findByTrackingStmt );
 		$this->findByTracking1Stmt 		= self::$PDO->prepare( $findByTracking1Stmt );
 		$this->findByCustomerPageStmt 	= self::$PDO->prepare( $findByCustomerPageStmt );		
+		$this->findByStateStmt 			= self::$PDO->prepare( $findByStateStmt );
     }
 	
     function getCollection( array $raw ) {return new OrderExportCollection( $raw, $this );}
@@ -140,6 +142,11 @@ class OrderExport extends Mapper implements \MVC\Domain\OrderExportFinder {
 	function findByDateCustomer(array $values){
         $this->findByDateCustomerStmt->execute( $values );
         return new OrderExportCollection( $this->findByDateCustomerStmt->fetchAll(), $this );
+    }
+	
+	function findByState(array $values){
+        $this->findByStateStmt->execute( $values );
+        return new OrderExportCollection( $this->findByStateStmt->fetchAll(), $this );
     }
 	
 	function findByCustomerPage( $values ) {		

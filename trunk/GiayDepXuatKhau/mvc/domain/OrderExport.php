@@ -107,9 +107,17 @@ class OrderExport extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLPrint(){return "/export/".$this->getIdCustomer()."/".$this->getId()."/print";}
-	function getURLDetail(){return "/export/".$this->getIdCustomer()."/".$this->getId();}
+	//-------------------------------------------------------------------------------			
+	function getURLStateNext(){
+		$State = ($this->getState() + 1);
+		if ($State>=4) $State = 3;
+		return "selling/state/".$this->getId()."/".$State;
+	}
+	
+	function getURLStateLimit(){
+		$State = 3;
+		return "selling/state/".$this->getId()."/".$State;
+	}
 	
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

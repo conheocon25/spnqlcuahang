@@ -5,8 +5,8 @@
 			<div class="widget-content nopadding size-12">
 				<ul class="activity-list">
 					<li tal:repeat="Resource ResourceFAll">	
-						<a class="course-item tip-left" tal:attributes="data-original-title php: Resource->getName() . ' ' . Resource->getPricePrint()">
-							<strong class="Resource" tal:content="php: Resource->getName() . ' ' . Resource->getPricePrint()" tal:attributes="alt Resource/getId;data-delta 'plus' "/>
+						<a class="course-item tip-left" tal:attributes="data-original-title php: Resource->getName() . ' ' . Resource->getPriceExportPrint()">
+							<strong class="Resource" tal:content="php: Resource->getName() . ' ' . Resource->getPriceExportPrint()" tal:attributes="alt Resource/getId;data-delta 'plus' "/>
 						</a>
 					</li>
 				</ul>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="sidebar">
+		<ul>
+			<li tal:repeat="Order OrderAll" class="OrderExport" tal:attributes="alt Order/getId">
+				<a><i class="glyphicons-shop_window" />
+					<span tal:content="Order/getDateTimePrint"/>
+				</a>
+			</li>
+		</ul>		
+	</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-4">
+					<div id="TableAll"/>
+					<div class="widget-box">
+						<div class="controls">
+							<input id="SearchName" type="text" placeholder="Nhập mã giày dép..." style="width:70%;"/>
+							<a class="btn RemoveResourceSearch"><i class="glyphicons-circle_remove" /></a>
+							<a class="btn AddCustomer"><i class="glyphicons-user" /></a>
+						</div>
+					</div>
+					<div id="ResourceF"/>
+				</div>
+				<div class="col-8">
+					<div id="OrderExportView"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script>
+									
+			//NẠP ĐƠN HÀNG
+			$('.OrderExport').click(function(){
+				var IdOrder = $(this).attr('alt');								
+				$("#OrderExportView").load("/selling/store/order/"+IdOrder);
+				$('.OrderExport').removeClass("active");
+				$(this).addClass("active");
+			});
+			$('.OrderExport:first').click();
+									
+			//---------------------------------------------------------------------------
+			//Xử lí search tên			
+			$('#SearchName').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#ResourceF").load("/selling/search/resource", { Name: Name });
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//CALL COURSE
+			$(".RemoveResourceSearch").click(function(){
+				$("#ResourceF").html("");
+			});
+									
+			//Mặc định vào ô tìm kiếm
+			$("#SearchName").focus();			
+        </script>
+	</body>
+</html>

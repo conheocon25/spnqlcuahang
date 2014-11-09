@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<body>
+		<div class="widget-box">										
+			<div class="widget-content nopadding size-12">
+				<ul class="activity-list">
+					<li tal:repeat="Order OrderAll" class="Order" tal:attributes="alt Order/getId">
+						<a class="course-item tip-left" tal:attributes="data-original-title php: Order->getDatePrint()">
+							<strong tal:content="php: Order->getDateTimePrint() . ' - ' . Order->getUser()->getName() . ' - ' . Order->getValuePrint()" />
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			//-----------------------------------------------------------------------------------
+			//click gọi món
+			//-----------------------------------------------------------------------------------
+			$('.Order').click(function(e){				
+				var IdOrder = $(this).attr('alt');								
+				$("#OrderExportView").load("/selling/checking/order/view/"+IdOrder);
+				$('.Order').removeClass("active");
+				$(this).addClass("active");
+			});
+			$('.Order:first').click();
+		</script>
+	</body>
+</html>

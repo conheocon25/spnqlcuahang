@@ -5,8 +5,7 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul style="display: block;">
 				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
@@ -34,7 +33,8 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="200" class="left">TÊN</th>
-										<th class="right" width="120">GIÁ</th>
+										<th class="right" width="120">GIÁ NHẬP</th>
+										<th class="right" width="120">GIÁ XUẤT</th>
 										<th class="left" width="100">ĐƠN VỊ</th>
 										<th class="left">GHI CHÚ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -45,7 +45,8 @@
 									<tr tal:repeat="Resource ResourceAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Resource/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Resource/getId" tal:content="Resource/getName"/></td>
-										<td class="right" tal:content="Resource/getPricePrint"/>
+										<td class="right" tal:content="Resource/getPriceImportPrint"/>
+										<td class="right" tal:content="Resource/getPriceExportPrint"/>
 										<td class="left" tal:content="Resource/getUnit"/>
 										<td class="left" tal:content="Resource/getDescription"/>
 										<td class="center">
@@ -64,7 +65,7 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM NGUYÊN LIỆU</h3></div>								
+								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM SẢN PHẨM</h3></div>								
 								<form id="FormResourceInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">													
 										<div class="form-group">
@@ -74,9 +75,15 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Giá</label>
+											<label class="control-label">Giá nhập</label>
 											<div class="controls">
-												<input id="Price1" name="Price1" type="text" class="form-control input-small"/>
+												<input id="PriceImport1" name="PriceImport1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá xuất</label>
+											<div class="controls">
+												<input id="PriceExport1" name="PriceExport1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -91,6 +98,12 @@
 											<label class="control-label">Mô tả</label>
 											<div class="controls">
 												<input id="Description1" name="Description1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Image1" name="Image1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -109,7 +122,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA NGUYÊN LIỆU</h3>
+									<h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA SẢN PHẨM</h3>
 								</div>
 								<form id="FormResourceUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
@@ -119,9 +132,15 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Giá</label>
+										<label class="control-label">Giá nhập</label>
 										<div class="controls">
-											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
+											<input id="PriceImport2" name="PriceImport2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giá xuất</label>
+										<div class="controls">
+											<input id="PriceExport2" name="PriceExport2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -136,6 +155,12 @@
 										<label class="control-label">Mô tả</label>
 										<div class="controls">
 											<input id="Description2" name="Description2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hình ảnh</label>
+										<div class="controls">
+											<input id="Image2" name="Image2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -225,9 +250,11 @@
 					Data[0] = 'null';
 					Data[1] = $('#IdSupplier').attr('alt');
 					Data[2] = $('#Name1').val();
-					Data[3] = $('#Price1').val();
-					Data[4] = $('#Unit1').val();
-					Data[5] = $('#Description1').val();
+					Data[3] = $('#PriceImport1').val();
+					Data[4] = $('#PriceExport1').val();
+					Data[5] = $('#Unit1').val();
+					Data[6] = $('#Description1').val();
+					Data[7] = $('#Image1').val();
 					var URL = "/object/ins/Resource";
 					$.ajax({
 						type: "POST",
@@ -259,8 +286,10 @@
 					$('#URLUpdButton').attr('alt', data.Id);
 					$('#Name2').attr('value', data.Name);
 					$('#Unit2').select2('val', data.Unit);
-					$('#Price2').attr('value', data.Price);					
+					$('#PriceImport2').attr('value', data.PriceImport);
+					$('#PriceExport2').attr('value', data.PriceExport);
 					$('#Description2').attr('value', data.Description);
+					$('#Image2').attr('value', data.Image);
 				});
 			});
 			
@@ -293,9 +322,11 @@
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#IdSupplier').attr('alt');				
 					Data[2] = $('#Name2').val();
-					Data[3] = $('#Price2').val();
-					Data[4] = $('#Unit2').val();
-					Data[5] = $('#Description2').val();
+					Data[3] = $('#PriceImport2').val();
+					Data[4] = $('#PriceExport2').val();
+					Data[5] = $('#Unit2').val();
+					Data[6] = $('#Description2').val();
+					Data[7] = $('#Image2').val();
 									
 					var URL = "/object/upd/Resource";
 					$.ajax({
