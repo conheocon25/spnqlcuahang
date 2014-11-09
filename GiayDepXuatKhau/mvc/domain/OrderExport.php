@@ -21,7 +21,8 @@ class OrderExport extends Object{
 		$this->Description 	= $Description;
         parent::__construct( $Id );
     }
-    function getId( ) {return $this->Id;}
+    function setId($Id){$this->Id = $Id;}
+	function getId( ) {return $this->Id;}
     
 	function setIdUser( $IdUser ) {$this->IdUser = $IdUser; $this->markDirty();}
     function getIdUser( ) {return $this->IdUser;}
@@ -42,11 +43,15 @@ class OrderExport extends Object{
 	function getDate( ) {return $this->Date;}
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date); return $Date->getDateFormat();}
+	function getDateTimePrint( ) {		
+		$Date = date_create($this->Date);
+		return date_format($Date, 'd/m H:i');
+	}
 		
 	function setState( $State ) {$this->State = $State;$this->markDirty();}
 	function getState( ) {return $this->State;}
 	function getStatePrint( ){
-		$Arr = array("soạn mới", "đặt hàng", "chờ xét duyệt", "đã giao hàng xong");
+		$Arr = array("soạn mới", "đặt hàng", "xét duyệt", "giao hàng & nhận tiền");
 		return $Arr[$this->State];
 	}
 	

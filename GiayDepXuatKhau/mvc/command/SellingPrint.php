@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class Export extends Command {
+	class SellingPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,35 +10,34 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-									
-			//-------------------------------------------------------------
-			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCustomer 	= new \MVC\Mapper\Customer();
-						
-			//-------------------------------------------------------------
-			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CustomerAll = $mCustomer->findAll();			
-						
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$Title 		= "XUẤT HÀNG";
-			$Navigation = array();
-			$ConfigName	= $mConfig->findByName("NAME");
+			//-------------------------------------------------------------			
+			$IdOrder 	= $request->getProperty("IdOrder");
 			
 			//-------------------------------------------------------------
+			//MAPPER DỮ LIỆU
+			//-------------------------------------------------------------			
+			$mOrder 	= new \MVC\Mapper\OrderExport();
+			$mConfig 	= new \MVC\Mapper\Config();
+			
+			//-------------------------------------------------------------
+			//XỬ LÝ CHÍNH
+			//-------------------------------------------------------------									
+			$Order	= $mOrder->find($IdOrder);
+			
+			$ConfigDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
+			$ConfigName		= $mConfig->findByName("NAME");
+			$ConfigAddress	= $mConfig->findByName("ADDRESS");
+			$ConfigPhone	= $mConfig->findByName("PHONE");
+									
+			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Export');
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('CustomerAll'	, $CustomerAll);
-						
+			$request->setObject('Order', $Order);
+			$request->setObject("ConfigDouble"	, $ConfigDouble);
+			$request->setObject("ConfigName"	, $ConfigName);
+			$request->setObject("ConfigAddress"	, $ConfigAddress);
+			$request->setObject("ConfigPhone"	, $ConfigPhone);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

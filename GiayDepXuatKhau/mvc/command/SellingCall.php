@@ -27,6 +27,7 @@
 			$Order		= $OrderAll->current();
 			$Resource   = $mResource->find($IdResource);
 			
+			$StateNew 	= 0;
 			//Nếu đã tạo mới thì thêm món vào
 			if ($Order->getState()>0){
 				$OE = new \MVC\Domain\OrderExport(
@@ -37,7 +38,9 @@
 					0, 						//State
 					"Đơn hàng"				//Note
 				);
-				$IdOrder = $mOrder->insert($OE);					
+				$mOrder->insert($OE);
+				$IdOrder = $OE->getId();
+				$StateNew = 1;
 			}else{
 				$IdOrder = $Order->getId();		
 			}
@@ -62,6 +65,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setObject("OD", $OD);
+			$request->setProperty("StateNew", $StateNew);
 		}
 	}
 ?>
