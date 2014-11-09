@@ -3,7 +3,7 @@
 	<body>				
 		<div id="ViewOrderExport" class="widget-box">
 			<div class="widget-title">
-				<span class="icon"><i class="glyphicon glyphicon-th-list"/> ĐƠN HÀNG</span>
+				<span class="icon"><i class="glyphicon glyphicon-th-list"/> ĐƠN HÀNG BÁN TRỰC TIẾP</span>
 				<div class="buttons">
 					<a title="Cập nhật" data-toggle="modal" class="btn OrderUpdate" href="#DialogOrder" tal:attributes="alt Order/getId"><i class="glyphicons-edit" /></a>
 					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Order/getId"><i class="glyphicons-ok_2" /></a>
@@ -29,6 +29,7 @@
 							<thead>
 								<tr>										
 									<th width="30">STT</th>
+									<th width="80" />
 									<th><div class="text-left">TÊN</div></th>
 									<th width="30">SL</th>
 									<th width="80"><div class="text-right">Đ.GIÁ</div></th>
@@ -39,6 +40,7 @@
 							<tbody>
 								<tr tal:repeat="OD Order/getDetailAll">
 									<td><div class="text-center" tal:content="repeat/OD/number" /></td>
+									<td><img width="60px" tal:attributes="src OD/getResource/getImage" /></td>
 									<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id OD/getId" tal:content="OD/getResource/getName"/></td>
 									<td><div class="text-center" tal:content="OD/getCountPrint"/></td>
 									<td><div class="text-right" tal:content="OD/getPricePrint"/></td>
@@ -50,12 +52,8 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="4"><B>TỔNG CỘNG</B></td>
-									<td>
-										<div class="text-right">
-											<B tal:content="Order/getValuePrint"/>
-										</div>
-									</td>
+									<td colspan="5"><B>TỔNG CỘNG</B></td>
+									<td><div class="text-right"><B tal:content="Order/getValuePrint"/></div></td>
 									<td class="center" />
 								</tr>
 							</tbody>
@@ -231,7 +229,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.Checkout').click(function(e){
 				var IdOrder = $(this).attr('alt');												
-				var URL = "/selling/state/next/"+IdOrder;
+				var URL = "/selling/state/limit/"+IdOrder;
 				$.ajax({
 					type: "POST",
 					url: URL,

@@ -10,9 +10,9 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
-		$updateStmt = sprintf("update %s set name=?, unit=?, price=?, description=? where id=?", $tblResource);
-		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price, description ) 
-							values( ?, ?, ?, ?, ?)", $tblResource);
+		$updateStmt = sprintf("update %s set name=?, unit=?, price_import=?, price_export=?, description=?, image=? where id=?", $tblResource);
+		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price_import, price_export, description, image ) 
+							values( ?, ?, ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
 		$findByPageStmt = sprintf("
@@ -40,8 +40,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$array['idsupplier'],
 			$array['name'],
 			$array['unit'],				
-			$array['price'],	
-			$array['description']
+			$array['price_import'],
+			$array['price_export'],
+			$array['description'],
+			$array['image']
 		);
         return $obj;
     }
@@ -52,8 +54,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 			$object->getIdSupplier(),
 			$object->getName(),	
 			$object->getUnit(),	
-			$object->getPrice(),	
-			$object->getDescription()
+			$object->getPriceImport(),	
+			$object->getPriceExport(),	
+			$object->getDescription(),
+			$object->getImage()	
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -64,8 +68,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $values = array( 
 			$object->getName(),
 			$object->getUnit(),
-			$object->getPrice(),
+			$object->getPriceImport(),
+			$object->getPriceExport(),
 			$object->getDescription(),
+			$object->getImage(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

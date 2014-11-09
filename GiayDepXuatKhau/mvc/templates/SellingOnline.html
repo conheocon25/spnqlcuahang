@@ -12,19 +12,19 @@
 				<a><i class="glyphicons-shop_window" />
 					<span tal:content="Order/getDateTimePrint"/>
 				</a>
-			</li>
-		</ul>		
+			</li>			
+		</ul>
 	</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-4">
-					<div id="TableAll"/>
+				<div class="col-4">					
 					<div class="widget-box">
 						<div class="controls">
-							<input id="SearchName" type="text" placeholder="Nhập mã giày..." style="width:85%;"/>
+							<input id="SearchName" type="text" placeholder="Nhập mã giày dép..." style="width:70%;"/>
 							<a class="btn RemoveResourceSearch"><i class="glyphicons-circle_remove" /></a>
+							<a class="btn AddCustomer" href="#DialogCustomerIns" data-toggle="modal"><i class="glyphicons-user" /></a>
 						</div>
 					</div>
 					<div id="ResourceF"/>
@@ -34,6 +34,67 @@
 				</div>
 			</div>
 		</div>
+		<!-- INSERT DIALOG  -->
+		<div id="DialogCustomerIns" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3></div>								
+					<form id="FormCustomerInsert" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">
+								<div class="control-group">
+									<label class="control-label">Tên</label>
+									<div class="controls">
+										<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+									</div>
+								</div>																															
+								<div class="control-group">
+									<label class="control-label">Điện thoại</label>
+									<div class="controls">								
+										<input id="Phone1" name="Phone1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Loại</label>
+									<div class="controls">								
+										<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">CMND</label>
+									<div class="controls">								
+										<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Ghi chú</label>
+									<div class="controls">
+										<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Địa chỉ</label>
+									<div class="controls">
+										<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Giảm giá</label>
+									<div class="controls">
+										<input id="Discount1" name="Discount1" type="text" class="form-control input-small" value="0"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>								
+				</div>
+			</div>
+		</div>
+		<!-- END INSERT DIALOG  -->
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script>
@@ -41,7 +102,7 @@
 			//NẠP ĐƠN HÀNG
 			$('.OrderExport').click(function(){
 				var IdOrder = $(this).attr('alt');								
-				$("#OrderExportView").load("/selling/load/order/"+IdOrder);
+				$("#OrderExportView").load("/selling/online/order/"+IdOrder);
 				$('.OrderExport').removeClass("active");
 				$(this).addClass("active");
 			});
@@ -61,7 +122,61 @@
 			});
 									
 			//Mặc định vào ô tìm kiếm
-			$("#SearchName").focus();			
+			$("#SearchName").focus();
+			
+			//-----------------------------------------------------------------------------------
+			//Insert 1 CUSTOMER			
+			$("#FormCustomerInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Discount1:{
+						number: true,
+						required:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];					
+					Data[0] = 'null';									
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Type1').val();
+					Data[3] = $('#Card1').val();
+					Data[4] = $('#Phone1').val();
+					Data[5] = $('#Address1').val();
+					Data[6] = $('#Note1').val();
+					Data[7] = $('#Discount1').val();
+																				
+					var URL = "/object/ins/Customer";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
         </script>
 	</body>
 </html>

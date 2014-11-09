@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingLoadOrder extends Command{
+	class SellingCheckingOrderView extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,19 +17,16 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mOrder 	= new \MVC\Mapper\OrderExport();
-			$mCustomer 	= new \MVC\Mapper\Customer();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$Order			= $mOrder->find($IdOrder);
-			$CustomerAll	= $mCustomer->findAll();
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Order', 		$Order);
-			$request->setObject('CustomerAll', 	$CustomerAll);
+			$request->setObject('Order', 		$Order);			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

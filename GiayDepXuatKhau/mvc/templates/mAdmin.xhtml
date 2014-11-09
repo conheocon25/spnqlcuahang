@@ -130,16 +130,8 @@
 				<a tal:attributes="href '/selling/online'"><i class="glyphicons-global" />BÁN ONLINE</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='SellingStore'?'active':'disable'">
-				<a tal:attributes="href '/checking'"><i class="glyphicons-check" />KIỂM ĐƠN HÀNG</a>
-			</li>
-			<!--
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/export'"><i class="glyphicons-usd" />XUẤT HÀNG</a>
-			</li>
-			!-->
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/export'"><i class="glyphicons-usd" />XUẤT HÀNG</a>
-			</li>
+				<a tal:attributes="href '/selling/checking'"><i class="glyphicons-check" />KIỂM DUYỆT</a>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
 			</li>

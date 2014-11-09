@@ -46,16 +46,23 @@ RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmploy
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^selling/online$ 						?cmd=SellingOnline 					[L]
-RewriteRule ^selling/store$ 						?cmd=SellingStore 					[L]
-RewriteRule ^selling/state/next/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=1 	[L]
-RewriteRule ^selling/state/back/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=-1 	[L]
+RewriteRule ^selling/online/order/([0-9]+)$			?cmd=SellingOnlineOrder&IdOrder=$1 	[L]
 
-RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 			[L]
-RewriteRule ^selling/load/order/([0-9]+)$			?cmd=SellingLoadOrder&IdOrder=$1 	[L]
+RewriteRule ^selling/store$ 						?cmd=SellingStore 					[L]
+RewriteRule ^selling/store/order/([0-9]+)$			?cmd=SellingStoreOrder&IdOrder=$1 	[L]
+
 RewriteRule ^selling/call/([0-9]+)$					?cmd=SellingCall&IdResource=$1 		[L]
 RewriteRule ^selling/print/([0-9]+)$				?cmd=SellingPrint&IdOrder=$1 		[L]
 
-RewriteRule ^checking$ 								?cmd=Checking 						[L]
+RewriteRule ^selling/state/next/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=1 	[L]
+RewriteRule ^selling/state/back/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=-1 	[L]
+RewriteRule ^selling/state/limit/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=4 	[L]
+RewriteRule ^selling/state/([0-9]+)/([0-9]+)$ 		?cmd=SellingState&IdOrder=$1&State=$2	 	[L]
+RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 					[L]
+
+RewriteRule ^selling/checking$ 						?cmd=SellingChecking 						[L]
+RewriteRule ^selling/checking/order/load/([0-9]+)$ 	?cmd=SellingCheckingOrderLoad&State=$1		[L]
+RewriteRule ^selling/checking/order/view/([0-9]+)$	?cmd=SellingCheckingOrderView&IdOrder=$1 	[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT

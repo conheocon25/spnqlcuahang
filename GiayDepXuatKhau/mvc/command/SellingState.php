@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;
-	class SellingStateNext extends Command{
+	class SellingState extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -12,7 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
 			$IdOrder 	= $request->getProperty("IdOrder");
-			$Delta 		= $request->getProperty("Delta");
+			$State 		= $request->getProperty("State");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -23,12 +23,8 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Order 		= $mOrder->find($IdOrder);
-			$State		= $Order->getState() + $Delta;
-			
-			if ($State<0) $State = 0;
-			else if ($State>=4) $State = 3;
-							
-			$Order->setState($State);						
+			$Order->setState($State);
+									
 			$mOrder->update($Order);
 						
 			//-------------------------------------------------------------
