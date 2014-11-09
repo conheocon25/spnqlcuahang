@@ -8,9 +8,8 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div id="sidebar">
 		<ul>
-			<li tal:repeat="Order OrderAll">
-				<a class="OrderExport" tal:attributes="alt Order/getId">
-					<i class="glyphicons-shop_window" />
+			<li tal:repeat="Order OrderAll" class="OrderExport" tal:attributes="alt Order/getId">
+				<a><i class="glyphicons-shop_window" />
 					<span tal:content="Order/getDatePrint"/>
 				</a>
 			</li>
@@ -25,7 +24,7 @@
 					<div class="widget-box">
 						<div class="controls">
 							<input id="SearchName" type="text" placeholder="Nhập mã giày..." style="width:85%;"/>
-							<a class="btn RemoveCourseSearch"><i class="glyphicons-circle_remove" /></a>
+							<a class="btn RemoveResourceSearch"><i class="glyphicons-circle_remove" /></a>
 						</div>
 					</div>
 					<div id="ResourceF"/>
@@ -41,10 +40,12 @@
 									
 			//NẠP ĐƠN HÀNG
 			$('.OrderExport').click(function(){
-				var IdOrder = $(this).attr('alt');				
-				//alert(IdOrder);
+				var IdOrder = $(this).attr('alt');								
 				$("#OrderExportView").load("/selling/load/order/"+IdOrder);
+				$('.OrderExport').removeClass("active");
+				$(this).addClass("active");
 			});
+			$('.OrderExport:first').click();
 									
 			//---------------------------------------------------------------------------
 			//Xử lí search tên			

@@ -45,12 +45,16 @@ RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmploy
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^selling/online$ 						?cmd=SellingOnline 	[L]
-RewriteRule ^selling/store$ 						?cmd=SellingStore 	[L]
-RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 	[L]
-RewriteRule ^selling/load/order/([0-9]+)$			?cmd=SellingLoadOrder&IdOrder=$1 	[L]
+RewriteRule ^selling/online$ 						?cmd=SellingOnline 					[L]
+RewriteRule ^selling/store$ 						?cmd=SellingStore 					[L]
+RewriteRule ^selling/state/next/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=1 	[L]
+RewriteRule ^selling/state/back/([0-9]+)$ 			?cmd=SellingStateNext&IdOrder=$1&Delta=-1 	[L]
 
-RewriteRule ^checking$ 								?cmd=Checking 		[L]
+RewriteRule ^selling/search/resource$ 				?cmd=SellingSearchResource 			[L]
+RewriteRule ^selling/load/order/([0-9]+)$			?cmd=SellingLoadOrder&IdOrder=$1 	[L]
+RewriteRule ^selling/call/([0-9]+)$					?cmd=SellingCall&IdResource=$1 		[L]
+
+RewriteRule ^checking$ 								?cmd=Checking 						[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # EXPORT
