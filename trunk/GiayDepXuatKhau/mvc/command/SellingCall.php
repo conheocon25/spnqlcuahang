@@ -29,7 +29,7 @@
 			
 			$StateNew 	= 0;
 			//Nếu đã tạo mới thì thêm món vào
-			if ($Order->getState()>0){
+			if (!isset($Order) || $Order->getState()>0){
 				$OE = new \MVC\Domain\OrderExport(
 					null,					//Id					
 					$Session->getCurrentIdUser(),//IdUser										

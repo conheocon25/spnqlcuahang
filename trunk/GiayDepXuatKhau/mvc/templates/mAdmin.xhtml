@@ -141,7 +141,29 @@
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
-		</ul>		
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isStore()">
+			<li tal:attributes="class php:ActiveAdmin=='SellingStore'?'active':'disable'">
+				<a tal:attributes="href '/selling/store'"><i class="glyphicons-shop_window" />BÁN TẠI QUẦY</a>
+			</li>			
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isOnline()">
+			<li tal:attributes="class php:ActiveAdmin=='SellingStore'?'active':'disable'">
+				<a tal:attributes="href '/selling/online'"><i class="glyphicons-global" />BÁN ONLINE</a>
+			</li>						
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
 	</div>
 	
 	<!-- ======================================================================== -->
