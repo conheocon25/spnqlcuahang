@@ -97,9 +97,12 @@
 		<!-- SELLING				 															-->
 		<!-- ============================================================================== -->
 		<command name="SellingOnline"><view>SellingOnline</view></command>
+		<command name="SellingStateNext"><view>SellingStateNext</view></command>
 		<command name="SellingStore"><view>SellingStore</view></command>
 		<command name="SellingLoadOrder"><view>SellingLoadOrder</view></command>
 		<command name="SellingSearchResource"><view>SellingSearchResource</view></command>
+		<command name="SellingCall"><view>SellingCall</view></command>
+		
 		<command name="Checking"><view>Checking</view></command>
 		
 	</control>
