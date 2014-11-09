@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeBase"/>
+		<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+						
+		$('#DataTable').find('tbody tr').hover(
+			function(){ $(this).find('td').addClass('table_highlighted');}, 
+			function(){	$(this).find('td').removeClass('table_highlighted');}
+		);
+		
+		var oTable = $('#DataTable').dataTable({			
+			"bScrollCollapse": true,
+			"bStateSave": false,
+			"bFilter": false,
+			"bInfo": false,
+			"bSort": false,
+			"bPaginate": false			
+		});
+		new FixedHeader( oTable, { "top": true, "zTop": 105 } );
+	});
+	/*]]>*/	
+	</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleSettings"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>				
+			</div>
+			<div id="Column1of1">
+				<div id="Title">					
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll"
+							tal:attributes = "href '?cmd=ViewSettings'">
+							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
+					</a>					
+				</div>
+				<div id="Table">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
+						<thead>					
+							<tr>								
+								<th align='left'>TÊN</th>
+								<th align='center'>nhỏx6<BR/>(18g)</th>
+								<th align='center'>nhỏx7<BR/>(21g)</th>
+								<th align='center'>nhỏx10<BR/>(30g)</th>
+								<th align='center'>nhỏx18<BR/>(54g)</th>
+								<th align='center'>16x30<BR/>(90g)</th>
+								<th align='center'>16x30<BR/>(150g)</th>
+								<th align='center'>16Cx30<BR/>(150g)</th>
+								<th align='center'>16Cx50<BR/>(250g)</th>
+								<th align='center'>16Cx90<BR/>(500g)</th>
+								<th align='center'>18x30<BR/>(180g)</th>
+								<th align='center'>19x45<BR/>(300g)</th>
+								<th align='center'>20x30<BR/>(210g)</th>
+								<th align='center'>22x30<BR/>(240g)</th>
+								<th align='center'>22Cx60<BR/>(500g)</th>
+								<th align='center'>18Cx70<BR/>(500g)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PPITracking PPITrackings">								
+								<td align='left' tal:content="PPITracking/getName"></td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI16"
+										tal:content="PPITracking/getProduct16"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI17"
+										tal:content="PPITracking/getProduct17"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI20"
+										tal:content="PPITracking/getProduct20"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI21"
+										tal:content="PPITracking/getProduct21"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI02"
+										tal:content="PPITracking/getProduct02"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI04"
+										tal:content="PPITracking/getProduct04"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI06"
+										tal:content="PPITracking/getProduct06"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI10"
+										tal:content="PPITracking/getProduct10"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI18"
+										tal:content="PPITracking/getProduct18"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI08"
+										tal:content="PPITracking/getProduct08"/>
+								</td>																
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI11"
+										tal:content="PPITracking/getProduct11"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI13"
+										tal:content="PPITracking/getProduct13"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI15"
+										tal:content="PPITracking/getProduct15"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI19"
+										tal:content="PPITracking/getProduct19"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPITracking/getURLUpdatePPI22"
+										tal:content="PPITracking/getProduct22"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>		
+
+</body>
+</html>

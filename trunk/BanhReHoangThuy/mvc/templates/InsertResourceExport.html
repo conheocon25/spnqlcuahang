@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 			
+		<link rel="icon" type="image/ico" href="mvc/templates/theme/image/favicon.ico" />
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.js"></script>	
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/main.js"></script>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.textchange.js"></script>		
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.ui.datepicker-vi.js"></script>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.ui.datepicker.min.js"></script>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.ui.core.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/jquery.ui.theme.css"/>
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/jquery.ui.datepicker.css"/>				
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/main_2.css"/>		
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/ButtonTheme.css"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/Button.js"></script>		
+		<script type="text/javascript">
+		/*<![CDATA[*/
+		$(document).ready(								
+			
+			function(){
+				$('#Date').datepicker({dateFormat: 'yy-mm-dd'});
+				$('#Date').val(getCurrentDateTime());
+				var IdResource = "";
+								
+				$("#IdResource").change(function (){
+					var IdResource = "";
+					$("#IdResource option:selected").each(function () {
+						IdResource += $(this).val() + " ";											
+						$.ajax({
+							type: "POST", url: '?cmd=LoadResource',
+							dataType: 'json',
+							data: "IdResource="+IdResource,
+							success: function(data){
+								var options = '';								
+								$.each(data, function(key, value) {																		
+									$('#Price').val(data.Price);
+								});																
+							}
+						});						
+					});	
+				}).change();											
+			});
+		/*]]>*/
+		</script>
+	</head>
+<body>
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleFactories"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>				
+			</div>
+			<div id="Column1of1">
+				<div id="Title">
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+						tal:attributes = "href ParentsLinked">
+						<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>X
+					</a>											
+				</div>
+				<div id="SubColumn2of2">					
+					<div id="form1">
+					<form id="form" method="post" class='form'>
+						<table align='center'>							
+							<tr>
+								<td align='right'><LABEL>Tên nguyên liệu: </LABEL></td> 
+								<td align='left'>									
+									<select name='IdResource' id='IdResource'>
+										<option tal:repeat="Resource Resources" 
+												tal:attributes="value Resource/getId" 
+												tal:content="Resource/getName"/>
+									</select>
+								</td>									
+							</tr>
+							<tr>
+								<td align='right'><LABEL>Đơn giá: </LABEL></td> 
+								<td align='left'><INPUT size='20' type="text" name="Price" id="Price" value='0'/></td>
+							</tr>
+							<tr>
+								<td align='right'><LABEL>Số lượng: </LABEL></td> 
+								<td align='left'><INPUT size='20' type="text" name="Quantity" value='1'/></td>
+							</tr>
+							<tr>
+								<td align='right'><LABEL>Ngày nhận: </LABEL></td> 
+								<td align='left'><INPUT size='20' type="text" name="Date" id="Date" /></td>
+							</tr>
+							<tr>
+								<td align='right'><LABEL>Ghi chú: </LABEL></td>
+								<td align='left'><INPUT size='20' type="text" name="Description" value='Ghi chú ...'/></td>
+							</tr>
+						</table>
+						<div id="button1">						
+						<table align='center'>
+							<tr>
+								<td style='padding-top:10px;'>							
+									<a style='float:center;' href='#' onclick="document.getElementById('form').submit()" class="Button StateDefault ButtonIconLeft CornerAll">
+										<span class="ButtonIcon ButtonIconPlus"/>Thêm mới
+									</a>
+								</td>
+							</tr>
+						</table>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>
+						
+</body>
+</html>

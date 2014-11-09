@@ -1,0 +1,30 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="0" cellpadding="2">
+		<tr>		
+			<th align='center' width='3%'><B>STT</B></th>
+			<th align='left' width='17%'><B>TÊN</B></th>
+			<th align='center' width='10%'><B>16x30<BR/>(90g)</B></th>
+			<th align='center' width='10%'><B>16x30<BR/>(150g)</B></th>								
+			<th align='center' width='10%'><B>16calx30<BR/>(150g)</B></th>								
+			<th align='center' width='10%'><B>18x30<BR/>(180g)</B></th>								
+			<th align='center' width='10%'><B>19x30<BR/>(210g)</B></th>
+			<th align='center' width='10%'><B>19x45<BR/>(300g)</B></th>								
+			<th align='center' width='10%'><B>20x30<BR/>(210g)</B></th>
+			<th align='center' width='10%'><B>22x30<BR/>(240g)</B></th>
+		</tr>
+		<tr tal:repeat="EmployeeProduceTracking EmployeeProduceTrackings">								
+			<td align='center' tal:content="EmployeeProduceTracking/getId"/>
+			<td align='left' tal:content="EmployeeProduceTracking/getName"/>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct02" tal:content="EmployeeProduceTracking/getProduct02" /></td>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct04" tal:content="EmployeeProduceTracking/getProduct04" /></td>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct06" tal:content="EmployeeProduceTracking/getProduct06" /></td>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct08" tal:content="EmployeeProduceTracking/getProduct08" /></td>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct10" tal:content="EmployeeProduceTracking/getProduct10" /></td>
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct11" tal:content="EmployeeProduceTracking/getProduct11" /></td>						
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct13" tal:content="EmployeeProduceTracking/getProduct13" /></td>			
+			<td align='center'><span tal:condition="EmployeeProduceTracking/getProduct15" tal:content="EmployeeProduceTracking/getProduct15" /></td>						
+		</tr>		
+	</table>	
+</body>
+</html>

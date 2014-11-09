@@ -1,0 +1,20 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="1" cellpadding="2">
+		<tr>			
+			<th align='center'><b>NGÀY</b></th>
+			<th align='left'><b>TÊN BÁNH</b></th>
+			<th align='right'><b>SỐ LƯỢNG</b></th>
+			<th align='right'><b>ĐƠN GIÁ</b></th>
+			<th align='right'><b>THÀNH TIỀN</b></th>
+		</tr>
+		<tr tal:repeat="EP EPs">
+			<td align='center' tal:content="EP/getDatePrint"></td>
+			<td align='left' tal:content="EP/getNameProduct"></td>
+			<td align='right' tal:content="EP/getQuantityPrint"></td>
+			<td align='right' tal:content="EP/getPrice"></td>
+			<td align='right' tal:content="EP/getValuePrint"></td>
+		</tr>
+	</table>	
+</body>
+</html>

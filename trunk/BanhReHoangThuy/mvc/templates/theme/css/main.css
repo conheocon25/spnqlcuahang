@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#frame {
+  position:static;
+  width:1000px;
+  height:715px;
+  margin-left:auto; 
+  margin-right:auto;
+  background-color:#006BD5;
+  overflow:visible;
+  visibility:visible;
+}  
+#page {
+  float:left;
+  width:980px;
+  height:680px; 
+  background-color:#007FFE;
+  margin:10px;
+  font-family:arial;
+  font-size:13px;
+  font-weight:normal;
+}
+#header {
+  float:left;
+  height:64px;
+  width:960px;  
+}
+	#header  #Logo{
+		float:left;
+		height:100%;
+		width:64px;
+	}
+	#header  #Info{
+		float:left;
+		color:#FFF;		
+		text-align:left;
+		height:100%;
+		width:210px;
+	}
+	#header  #MainMenu{
+		float:right;
+		height:32px;
+		width:480px;
+		padding-top:5px;		
+		margin-right:10.5px;
+	}
+	#header  #UserInfo{
+		float:right;
+		color:#FFF;
+		height:22px;
+		width:280px;
+		padding-top:2px;
+		margin-right:10px;
+		font-size:12px;
+	}
+	
+	#header  #MainMenu #Content{
+		float:right;
+		cursor:pointer;		
+	}
+	
+	#header  #MainMenu #Content a, #header  #MainMenu #Content a:link, #header  #MainMenu #Content a:visited { 		
+		text-decoration: none; 
+		outline: none; 
+	}
+	#header  #MainMenu #Content .MenuItem{
+		float:right;
+		text-align:center;		
+		height:25px;
+		width:116px;		
+		color:#FFF;
+		background-color:#999999;
+		padding-top:10px;
+	}
+	
+	#header  #MainMenu #Content .MenuItemChecked{
+		float:right;		
+		text-align:center;
+		height:25px;
+		width:96px;		
+		color:#000;
+		background-color:#E7E7E7;
+		font-weight:bold;
+		padding-top:10px;		
+	}
+		
+#module{     
+  float:left;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:10px;  
+  width:960px;
+  height:606px;
+  background-color:#E7E7E7;
+}
+	#module #Column1of2{ 					
+		float:left;
+		position:static;
+		margin-left:10px;
+		margin-top:10px;
+		width:200px;
+		height:586px;
+		background-color:#CCCCCC;
+	}
+		#module #Column1of2 #Title{   						
+			float:left;
+			width:940px;
+			height:48px;		
+			position:absolute;				
+			text-align:left;
+			background-color:#ffffff;
+		}
+		
+		#module #Column1of2 #Title #Text{				
+			padding:15px 10px 0px 20px;
+			font-family:arial;
+			font-size:16px;
+			font-weight:bold;
+		}		
+		#module #Column1of2 #Button{										
+			background-color:#efefef;			
+			padding-top:48px;
+		}
+	#module #Column2of2{
+		float:right;		
+		margin-top:10px;
+		margin-right:10px;
+		float:right;
+		width:740px;
+		height:586px;
+		background-color:#ffffff;
+	}
+		#module #Column2of2 #Title {   						
+			float:right;	
+			width:150px;			
+			height:48px;					
+			text-align:right;
+			background-color:#ffffff;
+		}
+		#module #Column2of2 #Table{
+			padding:48px 10px 10px 10px;
+		}
+		#module #Column2of2 #SubColumn2of2{
+			text-align:center;			
+			margin: 48px 5px 0px 5px; 
+			padding-top: 20px;
+			height:518px;
+			background-color:#ECF9D2;
+			border-radius: 5px 5px 5px 5px;
+		}		
+		#module #Column2of2 #SubColumn2of2 #hr{
+			padding-top:10px;			
+			border-bottom:2px solid #999;
+		}
+	#module #Column1of1{		
+		float:left;
+		margin:10px;
+		width:900px;
+		height:476px;
+		background-color:#efefef;  
+	}
+#footer {
+  float:left;  
+  height:24px;
+  width:100%;
+  text-align:right;
+  color:white;
+  padding-top:5px;
+}
+#NameLogin {				/*===Name Login===*/
+	float:right;
+	height:0px;
+	padding-bottom:19px;
+}
+.table_highlighted {
+	background-color:#D9F3A5;
+}
+.ButtonMouseHover {	
+	border-bottom: 5px solid #4A494A;
+	position:relative;
+}
+input {
+    background: none repeat scroll 0 0 #E7E7E7;
+    border: 1px solid #AAAAAA;
+    border-radius: 0px 10px 10px 0px;
+    color: #333333;
+    font-family:arial;
+	font-size:13px;
+    font-weight:normal;
+    height: 24px;
+    line-height: 1;
+    padding: 2px 5px;    
+}
+select {
+    background: none repeat scroll 0 0 #E7E7E7;
+    border: 1px solid #AAAAAA;
+    border-radius: 0px 10px 10px 0px;
+    color: #333333;
+    font-family:arial;
+	font-size:13px;
+	font-weight:normal;
+    height: 24px;
+    line-height: 1;
+    padding: 2px 5px;    
+}

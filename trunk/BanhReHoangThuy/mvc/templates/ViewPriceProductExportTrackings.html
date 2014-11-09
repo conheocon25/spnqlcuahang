@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeBase"/>
+		<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+						
+		$('#DataTable').find('tbody tr').hover(
+			function(){ $(this).find('td').addClass('table_highlighted');}, 
+			function(){	$(this).find('td').removeClass('table_highlighted');}
+		);
+		
+		var oTable = $('#DataTable').dataTable({
+			"sScrollX": "100%",
+			"sScrollXInner": "230%",
+			"sScrollY": "100%",
+			"bScrollCollapse": true,
+			"bStateSave": false,
+			"bFilter": false,
+			"bInfo": false,
+			"bSort": false,
+			"bPaginate": false			
+		});
+		new FixedColumns( oTable, {
+			"iLeftColumns": 1
+		});
+	});
+	/*]]>*/	
+	</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleSettings"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>				
+			</div>
+			<div id="Column1of1">
+				<div id="Title">					
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll"
+							tal:attributes = "href ParentsLinked">
+							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
+					</a>					
+				</div>
+				<div id="Table">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
+						<thead>					
+							<tr>								
+								<th align='left' >TÊN</th>
+								<th align='center'>nhỏ<BR/>x6</th>
+								<th align='center'>nhỏ<BR/>x7</th>
+								<th align='center'>nhỏ<BR/>x10</th>
+								<th align='center'>nhỏ<BR/>x18</th>
+								<th align='center'>3g<BR/>dầu</th>
+								<th align='center'>3g<BR/>mỡ</th>
+								<th align='center'>3g<BR/>ds</th>
+								<th align='center'>5g<BR/>dầu</th>
+								<th align='center'>5g<BR/>mỡ</th>
+								<th align='center'>5g<BR/>ds</th>
+								<th align='center'>5g<BR/>cd</th>
+								<th align='center'>5.5g<BR/>dầu</th>
+								<th align='center'>5.5g<BR/>mỡ</th>
+								<th align='center'>6g<BR/>dầu</th>
+								<th align='center'>6g<BR/>mỡ</th>
+								<th align='center'>6g<BR/>ds</th>
+								<th align='center'>6.5g<BR/>dầu</th>
+								<th align='center'>6.5g<BR/>mỡ</th>
+								<th align='center'>6.5g<BR/>ds</th>
+								<th align='center'>7g<BR/>dầu</th>
+								<th align='center'>7g<BR/>mỡ</th>
+								<th align='center'>7g<BR/>ds</th>
+								<th align='center'>7g<BR/>dx45</th>
+								<th align='center'>lớn<BR/>x8</th>
+								<th align='center'>lớn<BR/>x10</th>
+								<th align='center'>8g<BR/>dầu</th>
+								<th align='center'>8g<BR/>mỡ</th>
+								<th align='center'>8g<BR/>ds</th>
+								<th align='center'>16cal<BR/>150</th>
+								<th align='center'>16cal<BR/>250</th>
+								<th align='center'>16cal<BR/>500</th>							
+								<th align='center'>18cal<BR/>500</th>
+								<th align='center'>20calT<BR/>500</th>
+								<th align='center'>20cal<BR/>500</th>
+								<th align='center'>20cal<BR/>240</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PPETracking PPETrackings">							
+								<td align='left' tal:content="PPETracking/getName"></td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE01"
+										tal:content="PPETracking/getProduct01"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE02"
+										tal:content="PPETracking/getProduct02"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE03"
+										tal:content="PPETracking/getProduct03"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE04"
+										tal:content="PPETracking/getProduct04"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE05"
+										tal:content="PPETracking/getProduct05"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE06"
+										tal:content="PPETracking/getProduct06"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE07"
+										tal:content="PPETracking/getProduct07"/>
+								</td>								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE08"
+										tal:content="PPETracking/getProduct08"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE09"
+										tal:content="PPETracking/getProduct09"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE10"
+										tal:content="PPETracking/getProduct10"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE11"
+										tal:content="PPETracking/getProduct11"/>
+								</td>
+								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE27"
+										tal:content="PPETracking/getProduct27"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE28"
+										tal:content="PPETracking/getProduct28"/>
+								</td>
+								
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE12"
+										tal:content="PPETracking/getProduct12"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE13"
+										tal:content="PPETracking/getProduct13"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE14"
+										tal:content="PPETracking/getProduct14"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE15"
+										tal:content="PPETracking/getProduct15"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE16"
+										tal:content="PPETracking/getProduct16"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE17"
+										tal:content="PPETracking/getProduct17"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE18"
+										tal:content="PPETracking/getProduct18"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE19"
+										tal:content="PPETracking/getProduct19"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE20"
+										tal:content="PPETracking/getProduct20"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE21"
+										tal:content="PPETracking/getProduct21"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE22"
+										tal:content="PPETracking/getProduct22"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE23"
+										tal:content="PPETracking/getProduct23"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE24"
+										tal:content="PPETracking/getProduct24"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE25"
+										tal:content="PPETracking/getProduct25"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE26"
+										tal:content="PPETracking/getProduct26"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE29"
+										tal:content="PPETracking/getProduct29"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE31"
+										tal:content="PPETracking/getProduct31"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE30"
+										tal:content="PPETracking/getProduct30"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE32"
+										tal:content="PPETracking/getProduct32"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE33"
+										tal:content="PPETracking/getProduct33"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE34"
+										tal:content="PPETracking/getProduct34"/>
+								</td>
+								<td align='center'>
+									<a 	tal:attributes="href PPETracking/getURLUpdatePPE35"
+										tal:content="PPETracking/getProduct35"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>		
+
+</body>
+</html>

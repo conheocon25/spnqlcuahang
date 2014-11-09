@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
+		<link rel="icon" type="image/ico" href="mvc/templates/theme/image/favicon.ico" />
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.js"/>			
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.dataTables.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/jquery.jeditable.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/FixedColumns.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/main.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/Button.js"/>
+		<script type="text/javascript" language="javascript" src="mvc/templates/script/KeyTable.js"/>
+				
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/data_table.css"/>
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/main_2.css"/>							
+		<link rel="stylesheet" type="text/css" href="mvc/templates/theme/css/ButtonTheme.css"/>
+		<script>
+	/*<![CDATA[*/
+	$(document).ready(function() {
+						
+		$('#DataTable').find('tbody tr').hover(
+			function(){ $(this).find('td').addClass('table_highlighted');}, 
+			function(){	$(this).find('td').removeClass('table_highlighted');}
+		);
+		
+		var oTable = $('#DataTable').dataTable({
+			"sScrollX": "100%",
+			"sScrollXInner": "190%",
+			"sScrollY": "100%",
+			"bScrollCollapse": true,			
+			"fnDrawCallback": 
+			function(oSettings ) {						
+				if ( oSettings.bSorted || oSettings.bFiltered ){				
+					for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ ){
+						$('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+					}
+				}
+				if ( oSettings.aiDisplay.length == 0 ){
+					return;
+				}
+			},
+			"bStateSave": false,
+			"bFilter": false,
+			"bInfo": false,
+			"bSort": true,
+			"bPaginate": false			
+		});
+		new FixedColumns( oTable, {
+			"iLeftColumns": 2
+		});
+		
+		var keys = new KeyTable( {			
+			"table": document.getElementById('DataTable'),
+			"datatable": oTable
+		});
+		
+		keys.event.action( null, null, function (nCell) {
+			alert("Chuẩn bị trong Event");	
+			keys.block = true;
+			$(nCell).editable( function (sVal) {
+				//alert("Edit ne ba kon");
+				keys.block = false;
+				return sVal;
+			},{ 
+				"onblur": 'submit', 
+				"onreset": function(){ 		
+					setTimeout( function () {keys.block = false;}, 0); 
+				}
+			});
+			setTimeout( function () { $(nCell).click(); }, 0 );			
+		});
+	});
+	/*]]>*/	
+	</script>
+	</head>	
+<body>	
+<div id="frame">
+	<div id="page">
+		<span metal:use-macro="macros.xhtml/HeaderModuleFactories"/>
+		<div id="module2">
+			<div id="nav">
+				<div id="Title">
+					<div id="Text" tal:content="Title"/>
+				</div>				
+			</div>
+			<div id="Column1of1">
+				<div id="Title">
+					<a title="Tới" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+						tal:attributes="href Factory/getURLViewEmployeeProduceTrackingsNext">
+						<span class="ButtonIcon ButtonIconSeekNext"/>
+					</a>
+					<a title="Lui" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll"
+						tal:attributes="href Factory/getURLViewEmployeeProduceTrackingsBefore">
+						<span class="ButtonIcon ButtonIconSeekPrev"/>
+					</a>
+					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
+							tal:attributes = "href ParentsLinked">
+							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
+					</a>					
+				</div>
+				<div id="Table">
+					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
+						<thead>					
+							<tr>
+								<th align='center' width='2%'>STT</th>
+								<th align='left' width='15%'>TÊN</th>
+								<th align='right' width='5%'>16<BR/>(3g)</th>
+								<th align='right' width='5%'>16x30<BR/>(90g)</th>
+								<th align='right' width='5%'>16<BR/>(5g)</th>
+								<th align='right' width='5%'>16x30<BR/>(150g)</th>
+								<th align='right' width='5%'>16cal<BR/>5g)</th>
+								<th align='right' width='5%'>16calx30<BR/>(150g)</th>
+								<th align='right' width='5%'>18<BR/>(6g)</th>
+								<th align='right' width='5%'>18x30<BR/>(180g)</th>
+								<th align='right' width='5%'>19<BR/>(7g)</th>
+								<th align='right' width='5%'>19x30<BR/>(210g)</th>
+								<th align='right' width='5%'>19x45<BR/>(300g)</th>
+								<th align='right' width='5%'>20<BR/>(8g)</th>
+								<th align='right' width='5%'>20x30<BR/>(240g)</th>
+								<th align='right' width='5%'>22<BR/>(9g)</th>
+								<th align='right' width='5%'>22x30<BR/>(270g)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="EmployeeProduceTracking EmployeeProduceTrackings">
+								<td align='center'></td>
+								<td align='left' tal:content="EmployeeProduceTracking/getName"></td>																
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce01"
+										tal:content="EmployeeProduceTracking/getProduct01"/>
+								</td>								
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce02"
+										tal:content="EmployeeProduceTracking/getProduct02"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce03"
+										tal:content="EmployeeProduceTracking/getProduct03"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce04"
+										tal:content="EmployeeProduceTracking/getProduct04"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce05"
+										tal:content="EmployeeProduceTracking/getProduct05"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce06"
+										tal:content="EmployeeProduceTracking/getProduct06"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce07"
+										tal:content="EmployeeProduceTracking/getProduct07"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce08"
+										tal:content="EmployeeProduceTracking/getProduct08"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce09"
+										tal:content="EmployeeProduceTracking/getProduct09"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce10"
+										tal:content="EmployeeProduceTracking/getProduct10"/>
+								</td>								
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce11"
+										tal:content="EmployeeProduceTracking/getProduct11"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce12"
+										tal:content="EmployeeProduceTracking/getProduct12"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce13"
+										tal:content="EmployeeProduceTracking/getProduct13"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce14"
+										tal:content="EmployeeProduceTracking/getProduct14"/>
+								</td>
+								<td align='right'>
+									<a 	tal:attributes="href EmployeeProduceTracking/getURLUpdateEmployeeProduce15"
+										tal:content="EmployeeProduceTracking/getProduct15"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</div>		
+
+</body>
+</html>

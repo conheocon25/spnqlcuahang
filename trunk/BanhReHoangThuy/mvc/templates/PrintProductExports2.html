@@ -1,0 +1,30 @@
+					<table cellpadding="2" cellspacing="0" border="1">
+						<thead>					
+							<tr>								
+								<th align='center'><B>NGÀY</B></th>
+								<th align='center'><B>5g dầux30</B></th>
+								<th align='center'><B>5gcal dầux30</B></th>																 
+								<th align='center'><B>6g mỡ x 30</B></th>								
+								<th align='center'><B>7g dầu x 30</B></th>
+								<th align='center'><B>7g mỡ x 30</B></th>
+								<th align='center'><B>8g mỡ x 30</B></th>
+								<th align='center'><B>16cal x 50</B></th>
+								<th align='center'><B>20cal x 30</B></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="PETracking PETrackings">								
+								<td align='center'>
+									<B tal:content="PETracking/getDatePrint" />
+								</td>
+								<td align='center' tal:content="PETracking/getProduct08"/>
+								<td align='center' tal:content="PETracking/getProduct11"/>
+								<td align='center' tal:content="PETracking/getProduct13"/>
+								<td align='center' tal:content="PETracking/getProduct18"/>
+								<td align='center' tal:content="PETracking/getProduct19"/>
+								<td align='center' tal:content="PETracking/getProduct24"/>
+								<td align='center' tal:content="PETracking/getProduct31"/>
+								<td align='center' tal:content="PETracking/getProduct35"/>
+							</tr>
+						</tbody>
+					</table>
