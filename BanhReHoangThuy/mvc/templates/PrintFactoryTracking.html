@@ -1,0 +1,20 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="0" cellpadding="2">
+		<tr>			
+			<th align='center'><b>STT</b></th>
+			<th align='left'><b>NGÀY</b></th>
+			<th align='right'><b>NGUYÊN LIỆU</b></th>
+			<th align='right'><b>TẠM ỨNG</b></th>
+			<th align='right'><b>GIAO HÀNG</b></th>
+		</tr>
+		<tr tal:repeat="FTracking FTrackings">
+			<td align='center' tal:content="FTracking/getId"></td>
+			<td align='center' tal:content="FTracking/getDatePrint"></td>
+			<td align='right' tal:content="FTracking/getSResourceExportPrint"></td>
+			<td align='right' tal:content="FTracking/getSLoanPrint"></td>
+			<td align='right' tal:content="FTracking/getSProductImportPrint"></td>																
+		</tr>			
+	</table>	
+</body>
+</html>

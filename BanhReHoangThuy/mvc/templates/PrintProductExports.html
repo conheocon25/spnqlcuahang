@@ -1,0 +1,601 @@
+<html>
+<body>	
+	<table cellpadding="3" cellspacing="0" border="1">
+		<tr>								
+		<th align='center'><B>NGÀY</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct01"><B>nhỏ <BR/>x6 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct02"><B>nhỏ <BR/>x7 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct03"><B>nhỏ <BR/>x8 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct04"><B>nhỏ <BR/>x10 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct05"><B>nhỏ <BR/>x15 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct06"><B>nhỏ <BR/>x18 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct07"><B>16 dầu<BR/>x30(90g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct08"><B>16 mỡ<BR/>x30(90g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct09"><B>16 dầu sạch<BR/>x30(90g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct10"><B>16 dầu<BR/>x30(150g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct11"><B>16 mỡ<BR/>x30(150g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct12"><B>16 dầu sạch<BR/>x30(150g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct13"><B>16cal dầu<BR/>x30(150g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct14"><B>16cal mỡ<BR/>x30(150g)</B></th> 
+			<th align='left' tal:condition="fHeader/checkProduct15"><B>16cal dầu sạch<BR/>x30(150g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct16"><B>18 dầu<BR/>x30(180g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct17"><B>18 mỡ<BR/>x30(180g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct18"><B>18 dầu sạch<BR/>x30(180g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct19"><B>19 dầu<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct20"><B>19 mỡ<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct21"><B>19 dầu sạch<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct22"><B>19 dầu<BR/>x45(300g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct23"><B>19 mỡ<BR/>x45(300g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct24"><B>19 dầu sạch<BR/>x45(300g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct25"><B>lớn <BR/>x8 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct26"><B>lớn <BR/>x10 cái</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct27"><B>20 dầu<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct28"><B>20 mỡ<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct29"><B>20 dầu sạch<BR/>x30(210g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct30"><B>22 dầu<BR/>x30(240g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct31"><B>22 mỡ<BR/>x30(240g)</B></th>
+			<th align='left' tal:condition="fHeader/checkProduct32"><B>22 dầu sạch<BR/>x30(240g)</B></th>
+		</tr>
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>	
+		<tr>
+			<td align='center' tal:content="fToday"/>
+			<td align='right' tal:condition="fHeader/checkProduct01" />									
+			<td align='right' tal:condition="fHeader/checkProduct02" />
+			<td align='right' tal:condition="fHeader/checkProduct03" />
+			<td align='right' tal:condition="fHeader/checkProduct04" />
+			<td align='right' tal:condition="fHeader/checkProduct05" />
+			<td align='right' tal:condition="fHeader/checkProduct06" />
+			<td align='right' tal:condition="fHeader/checkProduct07" />
+			<td align='right' tal:condition="fHeader/checkProduct08" />
+			<td align='right' tal:condition="fHeader/checkProduct09" />
+			<td align='right' tal:condition="fHeader/checkProduct10" />
+			<td align='right' tal:condition="fHeader/checkProduct11" />
+			<td align='right' tal:condition="fHeader/checkProduct12" />
+			<td align='right' tal:condition="fHeader/checkProduct13" />
+			<td align='right' tal:condition="fHeader/checkProduct14" />
+			<td align='right' tal:condition="fHeader/checkProduct15" />
+			<td align='right' tal:condition="fHeader/checkProduct16" />
+			<td align='right' tal:condition="fHeader/checkProduct17" />
+			<td align='right' tal:condition="fHeader/checkProduct18" />
+			<td align='right' tal:condition="fHeader/checkProduct19" />
+			<td align='right' tal:condition="fHeader/checkProduct20" />
+			<td align='right' tal:condition="fHeader/checkProduct21" />
+			<td align='right' tal:condition="fHeader/checkProduct22" />
+			<td align='right' tal:condition="fHeader/checkProduct23" />
+			<td align='right' tal:condition="fHeader/checkProduct24" />
+			<td align='right' tal:condition="fHeader/checkProduct25" />
+			<td align='right' tal:condition="fHeader/checkProduct26" />
+			<td align='right' tal:condition="fHeader/checkProduct27" />
+			<td align='right' tal:condition="fHeader/checkProduct28" />
+			<td align='right' tal:condition="fHeader/checkProduct29" />
+			<td align='right' tal:condition="fHeader/checkProduct30" />
+			<td align='right' tal:condition="fHeader/checkProduct31" />
+			<td align='right' tal:condition="fHeader/checkProduct32" />
+		</tr>
+	</table>
+</body>
+</html>

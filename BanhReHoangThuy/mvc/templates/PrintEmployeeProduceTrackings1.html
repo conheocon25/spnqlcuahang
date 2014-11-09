@@ -1,0 +1,28 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="0" cellpadding="2">
+		<tr>
+			<th align='center' width='7%'><b>STT</b></th>
+			<th align='left' width='30%'><b>TÊN</b></th>
+			<th align='center' width='9%'><b>16<BR/>(3g)</b></th>								
+			<th align='center' width='9%'><b>16<BR/>(5g)</b></th>								
+			<th align='center' width='9%'><b>16cal<BR/>5g)</b></th>								
+			<th align='center' width='9%'><b>18<BR/>(6g)</b></th>								
+			<th align='center' width='9%'><b>19<BR/>(7g)</b></th>								
+			<th align='center' width='9%'><b>20<BR/>(8g)</b></th>								
+			<th align='center' width='9%'><b>22<BR/>(9g)</b></th>
+		</tr>
+		<tr tal:repeat="EmployeeProduceTracking EmployeeProduceTrackings">								
+			<td align='center' tal:content="EmployeeProduceTracking/getId"></td>
+			<td align='left' tal:content="EmployeeProduceTracking/getName"></td>																
+			<td align='right' ><span tal:condition="EmployeeProduceTracking/getProduct01" tal:content="EmployeeProduceTracking/getProduct01" /></td>
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct03" tal:content="EmployeeProduceTracking/getProduct03" /></td>
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct05" tal:content="EmployeeProduceTracking/getProduct05" /></td>		
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct07" tal:content="EmployeeProduceTracking/getProduct07" /></td>	
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct09" tal:content="EmployeeProduceTracking/getProduct09" /></td>	
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct12" tal:content="EmployeeProduceTracking/getProduct12" /></td>	
+			<td align='right' ><span  tal:condition="EmployeeProduceTracking/getProduct14" tal:content="EmployeeProduceTracking/getProduct14" /></td>	
+		</tr>		
+	</table>	
+</body>
+</html>
