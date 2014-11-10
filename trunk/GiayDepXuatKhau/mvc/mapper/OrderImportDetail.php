@@ -18,15 +18,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$updateStmt = sprintf("update %s set count=?, count1=?,  price=? where id=?", $tblOrderImportDetail);
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, count1, price ) values( ?, ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
-		
-		$evalPriceStmt = sprintf("
-			SELECT 
-				avg(price) 
-			FROM
-				%s
-			WHERE 	idresource=?
-		", $tblOrderImportDetail);
-		
+						
 		$trackByCountStmt = sprintf("
 			select 
 				sum(count)
@@ -41,7 +33,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								P.id as idresource,
 								ODI.count,
 								ODI.count1,
-								IFNULL(ODI.price, P.price) as price
+								IFNULL(ODI.price, P.price_import) as price
 							FROM 
 							(
 								SELECT *
@@ -80,8 +72,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 		$this->trackByCountStmt = self::$PDO->prepare($trackByCountStmt);
 		$this->trackByExportStmt = self::$PDO->prepare($trackByExportStmt);
 		$this->existStmt = self::$PDO->prepare($existStmt);
-		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);
-		$this->evalPriceStmt = self::$PDO->prepare($evalPriceStmt);		
+		$this->EvaluateStmt = self::$PDO->prepare($EvaluateStmt);		
 		
     } 
     function getCollection( array $raw ) {

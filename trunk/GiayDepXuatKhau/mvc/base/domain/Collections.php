@@ -27,8 +27,8 @@ interface EmployeeCollection 		extends \Iterator {function add( Object $Employee
 interface ConfigCollection 			extends \Iterator {function add( Object $Config );}
 
 interface TrackingCollection 		extends \Iterator {function add( Object $Tracking);}
+//interface TrackingStoreCollection 	extends \Iterator {function add( Object $TrackingStore);}
 interface TrackingDailyCollection 	extends \Iterator {function add( Object $TrackingDaily);}
-interface TrackingDomainDailyCollection 	extends \Iterator {function add( Object $TrackingDomainDaily);}
 interface TrackingSupplierDailyCollection 	extends \Iterator {function add( Object $TrackingSupplierDaily);}
 
 interface PageCollection 			extends \Iterator {function add( Object $Page);}
