@@ -29,8 +29,8 @@ class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCol
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";}}
 
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";}}
+//class TrackingStore		 		extends Collection implements \MVC\Domain\TrackingStoreCollection	{function targetClass(){return "\MVC\Domain\TrackingStore";}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDaily";}}
-class TrackingDomainDailyCollection 	extends Collection implements \MVC\Domain\TrackingDomainDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDomainDaily";}}
 class TrackingSupplierDailyCollection 	extends Collection implements \MVC\Domain\TrackingSupplierDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingSupplierDaily";}}
 
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";}}

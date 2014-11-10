@@ -252,13 +252,7 @@
 					}
 				});
 			});	
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Date2').first().focus()},
-					0500
-				);
-			});
-			
+						
 			$(".Preview").click(function(){
 				URL = $(this).attr('data-url');
 				var mPDF = new PDFObject({ 		
