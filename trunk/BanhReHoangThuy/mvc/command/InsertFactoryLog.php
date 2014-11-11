@@ -9,14 +9,16 @@
 			$mFactory = new \MVC\Mapper\Factory();
 			$Factory= $mFactory->find( $IdFactory);
 									
-			$DateStart = $request->getProperty('DateStart');
+			$DateStart 	= $request->getProperty('DateStart');
+			
 			if (isset($DateStart)){
 				$mFL = new \MVC\Mapper\FactoryLog();
 				$FL = new \MVC\Domain\FactoryLog(
 					null,
 					$IdFactory,
 					$request->getProperty('DateStart'),
-					$request->getProperty('DateEnd')
+					$request->getProperty('DateEnd'),
+					$request->getProperty('Note')
 				);
 				$mFL->insert($FL);
 				return self::statuses('CMD_OK');

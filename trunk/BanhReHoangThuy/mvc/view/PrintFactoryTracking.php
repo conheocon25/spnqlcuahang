@@ -6,6 +6,7 @@ require_once("mvc/PublicFunction.php");
 $req = VH::getRequest();		
 
 $Factory = $req->getObject('Factory');
+$FactoryLog = $req->getObject('FactoryLog');
 $DateStart = date("d/m/Y", strtotime($req->getProperty('DateStart')));
 $DateEnd = date("d/m/Y", strtotime($req->getProperty('DateEnd')));
 
@@ -119,6 +120,12 @@ class MYPDF extends TCPDF {
 	$pdf->SetFont('freeserif', 'I', 12);
 	$pdf->Write(0, '('.$TotalValueStr.'đồng chẳn)', '', 0, 'R', true, 0, false, false, 0);
 	$pdf->Ln(5);
+	
+	if ($FactoryLog->getNote()!=""){
+		$pdf->SetFont('freeserif', 'N', 14);
+		$pdf->Write(0, 'Ghi chú: '.$FactoryLog->getNote(), '', 0, 'L', true, 0, false, false, 0);
+		$pdf->Ln(5);
+	}
 	
 	$pdf->SetFont('freeserif', 'N', 14);
 	$pdf->Cell(0, 15, 'Tiền Giang, ngày ....... tháng ....... năm ........', 0, false, 'R', 0, '', 0, false, 'M', 'M');	

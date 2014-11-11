@@ -45,7 +45,8 @@
 								<th align='left'>TÊN</th>
 								<th align='left'>PHONE</th>
 								<th align='left'>NHẬN HÀNG</th>
-								<th align='left'>GIAO TIỀN</th>								
+								<th align='left'>GIAO TIỀN</th>
+								<th align='left'>ỨNG TIỀN</th>
 								<th align='left'>SỔ NHẬT KÍ</th>
 							</tr>
 						</thead>
@@ -65,6 +66,12 @@
 								<td>
 									<a title="Theo dõi trả tiền"  class="Button StateDefault ButtonIconSolo CornerAll"
 										tal:attributes="href Customer/getURLViewPaids">
+										<span class="ButtonIcon ButtonIconTransferthick-e-w"/>
+									</a>
+								</td>
+								<td>
+									<a title="Theo dõi ứng tiền"  class="Button StateDefault ButtonIconSolo CornerAll"
+										tal:attributes="href Customer/getURLViewLoans">
 										<span class="ButtonIcon ButtonIconTransferthick-e-w"/>
 									</a>
 								</td>

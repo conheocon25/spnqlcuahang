@@ -4,19 +4,20 @@
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");
 			
-			//------------------------------------------------------------						
-		
-			$ses = \MVC\Base\SessionRegistry::instance();			
+			//------------------------------------------------------------								
+			$ses = \MVC\Base\SessionRegistry::instance();
 			
 			$IdFactory = $request->getProperty('IdFactory');
 			$mFactory = new \MVC\Mapper\Factory();
+			$mFactoryLog = new \MVC\Mapper\FactoryLog();
 			$Factory = $mFactory->find($IdFactory);
-			
+						
 			$DateStart = $request->getProperty('DateStart');
 			$DateEnd = $request->getProperty('DateEnd');
-						
-			//$mFT = new \MVC\Mapper\FactoryTracking();
 			
+			$FactoryLogAll 	= $mFactoryLog->findBy1(array($IdFactory, $DateStart, $DateEnd));
+			$FactoryLog		= $FactoryLogAll->current();
+						
 			$mPI = new \MVC\Mapper\ProductImport();
 			$PIs = $mPI->findByDate(array($IdFactory, $DateStart, $DateEnd));
 			$PIValue = $mPI->evalByDate(array($IdFactory, $DateStart, $DateEnd));
@@ -44,6 +45,7 @@
 			$request->setObject('FLTrackings', $FLTrackings);
 			$request->setProperty('FLTrackingValue', $FLTrackingValue);
 			
+			$request->setObject('FactoryLog', 	$FactoryLog);
 			$request->setProperty('TotalValue', $TotalValue);
 			
 			return self::statuses('CMD_OK');

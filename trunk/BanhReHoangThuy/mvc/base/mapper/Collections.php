@@ -177,6 +177,14 @@ class CustomerPaidTrackingCollection extends Collection
 				return "\MVC\Domain\CustomerPaidTracking";
 			}
 		}		
+
+require_once( "mvc/domain/CustomerLoan.php" ); 	
+class CustomerLoanCollection extends Collection
+        implements \MVC\Domain\CustomerLoanCollection {
+			function targetClass( ) {
+				return "\MVC\Domain\CustomerLoan";
+			}
+		}
 		
 require_once( "mvc/domain/Product.php" ); 		
 class ProductCollection extends Collection

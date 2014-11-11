@@ -7,10 +7,14 @@
 			
 			$IdCustomer = $request->getProperty('IdCustomer');
 			$mCustomer = new \MVC\Mapper\Customer();
+			$mCustomerLog = new \MVC\Mapper\CustomerLog();
 			$Customer = $mCustomer->find($IdCustomer);
 			
 			$DateStart = $request->getProperty('DateStart');
 			$DateEnd = $request->getProperty('DateEnd');
+			
+			$CustomerLogAll = $mCustomerLog->findBy1(array($IdCustomer, $DateStart, $DateEnd));
+			$CustomerLog = $CustomerLogAll->current();
 			
 			$cd = strtotime($DateStart);
 			//$DateStart1 = date('Y-m-d', mktime(0,0,0,1,1,date('Y',$cd)));
@@ -34,6 +38,7 @@
 			$DebtNew = $DebtOld + ($PEValue - $CPValue);
 			
 			$request->setObject('Customer', $Customer);
+			$request->setObject('CustomerLog', $CustomerLog);
 			$request->setProperty('DateStart', $DateStart);
 			$request->setProperty('DateEnd', $DateEnd);
 			

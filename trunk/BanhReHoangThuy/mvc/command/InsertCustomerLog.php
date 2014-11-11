@@ -16,7 +16,8 @@
 					null,
 					$IdCustomer,
 					$request->getProperty('DateStart'),
-					$request->getProperty('DateEnd')
+					$request->getProperty('DateEnd'),
+					$request->getProperty('Note')
 				);
 				$mCL->insert($CL);
 				return self::statuses('CMD_OK');
