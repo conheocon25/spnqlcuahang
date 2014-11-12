@@ -1,0 +1,16 @@
+<html>	
+<body>
+	<table align="center" border="1" cellspacing="0" cellpadding="2">
+		<tr>						
+			<th align='center' width="20%"><b>NGÀY</b></th>
+			<th align='left' width="60%"><b>GHI CHÚ</b></th>
+			<th align='right' width="20%"><b>TIỀN ỨNG</b></th>
+		</tr>
+		<tr tal:repeat="CL CLs">			
+			<td align='center' tal:content="CL/getDatePrint"/>
+			<td align='left' tal:content="CL/getDescription"/>
+			<td align='right' tal:content="CL/getValuePrint"/>
+		</tr>
+	</table>
+</body>
+</html>

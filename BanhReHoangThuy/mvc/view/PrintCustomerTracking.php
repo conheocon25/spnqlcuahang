@@ -4,26 +4,26 @@ require_once("mvc/PublicFunction.php");
 
 $req = VH::getRequest();
 
-$Customer = $req->getObject('Customer');
-$CustomerLog = $req->getObject('CustomerLog');
-$DateStart = date("d/m/Y", strtotime($req->getProperty('DateStart')));
-$DateEnd = date("d/m/Y", strtotime($req->getProperty('DateEnd')));
+$Customer 		= $req->getObject('Customer');
+$CustomerLog 	= $req->getObject('CustomerLog');
+$DateStart 		= date("d/m/Y", strtotime($req->getProperty('DateStart')));
+$DateEnd 		= date("d/m/Y", strtotime($req->getProperty('DateEnd')));
 
-$PEs = $req->getObject('PEs');
-$PEValue = @\PF::formatCurrency($req->getProperty('PEValue'));
+$PEs 			= $req->getObject('PEs');
+$PEValue 		= @\PF::formatCurrency($req->getProperty('PEValue'));
 	
-$CPs = $req->getObject('CPs');
-$CPValue = @\PF::formatCurrency($req->getProperty('CPValue'));
+$CPs 			= $req->getObject('CPs');
+$CPValue 		= @\PF::formatCurrency($req->getProperty('CPValue'));
 
-$DebtOld = $req->getProperty('DebtOld');
-$DebtOld = @\PF::formatCurrency($DebtOld);
+$CLs 			= $req->getObject('CLs');
+$CLValue 		= @\PF::formatCurrency($req->getProperty('CLValue'));
 
-$DebtNew = $req->getProperty('DebtNew');
-$DebtNewStr = @\PF::readDigit($DebtNew);
-$DebtNew = @\PF::formatCurrency($DebtNew);
-	
-//require_once('mvc/library/tcpdf/config/lang/eng.php');
-//require_once('mvc/library/tcpdf/tcpdf.php');
+$DebtOld 		= $req->getProperty('DebtOld');
+$DebtOld 		= @\PF::formatCurrency($DebtOld);
+
+$DebtNew 		= $req->getProperty('DebtNew');
+$DebtNewStr 	= @\PF::readDigit($DebtNew);
+$DebtNew 		= @\PF::formatCurrency($DebtNew);
 	
 class MYPDF extends TCPDF {
 
@@ -91,25 +91,37 @@ class MYPDF extends TCPDF {
 	$pdf->Ln(5);
 		
 	$pdf->SetFont('freeserif', 'BU', 13);
-	$pdf->Write(0, '3. ĐÃ TRẢ', '', 0, 'L', true, 0, false, false, 0);	
+	$pdf->Write(0, '3. ĐÃ ỨNG', '', 0, 'L', true, 0, false, false, 0);	
 	$pdf->Ln(1);
+	if ($CLValue>0){
+		$pdf->SetFont('freeserif', 'N', 11);
+		$tpl = new PHPTAL( "mvc/templates/PrintCustomerCLTracking.html" );
+		$tpl->CLs  = $CLs;
+		$html = $tpl->execute();
+		$pdf->writeHTML($html, true, false, true, false, '');
+	}
+	$pdf->SetFont('freeserif', '', 12);
+	$pdf->Write(0, $CLValue." VNĐ", '', 0, 'R', true, 0, false, false, 0);
+	$pdf->Ln(5);
 	
+	$pdf->SetFont('freeserif', 'BU', 13);
+	$pdf->Write(0, '4. ĐÃ TRẢ', '', 0, 'L', true, 0, false, false, 0);	
+	$pdf->Ln(1);	
 	if ($CPValue>0){
 		$pdf->SetFont('freeserif', 'N', 11);
 		$tpl = new PHPTAL( "mvc/templates/PrintCustomerCPTracking.html" );
 		$tpl->CPs  = $CPs;
 		$html = $tpl->execute();
 		$pdf->writeHTML($html, true, false, true, false, '');
-	}
-	
+	}	
 	$pdf->SetFont('freeserif', '', 12);
 	$pdf->Write(0, $CPValue." VNĐ", '', 0, 'R', true, 0, false, false, 0);
 	$pdf->Ln(5);
 	
 	$pdf->SetFont('freeserif', 'BU', 13);
-	$pdf->Write(0, '4. TỔNG KẾT', '', 0, 'L', true, 0, false, false, 0);
+	$pdf->Write(0, '5. TỔNG KẾT', '', 0, 'L', true, 0, false, false, 0);
 	$pdf->SetFont('freeserif', '', 12);
-	$pdf->Write(0, 'DƯ NỢ MỚI = (1) + (2) - (3) = '.$DebtOld.' + '.$PEValue.' - '.$CPValue.' = '.
+	$pdf->Write(0, 'DƯ NỢ MỚI = (1) + (2) + (3) - (4) = '.$DebtOld.' + '.$PEValue.' + '.$CLValue.' - '.$CPValue.' = '.
 			$DebtNew.' VNĐ', '', 0, 'R', true, 0, false, false, 0);
 	$pdf->SetFont('freeserif', 'I', 12);
 	$pdf->Write(0, '('.$DebtNewStr.'đồng chẳn)', '', 0, 'R', true, 0, false, false, 0);

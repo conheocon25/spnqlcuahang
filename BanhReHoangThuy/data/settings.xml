@@ -167,6 +167,7 @@
 		<command name="PrintCustomerPaids"><view>PrintCustomerPaids</view></command>
 		
 		<command name="ViewCustomerLoans"><view>ViewCustomerLoans</view></command>
+		<command name="UpdateCustomerLoan"><view>UpdateCustomerLoan</view></command>
 		
 		<command name="UpdateCustomer"><view>UpdateCustomer</view><status value="CMD_OK"><forward>ViewCustomers</forward></status></command>
 		<command name="InsertCustomer"><view>InsertCustomer</view><status value="CMD_OK"><forward>ViewCustomers</forward></status></command>

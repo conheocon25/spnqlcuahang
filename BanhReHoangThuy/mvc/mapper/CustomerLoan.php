@@ -18,7 +18,8 @@ class CustomerLoan extends Mapper implements \MVC\Domain\CustomerLoanFinder {
 			SELECT	
 				S.Id as idcustomer,	
 				D.date as date,
-				sum(S.Value) as value
+				sum(S.Value) as value,
+				S.Description as description				
 			FROM
 			(SELECT @rownum:=@rownum+1 as id, (date('2015-01-01') - interval @rownum day) as date 
 			FROM
@@ -31,7 +32,8 @@ class CustomerLoan extends Mapper implements \MVC\Domain\CustomerLoanFinder {
 				C.id as Id,
 				C.name as Name,	
 				CP.date as date,
-				sum(CP.value) as Value
+				sum(CP.value) as Value,
+				CP.description as Description
 			FROM 
 				bracustomer C left join bracustomerloan CP on C.id = CP.idcustomer
 			WHERE
@@ -56,9 +58,7 @@ class CustomerLoan extends Mapper implements \MVC\Domain\CustomerLoanFinder {
         return $obj;
     }
 	
-    protected function targetClass() {
-        return "CustomerLoan";
-    }
+    protected function targetClass() {return "CustomerLoan";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 					
