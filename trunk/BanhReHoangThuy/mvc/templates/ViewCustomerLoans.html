@@ -25,6 +25,10 @@
                     {
                 	    indicator: 'Lưu số lượng...',
 						tooltip: 'Click để chỉnh sửa số tiền ứng'
+                    },
+					{
+                	    indicator: 'Lưu ghi chú...',
+						tooltip: 'Click để chỉnh sửa ghi chú'
                     }
 				]
 			});
@@ -56,28 +60,22 @@
 					<a title="Quay lại" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
 							tal:attributes = "href ParentsLinked">
 							<span class="ButtonIcon ButtonIconArrowreturn1-n"></span>quay lại
-					</a>
-
-					<!-- Menu In -->
-					<!--
-					<a title='In bảng' target="blank" id="TitleButton" class="Button StateDefault ButtonIconSolo CornerAll" 
-							tal:attributes="href Customer/getURLPrintPaids">
-							<span class="ButtonIcon ButtonIconPrint"></span>quay lại
-					</a>
-					!-->
+					</a>					
 				</div>
 				<div id="Table">
 					<table cellpadding="0" cellspacing="0" border="0" class="display" id="DataTable">
 						<thead>					
 							<tr>								
-								<th align='right' width='40%'>NGÀY</th>
-								<th align='left' width='60%'>SỐ TIỀN ỨNG</th>
+								<th align='right' width='20%'>NGÀY</th>
+								<th align='left' width='30%'>SỐ TIỀN ỨNG</th>
+								<th align='left' width='50%'>GHI CHÚ</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr tal:repeat="CL CLs">
 								<td align='right'><B tal:content="CL/getDatePrint"/></td>
 								<td align='left' tal:content="CL/getValue"/>
+								<td align='left' tal:content="CL/getDescription"/>
 							</tr>
 						</tbody>
 					</table>
