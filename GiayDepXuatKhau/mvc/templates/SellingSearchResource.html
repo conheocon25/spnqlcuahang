@@ -4,9 +4,10 @@
 		<div class="widget-box">										
 			<div class="widget-content nopadding size-12">
 				<ul class="activity-list">
-					<li tal:repeat="Resource ResourceFAll">	
-						<a class="course-item tip-left" tal:attributes="data-original-title php: Resource->getName() . ' ' . Resource->getPriceExportPrint()">
-							<strong class="Resource" tal:content="php: Resource->getName() . ' ' . Resource->getPriceExportPrint()" tal:attributes="alt Resource/getId;data-delta 'plus' "/>
+					<li tal:repeat="TDR TDRAll">	
+						<a class="Resource course-item tip-left" tal:attributes="alt php:TDR->getResource()->getId()">
+							<img width="32" tal:attributes="src TDR/getResource/getImage" />
+							<strong tal:content="php: TDR->getResource()->getName() . ' ' . TDR->getResource()->getPriceExportPrint()" />
 						</a>
 					</li>
 				</ul>
@@ -17,8 +18,7 @@
 			//click gọi món
 			//-----------------------------------------------------------------------------------
 			$('.Resource').click(function(e){
-				var IdResource 	= $(this).attr('alt');
-												
+				var IdResource 	= $(this).attr('alt');				
 				URL = "/selling/call/"+IdResource;
 				e.stopImmediatePropagation();
 				$.ajax({

@@ -15,8 +15,9 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingDaily);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingDaily);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingDaily);
-		$findByNowStmt 				= sprintf("select *  from %s where `date`=now()", $tblTrackingDaily);
+		$findByNowStmt 				= sprintf("select *  from %s where `date`=date(now())", $tblTrackingDaily);
 		$findByPreStmt 				= sprintf("select *  from %s where id_tracking=? AND `date`<? ORDER BY `date` DESC", $tblTrackingDaily);
+		$findByNextStmt 			= sprintf("select *  from %s where id_tracking=? AND `date`>? ORDER BY `date`", $tblTrackingDaily);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -25,7 +26,9 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->deleteByTrackingStmt = self::$PDO->prepare($deleteByTrackingStmt);
 		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
+		$this->findByNowStmt 		= self::$PDO->prepare($findByNowStmt);
 		$this->findByPreStmt 		= self::$PDO->prepare($findByPreStmt);
+		$this->findByNextStmt 		= self::$PDO->prepare($findByNextStmt);
     }
 	
     function getCollection( array $raw ) {return new TrackingDailyCollection( $raw, $this );}
@@ -77,9 +80,13 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
         return new TrackingDailyCollection( $this->findByNowStmt->fetchAll(), $this );
     }
 	
-	function findByPre(array $values) {
+	function findByPre(array $values){
 		$this->findByPreStmt->execute( $values );
         return new TrackingDailyCollection( $this->findByPreStmt->fetchAll(), $this );
+    }
+	function findByNext(array $values){
+		$this->findByNextStmt->execute( $values );
+        return new TrackingDailyCollection( $this->findByNextStmt->fetchAll(), $this );
     }
 }
 ?>

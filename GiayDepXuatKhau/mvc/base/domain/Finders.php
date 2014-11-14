@@ -38,7 +38,7 @@ interface ConfigFinder 			extends Finder {}
 
 interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}
-//interface TrackingStoreFinder 	extends Finder {}
+interface TrackingDailyResourceFinder 	extends Finder {}
 interface TrackingSupplierDailyFinder 	extends Finder {}
 
 interface GuestFinder 			extends Finder {}
