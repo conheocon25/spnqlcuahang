@@ -6,8 +6,22 @@
 	</head>
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div id="sidebar">			
-			
+		<div class="menu">
+			<div id="sidebar">
+				<ul style="display: block;">																				
+					<li tal:condition="TD/getPre"> 
+						<a tal:attributes="href TD/getPre/getURLReportGeneral">
+							<i class="icon-book" /><span tal:content="TD/getPre/getDatePrint"/>
+						</a>
+					</li>
+					<li class="active"><a><i class="icon-book" /><span tal:content="TD/getDatePrint"/></a></li>
+					<li>
+						<a tal:attributes="href TD/getNext/getURLReportGeneral" tal:condition="TD/getNext">
+							<i class="icon-book" /><span tal:content="TD/getNext/getDatePrint"/>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -16,60 +30,48 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table width="100%">
-								<tr>
-									<td width="50%" align="right">VÉ NHẬP VỀ TỪ CÁC ĐẠI LÝ</td>
-									<td width="50%" align="right"><span tal:content="TD/getTicketImportPrint"/> (+)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">VÉ ĐƯA TAY EM BÁN</td>
-									<td width="50%" align="right"><span tal:content="TD/getTicketSellingPrint"/> (-)</td>
-								</tr>								
-								<tr>
-									<td width="50%" align="right">VÉ TAY EM TRẢ LẠI</td>
-									<td width="50%" align="right"><span tal:content="TD/getTicketSellingBackPrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TIỀN VÉ BÁN ƯỚC TÍNH</td>
-									<td width="50%" align="right"><B tal:content="TD/getTicketSellingValuePrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TIỀN VÉ BÁN THỰC THU</td>
-									<td width="50%" align="right"><B tal:content="TD/getPaidTicketPrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">------------------------------------------</td>
-									<td width="50%" align="left">------------------------------------------------------------------------------------------------------</td>
-								</tr>								
-								<tr>
-									<td width="50%" align="right">VÉ PHẢI TRẢ CHO ĐẠI LÝ</td>
-									<td width="50%" align="right"><B tal:content="TD/getTicketImportBackPrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TIỀN VÉ PHẢI TRẢ ĐẠI LÝ</td>
-									<td width="50%" align="right"><B tal:content="TD/getValueImportDPrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">------------------------------------------</td>
-									<td width="50%" align="left">------------------------------------------------------------------------------------------------------</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">ỨNG THÊM TIỀN GÓP</td>
-									<td width="50%" align="right"><B tal:content="TD/getDebtPrint"/> (-)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TIỀN GÓP HIỆN TẠI</td>
-									<td width="50%" align="right"><B tal:content="TD/getPaidDebtPrint"/> (+)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TỔNG NỢ TIỀN VÉ</td>
-									<td width="50%" align="right"><B tal:content="TD/getPaidTicketRemainPrint"/> (+)</td>
-								</tr>
-								<tr>
-									<td width="50%" align="right">TỔNG NỢ TIỀN GÓP</td>
-									<td width="50%" align="right"><B tal:content="TD/getPaidDebtRemainPrint"/> (+)</td>
-								</tr>
-							</table>							
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>																					
+										<th width="40"><div class="text-left">ID</div></th>
+										<th width="80" />
+										<th><div class="text-left">TÊN HÀNG</div></th>
+										<th width="90"><div class="text-right">TỒN CŨ</div></th>
+										<th width="90"><div class="text-right">NHẬP</div></th>
+										<th width="90"><div class="text-right">XUẤT</div></th>
+										<th width="90"><div class="text-right">GIÁ</div></th>
+										<th width="90"><div class="text-right">TỒN MỚI</div></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="TDR TD/getTDResourceAll">
+										<td><span tal:content="repeat/TDR/index"/></td>
+										<td><img width="32" tal:attributes="src TDR/getResource/getImage"/></td>
+										<td><span tal:content="TDR/getResource/getName"/></td>
+										<td align="right">
+											<font color="green">
+												<span tal:content="TDR/getCountOldPrint"/>
+											</font>
+										</td>
+										<td align="right">
+											<font color="blue">
+												<span tal:content="TDR/getCountImportPrint"/>
+											</font>
+										</td>
+										<td align="right">
+											<font color="red">
+												<span tal:content="TDR/getCountExportPrint"/>
+											</font>
+										</td>	
+										<td align="right"><span tal:content="TDR/getPricePrint"/></td>
+										<td align="right">
+											<font color="blue">
+												<B tal:content="TDR/getCountNewPrint"/>
+											</font>
+										</td>
+									</tr>										
+								</tbody>
+							</table>															
 						</div>
 					</div>					
 				</div>
@@ -80,7 +82,6 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-					
 			
 		/*]]>*/
 		</script>

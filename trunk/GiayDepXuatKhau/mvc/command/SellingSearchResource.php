@@ -17,16 +17,22 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mResource 	= new \MVC\Mapper\Resource();
+			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mTDR 		= new \MVC\Mapper\TrackingDailyResource();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$ResourceAll	= $mResource->findByName($Name."%");
-									
+			//-------------------------------------------------------------												
+			$TDAll 			= $mTD->findByNow(array());
+			$TD				= $TDAll->current();
+						
+			$TDRAll 		= $mTDR->findByResourceName(array($TD->getId(), $Name."%"));
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject('ResourceFAll'		, $ResourceAll);
+			//-------------------------------------------------------------			
+			$request->setObject('TDRAll'	, $TDRAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

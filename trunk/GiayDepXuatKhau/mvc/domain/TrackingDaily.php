@@ -49,6 +49,12 @@ class TrackingDaily extends Object{
 		return $Arr[\date('l', strtotime( $this->Date))];
 	}
 	
+	function getTDResourceAll(){
+		$mTDR 	= new \MVC\Mapper\TrackingDailyResource();
+		$TDRAll = $mTDR->findBy(array($this->getId()));
+		return $TDRAll;
+	}
+	
 	function setImport( $Import ) {$this->Import = $Import;$this->markDirty();}   
 	function getImport( ) {return $this->Import;}
 	function getImportPrint( ){$N = new \MVC\Library\Number($this->Import);return $N->formatCurrency(). " đ";}
@@ -67,6 +73,20 @@ class TrackingDaily extends Object{
 		$mOrder = new \MVC\Mapper\OrderExport();		
 		$OrderAll 	= $mOrder->findByTracking(array($this->getDate(), $this->getDate()));
 		return $OrderAll;
+	}
+	
+	function getPre(){
+		$mTD = new \MVC\Mapper\TrackingDaily();
+		$TDAll = $mTD->findByPre(array($this->getIdTracking(), $this->getDate()));
+		if ($TDAll->count()==0) return null;
+		return $TDAll->current();
+	}
+	
+	function getNext(){
+		$mTD = new \MVC\Mapper\TrackingDaily();
+		$TDAll = $mTD->findByNext(array($this->getIdTracking(), $this->getDate()));
+		if ($TDAll->count()==0) return null;
+		return $TDAll->current();
 	}
 	
 	//-------------------------------------------------------------------------------

@@ -6,9 +6,9 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "giaydep_resource";
-		$tblOrderImport = "giaydep_order_export";
-		$tblOrderExportDetail = "giaydep_order_export_detail";
+		$tblResource 			= "giaydep_resource";
+		$tblOrderExport 		= "giaydep_order_export";
+		$tblOrderExportDetail 	= "giaydep_order_export_detail";
 										
 		$selectAllStmt = sprintf("select * from %s", $tblOrderExportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderExportDetail);
@@ -16,22 +16,20 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, count1, price ) values( ?, ?, ?, ?, ?)", $tblOrderExportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderExportDetail);
 				
-		$findByStmt = sprintf("SELECT * FROM %s WHERE idorder=?", $tblOrderExportDetail);
-				
-		$existStmt = sprintf("select id from %s where idorder=? and idresource=?", $tblOrderExportDetail);
+		$findByStmt 		= sprintf("SELECT * FROM %s WHERE idorder=?", $tblOrderExportDetail);				
+		$existStmt 			= sprintf("select id from %s where idorder=? and idresource=?", $tblOrderExportDetail);
+		$trackByCountStmt 	= sprintf("select sum(count) from %s S inner join %s SD on S.id = SD.idorder where idresource=? and date >= ? and date <= ?", $tblOrderExport, $tblOrderExportDetail);
 								
-        $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);                            
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );                            
-		$this->findByStmt = self::$PDO->prepare( $findByStmt );
-		$this->existStmt = self::$PDO->prepare($existStmt);			
+        $this->selectAllStmt 	= self::$PDO->prepare( $selectAllStmt);                            
+        $this->selectStmt 		= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 		= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 		= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 		= self::$PDO->prepare( $deleteStmt );                            
+		$this->findByStmt 		= self::$PDO->prepare( $findByStmt );
+		$this->existStmt 		= self::$PDO->prepare($existStmt);			
+		$this->trackByCountStmt = self::$PDO->prepare($trackByCountStmt);
     } 
-    function getCollection( array $raw ) {
-        return new OrderExportDetailCollection( $raw, $this );
-    }
-
+    function getCollection( array $raw ) {return new OrderExportDetailCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\OrderExportDetail( 
 			$array['id'],  
@@ -42,12 +40,8 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 			$array['price']
 		);
         return $obj;
-    }
-	
-    protected function targetClass() {        
-		return "OrderExportDetail";
-    }
-
+    }	
+    protected function targetClass() {return "OrderExportDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdOrder(), 
@@ -59,8 +53,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
-    }
-    
+    }    
     protected function doUpdate(\MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getCount(),
@@ -70,10 +63,7 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		);		
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 	
 	//-------------------------------------------------------
 	function findBy( $values ) {		
@@ -91,9 +81,16 @@ class OrderExportDetail extends Mapper implements \MVC\Domain\OrderExportDetailF
 		}
     }
 	
+	function trackByCount( $values ) {
+        $this->trackByCountStmt->execute( $values );
+		$result = $this->trackByCountStmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return 0;
+        return $result[0][0];
+    }
+	
 	//-------------------------------------------------------
     function selectStmt() {return $this->selectStmt;}	
-    function selectAllStmt() {return $this->selectAllStmt;}
-	
+    function selectAllStmt() {return $this->selectAllStmt;}	
 }
 ?>
