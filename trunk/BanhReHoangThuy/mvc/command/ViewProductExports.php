@@ -34,7 +34,7 @@
 			$PETrackings = $mPETracking->trackBy(array($Customer->getId(),$Today, $Today));			
 			$request->setObject('PETrackings', $PETrackings);
 			$fToday = date("m/Y", strtotime($Today));
-			$request->setProperty('Title', $Customer->getName().' NHẬN HÀNG THÁNG '.$fToday);
+			$request->setProperty('Title', $Customer->getName().' NHẬN HÀNG THÁNG *'.$fToday);
 			$request->setProperty('ParentsLinked', '?cmd=ViewCustomers');
 									
 			return self::statuses('CMD_OK');

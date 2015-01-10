@@ -21,11 +21,12 @@ class CustomerLoan extends Mapper implements \MVC\Domain\CustomerLoanFinder {
 				sum(S.Value) as value,
 				S.Description as description				
 			FROM
-			(SELECT @rownum:=@rownum+1 as id, (date('2015-01-01') - interval @rownum day) as date 
+			(SELECT @rownum:=@rownum+1 as id, (date('2018-01-01') - interval @rownum day) as date 
 			FROM
 				(SELECT 0 union all select 1 union all select 3 union all select 4 union all select 5 union all select 6 union all select 6 union all select 7 union all select 8 union all select 9) t1,
 				(SELECT 0 union all SELECT 1 union all SELECT 3 union all SELECT 4 union all SELECT 5 union all SELECT 6 union all SELECT 6 union all SELECT 7 union all SELECT 8 union all SELECT 9) t2,
 				(SELECT 0 union all SELECT 1 union all SELECT 3 union all SELECT 4 union all SELECT 5 union all SELECT 6 union all SELECT 6 union all SELECT 7 union all SELECT 8 union all SELECT 9) t3,
+				(SELECT 0 union all SELECT 1 union all SELECT 3 union all SELECT 4 union all SELECT 5 union all SELECT 6 union all SELECT 6 union all SELECT 7 union all SELECT 8 union all SELECT 9) t4,
 				(SELECT @rownum:=0) r
 			) D left join
 			(	SELECT
