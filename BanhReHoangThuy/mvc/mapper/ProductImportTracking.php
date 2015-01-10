@@ -39,11 +39,12 @@ class ProductImportTracking extends Mapper implements \MVC\Domain\ProductImportT
 			sum(S.P21) as P21,
 			sum(S.P22) as P22
 		from
-	(select @rownum:=@rownum+1 as id, (date('2015-01-01') - interval @rownum day) as date 
+	(select @rownum:=@rownum+1 as id, (date('2018-01-01') - interval @rownum day) as date 
 	from
 		(select 0 union all select 1 union all select 3 union all select 4 union all select 5 union all select 6 union all select 6 union all select 7 union all select 8 union all select 9) t1,
 		(select 0 union all select 1 union all select 3 union all select 4 union all select 5 union all select 6 union all select 6 union all select 7 union all select 8 union all select 9) t2,
 		(select 0 union all select 1 union all select 3 union all select 4 union all select 5 union all select 6 union all select 6 union all select 7 union all select 8 union all select 9) t3,
+		(select 0 union all select 1 union all select 3 union all select 4 union all select 5 union all select 6 union all select 6 union all select 7 union all select 8 union all select 9) t4,
 		(SELECT @rownum:=0) r) D
 	left join
 	(SELECT 
